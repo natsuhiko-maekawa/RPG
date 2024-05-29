@@ -1,0 +1,38 @@
+﻿namespace BattleScene.Domain.Code
+{
+    public enum SkillCode
+    {
+        Afterimage,
+        Attack,
+        Bite,
+        BiteOff,
+        Confusion,
+        CutUp,
+        Defence,
+        FieldRation,
+        FirstAid,
+        FlameThrow,
+        Honzougaku,
+        Ishinhou,
+        Kuchiyose,
+        Kyoukasuigetsu,
+        Liquid,
+        Murasame,
+        MusterStrength,
+        Nadegiri,
+        NumbLiquid,
+        Onikoroshi,
+        Punch,
+        PutScythe,
+        Raikiri,
+        RandomShots,
+        Shichishitou,
+        SilverBullet,
+        SmokeBomb,
+        StarShell,
+        Stringer,
+        TaserGun,
+        Utsusemi,
+        Wabisuke
+    }
+}

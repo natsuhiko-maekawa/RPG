@@ -1,0 +1,32 @@
+﻿using System.Collections.Immutable;
+using BattleScene.Domain.AbstractClass;
+using BattleScene.Domain.Code;
+using BattleScene.Domain.Interface;
+using BattleScene.UseCase.Skill.SkillElement;
+using static BattleScene.Domain.Code.Range;
+
+namespace BattleScene.UseCase.Skill
+{
+    /// <summary>
+    /// 残像
+    /// </summary>
+    internal class AfterimageSkill : AbstractSkill
+    {
+        private readonly AfterImageSkillElement _afterimageSkillSkillElement;
+
+        public override Range GetRange()
+        {
+            return Oneself;
+        }
+
+        public override MessageCode GetAttackMessage()
+        {
+            return MessageCode.AfterimageMessage;
+        }
+
+        public override ImmutableList<ISkillElement> GetSkillService()
+        {
+            return ImmutableList.Create<ISkillElement>(_afterimageSkillSkillElement);
+        }
+    }
+}

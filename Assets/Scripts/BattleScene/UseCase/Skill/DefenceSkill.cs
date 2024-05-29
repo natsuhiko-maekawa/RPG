@@ -1,0 +1,42 @@
+﻿using System.Collections.Immutable;
+using BattleScene.Domain.AbstractClass;
+using BattleScene.Domain.Code;
+using BattleScene.Domain.Interface;
+using BattleScene.UseCase.Skill.SkillElement;
+
+namespace BattleScene.UseCase.Skill
+{
+    /// <summary>
+    /// 防御
+    /// </summary>
+    public class DefenceSkill : AbstractSkill
+    {
+        private readonly DefenceSkillElement _defenceSkillElement;
+
+        public override Range GetRange()
+        {
+            return Range.Oneself;
+        }
+
+        public override PlayerImageCode GetPlayerImageCode()
+        {
+            return PlayerImageCode.Defence;
+        }
+
+        public override MessageCode GetDescription()
+        {
+            return MessageCode.DefenceDescription;
+        }
+
+        public override MessageCode GetAttackMessage()
+        {
+            return MessageCode.DefenceMessage;
+        }
+
+        public override ImmutableList<ISkillElement> GetSkillService()
+        {
+            // TODO: TPを回復するスキルをAddする
+            return ImmutableList.Create<ISkillElement>(_defenceSkillElement);
+        }
+    }
+}

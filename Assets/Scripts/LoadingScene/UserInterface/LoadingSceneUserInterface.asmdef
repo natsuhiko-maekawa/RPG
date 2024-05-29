@@ -1,0 +1,21 @@
+{
+    "name": "UserInterface.LoadingScene",
+    "rootNamespace": "",
+    "references": [
+        "GUID:13df569eb0e9e6944ac1cd4d1d609c32",
+        "GUID:9e24947de15b9834991c9d8411ea37cf",
+        "GUID:69448af7b92c7f342b298e06a37122aa",
+        "GUID:84651a3751eca9349aac36a66bba901b",
+        "GUID:13af43e49dd1b024abe6ff1ba507fabb",
+        "GUID:b0214a6008ed146ff8f122a6a9c2f6cc"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

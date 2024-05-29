@@ -1,0 +1,18 @@
+{
+    "name": "UseCase.LoadingScene",
+    "rootNamespace": "",
+    "references": [
+        "GUID:4f6bd199d73d11545b944bacae92f61a",
+        "GUID:b0214a6008ed146ff8f122a6a9c2f6cc",
+        "GUID:13af43e49dd1b024abe6ff1ba507fabb"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

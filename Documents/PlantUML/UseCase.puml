@@ -1,0 +1,24 @@
+﻿@startuml
+left to right direction
+skinparam actorStyle awesome
+actor プレイヤー as player
+actor 敵 as enemy
+package Action {
+    usecase "通常攻撃" as attack
+    usecase "スキル" as skill
+    usecase "防御" as defence
+    usecase "逃走" as escape
+    usecase "行動不能付与" as cantAction
+    usecase "スリップ付与" as slipDamage
+}
+player --> attack
+player --> skill
+player --> defence
+player --> escape
+player --> cantAction
+
+enemy -up-> attack
+enemy -up-> skill
+enemy -up-> cantAction
+enemy -up-> slipDamage
+@enduml

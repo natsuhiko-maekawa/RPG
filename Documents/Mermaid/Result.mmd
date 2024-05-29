@@ -1,0 +1,52 @@
+﻿classDiagram
+    ResultEntity *-- TurnNumber
+    ResultEntity *-- SequenceNumber
+    ResultEntity *-- IResult
+    IResult <|-- ISkillResult
+    IResult <|-- IDamageResult
+    ISkillResult <|-- AilmentSkillResult
+    ISkillResult <|-- DamageSkillResult
+    IDamageResult <|-- DamageSkillResult
+    IDamageResult <|-- SlipDamageResult
+    AilmentSkillResult *-- AilmentSkillResultDetail
+    DamageSkillResult *-- DamageSkillResultDetail
+    SlipDamageResult *-- SlipDamageResultDetail
+
+    class ResultEntity {
+    }
+
+    class TurnNumber {
+    }
+    
+    class SequenceNumber {
+    }
+
+    class IResult {
+        <<interface>>
+    }
+
+    class ISkillResult {
+        <<interface>>
+    }
+
+    class IDamageResult {
+        <<interface>>
+    }
+
+    class AilmentSkillResult {
+    }
+
+    class AilmentSkillResultDetail {
+    }
+
+    class DamageSkillResult {
+    }
+    
+    class DamageSkillResultDetail {
+    }
+    
+    class SlipDamageResult{
+    }
+    
+    class SlipDamageResultDetail {
+    }

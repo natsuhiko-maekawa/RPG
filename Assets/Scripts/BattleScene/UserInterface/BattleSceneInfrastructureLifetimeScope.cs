@@ -1,0 +1,24 @@
+﻿using BattleScene.InterfaceAdapter.IInputSystem;
+using BattleScene.InterfaceAdapter.IView;
+using VContainer;
+using VContainer.Unity;
+
+namespace BattleScene.UserInterface
+{
+    public class BattleSceneInfrastructureLifetimeScope : LifetimeScope
+    {
+        protected override void Configure(IContainerBuilder builder)
+        {
+            builder.RegisterComponentInHierarchy<IEnemiesView>();
+            builder.RegisterComponentInHierarchy<IInfoView>();
+            builder.RegisterComponentInHierarchy<IBattleSceneInputSystem>();
+            builder.RegisterComponentInHierarchy<IMessageView>();
+            builder.RegisterComponentInHierarchy<IOrderView>();
+            builder.RegisterComponentInHierarchy<IPlayerAttackCountView>();
+            builder.RegisterComponentInHierarchy<IPlayerView>();
+            builder.RegisterComponentInHierarchy<IPlayerStatusView>();
+            builder.RegisterComponentInHierarchy<ISelectActionView>();
+            builder.RegisterComponentInHierarchy<ISelectSkillView>();
+        }
+    }
+}
