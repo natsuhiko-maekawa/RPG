@@ -1,9 +1,8 @@
 ﻿using System;
-using BattleScene.UseCase.Event;
 using BattleScene.UseCase.Event.Interface;
 using VContainer;
 
-namespace BattleScene.UseCase.EventRunner
+namespace BattleScene.UseCase.Event.Runner
 {
     internal class EventFactory : IEventFactory
     {

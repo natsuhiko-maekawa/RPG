@@ -16,29 +16,15 @@ namespace BattleScene.UserInterface.View
 {
     public class EnemiesView : MonoBehaviour, IEnemiesView
     {
-        private ISpriteFlyweight _spriteFlyweight;
+        private const int MaxEnemyNum = 4;
         [SerializeField] private GameObject enemyView;
-        private readonly List<Image> _enemyImageList = new();
         private readonly List<EnemyAilmentsView> _enemyAilmentsViewList = new();
         private readonly List<DigitView> _enemyDmgViewList = new();
-        private readonly List<StatusBarView> _enemyHpBarViewList = new();
         private readonly List<FrameView> _enemyFrameViewList = new();
+        private readonly List<StatusBarView> _enemyHpBarViewList = new();
+        private readonly List<Image> _enemyImageList = new();
         private readonly List<EnemyVibesView> _enemyVibesViewList = new();
-        private const int MaxEnemyNum = 4;
-        // private static readonly float[][] EnemyPositionX =
-        // {
-        //     new[] { 0.0f },
-        //     new[] { -100.0f, 100.0f },
-        //     new[] { -200.0f, 0.0f, 200.0f },
-        //     new[] { -300.0f, -100.0f, 100.0f, 300.0f }
-        // };
-
-        [Inject]
-        public void Construct(
-            ISpriteFlyweight spriteFlyweight)
-        {
-            _spriteFlyweight = spriteFlyweight;
-        }
+        private ISpriteFlyweight _spriteFlyweight;
 
         private void Awake()
         {
@@ -70,7 +56,7 @@ namespace BattleScene.UserInterface.View
         //         _enemyVibesViewList[index].Initialize();
         //     }
         // }
-        
+
         public Task StartEnemyAilmentsView(EnemyAilmentsViewDto dto)
         {
             _enemyAilmentsViewList[dto.EnemyInt].StartAnimation(dto.AilmentsDtoList);
@@ -98,7 +84,7 @@ namespace BattleScene.UserInterface.View
         {
             foreach (var view in _enemyFrameViewList.Where(x => x.isActiveAndEnabled)) view.StopAnimation();
         }
-        
+
         public async Task StartEnemyVibesView(EnemyVibesViewDto dto)
         {
             await _enemyVibesViewList[dto.EnemyInt].StartAnimation();
@@ -108,8 +94,22 @@ namespace BattleScene.UserInterface.View
         {
             foreach (var (enemyImage, index) in _enemyImageList.Select((x, i) => (x, i)))
                 enemyImage.enabled = dtoList.Exists(x => x.EnemyInt == index);
-            
+
             return Task.CompletedTask;
+        }
+        // private static readonly float[][] EnemyPositionX =
+        // {
+        //     new[] { 0.0f },
+        //     new[] { -100.0f, 100.0f },
+        //     new[] { -200.0f, 0.0f, 200.0f },
+        //     new[] { -300.0f, -100.0f, 100.0f, 300.0f }
+        // };
+
+        [Inject]
+        public void Construct(
+            ISpriteFlyweight spriteFlyweight)
+        {
+            _spriteFlyweight = spriteFlyweight;
         }
     }
 }

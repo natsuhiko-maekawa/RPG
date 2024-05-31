@@ -7,7 +7,7 @@ using BattleScene.UseCase.Skill.SkillElement;
 namespace BattleScene.UseCase.Skill
 {
     /// <summary>
-    /// 侘助
+    ///     侘助
     /// </summary>
     internal class WabisukeSkill : AbstractSkill
     {

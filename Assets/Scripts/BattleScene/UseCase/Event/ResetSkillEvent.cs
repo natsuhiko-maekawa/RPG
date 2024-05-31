@@ -3,8 +3,8 @@ using BattleScene.Domain.DomainService;
 using BattleScene.Domain.IRepository;
 using BattleScene.Domain.ValueObject;
 using BattleScene.UseCase.Event.Interface;
+using BattleScene.UseCase.Event.Runner;
 using BattleScene.UseCase.Event.TemplateMethod;
-using BattleScene.UseCase.EventRunner;
 using BattleScene.UseCase.Service;
 using BattleScene.UseCase.View.AilmentView.OutputBoundary;
 using BattleScene.UseCase.View.AilmentView.OutputDataFactory;
@@ -12,30 +12,30 @@ using BattleScene.UseCase.View.DestroyedPartView.OutputBoundary;
 using BattleScene.UseCase.View.DestroyedPartView.OutputDataFactory;
 using BattleScene.UseCase.View.MessageView.OutputBoundary;
 using BattleScene.UseCase.View.MessageView.OutputDataFactory;
-using static BattleScene.UseCase.EventRunner.EventCode;
+using static BattleScene.UseCase.Event.Runner.EventCode;
 
 namespace BattleScene.UseCase.Event
 {
     /// <summary>
-    /// 異常回復スキルを実行し、リポジトリを更新するクラス
+    ///     異常回復スキルを実行し、リポジトリを更新するクラス
     /// </summary>
     internal class ResetSkillEvent : SkillEvent, IEvent
     {
-        private readonly IAilmentRepository _ailmentRepository;
-        private readonly CharactersDomainService _characters;
-        private readonly IAilmentViewPresenter _ailmentViewPresenter;
         private readonly AilmentOutputDataFactory _ailmentOutputDataFactory;
-        private readonly IDestroyedPartViewPresenter _destroyedPartViewPresenter;
+        private readonly IAilmentRepository _ailmentRepository;
+        private readonly IAilmentViewPresenter _ailmentViewPresenter;
+        private readonly CharactersDomainService _characters;
         private readonly DestroyedPartOutputDataFactory _destroyedPartOutputDataFactory;
+        private readonly IDestroyedPartViewPresenter _destroyedPartViewPresenter;
+        private readonly MessageOutputDataFactory _messageOutputDataFactory;
         private readonly IMessageViewPresenter _messageViewPresenter;
         private readonly OrderedItemsDomainService _orderedItems;
+        private readonly ResetSkillService _resetSkill;
         private readonly ResultDomainService _result;
-        private readonly MessageOutputDataFactory _messageOutputDataFactory;
+        private readonly IResultRepository _resultRepository;
         private readonly SkillCreatorService _skillCreator;
         private readonly ISkillRepository _skillRepository;
-        private readonly ResetSkillService _resetSkill;
-        private readonly IResultRepository _resultRepository;
-        
+
         protected override void UpdateResultRepository()
         {
             var characterId = _orderedItems.FirstCharacterId();
@@ -57,18 +57,14 @@ namespace BattleScene.UseCase.Event
             var resetSkillResult = _result.Last<ResetSkillResultValueObject>();
 
             foreach (var targetId in resetSkillResult.TargetIdList)
+            foreach (var ailmentCode in resetSkillResult.AilmentCodeList)
             {
-                foreach (var ailmentCode in resetSkillResult.AilmentCodeList)
-                {
-                    _ailmentRepository.Delete(targetId, ailmentCode);
-                    if (ailmentCode != AilmentCode.Confusion) continue;
-                    var skill = _skillCreator.Create(targetId, SkillCode.Attack);
-                    _skillRepository.Update(skill);
-                }
-                
-                // TODO: 部位破壊とデバフのリセット処理を書く
+                _ailmentRepository.Delete(targetId, ailmentCode);
+                if (ailmentCode != AilmentCode.Confusion) continue;
+                var skill = _skillCreator.Create(targetId, SkillCode.Attack);
+                _skillRepository.Update(skill);
             }
-
+            // TODO: 部位破壊とデバフのリセット処理を書く
             // TODO: 表示の処理を書く
             // var ailmentOutputData = _ailmentOutputDataFactory.Create();
             // _ailmentViewPresenter.Start(ailmentOutputData);
@@ -76,7 +72,7 @@ namespace BattleScene.UseCase.Event
             // _destroyedPartViewPresenter.Start(destroyedPartOutputData);
             // var message = _messageOutputDataFactory.Create();
             // _messageViewPresenter.Start(message);
-            
+
             return WaitEvent;
         }
     }

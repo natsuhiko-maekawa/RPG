@@ -13,7 +13,7 @@ namespace LoadingScene.UserInterface.View
         {
             _progressBar = Instantiate(progressBar, transform);
         }
-        
+
         public void StartAnimation(float progress)
         {
             _progressBar.rectTransform.localScale =

@@ -9,7 +9,7 @@ namespace BattleScene.UserInterface.View
     public class PlayerAilmentsView : MonoBehaviour
     {
         private List<PlayerStatusView.TextAndIcon> _textAndIconList;
-        
+
         public void Initialize(List<PlayerStatusView.TextAndIcon> textAndIconList)
         {
             _textAndIconList = textAndIconList;
@@ -19,7 +19,7 @@ namespace BattleScene.UserInterface.View
                 textAndIcon.icon.enabled = false;
             }
         }
-        
+
         public Task StartAnimation(IList<PlayerAilmentsViewDto> dtoList)
         {
             foreach (var (textAndIcon, index) in _textAndIconList.Select((x, i) => (x, i)))

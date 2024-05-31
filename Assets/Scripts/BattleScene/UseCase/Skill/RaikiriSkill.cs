@@ -7,7 +7,7 @@ using BattleScene.UseCase.Skill.SkillElement;
 namespace BattleScene.UseCase.Skill
 {
     /// <summary>
-    /// 雷切
+    ///     雷切
     /// </summary>
     internal class RaikiriSkill : AbstractSkill
     {

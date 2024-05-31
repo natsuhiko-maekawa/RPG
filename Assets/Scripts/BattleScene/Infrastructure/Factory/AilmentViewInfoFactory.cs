@@ -14,15 +14,15 @@ namespace BattleScene.Infrastructure.Factory
         {
             _ailmentViewInfoScriptableObject = ailmentViewInfoScriptableObject;
         }
-        
+
         public AilmentViewInfoValueObject Create(AilmentCode ailmentCode)
         {
             var ailmentViewInfoDto = _ailmentViewInfoScriptableObject.Select(ailmentCode);
             return new AilmentViewInfoValueObject(
-                ailmentCode: ailmentCode,
-                ailmentName: ailmentViewInfoDto.ailmentName,
-                messageCode: ailmentViewInfoDto.messageCode,
-                playerImageCode: ailmentViewInfoDto.playerImageCode);
+                ailmentCode,
+                ailmentViewInfoDto.ailmentName,
+                ailmentViewInfoDto.messageCode,
+                ailmentViewInfoDto.playerImageCode);
         }
     }
 }

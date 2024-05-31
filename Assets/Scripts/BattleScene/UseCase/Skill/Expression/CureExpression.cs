@@ -10,7 +10,7 @@ namespace BattleScene.UseCase.Skill.Expression
         private readonly ICharacterRepository _characterRepository;
         private readonly IHitPointRepository _hitPointRepository;
         private readonly IRandomEx _randomEx;
-        
+
         public int Evaluate(CharacterId actorId, CharacterId targetId, CureSkillElement cureSkillElement)
         {
             var actor = _characterRepository.Select(actorId);

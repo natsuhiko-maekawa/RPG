@@ -12,7 +12,7 @@ namespace BattleScene.InterfaceAdapter.Presenter.InfoView
         {
             _infoView = infoView;
         }
-        
+
         public void StartInfoView(string info)
         {
             _infoView.StartAnimation(new InfoViewDto(info));

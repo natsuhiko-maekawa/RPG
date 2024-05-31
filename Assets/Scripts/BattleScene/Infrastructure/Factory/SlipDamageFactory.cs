@@ -19,19 +19,19 @@ namespace BattleScene.Infrastructure.Factory
             _characterRepository = characterRepository;
             _slipDamageScriptableObject = slipDamageScriptableObject;
         }
-        
+
         public SlipDamageEntity Create(CharacterId playerId, CharacterId enemyId, SlipDamageCode slipDamageCode)
         {
             var slipDamageDto = _slipDamageScriptableObject.Get(slipDamageCode);
             var slipDamageEntityDto = new SlipDamageEntityDto(
-                DamageRate: slipDamageDto.damageRate,
-                PlayerIntelligence: _characterRepository.Select(playerId).Property.Intelligence,
-                EnemyIntelligence: _characterRepository.Select(enemyId).Property.Intelligence);
+                slipDamageDto.damageRate,
+                _characterRepository.Select(playerId).Property.Intelligence,
+                _characterRepository.Select(enemyId).Property.Intelligence);
 
             return new SlipDamageEntity(
-                slipDamageCode: slipDamageCode,
-                dto: slipDamageEntityDto,
-                turn: new TurnValueObject(slipDamageDto.intervalTurn));
+                slipDamageCode,
+                slipDamageEntityDto,
+                new TurnValueObject(slipDamageDto.intervalTurn));
         }
     }
 }

@@ -4,8 +4,8 @@ using BattleScene.Domain.IFactory;
 using BattleScene.Domain.IRepository;
 using BattleScene.Domain.ValueObject;
 using BattleScene.UseCase.Event.Interface;
+using BattleScene.UseCase.Event.Runner;
 using BattleScene.UseCase.Event.TemplateMethod;
-using BattleScene.UseCase.EventRunner;
 using BattleScene.UseCase.Service;
 
 namespace BattleScene.UseCase.Event

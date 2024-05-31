@@ -12,7 +12,7 @@ namespace BattleScene.UseCase.View.CharacterVibesView.OutputDataFactory
         private readonly ICharacterRepository _characterRepository;
         private readonly IEnemyRepository _enemyRepository;
         private readonly ResultDomainService _result;
-        
+
         public ImmutableList<CharacterVibesOutputData> Create()
         {
             return _result.LastDamage().DamageList
@@ -20,7 +20,7 @@ namespace BattleScene.UseCase.View.CharacterVibesView.OutputDataFactory
                 .Where(x => x
                     .Any(y => y.IsHit))
                 .Select(x => new CharacterVibesOutputData(
-                    CharacterOutputData: _characterRepository.Select(x.Key).IsPlayer()
+                    _characterRepository.Select(x.Key).IsPlayer()
                         ? CharacterOutputData.SetPlayer()
                         : CharacterOutputData.SetEnemy(_enemyRepository.Select(x.Key).EnemyNumber)))
                 .ToImmutableList();

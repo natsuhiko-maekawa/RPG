@@ -10,10 +10,10 @@ namespace LoadingScene.UserInterface.Addressable
 {
     public class SpriteAddressable : ISpriteAddressable
     {
-        private readonly ISpriteFlyweight _spriteFlyweight;
         private readonly List<AsyncOperationHandle<Sprite>> _handleList = new();
+        private readonly ISpriteFlyweight _spriteFlyweight;
         private int _resourceNum;
-        
+
         public SpriteAddressable(
             ISpriteFlyweight spriteFlyweight)
         {

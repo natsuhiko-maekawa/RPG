@@ -7,7 +7,7 @@ using BattleScene.UseCase.Skill.SkillElement;
 namespace BattleScene.UseCase.Skill
 {
     /// <summary>
-    /// 七支刀
+    ///     七支刀
     /// </summary>
     internal class ShichishitouSkill : AbstractSkill
     {

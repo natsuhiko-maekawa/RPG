@@ -7,7 +7,7 @@ using BattleScene.UseCase.Skill.SkillElement;
 namespace BattleScene.UseCase.Skill
 {
     /// <summary>
-    /// スモークボム
+    ///     スモークボム
     /// </summary>
     internal class SmokeBombSkill : AbstractSkill
     {

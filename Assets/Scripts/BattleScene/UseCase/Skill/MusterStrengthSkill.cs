@@ -7,12 +7,12 @@ using BattleScene.UseCase.Skill.SkillElement;
 namespace BattleScene.UseCase.Skill
 {
     /// <summary>
-    /// 力溜め
+    ///     力溜め
     /// </summary>
     internal class MusterStrengthSkill : AbstractSkill
     {
         private readonly MusterStrengthSkillElement _musterStrengthSkillElement;
-        
+
         public override int GetTechnicalPoint()
         {
             return 3;

@@ -6,9 +6,9 @@ namespace BattleScene.UseCase.View.MessageView.OutputDataFactory
 {
     public class AilmentMessageOutputDataFactory
     {
-        private readonly OrderedItemsDomainService _orderedItems;
-        private readonly MessageOutputDataFactory _messageOutputDataFactory;
         private readonly IAilmentViewInfoFactory _ailmentViewInfoFactory;
+        private readonly MessageOutputDataFactory _messageOutputDataFactory;
+        private readonly OrderedItemsDomainService _orderedItems;
 
         public MessageOutputData Create()
         {

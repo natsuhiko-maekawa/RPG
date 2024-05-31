@@ -4,7 +4,7 @@ using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.IFactory;
 using BattleScene.Domain.IRepository;
-using BattleScene.UseCase.EventRunner;
+using BattleScene.UseCase.Event.Runner;
 using BattleScene.UseCase.Service;
 using BattleScene.UseCase.View.MessageView.OutputData;
 using BattleScene.UseCase.View.MessageView.OutputDataFactory;
@@ -27,7 +27,7 @@ namespace BattleScene.UseCase.OutputDataFactory
         {
             throw new NotImplementedException();
         }
-        
+
         public MessageOutputData CreateMessageOutputDataFactory()
         {
             var selector = _selectorRepository.Select(new SelectorId(EventCode.SelectActionEvent));
@@ -39,7 +39,7 @@ namespace BattleScene.UseCase.OutputDataFactory
                 3 => MessageCode.FatalitySkillDescription,
                 _ => MessageCode.NoMessage
             };
-            
+
             return _messageOutputDataFactory.Create(messageEnum);
         }
 

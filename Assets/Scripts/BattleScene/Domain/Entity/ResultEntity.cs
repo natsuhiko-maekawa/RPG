@@ -6,10 +6,6 @@ namespace BattleScene.Domain.Entity
 {
     public class ResultEntity : IComparable<ResultEntity>
     {
-        public TurnNumber Turn { get; }
-        public SequenceNumber Sequence { get; }
-        public IResult Result { get; }
-
         public ResultEntity(
             TurnNumber turn,
             SequenceNumber sequence,
@@ -20,20 +16,24 @@ namespace BattleScene.Domain.Entity
             Result = result;
         }
 
+        public TurnNumber Turn { get; }
+        public SequenceNumber Sequence { get; }
+        public IResult Result { get; }
+
         public int CompareTo(ResultEntity other)
         {
             if (!Equals(Turn, other.Turn)) return Turn.CompareTo(other.Turn);
             return Sequence.CompareTo(other.Sequence);
         }
-        
+
         public override bool Equals(object obj)
         {
             if (obj == null || GetType() != obj.GetType()) return false;
             var resultEntity = (ResultEntity)obj;
             return Turn == resultEntity.Turn
-                && Sequence == resultEntity.Sequence;
+                   && Sequence == resultEntity.Sequence;
         }
-        
+
         public override int GetHashCode()
         {
             return (Turn, Sequence).GetHashCode();

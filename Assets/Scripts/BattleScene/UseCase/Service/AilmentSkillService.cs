@@ -14,32 +14,32 @@ namespace BattleScene.UseCase.Service
     {
         private const float Threshold = 40.0f; // 大きいほど命中しやすくなる
         private readonly ICharacterRepository _characterRepository;
-        private readonly TargetDomainService _target;
         private readonly OrderedItemsDomainService _orderedItems;
-        private readonly ResultCreatorDomainService _resultCreator;
         private readonly IRandomEx _randomEx;
+        private readonly ResultCreatorDomainService _resultCreator;
+        private readonly TargetDomainService _target;
 
         public ResultEntity Execute(SkillEntity skill)
         {
             var actorId = _orderedItems.FirstCharacterId();
             var ailmentSkill = (IAilmentSkill)skill.FirstSkillService();
-            var targetIdList =_target.Get(actorId, skill.AbstractSkill.GetRange())
+            var targetIdList = _target.Get(actorId, skill.AbstractSkill.GetRange())
                 .Where(x => IsTarget(x, ailmentSkill.GetLuckRate()))
                 .ToImmutableList();
 
             var ailmentSkillResult = targetIdList.IsEmpty
                 ? new AilmentSkillResultValueObject(
-                    actorId: _orderedItems.FirstCharacterId(),
-                    skillCode: skill.SkillCode)
+                    _orderedItems.FirstCharacterId(),
+                    skill.SkillCode)
                 : new AilmentSkillResultValueObject(
-                    actorId: _orderedItems.FirstCharacterId(),
-                    skillCode: skill.SkillCode,
-                    ailmentCode: ailmentSkill.GetAilmentsCode(),
-                    targetIdList: targetIdList);
+                    _orderedItems.FirstCharacterId(),
+                    skill.SkillCode,
+                    ailmentSkill.GetAilmentsCode(),
+                    targetIdList);
 
             return _resultCreator.Create(ailmentSkillResult);
         }
-        
+
         private bool IsTarget(CharacterId target, float luckRate)
         {
             var actorLuck = _characterRepository.Select(_orderedItems.FirstCharacterId()).Property.Luck;

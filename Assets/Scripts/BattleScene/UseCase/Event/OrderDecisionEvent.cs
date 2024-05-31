@@ -4,7 +4,7 @@ using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
 using BattleScene.Domain.ValueObject;
 using BattleScene.UseCase.Event.Interface;
-using BattleScene.UseCase.EventRunner;
+using BattleScene.UseCase.Event.Runner;
 using BattleScene.UseCase.Service;
 using BattleScene.UseCase.View.OrderView.OutputBoundary;
 using BattleScene.UseCase.View.OrderView.OutputDataFactory;
@@ -15,23 +15,23 @@ namespace BattleScene.UseCase.Event
 {
     internal class OrderDecisionEvent : IEvent
     {
-        private readonly IActionTimeRepository _actionTimeRepository;
-        private readonly ICharacterRepository _characterRepository;
-        private readonly IOrderRepository _orderRepository;
-        private readonly IRandomEx _randomEx;
-        private readonly AilmentDomainService _ailment;
-        private readonly CharactersDomainService _characters;
-        private readonly OrderedItemsDomainService _orderedItems;
         private readonly ActionTimeCreatorService _actionTimeCreator;
+        private readonly IActionTimeRepository _actionTimeRepository;
+        private readonly AilmentDomainService _ailment;
+        private readonly ICharacterRepository _characterRepository;
+        private readonly CharactersDomainService _characters;
         private readonly OrderedItemCreatorService _orderedItemCreator;
-        private readonly OrderOutputDataFactory _outputDataFactory;
+        private readonly OrderedItemsDomainService _orderedItems;
+        private readonly IOrderRepository _orderRepository;
         private readonly IOrderViewPresenter _orderView;
+        private readonly OrderOutputDataFactory _outputDataFactory;
+        private readonly IRandomEx _randomEx;
 
         public EventCode Run()
         {
             var order = _orderedItemCreator.Create(_characters.GetIdList());
             _orderRepository.Update(order);
-            
+
             var actionTimeList = _actionTimeCreator.Create(_characters.GetIdList());
             _actionTimeRepository.Update(actionTimeList);
             var orderOutputDataList = _outputDataFactory.Create();

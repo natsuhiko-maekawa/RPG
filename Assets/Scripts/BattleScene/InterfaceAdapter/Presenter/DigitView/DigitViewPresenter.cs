@@ -84,18 +84,16 @@ namespace BattleScene.InterfaceAdapter.Presenter.DigitView
                          .Where(x => !x.IsPlayer)
                          .GroupBy(x => x.EnemyNumber)
                          .Select(x => new EnemyDigitViewDto(x.Key, x.Select(ConvertDto).ToImmutableList())))
-            {
                 _enemiesView.StartEnemyDigitView(enemyDigitViewDto);
-            }
         }
 
         private DigitDto ConvertDto(DigitOutputData digitOutputData)
         {
             return new DigitDto(
-                Index: digitOutputData.Index,
-                Digit: digitOutputData.Digit,
-                IsAvoid: digitOutputData.IsAvoid,
-                DigitColor: digitOutputData.DigitType switch
+                digitOutputData.Index,
+                digitOutputData.Digit,
+                digitOutputData.IsAvoid,
+                digitOutputData.DigitType switch
                 {
                     DigitType.DamageHp => DigitColor.Orange,
                     DigitType.RestoreHp => DigitColor.Green,

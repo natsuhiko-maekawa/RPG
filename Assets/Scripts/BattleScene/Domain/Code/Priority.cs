@@ -3,6 +3,6 @@
     public enum Priority
     {
         Lowest,
-        Confusion,
+        Confusion
     }
 }

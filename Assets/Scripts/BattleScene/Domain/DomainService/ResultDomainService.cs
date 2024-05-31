@@ -41,7 +41,7 @@ namespace BattleScene.Domain.DomainService
             if (result == null) throw new InvalidOperationException();
             return (T)result.Result;
         }
-        
+
         public bool TryGetLast<T>(out T result) where T : IResult
         {
             result = (T)_resultRepository.Select()

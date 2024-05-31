@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 using BattleScene.InterfaceAdapter.IView;
@@ -30,7 +31,7 @@ namespace BattleScene.InterfaceAdapter.Presenter.BuffView
 
         public void Start(IList<BuffOutputData> outputDataList)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
     }
 }

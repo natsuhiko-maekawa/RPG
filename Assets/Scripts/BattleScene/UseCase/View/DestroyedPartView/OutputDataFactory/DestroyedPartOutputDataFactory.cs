@@ -11,11 +11,11 @@ namespace BattleScene.UseCase.View.DestroyedPartView.OutputDataFactory
 {
     public class DestroyedPartOutputDataFactory
     {
-        private readonly CharacterOutputDataCreatorService _characterOutputDataCreator;
-        private readonly ToBodyPartNumberService _toBodyPartNumber;
         private readonly IBodyPartRepository _bodyPartRepository;
+        private readonly CharacterOutputDataCreatorService _characterOutputDataCreator;
         private readonly ICharacterRepository _characterRepository;
-        
+        private readonly ToBodyPartNumberService _toBodyPartNumber;
+
         public DestroyedPartOutputData Create(CharacterId characterId)
         {
             var character = _characterOutputDataCreator.Create(characterId);

@@ -8,13 +8,13 @@ namespace BattleScene.UseCase.Skill.SkillElement
     {
         public ShichishitouSkillElement(
             AttacksWeakPointEvaluation attacksWeakPointEvaluation,
-            DamageExpression damageExpression, 
-            HitEvaluation hitEvaluation, 
-            OrderedItemsDomainService orderedItems) 
+            DamageExpression damageExpression,
+            HitEvaluation hitEvaluation,
+            OrderedItemsDomainService orderedItems)
             : base(
-                attacksWeakPointEvaluation, 
-                damageExpression, 
-                hitEvaluation, 
+                attacksWeakPointEvaluation,
+                damageExpression,
+                hitEvaluation,
                 orderedItems)
         {
         }
@@ -23,7 +23,7 @@ namespace BattleScene.UseCase.Skill.SkillElement
         {
             return 7;
         }
-        
+
         public override float GetDamageRate()
         {
             return 1.0f / 7.0f;

@@ -6,9 +6,6 @@ namespace BattleScene.Domain.Entity
 {
     public class AilmentEntity
     {
-        public CharacterId CharacterId { get; }
-        public AilmentCode AilmentCode { get; }
-        public Priority Priority { get; }
         private TurnValueObject _turn;
 
         public AilmentEntity(
@@ -23,11 +20,15 @@ namespace BattleScene.Domain.Entity
             _turn = turn;
         }
 
+        public CharacterId CharacterId { get; }
+        public AilmentCode AilmentCode { get; }
+        public Priority Priority { get; }
+
         public int? GetTurn()
         {
             return _turn.Get();
         }
-        
+
         public void AdvanceTurn()
         {
             _turn = _turn.Advance();

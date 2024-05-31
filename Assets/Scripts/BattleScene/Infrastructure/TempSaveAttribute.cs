@@ -4,6 +4,5 @@ namespace BattleScene.Infrastructure
 {
     public class TempSaveAttribute : Attribute
     {
-        
     }
 }

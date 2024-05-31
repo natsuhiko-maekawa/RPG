@@ -3,10 +3,11 @@ using LoadingScene.InterfaceAdapter.Repository;
 using LoadingScene.UseCase.IPresenter;
 using LoadingScene.UseCase.IRepository;
 using VContainer;
+using VContainer.Unity;
 
 namespace LoadingScene.InterfaceAdapter
 {
-    public class LoadingSceneControllerLifetimeScope : VContainer.Unity.LifetimeScope
+    public class LoadingSceneControllerLifetimeScope : LifetimeScope
     {
         protected override void Configure(IContainerBuilder builder)
         {

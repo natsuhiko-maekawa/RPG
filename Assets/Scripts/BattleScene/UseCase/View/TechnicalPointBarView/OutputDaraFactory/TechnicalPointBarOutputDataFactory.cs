@@ -10,8 +10,8 @@ namespace BattleScene.UseCase.View.TechnicalPointBarView.OutputDaraFactory
         public TechnicalPointBarOutputData Create()
         {
             var technicalPointBarOutputData = new TechnicalPointBarOutputData(
-                MaxTechnicalPoint: _technicalPointRepository.Select().GetMax(),
-                CurrentTechnicalPoint: _technicalPointRepository.Select().GetCurrent());
+                _technicalPointRepository.Select().GetMax(),
+                _technicalPointRepository.Select().GetCurrent());
             return technicalPointBarOutputData;
         }
     }

@@ -14,7 +14,7 @@ namespace BattleScene.UseCase.Skill.Expression
         {
             _characterRepository = characterRepository;
         }
-        
+
         public bool Evaluate(CharacterId targetId, DamageSkillElement damageSkillElement)
         {
             return _characterRepository.Select(targetId).GetWeakPoints()

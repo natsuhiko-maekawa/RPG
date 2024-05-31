@@ -5,7 +5,7 @@ namespace BattleScene.Domain.Entity
     public class SequenceEntity
     {
         private int _sequence;
-        
+
         public void Increment()
         {
             ++_sequence;

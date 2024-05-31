@@ -4,11 +4,6 @@ namespace BattleScene.Domain.ValueObject
 {
     public class AilmentViewInfoValueObject
     {
-        public AilmentCode AilmentCode { get; }
-        public string AilmentName { get; }
-        public MessageCode MessageCode { get; }
-        public PlayerImageCode PlayerImageCode { get; }
-
         public AilmentViewInfoValueObject(
             AilmentCode ailmentCode,
             string ailmentName,
@@ -20,5 +15,10 @@ namespace BattleScene.Domain.ValueObject
             MessageCode = messageCode;
             PlayerImageCode = playerImageCode;
         }
+
+        public AilmentCode AilmentCode { get; }
+        public string AilmentName { get; }
+        public MessageCode MessageCode { get; }
+        public PlayerImageCode PlayerImageCode { get; }
     }
 }

@@ -13,7 +13,7 @@ namespace BattleScene.InterfaceAdapter.Presenter.PlayerAttackCountView
         {
             _playerAttackCountView = playerAttackCountView;
         }
-        
+
         public void Start(AttackCountOutputData attackCountOutputData)
         {
             _playerAttackCountView.StartAnimation(new PlayerAttackCountViewDto(attackCountOutputData.Rate));

@@ -42,45 +42,6 @@ namespace BattleScene.UserInterface.View
             _downArrow = Instantiate(downArrow, transform);
             _downArrow.enabled = false;
         }
-        
-        private void SetText(int textCount)
-        {
-            if (textCount > _textList.Count)
-            {
-                AddText(textCount - _textList.Count);
-                return;
-            }
-
-            if (textCount < _textList.Count)
-            {
-                RemoveText(_textList.Count - textCount);
-            }
-        }
-
-        private void AddText(int textCount)
-        {
-            for (var i = 0; i < textCount; ++i)
-            {
-                _textList.Add(Instantiate(text, transform));
-                _textList[i].transform.localPosition += new Vector3(0, -i * SlotHeight, 0);
-                _textList[i].enabled = false;
-
-                _tpList.Add(Instantiate(tp, transform));
-                _tpList[i].transform.localPosition += new Vector3(0, -i * SlotHeight, 0);
-                _tpList[i].enabled = false;
-            }
-        }
-
-        private void RemoveText(int textCount)
-        {
-            for (var i = _textList.Count - 1; i > textCount; --i)
-            {
-                Destroy(_textList[i]);
-                _textList.RemoveAt(i);
-                Destroy(_tpList[i]);
-                _tpList.RemoveAt(i);
-            }
-        }
 
         public Task StartAnimation(SelectSkillViewDto dto)
         {
@@ -122,6 +83,42 @@ namespace BattleScene.UserInterface.View
             _downArrow.enabled = false;
             foreach (var t in _textList) t.enabled = false;
             foreach (var t in _tpList) t.enabled = false;
+        }
+
+        private void SetText(int textCount)
+        {
+            if (textCount > _textList.Count)
+            {
+                AddText(textCount - _textList.Count);
+                return;
+            }
+
+            if (textCount < _textList.Count) RemoveText(_textList.Count - textCount);
+        }
+
+        private void AddText(int textCount)
+        {
+            for (var i = 0; i < textCount; ++i)
+            {
+                _textList.Add(Instantiate(text, transform));
+                _textList[i].transform.localPosition += new Vector3(0, -i * SlotHeight, 0);
+                _textList[i].enabled = false;
+
+                _tpList.Add(Instantiate(tp, transform));
+                _tpList[i].transform.localPosition += new Vector3(0, -i * SlotHeight, 0);
+                _tpList[i].enabled = false;
+            }
+        }
+
+        private void RemoveText(int textCount)
+        {
+            for (var i = _textList.Count - 1; i > textCount; --i)
+            {
+                Destroy(_textList[i]);
+                _textList.RemoveAt(i);
+                Destroy(_tpList[i]);
+                _tpList.RemoveAt(i);
+            }
         }
     }
 }

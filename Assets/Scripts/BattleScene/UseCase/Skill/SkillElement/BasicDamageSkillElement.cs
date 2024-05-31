@@ -7,14 +7,14 @@ namespace BattleScene.UseCase.Skill.SkillElement
     public class BasicDamageSkillElement : DamageSkillElement
     {
         public BasicDamageSkillElement(
-            AttacksWeakPointEvaluation attacksWeakPointEvaluation, 
-            DamageExpression damageExpression, 
-            HitEvaluation hitEvaluation, 
-            OrderedItemsDomainService orderedItems) 
+            AttacksWeakPointEvaluation attacksWeakPointEvaluation,
+            DamageExpression damageExpression,
+            HitEvaluation hitEvaluation,
+            OrderedItemsDomainService orderedItems)
             : base(
-                attacksWeakPointEvaluation, 
-                damageExpression, 
-                hitEvaluation, 
+                attacksWeakPointEvaluation,
+                damageExpression,
+                hitEvaluation,
                 orderedItems)
         {
         }

@@ -9,7 +9,7 @@ namespace Utility
             var newHashSet = new HashSet<T>(hashSet);
             if (newHashSet.TryGetValue(item, out var result))
                 newHashSet.Remove(result);
-            
+
             newHashSet.Add(item);
             return newHashSet;
         }

@@ -15,21 +15,14 @@ namespace BattleScene.UserInterface.View
     {
         private const int Frame = 10;
         private const float MoveRange = -20.0f;
+        private Image _image;
         private DigitView _playerDigitView;
         private FrameView _playerFrameView;
         private StatusBarView _playerHpBarView;
         private StatusBarView _playerTpBarView;
         private PlayerVibesView _playerVibesView;
-        private Image _image;
         private ISpriteFlyweight _spriteFlyweight;
 
-        [Inject]
-        public void Construct(
-            ISpriteFlyweight spriteFlyweight)
-        {
-            _spriteFlyweight = spriteFlyweight;
-        }
-        
         private void Awake()
         {
             _image = GetComponentInChildren<Image>();
@@ -70,22 +63,29 @@ namespace BattleScene.UserInterface.View
         {
             _playerFrameView.StopAnimation();
         }
-        
+
         public Task StartPlayerHpBarView(PlayerHpBarViewDto dto)
         {
             _playerHpBarView.StartAnimation(dto.StatusBarViewDto);
             return Task.CompletedTask;
         }
-        
+
         public Task StartPlayerTpBarView(PlayerTpBarViewDto dto)
         {
             _playerTpBarView.StartAnimation(dto.StatusBarViewDto);
             return Task.CompletedTask;
         }
-        
+
         public async Task StartPlayerVibesView()
         {
             await _playerVibesView.StartAnimation();
+        }
+
+        [Inject]
+        public void Construct(
+            ISpriteFlyweight spriteFlyweight)
+        {
+            _spriteFlyweight = spriteFlyweight;
         }
     }
 }

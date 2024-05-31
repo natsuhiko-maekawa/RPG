@@ -19,8 +19,8 @@ namespace BattleScene.UserInterface.View
         }
 
         public Task StartAnimation(StatusBarViewDto dto)
-        { 
-            _barText.text = dto.CurrentPoint + "/" + dto.MaxPoint; 
+        {
+            _barText.text = dto.CurrentPoint + "/" + dto.MaxPoint;
             var hpRate = dto.MaxPoint < dto.CurrentPoint ? 1.0f : dto.CurrentPoint / (float)dto.MaxPoint;
             _barFrontImage.rectTransform.localScale = new Vector3(hpRate, 1.0f, 1.0f);
             return Task.CompletedTask;

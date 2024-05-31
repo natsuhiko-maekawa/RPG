@@ -4,11 +4,6 @@ namespace BattleScene.Domain.ValueObject
 {
     public class SkillViewInfoValueObject
     {
-        public string SkillName { get; }
-        public PlayerImageCode PlayerImageCode { get; }
-        public MessageCode Description { get; }
-        public MessageCode MessageCode { get; }
-
         public SkillViewInfoValueObject(
             string skillName,
             PlayerImageCode playerImageCode,
@@ -20,5 +15,10 @@ namespace BattleScene.Domain.ValueObject
             Description = description;
             MessageCode = messageCode;
         }
+
+        public string SkillName { get; }
+        public PlayerImageCode PlayerImageCode { get; }
+        public MessageCode Description { get; }
+        public MessageCode MessageCode { get; }
     }
 }

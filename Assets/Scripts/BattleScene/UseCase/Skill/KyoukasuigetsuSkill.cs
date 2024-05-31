@@ -11,13 +11,13 @@ using Range = BattleScene.Domain.Code.Range;
 namespace BattleScene.UseCase.Skill
 {
     /// <summary>
-    /// 鏡花水月
+    ///     鏡花水月
     /// </summary>
     internal class KyoukasuigetsuSkill : AbstractSkill
     {
-        private readonly BasicDamageSkillElement _basicDamageSkillElement;
         private readonly AbsoluteConfusionSkillElement _absoluteConfusionSkillElement;
-        
+        private readonly BasicDamageSkillElement _basicDamageSkillElement;
+
         public override ImmutableList<BodyPartCode> GetDependencyList()
         {
             return ImmutableList.Create(BodyPartCode.Arm);
@@ -27,7 +27,7 @@ namespace BattleScene.UseCase.Skill
         {
             return Range.Line;
         }
-        
+
         public override PlayerImageCode GetPlayerImageCode()
         {
             return Katana;

@@ -5,12 +5,12 @@ namespace BattleScene.Domain.ValueObject
 {
     public class OrderedSlipDamageValueObject : IOrderedItem
     {
-        public SlipDamageCode SlipDamageCode { get; }
-
         public OrderedSlipDamageValueObject(
             SlipDamageCode slipDamageCode)
         {
             SlipDamageCode = slipDamageCode;
         }
+
+        public SlipDamageCode SlipDamageCode { get; }
     }
 }

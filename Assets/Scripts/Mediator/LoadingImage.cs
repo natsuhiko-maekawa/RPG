@@ -12,7 +12,7 @@ namespace Mediator
         {
             _loadingImage = loadingImage;
         }
-        
+
         public IList<string> GetImageNameList()
         {
             return _loadingImage.GetImageNameList();

@@ -24,14 +24,16 @@ namespace BattleScene.InterfaceAdapter.Presenter.StatusBarView
             {
                 var maxHitPoint = outputData.MaxHitPoint;
                 var currentHitPoint = outputData.CurrentHitPoint;
-                _playerView.StartPlayerHpBarView(new PlayerHpBarViewDto(new StatusBarViewDto(maxHitPoint, currentHitPoint)));
+                _playerView.StartPlayerHpBarView(
+                    new PlayerHpBarViewDto(new StatusBarViewDto(maxHitPoint, currentHitPoint)));
             }
             else
             {
                 var enemyNumber = outputData.CharacterOutputData.EnemyNumber;
                 var maxHitPoint = outputData.MaxHitPoint;
                 var currentHitPoint = outputData.CurrentHitPoint;
-                _enemiesView.StartEnemyHpBarView(new EnemyHpBarViewDto(enemyNumber, new StatusBarViewDto(maxHitPoint, currentHitPoint)));
+                _enemiesView.StartEnemyHpBarView(new EnemyHpBarViewDto(enemyNumber,
+                    new StatusBarViewDto(maxHitPoint, currentHitPoint)));
             }
         }
 

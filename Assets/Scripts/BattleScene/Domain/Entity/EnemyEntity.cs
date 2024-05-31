@@ -4,9 +4,6 @@ namespace BattleScene.Domain.Entity
 {
     public class EnemyEntity
     {
-        public CharacterId CharacterId { get; }
-        public int EnemyNumber { get; }
-
         public EnemyEntity(
             CharacterId characterId,
             int enemyNumber)
@@ -14,5 +11,8 @@ namespace BattleScene.Domain.Entity
             CharacterId = characterId;
             EnemyNumber = enemyNumber;
         }
+
+        public CharacterId CharacterId { get; }
+        public int EnemyNumber { get; }
     }
 }

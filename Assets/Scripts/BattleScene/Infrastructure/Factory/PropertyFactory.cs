@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 using BattleScene.Domain.Code;
@@ -29,7 +30,7 @@ namespace BattleScene.Infrastructure.Factory
 
         public ImmutableList<PropertyValueObject> Get(IList<CharacterTypeId> key)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public ImmutableList<PropertyValueObject> GetAll()

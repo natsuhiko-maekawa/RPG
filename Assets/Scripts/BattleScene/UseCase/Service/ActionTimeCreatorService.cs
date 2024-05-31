@@ -12,8 +12,8 @@ namespace BattleScene.UseCase.Service
     public class ActionTimeCreatorService
     {
         private readonly IActionTimeRepository _actionTimeRepository;
-        private readonly OrderedItemsDomainService _orderedItems;
         private readonly AgilityToSpeedService _agilityToSpeed;
+        private readonly OrderedItemsDomainService _orderedItems;
 
         public ImmutableList<ActionTimeEntity> Create(IList<CharacterId> characterIdList)
         {

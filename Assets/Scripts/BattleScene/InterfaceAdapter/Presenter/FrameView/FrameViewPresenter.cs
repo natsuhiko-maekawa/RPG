@@ -15,7 +15,6 @@ namespace BattleScene.InterfaceAdapter.Presenter.FrameView
         public void Start(IList<FrameOutputData> outputDataList)
         {
             foreach (var outputData in outputDataList)
-            {
                 if (outputData.IsPlayer)
                 {
                     var dto = new PlayerFrameViewDto(ToColor(outputData.FrameType));
@@ -26,7 +25,12 @@ namespace BattleScene.InterfaceAdapter.Presenter.FrameView
                     var dto = new EnemyFrameViewDto(outputData.EnemyNumber, ToColor(outputData.FrameType));
                     _enemiesView.StartEnemyFrameView(dto);
                 }
-            }
+        }
+
+        public void Stop()
+        {
+            _playerView.StopPlayerFrameView();
+            _enemiesView.StopEnemyFrameView();
         }
 
         private Color ToColor(FrameType frameType)
@@ -37,12 +41,6 @@ namespace BattleScene.InterfaceAdapter.Presenter.FrameView
                 FrameType.Target => Color.red,
                 _ => throw new ArgumentOutOfRangeException()
             };
-        }
-        
-        public void Stop()
-        {
-            _playerView.StopPlayerFrameView();
-            _enemiesView.StopEnemyFrameView();
         }
     }
 }

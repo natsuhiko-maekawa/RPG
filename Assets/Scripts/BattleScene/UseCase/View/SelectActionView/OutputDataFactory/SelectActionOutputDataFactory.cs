@@ -3,7 +3,7 @@ using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.IFactory;
 using BattleScene.Domain.IRepository;
-using BattleScene.UseCase.EventRunner;
+using BattleScene.UseCase.Event.Runner;
 using BattleScene.UseCase.Service;
 using BattleScene.UseCase.View.MessageView.OutputDataFactory;
 using BattleScene.UseCase.View.SelectActionView.OutputData;
@@ -26,9 +26,9 @@ namespace BattleScene.UseCase.View.SelectActionView.OutputDataFactory
                 ? new List<int>()
                 : new List<int> { 3 };
             return new SelectActionOutputData(
-                ActualViewLength: selector.ActualViewLength,
-                Selection: selector.Selection,
-                DisabledRowList: disabledRowList);
+                selector.ActualViewLength,
+                selector.Selection,
+                disabledRowList);
         }
     }
 }

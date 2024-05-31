@@ -15,7 +15,7 @@ namespace BattleScene.InterfaceAdapter.Presenter.EnemyView
         {
             _enemiesView = enemiesView;
         }
-        
+
         public void Start(IList<EnemyOutputData> enemyOutputDataList)
         {
             var dtoList = enemyOutputDataList

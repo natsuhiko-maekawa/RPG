@@ -1,4 +1,4 @@
-using BattleScene.UseCase.EventRunner;
+using BattleScene.UseCase.Event.Runner;
 
 namespace BattleScene.UseCase.Event.Interface
 {

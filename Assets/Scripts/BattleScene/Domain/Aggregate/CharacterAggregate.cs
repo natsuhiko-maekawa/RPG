@@ -8,9 +8,6 @@ namespace BattleScene.Domain.Aggregate
 {
     public class CharacterAggregate
     {
-        public CharacterId CharacterId { get; }
-        public PropertyValueObject Property { get; }
-
         public CharacterAggregate(
             CharacterId characterId,
             PropertyValueObject property)
@@ -18,6 +15,9 @@ namespace BattleScene.Domain.Aggregate
             CharacterId = characterId;
             Property = property;
         }
+
+        public CharacterId CharacterId { get; }
+        public PropertyValueObject Property { get; }
 
         public bool IsPlayer()
         {
@@ -42,7 +42,7 @@ namespace BattleScene.Domain.Aggregate
             var characterAggregate = (CharacterAggregate)obj;
             return CharacterId == characterAggregate.CharacterId;
         }
-        
+
         public override int GetHashCode()
         {
             return CharacterId.GetHashCode();

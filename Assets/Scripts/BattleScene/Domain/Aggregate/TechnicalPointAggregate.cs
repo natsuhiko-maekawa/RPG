@@ -5,7 +5,6 @@ namespace BattleScene.Domain.Aggregate
 {
     public class TechnicalPointAggregate
     {
-        public CharacterId CharacterId { get; }
         private PointValueObject _pointValueObject;
 
         public TechnicalPointAggregate(
@@ -15,6 +14,8 @@ namespace BattleScene.Domain.Aggregate
             CharacterId = characterId;
             _pointValueObject = new PointValueObject(defaultTechnicalPoint);
         }
+
+        public CharacterId CharacterId { get; }
 
         public int GetMax()
         {
@@ -30,7 +31,7 @@ namespace BattleScene.Domain.Aggregate
         {
             return _pointValueObject.GetRestore(technicalPoint);
         }
-        
+
         public void Add(int technicalPoint)
         {
             _pointValueObject = _pointValueObject.Add(technicalPoint);

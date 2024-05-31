@@ -7,10 +7,6 @@ namespace BattleScene.Domain.ValueObject
 {
     public class DestroyedPartSkillResultValueObject : ISkillResult
     {
-        public CharacterId CharacterId { get; }
-        public BodyPartCode BodyPartCode { get; }
-        public int DestroyedNumber { get; }
-        
         public DestroyedPartSkillResultValueObject(
             CharacterId characterId,
             BodyPartCode bodyPartCode,
@@ -21,9 +17,14 @@ namespace BattleScene.Domain.ValueObject
             DestroyedNumber = destroyedNumber;
         }
 
+        public CharacterId CharacterId { get; }
+        public BodyPartCode BodyPartCode { get; }
+        public int DestroyedNumber { get; }
+
         public CharacterId ActorId { get; }
         public SkillCode SkillCode { get; }
         public ImmutableList<CharacterId> TargetIdList { get; }
+
         public bool Success()
         {
             return !TargetIdList.IsEmpty;

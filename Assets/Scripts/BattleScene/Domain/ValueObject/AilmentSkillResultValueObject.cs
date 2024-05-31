@@ -8,11 +8,6 @@ namespace BattleScene.Domain.ValueObject
 {
     public class AilmentSkillResultValueObject : ISkillResult
     {
-        public CharacterId ActorId { get; }
-        public SkillCode SkillCode { get; }
-        public AilmentCode AilmentCode { get; }
-        public ImmutableList<CharacterId> TargetIdList { get; }
-
         public AilmentSkillResultValueObject(
             CharacterId actorId,
             SkillCode skillCode,
@@ -34,7 +29,12 @@ namespace BattleScene.Domain.ValueObject
             AilmentCode = AilmentCode.NoAilment;
             TargetIdList = ImmutableList<CharacterId>.Empty;
         }
-        
+
+        public AilmentCode AilmentCode { get; }
+        public CharacterId ActorId { get; }
+        public SkillCode SkillCode { get; }
+        public ImmutableList<CharacterId> TargetIdList { get; }
+
         public bool Success()
         {
             return !TargetIdList.IsEmpty;

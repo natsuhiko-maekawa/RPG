@@ -5,7 +5,6 @@ namespace BattleScene.Domain.Aggregate
 {
     public class HitPointAggregate
     {
-        public CharacterId CharacterId { get; }
         private PointValueObject _pointValueObject;
 
         public HitPointAggregate(
@@ -15,6 +14,8 @@ namespace BattleScene.Domain.Aggregate
             CharacterId = characterId;
             _pointValueObject = new PointValueObject(defaultHitPoint);
         }
+
+        public CharacterId CharacterId { get; }
 
         public int GetMax()
         {
@@ -30,7 +31,7 @@ namespace BattleScene.Domain.Aggregate
         {
             return _pointValueObject.GetRestore(hitPoint);
         }
-        
+
         public void Add(int hitPoint)
         {
             _pointValueObject = _pointValueObject.Add(hitPoint);

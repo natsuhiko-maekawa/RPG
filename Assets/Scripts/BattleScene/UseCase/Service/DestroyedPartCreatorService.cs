@@ -9,7 +9,7 @@ namespace BattleScene.UseCase.Service
     public class DestroyedPartCreatorService
     {
         private readonly IBodyPartFactory _bodyPartFactory;
-        
+
         public BodyPartEntity Create(
             IList<BodyPartEntity> bodyPartList,
             DestroyedPartSkillResultValueObject destroyedPartSkillResult)

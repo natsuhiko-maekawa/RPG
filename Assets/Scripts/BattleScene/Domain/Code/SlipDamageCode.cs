@@ -7,6 +7,6 @@
         ElectricShock,
         Poisoning,
         Bleeding,
-        Suffocation,
+        Suffocation
     }
 }

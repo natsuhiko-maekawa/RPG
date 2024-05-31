@@ -10,7 +10,7 @@ namespace BattleScene.UserInterface.View
         [SerializeField] private Sprite buff;
         [SerializeField] private Sprite debuff;
         private List<PlayerStatusView.TextAndIcon> _textAndIconList;
-        
+
         public void Initialize(List<PlayerStatusView.TextAndIcon> textAndIconList)
         {
             _textAndIconList = textAndIconList;
@@ -24,7 +24,6 @@ namespace BattleScene.UserInterface.View
         public void StartAnimation(IList<BuffViewDto> dtoList)
         {
             foreach (var (textAndIcon, index) in _textAndIconList.Select((x, i) => (x, i)))
-            {
                 switch (dtoList[index].State)
                 {
                     case > 0:
@@ -42,7 +41,6 @@ namespace BattleScene.UserInterface.View
                         textAndIcon.icon.enabled = true;
                         break;
                 }
-            }
         }
     }
 }

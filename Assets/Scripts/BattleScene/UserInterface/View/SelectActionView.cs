@@ -25,42 +25,6 @@ namespace BattleScene.UserInterface.View
             _rightArrow.enabled = false;
         }
 
-        private void SetText(int textCount)
-        {
-            if (textCount > _textList.Count)
-            {
-                AddText(textCount - _textList.Count);
-                return;
-            }
-
-            if (textCount < _textList.Count)
-            {
-                RemoveText(_textList.Count - textCount);
-            }
-        }
-
-        private void AddText(int textCount)
-        {
-            for (var i = 0; i < textCount; ++i)
-            {
-                var t = Instantiate(text, transform);
-                _textList.Add(t);
-                var vector3 = _textList[i].transform.localPosition;
-                vector3.y += -i * SlotHeight;
-                _textList[i].transform.localPosition = vector3;
-                _textList[i].enabled = false;
-            }
-        }
-
-        private void RemoveText(int textCount)
-        {
-            for (var i = _textList.Count - 1; i > textCount; --i)
-            {
-                Destroy(_textList[i]);
-                _textList.RemoveAt(i);
-            }
-        }
-
         public Task StartAnimation(SelectActionViewDto dto)
         {
             _window.enabled = true;
@@ -90,6 +54,39 @@ namespace BattleScene.UserInterface.View
             _rightArrow.enabled = false;
             foreach (var textObject in _textList)
                 textObject.enabled = false;
+        }
+
+        private void SetText(int textCount)
+        {
+            if (textCount > _textList.Count)
+            {
+                AddText(textCount - _textList.Count);
+                return;
+            }
+
+            if (textCount < _textList.Count) RemoveText(_textList.Count - textCount);
+        }
+
+        private void AddText(int textCount)
+        {
+            for (var i = 0; i < textCount; ++i)
+            {
+                var t = Instantiate(text, transform);
+                _textList.Add(t);
+                var vector3 = _textList[i].transform.localPosition;
+                vector3.y += -i * SlotHeight;
+                _textList[i].transform.localPosition = vector3;
+                _textList[i].enabled = false;
+            }
+        }
+
+        private void RemoveText(int textCount)
+        {
+            for (var i = _textList.Count - 1; i > textCount; --i)
+            {
+                Destroy(_textList[i]);
+                _textList.RemoveAt(i);
+            }
         }
     }
 }

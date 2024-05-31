@@ -1,4 +1,4 @@
-﻿namespace BattleScene.UseCase.EventRunner
+﻿namespace BattleScene.UseCase.Event.Runner
 {
     public enum EventCode
     {

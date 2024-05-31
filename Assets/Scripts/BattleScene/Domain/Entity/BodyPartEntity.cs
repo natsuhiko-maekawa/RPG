@@ -5,14 +5,12 @@ namespace BattleScene.Domain.Entity
 {
     public class BodyPartEntity
     {
-        public CharacterId CharacterId { get; }
-        public BodyPartCode BodyPartCode { get; }
         private readonly int _bodyPartNumber;
         private int _destroyedPartNum;
 
         public BodyPartEntity(
             CharacterId characterId,
-            BodyPartCode bodyPartCode, 
+            BodyPartCode bodyPartCode,
             int bodyPartNumber)
         {
             CharacterId = characterId;
@@ -20,7 +18,10 @@ namespace BattleScene.Domain.Entity
             _bodyPartNumber = bodyPartNumber;
             Destroyed();
         }
-        
+
+        public CharacterId CharacterId { get; }
+        public BodyPartCode BodyPartCode { get; }
+
         public void Destroyed()
         {
             // TODO: Min()を使って三項演算子を書き換える
@@ -31,7 +32,7 @@ namespace BattleScene.Domain.Entity
         {
             return _destroyedPartNum;
         }
-        
+
         public bool IsAvailable()
         {
             return _destroyedPartNum < _bodyPartNumber;

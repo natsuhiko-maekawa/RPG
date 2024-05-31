@@ -7,13 +7,13 @@ namespace BattleScene.InterfaceAdapter.Presenter.MessageView
     public class MessageViewPresenter : IMessageViewPresenter
     {
         private readonly IMessageView _messageView;
-        
+
         public MessageViewPresenter(
             IMessageView messageView)
         {
             _messageView = messageView;
         }
-        
+
         public void StartMessageView(string message, bool noWait)
         {
         }

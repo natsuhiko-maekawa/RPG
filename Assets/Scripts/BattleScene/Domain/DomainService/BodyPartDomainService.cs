@@ -15,7 +15,7 @@ namespace BattleScene.Domain.DomainService
         {
             _bodyPartRepository = bodyPartRepository;
         }
-        
+
         public int Count(CharacterId characterId, BodyPartCode bodyPartCode)
         {
             var bodyPartEntity = _bodyPartRepository.Select(characterId, bodyPartCode);

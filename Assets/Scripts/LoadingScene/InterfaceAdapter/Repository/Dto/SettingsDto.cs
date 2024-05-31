@@ -6,10 +6,10 @@ namespace LoadingScene.InterfaceAdapter.Repository.Dto
     public class SettingsDto
     {
         public int addressableCount;
-        
+
         public SettingsDto(int addressableCount)
         {
             this.addressableCount = addressableCount;
         }
-    };
+    }
 }

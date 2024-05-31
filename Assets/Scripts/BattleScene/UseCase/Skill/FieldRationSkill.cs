@@ -7,12 +7,12 @@ using BattleScene.UseCase.Skill.SkillElement;
 namespace BattleScene.UseCase.Skill
 {
     /// <summary>
-    /// レーション
+    ///     レーション
     /// </summary>
     internal class FieldRationSkill : AbstractSkill
     {
         private readonly BasicCureSkillElement _basicCureSkillElement;
-        
+
         public override int GetTechnicalPoint()
         {
             return 3;

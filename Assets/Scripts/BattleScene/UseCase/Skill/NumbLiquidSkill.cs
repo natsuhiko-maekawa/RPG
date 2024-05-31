@@ -8,7 +8,7 @@ using Range = BattleScene.Domain.Code.Range;
 namespace BattleScene.UseCase.Skill
 {
     /// <summary>
-    /// 痺れる粘液
+    ///     痺れる粘液
     /// </summary>
     internal class NumbLiquidSkill : AbstractSkill
     {

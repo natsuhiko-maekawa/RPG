@@ -9,17 +9,17 @@ namespace BattleScene.UseCase.Skill.SkillElement
     {
         private readonly ConstantDamageExpression _constantDamageExpression;
         private readonly OrderedItemsDomainService _orderedItems;
-        
+
         public ConstantDamageSkillElement(
-            AttacksWeakPointEvaluation attacksWeakPointEvaluation, 
-            DamageExpression damageExpression, 
-            HitEvaluation hitEvaluation, 
+            AttacksWeakPointEvaluation attacksWeakPointEvaluation,
+            DamageExpression damageExpression,
+            HitEvaluation hitEvaluation,
             OrderedItemsDomainService orderedItems,
             ConstantDamageExpression constantDamageExpression)
             : base(
                 attacksWeakPointEvaluation,
-                damageExpression, 
-                hitEvaluation, 
+                damageExpression,
+                hitEvaluation,
                 orderedItems)
         {
             _constantDamageExpression = constantDamageExpression;

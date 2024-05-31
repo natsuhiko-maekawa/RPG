@@ -13,10 +13,10 @@ namespace BattleScene.UseCase.Skill.Expression
 {
     public class DamageExpression
     {
-        private readonly ICharacterRepository _characterRepository;
-        private readonly IBuffRepository _buffRepository;
-        private readonly IRandomEx _randomEx;
         private readonly BodyPartDomainService _bodyPartDomainService;
+        private readonly IBuffRepository _buffRepository;
+        private readonly ICharacterRepository _characterRepository;
+        private readonly IRandomEx _randomEx;
 
         public DamageExpression(
             ICharacterRepository characterRepository,
@@ -29,7 +29,7 @@ namespace BattleScene.UseCase.Skill.Expression
             _randomEx = randomEx;
             _bodyPartDomainService = bodyPartDomainService;
         }
-        
+
         public int Evaluate(CharacterId actorId, CharacterId targetId, DamageSkillElement damageSkillElement)
         {
             var actorStrength = _characterRepository.Select(actorId).Property.Strength;
@@ -42,8 +42,8 @@ namespace BattleScene.UseCase.Skill.Expression
             var targetDefence = _buffRepository.Select(targetId, BuffCode.DefenceSkill) == null ? 1.0f : 0.5f;
             var rate = damageSkillElement.GetDamageRate();
             var weekPointRate = (int)Math.Pow(2, actorMatAttr.Intersect(targetWeekPoint).Count());
-            return (int)(actorStrength * actorStrength / (float)targetVitality * weekPointRate * actorBuffRate 
-                         / targetBuffRate * destroyedRate * targetDefence * rate * 1.5f) + _randomEx.Range(1, 3);
+            return (int)(actorStrength * actorStrength / (float)targetVitality * weekPointRate * actorBuffRate
+                / targetBuffRate * destroyedRate * targetDefence * rate * 1.5f) + _randomEx.Range(1, 3);
         }
     }
 }

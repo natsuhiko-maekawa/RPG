@@ -9,12 +9,12 @@ using Random = UnityEngine.Random;
 namespace BattleScene.UseCase.Skill
 {
     /// <summary>
-    /// 切り刻み
+    ///     切り刻み
     /// </summary>
     internal class CutUpSkill : AbstractSkill
     {
         private readonly FiveTimeDamageSkillElement _fiveTimeDamageSkillElement;
-        
+
         private readonly int _rand = Random.Range(0, 2);
 
         public override ImmutableList<BodyPartCode> GetDependencyList()

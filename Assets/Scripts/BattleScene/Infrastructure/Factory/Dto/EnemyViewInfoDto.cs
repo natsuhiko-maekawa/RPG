@@ -4,7 +4,7 @@ namespace BattleScene.Infrastructure.Factory.Dto
 {
     public class EnemyViewInfoDto
     {
-        public CharacterTypeId enemyTypeId;
         public string enemyImagePath;
+        public CharacterTypeId enemyTypeId;
     }
 }

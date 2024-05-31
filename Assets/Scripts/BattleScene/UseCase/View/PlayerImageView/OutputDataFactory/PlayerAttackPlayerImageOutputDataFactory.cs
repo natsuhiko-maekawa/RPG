@@ -8,10 +8,10 @@ namespace BattleScene.UseCase.View.PlayerImageView.OutputDataFactory
     public class PlayerAttackPlayerImageOutputDataFactory
     {
         private readonly IAilmentViewInfoFactory _ailmentViewInfoFactory;
+        private readonly CharactersDomainService _characters;
         private readonly ISkillRepository _skillRepository;
         private readonly ISkillViewInfoFactory _skillViewInfoFactory;
-        private readonly CharactersDomainService _characters;
-        
+
         public PlayerImageOutputData Create()
         {
             var playerId = _characters.GetPlayerId();

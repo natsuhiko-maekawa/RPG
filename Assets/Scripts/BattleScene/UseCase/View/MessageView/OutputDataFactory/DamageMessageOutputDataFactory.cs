@@ -10,14 +10,16 @@ namespace BattleScene.UseCase.View.MessageView.OutputDataFactory
         private readonly MessageOutputDataFactory _messageOutputDataFactory;
         private readonly OrderedItemsDomainService _orderedItems;
         private readonly ResultDomainService _result;
-        
+
         public MessageOutputData Create()
         {
-            if (_result.LastDamage().DamageList.Any(x => x.AttacksWeakPoint)) 
+            if (_result.LastDamage().DamageList.Any(x => x.AttacksWeakPoint))
                 return _messageOutputDataFactory.Create(MessageCode.WeakPointMessage);
-            if (_result.LastDamage().DamageList.Any(x => !Equals(x.TargetId, _orderedItems.FirstCharacterId()) && x.IsHit)) 
+            if (_result.LastDamage().DamageList
+                .Any(x => !Equals(x.TargetId, _orderedItems.FirstCharacterId()) && x.IsHit))
                 return _messageOutputDataFactory.Create(MessageCode.DamageMessage);
-            if (_result.LastDamage().DamageList.Any(x => Equals(x.TargetId, _orderedItems.FirstCharacterId()) && x.IsHit)) 
+            if (_result.LastDamage().DamageList
+                .Any(x => Equals(x.TargetId, _orderedItems.FirstCharacterId()) && x.IsHit))
                 return _messageOutputDataFactory.Create(MessageCode.DamageOneselfMessage);
             return _messageOutputDataFactory.Create(MessageCode.AvoidMessage);
         }

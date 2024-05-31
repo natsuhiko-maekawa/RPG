@@ -7,7 +7,7 @@ using BattleScene.UseCase.Skill.SkillElement;
 namespace BattleScene.UseCase.Skill
 {
     /// <summary>
-    /// シルバーバレット
+    ///     シルバーバレット
     /// </summary>
     internal class SilverBulletSkill : AbstractSkill
     {

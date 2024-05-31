@@ -10,8 +10,8 @@ namespace BattleScene.UseCase.Service
     {
         private readonly BodyPartDomainService _bodyPart;
         private readonly ICharacterRepository _characterRepository;
-        private readonly ITechnicalPointRepository _technicalPointRepository;
         private readonly SkillCreatorService _skillCreatorService;
+        private readonly ITechnicalPointRepository _technicalPointRepository;
 
         public bool Available(CharacterId characterId, SkillCode skillCode)
         {
@@ -23,7 +23,7 @@ namespace BattleScene.UseCase.Service
 
         private bool PlayerAvailable(CharacterId characterId, SkillEntity skill)
         {
-            return TechnicalPointAvailable(skill) 
+            return TechnicalPointAvailable(skill)
                    && BodyPartAvailable(characterId, skill);
         }
 

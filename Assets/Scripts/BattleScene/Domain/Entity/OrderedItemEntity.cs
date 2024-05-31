@@ -5,9 +5,6 @@ namespace BattleScene.Domain.Entity
 {
     public class OrderedItemEntity
     {
-        public OrderNumber OrderNumber { get; }
-        public IOrderedItem OrderedItem { get; }
-
         public OrderedItemEntity(
             OrderNumber orderNumber,
             IOrderedItem orderedItem)
@@ -15,5 +12,8 @@ namespace BattleScene.Domain.Entity
             OrderNumber = orderNumber;
             OrderedItem = orderedItem;
         }
+
+        public OrderNumber OrderNumber { get; }
+        public IOrderedItem OrderedItem { get; }
     }
 }

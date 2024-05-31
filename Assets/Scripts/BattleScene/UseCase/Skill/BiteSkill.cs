@@ -9,7 +9,7 @@ using static BattleScene.Domain.Code.MessageCode;
 namespace BattleScene.UseCase.Skill
 {
     /// <summary>
-    /// 噛みつき
+    ///     噛みつき
     /// </summary>
     internal class BiteSkill : AbstractSkill
     {

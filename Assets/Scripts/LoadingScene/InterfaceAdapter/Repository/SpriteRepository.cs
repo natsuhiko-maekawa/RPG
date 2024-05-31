@@ -6,8 +6,8 @@ namespace LoadingScene.InterfaceAdapter.Repository
 {
     public class SpriteRepository : ISpriteRepository
     {
-        private readonly ISpriteAddressable _spriteAddressable;
         private readonly ILoadingImage _loadingImage;
+        private readonly ISpriteAddressable _spriteAddressable;
 
         public SpriteRepository(
             ISpriteAddressable spriteAddressable,

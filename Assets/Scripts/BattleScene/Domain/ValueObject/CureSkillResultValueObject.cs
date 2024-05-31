@@ -8,14 +8,9 @@ namespace BattleScene.Domain.ValueObject
 {
     public class CureSkillResultValueObject : ISkillResult
     {
-        public CharacterId ActorId { get; }
-        public SkillCode SkillCode { get; }
-        public ImmutableList<CharacterId> TargetIdList { get; }
-        public ImmutableList<CureValueObject> CureList { get; }
-
         public CureSkillResultValueObject(
-            CharacterId actorId, 
-            SkillCode skillCode, 
+            CharacterId actorId,
+            SkillCode skillCode,
             ImmutableList<CureValueObject> cureList)
         {
             ActorId = actorId;
@@ -25,6 +20,11 @@ namespace BattleScene.Domain.ValueObject
                 .ToImmutableList();
             CureList = cureList;
         }
+
+        public ImmutableList<CureValueObject> CureList { get; }
+        public CharacterId ActorId { get; }
+        public SkillCode SkillCode { get; }
+        public ImmutableList<CharacterId> TargetIdList { get; }
 
         public bool Success()
         {

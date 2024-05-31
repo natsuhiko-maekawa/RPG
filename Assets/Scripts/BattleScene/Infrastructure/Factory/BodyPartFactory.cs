@@ -10,9 +10,9 @@ namespace BattleScene.Infrastructure.Factory
         public BodyPartEntity Create(CharacterId characterId, BodyPartCode bodyPartCode)
         {
             return new BodyPartEntity(
-                characterId: characterId,
-                bodyPartCode: bodyPartCode,
-                bodyPartNumber: GetBodyPartNumber(bodyPartCode));
+                characterId,
+                bodyPartCode,
+                GetBodyPartNumber(bodyPartCode));
         }
 
         private int GetBodyPartNumber(BodyPartCode bodyPartCode)

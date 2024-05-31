@@ -4,19 +4,19 @@ namespace BattleScene.Domain.Entity
 {
     public class SelectorEntity
     {
-        public int ActualViewLength { get; private set; }
-        public int UpperLimit { get; private set; }
-        public int Selection { get; private set; }
-        public int ListStart { get; private set; }
-
         public SelectorEntity(
-            int maxViewLength, 
+            int maxViewLength,
             int listLength)
         {
             ActualViewLength = Math.Min(maxViewLength, listLength);
             UpperLimit = listLength - ActualViewLength;
         }
-        
+
+        public int ActualViewLength { get; private set; }
+        public int UpperLimit { get; private set; }
+        public int Selection { get; private set; }
+        public int ListStart { get; private set; }
+
         [Obsolete]
         public void Initialize(int maxViewLength, int listLength)
         {
@@ -28,14 +28,14 @@ namespace BattleScene.Domain.Entity
         {
             Selection = default;
         }
-        
+
         public void Up()
         {
             ListStart = 0 < Selection ? ListStart : --ListStart;
             ListStart = ListStart <= 0 ? 0 : ListStart;
             Selection = Selection <= 0 ? 0 : --Selection;
         }
-        
+
         public void Down()
         {
             ListStart = Selection < ActualViewLength - 1
@@ -48,7 +48,7 @@ namespace BattleScene.Domain.Entity
                 ? ActualViewLength - 1
                 : ++Selection;
         }
-        
+
         public void Left()
         {
             Up();

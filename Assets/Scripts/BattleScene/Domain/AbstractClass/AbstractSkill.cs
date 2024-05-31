@@ -15,7 +15,7 @@ namespace BattleScene.Domain.AbstractClass
         {
             return ImmutableList<BodyPartCode>.Empty;
         }
-        
+
         public abstract Range GetRange();
 
         public virtual PlayerImageCode GetPlayerImageCode()
@@ -27,7 +27,7 @@ namespace BattleScene.Domain.AbstractClass
         {
             return MessageCode.NoMessage;
         }
-        
+
         public abstract MessageCode GetAttackMessage();
         public abstract ImmutableList<ISkillElement> GetSkillService();
     }

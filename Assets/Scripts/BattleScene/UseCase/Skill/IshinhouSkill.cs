@@ -7,7 +7,7 @@ using BattleScene.UseCase.Skill.SkillElement;
 namespace BattleScene.UseCase.Skill
 {
     /// <summary>
-    /// 医心方
+    ///     医心方
     /// </summary>
     internal class IshinhouSkill : AbstractSkill
     {
@@ -40,7 +40,7 @@ namespace BattleScene.UseCase.Skill
 
         public override ImmutableList<ISkillElement> GetSkillService()
         {
-           return ImmutableList.Create<ISkillElement>(_ishinhouSkillElement);
+            return ImmutableList.Create<ISkillElement>(_ishinhouSkillElement);
         }
     }
 }

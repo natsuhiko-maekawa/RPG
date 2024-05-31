@@ -9,14 +9,14 @@ namespace BattleScene.UseCase.Skill.SkillElement
     public class LightningDamageSkillElement : DamageSkillElement
     {
         public LightningDamageSkillElement(
-            AttacksWeakPointEvaluation attacksWeakPointEvaluation, 
-            DamageExpression damageExpression, 
-            HitEvaluation hitEvaluation, 
-            OrderedItemsDomainService orderedItems) 
+            AttacksWeakPointEvaluation attacksWeakPointEvaluation,
+            DamageExpression damageExpression,
+            HitEvaluation hitEvaluation,
+            OrderedItemsDomainService orderedItems)
             : base(
-                attacksWeakPointEvaluation, 
-                damageExpression, 
-                hitEvaluation, 
+                attacksWeakPointEvaluation,
+                damageExpression,
+                hitEvaluation,
                 orderedItems)
         {
         }

@@ -17,7 +17,7 @@ namespace BattleScene.UseCase.Skill.AbstractClass
             _cureExpression = cureExpression;
             _orderedItems = orderedItems;
         }
-        
+
         public virtual float GetCureRate()
         {
             return 1.0f;

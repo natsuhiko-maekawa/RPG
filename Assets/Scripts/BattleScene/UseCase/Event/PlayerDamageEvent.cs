@@ -4,7 +4,7 @@ using BattleScene.Domain.IFactory;
 using BattleScene.Domain.IRepository;
 using BattleScene.Domain.ValueObject;
 using BattleScene.UseCase.Event.Interface;
-using BattleScene.UseCase.EventRunner;
+using BattleScene.UseCase.Event.Runner;
 using BattleScene.UseCase.Service;
 using BattleScene.UseCase.View.AttackCountView.OutputBoundary;
 using BattleScene.UseCase.View.AttackCountView.OutputDataFactory;
@@ -18,34 +18,34 @@ using BattleScene.UseCase.View.MessageView.OutputBoundary;
 using BattleScene.UseCase.View.MessageView.OutputDataFactory;
 using BattleScene.UseCase.View.PlayerImageView.OutputBoundary;
 using BattleScene.UseCase.View.PlayerImageView.OutputData;
-using static BattleScene.UseCase.EventRunner.EventCode;
+using static BattleScene.UseCase.Event.Runner.EventCode;
 
 namespace BattleScene.UseCase.Event
 {
     internal class PlayerDamageEvent : IEvent, IWait
     {
-        private readonly CharactersDomainService _characters;
-        private readonly HitPointDomainService _hitPoint;
-        private readonly ResultDomainService _result;
-        private readonly OrderedItemsDomainService _orderedItems;
         private readonly AttackCountOutputDataFactory _attackCountOutputDataFactory;
+        private readonly IAttackCountViewPresenter _attackCountViewPresenter;
+        private readonly ICharacterRepository _characterRepository;
+        private readonly CharactersDomainService _characters;
         private readonly CharacterVibesOutputDataFactory _characterVibesOutputDataFactory;
+        private readonly ICharacterVibesViewPresenter _characterVibesView;
         private readonly DamageDigitOutputDataFactory _damageDigitOutputDataFactory;
-        private readonly HitPointBarOutputDataFactory _hitPointBarOutputDataFactory;
         private readonly DamageMessageOutputDataFactory _damageMessageOutputDataFactory;
         private readonly DamageSkillService _damageSkill;
+        private readonly IDigitViewPresenter _digitView;
+        private readonly HitPointDomainService _hitPoint;
+        private readonly HitPointBarOutputDataFactory _hitPointBarOutputDataFactory;
+        private readonly IHitPointBarViewPresenter _hitPointBarView;
+        private readonly IMessageViewPresenter _messageViewPresenter;
+        private readonly OrderedItemsDomainService _orderedItems;
+        private readonly IPlayerImageViewPresenter _playerImageView;
+        private readonly ResultDomainService _result;
+        private readonly IResultRepository _resultRepository;
         private readonly SkillCreatorService _skillCreatorService;
         private readonly ISkillRepository _skillRepository;
         private readonly ISkillViewInfoFactory _skillViewInfoFactory;
-        private readonly ICharacterRepository _characterRepository;
-        private readonly IResultRepository _resultRepository;
-        private readonly IMessageViewPresenter _messageViewPresenter;
-        private readonly IAttackCountViewPresenter _attackCountViewPresenter;
-        private readonly ICharacterVibesViewPresenter _characterVibesView;
-        private readonly IDigitViewPresenter _digitView;
-        private readonly IHitPointBarViewPresenter _hitPointBarView;
-        private readonly IPlayerImageViewPresenter _playerImageView;
-        
+
         public EventCode Run()
         {
             var characterId = _orderedItems.FirstCharacterId();
@@ -55,12 +55,11 @@ namespace BattleScene.UseCase.Event
 
             var isAvoid = !_result.Last<DamageSkillResultValueObject>().Success();
             if (!_characterRepository.Select(characterId).IsPlayer())
-            {
                 _playerImageView.Start(new PlayerImageOutputData(
                     isAvoid
-                    ? PlayerImageCode.Avoidance
-                    : _skillViewInfoFactory.Create(_skillRepository.Select(characterId).SkillCode).PlayerImageCode));
-            }
+                        ? PlayerImageCode.Avoidance
+                        : _skillViewInfoFactory.Create(_skillRepository.Select(characterId).SkillCode)
+                            .PlayerImageCode));
 
             if (isAvoid)
             {
@@ -68,13 +67,13 @@ namespace BattleScene.UseCase.Event
                 _characterVibesView.Start(characterVibesOutputData);
             }
 
-            var digitOutputData= _damageDigitOutputDataFactory.Create();
+            var digitOutputData = _damageDigitOutputDataFactory.Create();
             _digitView.Start(digitOutputData);
             var hitPointBarOutputData = _hitPointBarOutputDataFactory.Create();
             _hitPointBarView.Start(hitPointBarOutputData);
             var messageOutputData = _damageMessageOutputDataFactory.Create();
             _messageViewPresenter.Start(messageOutputData);
-            var attackCountOutputData= _attackCountOutputDataFactory.Create();
+            var attackCountOutputData = _attackCountOutputDataFactory.Create();
             _attackCountViewPresenter.Start(attackCountOutputData);
 
             return WaitEvent;
@@ -83,10 +82,10 @@ namespace BattleScene.UseCase.Event
         public EventCode NextEvent()
         {
             return _result.Last<DamageSkillResultValueObject>().Success()
-                ? GetIndex() 
+                ? GetIndex()
                 : GetIndexWhenAvoid();
         }
-        
+
         private EventCode GetIndex()
         {
             if (_hitPoint.AnyIsDead()) return EventCode.PlayerBeatEnemyEvent;

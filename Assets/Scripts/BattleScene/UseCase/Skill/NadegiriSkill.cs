@@ -7,12 +7,12 @@ using BattleScene.UseCase.Skill.SkillElement;
 namespace BattleScene.UseCase.Skill
 {
     /// <summary>
-    /// 撫斬り
+    ///     撫斬り
     /// </summary>
     internal class NadegiriSkill : AbstractSkill
     {
         private readonly NadegiriSkillElement _nadegiriSkillElement;
-        
+
         public override int GetTechnicalPoint()
         {
             return 7;

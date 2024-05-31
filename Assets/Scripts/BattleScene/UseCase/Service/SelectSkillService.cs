@@ -2,17 +2,17 @@
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
-using BattleScene.UseCase.EventRunner;
+using BattleScene.UseCase.Event.Runner;
 
 namespace BattleScene.UseCase.Service
 {
     public class SelectSkillService
     {
+        private readonly ICharacterRepository _characterRepository;
         private readonly CharactersDomainService _characters;
         private readonly SkillService _skill;
-        private readonly ICharacterRepository _characterRepository;
         private readonly ISkillSelectorRepository _skillSelectorRepository;
-        
+
         public bool CanUpdate(EventCode eventCode)
         {
             var playerId = _characters.GetPlayerId();

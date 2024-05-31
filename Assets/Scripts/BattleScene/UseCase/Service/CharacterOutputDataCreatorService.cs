@@ -16,12 +16,9 @@ namespace BattleScene.UseCase.Service
                 : CharacterOutputData.SetEnemy(_enemyRepository.Select(characterId).EnemyNumber);
         }
     }
-    
+
     public class CharacterOutputData
     {
-        public bool IsPlayer { get; }
-        public int EnemyNumber { get; }
-
         private CharacterOutputData()
         {
             IsPlayer = true;
@@ -33,6 +30,9 @@ namespace BattleScene.UseCase.Service
             IsPlayer = false;
             EnemyNumber = enemyNumber;
         }
+
+        public bool IsPlayer { get; }
+        public int EnemyNumber { get; }
 
         public static CharacterOutputData SetPlayer()
         {

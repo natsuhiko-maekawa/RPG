@@ -22,17 +22,10 @@ namespace BattleScene.UserInterface.View
         [SerializeField] private Sprite player;
         [SerializeField] private Texture2D ailmentsIconTexture;
         private readonly List<Image> _imageList = new();
+        private Sprite[] _ailmentsIconArray;
         private float _defaultX;
         private ISpriteFlyweight _spriteFlyweight;
-        private Sprite[] _ailmentsIconArray;
 
-        [Inject]
-        public void Construct(
-            ISpriteFlyweight spriteFlyweight)
-        {
-            _spriteFlyweight = spriteFlyweight;
-        }
-        
         private void Awake()
         {
             for (var i = 0; i < MaxOrderNumber; i++)
@@ -86,6 +79,13 @@ namespace BattleScene.UserInterface.View
 
                 _imageList[i].enabled = true;
             }
+        }
+
+        [Inject]
+        public void Construct(
+            ISpriteFlyweight spriteFlyweight)
+        {
+            _spriteFlyweight = spriteFlyweight;
         }
     }
 }

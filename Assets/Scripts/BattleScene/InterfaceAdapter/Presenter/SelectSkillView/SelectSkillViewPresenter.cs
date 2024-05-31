@@ -19,19 +19,19 @@ namespace BattleScene.InterfaceAdapter.Presenter.SelectSkillView
         {
             var skillDtoList = outputData.SkillList
                 .Select(x => new SkillDto(
-                    Name: x.Name,
-                    Tp: x.Tp,
-                    Disabled: x.Disabled))
+                    x.Name,
+                    x.Tp,
+                    x.Disabled))
                 .ToList();
             var highlightRow = outputData.Selection;
             var viewUpArrow = outputData.ListStart > 0;
             var viewDownArrow = outputData.ListStart < outputData.UpperLimit;
 
             _selectSkillView.StartAnimation(new SelectSkillViewDto(
-                SkillDtoList: skillDtoList,
-                HighlightRow: highlightRow,
-                ViewUpArrow: viewUpArrow,
-                ViewDownArrow: viewDownArrow));
+                skillDtoList,
+                highlightRow,
+                viewUpArrow,
+                viewDownArrow));
         }
 
         public void Stop()

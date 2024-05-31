@@ -31,7 +31,7 @@ namespace BattleScene.UserInterface.View
                 _text.text = dto.Message;
                 return;
             }
-            
+
             for (var i = 1; i < dto.Message.Length + 1; ++i)
             {
                 _text.text = dto.Message.Substring(0, i);

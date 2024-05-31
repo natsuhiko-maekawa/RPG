@@ -9,7 +9,7 @@ namespace BattleScene.UseCase.Skill
     internal class AttackSkill : AbstractSkill
     {
         private readonly BasicDamageSkillElement _basicDamageSkillElement;
-        
+
         public override Range GetRange()
         {
             return Range.Solo;

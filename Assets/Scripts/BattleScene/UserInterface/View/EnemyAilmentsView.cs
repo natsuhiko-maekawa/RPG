@@ -15,12 +15,12 @@ namespace BattleScene.UserInterface.View
         private const int MaxIconNum = 8;
         [SerializeField] private Image icon;
         [SerializeField] private Texture2D icons;
-        private Sprite[] _iconArray;
         private readonly List<Image> _enemyAilmentsIconList = new();
+        private Sprite[] _iconArray;
 
         private void Awake()
         {
-            const float left = - AreaWidth / 2.0f;
+            const float left = -AreaWidth / 2.0f;
             for (var i = 0; i < MaxIconNum; ++i)
             {
                 var image = Instantiate(icon, transform);
@@ -34,11 +34,8 @@ namespace BattleScene.UserInterface.View
 
         public Task StartAnimation(IList<AilmentsDto> dtoList)
         {
-            foreach (var enemyAilmentsIcon in _enemyAilmentsIconList)
-            {
-                enemyAilmentsIcon.enabled = false;
-            }
-            
+            foreach (var enemyAilmentsIcon in _enemyAilmentsIconList) enemyAilmentsIcon.enabled = false;
+
             foreach (var (iconNum, index) in dtoList.Select((x, i) => (Ailments: x.AilmentsInt, i)))
             {
                 _enemyAilmentsIconList[index].sprite = _iconArray[iconNum];

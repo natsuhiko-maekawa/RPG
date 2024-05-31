@@ -19,7 +19,7 @@ namespace BattleScene.InterfaceAdapter.Presenter.AilmentsView
             _enemiesView = enemiesView;
             _playerStatusView = playerStatusView;
         }
-        
+
         public void Start(AilmentOutputData ailmentOutputData)
         {
             if (ailmentOutputData.IsPlayer)

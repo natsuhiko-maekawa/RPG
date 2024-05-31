@@ -9,7 +9,7 @@ namespace Utility
             var spriteArray = new Sprite[col * row];
             var width = texture.width / (float)col;
             var height = texture.height / (float)row;
-            
+
             for (var r = 0; r < col; ++r)
             for (var c = 0; c < row; ++c)
             {

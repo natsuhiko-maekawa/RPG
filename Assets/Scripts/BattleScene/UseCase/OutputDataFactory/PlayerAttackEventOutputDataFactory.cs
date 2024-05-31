@@ -10,10 +10,10 @@ namespace BattleScene.UseCase.OutputDataFactory
     public class PlayerAttackEventOutputDataFactory
     {
         private readonly IAilmentViewInfoFactory _ailmentViewInfoFactory;
+        private readonly CharactersDomainService _characters;
         private readonly ISkillRepository _skillRepository;
         private readonly ISkillViewInfoFactory _skillViewInfoFactory;
-        private readonly CharactersDomainService _characters;
-        
+
         public PlayerImageOutputData CreatePlayerImageOutputData()
         {
             var playerId = _characters.GetPlayerId();

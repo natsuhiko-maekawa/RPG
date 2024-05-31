@@ -7,7 +7,7 @@ using BattleScene.UseCase.Skill.SkillElement;
 namespace BattleScene.UseCase.Skill
 {
     /// <summary>
-    /// スターシェル
+    ///     スターシェル
     /// </summary>
     internal class StarShellSkill : AbstractSkill
     {

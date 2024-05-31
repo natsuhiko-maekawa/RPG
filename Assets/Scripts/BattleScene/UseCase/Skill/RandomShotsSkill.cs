@@ -7,7 +7,7 @@ using BattleScene.UseCase.Skill.SkillElement;
 namespace BattleScene.UseCase.Skill
 {
     /// <summary>
-    /// ランダムショット
+    ///     ランダムショット
     /// </summary>
     internal class RandomShotsSkill : AbstractSkill
     {

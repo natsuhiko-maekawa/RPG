@@ -15,9 +15,9 @@ namespace BattleScene.UseCase.Skill.AbstractClass
         private readonly OrderedItemsDomainService _orderedItems;
 
         protected DamageSkillElement(
-            AttacksWeakPointEvaluation attacksWeakPointEvaluation, 
-            DamageExpression damageExpression, 
-            HitEvaluation hitEvaluation, 
+            AttacksWeakPointEvaluation attacksWeakPointEvaluation,
+            DamageExpression damageExpression,
+            HitEvaluation hitEvaluation,
             OrderedItemsDomainService orderedItems)
         {
             _attacksWeakPointEvaluation = attacksWeakPointEvaluation;

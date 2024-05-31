@@ -9,8 +9,8 @@ namespace BattleScene.UseCase.Service
     public class AttackCounterService
     {
         private readonly ICharacterRepository _characterRepository;
-        private readonly IResultRepository _resultRepository;
         private readonly IPlayerPropertyFactory _playerPropertyFactory;
+        private readonly IResultRepository _resultRepository;
 
         public float GetRate()
         {
@@ -21,7 +21,7 @@ namespace BattleScene.UseCase.Service
         {
             return Domain.Constant.AttackCountUpperLimit < Count();
         }
-        
+
         private int Count()
         {
             var resultList = _resultRepository.Select();

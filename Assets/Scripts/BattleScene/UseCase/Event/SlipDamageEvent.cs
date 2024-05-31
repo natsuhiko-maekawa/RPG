@@ -1,7 +1,7 @@
 ﻿using BattleScene.Domain.DomainService;
 using BattleScene.Domain.IRepository;
 using BattleScene.UseCase.Event.Interface;
-using BattleScene.UseCase.EventRunner;
+using BattleScene.UseCase.Event.Runner;
 using BattleScene.UseCase.Service;
 using BattleScene.UseCase.View.CharacterVibesView.OutputBoundary;
 using BattleScene.UseCase.View.CharacterVibesView.OutputDataFactory;
@@ -11,7 +11,7 @@ using BattleScene.UseCase.View.HitPointBarView.OutputBoundary;
 using BattleScene.UseCase.View.HitPointBarView.OutputDataFactory;
 using BattleScene.UseCase.View.MessageView.OutputBoundary;
 using BattleScene.UseCase.View.MessageView.OutputDataFactory;
-using static BattleScene.UseCase.EventRunner.EventCode;
+using static BattleScene.UseCase.Event.Runner.EventCode;
 using static BattleScene.Domain.Code.MessageCode;
 
 namespace BattleScene.UseCase.Event
@@ -28,10 +28,10 @@ namespace BattleScene.UseCase.Event
         private readonly IHitPointRepository _hitPointRepository;
         private readonly MessageOutputDataFactory _messageOutputDataFactory;
         private readonly IMessageViewPresenter _messageView;
-        private readonly ITargetRepository _targetRepository;
-        private readonly SlipDamageService _slipDamage;
-        private readonly IResultRepository _resultRepository;
         private readonly ResultDomainService _result;
+        private readonly IResultRepository _resultRepository;
+        private readonly SlipDamageService _slipDamage;
+        private readonly ITargetRepository _targetRepository;
 
         public EventCode Run()
         {

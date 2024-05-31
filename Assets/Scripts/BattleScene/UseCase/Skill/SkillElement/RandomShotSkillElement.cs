@@ -7,14 +7,14 @@ namespace BattleScene.UseCase.Skill.SkillElement
     public class RandomShotSkillElement : DamageSkillElement
     {
         public RandomShotSkillElement(
-            AttacksWeakPointEvaluation attacksWeakPointEvaluation, 
-            DamageExpression damageExpression, 
-            HitEvaluation hitEvaluation, 
-            OrderedItemsDomainService orderedItems) 
+            AttacksWeakPointEvaluation attacksWeakPointEvaluation,
+            DamageExpression damageExpression,
+            HitEvaluation hitEvaluation,
+            OrderedItemsDomainService orderedItems)
             : base(
-                attacksWeakPointEvaluation, 
+                attacksWeakPointEvaluation,
                 damageExpression,
-                hitEvaluation, 
+                hitEvaluation,
                 orderedItems)
         {
         }

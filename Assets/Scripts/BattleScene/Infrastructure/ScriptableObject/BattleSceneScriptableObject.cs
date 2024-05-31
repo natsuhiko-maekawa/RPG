@@ -9,7 +9,7 @@ namespace BattleScene.Infrastructure.ScriptableObject
     {
         [SerializeField] private MsgScriptableObject msgScriptableObject;
         [SerializeField] private PropertyScriptableObject propertyScriptableObject;
-        
+
         public List<MessageDto> GetMsgScriptableObject()
         {
             return msgScriptableObject.msgList;

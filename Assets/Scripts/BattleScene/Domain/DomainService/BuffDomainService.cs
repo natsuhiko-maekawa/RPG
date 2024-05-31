@@ -20,13 +20,13 @@ namespace BattleScene.Domain.DomainService
         {
             return _buffRepository.Select(characterId, buffCode) != null;
         }
-        
+
         public float GetRate(CharacterId characterId, BuffCode buffCode)
         {
             var buffEntity = _buffRepository.Select(characterId, buffCode);
             return buffEntity?.Rate ?? 1.0f;
         }
-        
+
         public void AdvanceAllTurn(CharacterId characterId)
         {
             var buffEntityList = _buffRepository.Select(characterId);

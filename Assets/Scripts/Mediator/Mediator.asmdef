@@ -1,20 +1,20 @@
 {
-    "name": "Mediator",
-    "rootNamespace": "",
-    "references": [
-        "GUID:b0214a6008ed146ff8f122a6a9c2f6cc",
-        "GUID:13df569eb0e9e6944ac1cd4d1d609c32",
-        "GUID:9a78184b3a472d346bba88b51014fbb8",
-        "GUID:4bf271daf51e81f4b88fa7ea343294b9",
-        "GUID:e004e8e29732b38429504cfc3de84447"
-    ],
-    "includePlatforms": [],
-    "excludePlatforms": [],
-    "allowUnsafeCode": false,
-    "overrideReferences": false,
-    "precompiledReferences": [],
-    "autoReferenced": true,
-    "defineConstraints": [],
-    "versionDefines": [],
-    "noEngineReferences": false
+  "name": "Mediator",
+  "rootNamespace": "",
+  "references": [
+    "GUID:b0214a6008ed146ff8f122a6a9c2f6cc",
+    "GUID:13df569eb0e9e6944ac1cd4d1d609c32",
+    "GUID:9a78184b3a472d346bba88b51014fbb8",
+    "GUID:4bf271daf51e81f4b88fa7ea343294b9",
+    "GUID:e004e8e29732b38429504cfc3de84447"
+  ],
+  "includePlatforms": [],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": true,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "noEngineReferences": false
 }

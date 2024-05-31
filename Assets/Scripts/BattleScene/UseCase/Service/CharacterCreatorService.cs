@@ -16,19 +16,11 @@ namespace BattleScene.UseCase.Service
         private readonly IPropertyFactory _propertyFactory;
         private readonly IRandomEx _randomEx;
 
-        public CharacterCreatorService(
-            IPropertyFactory propertyFactory,
-            IRandomEx randomEx)
-        {
-            _propertyFactory = propertyFactory;
-            _randomEx = randomEx;
-        }
-
         public CharacterAggregate CreatePlayer()
         {
             return Create(_propertyFactory.Get(Girl));
         }
-        
+
         public ImmutableList<CharacterAggregate> CreateEnemyList(IList<CharacterTypeId> characterTypeIdList)
         {
             var options = _propertyFactory.Get(characterTypeIdList)
@@ -49,7 +41,7 @@ namespace BattleScene.UseCase.Service
                 .Select(x => Create(_propertyFactory.Get(x)))
                 .ToImmutableList();
         }
-        
+
         private int SumParameter(PropertyValueObject v)
         {
             return (int)(v.HitPoint / 10.0f
@@ -59,7 +51,7 @@ namespace BattleScene.UseCase.Service
                             + v.Agility
                             + v.Luck)) / 10;
         }
-        
+
         private CharacterAggregate Create(PropertyValueObject property)
         {
             var characterId = new CharacterId();

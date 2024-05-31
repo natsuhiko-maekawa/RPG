@@ -15,7 +15,7 @@ namespace BattleScene.UseCase.View.BuffView.OutputDataFactory
         {
             throw new NotImplementedException();
         }
-        
+
         public BuffOutputData Create(IList<CharacterId> characterIdList)
         {
             throw new NotImplementedException();

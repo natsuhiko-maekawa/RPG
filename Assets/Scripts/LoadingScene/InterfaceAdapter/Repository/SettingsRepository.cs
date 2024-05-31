@@ -7,8 +7,8 @@ namespace LoadingScene.InterfaceAdapter.Repository
 {
     public class SettingsRepository : ISettingsRepository
     {
-        private readonly ISettingsJson _settingsJson;
         private readonly IAddressableCount _addressableCount;
+        private readonly ISettingsJson _settingsJson;
 
         public SettingsRepository(
             ISettingsJson settingsJson,
@@ -17,10 +17,10 @@ namespace LoadingScene.InterfaceAdapter.Repository
             _settingsJson = settingsJson;
             _addressableCount = addressableCount;
         }
-        
+
         public void Set(int addressableCount)
         {
-            _settingsJson.Set(new SettingsDto(addressableCount: addressableCount));
+            _settingsJson.Set(new SettingsDto(addressableCount));
         }
 
         public int Get()

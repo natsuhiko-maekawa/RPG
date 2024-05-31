@@ -12,7 +12,7 @@ namespace BattleScene.UseCase.Service
         private readonly OrderedItemsDomainService _orderedItems;
         private readonly ResultCreatorDomainService _resultCreator;
         private readonly TargetDomainService _target;
-        
+
         public ResultEntity Execute(SkillEntity skill)
         {
             var actorId = _orderedItems.FirstCharacterId();
@@ -24,7 +24,7 @@ namespace BattleScene.UseCase.Service
                 foreach (var targetId in targetIdList)
                 {
                     var damage = new DamageValueObject(
-                        amount: damageSkill.GetDamageAmount(targetId),
+                        damageSkill.GetDamageAmount(targetId),
                         isHit: damageSkill.IsHit(targetId),
                         attacksWeakPoint: damageSkill.AttacksWeakPoint(targetId),
                         targetId: targetId,
@@ -32,12 +32,12 @@ namespace BattleScene.UseCase.Service
                     damageList.Add(damage);
                 }
             }
-            
+
             damageList.Sort((x, y) => x.Number - y.Number);
-            var damageSkillResult =  new DamageSkillResultValueObject(
-                actorId: actorId,
-                skillCode: skill.SkillCode,
-                damageList: damageList.ToImmutableList());
+            var damageSkillResult = new DamageSkillResultValueObject(
+                actorId,
+                skill.SkillCode,
+                damageList.ToImmutableList());
 
             return _resultCreator.Create(damageSkillResult);
         }

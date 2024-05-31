@@ -7,7 +7,7 @@ using BattleScene.UseCase.Skill.SkillElement;
 namespace BattleScene.UseCase.Skill
 {
     /// <summary>
-    /// ファーストエイド
+    ///     ファーストエイド
     /// </summary>
     internal class FirstAidSkill : AbstractSkill
     {

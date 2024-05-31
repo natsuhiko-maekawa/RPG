@@ -2,10 +2,11 @@
 using LoadingScene.UseCase.Tips;
 using Utility;
 using VContainer;
+using VContainer.Unity;
 
 namespace LoadingScene.UseCase
 {
-    public class LoadingSceneUseCaseLifetimeScope : VContainer.Unity.LifetimeScope
+    public class LoadingSceneUseCaseLifetimeScope : LifetimeScope
     {
         protected override void Configure(IContainerBuilder builder)
         {

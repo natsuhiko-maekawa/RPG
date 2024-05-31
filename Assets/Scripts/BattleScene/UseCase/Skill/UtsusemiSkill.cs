@@ -1,13 +1,15 @@
-﻿using System.Collections.Immutable;
+﻿using System;
+using System.Collections.Immutable;
 using BattleScene.Domain.AbstractClass;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.Interface;
 using BattleScene.UseCase.Skill.SkillElement;
+using Range = BattleScene.Domain.Code.Range;
 
 namespace BattleScene.UseCase.Skill
 {
     /// <summary>
-    /// 空蝉
+    ///     空蝉
     /// </summary>
     internal class UtsusemiSkill : AbstractSkill
     {
@@ -35,7 +37,7 @@ namespace BattleScene.UseCase.Skill
 
         public override MessageCode GetAttackMessage()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public override ImmutableList<ISkillElement> GetSkillService()

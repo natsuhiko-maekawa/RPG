@@ -6,14 +6,14 @@ namespace BattleScene.Domain.Entity
 {
     public class TargetEntity
     {
-        public CharacterId CharacterId { get; }
-        public ImmutableList<CharacterId> TargetIdList { get; private set; }
-
         public TargetEntity(
             CharacterId characterId)
         {
             CharacterId = characterId;
         }
+
+        public CharacterId CharacterId { get; }
+        public ImmutableList<CharacterId> TargetIdList { get; private set; }
 
         public void Set(CharacterId targetId)
         {

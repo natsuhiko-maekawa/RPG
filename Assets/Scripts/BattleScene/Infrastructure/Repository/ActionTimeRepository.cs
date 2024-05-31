@@ -10,7 +10,7 @@ namespace BattleScene.Infrastructure.Repository
     public class ActionTimeRepository : IActionTimeRepository
     {
         private HashSet<ActionTimeEntity> _actionTimeSet;
-        
+
         public ActionTimeEntity Select(CharacterId characterId)
         {
             return _actionTimeSet

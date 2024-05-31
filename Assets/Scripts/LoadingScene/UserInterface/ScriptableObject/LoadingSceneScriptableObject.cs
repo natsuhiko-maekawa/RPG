@@ -8,7 +8,7 @@ namespace LoadingScene.UserInterface.ScriptableObject
     public class LoadingSceneScriptableObject : MonoBehaviour, ILoadingSceneScriptableObject
     {
         [SerializeField] private TipsScriptableObject tipsScriptableObject;
-        
+
         public List<TipsDto> GetTipsScriptableObject()
         {
             return tipsScriptableObject.tipsList;

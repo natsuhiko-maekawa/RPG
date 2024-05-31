@@ -10,8 +10,8 @@ namespace BattleScene.UserInterface.View
     {
         private const int Frame = 10;
         private const float VibesRange = 5;
-        private Vector3 _originalPosition;
         private Image _image;
+        private Vector3 _originalPosition;
 
         private void Awake()
         {
@@ -28,11 +28,11 @@ namespace BattleScene.UserInterface.View
             for (var frame = 0; frame < Frame; ++frame)
             {
                 var move
-                        = new Vector3(Random.Range(-VibesRange, VibesRange), Random.Range(-VibesRange, VibesRange), 0);
+                    = new Vector3(Random.Range(-VibesRange, VibesRange), Random.Range(-VibesRange, VibesRange), 0);
                 _image.transform.localPosition = _originalPosition + move;
                 await Task.Delay(WaitTime);
             }
-            
+
             _image.transform.localPosition = _originalPosition;
         }
     }

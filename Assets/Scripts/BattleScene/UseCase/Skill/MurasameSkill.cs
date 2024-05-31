@@ -7,13 +7,13 @@ using BattleScene.UseCase.Skill.SkillElement;
 namespace BattleScene.UseCase.Skill
 {
     /// <summary>
-    /// 村雨
+    ///     村雨
     /// </summary>
     internal class MurasameSkill : AbstractSkill
     {
         private readonly BasicDamageSkillElement _basicDamageSkillElement;
         private readonly BurningResetSkillElement _burningResetSkillElement;
-        
+
         public override int GetTechnicalPoint()
         {
             return 5;

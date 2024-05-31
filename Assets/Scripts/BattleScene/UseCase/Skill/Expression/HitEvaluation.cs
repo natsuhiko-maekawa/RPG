@@ -14,9 +14,9 @@ namespace BattleScene.UseCase.Skill.Expression
     public class HitEvaluation
     {
         private readonly IAilmentRepository _ailmentRepository;
+        private readonly BodyPartDomainService _bodyPartDomainService;
         private readonly IBuffRepository _buffRepository;
         private readonly ICharacterRepository _characterRepository;
-        private readonly BodyPartDomainService _bodyPartDomainService;
         private readonly IRandomEx _randomEx;
 
         public HitEvaluation(
@@ -32,14 +32,14 @@ namespace BattleScene.UseCase.Skill.Expression
             _bodyPartDomainService = bodyPartDomainService;
             _randomEx = randomEx;
         }
-        
+
         public bool Evaluate(CharacterId actorId, CharacterId targetId, DamageSkillElement damageSkillElement)
         {
             // 両脚損傷時、必ず命中する
             if (!_bodyPartDomainService.IsAvailable(targetId, Leg)) return true;
 
             if (_buffRepository.Select(targetId, BuffCode.UtsusemiSkill) != null) return false;
-            
+
             // 大きいほど命中しやすくなる
             const float threshold = 20.0f;
             var actorAgility = _characterRepository.Select(actorId).Property.Agility;

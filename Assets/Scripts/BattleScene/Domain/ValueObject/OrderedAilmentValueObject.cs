@@ -5,12 +5,12 @@ namespace BattleScene.Domain.ValueObject
 {
     public class OrderedAilmentValueObject : IOrderedItem
     {
-        public AilmentCode AilmentCode { get; }
-
         public OrderedAilmentValueObject(
             AilmentCode ailmentCode)
         {
             AilmentCode = ailmentCode;
         }
+
+        public AilmentCode AilmentCode { get; }
     }
 }

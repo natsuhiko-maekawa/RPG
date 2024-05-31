@@ -19,7 +19,7 @@ namespace BattleScene.UseCase.Skill.SkillElement
                 orderedItems)
         {
         }
-        
+
         public override bool IsHit(CharacterId _)
         {
             return true;

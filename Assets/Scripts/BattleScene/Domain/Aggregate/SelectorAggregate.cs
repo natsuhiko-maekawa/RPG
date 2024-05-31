@@ -5,7 +5,6 @@ namespace BattleScene.Domain.Aggregate
 {
     public class SelectorAggregate
     {
-        public SelectorId SelectorId { get; }
         private readonly SelectorEntity _selectorEntity;
 
         public SelectorAggregate(
@@ -16,7 +15,9 @@ namespace BattleScene.Domain.Aggregate
             SelectorId = selectorId;
             _selectorEntity = new SelectorEntity(maxViewLength, listLength);
         }
-        
+
+        public SelectorId SelectorId { get; }
+
         public void Up()
         {
             _selectorEntity.Up();

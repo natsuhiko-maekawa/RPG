@@ -2,7 +2,7 @@ using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
 using BattleScene.UseCase.Event.Interface;
-using BattleScene.UseCase.EventRunner;
+using BattleScene.UseCase.Event.Runner;
 using BattleScene.UseCase.Service;
 using BattleScene.UseCase.View.InfoView.OutputBoundary;
 using BattleScene.UseCase.View.MessageView.OutputBoundary;
@@ -12,7 +12,7 @@ using BattleScene.UseCase.View.PlayerImageView.OutputDataFactory;
 using BattleScene.UseCase.View.SelectSkillView.OutputBoundary;
 using BattleScene.UseCase.View.SelectSkillView.OutputDataFactory;
 using UnityEngine;
-using static BattleScene.UseCase.EventRunner.EventCode;
+using static BattleScene.UseCase.Event.Runner.EventCode;
 using static BattleScene.UseCase.Constant;
 
 namespace BattleScene.UseCase.Event
@@ -20,17 +20,22 @@ namespace BattleScene.UseCase.Event
     internal class SelectSkillEvent : IEvent, IWait, ISelectable, ICancelable
     {
         private readonly CharactersDomainService _characters;
-        private readonly SelectSkillOutputDataFactory _selectSkillOutputDataFactory;
-        private readonly SelectSkillMessageOutputDataFactory _selectSkillMessageOutputDataFactory;
-        private readonly SelectSkillPlayerImageOutputDataFactory _selectSkillPlayerImageOutputDataFactory;
-        private readonly SelectSkillService _selectSkill;
-        private readonly SkillCreatorService _skillCreator;
-        private readonly ISkillRepository _skillRepository;
-        private readonly ISkillSelectorRepository _skillSelectorRepository;
         private readonly IInfoViewPresenter _infoView;
         private readonly IMessageViewPresenter _messageView;
         private readonly IPlayerImageViewPresenter _playerImageView;
+        private readonly SelectSkillService _selectSkill;
+        private readonly SelectSkillMessageOutputDataFactory _selectSkillMessageOutputDataFactory;
+        private readonly SelectSkillOutputDataFactory _selectSkillOutputDataFactory;
+        private readonly SelectSkillPlayerImageOutputDataFactory _selectSkillPlayerImageOutputDataFactory;
         private readonly ISelectSkillViewPresenter _selectSkillView;
+        private readonly SkillCreatorService _skillCreator;
+        private readonly ISkillRepository _skillRepository;
+        private readonly ISkillSelectorRepository _skillSelectorRepository;
+
+        public void CancelAction()
+        {
+            _selectSkillView.Stop();
+        }
 
         public EventCode Run()
         {
@@ -38,27 +43,6 @@ namespace BattleScene.UseCase.Event
             StartView();
 
             return WaitEvent;
-        }
-
-        public EventCode NextEvent()
-        {
-            var canUpdate = _selectSkill.CanUpdate(EventCode.SelectSkillEvent);
-            if (!canUpdate) return WaitEvent;
-
-            var playerId = _characters.GetPlayerId();
-            var skillCode = _selectSkill.GetSkillCode(EventCode.SelectSkillEvent);
-            var skill = _skillCreator.Create(playerId, skillCode);
-            _skillRepository.Update(skill);
-            
-            _infoView.Stop();
-            _selectSkillView.Stop();
-
-            return EventCode.SelectTargetEvent;
-        }
-        
-        public void CancelAction()
-        {
-            _selectSkillView.Stop();
         }
 
         public void SelectAction(Vector2 direction)
@@ -75,8 +59,24 @@ namespace BattleScene.UseCase.Event
                     StartView();
                     break;
             }
-            
+
             _skillSelectorRepository.Update(skillSelector);
+        }
+
+        public EventCode NextEvent()
+        {
+            var canUpdate = _selectSkill.CanUpdate(EventCode.SelectSkillEvent);
+            if (!canUpdate) return WaitEvent;
+
+            var playerId = _characters.GetPlayerId();
+            var skillCode = _selectSkill.GetSkillCode(EventCode.SelectSkillEvent);
+            var skill = _skillCreator.Create(playerId, skillCode);
+            _skillRepository.Update(skill);
+
+            _infoView.Stop();
+            _selectSkillView.Stop();
+
+            return EventCode.SelectTargetEvent;
         }
 
         private void StartView()

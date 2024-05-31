@@ -8,7 +8,7 @@ using Utility;
 namespace BattleScene.UseCase.Skill
 {
     /// <summary>
-    /// 命を刈る鎌
+    ///     命を刈る鎌
     /// </summary>
     internal class PutScytheSkill : AbstractSkill
     {

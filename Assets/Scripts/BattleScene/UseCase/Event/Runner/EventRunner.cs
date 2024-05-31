@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using BattleScene.UseCase.Event.Interface;
 using BattleScene.UseCase.IController;
 using UnityEngine;
-using static BattleScene.UseCase.EventRunner.EventCode;
+using static BattleScene.UseCase.Event.Runner.EventCode;
 
-namespace BattleScene.UseCase.EventRunner
+namespace BattleScene.UseCase.Event.Runner
 {
     internal class EventRunner
     {
-        private readonly IEventFactory _eventFactory;
         private readonly IBattleSceneController _battleSceneController;
-        private IEvent _event;
+        private readonly IEventFactory _eventFactory;
         private readonly Stack<EventCode> _history = new();
+        private IEvent _event;
 
         public EventRunner(
             IEventFactory eventFactory,
@@ -20,14 +20,14 @@ namespace BattleScene.UseCase.EventRunner
         {
             _eventFactory = eventFactory;
             _battleSceneController = battleSceneController;
-            _history.Push(InitializationEvent);
+            _history.Push(EventCode.InitializationEvent);
             SetInput();
         }
-        
+
         public void Run()
         {
             if (_history.Count == 0) throw new InvalidOperationException();
-            var index =  _history.Peek();
+            var index = _history.Peek();
             if (index == WaitEvent) return;
             _event = _eventFactory.Create(index);
             var nextIndex = _event.Run();

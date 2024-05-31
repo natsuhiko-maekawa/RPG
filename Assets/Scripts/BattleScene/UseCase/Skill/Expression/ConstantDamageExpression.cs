@@ -10,12 +10,12 @@ namespace BattleScene.UseCase.Skill.Expression
 {
     public class ConstantDamageExpression
     {
+        private readonly BodyPartDomainService _bodyPartDomainService;
+        private readonly BuffDomainService _buffDomainService;
         private readonly IBuffRepository _buffRepository;
         private readonly ICharacterRepository _characterRepository;
         private readonly IRandomEx _randomEx;
-        private readonly BodyPartDomainService _bodyPartDomainService;
-        private readonly BuffDomainService _buffDomainService;
-        
+
         public ConstantDamageExpression(
             ICharacterRepository characterRepository,
             IRandomEx randomEx,

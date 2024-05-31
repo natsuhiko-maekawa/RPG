@@ -11,7 +11,7 @@ namespace BattleScene.Infrastructure.Factory.Dto
         public int tp;
         [SerializeField] private string[] fatalitySkills;
         public SkillCode[] FatalitySkills { get; private set; }
-        
+
         public void OnBeforeSerialize()
         {
         }

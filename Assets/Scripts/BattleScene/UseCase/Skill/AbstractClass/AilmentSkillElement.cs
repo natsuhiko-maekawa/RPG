@@ -10,7 +10,7 @@ namespace BattleScene.UseCase.Skill.AbstractClass
         {
             return 0.5f;
         }
-        
+
         public abstract AilmentCode GetAilmentCode();
     }
 }

@@ -1,4 +1,4 @@
-﻿using BattleScene.UseCase.EventRunner;
+﻿using BattleScene.UseCase.Event.Runner;
 
 namespace BattleScene.UseCase.Event.TemplateMethod
 {
@@ -10,7 +10,7 @@ namespace BattleScene.UseCase.Event.TemplateMethod
             UpdateSkillRepository();
             return RunSkillEvent();
         }
-        
+
         protected abstract void UpdateResultRepository();
         protected abstract void UpdateSkillRepository();
         protected abstract EventCode RunSkillEvent();

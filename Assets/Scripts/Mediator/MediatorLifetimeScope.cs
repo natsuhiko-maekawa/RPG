@@ -10,7 +10,7 @@ namespace Mediator
         protected override void Configure(IContainerBuilder builder)
         {
             base.Configure(builder);
-            
+
             builder.Register<ILoadingImage, LoadingImage>(Lifetime.Singleton);
             builder.Register<ISpriteFlyweight, SpriteFlyweight>(Lifetime.Singleton);
             builder.Register<BattleScene.UserInterface.ISpriteFlyweight, BattleScene.UserInterface.SpriteFlyweight>(

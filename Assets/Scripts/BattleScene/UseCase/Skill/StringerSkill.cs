@@ -7,7 +7,7 @@ using BattleScene.UseCase.Skill.SkillElement;
 namespace BattleScene.UseCase.Skill
 {
     /// <summary>
-    /// 毒針
+    ///     毒針
     /// </summary>
     internal class StringerSkill : AbstractSkill
     {

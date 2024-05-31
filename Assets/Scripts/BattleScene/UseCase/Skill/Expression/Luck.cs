@@ -10,7 +10,7 @@ namespace BattleScene.UseCase.Skill.Expression
         private const float Threshold = 40.0f; // 大きいほど命中しやすくなる
         private readonly ICharacterRepository _characterRepository;
         private readonly IRandomEx _randomEx;
-        
+
         public bool IsLucky(CharacterId actorId, CharacterId targetId, ILuckSkillElement skill)
         {
             var actorLuck = _characterRepository.Select(actorId).Property.Luck;

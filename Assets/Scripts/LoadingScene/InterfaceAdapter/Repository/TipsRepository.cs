@@ -15,7 +15,7 @@ namespace LoadingScene.InterfaceAdapter.Repository
         {
             _loadingSceneScriptableObject = loadingSceneScriptableObject;
         }
-        
+
         public IList<string> GetTips()
         {
             return _loadingSceneScriptableObject.GetTipsScriptableObject().Select(x => x.tips).ToImmutableList();

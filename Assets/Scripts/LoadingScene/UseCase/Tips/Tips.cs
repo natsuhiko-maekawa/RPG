@@ -16,7 +16,7 @@ namespace LoadingScene.UseCase.Tips
             _randomEx = randomEx;
             _tipsList = tipsRepository.GetTips();
         }
-        
+
         public string RandomGet()
         {
             return _randomEx.Choice(_tipsList);

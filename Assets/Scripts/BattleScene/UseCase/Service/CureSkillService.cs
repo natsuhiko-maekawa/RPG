@@ -12,21 +12,21 @@ namespace BattleScene.UseCase.Service
         private readonly OrderedItemsDomainService _orderedItems;
         private readonly ResultCreatorDomainService _resultCreator;
         private readonly TargetDomainService _target;
-        
+
         public ResultEntity Execute(SkillEntity skill)
         {
             var actorId = _orderedItems.FirstCharacterId();
             var cureSkill = (ICureSkill)skill.FirstSkillService();
             var cureList = _target.Get(actorId, skill.AbstractSkill.GetRange())
                 .Select(x => new CureValueObject(
-                    Amount: cureSkill.GetCureAmount(x),
-                    TargetId: x))
+                    cureSkill.GetCureAmount(x),
+                    x))
                 .ToImmutableList();
-            
+
             var cureSkillResult = new CureSkillResultValueObject(
-                actorId: actorId,
-                skillCode: skill.SkillCode,
-                cureList: cureList);
+                actorId,
+                skill.SkillCode,
+                cureList);
 
             return _resultCreator.Create(cureSkillResult);
         }

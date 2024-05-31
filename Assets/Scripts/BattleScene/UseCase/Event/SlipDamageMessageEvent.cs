@@ -2,7 +2,7 @@
 using BattleScene.Domain.IFactory;
 using BattleScene.Domain.IRepository;
 using BattleScene.UseCase.Event.Interface;
-using BattleScene.UseCase.EventRunner;
+using BattleScene.UseCase.Event.Runner;
 using BattleScene.UseCase.View.AilmentView.OutputDataFactory;
 using BattleScene.UseCase.View.MessageView.OutputBoundary;
 using BattleScene.UseCase.View.MessageView.OutputDataFactory;
@@ -13,17 +13,17 @@ namespace BattleScene.UseCase.Event
 {
     internal class SlipDamageMessageEvent : IEvent, IWait
     {
-        private readonly IAilmentRepository _ailmentRepository;
-        private readonly OrderedItemsDomainService _orderedItems;
-        private readonly AilmentOutputDataFactory _ailmentViewInfoFactory;
-        private readonly ISlipDamageViewInfoFactory _slipDamageViewInfoFactory;
-        private readonly CharactersDomainService _characters;
         private readonly AilmentMessageOutputDataFactory _ailmentMessageOutputDataFactory;
         private readonly SlipDamagePlayerImageOutputDataFactory _ailmentPlayerImageOutputDataFactory;
-        private readonly PlayerImageOutputDataFactory _playerImageOutputDataFactory;
+        private readonly IAilmentRepository _ailmentRepository;
+        private readonly AilmentOutputDataFactory _ailmentViewInfoFactory;
+        private readonly CharactersDomainService _characters;
         private readonly IMessageViewPresenter _messageView;
+        private readonly OrderedItemsDomainService _orderedItems;
+        private readonly PlayerImageOutputDataFactory _playerImageOutputDataFactory;
         private readonly IPlayerImageViewPresenter _playerImageViewPresenter;
-        
+        private readonly ISlipDamageViewInfoFactory _slipDamageViewInfoFactory;
+
         public EventCode Run()
         {
             var playerId = _characters.GetPlayerId();

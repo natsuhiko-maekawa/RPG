@@ -15,19 +15,19 @@ namespace BattleScene.UseCase.View.AilmentView.OutputDataFactory
 {
     internal class AilmentOutputDataFactory
     {
+        private readonly AilmentDomainService _ailment;
         private readonly IAilmentRepository _ailmentRepository;
         private readonly IAilmentViewInfoFactory _ailmentViewInfoFactory;
         private readonly ICharacterRepository _characterRepository;
         private readonly IEnemyRepository _enemyRepository;
         private readonly ISlipDamageRepository _slipDamageRepository;
-        private readonly AilmentDomainService _ailment;
         private readonly ToAilmentNumberService _toAilmentNumber;
 
         public ImmutableList<AilmentOutputData> Create()
         {
             var ailmentOutputDataList = _characterRepository.Select()
-                .Select(x => x.IsPlayer() 
-                    ? CreatePlayerAilmentOutputData(x.CharacterId) 
+                .Select(x => x.IsPlayer()
+                    ? CreatePlayerAilmentOutputData(x.CharacterId)
                     : CreateEnemyAilmentOutputData(x.CharacterId))
                 .ToImmutableList();
             return ailmentOutputDataList;
@@ -39,7 +39,7 @@ namespace BattleScene.UseCase.View.AilmentView.OutputDataFactory
                 .Select(Create)
                 .ToImmutableList();
         }
-        
+
         public AilmentOutputData Create(CharacterId characterId)
         {
             var ailmentOutputData = _characterRepository.Select(characterId).IsPlayer()
@@ -65,11 +65,11 @@ namespace BattleScene.UseCase.View.AilmentView.OutputDataFactory
                 = _slipDamageRepository.Select()
                     .Select(x => _toAilmentNumber.SlipDamage(x.SlipDamageCode))
                     .ToImmutableList();
-            
+
             return new AilmentOutputData(
-                IsPlayer: true,
-                EnemyNumber: default,
-                AilmentNumberList: _ailmentRepository.Select(characterId)
+                true,
+                default,
+                _ailmentRepository.Select(characterId)
                     .Select(x => _toAilmentNumber.Ailment(x.AilmentCode))
                     .Concat(slipDamageNumberList)
                     .ToImmutableList());
@@ -78,9 +78,9 @@ namespace BattleScene.UseCase.View.AilmentView.OutputDataFactory
         private AilmentOutputData CreateEnemyAilmentOutputData(CharacterId characterId)
         {
             return new AilmentOutputData(
-                IsPlayer: false,
-                EnemyNumber: _enemyRepository.Select(characterId).EnemyNumber,
-                AilmentNumberList: _ailment.GetOrdered(characterId)
+                false,
+                _enemyRepository.Select(characterId).EnemyNumber,
+                _ailment.GetOrdered(characterId)
                     .Select(x => _toAilmentNumber.Ailment(x.AilmentCode))
                     .ToImmutableList());
         }

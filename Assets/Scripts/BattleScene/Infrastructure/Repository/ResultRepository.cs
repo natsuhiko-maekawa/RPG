@@ -11,9 +11,8 @@ namespace BattleScene.Infrastructure.Repository
     [DataContract]
     public class ResultRepository : IResultRepository
     {
-        [DataMember]
-        private readonly HashSet<ResultEntity> _resultSet;
-        
+        [DataMember] private readonly HashSet<ResultEntity> _resultSet;
+
         public ImmutableList<ResultEntity> Select()
         {
             return _resultSet.ToImmutableList();

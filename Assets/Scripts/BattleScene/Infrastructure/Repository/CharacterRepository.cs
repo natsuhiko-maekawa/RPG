@@ -11,7 +11,7 @@ namespace BattleScene.Infrastructure.Repository
     public class CharacterRepository : ICharacterRepository
     {
         private HashSet<CharacterAggregate> _characterSet;
-        
+
         public CharacterAggregate Select(CharacterId characterId)
         {
             return _characterSet.First(x => Equals(x.CharacterId, characterId));

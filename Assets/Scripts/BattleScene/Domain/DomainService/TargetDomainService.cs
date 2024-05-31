@@ -23,16 +23,16 @@ namespace BattleScene.Domain.DomainService
             _hitPointRepository = hitPointRepository;
             _randomEx = randomEx;
         }
-        
+
         public ImmutableList<CharacterId> Get(CharacterId characterId, Range range)
         {
             var targetList = range switch
             {
                 Range.Random => GetRandom(characterId),
-                Range.Oneself => 
-                     _hitPointRepository.Select(characterId).IsSurvive()
-                    ? ImmutableList<CharacterId>.Empty
-                    : ImmutableList.Create(characterId),
+                Range.Oneself =>
+                    _hitPointRepository.Select(characterId).IsSurvive()
+                        ? ImmutableList<CharacterId>.Empty
+                        : ImmutableList.Create(characterId),
                 // TODO プレイヤーが選択したターゲットを返す処理を書くこと
                 _ => throw new NotImplementedException()
             };

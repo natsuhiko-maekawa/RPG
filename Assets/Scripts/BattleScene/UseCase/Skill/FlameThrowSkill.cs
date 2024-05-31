@@ -7,7 +7,7 @@ using BattleScene.UseCase.Skill.SkillElement;
 namespace BattleScene.UseCase.Skill
 {
     /// <summary>
-    /// 火炎放射
+    ///     火炎放射
     /// </summary>
     internal class FlameThrowSkill : AbstractSkill
     {
@@ -18,7 +18,7 @@ namespace BattleScene.UseCase.Skill
         {
             return PlayerImageCode.Damaged;
         }
-        
+
         public override Range GetRange()
         {
             return Range.Solo;

@@ -10,21 +10,21 @@ namespace BattleScene.Infrastructure.Factory
     public class AilmentFactory : IAilmentFactory
     {
         private readonly IAilmentScriptableObject _ailmentScriptableObject;
-        
+
         public AilmentFactory(
             IAilmentScriptableObject ailmentScriptableObject)
         {
             _ailmentScriptableObject = ailmentScriptableObject;
         }
-        
+
         public AilmentEntity Create(CharacterId characterId, AilmentCode ailmentCode)
         {
             var ailmentDto = _ailmentScriptableObject.Get(ailmentCode);
             return new AilmentEntity(
-                characterId: characterId,
-                ailmentCode: ailmentCode,
-                priority: ailmentDto.priority,
-                turn: new TurnValueObject(ailmentDto.effectiveTurn));
+                characterId,
+                ailmentCode,
+                ailmentDto.priority,
+                new TurnValueObject(ailmentDto.effectiveTurn));
         }
     }
 }

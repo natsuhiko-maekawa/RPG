@@ -7,12 +7,12 @@ using BattleScene.UseCase.Skill.SkillElement;
 namespace BattleScene.UseCase.Skill
 {
     /// <summary>
-    /// 殴りつけ
+    ///     殴りつけ
     /// </summary>
     internal class PunchSkill : AbstractSkill
     {
         private readonly BasicDamageSkillElement _basicDamageSkillElement;
-        
+
         public override Range GetRange()
         {
             return Range.Solo;

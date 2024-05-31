@@ -5,7 +5,7 @@
 
     public record PlayerTpBarViewDto(
         StatusBarViewDto StatusBarViewDto);
-    
+
     public record EnemyHpBarViewDto(
         int EnemyInt,
         StatusBarViewDto StatusBarViewDto);

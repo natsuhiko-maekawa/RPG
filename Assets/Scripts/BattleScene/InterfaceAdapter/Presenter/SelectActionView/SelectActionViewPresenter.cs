@@ -14,19 +14,19 @@ namespace BattleScene.InterfaceAdapter.Presenter.SelectActionView
         {
             _selectActionView = selectActionView;
         }
-        
+
         public void Start(SelectActionOutputData outputData)
         {
             _selectActionView.StartAnimation(new SelectActionViewDto(
-                ViewLength: outputData.ActualViewLength,
-                TextList: Constant.ActionList,
-                DisabledRowList: outputData.DisabledRowList,
-                HighlightRow: outputData.Selection));
+                outputData.ActualViewLength,
+                Constant.ActionList,
+                outputData.DisabledRowList,
+                outputData.Selection));
         }
 
         public void Stop()
         {
-            _selectActionView.StopAnimation();   
+            _selectActionView.StopAnimation();
         }
     }
 }

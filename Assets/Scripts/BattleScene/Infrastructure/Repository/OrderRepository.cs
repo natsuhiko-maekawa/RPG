@@ -1,3 +1,4 @@
+using System;
 using BattleScene.Domain.Aggregate;
 using BattleScene.Domain.IRepository;
 
@@ -9,12 +10,12 @@ namespace BattleScene.Infrastructure.Repository
 
         OrderAggregate IOrderRepository.Select()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public void Update(OrderAggregate order)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
     }
 }

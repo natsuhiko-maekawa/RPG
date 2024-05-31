@@ -3,7 +3,7 @@ using BattleScene.Domain.DomainService;
 using BattleScene.Domain.IRepository;
 using BattleScene.Domain.ValueObject;
 using BattleScene.UseCase.Event.Interface;
-using BattleScene.UseCase.EventRunner;
+using BattleScene.UseCase.Event.Runner;
 using BattleScene.UseCase.Service;
 using BattleScene.UseCase.View.DigitView.OutputBoundary;
 using BattleScene.UseCase.View.DigitView.OutputDataFactory;
@@ -11,26 +11,83 @@ using BattleScene.UseCase.View.HitPointBarView.OutputBoundary;
 using BattleScene.UseCase.View.HitPointBarView.OutputDataFactory;
 using BattleScene.UseCase.View.MessageView.OutputBoundary;
 using BattleScene.UseCase.View.MessageView.OutputDataFactory;
-using static BattleScene.UseCase.EventRunner.EventCode;
+using static BattleScene.UseCase.Event.Runner.EventCode;
 
 namespace BattleScene.UseCase.Event
 {
     internal class CureEvent : IEvent, IWait
     {
-        private readonly OrderedItemsDomainService _orderedItems;
-        private readonly MessageOutputDataFactory _messageGenerator;
-        private readonly OrderedItemsDomainService _order;
-        private readonly CureSkillService _cureSkill;
-        private readonly ResultDomainService _result;
-        private readonly HitPointBarOutputDataFactory _hitPointBarOutputDataFactory;
         private readonly CureDigitOutputDataFactory _cureDigitOutputDataFactory;
+        private readonly CureSkillService _cureSkill;
+        private readonly IDigitViewPresenter _digitViewPresenter;
+        private readonly HitPointBarOutputDataFactory _hitPointBarOutputDataFactory;
+        private readonly IHitPointBarViewPresenter _hitPointBarViewPresenter;
+        private readonly MessageOutputDataFactory _messageGenerator;
         private readonly MessageOutputDataFactory _messageOutputDataFactory;
+        private readonly IMessageViewPresenter _messageViewPresenter;
+        private readonly OrderedItemsDomainService _order;
+        private readonly OrderedItemsDomainService _orderedItems;
+        private readonly ResultDomainService _result;
         private readonly IResultRepository _resultRepository;
         private readonly ISkillRepository _skillRepository;
-        private readonly IDigitViewPresenter _digitViewPresenter;
-        private readonly IHitPointBarViewPresenter _hitPointBarViewPresenter;
-        private readonly IMessageViewPresenter _messageViewPresenter;
-        
+
+        public CureEvent(
+            MessageOutputDataFactory messageGenerator,
+            OrderedItemsDomainService order,
+            CureSkillService cureSkill,
+            ResultDomainService result,
+            HitPointBarOutputDataFactory hitPointBarOutputDataFactory,
+            CureDigitOutputDataFactory cureDigitOutputDataFactory,
+            MessageOutputDataFactory messageOutputDataFactory,
+            IResultRepository resultRepository,
+            ISkillRepository skillRepository,
+            IDigitViewPresenter digitViewPresenter,
+            IHitPointBarViewPresenter hitPointBarViewPresenter,
+            IMessageViewPresenter messageViewPresenter)
+        {
+            _messageGenerator = messageGenerator;
+            _order = order;
+            _cureSkill = cureSkill;
+            _result = result;
+            _hitPointBarOutputDataFactory = hitPointBarOutputDataFactory;
+            _cureDigitOutputDataFactory = cureDigitOutputDataFactory;
+            _messageOutputDataFactory = messageOutputDataFactory;
+            _resultRepository = resultRepository;
+            _skillRepository = skillRepository;
+            _digitViewPresenter = digitViewPresenter;
+            _hitPointBarViewPresenter = hitPointBarViewPresenter;
+            _messageViewPresenter = messageViewPresenter;
+        }
+
+        public CureEvent(OrderedItemsDomainService orderedItems,
+            MessageOutputDataFactory messageGenerator,
+            OrderedItemsDomainService order,
+            CureSkillService cureSkill,
+            ResultDomainService result,
+            HitPointBarOutputDataFactory hitPointBarOutputDataFactory,
+            CureDigitOutputDataFactory cureDigitOutputDataFactory,
+            MessageOutputDataFactory messageOutputDataFactory,
+            IResultRepository resultRepository,
+            ISkillRepository skillRepository,
+            IDigitViewPresenter digitViewPresenter,
+            IHitPointBarViewPresenter hitPointBarViewPresenter,
+            IMessageViewPresenter messageViewPresenter)
+        {
+            _orderedItems = orderedItems;
+            _messageGenerator = messageGenerator;
+            _order = order;
+            _cureSkill = cureSkill;
+            _result = result;
+            _hitPointBarOutputDataFactory = hitPointBarOutputDataFactory;
+            _cureDigitOutputDataFactory = cureDigitOutputDataFactory;
+            _messageOutputDataFactory = messageOutputDataFactory;
+            _resultRepository = resultRepository;
+            _skillRepository = skillRepository;
+            _digitViewPresenter = digitViewPresenter;
+            _hitPointBarViewPresenter = hitPointBarViewPresenter;
+            _messageViewPresenter = messageViewPresenter;
+        }
+
         public EventCode Run()
         {
             var characterId = _orderedItems.FirstCharacterId();

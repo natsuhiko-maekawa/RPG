@@ -11,10 +11,10 @@ namespace BattleScene.UseCase.View.FrameView.OutputDataFactory
     {
         private readonly ICharacterRepository _characterRepository;
         private readonly IEnemyRepository _enemyRepository;
-        private readonly ITargetRepository _targetRepository;
-        private readonly OrderedItemsDomainService _orderedItems;
         private readonly IFrameViewPresenter _frameView;
-        
+        private readonly OrderedItemsDomainService _orderedItems;
+        private readonly ITargetRepository _targetRepository;
+
         public ImmutableList<FrameOutputData> Create()
         {
             var playerId = _orderedItems.FirstCharacterId();
@@ -24,13 +24,13 @@ namespace BattleScene.UseCase.View.FrameView.OutputDataFactory
                     var isPlayer = _characterRepository.Select(x).IsPlayer();
                     return isPlayer
                         ? new FrameOutputData(
-                            IsPlayer: true,
-                            EnemyNumber: default,
-                            FrameType: FrameType.Target)
+                            true,
+                            default,
+                            FrameType.Target)
                         : new FrameOutputData(
-                            IsPlayer: false,
-                            EnemyNumber: _enemyRepository.Select(x).EnemyNumber,
-                            FrameType: FrameType.Target);
+                            false,
+                            _enemyRepository.Select(x).EnemyNumber,
+                            FrameType.Target);
                 })
                 .ToImmutableList();
         }

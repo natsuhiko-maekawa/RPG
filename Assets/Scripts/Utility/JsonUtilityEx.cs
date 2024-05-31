@@ -14,7 +14,7 @@ namespace Utility
         private const string Iv = "b8d8f4826b854d30bf724cee87fceb55";
         private const string Create = "新規にファイルを作成しました。";
         private const string FailLoad = "ファイルの読み込みに失敗ました。";
-        
+
         public void Save(object save, string path)
         {
             var json = JsonUtility.ToJson(save);
@@ -31,7 +31,7 @@ namespace Utility
             using var streamWriter = new StreamWriter(cryptoStream);
             streamWriter.Write(json);
         }
-        
+
         public void Save(IList<(object save, string path)> tupleList)
         {
             foreach (var tuple in tupleList)
@@ -65,7 +65,7 @@ namespace Utility
                 .Select(Load<T>)
                 .ToImmutableList();
         }
-        
+
         private static byte[] StringToBytes(string str)
         {
             return Enumerable.Range(0, str.Length)

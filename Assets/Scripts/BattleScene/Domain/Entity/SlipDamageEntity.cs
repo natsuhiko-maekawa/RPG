@@ -6,12 +6,8 @@ namespace BattleScene.Domain.Entity
 {
     public class SlipDamageEntity
     {
-        public SlipDamageCode SlipDamageCode { get; }
-        public float DamageRate { get; }
-        public int EnemyIntelligence { get; }
-        public int PlayerIntelligence { get; }
-        private TurnValueObject _turn;
         private readonly int _defaultTurn;
+        private TurnValueObject _turn;
 
         public SlipDamageEntity(
             SlipDamageCode slipDamageCode,
@@ -27,11 +23,16 @@ namespace BattleScene.Domain.Entity
             _defaultTurn = _turn.Get().GetValueOrDefault();
         }
 
+        public SlipDamageCode SlipDamageCode { get; }
+        public float DamageRate { get; }
+        public int EnemyIntelligence { get; }
+        public int PlayerIntelligence { get; }
+
         public int? GetTurn()
         {
             return _turn.Get();
         }
-        
+
         public void AdvanceTurn()
         {
             _turn.Advance();

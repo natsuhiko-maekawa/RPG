@@ -12,8 +12,8 @@ namespace BattleScene.UseCase.View.OrderView.OutputDataFactory
     internal class OrderOutputDataFactory
     {
         private readonly ICharacterRepository _characterRepository;
-        private readonly IOrderRepository _orderRepository;
         private readonly IEnemyViewInfoFactory _enemyViewInfoFactory;
+        private readonly IOrderRepository _orderRepository;
         private readonly ToAilmentNumberService _toAilmentNumber;
 
         public ImmutableList<OrderOutputData> Create()
@@ -26,27 +26,27 @@ namespace BattleScene.UseCase.View.OrderView.OutputDataFactory
                         OrderedCharacterValueObject orderedCharacter
                             when _characterRepository.Select(orderedCharacter.CharacterId).IsPlayer()
                             => new OrderOutputData(
-                                OrderOutputDataType: OrderOutputDataType.Player,
-                                ImagePath: default,
-                                AilmentNumber: default),
+                                OrderOutputDataType.Player,
+                                default,
+                                default),
                         OrderedCharacterValueObject orderedCharacter
                             when !_characterRepository.Select(orderedCharacter.CharacterId).IsPlayer()
                             => new OrderOutputData(
-                                OrderOutputDataType: OrderOutputDataType.Enemy,
-                                ImagePath: _enemyViewInfoFactory
+                                OrderOutputDataType.Enemy,
+                                _enemyViewInfoFactory
                                     .Create(_characterRepository
                                         .Select(orderedCharacter.CharacterId)
                                         .Property.CharacterTypeId).EnemyImagePath,
-                                AilmentNumber: default),
+                                default),
                         OrderedAilmentValueObject orderedAilment => new OrderOutputData(
-                            OrderOutputDataType: OrderOutputDataType.Ailment,
-                            ImagePath: default,
-                            AilmentNumber: _toAilmentNumber
+                            OrderOutputDataType.Ailment,
+                            default,
+                            _toAilmentNumber
                                 .Ailment(orderedAilment.AilmentCode)),
                         OrderedSlipDamageValueObject orderedSlipDamage => new OrderOutputData(
-                            OrderOutputDataType: OrderOutputDataType.Ailment,
-                            ImagePath: default,
-                            AilmentNumber: _toAilmentNumber
+                            OrderOutputDataType.Ailment,
+                            default,
+                            _toAilmentNumber
                                 .SlipDamage(orderedSlipDamage.SlipDamageCode)),
                         _ => throw new ArgumentOutOfRangeException()
                     };

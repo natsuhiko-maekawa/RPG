@@ -11,7 +11,7 @@ namespace BattleScene.UseCase
         public const int ArmNumber = 2;
         public const int LegNumber = 2;
         public const int StomachNumber = 1;
-        
+
         // 状態異常系
         public const int Interval = 5;
         public const int EnemyEffectiveTurn = 5;
@@ -25,7 +25,7 @@ namespace BattleScene.UseCase
         public const string FailedCreateSkillInstance = "スキルのインスタンスの作成に失敗しました。";
         public const string FailedLoadSkillInstance = "スキルのインスタンスの読み込みに失敗しました。";
         public const string NoMessageSettings = "メッセージが設定されていません";
-        
+
         // GUI系
         public const PlayerImageCode DefaultImage = Katana;
         public const int SelectActionSlotNumber = 4;
@@ -36,6 +36,7 @@ namespace BattleScene.UseCase
 
         public static readonly ImmutableList<string> ActionList
             = ImmutableList.Create("ATTACK", "SKILL", "DEFENCE", "FATALITY");
+
         public static readonly ImmutableList<string> OptionList = ImmutableList.Create("戦闘を続ける", "戦闘をやめる");
     }
 }

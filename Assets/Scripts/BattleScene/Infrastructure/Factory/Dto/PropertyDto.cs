@@ -9,7 +9,6 @@ namespace BattleScene.Infrastructure.Factory.Dto
     public class PropertyDataStore : ISerializationCallbackReceiver
     {
         [SerializeField] private string key;
-        public CharacterTypeId Key { get; private set; }
         public string name;
         public int hp;
         public int strength;
@@ -20,6 +19,7 @@ namespace BattleScene.Infrastructure.Factory.Dto
         public int luck;
         [SerializeField] private string[] skills;
         [SerializeField] private string[] weakPoints;
+        public CharacterTypeId Key { get; private set; }
         public SkillCode[] Skills { get; private set; }
         public MatAttrCode[] WeakPoints { get; private set; }
 

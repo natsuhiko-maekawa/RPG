@@ -7,7 +7,7 @@ using BattleScene.UseCase.Skill.SkillElement;
 namespace BattleScene.UseCase.Skill
 {
     /// <summary>
-    /// テーザーガン
+    ///     テーザーガン
     /// </summary>
     internal class TaserGunSkill : AbstractSkill
     {

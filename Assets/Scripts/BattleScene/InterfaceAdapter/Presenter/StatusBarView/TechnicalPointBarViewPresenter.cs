@@ -13,12 +13,13 @@ namespace BattleScene.InterfaceAdapter.Presenter.StatusBarView
         {
             _playerView = playerView;
         }
-        
+
         public void Start(TechnicalPointBarOutputData outputData)
         {
             var maxTechnicalPoint = outputData.MaxTechnicalPoint;
             var currentTechnicalPoint = outputData.CurrentTechnicalPoint;
-            _playerView.StartPlayerTpBarView(new PlayerTpBarViewDto(new StatusBarViewDto(maxTechnicalPoint, currentTechnicalPoint)));
+            _playerView.StartPlayerTpBarView(
+                new PlayerTpBarViewDto(new StatusBarViewDto(maxTechnicalPoint, currentTechnicalPoint)));
         }
     }
 }

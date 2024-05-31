@@ -13,7 +13,7 @@ namespace BattleScene.UseCase.View.HitPointBarView.OutputDataFactory
         private readonly IEnemyRepository _enemyRepository;
         private readonly IHitPointRepository _hitPointRepository;
         private readonly ResultDomainService _result;
-        
+
         public ImmutableList<HitPointBarOutputData> Create()
         {
             return _result.LastDamage().DamageList
@@ -23,11 +23,11 @@ namespace BattleScene.UseCase.View.HitPointBarView.OutputDataFactory
                     .Select(y => (targetId: y.TargetId, digit: y.Amount))
                     .Aggregate((y, z) => (y.targetId, y.digit + z.digit)))
                 .Select(x => new HitPointBarOutputData(
-                    CharacterOutputData: _characterRepository.Select(x.targetId).IsPlayer()
+                    _characterRepository.Select(x.targetId).IsPlayer()
                         ? CharacterOutputData.SetPlayer()
                         : CharacterOutputData.SetEnemy(_enemyRepository.Select(x.targetId).EnemyNumber),
-                    MaxHitPoint: _hitPointRepository.Select(x.targetId).GetMax(),
-                    CurrentHitPoint: _hitPointRepository.Select(x.targetId).GetCurrent()))
+                    _hitPointRepository.Select(x.targetId).GetMax(),
+                    _hitPointRepository.Select(x.targetId).GetCurrent()))
                 .ToImmutableList();
         }
     }

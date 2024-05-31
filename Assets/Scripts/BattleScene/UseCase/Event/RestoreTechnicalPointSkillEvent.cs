@@ -1,8 +1,9 @@
-﻿using BattleScene.Domain.DomainService;
+﻿using System;
+using BattleScene.Domain.DomainService;
 using BattleScene.Domain.IRepository;
 using BattleScene.UseCase.Event.Interface;
+using BattleScene.UseCase.Event.Runner;
 using BattleScene.UseCase.Event.TemplateMethod;
-using BattleScene.UseCase.EventRunner;
 
 namespace BattleScene.UseCase.Event
 {
@@ -12,20 +13,20 @@ namespace BattleScene.UseCase.Event
         private readonly ResultDomainService _result;
         private readonly IResultRepository _resultRepository;
         private readonly ISkillRepository _skillRepository;
-        
+
         protected override void UpdateResultRepository()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         protected override void UpdateSkillRepository()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         protected override EventCode RunSkillEvent()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
     }
 }

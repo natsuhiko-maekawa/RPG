@@ -11,12 +11,12 @@ using Range = BattleScene.Domain.Code.Range;
 namespace BattleScene.UseCase.Skill
 {
     /// <summary>
-    /// 食いちぎり
+    ///     食いちぎり
     /// </summary>
     internal class BiteOffSkill : AbstractSkill
     {
-        private readonly BleedingSkillElement _bleedingSkillElement;
         private readonly BasicDamageSkillElement _basicDamageSkillElement;
+        private readonly BleedingSkillElement _bleedingSkillElement;
         private readonly DestroyArmSkillElement _destroyArmSkillElement;
         private readonly DestroyLegSkillElement _destroyLegSkillElement;
         private readonly DestroyStomachSkillElement _destroyStomachSkillElement;
@@ -36,7 +36,7 @@ namespace BattleScene.UseCase.Skill
                 MessageCode.BiteLegMessage,
                 MessageCode.BiteStomachMessage
             };
-            
+
             return _randomEx.Choice(attackMessageList, _seed);
         }
 
@@ -48,9 +48,10 @@ namespace BattleScene.UseCase.Skill
                 _basicDamageSkillElement,
                 _bleedingSkillElement
             };
-            
+
             var destroyPartSkillElementList
-                = new List<ISkillElement> { _destroyArmSkillElement, _destroyLegSkillElement, _destroyStomachSkillElement };
+                = new List<ISkillElement>
+                    { _destroyArmSkillElement, _destroyLegSkillElement, _destroyStomachSkillElement };
             var destroyPartSkillElement = _randomEx.Choice(destroyPartSkillElementList, _seed);
             skillElementList.Add(destroyPartSkillElement);
             return skillElementList.ToImmutableList();

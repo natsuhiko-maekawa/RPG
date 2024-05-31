@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 using BattleScene.Domain.Code;
@@ -11,12 +12,6 @@ namespace BattleScene.Infrastructure.Repository
     public class AilmentRepository : IAilmentRepository
     {
         private List<AilmentEntity> _ailmentEntityList;
-
-        public ImmutableList<AilmentEntity> Select()
-        {
-            return _ailmentEntityList
-                .ToImmutableList();
-        }
 
         public ImmutableList<AilmentEntity> Select(CharacterId characterId)
         {
@@ -46,22 +41,28 @@ namespace BattleScene.Infrastructure.Repository
 
         public void Delete(CharacterId characterId, AilmentCode ailmentCode)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public void Delete(IList<CharacterId> characterIdList)
         {
-            throw new System.NotImplementedException();
-        }
-
-        public void Delete(AilmentEntity ailmentEntity)
-        {
-            _ailmentEntityList.Remove(ailmentEntity);
+            throw new NotImplementedException();
         }
 
         public void Delete(IList<AilmentEntity> ailmentEntityList)
         {
             foreach (var ailmentEntity in ailmentEntityList) Delete(ailmentEntity);
+        }
+
+        public ImmutableList<AilmentEntity> Select()
+        {
+            return _ailmentEntityList
+                .ToImmutableList();
+        }
+
+        public void Delete(AilmentEntity ailmentEntity)
+        {
+            _ailmentEntityList.Remove(ailmentEntity);
         }
     }
 }

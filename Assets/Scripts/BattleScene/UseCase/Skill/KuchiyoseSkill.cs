@@ -7,7 +7,7 @@ using BattleScene.UseCase.Skill.SkillElement;
 namespace BattleScene.UseCase.Skill
 {
     /// <summary>
-    /// 口寄せ
+    ///     口寄せ
     /// </summary>
     internal class KuchiyoseSkill : AbstractSkill
     {
@@ -22,12 +22,12 @@ namespace BattleScene.UseCase.Skill
         {
             return PlayerImageCode.Katana;
         }
-        
+
         public override Range GetRange()
         {
             return Range.Solo;
         }
-        
+
         public override MessageCode GetDescription()
         {
             return MessageCode.KuchiyoseDescription;

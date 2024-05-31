@@ -7,12 +7,12 @@ using BattleScene.UseCase.Skill.SkillElement;
 namespace BattleScene.UseCase.Skill
 {
     /// <summary>
-    /// 本草学
+    ///     本草学
     /// </summary>
     internal class HonzougakuSkill : AbstractSkill
     {
         private readonly HonzougakuSkillElement _honzougakuSkillElement;
-        
+
         public override int GetTechnicalPoint()
         {
             return 3;

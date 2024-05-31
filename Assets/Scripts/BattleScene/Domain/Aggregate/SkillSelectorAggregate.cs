@@ -8,7 +8,6 @@ namespace BattleScene.Domain.Aggregate
 {
     public class SkillSelectorAggregate
     {
-        public SkillSelectorId SkillSelectorId { get; }
         private readonly SelectorEntity _selectorEntity;
 
         public SkillSelectorAggregate(
@@ -19,7 +18,9 @@ namespace BattleScene.Domain.Aggregate
             SkillSelectorId = skillSelectorId;
             _selectorEntity = new SelectorEntity(maxViewLength, listLength);
         }
-        
+
+        public SkillSelectorId SkillSelectorId { get; }
+
         public void Up()
         {
             _selectorEntity.Up();
@@ -29,7 +30,7 @@ namespace BattleScene.Domain.Aggregate
         {
             _selectorEntity.Down();
         }
-        
+
         public SkillCode GetSkill(IList<SkillCode> skillEnumList)
         {
             return skillEnumList[_selectorEntity.ListStart + _selectorEntity.Selection];
@@ -38,7 +39,8 @@ namespace BattleScene.Domain.Aggregate
         public IList<SkillCode> GetSkillList(IList<SkillCode> skillEnumList)
         {
             return skillEnumList
-                .Where((_, i) => _selectorEntity.ListStart <= i && i < _selectorEntity.ListStart + _selectorEntity.ActualViewLength)
+                .Where((_, i) =>
+                    _selectorEntity.ListStart <= i && i < _selectorEntity.ListStart + _selectorEntity.ActualViewLength)
                 .ToList();
         }
 

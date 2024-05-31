@@ -8,11 +8,11 @@ namespace LoadingScene.UseCase.Loader
 {
     public class Loader : ILoader
     {
-        private readonly ITips _tips;
-        private readonly ISpriteRepository _spriteRepository;
         private readonly ILoadingBarViewPresenter _loadingBarViewPresenter;
-        private readonly ITipsViewPresenter _tipsViewPresenter;
         private readonly ISettingsRepository _settingsRepository;
+        private readonly ISpriteRepository _spriteRepository;
+        private readonly ITips _tips;
+        private readonly ITipsViewPresenter _tipsViewPresenter;
         private int _addressableCount;
 
         public Loader(

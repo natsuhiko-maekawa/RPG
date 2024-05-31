@@ -15,14 +15,14 @@ namespace BattleScene.InterfaceAdapter.Presenter.SelectActionView
         {
             _selectActionView = selectActionView;
         }
-        
+
         public void Start(IsContinueOutputData outputData)
         {
             _selectActionView.StartAnimation(new SelectActionViewDto(
-                ViewLength: outputData.ActualViewLength,
-                TextList: Constant.OptionList,
-                DisabledRowList: new List<int>(),
-                HighlightRow: outputData.Selection));
+                outputData.ActualViewLength,
+                Constant.OptionList,
+                new List<int>(),
+                outputData.Selection));
         }
 
         public void Stop()

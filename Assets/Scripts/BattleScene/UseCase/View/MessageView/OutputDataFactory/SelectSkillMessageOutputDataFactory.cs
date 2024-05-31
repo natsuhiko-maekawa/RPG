@@ -2,19 +2,19 @@
 using BattleScene.Domain.Id;
 using BattleScene.Domain.IFactory;
 using BattleScene.Domain.IRepository;
-using BattleScene.UseCase.EventRunner;
+using BattleScene.UseCase.Event.Runner;
 using BattleScene.UseCase.View.MessageView.OutputData;
 
 namespace BattleScene.UseCase.View.MessageView.OutputDataFactory
 {
     public class SelectSkillMessageOutputDataFactory
     {
+        private readonly ICharacterRepository _characterRepository;
         private readonly CharactersDomainService _characters;
         private readonly MessageOutputDataFactory _messageOutputDataFactory;
-        private readonly ICharacterRepository _characterRepository;
         private readonly ISkillSelectorRepository _skillSelectorRepository;
         private readonly ISkillViewInfoFactory _skillViewInfoFactory;
-        
+
         public MessageOutputData Create(EventCode eventCode)
         {
             var skillSelector = _skillSelectorRepository.Select(new SkillSelectorId(eventCode));

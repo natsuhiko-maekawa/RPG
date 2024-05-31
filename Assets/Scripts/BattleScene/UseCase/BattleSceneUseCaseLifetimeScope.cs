@@ -1,4 +1,5 @@
 ﻿using BattleScene.UseCase.Event;
+using BattleScene.UseCase.Event.Runner;
 using VContainer;
 using VContainer.Unity;
 
@@ -32,6 +33,8 @@ namespace BattleScene.UseCase
             builder.Register<SelectFatalitySkillEvent>(Lifetime.Singleton);
             builder.Register<SelectSkillEvent>(Lifetime.Singleton);
             builder.Register<SelectTargetEvent>(Lifetime.Singleton);
+            builder.Register<EventRunner>(Lifetime.Singleton);
+            builder.Register<IEventFactory, EventFactory>(Lifetime.Singleton);
         }
     }
 }

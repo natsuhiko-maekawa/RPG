@@ -4,9 +4,6 @@ namespace BattleScene.Domain.ValueObject
 {
     public class PointValueObject
     {
-        public int MaxPoint { get; }
-        public int CurrentPoint { get; }
-
         public PointValueObject(
             int defaultPoint)
         {
@@ -21,6 +18,9 @@ namespace BattleScene.Domain.ValueObject
             MaxPoint = maxPoint;
             CurrentPoint = currentPoint;
         }
+
+        public int MaxPoint { get; }
+        public int CurrentPoint { get; }
 
         public int Get()
         {

@@ -1,8 +1,8 @@
 using BattleScene.UseCase.Event.Interface;
-using BattleScene.UseCase.EventRunner;
+using BattleScene.UseCase.Event.Runner;
 using BattleScene.UseCase.View.MessageView.OutputBoundary;
 using BattleScene.UseCase.View.MessageView.OutputDataFactory;
-using static BattleScene.UseCase.EventRunner.EventCode;
+using static BattleScene.UseCase.Event.Runner.EventCode;
 using static BattleScene.Domain.Code.MessageCode;
 
 namespace BattleScene.UseCase.Event
@@ -11,7 +11,7 @@ namespace BattleScene.UseCase.Event
     {
         private readonly MessageOutputDataFactory _messageOutputDataFactory;
         private readonly IMessageViewPresenter _messageViewPresenter;
-        
+
         public EventCode Run()
         {
             var playerWinMessage = _messageOutputDataFactory.Create(PlayerWinMessage);

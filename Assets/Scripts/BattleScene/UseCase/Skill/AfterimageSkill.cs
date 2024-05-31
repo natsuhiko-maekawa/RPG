@@ -8,7 +8,7 @@ using static BattleScene.Domain.Code.Range;
 namespace BattleScene.UseCase.Skill
 {
     /// <summary>
-    /// 残像
+    ///     残像
     /// </summary>
     internal class AfterimageSkill : AbstractSkill
     {

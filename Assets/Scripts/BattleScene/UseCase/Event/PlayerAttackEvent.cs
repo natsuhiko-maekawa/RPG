@@ -3,7 +3,7 @@ using BattleScene.Domain.DomainService;
 using BattleScene.Domain.IFactory;
 using BattleScene.Domain.IRepository;
 using BattleScene.UseCase.Event.Interface;
-using BattleScene.UseCase.EventRunner;
+using BattleScene.UseCase.Event.Runner;
 using BattleScene.UseCase.View.AttackCountView.OutputBoundary;
 using BattleScene.UseCase.View.AttackCountView.OutputDataFactory;
 using BattleScene.UseCase.View.FrameView.OutputBoundary;
@@ -14,7 +14,7 @@ using BattleScene.UseCase.View.PlayerImageView.OutputBoundary;
 using BattleScene.UseCase.View.PlayerImageView.OutputDataFactory;
 using BattleScene.UseCase.View.TechnicalPointBarView.OutputBoundary;
 using BattleScene.UseCase.View.TechnicalPointBarView.OutputDaraFactory;
-using static BattleScene.UseCase.EventRunner.EventCode;
+using static BattleScene.UseCase.Event.Runner.EventCode;
 using static BattleScene.Domain.Code.MessageCode;
 
 namespace BattleScene.UseCase.Event

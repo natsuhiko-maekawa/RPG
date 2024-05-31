@@ -8,7 +8,7 @@ using static BattleScene.Domain.Code.Range;
 namespace BattleScene.UseCase.Skill
 {
     /// <summary>
-    /// 混乱
+    ///     混乱
     /// </summary>
     internal class ConfusionSkill : AbstractSkill
     {

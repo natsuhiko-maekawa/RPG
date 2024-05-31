@@ -9,7 +9,7 @@ namespace BattleScene.UseCase.View.PlayerImageView.OutputDataFactory
     {
         private readonly IAilmentViewInfoFactory _ailmentViewInfoFactory;
         private readonly ICharacterRepository _characterRepository;
-        
+
         public PlayerImageOutputData Create(AilmentSkillResultValueObject ailmentSkillResult)
         {
             var ailmentCode = ailmentSkillResult.AilmentCode;

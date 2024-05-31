@@ -18,7 +18,7 @@ namespace BattleScene.UseCase.Skill.SkillElement
                 orderedItems)
         {
         }
-        
+
         public override int GetAttackNum()
         {
             return 5;

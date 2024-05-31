@@ -7,7 +7,7 @@ using BattleScene.UseCase.Skill.SkillElement;
 namespace BattleScene.UseCase.Skill
 {
     /// <summary>
-    /// 防御
+    ///     防御
     /// </summary>
     public class DefenceSkill : AbstractSkill
     {

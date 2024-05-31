@@ -16,9 +16,9 @@ namespace BattleScene.UseCase.Service
         public SkillEntity Create(CharacterId characterId, SkillCode skillCode)
         {
             return new SkillEntity(
-                characterId: characterId,
-                skillCode: skillCode,
-                abstractSkill: CreateSkill(skillCode));
+                characterId,
+                skillCode,
+                CreateSkill(skillCode));
         }
 
         private AbstractSkill CreateSkill(SkillCode skillCode)

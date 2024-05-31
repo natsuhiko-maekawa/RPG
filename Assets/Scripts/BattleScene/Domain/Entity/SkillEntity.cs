@@ -9,9 +9,6 @@ namespace BattleScene.Domain.Entity
 {
     public class SkillEntity
     {
-        public CharacterId CharacterId { get; }
-        public SkillCode SkillCode { get; }
-        public AbstractSkill AbstractSkill { get; }
         private ImmutableQueue<ISkillElement> _skillServiceQueue;
 
         public SkillEntity(
@@ -27,11 +24,15 @@ namespace BattleScene.Domain.Entity
                 .ToArray());
         }
 
+        public CharacterId CharacterId { get; }
+        public SkillCode SkillCode { get; }
+        public AbstractSkill AbstractSkill { get; }
+
         public ISkillElement FirstSkillService()
         {
             return _skillServiceQueue.FirstOrDefault();
         }
-        
+
         public ISkillElement DequeSkillElement()
         {
             if (_skillServiceQueue.IsEmpty) return null;

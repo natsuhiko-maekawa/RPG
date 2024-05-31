@@ -11,14 +11,6 @@ namespace BattleScene.UseCase.Service
         private readonly IBuffRepository _buffRepository;
         private readonly ICharacterRepository _characterRepository;
 
-        public AgilityToSpeedService(
-            IBuffRepository buffRepository, 
-            ICharacterRepository characterRepository)
-        {
-            _buffRepository = buffRepository;
-            _characterRepository = characterRepository;
-        }
-
         public int Convert(CharacterId characterId)
         {
             var speed = (float)_characterRepository.Select(characterId).Property.Agility;

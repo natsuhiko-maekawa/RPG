@@ -22,7 +22,7 @@ namespace BattleScene.Domain.DomainService
                 .Select(x => x.CharacterId)
                 .ToImmutableList();
         }
-        
+
         public CharacterAggregate GetPlayer()
         {
             return _characterRepository.Select().First(x => x.IsPlayer());

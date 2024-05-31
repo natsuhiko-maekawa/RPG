@@ -9,13 +9,13 @@ using Range = BattleScene.Domain.Code.Range;
 namespace BattleScene.UseCase.Skill
 {
     /// <summary>
-    /// 粘液
+    ///     粘液
     /// </summary>
     internal class LiquidSkill : AbstractSkill
     {
         private readonly BasicDamageSkillElement _basicDamageSkillElement;
         private readonly SuffocationSkillElement _suffocationSkillElement;
-        
+
         public override Range GetRange()
         {
             return Range.Solo;
@@ -25,10 +25,10 @@ namespace BattleScene.UseCase.Skill
         {
             return PlayerImageCode.Suffocation;
         }
-        
+
         public override MessageCode GetAttackMessage()
         {
-            return  InvasiveMouthMessage;
+            return InvasiveMouthMessage;
         }
 
         public override ImmutableList<ISkillElement> GetSkillService()

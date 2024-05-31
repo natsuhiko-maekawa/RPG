@@ -1,6 +1,6 @@
 ﻿using BattleScene.UseCase.Event.Interface;
 
-namespace BattleScene.UseCase.EventRunner
+namespace BattleScene.UseCase.Event.Runner
 {
     internal interface IEventFactory
     {

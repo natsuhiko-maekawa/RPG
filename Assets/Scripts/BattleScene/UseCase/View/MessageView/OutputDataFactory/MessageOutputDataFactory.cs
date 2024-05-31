@@ -11,18 +11,6 @@ namespace BattleScene.UseCase.View.MessageView.OutputDataFactory
 {
     public class MessageOutputDataFactory
     {
-        private readonly IAilmentViewInfoFactory _ailmentViewInfoFactory;
-        private readonly IBodyPartViewInfoFactory _bodyPartViewInfoFactory;
-        private readonly ICharacterRepository _characterRepository;
-        private readonly IEnemyViewInfoFactory _enemyViewInfoFactory;
-        private readonly IMessageFactory _messageFactory;
-        private readonly IPlayerViewInfoFactory _playerViewInfoFactory;
-        private readonly ISkillRepository _skillRepository;
-        private readonly ISkillViewInfoFactory _skillViewInfoFactory;
-        private readonly ITargetRepository _targetRepository;
-        private readonly ResultDomainService _result;
-        private readonly OrderedItemsDomainService _orderedItems;
-
         private const string Actor = "actor";
         private const string Ailment = "ailment";
         private const string Buff = "buff";
@@ -30,6 +18,17 @@ namespace BattleScene.UseCase.View.MessageView.OutputDataFactory
         private const string Part = "part";
         private const string Skill = "skill";
         private const string Target = "target";
+        private readonly IAilmentViewInfoFactory _ailmentViewInfoFactory;
+        private readonly IBodyPartViewInfoFactory _bodyPartViewInfoFactory;
+        private readonly ICharacterRepository _characterRepository;
+        private readonly IEnemyViewInfoFactory _enemyViewInfoFactory;
+        private readonly IMessageFactory _messageFactory;
+        private readonly OrderedItemsDomainService _orderedItems;
+        private readonly IPlayerViewInfoFactory _playerViewInfoFactory;
+        private readonly ResultDomainService _result;
+        private readonly ISkillRepository _skillRepository;
+        private readonly ISkillViewInfoFactory _skillViewInfoFactory;
+        private readonly ITargetRepository _targetRepository;
 
         public MessageOutputData Create(MessageCode messageCode, bool noWait = false)
         {
@@ -44,7 +43,8 @@ namespace BattleScene.UseCase.View.MessageView.OutputDataFactory
             var characterId = orderedCharacter.CharacterId;
             var actorName = _characterRepository.Select(characterId).IsPlayer()
                 ? _playerViewInfoFactory.Create().PlayerName
-                : _enemyViewInfoFactory.Create(_characterRepository.Select(characterId).Property.CharacterTypeId).EnemyName;
+                : _enemyViewInfoFactory.Create(_characterRepository.Select(characterId).Property.CharacterTypeId)
+                    .EnemyName;
             return message.Replace(Actor, actorName);
         }
 
@@ -81,7 +81,7 @@ namespace BattleScene.UseCase.View.MessageView.OutputDataFactory
             var bodyPartName = _bodyPartViewInfoFactory.Create(bodyPartCode).BodyPartName;
             return message.Replace(Part, bodyPartName);
         }
-        
+
         private string SetSkill(string message)
         {
             if (!message.Contains(Skill)) return message;

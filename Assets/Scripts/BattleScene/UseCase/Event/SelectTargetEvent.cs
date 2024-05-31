@@ -5,14 +5,14 @@ using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
 using BattleScene.UseCase.Event.Interface;
-using BattleScene.UseCase.EventRunner;
+using BattleScene.UseCase.Event.Runner;
 using BattleScene.UseCase.View.FrameView.OutputBoundary;
 using BattleScene.UseCase.View.FrameView.OutputDataFactory;
 using BattleScene.UseCase.View.InfoView.OutputBoundary;
 using BattleScene.UseCase.View.MessageView.OutputBoundary;
 using BattleScene.UseCase.View.MessageView.OutputDataFactory;
 using UnityEngine;
-using static BattleScene.UseCase.EventRunner.EventCode;
+using static BattleScene.UseCase.Event.Runner.EventCode;
 using static BattleScene.Domain.Code.Range;
 using static BattleScene.UseCase.Constant;
 using static BattleScene.Domain.Code.MessageCode;
@@ -23,14 +23,19 @@ namespace BattleScene.UseCase.Event
     internal class SelectTargetEvent : IEvent, IWait, ISelectable, ICancelable
     {
         private readonly CharactersDomainService _characters;
-        private readonly TargetFrameOutputDataFactory _targetFrameOutputDataFactory;
-        private readonly MessageOutputDataFactory _messageOutputDataFactory;
-        private readonly ISelectorRepository _selectorRepository;
-        private readonly ISkillRepository _skillRepository;
-        private readonly ITargetRepository _targetRepository;
         private readonly IFrameViewPresenter _frameView;
         private readonly IInfoViewPresenter _infoView;
+        private readonly MessageOutputDataFactory _messageOutputDataFactory;
         private readonly IMessageViewPresenter _messageView;
+        private readonly ISelectorRepository _selectorRepository;
+        private readonly ISkillRepository _skillRepository;
+        private readonly TargetFrameOutputDataFactory _targetFrameOutputDataFactory;
+        private readonly ITargetRepository _targetRepository;
+
+        public void CancelAction()
+        {
+            _frameView.Stop();
+        }
 
         public EventCode Run()
         {
@@ -66,18 +71,6 @@ namespace BattleScene.UseCase.Event
             return WaitEvent;
         }
 
-        public EventCode NextEvent()
-        {
-            _frameView.Stop();
-            _infoView.Stop();
-            return EventCode.PlayerAttackEvent;
-        }
-
-        public void CancelAction()
-        {
-            _frameView.Stop();
-        }
-
         public void SelectAction(Vector2 direction)
         {
             var playerId = _characters.GetPlayerId();
@@ -104,11 +97,18 @@ namespace BattleScene.UseCase.Event
             _selectorRepository.Update(selector);
         }
 
+        public EventCode NextEvent()
+        {
+            _frameView.Stop();
+            _infoView.Stop();
+            return EventCode.PlayerAttackEvent;
+        }
+
         private void StartSelectTargetView()
         {
             var targetFrameOutputData = _targetFrameOutputDataFactory.Create();
             _frameView.Start(targetFrameOutputData);
-            var messageOutputData = _messageOutputDataFactory.Create(SelectTargetMessage, noWait:true);
+            var messageOutputData = _messageOutputDataFactory.Create(SelectTargetMessage, true);
             _messageView.Start(messageOutputData);
         }
     }

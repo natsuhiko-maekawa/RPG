@@ -8,15 +8,10 @@ namespace BattleScene.Domain.ValueObject
 {
     public class BuffSkillResultValueObject : ISkillResult
     {
-        public CharacterId ActorId { get; }
-        public SkillCode SkillCode { get; }
-        public BuffCode BuffCode { get; }
-        public ImmutableList<CharacterId> TargetIdList { get; }
-
         public BuffSkillResultValueObject(
-            CharacterId actorId, 
+            CharacterId actorId,
             SkillCode skillCode,
-            BuffCode buffCode, 
+            BuffCode buffCode,
             IList<CharacterId> targetIdList)
         {
             ActorId = actorId;
@@ -26,7 +21,7 @@ namespace BattleScene.Domain.ValueObject
         }
 
         public BuffSkillResultValueObject(
-            CharacterId actorId, 
+            CharacterId actorId,
             SkillCode skillCode)
         {
             ActorId = actorId;
@@ -34,7 +29,12 @@ namespace BattleScene.Domain.ValueObject
             BuffCode = BuffCode.NoBuff;
             TargetIdList = ImmutableList<CharacterId>.Empty;
         }
-        
+
+        public BuffCode BuffCode { get; }
+        public CharacterId ActorId { get; }
+        public SkillCode SkillCode { get; }
+        public ImmutableList<CharacterId> TargetIdList { get; }
+
         public bool Success()
         {
             return !TargetIdList.IsEmpty;

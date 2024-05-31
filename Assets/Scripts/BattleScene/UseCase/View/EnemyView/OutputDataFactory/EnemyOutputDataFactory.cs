@@ -9,10 +9,10 @@ namespace BattleScene.UseCase.View.EnemyView.OutputDataFactory
 {
     public class EnemyOutputDataFactory
     {
-        private readonly IEnemyRepository _enemyRepository;
-        private readonly IHitPointRepository _hitPointRepository;
-        private readonly IEnemyViewInfoFactory _enemyViewInfoFactory;
         private readonly CharactersDomainService _characters;
+        private readonly IEnemyRepository _enemyRepository;
+        private readonly IEnemyViewInfoFactory _enemyViewInfoFactory;
+        private readonly IHitPointRepository _hitPointRepository;
 
         public EnemyOutputDataFactory(
             IEnemyRepository enemyRepository,
@@ -30,9 +30,9 @@ namespace BattleScene.UseCase.View.EnemyView.OutputDataFactory
         {
             return _characters.GetEnemies()
                 .Select(x => new EnemyOutputData(
-                    EnemyNumber: _enemyRepository.Select(x.CharacterId).EnemyNumber,
-                    EnemyImagePath: _enemyViewInfoFactory.Create(x.Property.CharacterTypeId).EnemyImagePath,
-                    IsSurvive: _hitPointRepository.Select(x.CharacterId).IsSurvive()))
+                    _enemyRepository.Select(x.CharacterId).EnemyNumber,
+                    _enemyViewInfoFactory.Create(x.Property.CharacterTypeId).EnemyImagePath,
+                    _hitPointRepository.Select(x.CharacterId).IsSurvive()))
                 .ToImmutableList();
         }
     }

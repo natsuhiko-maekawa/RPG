@@ -14,7 +14,7 @@ namespace BattleScene.InterfaceAdapter.Controller
         {
             _battleSceneInputSystem = battleSceneInputSystem;
         }
-        
+
         public void SetOnNextAction(Action action)
         {
             _battleSceneInputSystem.SetOnNextAction(action);

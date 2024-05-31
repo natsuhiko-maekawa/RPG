@@ -7,6 +7,7 @@ namespace BattleScene.UseCase.View.MessageView.OutputBoundary
     {
         [Obsolete]
         public void StartMessageView(string message, bool noWait = false);
+
         public void Start(MessageOutputData outputData);
     }
 }

@@ -33,10 +33,11 @@ using BattleScene.UseCase.View.SelectActionView.OutputBoundary;
 using BattleScene.UseCase.View.SelectSkillView.OutputBoundary;
 using BattleScene.UseCase.View.TechnicalPointBarView.OutputBoundary;
 using VContainer;
+using VContainer.Unity;
 
 namespace BattleScene.InterfaceAdapter
 {
-    public class BattleSceneAdapterLifetimeScope : VContainer.Unity.LifetimeScope
+    public class BattleSceneAdapterLifetimeScope : LifetimeScope
     {
         protected override void Configure(IContainerBuilder builder)
         {

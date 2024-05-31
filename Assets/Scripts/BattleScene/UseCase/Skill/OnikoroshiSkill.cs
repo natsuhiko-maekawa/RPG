@@ -7,7 +7,7 @@ using BattleScene.UseCase.Skill.SkillElement;
 namespace BattleScene.UseCase.Skill
 {
     /// <summary>
-    /// 鬼殺し
+    ///     鬼殺し
     /// </summary>
     internal class OnikoroshiSkill : AbstractSkill
     {
@@ -27,7 +27,7 @@ namespace BattleScene.UseCase.Skill
         {
             return PlayerImageCode.Damaged;
         }
-        
+
         public override MessageCode GetAttackMessage()
         {
             return MessageCode.OnikoroshiMessage;
