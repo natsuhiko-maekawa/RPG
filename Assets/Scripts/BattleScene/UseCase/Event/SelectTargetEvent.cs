@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using BattleScene.Domain.Aggregate;
 using BattleScene.Domain.DomainService;
@@ -31,6 +31,28 @@ namespace BattleScene.UseCase.Event
         private readonly ISkillRepository _skillRepository;
         private readonly TargetFrameOutputDataFactory _targetFrameOutputDataFactory;
         private readonly ITargetRepository _targetRepository;
+
+        public SelectTargetEvent(
+            CharactersDomainService characters,
+            IFrameViewPresenter frameView,
+            IInfoViewPresenter infoView,
+            MessageOutputDataFactory messageOutputDataFactory,
+            IMessageViewPresenter messageView,
+            ISelectorRepository selectorRepository,
+            ISkillRepository skillRepository,
+            TargetFrameOutputDataFactory targetFrameOutputDataFactory,
+            ITargetRepository targetRepository)
+        {
+            _characters = characters;
+            _frameView = frameView;
+            _infoView = infoView;
+            _messageOutputDataFactory = messageOutputDataFactory;
+            _messageView = messageView;
+            _selectorRepository = selectorRepository;
+            _skillRepository = skillRepository;
+            _targetFrameOutputDataFactory = targetFrameOutputDataFactory;
+            _targetRepository = targetRepository;
+        }
 
         public void CancelAction()
         {

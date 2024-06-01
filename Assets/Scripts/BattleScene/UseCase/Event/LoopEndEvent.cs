@@ -1,4 +1,4 @@
-﻿using BattleScene.Domain.DomainService;
+using BattleScene.Domain.DomainService;
 using BattleScene.Domain.IRepository;
 using BattleScene.Domain.ValueObject;
 using BattleScene.UseCase.Event.Interface;
@@ -23,6 +23,30 @@ namespace BattleScene.UseCase.Event
         private readonly IFrameViewPresenter _frameView;
         private readonly IHitPointRepository _hitPointRepository;
         private readonly OrderedItemsDomainService _orderedItems;
+
+        public LoopEndEvent(
+            AilmentDomainService ailment,
+            AilmentOutputDataFactory ailmentOutputDataFactory,
+            IAilmentViewPresenter ailmentView,
+            BuffDomainService buff,
+            BuffOutputDataFactory buffOutputDataFactory,
+            IBuffViewPresenter buffView,
+            CharactersDomainService characters,
+            IFrameViewPresenter frameView,
+            IHitPointRepository hitPointRepository,
+            OrderedItemsDomainService orderedItems)
+        {
+            _ailment = ailment;
+            _ailmentOutputDataFactory = ailmentOutputDataFactory;
+            _ailmentView = ailmentView;
+            _buff = buff;
+            _buffOutputDataFactory = buffOutputDataFactory;
+            _buffView = buffView;
+            _characters = characters;
+            _frameView = frameView;
+            _hitPointRepository = hitPointRepository;
+            _orderedItems = orderedItems;
+        }
 
         public EventCode Run()
         {

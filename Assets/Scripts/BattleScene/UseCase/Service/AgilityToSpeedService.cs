@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.Id;
@@ -10,6 +10,12 @@ namespace BattleScene.UseCase.Service
     {
         private readonly IBuffRepository _buffRepository;
         private readonly ICharacterRepository _characterRepository;
+
+        public AgilityToSpeedService(IBuffRepository buffRepository, ICharacterRepository characterRepository)
+        {
+            _buffRepository = buffRepository;
+            _characterRepository = characterRepository;
+        }
 
         public int Convert(CharacterId characterId)
         {

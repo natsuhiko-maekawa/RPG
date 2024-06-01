@@ -1,4 +1,4 @@
-﻿using BattleScene.Domain.DomainService;
+using BattleScene.Domain.DomainService;
 using BattleScene.Domain.IRepository;
 using BattleScene.UseCase.Event.Interface;
 using BattleScene.UseCase.Event.Runner;
@@ -10,6 +10,12 @@ namespace BattleScene.UseCase.Event
     {
         private readonly OrderedItemsDomainService _orderedItems;
         private readonly ISkillRepository _skillRepository;
+
+        public SwitchSkillEvent(OrderedItemsDomainService orderedItems, ISkillRepository skillRepository)
+        {
+            _orderedItems = orderedItems;
+            _skillRepository = skillRepository;
+        }
 
         public EventCode Run()
         {

@@ -12,6 +12,14 @@ namespace BattleScene.UseCase.Event
         private readonly MessageOutputDataFactory _messageOutputDataFactory;
         private readonly IMessageViewPresenter _messageViewPresenter;
 
+        public PlayerDeadEvent(
+            MessageOutputDataFactory messageOutputDataFactory,
+            IMessageViewPresenter messageViewPresenter)
+        {
+            _messageOutputDataFactory = messageOutputDataFactory;
+            _messageViewPresenter = messageViewPresenter;
+        }
+
         public EventCode Run()
         {
             var playerDeadMessage = _messageOutputDataFactory.Create(PlayerDeadMessage);

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.IRepository;
 using BattleScene.Domain.ValueObject;
@@ -27,6 +27,28 @@ namespace BattleScene.UseCase.Event
         private readonly OrderedItemsDomainService _orderedItems;
         private readonly ResultDomainService _result;
         private readonly ISkillRepository _skillRepository;
+
+        public DestroyedPartEvent(
+            IBodyPartRepository bodyPartRepository,
+            DestroyedPartCreatorService destroyedPartCreator,
+            DestroyedPartOutputDataFactory destroyedPartOutputDataFactory,
+            IDestroyedPartViewPresenter destroyedPartView,
+            MessageOutputDataFactory messageOutputDataFactory,
+            IMessageViewPresenter messageView,
+            OrderedItemsDomainService orderedItems,
+            ResultDomainService result,
+            ISkillRepository skillRepository)
+        {
+            _bodyPartRepository = bodyPartRepository;
+            _destroyedPartCreator = destroyedPartCreator;
+            _destroyedPartOutputDataFactory = destroyedPartOutputDataFactory;
+            _destroyedPartView = destroyedPartView;
+            _messageOutputDataFactory = messageOutputDataFactory;
+            _messageView = messageView;
+            _orderedItems = orderedItems;
+            _result = result;
+            _skillRepository = skillRepository;
+        }
 
         public EventCode Run()
         {

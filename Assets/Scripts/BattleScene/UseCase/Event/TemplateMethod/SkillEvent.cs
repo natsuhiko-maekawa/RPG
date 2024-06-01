@@ -1,4 +1,4 @@
-﻿using BattleScene.UseCase.Event.Runner;
+using BattleScene.UseCase.Event.Runner;
 
 namespace BattleScene.UseCase.Event.TemplateMethod
 {

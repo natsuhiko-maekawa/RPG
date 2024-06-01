@@ -1,4 +1,4 @@
-﻿using BattleScene.Domain.IFactory;
+using BattleScene.Domain.IFactory;
 using BattleScene.Domain.IRepository;
 using BattleScene.Domain.ValueObject;
 using BattleScene.UseCase.View.PlayerImageView.OutputData;
@@ -9,6 +9,14 @@ namespace BattleScene.UseCase.View.PlayerImageView.OutputDataFactory
     {
         private readonly IAilmentViewInfoFactory _ailmentViewInfoFactory;
         private readonly ICharacterRepository _characterRepository;
+
+        public AilmentPlayerImageOutputDataFactory(
+            IAilmentViewInfoFactory ailmentViewInfoFactory,
+            ICharacterRepository characterRepository)
+        {
+            _ailmentViewInfoFactory = ailmentViewInfoFactory;
+            _characterRepository = characterRepository;
+        }
 
         public PlayerImageOutputData Create(AilmentSkillResultValueObject ailmentSkillResult)
         {

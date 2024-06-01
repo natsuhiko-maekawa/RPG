@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
@@ -22,6 +22,24 @@ namespace BattleScene.UseCase.View.AilmentView.OutputDataFactory
         private readonly IEnemyRepository _enemyRepository;
         private readonly ISlipDamageRepository _slipDamageRepository;
         private readonly ToAilmentNumberService _toAilmentNumber;
+
+        public AilmentOutputDataFactory(
+            AilmentDomainService ailment,
+            IAilmentRepository ailmentRepository,
+            IAilmentViewInfoFactory ailmentViewInfoFactory,
+            ICharacterRepository characterRepository,
+            IEnemyRepository enemyRepository,
+            ISlipDamageRepository slipDamageRepository,
+            ToAilmentNumberService toAilmentNumber)
+        {
+            _ailment = ailment;
+            _ailmentRepository = ailmentRepository;
+            _ailmentViewInfoFactory = ailmentViewInfoFactory;
+            _characterRepository = characterRepository;
+            _enemyRepository = enemyRepository;
+            _slipDamageRepository = slipDamageRepository;
+            _toAilmentNumber = toAilmentNumber;
+        }
 
         public ImmutableList<AilmentOutputData> Create()
         {

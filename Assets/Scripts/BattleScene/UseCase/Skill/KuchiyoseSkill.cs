@@ -1,4 +1,4 @@
-﻿using System.Collections.Immutable;
+using System.Collections.Immutable;
 using BattleScene.Domain.AbstractClass;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.Interface;
@@ -12,6 +12,11 @@ namespace BattleScene.UseCase.Skill
     internal class KuchiyoseSkill : AbstractSkill
     {
         private readonly ConfusionSkillElement _confusionSkillElement;
+
+        public KuchiyoseSkill(ConfusionSkillElement confusionSkillElement)
+        {
+            _confusionSkillElement = confusionSkillElement;
+        }
 
         public override int GetTechnicalPoint()
         {

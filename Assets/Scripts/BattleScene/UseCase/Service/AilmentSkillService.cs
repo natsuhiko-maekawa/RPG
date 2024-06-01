@@ -1,4 +1,4 @@
-﻿using System.Collections.Immutable;
+using System.Collections.Immutable;
 using System.Linq;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Entity;
@@ -18,6 +18,20 @@ namespace BattleScene.UseCase.Service
         private readonly IRandomEx _randomEx;
         private readonly ResultCreatorDomainService _resultCreator;
         private readonly TargetDomainService _target;
+
+        public AilmentSkillService(
+            ICharacterRepository characterRepository,
+            OrderedItemsDomainService orderedItems,
+            IRandomEx randomEx,
+            ResultCreatorDomainService resultCreator,
+            TargetDomainService target)
+        {
+            _characterRepository = characterRepository;
+            _orderedItems = orderedItems;
+            _randomEx = randomEx;
+            _resultCreator = resultCreator;
+            _target = target;
+        }
 
         public ResultEntity Execute(SkillEntity skill)
         {

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using BattleScene.Domain.Id;
@@ -10,6 +10,11 @@ namespace BattleScene.UseCase.View.BuffView.OutputDataFactory
     public class BuffOutputDataFactory
     {
         private readonly ToBuffNumberService _toBuffNumberService;
+
+        public BuffOutputDataFactory(ToBuffNumberService toBuffNumberService)
+        {
+            _toBuffNumberService = toBuffNumberService;
+        }
 
         public ImmutableList<BuffOutputData> Create()
         {

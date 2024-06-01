@@ -32,6 +32,34 @@ namespace BattleScene.UseCase.Event
         private readonly ISkillRepository _skillRepository;
         private readonly ISkillSelectorRepository _skillSelectorRepository;
 
+        public SelectSkillEvent(
+            CharactersDomainService characters,
+            IInfoViewPresenter infoView,
+            IMessageViewPresenter messageView,
+            IPlayerImageViewPresenter playerImageView,
+            SelectSkillService selectSkill,
+            SelectSkillMessageOutputDataFactory selectSkillMessageOutputDataFactory,
+            SelectSkillOutputDataFactory selectSkillOutputDataFactory,
+            SelectSkillPlayerImageOutputDataFactory selectSkillPlayerImageOutputDataFactory,
+            ISelectSkillViewPresenter selectSkillView,
+            SkillCreatorService skillCreator,
+            ISkillRepository skillRepository,
+            ISkillSelectorRepository skillSelectorRepository)
+        {
+            _characters = characters;
+            _infoView = infoView;
+            _messageView = messageView;
+            _playerImageView = playerImageView;
+            _selectSkill = selectSkill;
+            _selectSkillMessageOutputDataFactory = selectSkillMessageOutputDataFactory;
+            _selectSkillOutputDataFactory = selectSkillOutputDataFactory;
+            _selectSkillPlayerImageOutputDataFactory = selectSkillPlayerImageOutputDataFactory;
+            _selectSkillView = selectSkillView;
+            _skillCreator = skillCreator;
+            _skillRepository = skillRepository;
+            _skillSelectorRepository = skillSelectorRepository;
+        }
+
         public void CancelAction()
         {
             _selectSkillView.Stop();

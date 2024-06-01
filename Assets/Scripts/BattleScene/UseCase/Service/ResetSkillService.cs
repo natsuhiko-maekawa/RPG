@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using BattleScene.Domain.Entity;
 
 namespace BattleScene.UseCase.Service

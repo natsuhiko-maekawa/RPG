@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 using BattleScene.Domain.Aggregate;
@@ -19,6 +19,22 @@ namespace BattleScene.UseCase.Service
         private readonly ICharacterRepository _characterRepository;
         private readonly CharactersDomainService _characters;
         private readonly ISlipDamageRepository _slipDamageRepository;
+
+        public OrderedItemCreatorService(
+            IActionTimeRepository actionTimeRepository,
+            AgilityToSpeedService agilityToSpeed,
+            IAilmentRepository ailmentRepository,
+            ICharacterRepository characterRepository,
+            CharactersDomainService characters,
+            ISlipDamageRepository slipDamageRepository)
+        {
+            _actionTimeRepository = actionTimeRepository;
+            _agilityToSpeed = agilityToSpeed;
+            _ailmentRepository = ailmentRepository;
+            _characterRepository = characterRepository;
+            _characters = characters;
+            _slipDamageRepository = slipDamageRepository;
+        }
 
         public OrderAggregate Create(IList<CharacterId> characterList)
         {
@@ -49,7 +65,8 @@ namespace BattleScene.UseCase.Service
             return new OrderAggregate(orderedItemList);
         }
 
-        private ImmutableList<IOrderedItem> InsertAilmentsEnd(IList<AilmentEntity> ailmentEntityList,
+        private ImmutableList<IOrderedItem> InsertAilmentsEnd(
+            IList<AilmentEntity> ailmentEntityList,
             ImmutableList<IOrderedItem> order)
         {
             var newOrder = order.ToImmutableList();
@@ -66,7 +83,8 @@ namespace BattleScene.UseCase.Service
             return newOrder;
         }
 
-        private ImmutableList<IOrderedItem> InsertSlipDamage(IList<SlipDamageEntity> slipDamageEntityList,
+        private ImmutableList<IOrderedItem> InsertSlipDamage(
+            IList<SlipDamageEntity> slipDamageEntityList,
             ImmutableList<IOrderedItem> order)
         {
             var newOrder = order.ToImmutableList();

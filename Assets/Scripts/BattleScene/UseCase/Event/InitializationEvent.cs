@@ -1,4 +1,4 @@
-﻿using BattleScene.Domain.Aggregate;
+using BattleScene.Domain.Aggregate;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.IFactory;
@@ -17,6 +17,22 @@ namespace BattleScene.UseCase.Event
         private readonly IPlayerPropertyFactory _playerPropertyFactory;
         private readonly ISelectorRepository _selectorRepository;
         private readonly ISkillSelectorRepository _skillSelectorRepository;
+
+        public InitializationEvent(
+            CharacterCreatorService characterCreator,
+            ICharacterRepository characterRepository,
+            CharactersDomainService characters,
+            IPlayerPropertyFactory playerPropertyFactory,
+            ISelectorRepository selectorRepository,
+            ISkillSelectorRepository skillSelectorRepository)
+        {
+            _characterCreator = characterCreator;
+            _characterRepository = characterRepository;
+            _characters = characters;
+            _playerPropertyFactory = playerPropertyFactory;
+            _selectorRepository = selectorRepository;
+            _skillSelectorRepository = skillSelectorRepository;
+        }
 
         public EventCode Run()
         {

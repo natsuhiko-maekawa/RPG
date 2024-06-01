@@ -13,6 +13,11 @@ namespace BattleScene.UseCase.Skill
     {
         private readonly BlindSkillElement _blindSkillElement;
 
+        public SmokeBombSkill(BlindSkillElement blindSkillElement)
+        {
+            _blindSkillElement = blindSkillElement;
+        }
+
         public override int GetTechnicalPoint()
         {
             return 5;

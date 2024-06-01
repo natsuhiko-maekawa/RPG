@@ -13,6 +13,11 @@ namespace BattleScene.UseCase.Skill
     {
         private readonly NadegiriSkillElement _nadegiriSkillElement;
 
+        public NadegiriSkill(NadegiriSkillElement nadegiriSkillElement)
+        {
+            _nadegiriSkillElement = nadegiriSkillElement;
+        }
+
         public override int GetTechnicalPoint()
         {
             return 7;

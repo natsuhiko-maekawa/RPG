@@ -18,6 +18,14 @@ namespace BattleScene.UseCase.Skill
         private readonly AbsoluteConfusionSkillElement _absoluteConfusionSkillElement;
         private readonly BasicDamageSkillElement _basicDamageSkillElement;
 
+        public KyoukasuigetsuSkill(
+            AbsoluteConfusionSkillElement absoluteConfusionSkillElement,
+            BasicDamageSkillElement basicDamageSkillElement)
+        {
+            _absoluteConfusionSkillElement = absoluteConfusionSkillElement;
+            _basicDamageSkillElement = basicDamageSkillElement;
+        }
+
         public override ImmutableList<BodyPartCode> GetDependencyList()
         {
             return ImmutableList.Create(BodyPartCode.Arm);

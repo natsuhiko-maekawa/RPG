@@ -1,4 +1,4 @@
-﻿using BattleScene.Domain.Id;
+using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
 
 namespace BattleScene.UseCase.Service
@@ -7,6 +7,14 @@ namespace BattleScene.UseCase.Service
     {
         private readonly ICharacterRepository _characterRepository;
         private readonly IEnemyRepository _enemyRepository;
+
+        public CharacterOutputDataCreatorService(
+            ICharacterRepository characterRepository,
+            IEnemyRepository enemyRepository)
+        {
+            _characterRepository = characterRepository;
+            _enemyRepository = enemyRepository;
+        }
 
         public CharacterOutputData Create(CharacterId characterId)
         {

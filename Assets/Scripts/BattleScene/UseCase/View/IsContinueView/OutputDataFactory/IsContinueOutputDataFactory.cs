@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using BattleScene.UseCase.View.IsContinueView.OutputData;
 
 namespace BattleScene.UseCase.View.IsContinueView.OutputDataFactory

@@ -1,4 +1,4 @@
-﻿using System.Collections.Immutable;
+using System.Collections.Immutable;
 using BattleScene.Domain.AbstractClass;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.Interface;
@@ -13,6 +13,12 @@ namespace BattleScene.UseCase.Skill
     {
         private readonly BasicDamageSkillElement _basicDamageSkillElement;
         private readonly BurningSkillElement _burningSkillElement;
+
+        public FlameThrowSkill(BasicDamageSkillElement basicDamageSkillElement, BurningSkillElement burningSkillElement)
+        {
+            _basicDamageSkillElement = basicDamageSkillElement;
+            _burningSkillElement = burningSkillElement;
+        }
 
         public override PlayerImageCode GetPlayerImageCode()
         {

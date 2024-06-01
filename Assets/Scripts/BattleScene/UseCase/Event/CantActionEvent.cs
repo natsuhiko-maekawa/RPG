@@ -22,35 +22,20 @@ namespace BattleScene.UseCase.Event
         private readonly IPlayerImageViewPresenter _playerImageViewPresenter;
 
         public CantActionEvent(
+            AilmentDomainService ailment,
+            IAilmentViewInfoFactory ailmentViewInfoFactory,
+            ICharacterRepository characterRepository,
             MessageOutputDataFactory messageOutputDataFactory,
             OrderedItemsDomainService orderedItems,
             PlayerImageOutputDataFactory playerImageOutputDataFactory,
-            IAilmentViewInfoFactory ailmentViewInfoFactory,
-            ICharacterRepository characterRepository,
-            IPlayerImageViewPresenter playerImageViewPresenter)
-        {
-            _messageOutputDataFactory = messageOutputDataFactory;
-            _orderedItems = orderedItems;
-            _playerImageOutputDataFactory = playerImageOutputDataFactory;
-            _ailmentViewInfoFactory = ailmentViewInfoFactory;
-            _characterRepository = characterRepository;
-            _playerImageViewPresenter = playerImageViewPresenter;
-        }
-
-        public CantActionEvent(AilmentDomainService ailment,
-            MessageOutputDataFactory messageOutputDataFactory,
-            OrderedItemsDomainService orderedItems,
-            PlayerImageOutputDataFactory playerImageOutputDataFactory,
-            IAilmentViewInfoFactory ailmentViewInfoFactory,
-            ICharacterRepository characterRepository,
             IPlayerImageViewPresenter playerImageViewPresenter)
         {
             _ailment = ailment;
+            _ailmentViewInfoFactory = ailmentViewInfoFactory;
+            _characterRepository = characterRepository;
             _messageOutputDataFactory = messageOutputDataFactory;
             _orderedItems = orderedItems;
             _playerImageOutputDataFactory = playerImageOutputDataFactory;
-            _ailmentViewInfoFactory = ailmentViewInfoFactory;
-            _characterRepository = characterRepository;
             _playerImageViewPresenter = playerImageViewPresenter;
         }
 

@@ -10,6 +10,11 @@ namespace BattleScene.UseCase.Skill
     {
         private readonly BasicDamageSkillElement _basicDamageSkillElement;
 
+        public AttackSkill(BasicDamageSkillElement basicDamageSkillElement)
+        {
+            _basicDamageSkillElement = basicDamageSkillElement;
+        }
+
         public override Range GetRange()
         {
             return Range.Solo;

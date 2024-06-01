@@ -1,4 +1,4 @@
-﻿using BattleScene.Domain.Code;
+using BattleScene.Domain.Code;
 
 namespace BattleScene.UseCase.Service
 {

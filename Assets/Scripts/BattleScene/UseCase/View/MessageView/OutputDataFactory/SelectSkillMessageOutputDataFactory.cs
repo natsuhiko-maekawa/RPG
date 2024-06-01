@@ -1,4 +1,4 @@
-﻿using BattleScene.Domain.DomainService;
+using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.IFactory;
 using BattleScene.Domain.IRepository;
@@ -14,6 +14,20 @@ namespace BattleScene.UseCase.View.MessageView.OutputDataFactory
         private readonly MessageOutputDataFactory _messageOutputDataFactory;
         private readonly ISkillSelectorRepository _skillSelectorRepository;
         private readonly ISkillViewInfoFactory _skillViewInfoFactory;
+
+        public SelectSkillMessageOutputDataFactory(
+            ICharacterRepository characterRepository,
+            CharactersDomainService characters,
+            MessageOutputDataFactory messageOutputDataFactory,
+            ISkillSelectorRepository skillSelectorRepository,
+            ISkillViewInfoFactory skillViewInfoFactory)
+        {
+            _characterRepository = characterRepository;
+            _characters = characters;
+            _messageOutputDataFactory = messageOutputDataFactory;
+            _skillSelectorRepository = skillSelectorRepository;
+            _skillViewInfoFactory = skillViewInfoFactory;
+        }
 
         public MessageOutputData Create(EventCode eventCode)
         {

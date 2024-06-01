@@ -1,4 +1,4 @@
-﻿namespace BattleScene.UseCase.Event.Interface
+namespace BattleScene.UseCase.Event.Interface
 {
     internal interface ICancelable
     {

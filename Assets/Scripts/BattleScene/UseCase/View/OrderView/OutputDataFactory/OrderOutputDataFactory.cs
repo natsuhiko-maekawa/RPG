@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Immutable;
 using System.Linq;
 using BattleScene.Domain.IFactory;
@@ -15,6 +15,18 @@ namespace BattleScene.UseCase.View.OrderView.OutputDataFactory
         private readonly IEnemyViewInfoFactory _enemyViewInfoFactory;
         private readonly IOrderRepository _orderRepository;
         private readonly ToAilmentNumberService _toAilmentNumber;
+
+        public OrderOutputDataFactory(
+            ICharacterRepository characterRepository,
+            IEnemyViewInfoFactory enemyViewInfoFactory,
+            IOrderRepository orderRepository,
+            ToAilmentNumberService toAilmentNumber)
+        {
+            _characterRepository = characterRepository;
+            _enemyViewInfoFactory = enemyViewInfoFactory;
+            _orderRepository = orderRepository;
+            _toAilmentNumber = toAilmentNumber;
+        }
 
         public ImmutableList<OrderOutputData> Create()
         {

@@ -1,4 +1,4 @@
-﻿using System.Collections.Immutable;
+using System.Collections.Immutable;
 using System.Linq;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Entity;
@@ -12,6 +12,16 @@ namespace BattleScene.UseCase.Service
         private readonly OrderedItemsDomainService _orderedItems;
         private readonly ResultCreatorDomainService _resultCreator;
         private readonly TargetDomainService _target;
+
+        public CureSkillService(
+            OrderedItemsDomainService orderedItems,
+            ResultCreatorDomainService resultCreator,
+            TargetDomainService target)
+        {
+            _orderedItems = orderedItems;
+            _resultCreator = resultCreator;
+            _target = target;
+        }
 
         public ResultEntity Execute(SkillEntity skill)
         {

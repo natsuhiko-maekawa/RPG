@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.IRepository;
 using BattleScene.UseCase.Event.Interface;
@@ -32,6 +32,7 @@ namespace BattleScene.UseCase.Event
         private readonly ITechnicalPointBarViewPresenter _technicalPointBarView;
 
         public BattleStartEvent(
+            AilmentOutputDataFactory ailmentView,
             AttackCountOutputDataFactory attackCountOutputDataFactory,
             IAttackCountViewPresenter attackCountView,
             CharacterCreatorService characterCreator,
@@ -41,42 +42,18 @@ namespace BattleScene.UseCase.Event
             HitPointBarOutputDataFactory hitPointBarOutputDataFactory,
             IHitPointBarViewPresenter hitPointBarView,
             TechnicalPointBarOutputDataFactory technicalPointBarOutputDataFactory,
-            ITechnicalPointBarViewPresenter technicalPointBarView)
-        {
-            _attackCountOutputDataFactory = attackCountOutputDataFactory;
-            _attackCountView = attackCountView;
-            _characterCreator = characterCreator;
-            _characterRepository = characterRepository;
-            _enemyOutputDataFactory = enemyOutputDataFactory;
-            _enemyView = enemyView;
-            _hitPointBarOutputDataFactory = hitPointBarOutputDataFactory;
-            _hitPointBarView = hitPointBarView;
-            _technicalPointBarOutputDataFactory = technicalPointBarOutputDataFactory;
-            _technicalPointBarView = technicalPointBarView;
-        }
-
-        public BattleStartEvent(AilmentOutputDataFactory ailmentView,
-            AttackCountOutputDataFactory attackCountOutputDataFactory,
-            CharacterCreatorService characterCreator,
-            EnemyOutputDataFactory enemyOutputDataFactory,
-            HitPointBarOutputDataFactory hitPointBarOutputDataFactory,
-            TechnicalPointBarOutputDataFactory technicalPointBarOutputDataFactory,
-            ICharacterRepository characterRepository,
-            IAttackCountViewPresenter attackCountView,
-            IEnemyViewPresenter enemyView,
-            IHitPointBarViewPresenter hitPointBarView,
             ITechnicalPointBarViewPresenter technicalPointBarView)
         {
             _ailmentView = ailmentView;
             _attackCountOutputDataFactory = attackCountOutputDataFactory;
-            _characterCreator = characterCreator;
-            _enemyOutputDataFactory = enemyOutputDataFactory;
-            _hitPointBarOutputDataFactory = hitPointBarOutputDataFactory;
-            _technicalPointBarOutputDataFactory = technicalPointBarOutputDataFactory;
-            _characterRepository = characterRepository;
             _attackCountView = attackCountView;
+            _characterCreator = characterCreator;
+            _characterRepository = characterRepository;
+            _enemyOutputDataFactory = enemyOutputDataFactory;
             _enemyView = enemyView;
+            _hitPointBarOutputDataFactory = hitPointBarOutputDataFactory;
             _hitPointBarView = hitPointBarView;
+            _technicalPointBarOutputDataFactory = technicalPointBarOutputDataFactory;
             _technicalPointBarView = technicalPointBarView;
         }
 

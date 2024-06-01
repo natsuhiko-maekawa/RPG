@@ -1,4 +1,4 @@
-﻿using System.Collections.Immutable;
+using System.Collections.Immutable;
 using System.Linq;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.IRepository;
@@ -28,6 +28,32 @@ namespace BattleScene.UseCase.Event
         private readonly MessageOutputDataFactory _messageOutputDataFactory;
         private readonly IMessageViewPresenter _messageViewPresenter;
         private readonly ResultDomainService _result;
+
+        public PlayerBeatEnemyEvent(
+            AilmentOutputDataFactory ailmentOutputDataFactory,
+            IAilmentRepository ailmentRepository,
+            IAilmentViewPresenter ailmentViewPresenter,
+            CharactersDomainService characters,
+            EnemyOutputDataFactory enemyOutputDataFactory,
+            IEnemyViewPresenter enemyViewPresenter,
+            IHitPointRepository hitPointRepository,
+            MessageOutputDataFactory messageGenerator,
+            MessageOutputDataFactory messageOutputDataFactory,
+            IMessageViewPresenter messageViewPresenter,
+            ResultDomainService result)
+        {
+            _ailmentOutputDataFactory = ailmentOutputDataFactory;
+            _ailmentRepository = ailmentRepository;
+            _ailmentViewPresenter = ailmentViewPresenter;
+            _characters = characters;
+            _enemyOutputDataFactory = enemyOutputDataFactory;
+            _enemyViewPresenter = enemyViewPresenter;
+            _hitPointRepository = hitPointRepository;
+            _messageGenerator = messageGenerator;
+            _messageOutputDataFactory = messageOutputDataFactory;
+            _messageViewPresenter = messageViewPresenter;
+            _result = result;
+        }
 
         public EventCode Run()
         {

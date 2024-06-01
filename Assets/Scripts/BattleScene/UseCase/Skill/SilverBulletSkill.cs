@@ -13,6 +13,11 @@ namespace BattleScene.UseCase.Skill
     {
         private readonly ConstantDamageSkillElement _constantDamageSkillElement;
 
+        public SilverBulletSkill(ConstantDamageSkillElement constantDamageSkillElement)
+        {
+            _constantDamageSkillElement = constantDamageSkillElement;
+        }
+
         public override int GetTechnicalPoint()
         {
             return 7;

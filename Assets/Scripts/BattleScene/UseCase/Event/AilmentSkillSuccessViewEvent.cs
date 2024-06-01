@@ -1,4 +1,4 @@
-﻿using BattleScene.Domain.Code;
+using BattleScene.Domain.Code;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.IRepository;
 using BattleScene.Domain.ValueObject;
@@ -23,6 +23,26 @@ namespace BattleScene.UseCase.Event
         private readonly IMessageViewPresenter _messageView;
         private readonly IPlayerImageViewPresenter _playerImageView;
         private readonly ResultDomainService _result;
+
+        public AilmentSkillSuccessViewEvent(
+            AilmentOutputDataFactory ailmentOutputDataFactory,
+            AilmentPlayerImageOutputDataFactory ailmentPlayerImageOutputDataFactory,
+            IAilmentViewPresenter ailmentView,
+            ICharacterRepository characterRepository,
+            MessageOutputDataFactory messageOutputDataFactory,
+            IMessageViewPresenter messageView,
+            IPlayerImageViewPresenter playerImageView,
+            ResultDomainService result)
+        {
+            _ailmentOutputDataFactory = ailmentOutputDataFactory;
+            _ailmentPlayerImageOutputDataFactory = ailmentPlayerImageOutputDataFactory;
+            _ailmentView = ailmentView;
+            _characterRepository = characterRepository;
+            _messageOutputDataFactory = messageOutputDataFactory;
+            _messageView = messageView;
+            _playerImageView = playerImageView;
+            _result = result;
+        }
 
         public EventCode Run()
         {

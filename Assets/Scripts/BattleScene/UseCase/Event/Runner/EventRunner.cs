@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using BattleScene.UseCase.Event.Interface;
 using BattleScene.UseCase.IController;

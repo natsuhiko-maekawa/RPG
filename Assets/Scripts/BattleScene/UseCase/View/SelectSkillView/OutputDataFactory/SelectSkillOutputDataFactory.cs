@@ -1,4 +1,4 @@
-﻿using System.Collections.Immutable;
+using System.Collections.Immutable;
 using System.Linq;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Id;
@@ -18,6 +18,22 @@ namespace BattleScene.UseCase.View.SelectSkillView.OutputDataFactory
         private readonly SkillCreatorService _skillCreatorService;
         private readonly ISkillSelectorRepository _skillSelectorRepository;
         private readonly ISkillViewInfoFactory _skillViewInfoFactory;
+
+        public SelectSkillOutputDataFactory(
+            ICharacterRepository characterRepository,
+            CharactersDomainService characters,
+            SkillService skill,
+            SkillCreatorService skillCreatorService,
+            ISkillSelectorRepository skillSelectorRepository,
+            ISkillViewInfoFactory skillViewInfoFactory)
+        {
+            _characterRepository = characterRepository;
+            _characters = characters;
+            _skill = skill;
+            _skillCreatorService = skillCreatorService;
+            _skillSelectorRepository = skillSelectorRepository;
+            _skillViewInfoFactory = skillViewInfoFactory;
+        }
 
         public SelectSkillOutputData Create(EventCode eventCode)
         {

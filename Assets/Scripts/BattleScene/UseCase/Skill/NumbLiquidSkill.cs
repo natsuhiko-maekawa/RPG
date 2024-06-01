@@ -1,4 +1,4 @@
-﻿using System.Collections.Immutable;
+using System.Collections.Immutable;
 using BattleScene.Domain.AbstractClass;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.Interface;
@@ -14,6 +14,14 @@ namespace BattleScene.UseCase.Skill
     {
         private readonly BasicDamageSkillElement _basicDamageSkillElement;
         private readonly ParalysisSkillElement _paralysisSkillElement;
+
+        public NumbLiquidSkill(
+            BasicDamageSkillElement basicDamageSkillElement,
+            ParalysisSkillElement paralysisSkillElement)
+        {
+            _basicDamageSkillElement = basicDamageSkillElement;
+            _paralysisSkillElement = paralysisSkillElement;
+        }
 
         public override PlayerImageCode GetPlayerImageCode()
         {

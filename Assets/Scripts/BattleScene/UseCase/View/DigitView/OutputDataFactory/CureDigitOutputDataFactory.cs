@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Immutable;
 using BattleScene.UseCase.View.DigitView.OutputData;
 

@@ -1,4 +1,4 @@
-﻿using BattleScene.Domain.IRepository;
+using BattleScene.Domain.IRepository;
 using BattleScene.UseCase.View.TechnicalPointBarView.OutputData;
 
 namespace BattleScene.UseCase.View.TechnicalPointBarView.OutputDaraFactory
@@ -6,6 +6,11 @@ namespace BattleScene.UseCase.View.TechnicalPointBarView.OutputDaraFactory
     public class TechnicalPointBarOutputDataFactory
     {
         private readonly ITechnicalPointRepository _technicalPointRepository;
+
+        public TechnicalPointBarOutputDataFactory(ITechnicalPointRepository technicalPointRepository)
+        {
+            _technicalPointRepository = technicalPointRepository;
+        }
 
         public TechnicalPointBarOutputData Create()
         {

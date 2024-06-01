@@ -1,4 +1,4 @@
-﻿using BattleScene.Domain.DomainService;
+using BattleScene.Domain.DomainService;
 using BattleScene.Domain.IFactory;
 using BattleScene.Domain.IRepository;
 using BattleScene.UseCase.Event.Interface;
@@ -14,7 +14,6 @@ namespace BattleScene.UseCase.Event
     internal class SlipDamageMessageEvent : IEvent, IWait
     {
         private readonly AilmentMessageOutputDataFactory _ailmentMessageOutputDataFactory;
-        private readonly SlipDamagePlayerImageOutputDataFactory _ailmentPlayerImageOutputDataFactory;
         private readonly IAilmentRepository _ailmentRepository;
         private readonly AilmentOutputDataFactory _ailmentViewInfoFactory;
         private readonly CharactersDomainService _characters;
@@ -23,6 +22,28 @@ namespace BattleScene.UseCase.Event
         private readonly PlayerImageOutputDataFactory _playerImageOutputDataFactory;
         private readonly IPlayerImageViewPresenter _playerImageViewPresenter;
         private readonly ISlipDamageViewInfoFactory _slipDamageViewInfoFactory;
+
+        public SlipDamageMessageEvent(
+            AilmentMessageOutputDataFactory ailmentMessageOutputDataFactory,
+            IAilmentRepository ailmentRepository,
+            AilmentOutputDataFactory ailmentViewInfoFactory,
+            CharactersDomainService characters,
+            IMessageViewPresenter messageView,
+            OrderedItemsDomainService orderedItems,
+            PlayerImageOutputDataFactory playerImageOutputDataFactory,
+            IPlayerImageViewPresenter playerImageViewPresenter,
+            ISlipDamageViewInfoFactory slipDamageViewInfoFactory)
+        {
+            _ailmentMessageOutputDataFactory = ailmentMessageOutputDataFactory;
+            _ailmentRepository = ailmentRepository;
+            _ailmentViewInfoFactory = ailmentViewInfoFactory;
+            _characters = characters;
+            _messageView = messageView;
+            _orderedItems = orderedItems;
+            _playerImageOutputDataFactory = playerImageOutputDataFactory;
+            _playerImageViewPresenter = playerImageViewPresenter;
+            _slipDamageViewInfoFactory = slipDamageViewInfoFactory;
+        }
 
         public EventCode Run()
         {

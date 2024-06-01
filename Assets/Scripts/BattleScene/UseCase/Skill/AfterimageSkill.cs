@@ -1,4 +1,4 @@
-﻿using System.Collections.Immutable;
+using System.Collections.Immutable;
 using BattleScene.Domain.AbstractClass;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.Interface;
@@ -13,6 +13,11 @@ namespace BattleScene.UseCase.Skill
     internal class AfterimageSkill : AbstractSkill
     {
         private readonly AfterImageSkillElement _afterimageSkillSkillElement;
+
+        public AfterimageSkill(AfterImageSkillElement afterimageSkillSkillElement)
+        {
+            _afterimageSkillSkillElement = afterimageSkillSkillElement;
+        }
 
         public override Range GetRange()
         {

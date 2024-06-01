@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using BattleScene.Domain.IRepository;
 
 namespace BattleScene.UseCase.Service
@@ -7,8 +7,7 @@ namespace BattleScene.UseCase.Service
     {
         private readonly IResultRepository _resultRepository;
 
-        public TurnService(
-            IResultRepository resultRepository)
+        public TurnService(IResultRepository resultRepository)
         {
             _resultRepository = resultRepository;
         }

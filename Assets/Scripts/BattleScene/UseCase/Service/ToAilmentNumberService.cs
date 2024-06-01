@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using BattleScene.Domain.Code;
 using static BattleScene.Domain.Code.SlipDamageCode;
 using static BattleScene.Domain.Code.AilmentCode;

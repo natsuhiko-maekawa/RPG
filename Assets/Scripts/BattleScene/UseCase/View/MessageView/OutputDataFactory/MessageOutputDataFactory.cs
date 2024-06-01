@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DomainService;
@@ -29,6 +29,32 @@ namespace BattleScene.UseCase.View.MessageView.OutputDataFactory
         private readonly ISkillRepository _skillRepository;
         private readonly ISkillViewInfoFactory _skillViewInfoFactory;
         private readonly ITargetRepository _targetRepository;
+
+        public MessageOutputDataFactory(
+            IAilmentViewInfoFactory ailmentViewInfoFactory,
+            IBodyPartViewInfoFactory bodyPartViewInfoFactory,
+            ICharacterRepository characterRepository,
+            IEnemyViewInfoFactory enemyViewInfoFactory,
+            IMessageFactory messageFactory,
+            OrderedItemsDomainService orderedItems,
+            IPlayerViewInfoFactory playerViewInfoFactory,
+            ResultDomainService result,
+            ISkillRepository skillRepository,
+            ISkillViewInfoFactory skillViewInfoFactory,
+            ITargetRepository targetRepository)
+        {
+            _ailmentViewInfoFactory = ailmentViewInfoFactory;
+            _bodyPartViewInfoFactory = bodyPartViewInfoFactory;
+            _characterRepository = characterRepository;
+            _enemyViewInfoFactory = enemyViewInfoFactory;
+            _messageFactory = messageFactory;
+            _orderedItems = orderedItems;
+            _playerViewInfoFactory = playerViewInfoFactory;
+            _result = result;
+            _skillRepository = skillRepository;
+            _skillViewInfoFactory = skillViewInfoFactory;
+            _targetRepository = targetRepository;
+        }
 
         public MessageOutputData Create(MessageCode messageCode, bool noWait = false)
         {

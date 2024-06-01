@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 using BattleScene.Domain.DomainService;
@@ -14,6 +14,16 @@ namespace BattleScene.UseCase.Service
         private readonly IActionTimeRepository _actionTimeRepository;
         private readonly AgilityToSpeedService _agilityToSpeed;
         private readonly OrderedItemsDomainService _orderedItems;
+
+        public ActionTimeCreatorService(
+            IActionTimeRepository actionTimeRepository,
+            AgilityToSpeedService agilityToSpeed,
+            OrderedItemsDomainService orderedItems)
+        {
+            _actionTimeRepository = actionTimeRepository;
+            _agilityToSpeed = agilityToSpeed;
+            _orderedItems = orderedItems;
+        }
 
         public ImmutableList<ActionTimeEntity> Create(IList<CharacterId> characterIdList)
         {

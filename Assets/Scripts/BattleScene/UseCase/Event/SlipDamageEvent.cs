@@ -1,4 +1,4 @@
-﻿using BattleScene.Domain.DomainService;
+using BattleScene.Domain.DomainService;
 using BattleScene.Domain.IRepository;
 using BattleScene.UseCase.Event.Interface;
 using BattleScene.UseCase.Event.Runner;
@@ -32,6 +32,38 @@ namespace BattleScene.UseCase.Event
         private readonly IResultRepository _resultRepository;
         private readonly SlipDamageService _slipDamage;
         private readonly ITargetRepository _targetRepository;
+
+        public SlipDamageEvent(
+            CharactersDomainService characters,
+            CharacterVibesOutputDataFactory characterVibesOutputDataFactory,
+            ICharacterVibesViewPresenter characterVibesView,
+            DamageDigitOutputDataFactory damageDigitOutputDataFactory,
+            IDigitViewPresenter digitView,
+            HitPointBarOutputDataFactory hitPointBarOutputDataFactory,
+            IHitPointBarViewPresenter hitPointBarView,
+            IHitPointRepository hitPointRepository,
+            MessageOutputDataFactory messageOutputDataFactory,
+            IMessageViewPresenter messageView,
+            ResultDomainService result,
+            IResultRepository resultRepository,
+            SlipDamageService slipDamage,
+            ITargetRepository targetRepository)
+        {
+            _characters = characters;
+            _characterVibesOutputDataFactory = characterVibesOutputDataFactory;
+            _characterVibesView = characterVibesView;
+            _damageDigitOutputDataFactory = damageDigitOutputDataFactory;
+            _digitView = digitView;
+            _hitPointBarOutputDataFactory = hitPointBarOutputDataFactory;
+            _hitPointBarView = hitPointBarView;
+            _hitPointRepository = hitPointRepository;
+            _messageOutputDataFactory = messageOutputDataFactory;
+            _messageView = messageView;
+            _result = result;
+            _resultRepository = resultRepository;
+            _slipDamage = slipDamage;
+            _targetRepository = targetRepository;
+        }
 
         public EventCode Run()
         {

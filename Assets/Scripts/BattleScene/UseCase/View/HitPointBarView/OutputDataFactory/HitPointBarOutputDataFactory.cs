@@ -1,4 +1,4 @@
-﻿using System.Collections.Immutable;
+using System.Collections.Immutable;
 using System.Linq;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.IRepository;
@@ -13,6 +13,18 @@ namespace BattleScene.UseCase.View.HitPointBarView.OutputDataFactory
         private readonly IEnemyRepository _enemyRepository;
         private readonly IHitPointRepository _hitPointRepository;
         private readonly ResultDomainService _result;
+
+        public HitPointBarOutputDataFactory(
+            ICharacterRepository characterRepository,
+            IEnemyRepository enemyRepository,
+            IHitPointRepository hitPointRepository,
+            ResultDomainService result)
+        {
+            _characterRepository = characterRepository;
+            _enemyRepository = enemyRepository;
+            _hitPointRepository = hitPointRepository;
+            _result = result;
+        }
 
         public ImmutableList<HitPointBarOutputData> Create()
         {

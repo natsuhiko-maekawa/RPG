@@ -14,6 +14,12 @@ namespace BattleScene.UseCase.Skill
         private readonly BasicDamageSkillElement _basicDamageSkillElement;
         private readonly WabisukeSkillElement _wabisukeSkillElement;
 
+        public WabisukeSkill(BasicDamageSkillElement basicDamageSkillElement, WabisukeSkillElement wabisukeSkillElement)
+        {
+            _basicDamageSkillElement = basicDamageSkillElement;
+            _wabisukeSkillElement = wabisukeSkillElement;
+        }
+
         public override int GetTechnicalPoint()
         {
             return 10;

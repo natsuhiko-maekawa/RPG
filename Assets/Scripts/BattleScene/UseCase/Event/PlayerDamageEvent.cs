@@ -1,4 +1,4 @@
-﻿using BattleScene.Domain.Code;
+using BattleScene.Domain.Code;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.IFactory;
 using BattleScene.Domain.IRepository;
@@ -45,6 +45,52 @@ namespace BattleScene.UseCase.Event
         private readonly SkillCreatorService _skillCreatorService;
         private readonly ISkillRepository _skillRepository;
         private readonly ISkillViewInfoFactory _skillViewInfoFactory;
+
+        public PlayerDamageEvent(
+            AttackCountOutputDataFactory attackCountOutputDataFactory,
+            IAttackCountViewPresenter attackCountViewPresenter,
+            ICharacterRepository characterRepository,
+            CharactersDomainService characters,
+            CharacterVibesOutputDataFactory characterVibesOutputDataFactory,
+            ICharacterVibesViewPresenter characterVibesView,
+            DamageDigitOutputDataFactory damageDigitOutputDataFactory,
+            DamageMessageOutputDataFactory damageMessageOutputDataFactory,
+            DamageSkillService damageSkill,
+            IDigitViewPresenter digitView,
+            HitPointDomainService hitPoint,
+            HitPointBarOutputDataFactory hitPointBarOutputDataFactory,
+            IHitPointBarViewPresenter hitPointBarView,
+            IMessageViewPresenter messageViewPresenter,
+            OrderedItemsDomainService orderedItems,
+            IPlayerImageViewPresenter playerImageView,
+            ResultDomainService result,
+            IResultRepository resultRepository,
+            SkillCreatorService skillCreatorService,
+            ISkillRepository skillRepository,
+            ISkillViewInfoFactory skillViewInfoFactory)
+        {
+            _attackCountOutputDataFactory = attackCountOutputDataFactory;
+            _attackCountViewPresenter = attackCountViewPresenter;
+            _characterRepository = characterRepository;
+            _characters = characters;
+            _characterVibesOutputDataFactory = characterVibesOutputDataFactory;
+            _characterVibesView = characterVibesView;
+            _damageDigitOutputDataFactory = damageDigitOutputDataFactory;
+            _damageMessageOutputDataFactory = damageMessageOutputDataFactory;
+            _damageSkill = damageSkill;
+            _digitView = digitView;
+            _hitPoint = hitPoint;
+            _hitPointBarOutputDataFactory = hitPointBarOutputDataFactory;
+            _hitPointBarView = hitPointBarView;
+            _messageViewPresenter = messageViewPresenter;
+            _orderedItems = orderedItems;
+            _playerImageView = playerImageView;
+            _result = result;
+            _resultRepository = resultRepository;
+            _skillCreatorService = skillCreatorService;
+            _skillRepository = skillRepository;
+            _skillViewInfoFactory = skillViewInfoFactory;
+        }
 
         public EventCode Run()
         {

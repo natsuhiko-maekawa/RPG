@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.IFactory;
@@ -9,6 +9,11 @@ namespace BattleScene.UseCase.Service
     public class DestroyedPartCreatorService
     {
         private readonly IBodyPartFactory _bodyPartFactory;
+
+        public DestroyedPartCreatorService(IBodyPartFactory bodyPartFactory)
+        {
+            _bodyPartFactory = bodyPartFactory;
+        }
 
         public BodyPartEntity Create(
             IList<BodyPartEntity> bodyPartList,

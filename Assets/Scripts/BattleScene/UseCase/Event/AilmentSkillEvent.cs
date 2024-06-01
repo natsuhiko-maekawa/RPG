@@ -1,4 +1,4 @@
-﻿using BattleScene.Domain.Code;
+using BattleScene.Domain.Code;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.IFactory;
 using BattleScene.Domain.IRepository;
@@ -23,6 +23,26 @@ namespace BattleScene.UseCase.Event
         private readonly IResultRepository _resultRepository;
         private readonly SkillCreatorService _skillCreator;
         private readonly ISkillRepository _skillRepository;
+
+        public AilmentSkillEvent(
+            IAilmentFactory ailmentFactory,
+            IAilmentRepository ailmentRepository,
+            AilmentSkillService ailmentSkill,
+            OrderedItemsDomainService orderedItems,
+            ResultDomainService result,
+            IResultRepository resultRepository,
+            SkillCreatorService skillCreator,
+            ISkillRepository skillRepository)
+        {
+            _ailmentFactory = ailmentFactory;
+            _ailmentRepository = ailmentRepository;
+            _ailmentSkill = ailmentSkill;
+            _orderedItems = orderedItems;
+            _result = result;
+            _resultRepository = resultRepository;
+            _skillCreator = skillCreator;
+            _skillRepository = skillRepository;
+        }
 
         protected override void UpdateResultRepository()
         {

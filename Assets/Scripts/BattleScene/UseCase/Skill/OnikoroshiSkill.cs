@@ -13,6 +13,11 @@ namespace BattleScene.UseCase.Skill
     {
         private readonly ConfusionSkillElement _confusionSkillElement;
 
+        public OnikoroshiSkill(ConfusionSkillElement confusionSkillElement)
+        {
+            _confusionSkillElement = confusionSkillElement;
+        }
+
         public override ImmutableList<BodyPartCode> GetDependencyList()
         {
             return ImmutableList.Create(BodyPartCode.Arm);

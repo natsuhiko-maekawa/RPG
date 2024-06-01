@@ -1,4 +1,4 @@
-﻿using BattleScene.Domain.Code;
+using BattleScene.Domain.Code;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
@@ -12,6 +12,18 @@ namespace BattleScene.UseCase.Service
         private readonly CharactersDomainService _characters;
         private readonly SkillService _skill;
         private readonly ISkillSelectorRepository _skillSelectorRepository;
+
+        public SelectSkillService(
+            ICharacterRepository characterRepository,
+            CharactersDomainService characters,
+            SkillService skill,
+            ISkillSelectorRepository skillSelectorRepository)
+        {
+            _characterRepository = characterRepository;
+            _characters = characters;
+            _skill = skill;
+            _skillSelectorRepository = skillSelectorRepository;
+        }
 
         public bool CanUpdate(EventCode eventCode)
         {

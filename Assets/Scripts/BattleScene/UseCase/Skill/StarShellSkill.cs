@@ -13,6 +13,11 @@ namespace BattleScene.UseCase.Skill
     {
         private readonly StarShellSkillElement _starShellSkillElement;
 
+        public StarShellSkill(StarShellSkillElement starShellSkillElement)
+        {
+            _starShellSkillElement = starShellSkillElement;
+        }
+
         public override int GetTechnicalPoint()
         {
             return 3;

@@ -1,4 +1,4 @@
-﻿// using BattleScene.Domain.DomainService;
+// using BattleScene.Domain.DomainService;
 // using BattleScene.UseCase.Event.Interface;
 // using BattleScene.UseCase.EventRunner;
 // using BattleScene.UseCase.IPresenter;
@@ -44,4 +44,5 @@
 //         }
 //     }
 // }
+
 

@@ -1,4 +1,4 @@
-﻿using System.Collections.Immutable;
+using System.Collections.Immutable;
 using System.Linq;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.IFactory;
@@ -24,6 +24,18 @@ namespace BattleScene.UseCase.View.EnemyView.OutputDataFactory
             _hitPointRepository = hitPointRepository;
             _enemyViewInfoFactory = enemyViewInfoFactory;
             _characters = characters;
+        }
+
+        public EnemyOutputDataFactory(
+            CharactersDomainService characters,
+            IEnemyRepository enemyRepository,
+            IEnemyViewInfoFactory enemyViewInfoFactory,
+            IHitPointRepository hitPointRepository)
+        {
+            _characters = characters;
+            _enemyRepository = enemyRepository;
+            _enemyViewInfoFactory = enemyViewInfoFactory;
+            _hitPointRepository = hitPointRepository;
         }
 
         public ImmutableList<EnemyOutputData> Create()

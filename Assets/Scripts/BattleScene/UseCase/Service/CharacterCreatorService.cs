@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 using BattleScene.Domain.Aggregate;
@@ -15,6 +15,12 @@ namespace BattleScene.UseCase.Service
     {
         private readonly IPropertyFactory _propertyFactory;
         private readonly IRandomEx _randomEx;
+
+        public CharacterCreatorService(IPropertyFactory propertyFactory, IRandomEx randomEx)
+        {
+            _propertyFactory = propertyFactory;
+            _randomEx = randomEx;
+        }
 
         public CharacterAggregate CreatePlayer()
         {

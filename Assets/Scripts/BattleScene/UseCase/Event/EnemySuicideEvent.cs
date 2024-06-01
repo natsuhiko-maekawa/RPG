@@ -1,4 +1,4 @@
-﻿using BattleScene.Domain.DomainService;
+using BattleScene.Domain.DomainService;
 using BattleScene.Domain.IRepository;
 using BattleScene.UseCase.Event.Interface;
 using BattleScene.UseCase.Event.Runner;
@@ -24,6 +24,28 @@ namespace BattleScene.UseCase.Event
         private readonly MessageOutputDataFactory _messageOutputDataFactory;
         private readonly IMessageViewPresenter _messageView;
         private readonly OrderedItemsDomainService _orderedItems;
+
+        public EnemySuicideEvent(
+            IActionTimeRepository actionTimeRepository,
+            AilmentOutputDataFactory ailmentOutputDataFactory,
+            IAilmentRepository ailmentRepository,
+            IAilmentViewPresenter ailmentView,
+            EnemyOutputDataFactory enemyOutputDataFactory,
+            IEnemyViewPresenter enemyView,
+            MessageOutputDataFactory messageOutputDataFactory,
+            IMessageViewPresenter messageView,
+            OrderedItemsDomainService orderedItems)
+        {
+            _actionTimeRepository = actionTimeRepository;
+            _ailmentOutputDataFactory = ailmentOutputDataFactory;
+            _ailmentRepository = ailmentRepository;
+            _ailmentView = ailmentView;
+            _enemyOutputDataFactory = enemyOutputDataFactory;
+            _enemyView = enemyView;
+            _messageOutputDataFactory = messageOutputDataFactory;
+            _messageView = messageView;
+            _orderedItems = orderedItems;
+        }
 
         public EventCode Run()
         {

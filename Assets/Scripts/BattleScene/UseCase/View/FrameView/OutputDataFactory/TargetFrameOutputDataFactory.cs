@@ -1,4 +1,4 @@
-﻿using System.Collections.Immutable;
+using System.Collections.Immutable;
 using System.Linq;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.IRepository;
@@ -14,6 +14,20 @@ namespace BattleScene.UseCase.View.FrameView.OutputDataFactory
         private readonly IFrameViewPresenter _frameView;
         private readonly OrderedItemsDomainService _orderedItems;
         private readonly ITargetRepository _targetRepository;
+
+        public TargetFrameOutputDataFactory(
+            ICharacterRepository characterRepository,
+            IEnemyRepository enemyRepository,
+            IFrameViewPresenter frameView,
+            OrderedItemsDomainService orderedItems,
+            ITargetRepository targetRepository)
+        {
+            _characterRepository = characterRepository;
+            _enemyRepository = enemyRepository;
+            _frameView = frameView;
+            _orderedItems = orderedItems;
+            _targetRepository = targetRepository;
+        }
 
         public ImmutableList<FrameOutputData> Create()
         {

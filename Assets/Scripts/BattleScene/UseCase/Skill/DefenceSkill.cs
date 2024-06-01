@@ -1,4 +1,4 @@
-﻿using System.Collections.Immutable;
+using System.Collections.Immutable;
 using BattleScene.Domain.AbstractClass;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.Interface;
@@ -12,6 +12,11 @@ namespace BattleScene.UseCase.Skill
     public class DefenceSkill : AbstractSkill
     {
         private readonly DefenceSkillElement _defenceSkillElement;
+
+        public DefenceSkill(DefenceSkillElement defenceSkillElement)
+        {
+            _defenceSkillElement = defenceSkillElement;
+        }
 
         public override Range GetRange()
         {

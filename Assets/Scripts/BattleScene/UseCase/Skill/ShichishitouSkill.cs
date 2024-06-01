@@ -13,6 +13,11 @@ namespace BattleScene.UseCase.Skill
     {
         private readonly ShichishitouSkillElement _shichishitouSkillElement;
 
+        public ShichishitouSkill(ShichishitouSkillElement shichishitouSkillElement)
+        {
+            _shichishitouSkillElement = shichishitouSkillElement;
+        }
+
         public override int GetTechnicalPoint()
         {
             return 5;

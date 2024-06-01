@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using BattleScene.UseCase.Event.Interface;
 using VContainer;
 
@@ -8,8 +8,7 @@ namespace BattleScene.UseCase.Event.Runner
     {
         private readonly IObjectResolver _container;
 
-        public EventFactory(
-            IObjectResolver container)
+        public EventFactory(IObjectResolver container)
         {
             _container = container;
         }

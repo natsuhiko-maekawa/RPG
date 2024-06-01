@@ -32,60 +32,33 @@ namespace BattleScene.UseCase.Event
         private readonly ISkillRepository _skillRepository;
 
         public CureEvent(
-            MessageOutputDataFactory messageGenerator,
-            OrderedItemsDomainService order,
-            CureSkillService cureSkill,
-            ResultDomainService result,
-            HitPointBarOutputDataFactory hitPointBarOutputDataFactory,
             CureDigitOutputDataFactory cureDigitOutputDataFactory,
-            MessageOutputDataFactory messageOutputDataFactory,
-            IResultRepository resultRepository,
-            ISkillRepository skillRepository,
+            CureSkillService cureSkill,
             IDigitViewPresenter digitViewPresenter,
+            HitPointBarOutputDataFactory hitPointBarOutputDataFactory,
             IHitPointBarViewPresenter hitPointBarViewPresenter,
-            IMessageViewPresenter messageViewPresenter)
+            MessageOutputDataFactory messageGenerator,
+            MessageOutputDataFactory messageOutputDataFactory,
+            IMessageViewPresenter messageViewPresenter,
+            OrderedItemsDomainService order,
+            OrderedItemsDomainService orderedItems,
+            ResultDomainService result,
+            IResultRepository resultRepository,
+            ISkillRepository skillRepository)
         {
-            _messageGenerator = messageGenerator;
-            _order = order;
-            _cureSkill = cureSkill;
-            _result = result;
-            _hitPointBarOutputDataFactory = hitPointBarOutputDataFactory;
             _cureDigitOutputDataFactory = cureDigitOutputDataFactory;
-            _messageOutputDataFactory = messageOutputDataFactory;
-            _resultRepository = resultRepository;
-            _skillRepository = skillRepository;
+            _cureSkill = cureSkill;
             _digitViewPresenter = digitViewPresenter;
+            _hitPointBarOutputDataFactory = hitPointBarOutputDataFactory;
             _hitPointBarViewPresenter = hitPointBarViewPresenter;
+            _messageGenerator = messageGenerator;
+            _messageOutputDataFactory = messageOutputDataFactory;
             _messageViewPresenter = messageViewPresenter;
-        }
-
-        public CureEvent(OrderedItemsDomainService orderedItems,
-            MessageOutputDataFactory messageGenerator,
-            OrderedItemsDomainService order,
-            CureSkillService cureSkill,
-            ResultDomainService result,
-            HitPointBarOutputDataFactory hitPointBarOutputDataFactory,
-            CureDigitOutputDataFactory cureDigitOutputDataFactory,
-            MessageOutputDataFactory messageOutputDataFactory,
-            IResultRepository resultRepository,
-            ISkillRepository skillRepository,
-            IDigitViewPresenter digitViewPresenter,
-            IHitPointBarViewPresenter hitPointBarViewPresenter,
-            IMessageViewPresenter messageViewPresenter)
-        {
+            _order = order;
             _orderedItems = orderedItems;
-            _messageGenerator = messageGenerator;
-            _order = order;
-            _cureSkill = cureSkill;
             _result = result;
-            _hitPointBarOutputDataFactory = hitPointBarOutputDataFactory;
-            _cureDigitOutputDataFactory = cureDigitOutputDataFactory;
-            _messageOutputDataFactory = messageOutputDataFactory;
             _resultRepository = resultRepository;
             _skillRepository = skillRepository;
-            _digitViewPresenter = digitViewPresenter;
-            _hitPointBarViewPresenter = hitPointBarViewPresenter;
-            _messageViewPresenter = messageViewPresenter;
         }
 
         public EventCode Run()

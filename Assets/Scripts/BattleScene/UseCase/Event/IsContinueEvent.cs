@@ -1,4 +1,4 @@
-﻿using BattleScene.Domain.Aggregate;
+using BattleScene.Domain.Aggregate;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
 using BattleScene.UseCase.Event.Interface;
@@ -21,6 +21,20 @@ namespace BattleScene.UseCase.Event
         private readonly MessageOutputDataFactory _messageOutputDataFactory;
         private readonly IMessageViewPresenter _messageViewPresenter;
         private readonly ISelectorRepository _selectorRepository;
+
+        public IsContinueEvent(
+            IsContinueOutputDataFactory isContinueOutputDataFactory,
+            IIsContinueViewPresenter isContinueView,
+            MessageOutputDataFactory messageOutputDataFactory,
+            IMessageViewPresenter messageViewPresenter,
+            ISelectorRepository selectorRepository)
+        {
+            _isContinueOutputDataFactory = isContinueOutputDataFactory;
+            _isContinueView = isContinueView;
+            _messageOutputDataFactory = messageOutputDataFactory;
+            _messageViewPresenter = messageViewPresenter;
+            _selectorRepository = selectorRepository;
+        }
 
         public EventCode Run()
         {

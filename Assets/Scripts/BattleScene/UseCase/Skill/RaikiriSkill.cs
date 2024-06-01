@@ -13,6 +13,11 @@ namespace BattleScene.UseCase.Skill
     {
         private readonly LightningDamageSkillElement _lightningDamageSkillElement;
 
+        public RaikiriSkill(LightningDamageSkillElement lightningDamageSkillElement)
+        {
+            _lightningDamageSkillElement = lightningDamageSkillElement;
+        }
+
         public override int GetTechnicalPoint()
         {
             return 5;

@@ -1,4 +1,4 @@
-﻿using BattleScene.Domain.DomainService;
+using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.IFactory;
 using BattleScene.Domain.IRepository;
@@ -13,6 +13,18 @@ namespace BattleScene.UseCase.View.PlayerImageView.OutputDataFactory
         private readonly CharactersDomainService _characters;
         private readonly ISkillSelectorRepository _skillSelectorRepository;
         private readonly ISkillViewInfoFactory _skillViewInfoFactory;
+
+        public SelectSkillPlayerImageOutputDataFactory(
+            ICharacterRepository characterRepository,
+            CharactersDomainService characters,
+            ISkillSelectorRepository skillSelectorRepository,
+            ISkillViewInfoFactory skillViewInfoFactory)
+        {
+            _characterRepository = characterRepository;
+            _characters = characters;
+            _skillSelectorRepository = skillSelectorRepository;
+            _skillViewInfoFactory = skillViewInfoFactory;
+        }
 
         public PlayerImageOutputData Create(EventCode eventCode)
         {

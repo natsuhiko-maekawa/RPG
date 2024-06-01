@@ -16,6 +16,14 @@ namespace BattleScene.UseCase.Skill
         private readonly BasicDamageSkillElement _basicDamageSkillElement;
         private readonly SuffocationSkillElement _suffocationSkillElement;
 
+        public LiquidSkill(
+            BasicDamageSkillElement basicDamageSkillElement,
+            SuffocationSkillElement suffocationSkillElement)
+        {
+            _basicDamageSkillElement = basicDamageSkillElement;
+            _suffocationSkillElement = suffocationSkillElement;
+        }
+
         public override Range GetRange()
         {
             return Range.Solo;

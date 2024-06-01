@@ -1,4 +1,4 @@
-﻿// using BattleScene.UseCase.Damage;
+// using BattleScene.UseCase.Damage;
 // using BattleScene.UseCase.Event.Interface;
 // using BattleScene.UseCase.EventRunner;
 // using BattleScene.UseCase.IPresenter;
@@ -97,4 +97,5 @@
 //         }
 //     }
 // }
+
 

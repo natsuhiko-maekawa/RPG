@@ -13,6 +13,11 @@ namespace BattleScene.UseCase.Skill
     {
         private readonly FirstAidSkillElement _firstAidSkillElement;
 
+        public FirstAidSkill(FirstAidSkillElement firstAidSkillElement)
+        {
+            _firstAidSkillElement = firstAidSkillElement;
+        }
+
         public override int GetTechnicalPoint()
         {
             return 3;

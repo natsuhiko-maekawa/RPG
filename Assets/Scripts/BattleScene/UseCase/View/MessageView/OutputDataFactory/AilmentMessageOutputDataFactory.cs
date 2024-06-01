@@ -1,4 +1,4 @@
-﻿using BattleScene.Domain.DomainService;
+using BattleScene.Domain.DomainService;
 using BattleScene.Domain.IFactory;
 using BattleScene.UseCase.View.MessageView.OutputData;
 
@@ -9,6 +9,16 @@ namespace BattleScene.UseCase.View.MessageView.OutputDataFactory
         private readonly IAilmentViewInfoFactory _ailmentViewInfoFactory;
         private readonly MessageOutputDataFactory _messageOutputDataFactory;
         private readonly OrderedItemsDomainService _orderedItems;
+
+        public AilmentMessageOutputDataFactory(
+            IAilmentViewInfoFactory ailmentViewInfoFactory,
+            MessageOutputDataFactory messageOutputDataFactory,
+            OrderedItemsDomainService orderedItems)
+        {
+            _ailmentViewInfoFactory = ailmentViewInfoFactory;
+            _messageOutputDataFactory = messageOutputDataFactory;
+            _orderedItems = orderedItems;
+        }
 
         public MessageOutputData Create()
         {

@@ -14,6 +14,11 @@ namespace BattleScene.UseCase.Skill
     {
         private readonly AlwaysHitDamageSkillElement _alwaysHitDamageSkillElement;
 
+        public ConfusionSkill(AlwaysHitDamageSkillElement alwaysHitDamageSkillElement)
+        {
+            _alwaysHitDamageSkillElement = alwaysHitDamageSkillElement;
+        }
+
         public override Range GetRange()
         {
             return Oneself;

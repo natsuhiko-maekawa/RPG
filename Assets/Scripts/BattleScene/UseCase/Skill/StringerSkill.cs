@@ -14,6 +14,14 @@ namespace BattleScene.UseCase.Skill
         private readonly BasicDamageSkillElement _basicDamageSkillElement;
         private readonly PoisoningSkillElement _poisoningSkillElement;
 
+        public StringerSkill(
+            BasicDamageSkillElement basicDamageSkillElement,
+            PoisoningSkillElement poisoningSkillElement)
+        {
+            _basicDamageSkillElement = basicDamageSkillElement;
+            _poisoningSkillElement = poisoningSkillElement;
+        }
+
         public override Range GetRange()
         {
             return Range.Solo;

@@ -27,6 +27,7 @@ namespace BattleScene.UseCase.Event
         private readonly ISkillRepository _skillRepository;
 
         public BuffEvent(
+            BuffOutputDataFactory buffOutputDataFactory,
             IBuffViewPresenter buffView,
             IBuffViewInfoFactory buffViewInfoFactory,
             CharactersDomainService characters,
@@ -36,6 +37,7 @@ namespace BattleScene.UseCase.Event
             ResultDomainService result,
             ISkillRepository skillRepository)
         {
+            _buffOutputDataFactory = buffOutputDataFactory;
             _buffView = buffView;
             _buffViewInfoFactory = buffViewInfoFactory;
             _characters = characters;

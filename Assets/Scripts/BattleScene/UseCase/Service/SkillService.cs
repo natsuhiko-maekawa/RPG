@@ -1,4 +1,4 @@
-﻿using BattleScene.Domain.Code;
+using BattleScene.Domain.Code;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
@@ -12,6 +12,18 @@ namespace BattleScene.UseCase.Service
         private readonly ICharacterRepository _characterRepository;
         private readonly SkillCreatorService _skillCreatorService;
         private readonly ITechnicalPointRepository _technicalPointRepository;
+
+        public SkillService(
+            BodyPartDomainService bodyPart,
+            ICharacterRepository characterRepository,
+            SkillCreatorService skillCreatorService,
+            ITechnicalPointRepository technicalPointRepository)
+        {
+            _bodyPart = bodyPart;
+            _characterRepository = characterRepository;
+            _skillCreatorService = skillCreatorService;
+            _technicalPointRepository = technicalPointRepository;
+        }
 
         public bool Available(CharacterId characterId, SkillCode skillCode)
         {

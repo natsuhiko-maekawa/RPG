@@ -13,6 +13,11 @@ namespace BattleScene.UseCase.Service
     {
         private readonly IObjectResolver _container;
 
+        public SkillCreatorService(IObjectResolver container)
+        {
+            _container = container;
+        }
+
         public SkillEntity Create(CharacterId characterId, SkillCode skillCode)
         {
             return new SkillEntity(

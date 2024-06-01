@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.IRepository;
 using BattleScene.UseCase.Event.Interface;
@@ -13,6 +13,18 @@ namespace BattleScene.UseCase.Event
         private readonly ResultDomainService _result;
         private readonly IResultRepository _resultRepository;
         private readonly ISkillRepository _skillRepository;
+
+        public RestoreTechnicalPointSkillEvent(
+            OrderedItemsDomainService orderedItems,
+            ResultDomainService result,
+            IResultRepository resultRepository,
+            ISkillRepository skillRepository)
+        {
+            _orderedItems = orderedItems;
+            _result = result;
+            _resultRepository = resultRepository;
+            _skillRepository = skillRepository;
+        }
 
         protected override void UpdateResultRepository()
         {

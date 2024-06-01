@@ -1,4 +1,4 @@
-﻿using BattleScene.Domain.DomainService;
+using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
@@ -29,6 +29,30 @@ namespace BattleScene.UseCase.Event
         private readonly ISelectorRepository _selectorRepository;
         private readonly SkillCreatorService _skillCreator;
         private readonly ISkillRepository _skillRepository;
+
+        public SelectActionEvent(
+            AttackCounterService attackCounter,
+            CharactersDomainService characters,
+            IInfoViewPresenter infoView,
+            IMessageViewPresenter messageView,
+            SelectActionEventOutputDataFactory outputDataFactory,
+            IPlayerImageViewPresenter playerImageView,
+            ISelectActionViewPresenter selectActionView,
+            ISelectorRepository selectorRepository,
+            SkillCreatorService skillCreator,
+            ISkillRepository skillRepository)
+        {
+            _attackCounter = attackCounter;
+            _characters = characters;
+            _infoView = infoView;
+            _messageView = messageView;
+            _outputDataFactory = outputDataFactory;
+            _playerImageView = playerImageView;
+            _selectActionView = selectActionView;
+            _selectorRepository = selectorRepository;
+            _skillCreator = skillCreator;
+            _skillRepository = skillRepository;
+        }
 
         public EventCode Run()
         {

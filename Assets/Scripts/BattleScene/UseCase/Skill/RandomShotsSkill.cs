@@ -13,6 +13,11 @@ namespace BattleScene.UseCase.Skill
     {
         private readonly RandomShotSkillElement _randomShotSkillElement;
 
+        public RandomShotsSkill(RandomShotSkillElement randomShotSkillElement)
+        {
+            _randomShotSkillElement = randomShotSkillElement;
+        }
+
         public override int GetTechnicalPoint()
         {
             return 15;

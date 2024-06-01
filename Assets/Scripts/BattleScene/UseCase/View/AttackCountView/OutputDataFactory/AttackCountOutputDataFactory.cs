@@ -1,4 +1,4 @@
-﻿using BattleScene.UseCase.Service;
+using BattleScene.UseCase.Service;
 using BattleScene.UseCase.View.AttackCountView.OutputData;
 
 namespace BattleScene.UseCase.View.AttackCountView.OutputDataFactory
@@ -7,10 +7,9 @@ namespace BattleScene.UseCase.View.AttackCountView.OutputDataFactory
     {
         private readonly AttackCounterService _attackCounter;
 
-        public AttackCountOutputDataFactory(
-            AttackCounterService attackCounterService)
+        public AttackCountOutputDataFactory(AttackCounterService attackCounter)
         {
-            _attackCounter = attackCounterService;
+            _attackCounter = attackCounter;
         }
 
         public AttackCountOutputData Create()

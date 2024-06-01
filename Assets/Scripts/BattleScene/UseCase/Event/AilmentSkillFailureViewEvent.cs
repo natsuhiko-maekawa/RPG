@@ -1,4 +1,4 @@
-﻿using BattleScene.Domain.Code;
+using BattleScene.Domain.Code;
 using BattleScene.UseCase.Event.Interface;
 using BattleScene.UseCase.Event.Runner;
 using BattleScene.UseCase.View.MessageView.OutputBoundary;
@@ -10,6 +10,14 @@ namespace BattleScene.UseCase.Event
     {
         private readonly MessageOutputDataFactory _messageOutputDataFactory;
         private readonly IMessageViewPresenter _messageView;
+
+        public AilmentSkillFailureViewEvent(
+            MessageOutputDataFactory messageOutputDataFactory,
+            IMessageViewPresenter messageView)
+        {
+            _messageOutputDataFactory = messageOutputDataFactory;
+            _messageView = messageView;
+        }
 
         public EventCode Run()
         {

@@ -1,4 +1,4 @@
-﻿using BattleScene.Domain.Code;
+using BattleScene.Domain.Code;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.IRepository;
 using BattleScene.UseCase.Event.Interface;
@@ -29,6 +29,32 @@ namespace BattleScene.UseCase.Event
         private readonly IPlayerImageViewPresenter _playerImageView;
         private readonly SkillCreatorService _skillCreator;
         private readonly ISkillRepository _skillRepository;
+
+        public AilmentsResetEvent(
+            AilmentOutputDataFactory ailmentOutputDataFactory,
+            IAilmentRepository ailmentRepository,
+            IAilmentViewPresenter ailmentView,
+            CharactersDomainService characters,
+            MessageOutputDataFactory messageOutputDataFactory,
+            IMessageViewPresenter messageView,
+            OrderedItemsDomainService orderedItems,
+            IOrderRepository orderRepository,
+            IPlayerImageViewPresenter playerImageView,
+            SkillCreatorService skillCreator,
+            ISkillRepository skillRepository)
+        {
+            _ailmentOutputDataFactory = ailmentOutputDataFactory;
+            _ailmentRepository = ailmentRepository;
+            _ailmentView = ailmentView;
+            _characters = characters;
+            _messageOutputDataFactory = messageOutputDataFactory;
+            _messageView = messageView;
+            _orderedItems = orderedItems;
+            _orderRepository = orderRepository;
+            _playerImageView = playerImageView;
+            _skillCreator = skillCreator;
+            _skillRepository = skillRepository;
+        }
 
         public EventCode Run()
         {

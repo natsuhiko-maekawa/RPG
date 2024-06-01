@@ -13,6 +13,11 @@ namespace BattleScene.UseCase.Skill
     {
         private readonly IshinhouSkillElement _ishinhouSkillElement;
 
+        public IshinhouSkill(IshinhouSkillElement ishinhouSkillElement)
+        {
+            _ishinhouSkillElement = ishinhouSkillElement;
+        }
+
         public override int GetTechnicalPoint()
         {
             return 3;

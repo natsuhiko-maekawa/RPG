@@ -1,4 +1,4 @@
-﻿using BattleScene.Domain.Code;
+using BattleScene.Domain.Code;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.IRepository;
 using BattleScene.Domain.ValueObject;
@@ -35,6 +35,38 @@ namespace BattleScene.UseCase.Event
         private readonly IResultRepository _resultRepository;
         private readonly SkillCreatorService _skillCreator;
         private readonly ISkillRepository _skillRepository;
+
+        public ResetSkillEvent(
+            AilmentOutputDataFactory ailmentOutputDataFactory,
+            IAilmentRepository ailmentRepository,
+            IAilmentViewPresenter ailmentViewPresenter,
+            CharactersDomainService characters,
+            DestroyedPartOutputDataFactory destroyedPartOutputDataFactory,
+            IDestroyedPartViewPresenter destroyedPartViewPresenter,
+            MessageOutputDataFactory messageOutputDataFactory,
+            IMessageViewPresenter messageViewPresenter,
+            OrderedItemsDomainService orderedItems,
+            ResetSkillService resetSkill,
+            ResultDomainService result,
+            IResultRepository resultRepository,
+            SkillCreatorService skillCreator,
+            ISkillRepository skillRepository)
+        {
+            _ailmentOutputDataFactory = ailmentOutputDataFactory;
+            _ailmentRepository = ailmentRepository;
+            _ailmentViewPresenter = ailmentViewPresenter;
+            _characters = characters;
+            _destroyedPartOutputDataFactory = destroyedPartOutputDataFactory;
+            _destroyedPartViewPresenter = destroyedPartViewPresenter;
+            _messageOutputDataFactory = messageOutputDataFactory;
+            _messageViewPresenter = messageViewPresenter;
+            _orderedItems = orderedItems;
+            _resetSkill = resetSkill;
+            _result = result;
+            _resultRepository = resultRepository;
+            _skillCreator = skillCreator;
+            _skillRepository = skillRepository;
+        }
 
         protected override void UpdateResultRepository()
         {

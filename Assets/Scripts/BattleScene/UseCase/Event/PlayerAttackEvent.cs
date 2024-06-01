@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.IFactory;
 using BattleScene.Domain.IRepository;
@@ -38,6 +38,41 @@ namespace BattleScene.UseCase.Event
         private readonly ITechnicalPointBarViewPresenter _technicalPointBarView;
         private readonly ITechnicalPointRepository _technicalPointRepository;
 
+        public PlayerAttackEvent(
+            AttackCountOutputDataFactory attackCountOutputDataFactory,
+            IAttackCountViewPresenter attackCountView,
+            ICharacterRepository characterRepository,
+            IFrameViewPresenter frameView,
+            MessageOutputDataFactory messageOutputDataFactory,
+            IMessageViewPresenter messageView,
+            OrderedItemsDomainService orderedItems,
+            PlayerAttackPlayerImageOutputDataFactory playerAttackPlayerImageOutputDataFactory,
+            IPlayerImageViewPresenter playerImageView,
+            ResultDomainService result,
+            ISkillRepository skillRepository,
+            ISkillViewInfoFactory skillViewInfoFactory,
+            TargetFrameOutputDataFactory targetFrameOutputDataFactory,
+            TechnicalPointBarOutputDataFactory technicalPointBarOutputDataFactory,
+            ITechnicalPointBarViewPresenter technicalPointBarView,
+            ITechnicalPointRepository technicalPointRepository)
+        {
+            _attackCountOutputDataFactory = attackCountOutputDataFactory;
+            _attackCountView = attackCountView;
+            _characterRepository = characterRepository;
+            _frameView = frameView;
+            _messageOutputDataFactory = messageOutputDataFactory;
+            _messageView = messageView;
+            _orderedItems = orderedItems;
+            _playerAttackPlayerImageOutputDataFactory = playerAttackPlayerImageOutputDataFactory;
+            _playerImageView = playerImageView;
+            _result = result;
+            _skillRepository = skillRepository;
+            _skillViewInfoFactory = skillViewInfoFactory;
+            _targetFrameOutputDataFactory = targetFrameOutputDataFactory;
+            _technicalPointBarOutputDataFactory = technicalPointBarOutputDataFactory;
+            _technicalPointBarView = technicalPointBarView;
+            _technicalPointRepository = technicalPointRepository;
+        }
 
         public EventCode Run()
         {

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
@@ -26,6 +26,32 @@ namespace BattleScene.UseCase.Event
         private readonly IOrderViewPresenter _orderView;
         private readonly OrderOutputDataFactory _outputDataFactory;
         private readonly IRandomEx _randomEx;
+
+        public OrderDecisionEvent(
+            ActionTimeCreatorService actionTimeCreator,
+            IActionTimeRepository actionTimeRepository,
+            AilmentDomainService ailment,
+            ICharacterRepository characterRepository,
+            CharactersDomainService characters,
+            OrderedItemCreatorService orderedItemCreator,
+            OrderedItemsDomainService orderedItems,
+            IOrderRepository orderRepository,
+            IOrderViewPresenter orderView,
+            OrderOutputDataFactory outputDataFactory,
+            IRandomEx randomEx)
+        {
+            _actionTimeCreator = actionTimeCreator;
+            _actionTimeRepository = actionTimeRepository;
+            _ailment = ailment;
+            _characterRepository = characterRepository;
+            _characters = characters;
+            _orderedItemCreator = orderedItemCreator;
+            _orderedItems = orderedItems;
+            _orderRepository = orderRepository;
+            _orderView = orderView;
+            _outputDataFactory = outputDataFactory;
+            _randomEx = randomEx;
+        }
 
         public EventCode Run()
         {

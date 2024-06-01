@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.IFactory;
@@ -18,6 +18,22 @@ namespace BattleScene.UseCase.View.SelectActionView.OutputDataFactory
         private readonly ISelectorRepository _selectorRepository;
         private readonly ISkillRepository _skillRepository;
         private readonly ISkillViewInfoFactory _skillViewInfoFactory;
+
+        public SelectActionOutputDataFactory(
+            AttackCounterService attackCounter,
+            CharactersDomainService characters,
+            MessageOutputDataFactory messageOutputDataFactory,
+            ISelectorRepository selectorRepository,
+            ISkillRepository skillRepository,
+            ISkillViewInfoFactory skillViewInfoFactory)
+        {
+            _attackCounter = attackCounter;
+            _characters = characters;
+            _messageOutputDataFactory = messageOutputDataFactory;
+            _selectorRepository = selectorRepository;
+            _skillRepository = skillRepository;
+            _skillViewInfoFactory = skillViewInfoFactory;
+        }
 
         public SelectActionOutputData Create()
         {

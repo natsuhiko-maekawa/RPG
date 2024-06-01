@@ -1,4 +1,4 @@
-﻿using System.Collections.Immutable;
+using System.Collections.Immutable;
 using BattleScene.Domain.AbstractClass;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.Interface;
@@ -12,6 +12,11 @@ namespace BattleScene.UseCase.Skill
     internal class FieldRationSkill : AbstractSkill
     {
         private readonly BasicCureSkillElement _basicCureSkillElement;
+
+        public FieldRationSkill(BasicCureSkillElement basicCureSkillElement)
+        {
+            _basicCureSkillElement = basicCureSkillElement;
+        }
 
         public override int GetTechnicalPoint()
         {

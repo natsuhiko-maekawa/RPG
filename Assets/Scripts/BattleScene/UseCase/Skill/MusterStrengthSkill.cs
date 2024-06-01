@@ -13,6 +13,11 @@ namespace BattleScene.UseCase.Skill
     {
         private readonly MusterStrengthSkillElement _musterStrengthSkillElement;
 
+        public MusterStrengthSkill(MusterStrengthSkillElement musterStrengthSkillElement)
+        {
+            _musterStrengthSkillElement = musterStrengthSkillElement;
+        }
+
         public override int GetTechnicalPoint()
         {
             return 3;

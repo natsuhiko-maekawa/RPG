@@ -16,6 +16,12 @@ namespace BattleScene.UseCase.Skill
         private readonly BasicDamageSkillElement _basicDamageSkillElement;
         private readonly IRandomEx _randomEx;
 
+        public BiteSkill(BasicDamageSkillElement basicDamageSkillElement, IRandomEx randomEx)
+        {
+            _basicDamageSkillElement = basicDamageSkillElement;
+            _randomEx = randomEx;
+        }
+
         public override Range GetRange()
         {
             return Range.Solo;

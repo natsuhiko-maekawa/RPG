@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using BattleScene.Domain.IFactory;
 using BattleScene.Domain.IRepository;
 using BattleScene.Domain.ValueObject;
@@ -11,6 +11,16 @@ namespace BattleScene.UseCase.Service
         private readonly ICharacterRepository _characterRepository;
         private readonly IPlayerPropertyFactory _playerPropertyFactory;
         private readonly IResultRepository _resultRepository;
+
+        public AttackCounterService(
+            ICharacterRepository characterRepository,
+            IPlayerPropertyFactory playerPropertyFactory,
+            IResultRepository resultRepository)
+        {
+            _characterRepository = characterRepository;
+            _playerPropertyFactory = playerPropertyFactory;
+            _resultRepository = resultRepository;
+        }
 
         public float GetRate()
         {

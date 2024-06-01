@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Immutable;
 using BattleScene.Domain.AbstractClass;
 using BattleScene.Domain.Code;
@@ -14,6 +14,11 @@ namespace BattleScene.UseCase.Skill
     internal class UtsusemiSkill : AbstractSkill
     {
         private readonly UtsusemiSkillElement _utsusemiSkillElement;
+
+        public UtsusemiSkill(UtsusemiSkillElement utsusemiSkillElement)
+        {
+            _utsusemiSkillElement = utsusemiSkillElement;
+        }
 
         public override int GetTechnicalPoint()
         {

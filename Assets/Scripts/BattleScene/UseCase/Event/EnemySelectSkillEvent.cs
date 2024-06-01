@@ -1,4 +1,4 @@
-﻿using System.Collections.Immutable;
+using System.Collections.Immutable;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.IFactory;
 using BattleScene.Domain.IRepository;
@@ -31,6 +31,36 @@ namespace BattleScene.UseCase.Event
         private readonly TargetDomainService _target;
         private readonly TargetFrameOutputDataFactory _targetFrameOutputDataFactory;
         private readonly ITargetRepository _targetRepository;
+
+        public EnemySelectSkillEvent(
+            ICharacterRepository characterRepository,
+            IFrameViewPresenter frameView,
+            MessageOutputDataFactory messageOutputDataFactory,
+            IMessageViewPresenter messageView,
+            OrderedItemsDomainService orderItems,
+            IPlayerImageViewPresenter playerImageView,
+            IRandomEx randomEx,
+            SkillCreatorService skillCreatorService,
+            ISkillRepository skillRepository,
+            ISkillViewInfoFactory skillViewInfoFactory,
+            TargetDomainService target,
+            TargetFrameOutputDataFactory targetFrameOutputDataFactory,
+            ITargetRepository targetRepository)
+        {
+            _characterRepository = characterRepository;
+            _frameView = frameView;
+            _messageOutputDataFactory = messageOutputDataFactory;
+            _messageView = messageView;
+            _orderItems = orderItems;
+            _playerImageView = playerImageView;
+            _randomEx = randomEx;
+            _skillCreatorService = skillCreatorService;
+            _skillRepository = skillRepository;
+            _skillViewInfoFactory = skillViewInfoFactory;
+            _target = target;
+            _targetFrameOutputDataFactory = targetFrameOutputDataFactory;
+            _targetRepository = targetRepository;
+        }
 
         public EventCode Run()
         {

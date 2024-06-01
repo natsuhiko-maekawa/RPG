@@ -23,6 +23,24 @@ namespace BattleScene.UseCase.Skill
         private readonly IRandomEx _randomEx;
         private long _seed;
 
+        public BiteOffSkill(
+            BasicDamageSkillElement basicDamageSkillElement,
+            BleedingSkillElement bleedingSkillElement,
+            DestroyArmSkillElement destroyArmSkillElement,
+            DestroyLegSkillElement destroyLegSkillElement,
+            DestroyStomachSkillElement destroyStomachSkillElement,
+            IRandomEx randomEx,
+            long seed)
+        {
+            _basicDamageSkillElement = basicDamageSkillElement;
+            _bleedingSkillElement = bleedingSkillElement;
+            _destroyArmSkillElement = destroyArmSkillElement;
+            _destroyLegSkillElement = destroyLegSkillElement;
+            _destroyStomachSkillElement = destroyStomachSkillElement;
+            _randomEx = randomEx;
+            _seed = seed;
+        }
+
         public override Range GetRange()
         {
             return Range.Solo;

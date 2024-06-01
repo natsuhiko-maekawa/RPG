@@ -14,6 +14,14 @@ namespace BattleScene.UseCase.Skill
         private readonly BasicDamageSkillElement _basicDamageSkillElement;
         private readonly EnemyParalysisSkillElement _enemyParalysisSkillElement;
 
+        public TaserGunSkill(
+            BasicDamageSkillElement basicDamageSkillElement,
+            EnemyParalysisSkillElement enemyParalysisSkillElement)
+        {
+            _basicDamageSkillElement = basicDamageSkillElement;
+            _enemyParalysisSkillElement = enemyParalysisSkillElement;
+        }
+
         public override int GetTechnicalPoint()
         {
             return 5;

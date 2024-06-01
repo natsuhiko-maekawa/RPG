@@ -13,6 +13,11 @@ namespace BattleScene.UseCase.Skill
     {
         private readonly HonzougakuSkillElement _honzougakuSkillElement;
 
+        public HonzougakuSkill(HonzougakuSkillElement honzougakuSkillElement)
+        {
+            _honzougakuSkillElement = honzougakuSkillElement;
+        }
+
         public override int GetTechnicalPoint()
         {
             return 3;

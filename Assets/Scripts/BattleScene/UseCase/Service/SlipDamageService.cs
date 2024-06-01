@@ -1,4 +1,4 @@
-﻿using System.Collections.Immutable;
+using System.Collections.Immutable;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.ValueObject;
@@ -11,6 +11,18 @@ namespace BattleScene.UseCase.Service
         private readonly OrderedItemsDomainService _orderedItems;
         private readonly ResultCreatorDomainService _resultCreator;
         private readonly SlipDamageDomainService _slipDamage;
+
+        public SlipDamageService(
+            CharactersDomainService characters,
+            OrderedItemsDomainService orderedItems,
+            ResultCreatorDomainService resultCreator,
+            SlipDamageDomainService slipDamage)
+        {
+            _characters = characters;
+            _orderedItems = orderedItems;
+            _resultCreator = resultCreator;
+            _slipDamage = slipDamage;
+        }
 
         public ResultEntity Damage()
         {

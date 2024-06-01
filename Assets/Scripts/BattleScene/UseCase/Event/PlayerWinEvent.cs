@@ -12,6 +12,14 @@ namespace BattleScene.UseCase.Event
         private readonly MessageOutputDataFactory _messageOutputDataFactory;
         private readonly IMessageViewPresenter _messageViewPresenter;
 
+        public PlayerWinEvent(
+            MessageOutputDataFactory messageOutputDataFactory,
+            IMessageViewPresenter messageViewPresenter)
+        {
+            _messageOutputDataFactory = messageOutputDataFactory;
+            _messageViewPresenter = messageViewPresenter;
+        }
+
         public EventCode Run()
         {
             var playerWinMessage = _messageOutputDataFactory.Create(PlayerWinMessage);
