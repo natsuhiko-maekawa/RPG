@@ -15,7 +15,7 @@ namespace BattleScene.Framework.Resource
             return msgScriptableObject.msgList;
         }
 
-        public List<PropertyDataStore> GetPropertyScriptableObject()
+        public List<PropertyDto> GetPropertyScriptableObject()
         {
             return propertyScriptableObject.propertyList;
         }

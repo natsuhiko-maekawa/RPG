@@ -7,8 +7,8 @@ namespace BattleScene.Domain.IFactory
 {
     public interface IPropertyFactory
     {
-        public PropertyValueObject Get(CharacterTypeId key);
-        public ImmutableList<PropertyValueObject> Get(IList<CharacterTypeId> key);
+        public PropertyValueObject Get(CharacterTypeId characterTypeId);
+        public ImmutableList<PropertyValueObject> Get(IList<CharacterTypeId> characterTypeIdList);
         public ImmutableList<PropertyValueObject> GetAll();
     }
 }

@@ -6,10 +6,9 @@ using UnityEngine;
 namespace BattleScene.InterfaceAdapter.DataAccess.Factory.Dto
 {
     [Serializable]
-    public class PropertyDataStore : ISerializationCallbackReceiver
+    public class PropertyDto : ISerializationCallbackReceiver
     {
         [SerializeField] private string key;
-        public string name;
         public int hp;
         public int strength;
         public int vitality;
@@ -19,7 +18,7 @@ namespace BattleScene.InterfaceAdapter.DataAccess.Factory.Dto
         public int luck;
         [SerializeField] private string[] skills;
         [SerializeField] private string[] weakPoints;
-        public CharacterTypeId Key { get; private set; }
+        public CharacterTypeId CharacterTypeId { get; private set; }
         public SkillCode[] Skills { get; private set; }
         public MatAttrCode[] WeakPoints { get; private set; }
 
@@ -29,7 +28,7 @@ namespace BattleScene.InterfaceAdapter.DataAccess.Factory.Dto
 
         public void OnAfterDeserialize()
         {
-            Key = Enum.Parse<CharacterTypeId>(key);
+            CharacterTypeId = Enum.Parse<CharacterTypeId>(key);
             Skills = skills.Select(Enum.Parse<SkillCode>).ToArray();
             WeakPoints = weakPoints.Select(Enum.Parse<MatAttrCode>).ToArray();
         }

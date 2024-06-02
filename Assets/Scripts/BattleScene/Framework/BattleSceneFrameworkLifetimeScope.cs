@@ -1,4 +1,5 @@
-﻿using BattleScene.InterfaceAdapter.IInputSystem;
+﻿using BattleScene.InterfaceAdapter.DataAccess.IResource;
+using BattleScene.InterfaceAdapter.IInputSystem;
 using BattleScene.InterfaceAdapter.IView;
 using VContainer;
 using VContainer.Unity;
@@ -19,6 +20,7 @@ namespace BattleScene.Framework
             builder.RegisterComponentInHierarchy<IPlayerStatusView>();
             builder.RegisterComponentInHierarchy<ISelectActionView>();
             builder.RegisterComponentInHierarchy<ISelectSkillView>();
+            builder.RegisterComponentInHierarchy<IPropertyResource>();
         }
     }
 }

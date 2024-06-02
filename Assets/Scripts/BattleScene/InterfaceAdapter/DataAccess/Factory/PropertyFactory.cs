@@ -11,33 +11,33 @@ namespace BattleScene.InterfaceAdapter.DataAccess.Factory
 {
     public class PropertyFactory : IPropertyFactory
     {
-        private readonly IBattleSceneScriptableObject _battleSceneScriptableObject;
+        private readonly IPropertyResource _propertyResource;
 
         public PropertyFactory(
-            IBattleSceneScriptableObject battleSceneScriptableObject)
+            IPropertyResource propertyResource)
         {
-            _battleSceneScriptableObject = battleSceneScriptableObject;
+            _propertyResource = propertyResource;
         }
 
-        public PropertyValueObject Get(CharacterTypeId key)
+        public PropertyValueObject Get(CharacterTypeId characterTypeId)
         {
-            return _battleSceneScriptableObject.GetPropertyScriptableObject()
-                .Where(x => x.Key == key)
-                .Select(x => new PropertyValueObject(x.Key, x.hp, x.strength, x.vitality, x.intelligence, x.wisdom,
-                    x.agility, x.luck, x.WeakPoints, x.Skills))
+            return _propertyResource.Get()
+                .Where(x => x.CharacterTypeId == characterTypeId)
+                .Select(x => new PropertyValueObject(x.CharacterTypeId, x.hp, x.strength, x.vitality, x.intelligence,
+                    x.wisdom, x.agility, x.luck, x.WeakPoints, x.Skills))
                 .First();
         }
 
-        public ImmutableList<PropertyValueObject> Get(IList<CharacterTypeId> key)
+        public ImmutableList<PropertyValueObject> Get(IList<CharacterTypeId> characterTypeIdList)
         {
             throw new NotImplementedException();
         }
 
         public ImmutableList<PropertyValueObject> GetAll()
         {
-            return _battleSceneScriptableObject.GetPropertyScriptableObject()
-                .Select(x => new PropertyValueObject(x.Key, x.hp, x.strength, x.vitality, x.intelligence, x.wisdom,
-                    x.agility, x.luck, x.WeakPoints, x.Skills))
+            return _propertyResource.Get()
+                .Select(x => new PropertyValueObject(x.CharacterTypeId, x.hp, x.strength, x.vitality, x.intelligence,
+                    x.wisdom, x.agility, x.luck, x.WeakPoints, x.Skills))
                 .ToImmutableList();
         }
     }
