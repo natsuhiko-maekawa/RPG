@@ -5,7 +5,7 @@ using VContainer.Unity;
 
 namespace BattleScene.UserInterface
 {
-    public class BattleSceneInfrastructureLifetimeScope : LifetimeScope
+    public class BattleSceneFrameworkLifetimeScope : LifetimeScope
     {
         protected override void Configure(IContainerBuilder builder)
         {

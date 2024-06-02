@@ -1,12 +1,12 @@
 {
-    "name": "InterfaceAdapter.BattleScene",
+    "name": "Framework.BattleScene",
     "rootNamespace": "",
     "references": [
-        "GUID:61864ae4a21bb34499f7a25a7cfad63d",
-        "GUID:062eb1bb433fab64db7cf7ea86052655",
-        "GUID:a5ef4021daea9114cb5dcce50d96f987",
-        "GUID:b0214a6008ed146ff8f122a6a9c2f6cc",
-        "GUID:13af43e49dd1b024abe6ff1ba507fabb"
+        "GUID:4bf271daf51e81f4b88fa7ea343294b9",
+        "GUID:6055be8ebefd69e48b49212b09b47b2f",
+        "GUID:75469ad4d38634e559750d17036d5f7c",
+        "GUID:13af43e49dd1b024abe6ff1ba507fabb",
+        "GUID:b0214a6008ed146ff8f122a6a9c2f6cc"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

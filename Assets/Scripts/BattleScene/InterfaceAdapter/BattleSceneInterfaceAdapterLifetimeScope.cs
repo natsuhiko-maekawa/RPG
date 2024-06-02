@@ -1,4 +1,6 @@
-﻿using BattleScene.InterfaceAdapter.Controller;
+﻿using BattleScene.Domain.IFactory;
+using BattleScene.Infrastructure.Factory;
+using BattleScene.InterfaceAdapter.Controller;
 using BattleScene.InterfaceAdapter.Presenter.AilmentsView;
 using BattleScene.InterfaceAdapter.Presenter.BuffView;
 using BattleScene.InterfaceAdapter.Presenter.CharacterVibesView;
@@ -37,7 +39,7 @@ using VContainer.Unity;
 
 namespace BattleScene.InterfaceAdapter
 {
-    public class BattleSceneAdapterLifetimeScope : LifetimeScope
+    public class BattleSceneInterfaceAdapterLifetimeScope : LifetimeScope
     {
         protected override void Configure(IContainerBuilder builder)
         {
@@ -59,6 +61,8 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<ITechnicalPointBarViewPresenter, TechnicalPointBarViewPresenter>(Lifetime.Singleton);
             builder.Register<ICharacterVibesViewPresenter, CharacterVibesViewPresenter>(Lifetime.Singleton);
             builder.Register<IBattleSceneController, BattleSceneController>(Lifetime.Singleton);
+            
+            builder.Register<IPropertyFactory, PropertyFactory>(Lifetime.Singleton);
         }
     }
 }
