@@ -1,4 +1,5 @@
-﻿using BattleScene.UseCase.Event;
+﻿using BattleScene.Domain.DomainService;
+using BattleScene.UseCase.Event;
 using BattleScene.UseCase.Event.Runner;
 using BattleScene.UseCase.Service;
 using VContainer;
@@ -55,6 +56,7 @@ namespace BattleScene.UseCase
             builder.Register<ToBodyPartNumberService>(Lifetime.Singleton);
             builder.Register<ToBuffNumberService>(Lifetime.Singleton);
             builder.Register<TurnService>(Lifetime.Singleton);
+            builder.Register<CharactersDomainService>(Lifetime.Singleton);
 
         }
     }

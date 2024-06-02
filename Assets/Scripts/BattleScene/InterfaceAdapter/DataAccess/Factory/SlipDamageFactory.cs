@@ -1,13 +1,14 @@
 ﻿using BattleScene.Domain.Code;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
+using BattleScene.Domain.IFactory;
 using BattleScene.Domain.IRepository;
 using BattleScene.Domain.ValueObject;
 using BattleScene.InterfaceAdapter.DataAccess.IResource;
 
 namespace BattleScene.InterfaceAdapter.DataAccess.Factory
 {
-    public class SlipDamageFactory
+    public class SlipDamageFactory : ISlipDamageFactory
     {
         private readonly ICharacterRepository _characterRepository;
         private readonly ISlipDamageScriptableObject _slipDamageScriptableObject;

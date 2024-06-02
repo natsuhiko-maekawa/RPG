@@ -1,6 +1,8 @@
 ﻿using BattleScene.Domain.IFactory;
+using BattleScene.Domain.IRepository;
 using BattleScene.InterfaceAdapter.Controller;
 using BattleScene.InterfaceAdapter.DataAccess.Factory;
+using BattleScene.InterfaceAdapter.DataAccess.Repository;
 using BattleScene.InterfaceAdapter.Presenter.AilmentsView;
 using BattleScene.InterfaceAdapter.Presenter.BuffView;
 using BattleScene.InterfaceAdapter.Presenter.CharacterVibesView;
@@ -62,7 +64,22 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<ICharacterVibesViewPresenter, CharacterVibesViewPresenter>(Lifetime.Singleton);
             builder.Register<IBattleSceneController, BattleSceneController>(Lifetime.Singleton);
             
+            builder.Register<IActionTimeRepository, ActionTimeRepository>(Lifetime.Singleton);
+            builder.Register<IAilmentRepository, AilmentRepository>(Lifetime.Singleton);
+            builder.Register<ICharacterRepository, CharacterRepository>(Lifetime.Singleton);
+            builder.Register<IHitPointRepository, HitPointRepository>(Lifetime.Singleton);
+            builder.Register<IOrderRepository, OrderRepository>(Lifetime.Singleton);
+            builder.Register<IResultRepository, ResultRepository>(Lifetime.Singleton);
+            builder.Register<ISlipDamageRepository, SlipDamageRepository>(Lifetime.Singleton);
+
+            builder.Register<IAilmentFactory, AilmentFactory>(Lifetime.Singleton);
+            builder.Register<IAilmentViewInfoFactory, AilmentViewInfoFactory>(Lifetime.Singleton);
+            builder.Register<IBodyPartFactory, BodyPartFactory>(Lifetime.Singleton);
+            builder.Register<IEnemyViewInfoFactory, EnemyViewInfoFactory>(Lifetime.Singleton);
+            builder.Register<IMessageFactory, MessageFactory>(Lifetime.Singleton);
+            builder.Register<IPlayerPropertyFactory, PlayerPropertyFactory>(Lifetime.Singleton);
             builder.Register<IPropertyFactory, PropertyFactory>(Lifetime.Singleton);
+            builder.Register<ISlipDamageFactory, SlipDamageFactory>(Lifetime.Singleton);
         }
     }
 }

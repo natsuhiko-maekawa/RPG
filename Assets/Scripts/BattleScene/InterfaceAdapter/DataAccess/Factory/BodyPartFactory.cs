@@ -2,10 +2,11 @@
 using BattleScene.Domain.Code;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
+using BattleScene.Domain.IFactory;
 
 namespace BattleScene.InterfaceAdapter.DataAccess.Factory
 {
-    public class BodyPartFactory
+    public class BodyPartFactory : IBodyPartFactory
     {
         public BodyPartEntity Create(CharacterId characterId, BodyPartCode bodyPartCode)
         {
