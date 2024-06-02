@@ -7,6 +7,7 @@ using BattleScene.Domain.Id;
 using BattleScene.Domain.IFactory;
 using BattleScene.Domain.ValueObject;
 using Utility;
+using Utility.Interface;
 using static BattleScene.Domain.Code.CharacterTypeId;
 
 namespace BattleScene.UseCase.Service

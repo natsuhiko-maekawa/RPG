@@ -1,4 +1,4 @@
-﻿namespace Utility
+﻿namespace Utility.Interface
 {
     public interface IXmlSerializer
     {

@@ -7,6 +7,7 @@ using BattleScene.Domain.IRepository;
 using BattleScene.Domain.ValueObject;
 using BattleScene.UseCase.Skill.Interface;
 using Utility;
+using Utility.Interface;
 
 namespace BattleScene.UseCase.Service
 {

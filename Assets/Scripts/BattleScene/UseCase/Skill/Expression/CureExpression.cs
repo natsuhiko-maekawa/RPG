@@ -2,6 +2,7 @@
 using BattleScene.Domain.IRepository;
 using BattleScene.UseCase.Skill.AbstractClass;
 using Utility;
+using Utility.Interface;
 
 namespace BattleScene.UseCase.Skill.Expression
 {

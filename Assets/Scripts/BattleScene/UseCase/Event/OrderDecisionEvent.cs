@@ -9,6 +9,7 @@ using BattleScene.UseCase.Service;
 using BattleScene.UseCase.View.OrderView.OutputBoundary;
 using BattleScene.UseCase.View.OrderView.OutputDataFactory;
 using Utility;
+using Utility.Interface;
 using static BattleScene.Domain.Code.AilmentCode;
 
 namespace BattleScene.UseCase.Event

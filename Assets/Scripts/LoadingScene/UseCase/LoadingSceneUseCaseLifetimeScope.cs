@@ -1,6 +1,7 @@
 ﻿using LoadingScene.Domain;
 using LoadingScene.UseCase.Tips;
 using Utility;
+using Utility.Interface;
 using VContainer;
 using VContainer.Unity;
 

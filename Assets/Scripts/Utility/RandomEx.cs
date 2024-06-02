@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Utility.Interface;
 using Random = Unity.Mathematics.Random;
 
 namespace Utility
