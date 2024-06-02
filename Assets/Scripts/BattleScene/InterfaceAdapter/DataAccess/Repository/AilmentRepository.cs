@@ -6,37 +6,36 @@ using BattleScene.Domain.Code;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
+using Utility;
 
 namespace BattleScene.InterfaceAdapter.DataAccess.Repository
 {
     public class AilmentRepository : IAilmentRepository
     {
-        private List<AilmentEntity> _ailmentEntityList;
+        private readonly HashSet<AilmentEntity> _ailmentEntitySet = new();
 
         public ImmutableList<AilmentEntity> Select(CharacterId characterId)
         {
-            return _ailmentEntityList
+            return _ailmentEntitySet
                 .Where(x => Equals(x.CharacterId, characterId))
                 .ToImmutableList();
         }
 
         public AilmentEntity Select(CharacterId characterId, AilmentCode ailmentCode)
         {
-            return _ailmentEntityList
+            return _ailmentEntitySet
                 .First(x => Equals(x.CharacterId, characterId) && x.AilmentCode == ailmentCode);
         }
 
         public void Update(AilmentEntity ailmentEntity)
         {
-            _ailmentEntityList.Remove(ailmentEntity);
-            _ailmentEntityList.Add(ailmentEntity);
+            _ailmentEntitySet.Update(ailmentEntity);
         }
 
         public void Delete(CharacterId characterId)
         {
-            _ailmentEntityList = _ailmentEntityList
-                .Where(x => !Equals(x.CharacterId, characterId))
-                .ToList();
+            _ailmentEntitySet
+                .RemoveWhere(x => !Equals(x.CharacterId, characterId));
         }
 
         public void Delete(CharacterId characterId, AilmentCode ailmentCode)
@@ -56,13 +55,13 @@ namespace BattleScene.InterfaceAdapter.DataAccess.Repository
 
         public ImmutableList<AilmentEntity> Select()
         {
-            return _ailmentEntityList
+            return _ailmentEntitySet
                 .ToImmutableList();
         }
 
         public void Delete(AilmentEntity ailmentEntity)
         {
-            _ailmentEntityList.Remove(ailmentEntity);
+            _ailmentEntitySet.Remove(ailmentEntity);
         }
     }
 }

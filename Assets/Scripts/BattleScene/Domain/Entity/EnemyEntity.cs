@@ -11,7 +11,7 @@ namespace BattleScene.Domain.Entity
             CharacterId = characterId;
             EnemyNumber = enemyNumber;
         }
-
+        
         public CharacterId CharacterId { get; }
         public int EnemyNumber { get; }
     }

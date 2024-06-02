@@ -9,6 +9,6 @@ namespace BattleScene.Domain.IFactory
     {
         public PropertyValueObject Get(CharacterTypeId characterTypeId);
         public ImmutableList<PropertyValueObject> Get(IList<CharacterTypeId> characterTypeIdList);
-        public ImmutableList<PropertyValueObject> GetAll();
+        public ImmutableList<PropertyValueObject> Get();
     }
 }

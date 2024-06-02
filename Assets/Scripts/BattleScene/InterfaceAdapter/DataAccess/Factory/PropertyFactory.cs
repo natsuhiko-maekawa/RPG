@@ -30,10 +30,10 @@ namespace BattleScene.InterfaceAdapter.DataAccess.Factory
 
         public ImmutableList<PropertyValueObject> Get(IList<CharacterTypeId> characterTypeIdList)
         {
-            throw new NotImplementedException();
+            return characterTypeIdList.Select(Get).ToImmutableList();
         }
 
-        public ImmutableList<PropertyValueObject> GetAll()
+        public ImmutableList<PropertyValueObject> Get()
         {
             return _propertyResource.Get()
                 .Select(x => new PropertyValueObject(x.CharacterTypeId, x.hp, x.strength, x.vitality, x.intelligence,

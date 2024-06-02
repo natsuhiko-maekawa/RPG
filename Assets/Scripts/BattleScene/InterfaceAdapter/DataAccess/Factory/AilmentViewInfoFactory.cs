@@ -1,4 +1,5 @@
-﻿using BattleScene.Domain.Code;
+﻿using System.Linq;
+using BattleScene.Domain.Code;
 using BattleScene.Domain.IFactory;
 using BattleScene.Domain.ValueObject;
 using BattleScene.InterfaceAdapter.DataAccess.IResource;
@@ -7,22 +8,23 @@ namespace BattleScene.InterfaceAdapter.DataAccess.Factory
 {
     public class AilmentViewInfoFactory : IAilmentViewInfoFactory
     {
-        private readonly IAilmentViewInfoScriptableObject _ailmentViewInfoScriptableObject;
+        private readonly IAilmentViewInfoResource _ailmentViewInfoResource;
 
         public AilmentViewInfoFactory(
-            IAilmentViewInfoScriptableObject ailmentViewInfoScriptableObject)
+            IAilmentViewInfoResource ailmentViewInfoResource)
         {
-            _ailmentViewInfoScriptableObject = ailmentViewInfoScriptableObject;
+            _ailmentViewInfoResource = ailmentViewInfoResource;
         }
 
         public AilmentViewInfoValueObject Create(AilmentCode ailmentCode)
         {
-            var ailmentViewInfoDto = _ailmentViewInfoScriptableObject.Select(ailmentCode);
+            var ailmentViewInfoDto = _ailmentViewInfoResource.Get()
+                .First(x => x.AilmentCode == ailmentCode);
             return new AilmentViewInfoValueObject(
                 ailmentCode,
                 ailmentViewInfoDto.ailmentName,
-                ailmentViewInfoDto.messageCode,
-                ailmentViewInfoDto.playerImageCode);
+                ailmentViewInfoDto.MessageCode,
+                ailmentViewInfoDto.PlayerImageCode);
         }
     }
 }
