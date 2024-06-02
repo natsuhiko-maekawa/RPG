@@ -3,7 +3,7 @@ using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
 using BattleScene.Domain.ValueObject;
-using BattleScene.InterfaceAdapter.DataAccess.IScriptableObject;
+using BattleScene.InterfaceAdapter.DataAccess.IResource;
 
 namespace BattleScene.InterfaceAdapter.DataAccess.Factory
 {
