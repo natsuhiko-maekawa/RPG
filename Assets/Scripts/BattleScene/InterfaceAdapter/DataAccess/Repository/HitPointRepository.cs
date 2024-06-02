@@ -1,4 +1,4 @@
-﻿namespace BattleScene.Infrastructure.Repository
+﻿namespace BattleScene.InterfaceAdapter.DataAccess.Repository
 {
     public class HitPointRepository
     {

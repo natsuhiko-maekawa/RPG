@@ -7,7 +7,7 @@ using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
 
-namespace BattleScene.Infrastructure.Repository
+namespace BattleScene.InterfaceAdapter.DataAccess.Repository
 {
     public class AilmentRepository : IAilmentRepository
     {

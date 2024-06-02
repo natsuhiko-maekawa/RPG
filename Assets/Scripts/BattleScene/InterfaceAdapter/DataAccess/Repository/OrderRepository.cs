@@ -2,7 +2,7 @@ using System;
 using BattleScene.Domain.Aggregate;
 using BattleScene.Domain.IRepository;
 
-namespace BattleScene.Infrastructure.Repository
+namespace BattleScene.InterfaceAdapter.DataAccess.Repository
 {
     public class OrderRepository : IOrderRepository
     {

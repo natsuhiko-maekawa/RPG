@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using BattleScene.Infrastructure.Factory.Dto;
+using BattleScene.InterfaceAdapter.DataAccess.Factory.Dto;
 using UnityEngine;
 
-namespace BattleScene.Infrastructure.ScriptableObject
+namespace BattleScene.Framework.ScriptableObject
 {
     [CreateAssetMenu(menuName = "ScriptableObjects/Msg")]
     public class MsgScriptableObject : UnityEngine.ScriptableObject

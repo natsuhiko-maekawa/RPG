@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BattleScene.Infrastructure
+namespace BattleScene.InterfaceAdapter.DataAccess
 {
     public class TempSaveAttribute : Attribute
     {

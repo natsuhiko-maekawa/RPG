@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace BattleScene.UserInterface
+namespace BattleScene.Framework
 {
     public interface ISpriteFlyweight
     {

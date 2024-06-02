@@ -12,7 +12,7 @@ using UnityEngine;
 using VContainer;
 using Image = UnityEngine.UI.Image;
 
-namespace BattleScene.UserInterface.View
+namespace BattleScene.Framework.View
 {
     public class EnemiesView : MonoBehaviour, IEnemiesView
     {

@@ -3,7 +3,7 @@ using BattleScene.InterfaceAdapter.IInputSystem;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace BattleScene.UserInterface.InputSystem
+namespace BattleScene.Framework.InputSystem
 {
     public class BattleSceneInputSystem : MonoBehaviour, IBattleSceneInputSystem
     {

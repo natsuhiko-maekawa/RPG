@@ -3,7 +3,7 @@ using BattleScene.Domain.Code;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 
-namespace BattleScene.Infrastructure.Factory
+namespace BattleScene.InterfaceAdapter.DataAccess.Factory
 {
     public class BodyPartFactory
     {

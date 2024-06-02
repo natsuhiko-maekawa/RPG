@@ -7,9 +7,9 @@ using BattleScene.InterfaceAdapter.Presenter.StatusBarView;
 using UnityEngine;
 using UnityEngine.UI;
 using VContainer;
-using static BattleScene.UserInterface.Constant;
+using static BattleScene.Framework.Constant;
 
-namespace BattleScene.UserInterface.View
+namespace BattleScene.Framework.View
 {
     public class PlayerView : MonoBehaviour, IPlayerView
     {

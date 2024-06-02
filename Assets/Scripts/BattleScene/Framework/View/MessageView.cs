@@ -4,9 +4,9 @@ using BattleScene.InterfaceAdapter.IView;
 using BattleScene.InterfaceAdapter.Presenter.MessageView;
 using UnityEngine;
 using UnityEngine.UI;
-using static BattleScene.UserInterface.Constant;
+using static BattleScene.Framework.Constant;
 
-namespace BattleScene.UserInterface.View
+namespace BattleScene.Framework.View
 {
     public class MessageView : MonoBehaviour, IMessageView
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using BattleScene.Domain.Code;
 
-namespace BattleScene.Infrastructure.Factory.Dto
+namespace BattleScene.InterfaceAdapter.DataAccess.Factory.Dto
 {
     [Serializable]
     public class MessageDto

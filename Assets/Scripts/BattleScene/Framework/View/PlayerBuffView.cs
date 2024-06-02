@@ -3,7 +3,7 @@ using System.Linq;
 using BattleScene.InterfaceAdapter.Presenter.BuffView;
 using UnityEngine;
 
-namespace BattleScene.UserInterface.View
+namespace BattleScene.Framework.View
 {
     public class PlayerBuffView : MonoBehaviour
     {

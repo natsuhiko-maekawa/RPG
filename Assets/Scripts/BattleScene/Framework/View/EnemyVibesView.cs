@@ -1,10 +1,10 @@
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
-using static BattleScene.UserInterface.Constant;
+using static BattleScene.Framework.Constant;
 using Random = UnityEngine.Random;
 
-namespace BattleScene.UserInterface.View
+namespace BattleScene.Framework.View
 {
     public class EnemyVibesView : MonoBehaviour
     {

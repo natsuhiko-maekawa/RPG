@@ -5,10 +5,10 @@ namespace Mediator
 {
     public class SpriteFlyweight : ISpriteFlyweight
     {
-        private readonly BattleScene.UserInterface.ISpriteFlyweight _spriteFlyweight;
+        private readonly BattleScene.Framework.ISpriteFlyweight _spriteFlyweight;
 
         public SpriteFlyweight(
-            BattleScene.UserInterface.ISpriteFlyweight spriteFlyweight)
+            BattleScene.Framework.ISpriteFlyweight spriteFlyweight)
         {
             _spriteFlyweight = spriteFlyweight;
         }

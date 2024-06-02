@@ -7,7 +7,7 @@ using BattleScene.InterfaceAdapter.Presenter.DestroyedPartView;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace BattleScene.UserInterface.View
+namespace BattleScene.Framework.View
 {
     public class PlayerStatusView : MonoBehaviour, IPlayerStatusView
     {

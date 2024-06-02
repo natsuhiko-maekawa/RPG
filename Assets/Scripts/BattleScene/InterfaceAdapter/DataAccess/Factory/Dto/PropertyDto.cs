@@ -3,7 +3,7 @@ using System.Linq;
 using BattleScene.Domain.Code;
 using UnityEngine;
 
-namespace BattleScene.Infrastructure.Factory.Dto
+namespace BattleScene.InterfaceAdapter.DataAccess.Factory.Dto
 {
     [Serializable]
     public class PropertyDataStore : ISerializationCallbackReceiver

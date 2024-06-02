@@ -3,9 +3,9 @@ using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.IFactory;
 using BattleScene.Domain.ValueObject;
-using BattleScene.Infrastructure.IScriptableObject;
+using BattleScene.InterfaceAdapter.DataAccess.IScriptableObject;
 
-namespace BattleScene.Infrastructure.Factory
+namespace BattleScene.InterfaceAdapter.DataAccess.Factory
 {
     public class AilmentFactory : IAilmentFactory
     {

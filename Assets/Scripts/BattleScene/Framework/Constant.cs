@@ -1,4 +1,4 @@
-﻿namespace BattleScene.UserInterface
+﻿namespace BattleScene.Framework
 {
     public static class Constant
     {

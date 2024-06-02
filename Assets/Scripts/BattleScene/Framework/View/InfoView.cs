@@ -4,7 +4,7 @@ using BattleScene.InterfaceAdapter.Presenter.InfoView;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace BattleScene.UserInterface.View
+namespace BattleScene.Framework.View
 {
     public class InfoView : MonoBehaviour, IInfoView
     {

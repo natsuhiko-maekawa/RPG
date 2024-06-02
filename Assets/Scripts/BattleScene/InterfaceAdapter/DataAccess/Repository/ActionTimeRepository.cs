@@ -5,7 +5,7 @@ using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
 using Utility;
 
-namespace BattleScene.Infrastructure.Repository
+namespace BattleScene.InterfaceAdapter.DataAccess.Repository
 {
     public class ActionTimeRepository : IActionTimeRepository
     {

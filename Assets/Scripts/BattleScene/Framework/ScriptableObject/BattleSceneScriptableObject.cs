@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using BattleScene.Infrastructure.Factory.Dto;
-using BattleScene.Infrastructure.IScriptableObject;
+using BattleScene.InterfaceAdapter.DataAccess.Factory.Dto;
+using BattleScene.InterfaceAdapter.DataAccess.IScriptableObject;
 using UnityEngine;
 
-namespace BattleScene.Infrastructure.ScriptableObject
+namespace BattleScene.Framework.ScriptableObject
 {
     public class BattleSceneScriptableObject : MonoBehaviour, IBattleSceneScriptableObject
     {

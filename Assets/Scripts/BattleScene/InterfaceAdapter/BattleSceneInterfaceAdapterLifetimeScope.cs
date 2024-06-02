@@ -1,6 +1,6 @@
 ﻿using BattleScene.Domain.IFactory;
-using BattleScene.Infrastructure.Factory;
 using BattleScene.InterfaceAdapter.Controller;
+using BattleScene.InterfaceAdapter.DataAccess.Factory;
 using BattleScene.InterfaceAdapter.Presenter.AilmentsView;
 using BattleScene.InterfaceAdapter.Presenter.BuffView;
 using BattleScene.InterfaceAdapter.Presenter.CharacterVibesView;

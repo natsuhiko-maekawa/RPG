@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace BattleScene.UserInterface
+namespace BattleScene.Framework
 {
     public class SpriteFlyweight : ISpriteFlyweight
     {

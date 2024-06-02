@@ -5,9 +5,9 @@ using System.Linq;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.IFactory;
 using BattleScene.Domain.ValueObject;
-using BattleScene.Infrastructure.IScriptableObject;
+using BattleScene.InterfaceAdapter.DataAccess.IScriptableObject;
 
-namespace BattleScene.Infrastructure.Factory
+namespace BattleScene.InterfaceAdapter.DataAccess.Factory
 {
     public class PropertyFactory : IPropertyFactory
     {

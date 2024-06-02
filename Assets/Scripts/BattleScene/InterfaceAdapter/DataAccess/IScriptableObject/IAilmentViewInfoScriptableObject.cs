@@ -1,7 +1,7 @@
 ﻿using BattleScene.Domain.Code;
-using BattleScene.Infrastructure.Factory.Dto;
+using BattleScene.InterfaceAdapter.DataAccess.Factory.Dto;
 
-namespace BattleScene.Infrastructure.IScriptableObject
+namespace BattleScene.InterfaceAdapter.DataAccess.IScriptableObject
 {
     public interface IAilmentViewInfoScriptableObject
     {

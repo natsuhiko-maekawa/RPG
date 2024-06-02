@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Utility;
 
-namespace BattleScene.UserInterface.View
+namespace BattleScene.Framework.View
 {
     public class EnemyAilmentsView : MonoBehaviour
     {

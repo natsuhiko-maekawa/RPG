@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using BattleScene.InterfaceAdapter.Presenter.DestroyedPartView;
 using UnityEngine;
 
-namespace BattleScene.UserInterface.View
+namespace BattleScene.Framework.View
 {
     public class PlayerDestroyedPartView : MonoBehaviour
     {

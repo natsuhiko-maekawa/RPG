@@ -3,7 +3,7 @@ using BattleScene.InterfaceAdapter.IView;
 using VContainer;
 using VContainer.Unity;
 
-namespace BattleScene.UserInterface
+namespace BattleScene.Framework
 {
     public class BattleSceneFrameworkLifetimeScope : LifetimeScope
     {

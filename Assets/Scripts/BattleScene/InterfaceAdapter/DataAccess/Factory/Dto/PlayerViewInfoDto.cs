@@ -1,4 +1,4 @@
-﻿namespace BattleScene.Infrastructure.Factory.Dto
+﻿namespace BattleScene.InterfaceAdapter.DataAccess.Factory.Dto
 {
     public class PlayerViewInfoDto
     {

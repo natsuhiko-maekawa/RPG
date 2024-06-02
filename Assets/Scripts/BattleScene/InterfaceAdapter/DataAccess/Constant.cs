@@ -1,4 +1,4 @@
-﻿namespace BattleScene.Infrastructure
+﻿namespace BattleScene.InterfaceAdapter.DataAccess
 {
     public static class Constant
     {

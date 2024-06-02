@@ -3,7 +3,7 @@ using BattleScene.InterfaceAdapter.Presenter.StatusBarView;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace BattleScene.UserInterface.View
+namespace BattleScene.Framework.View
 {
     public class StatusBarView : MonoBehaviour
     {

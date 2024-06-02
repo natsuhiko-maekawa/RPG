@@ -2,7 +2,7 @@
 using BattleScene.Domain.IFactory;
 using BattleScene.Domain.ValueObject;
 
-namespace BattleScene.Infrastructure.Factory
+namespace BattleScene.InterfaceAdapter.DataAccess.Factory
 {
     public class PlayerPropertyFactory : IPlayerPropertyFactory
     {

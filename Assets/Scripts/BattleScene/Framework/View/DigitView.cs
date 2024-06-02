@@ -5,10 +5,10 @@ using BattleScene.InterfaceAdapter.IView;
 using BattleScene.InterfaceAdapter.Presenter.DigitView;
 using TMPro;
 using UnityEngine;
-using static BattleScene.UserInterface.Constant;
+using static BattleScene.Framework.Constant;
 using Random = UnityEngine.Random;
 
-namespace BattleScene.UserInterface.View
+namespace BattleScene.Framework.View
 {
     public class DigitView : MonoBehaviour, IDigitView
     {

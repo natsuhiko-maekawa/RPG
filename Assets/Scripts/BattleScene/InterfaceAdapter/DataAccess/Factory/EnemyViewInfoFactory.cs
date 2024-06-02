@@ -1,4 +1,4 @@
-﻿namespace BattleScene.Infrastructure.Factory
+﻿namespace BattleScene.InterfaceAdapter.DataAccess.Factory
 {
     public class EnemyViewInfoFactory
     {

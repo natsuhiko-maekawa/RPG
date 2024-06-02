@@ -13,7 +13,7 @@ namespace Mediator
 
             builder.Register<ILoadingImage, LoadingImage>(Lifetime.Singleton);
             builder.Register<ISpriteFlyweight, SpriteFlyweight>(Lifetime.Singleton);
-            builder.Register<BattleScene.UserInterface.ISpriteFlyweight, BattleScene.UserInterface.SpriteFlyweight>(
+            builder.Register<BattleScene.Framework.ISpriteFlyweight, BattleScene.Framework.SpriteFlyweight>(
                 Lifetime.Singleton);
             // builder.Register<ILoadingImage, BattleScene.Adapter.LoadingImage>(
             //     Lifetime.Singleton);
