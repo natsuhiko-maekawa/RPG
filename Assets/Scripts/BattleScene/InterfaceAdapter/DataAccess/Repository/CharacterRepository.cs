@@ -10,7 +10,7 @@ namespace BattleScene.InterfaceAdapter.DataAccess.Repository
 {
     public class CharacterRepository : ICharacterRepository
     {
-        private HashSet<CharacterAggregate> _characterSet;
+        private readonly HashSet<CharacterAggregate> _characterSet = new();
 
         public CharacterAggregate Select(CharacterId characterId)
         {

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Immutable;
+﻿using System.Collections.Immutable;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
@@ -21,7 +20,7 @@ namespace BattleScene.Domain.Aggregate
 
         public bool IsPlayer()
         {
-            throw new NotImplementedException();
+            return Property.CharacterTypeId == CharacterTypeId.Player;
         }
 
         public ImmutableList<MatAttrCode> GetWeakPoints()

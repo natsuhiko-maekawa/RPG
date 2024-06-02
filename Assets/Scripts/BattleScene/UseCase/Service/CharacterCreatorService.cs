@@ -25,7 +25,7 @@ namespace BattleScene.UseCase.Service
 
         public CharacterAggregate CreatePlayer()
         {
-            return Create(_propertyFactory.Get(Girl));
+            return Create(_propertyFactory.Get(Player));
         }
 
         public ImmutableList<CharacterAggregate> CreateEnemyList(IList<CharacterTypeId> characterTypeIdList)
@@ -36,7 +36,7 @@ namespace BattleScene.UseCase.Service
                 .Combination(1, 4)
                 .Where(x =>
                 {
-                    var diff = SumParameter(_propertyFactory.Get(Girl)) - x.Sum(y => y.Item2);
+                    var diff = SumParameter(_propertyFactory.Get(Player)) - x.Sum(y => y.Item2);
                     return diff is >= 0 and <= 5;
                 })
                 .Select(x => x

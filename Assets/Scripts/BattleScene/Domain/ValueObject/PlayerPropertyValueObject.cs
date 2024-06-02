@@ -7,10 +7,10 @@ namespace BattleScene.Domain.ValueObject
     {
         public PlayerPropertyValueObject(
             int technicalPoint,
-            ImmutableList<SkillCode> fatalitySkills)
+            SkillCode[] fatalitySkills)
         {
             TechnicalPoint = technicalPoint;
-            FatalitySkills = fatalitySkills;
+            FatalitySkills = ImmutableList.Create(fatalitySkills);
         }
 
         public int TechnicalPoint { get; }

@@ -4,14 +4,12 @@ namespace Utility
 {
     public static class HashSetEx
     {
-        public static HashSet<T> Update<T>(this HashSet<T> hashSet, T item)
+        public static void Update<T>(this HashSet<T> hashSet, T item)
         {
-            var newHashSet = new HashSet<T>(hashSet);
-            if (newHashSet.TryGetValue(item, out var result))
-                newHashSet.Remove(result);
+            if (hashSet.TryGetValue(item, out var result))
+                hashSet.Remove(result);
 
-            newHashSet.Add(item);
-            return newHashSet;
+            hashSet.Add(item);
         }
     }
 }

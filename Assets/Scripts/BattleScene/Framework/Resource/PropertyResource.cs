@@ -14,10 +14,4 @@ namespace BattleScene.Framework.Resource
             return propertyScriptableObject.propertyList;
         }
     }
-    
-    [CreateAssetMenu(menuName = "ScriptableObjects/Property")]
-    public class PropertyScriptableObject : ScriptableObject
-    {
-        public List<PropertyDto> propertyList = new();
-    }
 }

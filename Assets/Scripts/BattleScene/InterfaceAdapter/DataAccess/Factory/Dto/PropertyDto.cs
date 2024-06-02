@@ -2,13 +2,14 @@
 using System.Linq;
 using BattleScene.Domain.Code;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace BattleScene.InterfaceAdapter.DataAccess.Factory.Dto
 {
     [Serializable]
     public class PropertyDto : ISerializationCallbackReceiver
     {
-        [SerializeField] private string key;
+        [SerializeField] private string characterTypeId;
         public int hp;
         public int strength;
         public int vitality;
@@ -28,7 +29,7 @@ namespace BattleScene.InterfaceAdapter.DataAccess.Factory.Dto
 
         public void OnAfterDeserialize()
         {
-            CharacterTypeId = Enum.Parse<CharacterTypeId>(key);
+            CharacterTypeId = Enum.Parse<CharacterTypeId>(characterTypeId);
             Skills = skills.Select(Enum.Parse<SkillCode>).ToArray();
             WeakPoints = weakPoints.Select(Enum.Parse<MatAttrCode>).ToArray();
         }

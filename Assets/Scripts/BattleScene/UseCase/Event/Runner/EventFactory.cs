@@ -21,6 +21,7 @@ namespace BattleScene.UseCase.Event.Runner
                 EventCode.AilmentResetEvent => _container.Resolve<AilmentsResetEvent>(),
                 EventCode.AilmentsSlipDamageEvent => _container.Resolve<SlipDamageEvent>(),
                 EventCode.AilmentsSlipMessageEvent => _container.Resolve<SlipDamageMessageEvent>(),
+                EventCode.BattleStartEvent => _container.Resolve<BattleStartEvent>(),
                 EventCode.BuffEvent => _container.Resolve<BuffEvent>(),
                 EventCode.CantActionEvent => _container.Resolve<CantActionEvent>(),
                 EventCode.CureEvent => _container.Resolve<CureEvent>(),

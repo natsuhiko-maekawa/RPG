@@ -8,7 +8,7 @@ namespace BattleScene.InterfaceAdapter.DataAccess.Factory.Dto
     [Serializable]
     public class PlayerPropertyDto : ISerializationCallbackReceiver
     {
-        public int tp;
+        public int technicalPoint;
         [SerializeField] private string[] fatalitySkills;
         public SkillCode[] FatalitySkills { get; private set; }
 

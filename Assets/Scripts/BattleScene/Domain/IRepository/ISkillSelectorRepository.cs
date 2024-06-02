@@ -6,6 +6,6 @@ namespace BattleScene.Domain.IRepository
     public interface ISkillSelectorRepository
     {
         public SkillSelectorAggregate Select(SkillSelectorId id);
-        public void Update(SkillSelectorAggregate skillSelectorAggregate);
+        public void Update(SkillSelectorAggregate skillSelector);
     }
 }

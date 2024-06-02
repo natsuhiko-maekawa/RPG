@@ -7,6 +7,6 @@
         Mantis,
         Dragon,
         Shuten,
-        Girl
+        Player
     }
 }

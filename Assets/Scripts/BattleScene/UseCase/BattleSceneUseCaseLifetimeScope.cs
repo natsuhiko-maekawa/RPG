@@ -15,6 +15,7 @@ namespace BattleScene.UseCase
             builder.Register<AilmentsResetEvent>(Lifetime.Singleton);
             builder.Register<SlipDamageEvent>(Lifetime.Singleton);
             builder.Register<SlipDamageMessageEvent>(Lifetime.Singleton);
+            builder.Register<BattleStartEvent>(Lifetime.Singleton);
             builder.Register<BuffEvent>(Lifetime.Singleton);
             builder.Register<CantActionEvent>(Lifetime.Singleton);
             builder.Register<CureEvent>(Lifetime.Singleton);
