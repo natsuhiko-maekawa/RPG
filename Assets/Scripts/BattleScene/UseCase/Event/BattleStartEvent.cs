@@ -19,42 +19,15 @@ namespace BattleScene.UseCase.Event
 {
     internal class BattleStartEvent : IEvent
     {
-        private readonly AilmentOutputDataFactory _ailmentView;
-        private readonly AttackCountOutputDataFactory _attackCountOutputDataFactory;
-        private readonly IAttackCountViewPresenter _attackCountView;
         private readonly CharacterCreatorService _characterCreator;
         private readonly ICharacterRepository _characterRepository;
-        private readonly EnemyOutputDataFactory _enemyOutputDataFactory;
-        private readonly IEnemyViewPresenter _enemyView;
-        private readonly HitPointBarOutputDataFactory _hitPointBarOutputDataFactory;
-        private readonly IHitPointBarViewPresenter _hitPointBarView;
-        private readonly TechnicalPointBarOutputDataFactory _technicalPointBarOutputDataFactory;
-        private readonly ITechnicalPointBarViewPresenter _technicalPointBarView;
 
         public BattleStartEvent(
-            AilmentOutputDataFactory ailmentView,
-            AttackCountOutputDataFactory attackCountOutputDataFactory,
-            IAttackCountViewPresenter attackCountView,
             CharacterCreatorService characterCreator,
-            ICharacterRepository characterRepository,
-            EnemyOutputDataFactory enemyOutputDataFactory,
-            IEnemyViewPresenter enemyView,
-            HitPointBarOutputDataFactory hitPointBarOutputDataFactory,
-            IHitPointBarViewPresenter hitPointBarView,
-            TechnicalPointBarOutputDataFactory technicalPointBarOutputDataFactory,
-            ITechnicalPointBarViewPresenter technicalPointBarView)
+            ICharacterRepository characterRepository)
         {
-            _ailmentView = ailmentView;
-            _attackCountOutputDataFactory = attackCountOutputDataFactory;
-            _attackCountView = attackCountView;
             _characterCreator = characterCreator;
             _characterRepository = characterRepository;
-            _enemyOutputDataFactory = enemyOutputDataFactory;
-            _enemyView = enemyView;
-            _hitPointBarOutputDataFactory = hitPointBarOutputDataFactory;
-            _hitPointBarView = hitPointBarView;
-            _technicalPointBarOutputDataFactory = technicalPointBarOutputDataFactory;
-            _technicalPointBarView = technicalPointBarView;
         }
 
         public EventCode Run()
@@ -62,13 +35,7 @@ namespace BattleScene.UseCase.Event
             var enemyTypeIdList = new List<CharacterTypeId> { Bee, Dragon, Mantis, Shuten, Slime };
             var enemyList = _characterCreator.CreateEnemyList(enemyTypeIdList);
             _characterRepository.Update(enemyList);
-
-            _ailmentView.Create();
-            _attackCountView.Start(_attackCountOutputDataFactory.Create());
-            _enemyView.Start(_enemyOutputDataFactory.Create());
-            _hitPointBarView.Start(_hitPointBarOutputDataFactory.Create());
-            _technicalPointBarView.Start(_technicalPointBarOutputDataFactory.Create());
-
+            
             return EventCode.OrderDecisionEvent;
         }
     }
