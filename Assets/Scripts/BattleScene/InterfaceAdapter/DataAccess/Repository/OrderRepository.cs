@@ -10,12 +10,12 @@ namespace BattleScene.InterfaceAdapter.DataAccess.Repository
 
         OrderAggregate IOrderRepository.Select()
         {
-            throw new NotImplementedException();
+            return _order;
         }
 
         public void Update(OrderAggregate order)
         {
-            throw new NotImplementedException();
+            _order = order;
         }
     }
 }

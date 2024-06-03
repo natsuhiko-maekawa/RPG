@@ -2,9 +2,14 @@
 
 namespace BattleScene.Domain.Id
 {
-    public abstract class AutoGenerationId
+    public abstract class AutoGenerationId : IComparable<AutoGenerationId>
     {
         private readonly Guid _guid = Guid.NewGuid();
+
+        public int CompareTo(AutoGenerationId other)
+        {
+            return GetHashCode() - other.GetHashCode();
+        }
 
         public override bool Equals(object obj)
         {

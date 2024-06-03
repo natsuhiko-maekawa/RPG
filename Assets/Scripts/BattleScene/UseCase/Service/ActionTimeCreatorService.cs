@@ -47,5 +47,12 @@ namespace BattleScene.UseCase.Service
                 })
                 .ToImmutableList();
         }
+
+        public ImmutableList<ActionTimeEntity> CreateDefault(IList<CharacterId> characterIdList)
+        {
+            return characterIdList
+                .Select(x => new ActionTimeEntity(x))
+                .ToImmutableList();
+        }
     }
 }

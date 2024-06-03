@@ -6,8 +6,6 @@ using BattleScene.Domain.ValueObject;
 using BattleScene.UseCase.Event.Interface;
 using BattleScene.UseCase.Event.Runner;
 using BattleScene.UseCase.Service;
-using BattleScene.UseCase.View.OrderView.OutputBoundary;
-using BattleScene.UseCase.View.OrderView.OutputDataFactory;
 using Utility.Interface;
 using static BattleScene.Domain.Code.AilmentCode;
 
@@ -23,8 +21,6 @@ namespace BattleScene.UseCase.Event
         private readonly OrderedItemCreatorService _orderedItemCreator;
         private readonly OrderedItemsDomainService _orderedItems;
         private readonly IOrderRepository _orderRepository;
-        private readonly IOrderViewPresenter _orderView;
-        private readonly OrderOutputDataFactory _outputDataFactory;
         private readonly IRandomEx _randomEx;
 
         public OrderDecisionEvent(
@@ -36,8 +32,6 @@ namespace BattleScene.UseCase.Event
             OrderedItemCreatorService orderedItemCreator,
             OrderedItemsDomainService orderedItems,
             IOrderRepository orderRepository,
-            IOrderViewPresenter orderView,
-            OrderOutputDataFactory outputDataFactory,
             IRandomEx randomEx)
         {
             _actionTimeCreator = actionTimeCreator;
@@ -48,8 +42,6 @@ namespace BattleScene.UseCase.Event
             _orderedItemCreator = orderedItemCreator;
             _orderedItems = orderedItems;
             _orderRepository = orderRepository;
-            _orderView = orderView;
-            _outputDataFactory = outputDataFactory;
             _randomEx = randomEx;
         }
 
@@ -60,8 +52,6 @@ namespace BattleScene.UseCase.Event
 
             var actionTimeList = _actionTimeCreator.Create(_characters.GetIdList());
             _actionTimeRepository.Update(actionTimeList);
-            var orderOutputDataList = _outputDataFactory.Create();
-            _orderView.Start(orderOutputDataList);
 
             return _orderedItems.FirstItem() switch
             {
@@ -74,26 +64,25 @@ namespace BattleScene.UseCase.Event
 
         private EventCode DecideNextEvent(CharacterId characterId)
         {
-            var ailmentCode = _ailment.GetHighPriority(characterId).AilmentCode;
+            var ailmentCode = _ailment.GetHighPriority(characterId)?.AilmentCode;
+            
+            switch (ailmentCode)
             {
-                switch (ailmentCode)
-                {
-                    case Sleep:
-                    case Stun:
-                    case Petrifaction:
+                case Sleep:
+                case Stun:
+                case Petrifaction:
+                    return EventCode.CantActionEvent;
+                case Paralysis:
+                case EnemyParalysis:
+                    if (_randomEx.Probability(0.5f))
                         return EventCode.CantActionEvent;
-                    case Paralysis:
-                    case EnemyParalysis:
-                        if (_randomEx.Probability(0.5f))
-                            return EventCode.CantActionEvent;
-                        break;
-                    case Confusion:
-                        return _characterRepository.Select(characterId).IsPlayer()
-                            ? EventCode.PlayerConfusionEvent
-                            : EventCode.EnemyConfusionEvent;
-                }
+                    break;
+                case Confusion:
+                    return _characterRepository.Select(characterId).IsPlayer()
+                        ? EventCode.PlayerConfusionEvent
+                        : EventCode.EnemyConfusionEvent;
             }
-
+            
             return _characterRepository.Select(characterId).IsPlayer()
                 ? EventCode.SelectActionEvent
                 : EventCode.EnemySelectSkillEvent;

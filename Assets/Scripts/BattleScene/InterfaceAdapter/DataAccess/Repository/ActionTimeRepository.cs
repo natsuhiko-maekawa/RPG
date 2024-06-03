@@ -9,7 +9,7 @@ namespace BattleScene.InterfaceAdapter.DataAccess.Repository
 {
     public class ActionTimeRepository : IActionTimeRepository
     {
-        private HashSet<ActionTimeEntity> _actionTimeSet;
+        private readonly HashSet<ActionTimeEntity> _actionTimeSet = new();
 
         public ActionTimeEntity Select(CharacterId characterId)
         {

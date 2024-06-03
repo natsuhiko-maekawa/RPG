@@ -12,6 +12,12 @@ namespace BattleScene.Domain.DomainService
     {
         private readonly IOrderRepository _orderRepository;
 
+        public OrderedItemsDomainService(
+            IOrderRepository orderRepository)
+        {
+            _orderRepository = orderRepository;
+        }
+
         public IOrderedItem FirstItem()
         {
             return _orderRepository.Select().OrderedItemList
