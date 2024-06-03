@@ -2,6 +2,9 @@
 using BattleScene.UseCase.Event;
 using BattleScene.UseCase.Event.Runner;
 using BattleScene.UseCase.Service;
+using BattleScene.UseCase.Skill;
+using BattleScene.UseCase.Skill.Expression;
+using BattleScene.UseCase.Skill.SkillElement;
 using BattleScene.UseCase.View.AilmentView.OutputDataFactory;
 using BattleScene.UseCase.View.AttackCountView.OutputDataFactory;
 using BattleScene.UseCase.View.BuffView.OutputDataFactory;
@@ -108,6 +111,80 @@ namespace BattleScene.UseCase
             builder.Register<SelectActionOutputDataFactory>(Lifetime.Singleton);
             builder.Register<SelectSkillOutputDataFactory>(Lifetime.Singleton);
             builder.Register<TechnicalPointBarOutputDataFactory>(Lifetime.Singleton);
+            
+            builder.Register<AfterimageSkill>(Lifetime.Singleton);
+            builder.Register<AttackSkill>(Lifetime.Singleton);
+            builder.Register<BiteSkill>(Lifetime.Singleton);
+            builder.Register<BiteOffSkill>(Lifetime.Singleton);
+            builder.Register<ConfusionSkill>(Lifetime.Singleton);
+            builder.Register<CutUpSkill>(Lifetime.Singleton);
+            builder.Register<DefenceSkill>(Lifetime.Singleton);
+            builder.Register<FieldRationSkill>(Lifetime.Singleton);
+            builder.Register<FirstAidSkill>(Lifetime.Singleton);
+            builder.Register<FlameThrowSkill>(Lifetime.Singleton);
+            builder.Register<HonzougakuSkill>(Lifetime.Singleton);
+            builder.Register<IshinhouSkill>(Lifetime.Singleton);
+            builder.Register<KuchiyoseSkill>(Lifetime.Singleton);
+            builder.Register<KyoukasuigetsuSkill>(Lifetime.Singleton);
+            builder.Register<LiquidSkill>(Lifetime.Singleton);
+            builder.Register<MurasameSkill>(Lifetime.Singleton);
+            builder.Register<MusterStrengthSkill>(Lifetime.Singleton);
+            builder.Register<NadegiriSkill>(Lifetime.Singleton);
+            builder.Register<NumbLiquidSkill>(Lifetime.Singleton);
+            builder.Register<OnikoroshiSkill>(Lifetime.Singleton);
+            builder.Register<PunchSkill>(Lifetime.Singleton);
+            builder.Register<PutScytheSkill>(Lifetime.Singleton);
+            builder.Register<RaikiriSkill>(Lifetime.Singleton);
+            builder.Register<RandomShotsSkill>(Lifetime.Singleton);
+            builder.Register<ShichishitouSkill>(Lifetime.Singleton);
+            builder.Register<SilverBulletSkill>(Lifetime.Singleton);
+            builder.Register<SmokeBombSkill>(Lifetime.Singleton);
+            builder.Register<StarShellSkill>(Lifetime.Singleton);
+            builder.Register<StringerSkill>(Lifetime.Singleton);
+            builder.Register<TaserGunSkill>(Lifetime.Singleton);
+            builder.Register<UtsusemiSkill>(Lifetime.Singleton);
+            builder.Register<WabisukeSkill>(Lifetime.Singleton);
+
+            builder.Register<AbsoluteConfusionSkillElement>(Lifetime.Singleton);
+            builder.Register<AfterImageSkillElement>(Lifetime.Singleton);
+            builder.Register<AlwaysHitDamageSkillElement>(Lifetime.Singleton);
+            builder.Register<BasicCureSkillElement>(Lifetime.Singleton);
+            builder.Register<BasicDamageSkillElement>(Lifetime.Singleton);
+            builder.Register<BasicRestoreTechnicalPointSkillElement>(Lifetime.Singleton);
+            builder.Register<BleedingSkillElement>(Lifetime.Singleton);
+            builder.Register<BlindSkillElement>(Lifetime.Singleton);
+            builder.Register<BurningResetSkillElement>(Lifetime.Singleton);
+            builder.Register<BurningSkillElement>(Lifetime.Singleton);
+            builder.Register<ConfusionSkillElement>(Lifetime.Singleton);
+            builder.Register<ConstantDamageSkillElement>(Lifetime.Singleton);
+            builder.Register<DefenceSkillElement>(Lifetime.Singleton);
+            builder.Register<DestroyArmSkillElement>(Lifetime.Singleton);
+            builder.Register<DestroyLegSkillElement>(Lifetime.Singleton);
+            builder.Register<DestroyStomachSkillElement>(Lifetime.Singleton);
+            builder.Register<EnemyParalysisSkillElement>(Lifetime.Singleton);
+            builder.Register<FirstAidSkillElement>(Lifetime.Singleton);
+            builder.Register<FiveTimeDamageSkillElement>(Lifetime.Singleton);
+            builder.Register<HonzougakuSkillElement>(Lifetime.Singleton);
+            builder.Register<IshinhouSkillElement>(Lifetime.Singleton);
+            builder.Register<LightningDamageSkillElement>(Lifetime.Singleton);
+            builder.Register<MusterStrengthSkillElement>(Lifetime.Singleton);
+            builder.Register<NadegiriSkillElement>(Lifetime.Singleton);
+            builder.Register<ParalysisSkillElement>(Lifetime.Singleton);
+            builder.Register<PoisoningSkillElement>(Lifetime.Singleton);
+            builder.Register<RandomShotSkillElement>(Lifetime.Singleton);
+            builder.Register<ShichishitouSkillElement>(Lifetime.Singleton);
+            builder.Register<StarShellSkillElement>(Lifetime.Singleton);
+            builder.Register<SuffocationSkillElement>(Lifetime.Singleton);
+            builder.Register<UtsusemiSkillElement>(Lifetime.Singleton);
+            builder.Register<WabisukeSkillElement>(Lifetime.Singleton);
+            
+            builder.Register<AttacksWeakPointEvaluation>(Lifetime.Singleton);
+            builder.Register<ConstantDamageExpression>(Lifetime.Singleton);
+            builder.Register<CureExpression>(Lifetime.Singleton);
+            builder.Register<DamageExpression>(Lifetime.Singleton);
+            builder.Register<HitEvaluation>(Lifetime.Singleton);
+            builder.Register<Luck>(Lifetime.Singleton);
+
         }
     }
 }

@@ -29,8 +29,7 @@ namespace BattleScene.UseCase.Skill
             DestroyArmSkillElement destroyArmSkillElement,
             DestroyLegSkillElement destroyLegSkillElement,
             DestroyStomachSkillElement destroyStomachSkillElement,
-            IRandomEx randomEx,
-            long seed)
+            IRandomEx randomEx)
         {
             _basicDamageSkillElement = basicDamageSkillElement;
             _bleedingSkillElement = bleedingSkillElement;
@@ -38,7 +37,6 @@ namespace BattleScene.UseCase.Skill
             _destroyLegSkillElement = destroyLegSkillElement;
             _destroyStomachSkillElement = destroyStomachSkillElement;
             _randomEx = randomEx;
-            _seed = seed;
         }
 
         public override Range GetRange()

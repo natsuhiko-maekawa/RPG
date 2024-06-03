@@ -11,15 +11,18 @@ namespace BattleScene.Domain.DomainService
     public class TargetDomainService
     {
         private readonly ICharacterRepository _characterRepository;
+        private readonly CharactersDomainService _characters;
         private readonly IHitPointRepository _hitPointRepository;
         private readonly IRandomEx _randomEx;
 
         public TargetDomainService(
             ICharacterRepository characterRepository,
+            CharactersDomainService characters,
             IHitPointRepository hitPointRepository,
             IRandomEx randomEx)
         {
             _characterRepository = characterRepository;
+            _characters = characters;
             _hitPointRepository = hitPointRepository;
             _randomEx = randomEx;
         }
@@ -33,6 +36,10 @@ namespace BattleScene.Domain.DomainService
                     _hitPointRepository.Select(characterId).IsSurvive()
                         ? ImmutableList<CharacterId>.Empty
                         : ImmutableList.Create(characterId),
+                Range.Solo when !_characterRepository.Select(characterId).IsPlayer() =>
+                    ImmutableList.Create(_characters.GetPlayer().CharacterId),
+                Range.Solo when _characterRepository.Select(characterId).IsPlayer() =>
+                    throw new NotImplementedException(),
                 // TODO プレイヤーが選択したターゲットを返す処理を書くこと
                 _ => throw new NotImplementedException()
             };
