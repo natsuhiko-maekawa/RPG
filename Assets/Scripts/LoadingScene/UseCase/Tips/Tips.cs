@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using LoadingScene.UseCase.IRepository;
-using Utility;
 using Utility.Interface;
 
 namespace LoadingScene.UseCase.Tips

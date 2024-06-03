@@ -3,7 +3,6 @@ using BattleScene.Domain.AbstractClass;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.Interface;
 using BattleScene.UseCase.Skill.SkillElement;
-using Utility;
 using Utility.Interface;
 using static BattleScene.Domain.Code.MessageCode;
 

@@ -4,15 +4,6 @@ using BattleScene.Domain.IRepository;
 using BattleScene.UseCase.Event.Interface;
 using BattleScene.UseCase.Event.Runner;
 using BattleScene.UseCase.Service;
-using BattleScene.UseCase.View.AilmentView.OutputDataFactory;
-using BattleScene.UseCase.View.AttackCountView.OutputBoundary;
-using BattleScene.UseCase.View.AttackCountView.OutputDataFactory;
-using BattleScene.UseCase.View.EnemyView.OutputBoundary;
-using BattleScene.UseCase.View.EnemyView.OutputDataFactory;
-using BattleScene.UseCase.View.HitPointBarView.OutputBoundary;
-using BattleScene.UseCase.View.HitPointBarView.OutputDataFactory;
-using BattleScene.UseCase.View.TechnicalPointBarView.OutputBoundary;
-using BattleScene.UseCase.View.TechnicalPointBarView.OutputDaraFactory;
 using static BattleScene.Domain.Code.CharacterTypeId;
 
 namespace BattleScene.UseCase.Event

@@ -3,7 +3,6 @@ using System.Collections.Immutable;
 using System.Linq;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
-using Utility;
 using Utility.Interface;
 using Range = BattleScene.Domain.Code.Range;
 

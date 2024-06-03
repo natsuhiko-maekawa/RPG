@@ -2,7 +2,6 @@
 using System.Linq;
 using BattleScene.Domain.Code;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace BattleScene.InterfaceAdapter.DataAccess.Factory.Dto
 {

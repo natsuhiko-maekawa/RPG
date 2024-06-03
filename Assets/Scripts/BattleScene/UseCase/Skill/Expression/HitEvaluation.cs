@@ -4,7 +4,6 @@ using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
 using BattleScene.UseCase.Skill.AbstractClass;
 using UnityEngine;
-using Utility;
 using Utility.Interface;
 using static BattleScene.Domain.Code.AilmentCode;
 using static BattleScene.Domain.Code.BuffCode;

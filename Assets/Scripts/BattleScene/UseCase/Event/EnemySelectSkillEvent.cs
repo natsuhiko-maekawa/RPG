@@ -11,7 +11,6 @@ using BattleScene.UseCase.View.MessageView.OutputBoundary;
 using BattleScene.UseCase.View.MessageView.OutputDataFactory;
 using BattleScene.UseCase.View.PlayerImageView.OutputBoundary;
 using BattleScene.UseCase.View.PlayerImageView.OutputData;
-using Utility;
 using Utility.Interface;
 using static BattleScene.Domain.Code.MessageCode;
 

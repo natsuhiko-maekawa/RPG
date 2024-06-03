@@ -2,7 +2,6 @@
 using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
 using BattleScene.UseCase.Skill.AbstractClass;
-using Utility;
 using Utility.Interface;
 using static BattleScene.Domain.Code.BuffCode;
 using static BattleScene.Domain.Code.BodyPartCode;
