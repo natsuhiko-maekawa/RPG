@@ -1,10 +1,13 @@
 ﻿using BattleScene.Domain.DomainService;
+using BattleScene.UseCase.BusinessLogic;
 using BattleScene.UseCase.Event;
 using BattleScene.UseCase.Event.Runner;
+using BattleScene.UseCase.Main;
 using BattleScene.UseCase.Service;
 using BattleScene.UseCase.Skill;
 using BattleScene.UseCase.Skill.Expression;
 using BattleScene.UseCase.Skill.SkillElement;
+using BattleScene.UseCase.View.AilmentView;
 using BattleScene.UseCase.View.AilmentView.OutputDataFactory;
 using BattleScene.UseCase.View.AttackCountView.OutputDataFactory;
 using BattleScene.UseCase.View.BuffView.OutputDataFactory;
@@ -16,6 +19,7 @@ using BattleScene.UseCase.View.FrameView.OutputDataFactory;
 using BattleScene.UseCase.View.HitPointBarView.OutputDataFactory;
 using BattleScene.UseCase.View.IsContinueView.OutputDataFactory;
 using BattleScene.UseCase.View.MessageView.OutputDataFactory;
+using BattleScene.UseCase.View.OrderView;
 using BattleScene.UseCase.View.OrderView.OutputDataFactory;
 using BattleScene.UseCase.View.PlayerImageView.OutputDataFactory;
 using BattleScene.UseCase.View.SelectActionView.OutputDataFactory;
@@ -34,17 +38,17 @@ namespace BattleScene.UseCase
             builder.Register<AilmentsResetEvent>(Lifetime.Singleton);
             builder.Register<SlipDamageEvent>(Lifetime.Singleton);
             builder.Register<SlipDamageMessageEvent>(Lifetime.Singleton);
-            builder.Register<BattleStartEvent>(Lifetime.Singleton);
+            builder.Register<BattleStartLogic>(Lifetime.Singleton);
             builder.Register<BuffEvent>(Lifetime.Singleton);
             builder.Register<CantActionEvent>(Lifetime.Singleton);
             builder.Register<CureEvent>(Lifetime.Singleton);
             builder.Register<DestroyedPartEvent>(Lifetime.Singleton);
             builder.Register<EnemySelectSkillEvent>(Lifetime.Singleton);
             builder.Register<EnemySuicideEvent>(Lifetime.Singleton);
-            builder.Register<InitializationEvent>(Lifetime.Singleton);
+            builder.Register<InitializationLogic>(Lifetime.Singleton);
             builder.Register<IsContinueEvent>(Lifetime.Singleton);
             builder.Register<LoopEndEvent>(Lifetime.Singleton);
-            builder.Register<OrderDecisionEvent>(Lifetime.Singleton);
+            builder.Register<OrderDecisionLogic>(Lifetime.Singleton);
             builder.Register<PlayerAttackEvent>(Lifetime.Singleton);
             builder.Register<PlayerBeatEnemyEvent>(Lifetime.Singleton);
             builder.Register<PlayerDeadEvent>(Lifetime.Singleton);
@@ -55,7 +59,9 @@ namespace BattleScene.UseCase
             builder.Register<SelectFatalitySkillEvent>(Lifetime.Singleton);
             builder.Register<SelectSkillEvent>(Lifetime.Singleton);
             builder.Register<SelectTargetEvent>(Lifetime.Singleton);
-            builder.Register<EventRunner>(Lifetime.Singleton);
+            builder.Register<Runner>(Lifetime.Singleton);
+            builder.Register<BusinessLogicFactory>(Lifetime.Singleton);
+            builder.Register<OutputFactory>(Lifetime.Singleton);
             builder.Register<IEventFactory, EventFactory>(Lifetime.Singleton);
             builder.Register<ActionTimeCreatorService>(Lifetime.Singleton);
             builder.Register<AgilityToSpeedService>(Lifetime.Singleton);
@@ -185,6 +191,8 @@ namespace BattleScene.UseCase
             builder.Register<HitEvaluation>(Lifetime.Singleton);
             builder.Register<Luck>(Lifetime.Singleton);
 
+            builder.Register<AilmentViewOutput>(Lifetime.Singleton);
+            builder.Register<OrderViewOutput>(Lifetime.Singleton);
         }
     }
 }

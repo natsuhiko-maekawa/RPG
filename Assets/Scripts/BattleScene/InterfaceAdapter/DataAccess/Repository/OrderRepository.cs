@@ -1,4 +1,3 @@
-using System;
 using BattleScene.Domain.Aggregate;
 using BattleScene.Domain.IRepository;
 

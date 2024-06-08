@@ -3,13 +3,13 @@ using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.IFactory;
 using BattleScene.Domain.IRepository;
-using BattleScene.UseCase.Event.Interface;
+using BattleScene.UseCase.BusinessLogic.Interface;
 using BattleScene.UseCase.Event.Runner;
 using BattleScene.UseCase.Service;
 
-namespace BattleScene.UseCase.Event
+namespace BattleScene.UseCase.BusinessLogic
 {
-    internal class InitializationEvent : IEvent
+    internal class InitializationLogic : IBusinessLogic
     {
         private readonly CharacterCreatorService _characterCreator;
         private readonly ICharacterRepository _characterRepository;
@@ -18,7 +18,7 @@ namespace BattleScene.UseCase.Event
         private readonly ISelectorRepository _selectorRepository;
         private readonly ISkillSelectorRepository _skillSelectorRepository;
 
-        public InitializationEvent(
+        public InitializationLogic(
             CharacterCreatorService characterCreator,
             ICharacterRepository characterRepository,
             CharactersDomainService characters,
@@ -34,7 +34,7 @@ namespace BattleScene.UseCase.Event
             _skillSelectorRepository = skillSelectorRepository;
         }
 
-        public EventCode Run()
+        public void Execute(FrameNumber nextFrameNumber)
         {
             var player = _characterCreator.CreatePlayer();
             _characterRepository.Update(player);
@@ -56,8 +56,6 @@ namespace BattleScene.UseCase.Event
                 = new SkillSelectorAggregate(fatalitySkillSelectorId, Constant.SelectSkillSlotNumber,
                     fatalitySkillNumber);
             _skillSelectorRepository.Update(fatalitySkillSelector);
-
-            return EventCode.BattleStartEvent;
         }
     }
 }

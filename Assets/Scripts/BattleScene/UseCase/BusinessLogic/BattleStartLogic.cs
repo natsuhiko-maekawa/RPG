@@ -1,46 +1,55 @@
 using System.Collections.Generic;
+using System.Collections.Immutable;
+using System.Linq;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DomainService;
+using BattleScene.Domain.Entity;
+using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
-using BattleScene.UseCase.Event.Interface;
-using BattleScene.UseCase.Event.Runner;
+using BattleScene.UseCase.BusinessLogic.Interface;
 using BattleScene.UseCase.Service;
 using static BattleScene.Domain.Code.CharacterTypeId;
 
-namespace BattleScene.UseCase.Event
+namespace BattleScene.UseCase.BusinessLogic
 {
-    internal class BattleStartEvent : IEvent
+    internal class BattleStartLogic : IBusinessLogic
     {
         private readonly ActionTimeCreatorService _actionTimeCreator;
         private readonly IActionTimeRepository _actionTimeRepository;
         private readonly CharacterCreatorService _characterCreator;
         private readonly ICharacterRepository _characterRepository;
         private readonly CharactersDomainService _characters;
+        private readonly IEnemyRepository _enemyRepository;
 
-        public BattleStartEvent(
+        public BattleStartLogic(
             ActionTimeCreatorService actionTimeCreator,
             CharacterCreatorService characterCreator,
             CharactersDomainService characters,
             IActionTimeRepository actionTimeRepository,
-            ICharacterRepository characterRepository)
+            ICharacterRepository characterRepository,
+            IEnemyRepository enemyRepository)
         {
             _actionTimeCreator = actionTimeCreator;
             _characterCreator = characterCreator;
             _characters = characters;
             _actionTimeRepository = actionTimeRepository;
             _characterRepository = characterRepository;
+            _enemyRepository = enemyRepository;
         }
 
-        public EventCode Run()
+        public void Execute(FrameNumber nextFrameNumber)
         {
             var enemyTypeIdList = new List<CharacterTypeId> { Bee, Dragon, Mantis, Shuten, Slime };
-            var enemyList = _characterCreator.CreateEnemyList(enemyTypeIdList);
-            _characterRepository.Update(enemyList);
+            var enemyCharacterList = _characterCreator.CreateEnemyList(enemyTypeIdList);
+            _characterRepository.Update(enemyCharacterList);
+            var enemyList = enemyCharacterList
+                .OrderBy(x => x.Property.CharacterTypeId)
+                .Select((x, i) => new EnemyEntity(x.CharacterId, i))
+                .ToImmutableList();
+            _enemyRepository.Update(enemyList);
 
             var actionTimeList = _actionTimeCreator.CreateDefault(_characters.GetIdList());
             _actionTimeRepository.Update(actionTimeList);
-
-            return EventCode.OrderDecisionEvent;
         }
     }
 }
