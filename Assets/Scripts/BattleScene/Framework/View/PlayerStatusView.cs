@@ -57,9 +57,9 @@ namespace BattleScene.Framework.View
             _playerBuffView.Initialize(buffViewTextAndIconList);
         }
 
-        public void StartPlayerAilmentsView(IList<PlayerAilmentsViewDto> dtoList)
+        public void StartPlayerAilmentsView(PlayerAilmentsViewDto dto)
         {
-            _playerAilmentsView.StartAnimation(dtoList);
+            _playerAilmentsView.StartAnimation(dto);
         }
 
         public void StartPlayerDestroyedPartView(IList<PlayerDestroyedPartViewDto> dtoList)

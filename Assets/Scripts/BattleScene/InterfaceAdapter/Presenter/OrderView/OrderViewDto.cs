@@ -2,13 +2,13 @@
 {
     public record OrderViewDto(
         ItemType ItemType,
-        string EnemyName,
-        int? AilmentsInt);
+        string EnemyImagePath = "",
+        int? AilmentNumber = null);
 
     public enum ItemType
     {
         Player,
         Enemy,
-        Ailments
+        Ailment
     }
 }

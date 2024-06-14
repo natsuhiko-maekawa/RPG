@@ -1,14 +1,18 @@
-﻿namespace BattleScene.UseCase.View.OrderView.OutputData
+﻿using BattleScene.Domain.Code;
+
+namespace BattleScene.UseCase.View.OrderView.OutputData
 {
     public record OrderOutputData(
         OrderOutputDataType OrderOutputDataType,
-        string ImagePath,
-        int AilmentNumber);
+        CharacterTypeId CharacterTypeId = default,
+        AilmentCode AilmentCode = default,
+        SlipDamageCode SlipDamageCode = default);
 
     public enum OrderOutputDataType
     {
         Player,
         Enemy,
-        Ailment
+        Ailment,
+        SlipDamage
     }
 }

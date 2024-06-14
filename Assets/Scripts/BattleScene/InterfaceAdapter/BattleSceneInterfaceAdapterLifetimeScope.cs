@@ -19,6 +19,7 @@ using BattleScene.InterfaceAdapter.Presenter.SelectActionView;
 using BattleScene.InterfaceAdapter.Presenter.SelectSkillView;
 using BattleScene.InterfaceAdapter.Presenter.StatusBarView;
 using BattleScene.UseCase.IController;
+using BattleScene.UseCase.Service;
 using BattleScene.UseCase.View.AilmentView.OutputBoundary;
 using BattleScene.UseCase.View.AttackCountView.OutputBoundary;
 using BattleScene.UseCase.View.BuffView.OutputBoundary;
@@ -89,6 +90,8 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<IPlayerPropertyFactory, PlayerPropertyFactory>(Lifetime.Singleton);
             builder.Register<IPropertyFactory, PropertyFactory>(Lifetime.Singleton);
             builder.Register<ISlipDamageFactory, SlipDamageFactory>(Lifetime.Singleton);
+
+            builder.Register<ToAilmentNumberService>(Lifetime.Singleton);
         }
     }
 }

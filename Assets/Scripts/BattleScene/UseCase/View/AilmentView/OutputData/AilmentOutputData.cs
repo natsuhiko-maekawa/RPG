@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
+using BattleScene.Domain.Code;
+using BattleScene.Domain.Id;
 
 namespace BattleScene.UseCase.View.AilmentView.OutputData
 {
     public record AilmentOutputData(
-        bool IsPlayer,
-        int EnemyNumber,
-        IList<int> AilmentNumberList);
+        CharacterId CharacterId,
+        IList<AilmentCode> AilmentCodeList = default,
+        IList<SlipDamageCode> SlipDamageCodeList = default);
 }

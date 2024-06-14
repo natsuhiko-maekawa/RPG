@@ -72,8 +72,8 @@ namespace BattleScene.Framework.View
                 _imageList[i].sprite = dto.ItemType switch
                 {
                     ItemType.Player => player,
-                    ItemType.Enemy when dto.EnemyName != null => _spriteFlyweight.Get(dto.EnemyName),
-                    ItemType.Ailments when dto.AilmentsInt != null => _ailmentsIconArray[(int)dto.AilmentsInt],
+                    ItemType.Enemy when dto.EnemyImagePath != null => _spriteFlyweight.Get(dto.EnemyImagePath),
+                    ItemType.Ailment when dto.AilmentNumber != null => _ailmentsIconArray[(int)dto.AilmentNumber],
                     _ => throw new ArgumentOutOfRangeException()
                 };
 

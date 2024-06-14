@@ -7,7 +7,7 @@ namespace BattleScene.InterfaceAdapter.IView
 {
     public interface IPlayerStatusView
     {
-        public void StartPlayerAilmentsView(IList<PlayerAilmentsViewDto> dtoList);
+        public void StartPlayerAilmentsView(PlayerAilmentsViewDto dto);
         public void StartPlayerDestroyedPartView(IList<PlayerDestroyedPartViewDto> dtoList);
         public void StartPlayerBuffView(IList<BuffViewDto> dtoList);
     }

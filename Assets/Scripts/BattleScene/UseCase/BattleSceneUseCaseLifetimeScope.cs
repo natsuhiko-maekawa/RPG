@@ -78,7 +78,6 @@ namespace BattleScene.UseCase
             builder.Register<SkillCreatorService>(Lifetime.Singleton);
             builder.Register<SkillService>(Lifetime.Singleton);
             builder.Register<SlipDamageService>(Lifetime.Singleton);
-            builder.Register<ToAilmentNumberService>(Lifetime.Singleton);
             builder.Register<ToBodyPartNumberService>(Lifetime.Singleton);
             builder.Register<ToBuffNumberService>(Lifetime.Singleton);
             builder.Register<TurnService>(Lifetime.Singleton);

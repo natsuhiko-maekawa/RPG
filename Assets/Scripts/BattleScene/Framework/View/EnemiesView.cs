@@ -59,7 +59,7 @@ namespace BattleScene.Framework.View
 
         public Task StartEnemyAilmentsView(EnemyAilmentsViewDto dto)
         {
-            _enemyAilmentsViewList[dto.EnemyInt].StartAnimation(dto.AilmentsDtoList);
+            _enemyAilmentsViewList[dto.EnemyNumber].StartAnimation(dto);
             return Task.CompletedTask;
         }
 

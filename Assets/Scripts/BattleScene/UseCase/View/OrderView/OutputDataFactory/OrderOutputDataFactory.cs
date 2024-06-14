@@ -1,10 +1,8 @@
 using System;
 using System.Collections.Immutable;
 using System.Linq;
-using BattleScene.Domain.IFactory;
 using BattleScene.Domain.IRepository;
 using BattleScene.Domain.ValueObject;
-using BattleScene.UseCase.Service;
 using BattleScene.UseCase.View.OrderView.OutputData;
 
 namespace BattleScene.UseCase.View.OrderView.OutputDataFactory
@@ -12,20 +10,14 @@ namespace BattleScene.UseCase.View.OrderView.OutputDataFactory
     internal class OrderOutputDataFactory
     {
         private readonly ICharacterRepository _characterRepository;
-        private readonly IEnemyViewInfoFactory _enemyViewInfoFactory;
         private readonly IOrderRepository _orderRepository;
-        private readonly ToAilmentNumberService _toAilmentNumber;
 
         public OrderOutputDataFactory(
             ICharacterRepository characterRepository,
-            IEnemyViewInfoFactory enemyViewInfoFactory,
-            IOrderRepository orderRepository,
-            ToAilmentNumberService toAilmentNumber)
+            IOrderRepository orderRepository)
         {
             _characterRepository = characterRepository;
-            _enemyViewInfoFactory = enemyViewInfoFactory;
             _orderRepository = orderRepository;
-            _toAilmentNumber = toAilmentNumber;
         }
 
         public ImmutableList<OrderOutputData> Create()
@@ -38,28 +30,18 @@ namespace BattleScene.UseCase.View.OrderView.OutputDataFactory
                         OrderedCharacterValueObject orderedCharacter
                             when _characterRepository.Select(orderedCharacter.CharacterId).IsPlayer()
                             => new OrderOutputData(
-                                OrderOutputDataType.Player,
-                                default,
-                                default),
+                                OrderOutputDataType.Player),
                         OrderedCharacterValueObject orderedCharacter
                             when !_characterRepository.Select(orderedCharacter.CharacterId).IsPlayer()
                             => new OrderOutputData(
                                 OrderOutputDataType.Enemy,
-                                _enemyViewInfoFactory
-                                    .Create(_characterRepository
-                                        .Select(orderedCharacter.CharacterId)
-                                        .Property.CharacterTypeId).EnemyImagePath,
-                                default),
+                                CharacterTypeId: _characterRepository.Select(orderedCharacter.CharacterId).Property.CharacterTypeId),
                         OrderedAilmentValueObject orderedAilment => new OrderOutputData(
                             OrderOutputDataType.Ailment,
-                            default,
-                            _toAilmentNumber
-                                .Ailment(orderedAilment.AilmentCode)),
+                            AilmentCode: orderedAilment.AilmentCode),
                         OrderedSlipDamageValueObject orderedSlipDamage => new OrderOutputData(
                             OrderOutputDataType.Ailment,
-                            default,
-                            _toAilmentNumber
-                                .SlipDamage(orderedSlipDamage.SlipDamageCode)),
+                            SlipDamageCode: orderedSlipDamage.SlipDamageCode),
                         _ => throw new ArgumentOutOfRangeException()
                     };
                 })

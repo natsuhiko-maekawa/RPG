@@ -32,11 +32,11 @@ namespace BattleScene.Framework.View
             _iconArray = SpriteEx.CreateByGrid(icons, 4, 4);
         }
 
-        public Task StartAnimation(IList<AilmentsDto> dtoList)
+        public Task StartAnimation(EnemyAilmentsViewDto dto)
         {
             foreach (var enemyAilmentsIcon in _enemyAilmentsIconList) enemyAilmentsIcon.enabled = false;
 
-            foreach (var (iconNum, index) in dtoList.Select((x, i) => (Ailments: x.AilmentsInt, i)))
+            foreach (var (iconNum, index) in dto.AilmentNumberList.Select((x, i) => (Ailments: x, i)))
             {
                 _enemyAilmentsIconList[index].sprite = _iconArray[iconNum];
                 _enemyAilmentsIconList[index].enabled = true;

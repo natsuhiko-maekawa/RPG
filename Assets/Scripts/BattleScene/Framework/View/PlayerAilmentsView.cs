@@ -20,12 +20,12 @@ namespace BattleScene.Framework.View
             }
         }
 
-        public Task StartAnimation(IList<PlayerAilmentsViewDto> dtoList)
+        public Task StartAnimation(PlayerAilmentsViewDto dto)
         {
             foreach (var (textAndIcon, index) in _textAndIconList.Select((x, i) => (x, i)))
             {
-                textAndIcon.text.color = dtoList.Any(x => x.AilmentsInt == index) ? Color.white : Color.gray;
-                textAndIcon.icon.enabled = dtoList.Any(x => x.AilmentsInt == index);
+                textAndIcon.text.color = dto.AilmentNumberList.Any(x => x == index) ? Color.white : Color.gray;
+                textAndIcon.icon.enabled = dto.AilmentNumberList.Any(x => x == index);
             }
 
             return Task.CompletedTask;

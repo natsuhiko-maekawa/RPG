@@ -1,14 +1,17 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.Immutable;
 
 namespace BattleScene.InterfaceAdapter.Presenter.AilmentsView
 {
     public record PlayerAilmentsViewDto(
-        int AilmentsInt);
+        ImmutableList<int> AilmentNumberList);
 
     public record EnemyAilmentsViewDto(
-        int EnemyInt,
-        IList<AilmentsDto> AilmentsDtoList);
+        int EnemyNumber,
+        ImmutableList<int> AilmentNumberList);
 
+    [Obsolete]
     public record AilmentsDto(
         int AilmentsInt);
 }
