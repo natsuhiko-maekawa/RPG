@@ -2,9 +2,9 @@
 using BattleScene.Domain.Code;
 using BattleScene.Domain.Interface;
 
-namespace BattleScene.UseCase.Skill.AbstractClass
+namespace BattleScene.UseCase.Skill.SkillElement.AbstractClass
 {
-    public class ResetSkillElement : ISkillElement
+    public class ResetSkillElement : BaseClass.SkillElement
     {
         public virtual ImmutableList<AilmentCode> GetResetAilment()
         {

@@ -1,6 +1,6 @@
 ﻿using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
-using BattleScene.UseCase.Skill.AbstractClass;
+using BattleScene.UseCase.Skill.SkillElement.AbstractClass;
 using Utility.Interface;
 
 namespace BattleScene.UseCase.Skill.Expression

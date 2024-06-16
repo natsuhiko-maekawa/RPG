@@ -25,7 +25,6 @@ namespace BattleScene.UseCase.Event.Runner
                 EventCode.CantActionEvent => _container.Resolve<CantActionEvent>(),
                 EventCode.CureEvent => _container.Resolve<CureEvent>(),
                 EventCode.DestroyedPartEvent => _container.Resolve<DestroyedPartEvent>(),
-                EventCode.EnemySelectSkillEvent => _container.Resolve<EnemySelectSkillEvent>(),
                 EventCode.EnemySuicideEvent => _container.Resolve<EnemySuicideEvent>(),
                 EventCode.IsContinueEvent => _container.Resolve<IsContinueEvent>(),
                 EventCode.LoopEndEvent => _container.Resolve<LoopEndEvent>(),

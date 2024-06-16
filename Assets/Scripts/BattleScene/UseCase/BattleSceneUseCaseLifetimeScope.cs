@@ -43,7 +43,7 @@ namespace BattleScene.UseCase
             builder.Register<CantActionEvent>(Lifetime.Singleton);
             builder.Register<CureEvent>(Lifetime.Singleton);
             builder.Register<DestroyedPartEvent>(Lifetime.Singleton);
-            builder.Register<EnemySelectSkillEvent>(Lifetime.Singleton);
+            builder.Register<EnemySelectSkillLogic>(Lifetime.Singleton);
             builder.Register<EnemySuicideEvent>(Lifetime.Singleton);
             builder.Register<InitializationLogic>(Lifetime.Singleton);
             builder.Register<IsContinueEvent>(Lifetime.Singleton);

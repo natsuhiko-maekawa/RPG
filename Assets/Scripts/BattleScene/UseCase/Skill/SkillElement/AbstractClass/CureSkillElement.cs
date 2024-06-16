@@ -3,9 +3,9 @@ using BattleScene.Domain.Id;
 using BattleScene.Domain.Interface;
 using BattleScene.UseCase.Skill.Expression;
 
-namespace BattleScene.UseCase.Skill.AbstractClass
+namespace BattleScene.UseCase.Skill.SkillElement.AbstractClass
 {
-    internal abstract class CureSkillElement : ISkillElement
+    internal abstract class CureSkillElement : BaseClass.SkillElement
     {
         private readonly CureExpression _cureExpression;
         private readonly OrderedItemsDomainService _orderedItems;

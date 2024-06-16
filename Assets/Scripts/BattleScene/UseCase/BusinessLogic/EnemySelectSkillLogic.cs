@@ -1,14 +1,15 @@
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Entity;
+using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
-using BattleScene.UseCase.Event.Interface;
+using BattleScene.UseCase.BusinessLogic.Interface;
 using BattleScene.UseCase.Event.Runner;
 using BattleScene.UseCase.Service;
 using Utility.Interface;
 
-namespace BattleScene.UseCase.Event
+namespace BattleScene.UseCase.BusinessLogic
 {
-    internal class EnemySelectSkillEvent : IEvent, IWait
+    internal class EnemySelectSkillLogic : IBusinessLogic
     {
         private readonly ICharacterRepository _characterRepository;
         private readonly OrderedItemsDomainService _orderItems;
@@ -18,7 +19,7 @@ namespace BattleScene.UseCase.Event
         private readonly TargetDomainService _target;
         private readonly ITargetRepository _targetRepository;
 
-        public EnemySelectSkillEvent(
+        public EnemySelectSkillLogic(
             ICharacterRepository characterRepository,
             OrderedItemsDomainService orderItems,
             IRandomEx randomEx,
@@ -36,7 +37,7 @@ namespace BattleScene.UseCase.Event
             _targetRepository = targetRepository;
         }
 
-        public EventCode Run()
+        public void Execute(FrameNumber nextFrameNumber)
         {
             // TODO: 敵がスキルを選択する際、ランダムに選択する仮のアルゴリズムを実装している
             var characterId = _orderItems.FirstCharacterId();
@@ -48,8 +49,6 @@ namespace BattleScene.UseCase.Event
 
             var target = new TargetEntity(characterId, _target.Get(characterId, skill.AbstractSkill.GetRange()));
             _targetRepository.Update(target);
-
-            return EventCode.WaitEvent;
         }
 
         public EventCode NextEvent()

@@ -2,9 +2,9 @@
 using BattleScene.Domain.Interface;
 using BattleScene.UseCase.Skill.Interface;
 
-namespace BattleScene.UseCase.Skill.AbstractClass
+namespace BattleScene.UseCase.Skill.SkillElement.AbstractClass
 {
-    public abstract class DestroyPartSkillElement : ISkillElement, ILuckSkillElement
+    public abstract class DestroyPartSkillElement : BaseClass.SkillElement, ILuckSkillElement
     {
         public float GetLuckRate()
         {

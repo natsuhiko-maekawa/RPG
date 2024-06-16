@@ -18,6 +18,7 @@ using BattleScene.InterfaceAdapter.Presenter.PlayerView;
 using BattleScene.InterfaceAdapter.Presenter.SelectActionView;
 using BattleScene.InterfaceAdapter.Presenter.SelectSkillView;
 using BattleScene.InterfaceAdapter.Presenter.StatusBarView;
+using BattleScene.InterfaceAdapter.Service;
 using BattleScene.UseCase.IController;
 using BattleScene.UseCase.Service;
 using BattleScene.UseCase.View.AilmentView.OutputBoundary;

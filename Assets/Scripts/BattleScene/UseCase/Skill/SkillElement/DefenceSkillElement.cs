@@ -1,27 +1,27 @@
 ﻿using System;
 using BattleScene.Domain.Code;
-using BattleScene.UseCase.Skill.Interface;
+using BattleScene.UseCase.Skill.SkillElement.AbstractClass;
 
 namespace BattleScene.UseCase.Skill.SkillElement
 {
-    public class DefenceSkillElement : IBuffSkill
+    public class DefenceSkillElement : BuffSkillElement
     {
-        public BuffCode GetBuff()
+        public override BuffCode GetBuff()
         {
             return BuffCode.Defence;
         }
 
-        public float GetBuffRate()
+        public override float GetBuffRate()
         {
             throw new InvalidOperationException();
         }
 
-        public int GetTurn()
+        public override int GetTurn()
         {
             return 1;
         }
 
-        public LifetimeCode GetLifetimeCode()
+        public override LifetimeCode GetLifetimeCode()
         {
             return LifetimeCode.ToNextAction;
         }

@@ -3,7 +3,7 @@ using BattleScene.Domain.Code;
 using static BattleScene.Domain.Code.SlipDamageCode;
 using static BattleScene.Domain.Code.AilmentCode;
 
-namespace BattleScene.UseCase.Service
+namespace BattleScene.InterfaceAdapter.Service
 {
     internal class ToAilmentNumberService
     {

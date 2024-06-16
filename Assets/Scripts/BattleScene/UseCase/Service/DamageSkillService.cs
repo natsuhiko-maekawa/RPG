@@ -3,7 +3,7 @@ using System.Collections.Immutable;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.ValueObject;
-using BattleScene.UseCase.Skill.AbstractClass;
+using BattleScene.UseCase.Skill.SkillElement.AbstractClass;
 
 namespace BattleScene.UseCase.Service
 {

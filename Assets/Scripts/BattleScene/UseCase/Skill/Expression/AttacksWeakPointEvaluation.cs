@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
-using BattleScene.UseCase.Skill.AbstractClass;
+using BattleScene.UseCase.Skill.SkillElement.AbstractClass;
 
 namespace BattleScene.UseCase.Skill.Expression
 {

@@ -2,7 +2,7 @@
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
-using BattleScene.UseCase.Skill.AbstractClass;
+using BattleScene.UseCase.Skill.SkillElement.AbstractClass;
 using UnityEngine;
 using Utility.Interface;
 using static BattleScene.Domain.Code.AilmentCode;

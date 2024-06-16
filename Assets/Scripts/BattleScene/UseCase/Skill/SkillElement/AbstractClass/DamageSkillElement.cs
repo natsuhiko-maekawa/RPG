@@ -5,9 +5,9 @@ using BattleScene.Domain.Id;
 using BattleScene.Domain.Interface;
 using BattleScene.UseCase.Skill.Expression;
 
-namespace BattleScene.UseCase.Skill.AbstractClass
+namespace BattleScene.UseCase.Skill.SkillElement.AbstractClass
 {
-    public abstract class DamageSkillElement : ISkillElement
+    public abstract class DamageSkillElement : BaseClass.SkillElement
     {
         private readonly AttacksWeakPointEvaluation _attacksWeakPointEvaluation;
         private readonly DamageExpression _damageExpression;

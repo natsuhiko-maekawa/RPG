@@ -4,6 +4,7 @@ using System.Linq;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.IFactory;
 using BattleScene.InterfaceAdapter.IView;
+using BattleScene.InterfaceAdapter.Service;
 using BattleScene.UseCase.Service;
 using BattleScene.UseCase.View.OrderView.OutputBoundary;
 using BattleScene.UseCase.View.OrderView.OutputData;

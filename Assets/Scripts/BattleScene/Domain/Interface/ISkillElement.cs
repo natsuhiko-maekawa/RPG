@@ -1,6 +1,8 @@
-﻿namespace BattleScene.Domain.Interface
+﻿using System;
+
+namespace BattleScene.Domain.Interface
 {
-    public interface ISkillElement
+    public interface ISkillElement : IComparable<ISkillElement>
     {
     }
 }

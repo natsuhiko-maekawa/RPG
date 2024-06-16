@@ -2,7 +2,7 @@ using BattleScene.Domain.DomainService;
 using BattleScene.Domain.IRepository;
 using BattleScene.UseCase.Event.Interface;
 using BattleScene.UseCase.Event.Runner;
-using BattleScene.UseCase.Skill.AbstractClass;
+using BattleScene.UseCase.Skill.SkillElement.AbstractClass;
 
 namespace BattleScene.UseCase.Event
 {

@@ -2,15 +2,15 @@
 using BattleScene.Domain.Interface;
 using BattleScene.UseCase.Skill.Interface;
 
-namespace BattleScene.UseCase.Skill.AbstractClass
+namespace BattleScene.UseCase.Skill.SkillElement.AbstractClass
 {
-    public abstract class SlipDamageElement : ISkillElement, ILuckSkillElement
+    public abstract class AilmentSkillElement : BaseClass.SkillElement, ILuckSkillElement
     {
         public virtual float GetLuckRate()
         {
             return 0.5f;
         }
 
-        public abstract SlipDamageCode GetSlipDamageCode();
+        public abstract AilmentCode GetAilmentCode();
     }
 }
