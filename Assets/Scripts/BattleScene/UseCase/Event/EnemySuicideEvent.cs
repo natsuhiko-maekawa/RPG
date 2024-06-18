@@ -1,4 +1,6 @@
 using BattleScene.Domain.DomainService;
+using BattleScene.Domain.Entity;
+using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
 using BattleScene.UseCase.Event.Interface;
 using BattleScene.UseCase.Event.Runner;
@@ -15,7 +17,7 @@ namespace BattleScene.UseCase.Event
 {
     internal class EnemySuicideEvent : IEvent, IWait
     {
-        private readonly IActionTimeRepository _actionTimeRepository;
+        private readonly IRepository<ActionTimeEntity, CharacterId> _actionTimeRepository;
         private readonly AilmentOutputDataFactory _ailmentOutputDataFactory;
         private readonly IAilmentRepository _ailmentRepository;
         private readonly IAilmentViewPresenter _ailmentView;
@@ -26,7 +28,7 @@ namespace BattleScene.UseCase.Event
         private readonly OrderedItemsDomainService _orderedItems;
 
         public EnemySuicideEvent(
-            IActionTimeRepository actionTimeRepository,
+            IRepository<ActionTimeEntity, CharacterId> actionTimeRepository,
             AilmentOutputDataFactory ailmentOutputDataFactory,
             IAilmentRepository ailmentRepository,
             IAilmentViewPresenter ailmentView,

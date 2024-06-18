@@ -1,4 +1,6 @@
-﻿using BattleScene.Domain.IFactory;
+﻿using BattleScene.Domain.Entity;
+using BattleScene.Domain.Id;
+using BattleScene.Domain.IFactory;
 using BattleScene.Domain.IRepository;
 using BattleScene.InterfaceAdapter.Controller;
 using BattleScene.InterfaceAdapter.DataAccess.Factory;
@@ -66,7 +68,7 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<ICharacterVibesViewPresenter, CharacterVibesViewPresenter>(Lifetime.Singleton);
             builder.Register<IBattleSceneController, BattleSceneController>(Lifetime.Singleton);
             
-            builder.Register<IActionTimeRepository, ActionTimeRepository>(Lifetime.Singleton);
+            // builder.Register<IActionTimeRepository, ActionTimeRepository>(Lifetime.Singleton);
             builder.Register<IAilmentRepository, AilmentRepository>(Lifetime.Singleton);
             builder.Register<IBodyPartRepository, BodyPartRepository>(Lifetime.Singleton);
             builder.Register<IBuffRepository, BuffRepository>(Lifetime.Singleton);
@@ -82,6 +84,8 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<ISlipDamageRepository, SlipDamageRepository>(Lifetime.Singleton);
             builder.Register<ITargetRepository, TargetRepository>(Lifetime.Singleton);
             builder.Register<ITechnicalPointRepository, TechnicalPointRepository>(Lifetime.Singleton);
+            builder.Register<IRepository<ActionTimeEntity, CharacterId>, Repository<ActionTimeEntity, CharacterId>>(
+                Lifetime.Singleton);
 
             builder.Register<IAilmentFactory, AilmentFactory>(Lifetime.Singleton);
             builder.Register<IAilmentViewInfoFactory, AilmentViewInfoFactory>(Lifetime.Singleton);

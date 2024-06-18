@@ -2,14 +2,14 @@
 
 namespace BattleScene.Domain.Entity
 {
-    public class ActionTimeEntity
+    public class ActionTimeEntity : BaseEntity<ActionTimeEntity, CharacterId>
     {
         public ActionTimeEntity(CharacterId characterId)
         {
-            CharacterId = characterId;
+            Id = characterId;
         }
 
-        public CharacterId CharacterId { get; }
+        public override CharacterId Id { get; }
         public int ActionTime { get; private set; }
 
         public void Add(int time)
@@ -20,18 +20,6 @@ namespace BattleScene.Domain.Entity
         public void Reduce(int time)
         {
             ActionTime -= time;
-        }
-
-        public override bool Equals(object obj)
-        {
-            if (obj == null || GetType() != obj.GetType()) return false;
-            var actionTimeEntity = (ActionTimeEntity)obj;
-            return CharacterId == actionTimeEntity.CharacterId;
-        }
-
-        public override int GetHashCode()
-        {
-            return CharacterId.GetHashCode();
         }
     }
 }

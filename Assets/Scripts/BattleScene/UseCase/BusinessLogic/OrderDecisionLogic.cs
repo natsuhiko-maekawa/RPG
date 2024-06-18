@@ -16,7 +16,7 @@ namespace BattleScene.UseCase.BusinessLogic
     internal class OrderDecisionLogic : IBusinessLogic
     {
         private readonly ActionTimeCreatorService _actionTimeCreator;
-        private readonly IActionTimeRepository _actionTimeRepository;
+        private readonly IRepository<ActionTimeEntity, CharacterId> _actionTimeRepository;
         private readonly AilmentDomainService _ailment;
         private readonly ICharacterRepository _characterRepository;
         private readonly CharactersDomainService _characters;
@@ -28,7 +28,7 @@ namespace BattleScene.UseCase.BusinessLogic
 
         public OrderDecisionLogic(
             ActionTimeCreatorService actionTimeCreator,
-            IActionTimeRepository actionTimeRepository,
+            IRepository<ActionTimeEntity, CharacterId> actionTimeRepository,
             AilmentDomainService ailment,
             ICharacterRepository characterRepository,
             CharactersDomainService characters,

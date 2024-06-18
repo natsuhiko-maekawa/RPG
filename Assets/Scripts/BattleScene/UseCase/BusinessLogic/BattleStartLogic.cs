@@ -15,7 +15,7 @@ namespace BattleScene.UseCase.BusinessLogic
     internal class BattleStartLogic : IBusinessLogic
     {
         private readonly ActionTimeCreatorService _actionTimeCreator;
-        private readonly IActionTimeRepository _actionTimeRepository;
+        private readonly IRepository<ActionTimeEntity, CharacterId> _actionTimeRepository;
         private readonly CharacterCreatorService _characterCreator;
         private readonly ICharacterRepository _characterRepository;
         private readonly CharactersDomainService _characters;
@@ -25,7 +25,7 @@ namespace BattleScene.UseCase.BusinessLogic
             ActionTimeCreatorService actionTimeCreator,
             CharacterCreatorService characterCreator,
             CharactersDomainService characters,
-            IActionTimeRepository actionTimeRepository,
+            IRepository<ActionTimeEntity, CharacterId> actionTimeRepository,
             ICharacterRepository characterRepository,
             IEnemyRepository enemyRepository)
         {

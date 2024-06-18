@@ -11,12 +11,12 @@ namespace BattleScene.UseCase.Service
 {
     public class ActionTimeCreatorService
     {
-        private readonly IActionTimeRepository _actionTimeRepository;
+        private readonly IRepository<ActionTimeEntity, CharacterId> _actionTimeRepository;
         private readonly AgilityToSpeedService _agilityToSpeed;
         private readonly OrderedItemsDomainService _orderedItems;
 
         public ActionTimeCreatorService(
-            IActionTimeRepository actionTimeRepository,
+            IRepository<ActionTimeEntity, CharacterId> actionTimeRepository,
             AgilityToSpeedService agilityToSpeed,
             OrderedItemsDomainService orderedItems)
         {

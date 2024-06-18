@@ -1,8 +1,9 @@
 ﻿using System;
+using BattleScene.Domain.Interface;
 
 namespace BattleScene.Domain.Id
 {
-    public abstract class AutoGenerationId : IComparable<AutoGenerationId>
+    public abstract class AutoGenerationId : IId, IComparable<AutoGenerationId>
     {
         private readonly Guid _guid = Guid.NewGuid();
 
