@@ -7,13 +7,14 @@ using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
 using BattleScene.Domain.ValueObject;
 using BattleScene.UseCase.BusinessLogic.Interface;
+using BattleScene.UseCase.Main;
 using BattleScene.UseCase.Service;
 using Utility.Interface;
 using static BattleScene.Domain.Code.AilmentCode;
 
 namespace BattleScene.UseCase.BusinessLogic
 {
-    internal class OrderDecisionLogic : IBusinessLogic
+    internal class OrderDecisionLogic : IUseCase
     {
         private readonly ActionTimeCreatorService _actionTimeCreator;
         private readonly IRepository<ActionTimeEntity, CharacterId> _actionTimeRepository;
@@ -50,7 +51,7 @@ namespace BattleScene.UseCase.BusinessLogic
             _randomEx = randomEx;
         }
 
-        public void Execute(FrameNumber nextFrameNumber)
+        public void Execute()
         {
             var order = _orderedItemCreator.Create(_characters.GetIdList());
             _orderRepository.Update(order);
@@ -61,20 +62,13 @@ namespace BattleScene.UseCase.BusinessLogic
             var businessLogicCode = _orderedItems.FirstItem() switch
             {
                 OrderedCharacterValueObject => DecideNextEvent(_orderedItems.FirstCharacterId()),
-                OrderedAilmentValueObject => BusinessLogicCode.AilmentResetLogic,
-                OrderedSlipDamageValueObject => BusinessLogicCode.AilmentsSlipMessageLogic,
+                OrderedAilmentValueObject => UseCaseCode.AilmentResetLogic,
+                OrderedSlipDamageValueObject => UseCaseCode.AilmentsSlipMessageLogic,
                 _ => throw new ArgumentOutOfRangeException()
             };
-
-            var frame = _frameRepository.Select(nextFrameNumber)
-                .Merge(new FrameEntity(
-                    frameNumber: nextFrameNumber,
-                    businessLogicCodeList: new List<BusinessLogicCode> { businessLogicCode },
-                    presenterCodeList: new List<PresenterCode> { PresenterCode.Order }));
-            _frameRepository.Update(frame);
         }
 
-        private BusinessLogicCode DecideNextEvent(CharacterId characterId)
+        private UseCaseCode DecideNextEvent(CharacterId characterId)
         {
             var ailmentCode = _ailment.GetHighPriority(characterId)?.AilmentCode;
 
@@ -83,21 +77,21 @@ namespace BattleScene.UseCase.BusinessLogic
                 case Sleep:
                 case Stun:
                 case Petrifaction:
-                    return BusinessLogicCode.CantActionLogic;
+                    return UseCaseCode.CantActionLogic;
                 case Paralysis:
                 case EnemyParalysis:
                     if (_randomEx.Probability(0.5f))
-                        return BusinessLogicCode.CantActionLogic;
+                        return UseCaseCode.CantActionLogic;
                     break;
                 case Confusion:
                     return _characterRepository.Select(characterId).IsPlayer()
-                        ? BusinessLogicCode.PlayerConfusionLogic
-                        : BusinessLogicCode.EnemyConfusionLogic;
+                        ? UseCaseCode.PlayerConfusionLogic
+                        : UseCaseCode.EnemyConfusionLogic;
             }
 
             return _characterRepository.Select(characterId).IsPlayer()
-                ? BusinessLogicCode.SelectActionLogic
-                : BusinessLogicCode.EnemySelectSkillLogic;
+                ? UseCaseCode.SelectActionLogic
+                : UseCaseCode.EnemySelectSkillLogic;
         }
     }
 }

@@ -10,19 +10,19 @@ namespace BattleScene.Domain.Entity
     {
         public FrameNumber FrameNumber { get; }
         public ImmutableList<ControllerCode> ControllerCodeList { get; }
-        public ImmutableList<BusinessLogicCode> BusinessLogicCodeList { get; }
-        public ImmutableList<PresenterCode> PresenterCodeList { get; }
+        public ImmutableList<UseCaseCode> BusinessLogicCodeList { get; }
+        public ImmutableList<OutputCode> PresenterCodeList { get; }
         
         public FrameEntity(
             FrameNumber frameNumber,
             IList<ControllerCode> controllerCodeList = null,
-            IList<BusinessLogicCode> businessLogicCodeList = null,
-            IList<PresenterCode> presenterCodeList = null)
+            IList<UseCaseCode> businessLogicCodeList = null,
+            IList<OutputCode> presenterCodeList = null)
         {
             FrameNumber = frameNumber;
             ControllerCodeList = controllerCodeList?.ToImmutableList() ?? ImmutableList<ControllerCode>.Empty;
-            BusinessLogicCodeList = businessLogicCodeList?.ToImmutableList() ?? ImmutableList<BusinessLogicCode>.Empty;
-            PresenterCodeList = presenterCodeList?.ToImmutableList() ?? ImmutableList<PresenterCode>.Empty;
+            BusinessLogicCodeList = businessLogicCodeList?.ToImmutableList() ?? ImmutableList<UseCaseCode>.Empty;
+            PresenterCodeList = presenterCodeList?.ToImmutableList() ?? ImmutableList<OutputCode>.Empty;
         }
 
         public FrameEntity Merge(FrameEntity frameEntity)

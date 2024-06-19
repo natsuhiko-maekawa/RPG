@@ -7,12 +7,13 @@ using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
 using BattleScene.UseCase.BusinessLogic.Interface;
+using BattleScene.UseCase.Main;
 using BattleScene.UseCase.Service;
 using static BattleScene.Domain.Code.CharacterTypeId;
 
 namespace BattleScene.UseCase.BusinessLogic
 {
-    internal class BattleStartLogic : IBusinessLogic
+    internal class BattleStartLogic : IUseCase
     {
         private readonly ActionTimeCreatorService _actionTimeCreator;
         private readonly IRepository<ActionTimeEntity, CharacterId> _actionTimeRepository;
@@ -37,7 +38,7 @@ namespace BattleScene.UseCase.BusinessLogic
             _enemyRepository = enemyRepository;
         }
 
-        public void Execute(FrameNumber nextFrameNumber)
+        public void Execute()
         {
             var enemyTypeIdList = new List<CharacterTypeId> { Bee, Dragon, Mantis, Shuten, Slime };
             var enemyCharacterList = _characterCreator.CreateEnemyList(enemyTypeIdList);

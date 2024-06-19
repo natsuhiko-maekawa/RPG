@@ -1,6 +1,6 @@
 ﻿namespace BattleScene.Domain.Code
 {
-    public enum BusinessLogicCode
+    public enum UseCaseCode
     {
         InitializationLogic,
         BattleStartLogic,

@@ -5,11 +5,12 @@ using BattleScene.Domain.IFactory;
 using BattleScene.Domain.IRepository;
 using BattleScene.UseCase.BusinessLogic.Interface;
 using BattleScene.UseCase.Event.Runner;
+using BattleScene.UseCase.Main;
 using BattleScene.UseCase.Service;
 
 namespace BattleScene.UseCase.BusinessLogic
 {
-    internal class InitializationLogic : IBusinessLogic
+    internal class InitializationLogic : IUseCase
     {
         private readonly CharacterCreatorService _characterCreator;
         private readonly ICharacterRepository _characterRepository;
@@ -34,7 +35,7 @@ namespace BattleScene.UseCase.BusinessLogic
             _skillSelectorRepository = skillSelectorRepository;
         }
 
-        public void Execute(FrameNumber nextFrameNumber)
+        public void Execute()
         {
             var player = _characterCreator.CreatePlayer();
             _characterRepository.Update(player);

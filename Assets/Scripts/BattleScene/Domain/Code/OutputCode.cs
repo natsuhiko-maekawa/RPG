@@ -1,6 +1,6 @@
 ﻿namespace BattleScene.Domain.Code
 {
-    public enum PresenterCode
+    public enum OutputCode
     {
         AilmentView,
         AttackCount,

@@ -16,12 +16,12 @@ namespace BattleScene.UseCase.Main
             _container = container;
         }
 
-        public IOutput Create(PresenterCode presenterCode)
+        public IOutput Create(OutputCode outputCode)
         {
-            return presenterCode switch
+            return outputCode switch
             {
-                PresenterCode.AilmentView => _container.Resolve<AilmentViewOutput>(),
-                PresenterCode.Order => _container.Resolve<OrderViewOutput>(),
+                OutputCode.AilmentView => _container.Resolve<AilmentViewOutput>(),
+                OutputCode.Order => _container.Resolve<OrderViewOutput>(),
                 _ => throw new ArgumentOutOfRangeException()
             };
         }

@@ -4,12 +4,13 @@ using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
 using BattleScene.UseCase.BusinessLogic.Interface;
 using BattleScene.UseCase.Event.Runner;
+using BattleScene.UseCase.Main;
 using BattleScene.UseCase.Service;
 using Utility.Interface;
 
 namespace BattleScene.UseCase.BusinessLogic
 {
-    internal class EnemySelectSkillLogic : IBusinessLogic
+    internal class EnemySelectSkillLogic : IUseCase
     {
         private readonly ICharacterRepository _characterRepository;
         private readonly OrderedItemsDomainService _orderItems;
@@ -37,7 +38,7 @@ namespace BattleScene.UseCase.BusinessLogic
             _targetRepository = targetRepository;
         }
 
-        public void Execute(FrameNumber nextFrameNumber)
+        public void Execute()
         {
             // TODO: 敵がスキルを選択する際、ランダムに選択する仮のアルゴリズムを実装している
             var characterId = _orderItems.FirstCharacterId();

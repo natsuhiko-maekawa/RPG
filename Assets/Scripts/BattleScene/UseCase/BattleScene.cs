@@ -6,35 +6,22 @@ namespace BattleScene.UseCase
 {
     internal class BattleScene : MonoBehaviour
     {
-        // private EventRunner _eventRunner;
-        //
-        // private void Update()
-        // {
-        //     _eventRunner.Run();
-        // }
-        //
-        // [Inject]
-        // public void Construct(EventRunner eventRunner)
-        // {
-        //     _eventRunner = eventRunner;
-        // }
-        
-        private Runner _runner;
+        private StateMachine _stateMachine;
 
         private void Start()
         {
-            _runner.Start();
+            _stateMachine.Start();
         }
 
         private void Update()
         {
-            _runner.Update();
+            _stateMachine.Update();
         }
 
         [Inject]
-        public void Construct(Runner runner)
+        public void Construct(StateMachine stateMachine)
         {
-            _runner = runner;
+            _stateMachine = stateMachine;
         }
     }
 }

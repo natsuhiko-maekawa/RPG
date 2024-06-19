@@ -8,17 +8,17 @@ namespace BattleScene.UseCase.Main
 {
     public class Runner
     {
-        private readonly BusinessLogicFactory _businessLogicFactory;
+        private readonly UseCaseFactory _useCaseFactory;
         private readonly IFrameRepository _frameRepository;
         private readonly OutputFactory _outputFactory;
         private int _frameNumber;
 
         public Runner(
-            BusinessLogicFactory businessLogicFactory, 
+            UseCaseFactory useCaseFactory, 
             IFrameRepository frameRepository,
             OutputFactory outputFactory)
         {
-            _businessLogicFactory = businessLogicFactory;
+            _useCaseFactory = useCaseFactory;
             _frameRepository = frameRepository;
             _outputFactory = outputFactory;
         }
@@ -27,16 +27,16 @@ namespace BattleScene.UseCase.Main
         {
             var frameNumber = new FrameNumber(_frameNumber);
             var businessLogicCodeList = ImmutableList.Create(
-                BusinessLogicCode.InitializationLogic, 
-                BusinessLogicCode.BattleStartLogic, 
-                BusinessLogicCode.OrderDecisionLogic);
+                UseCaseCode.InitializationLogic, 
+                UseCaseCode.BattleStartLogic, 
+                UseCaseCode.OrderDecisionLogic);
             var presenterCodeList = ImmutableList.Create(
-                PresenterCode.AilmentView,
+                OutputCode.AilmentView,
                 // PresenterCode.AttackCount,
                 // PresenterCode.Enemy,
                 // PresenterCode.HitPointBar,
                 // PresenterCode.TechnicalPointBar
-                PresenterCode.Order
+                OutputCode.Order
             );
             var frame = new FrameEntity(
                 frameNumber: frameNumber,
@@ -51,7 +51,7 @@ namespace BattleScene.UseCase.Main
             _frameNumber++;
             _frameRepository.Update(new FrameEntity(new FrameNumber(_frameNumber)));
             foreach (var businessLogicCode in frame.BusinessLogicCodeList)
-                _businessLogicFactory.Create(businessLogicCode).Execute(new FrameNumber(_frameNumber));
+                _useCaseFactory.Create(businessLogicCode).Execute();
 
             foreach (var presenterCode in frame.PresenterCodeList)
             {

@@ -60,7 +60,7 @@ namespace BattleScene.UseCase
             builder.Register<SelectSkillEvent>(Lifetime.Singleton);
             builder.Register<SelectTargetEvent>(Lifetime.Singleton);
             builder.Register<Runner>(Lifetime.Singleton);
-            builder.Register<BusinessLogicFactory>(Lifetime.Singleton);
+            builder.Register<UseCaseFactory>(Lifetime.Singleton);
             builder.Register<OutputFactory>(Lifetime.Singleton);
             builder.Register<IEventFactory, EventFactory>(Lifetime.Singleton);
             builder.Register<ActionTimeCreatorService>(Lifetime.Singleton);
@@ -192,6 +192,10 @@ namespace BattleScene.UseCase
 
             builder.Register<AilmentViewOutput>(Lifetime.Singleton);
             builder.Register<OrderViewOutput>(Lifetime.Singleton);
+
+            builder.Register<StateMachine>(Lifetime.Singleton);
+            builder.Register<StateFactory>(Lifetime.Singleton);
+            builder.Register<InitializeStateFactory>(Lifetime.Singleton);
         }
     }
 }
