@@ -7,6 +7,7 @@ using BattleScene.UseCase.BusinessLogic;
 using BattleScene.UseCase.BusinessLogic.Interface;
 using BattleScene.UseCase.Output.Interface;
 using BattleScene.UseCase.View.AilmentView;
+using BattleScene.UseCase.View.EnemyView;
 using BattleScene.UseCase.View.OrderView;
 using Utility.Interface;
 using VContainer;
@@ -47,6 +48,7 @@ namespace BattleScene.UseCase.Main
 
             var outputList = new List<IOutput>
             {
+                _container.Resolve<EnemyViewOutput>(),
                 _container.Resolve<AilmentViewOutput>(),
                 _container.Resolve<OrderViewOutput>()
             };

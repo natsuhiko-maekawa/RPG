@@ -14,6 +14,7 @@ using BattleScene.UseCase.View.BuffView.OutputDataFactory;
 using BattleScene.UseCase.View.CharacterVibesView.OutputDataFactory;
 using BattleScene.UseCase.View.DestroyedPartView.OutputDataFactory;
 using BattleScene.UseCase.View.DigitView.OutputDataFactory;
+using BattleScene.UseCase.View.EnemyView;
 using BattleScene.UseCase.View.EnemyView.OutputDataFactory;
 using BattleScene.UseCase.View.FrameView.OutputDataFactory;
 using BattleScene.UseCase.View.HitPointBarView.OutputDataFactory;
@@ -191,6 +192,7 @@ namespace BattleScene.UseCase
             builder.Register<Luck>(Lifetime.Singleton);
 
             builder.Register<AilmentViewOutput>(Lifetime.Singleton);
+            builder.Register<EnemyViewOutput>(Lifetime.Singleton);
             builder.Register<OrderViewOutput>(Lifetime.Singleton);
 
             builder.Register<StateMachine>(Lifetime.Singleton);
