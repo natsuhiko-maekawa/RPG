@@ -24,7 +24,6 @@ namespace BattleScene.Framework.View
         private readonly List<StatusBarView> _enemyHpBarViewList = new();
         private readonly List<Image> _enemyImageList = new();
         private readonly List<EnemyVibesView> _enemyVibesViewList = new();
-        private ISpriteFlyweight _spriteFlyweight;
 
         private void Awake()
         {
@@ -109,7 +108,6 @@ namespace BattleScene.Framework.View
         public void Construct(
             ISpriteFlyweight spriteFlyweight)
         {
-            _spriteFlyweight = spriteFlyweight;
         }
     }
 }

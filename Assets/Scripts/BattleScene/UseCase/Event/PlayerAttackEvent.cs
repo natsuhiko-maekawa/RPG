@@ -4,8 +4,6 @@ using BattleScene.Domain.IFactory;
 using BattleScene.Domain.IRepository;
 using BattleScene.UseCase.Event.Interface;
 using BattleScene.UseCase.Event.Runner;
-using BattleScene.UseCase.View.AttackCountView.OutputBoundary;
-using BattleScene.UseCase.View.AttackCountView.OutputDataFactory;
 using BattleScene.UseCase.View.FrameView.OutputBoundary;
 using BattleScene.UseCase.View.FrameView.OutputDataFactory;
 using BattleScene.UseCase.View.MessageView.OutputBoundary;
@@ -21,8 +19,6 @@ namespace BattleScene.UseCase.Event
 {
     internal class PlayerAttackEvent : IEvent, IWait
     {
-        private readonly AttackCountOutputDataFactory _attackCountOutputDataFactory;
-        private readonly IAttackCountViewPresenter _attackCountView;
         private readonly ICharacterRepository _characterRepository;
         private readonly IFrameViewPresenter _frameView;
         private readonly MessageOutputDataFactory _messageOutputDataFactory;
@@ -38,8 +34,6 @@ namespace BattleScene.UseCase.Event
         private readonly ITechnicalPointRepository _technicalPointRepository;
 
         public PlayerAttackEvent(
-            AttackCountOutputDataFactory attackCountOutputDataFactory,
-            IAttackCountViewPresenter attackCountView,
             ICharacterRepository characterRepository,
             IFrameViewPresenter frameView,
             MessageOutputDataFactory messageOutputDataFactory,
@@ -54,8 +48,6 @@ namespace BattleScene.UseCase.Event
             ITechnicalPointBarViewPresenter technicalPointBarView,
             ITechnicalPointRepository technicalPointRepository)
         {
-            _attackCountOutputDataFactory = attackCountOutputDataFactory;
-            _attackCountView = attackCountView;
             _characterRepository = characterRepository;
             _frameView = frameView;
             _messageOutputDataFactory = messageOutputDataFactory;
@@ -85,8 +77,7 @@ namespace BattleScene.UseCase.Event
 
             if (_characterRepository.Select(characterId).IsPlayer())
             {
-                // TODO: FatalitySkillかどうか判定する
-                if (false) _attackCountView.Start(_attackCountOutputDataFactory.Create());
+                // TODO: FatalitySkillかどうか判定し、リミットゲージの表示更新を可否を決定する
 
                 var targetFrameOutputData = _targetFrameOutputDataFactory.Create();
                 _frameView.Start(targetFrameOutputData);

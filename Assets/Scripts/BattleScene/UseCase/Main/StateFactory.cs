@@ -1,4 +1,5 @@
-﻿using VContainer;
+﻿using System;
+using VContainer;
 
 namespace BattleScene.UseCase.Main
 {
@@ -16,7 +17,8 @@ namespace BattleScene.UseCase.Main
         {
             return stateCode switch
             {
-                StateCode.Initialize => _container.Resolve<InitializeStateFactory>().Create()
+                StateCode.Initialize => _container.Resolve<InitializeStateFactory>().Create(),
+                _ => throw new ArgumentOutOfRangeException()
             };
         }
     }

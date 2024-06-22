@@ -19,7 +19,6 @@ namespace BattleScene.UseCase.BusinessLogic
         private readonly AilmentDomainService _ailment;
         private readonly ICharacterRepository _characterRepository;
         private readonly CharactersDomainService _characters;
-        private readonly IFrameRepository _frameRepository;
         private readonly OrderedItemCreatorService _orderedItemCreator;
         private readonly OrderedItemsDomainService _orderedItems;
         private readonly IRepository<OrderedItemEntity, OrderNumber> _orderedItemRepository;
@@ -31,7 +30,6 @@ namespace BattleScene.UseCase.BusinessLogic
             AilmentDomainService ailment,
             ICharacterRepository characterRepository,
             CharactersDomainService characters,
-            IFrameRepository frameRepository,
             OrderedItemCreatorService orderedItemCreator,
             OrderedItemsDomainService orderedItems,
             IRepository<OrderedItemEntity, OrderNumber> orderedItemRepository,
@@ -42,7 +40,6 @@ namespace BattleScene.UseCase.BusinessLogic
             _ailment = ailment;
             _characterRepository = characterRepository;
             _characters = characters;
-            _frameRepository = frameRepository;
             _orderedItemCreator = orderedItemCreator;
             _orderedItems = orderedItems;
             _orderedItemRepository = orderedItemRepository;

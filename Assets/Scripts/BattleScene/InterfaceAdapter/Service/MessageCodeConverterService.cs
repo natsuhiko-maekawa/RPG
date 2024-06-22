@@ -12,7 +12,7 @@ namespace BattleScene.InterfaceAdapter.Service
     {
         private const string Actor = "actor";
         private const string Ailment = "ailment";
-        private const string Buff = "buff";
+        // private const string Buff = "buff";
         private const string Damage = "damage";
         private const string Part = "part";
         private const string Skill = "skill";
