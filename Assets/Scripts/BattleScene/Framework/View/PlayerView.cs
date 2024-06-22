@@ -37,7 +37,7 @@ namespace BattleScene.Framework.View
 
         public async Task StartAnimation(PlayerViewDto dto)
         {
-            _image.sprite = _spriteFlyweight.Get(dto.PlayerImage);
+            _image.sprite = await _spriteFlyweight.Get(dto.PlayerImage);
             var originalPosition = new Vector3(0 - MoveRange, 0);
 
             for (var frame = 0; frame < Frame; ++frame)

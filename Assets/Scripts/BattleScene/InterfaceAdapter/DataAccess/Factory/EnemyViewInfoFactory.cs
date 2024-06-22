@@ -20,10 +20,11 @@ namespace BattleScene.InterfaceAdapter.DataAccess.Factory
         {
             var enemyViewInfoDto = _enemyViewInfoResource.Get()
                 .First(x => x.EnemyTypeId == characterTypeId);
+            var enemyName = characterTypeId.ToString();
             return new EnemyViewInfoValueObject(
                 characterTypeId: characterTypeId,
                 enemyName: enemyViewInfoDto.enemyName,
-                enemyImagePath: enemyViewInfoDto.enemyImagePath);
+                enemyImagePath: $"{enemyName}[{enemyName}]");
         }
     }
 }

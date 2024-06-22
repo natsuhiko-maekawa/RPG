@@ -1,10 +1,13 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Threading.Tasks;
+using UnityEngine;
 
 namespace BattleScene.Framework
 {
     public interface ISpriteFlyweight
     {
-        public Sprite Get(string imageName);
+        public Task<Sprite> Get(string imagePath);
+        [Obsolete]
         public void Add(string imageName, Sprite sprite);
     }
 }

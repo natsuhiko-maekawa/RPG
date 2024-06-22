@@ -9,7 +9,6 @@ namespace BattleScene.InterfaceAdapter.DataAccess.Factory.Dto
     {
         [SerializeField] private string enemyTypeId;
         public string enemyName;
-        public string enemyImagePath;
         public CharacterTypeId EnemyTypeId { get; private set; }
         
         public void OnBeforeSerialize()
