@@ -17,7 +17,7 @@ namespace BattleScene.InterfaceAdapter.DataAccess.Repository
         public TEntity Select(TId id)
         {
             return _entitySet
-                .First(x => Equals(x.Id, id));
+                .FirstOrDefault(x => Equals(x.Id, id));
         }
 
         public ImmutableList<TEntity> Select()

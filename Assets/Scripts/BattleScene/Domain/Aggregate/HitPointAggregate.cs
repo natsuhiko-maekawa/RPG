@@ -1,21 +1,22 @@
-﻿using BattleScene.Domain.Id;
+﻿using BattleScene.Domain.Entity;
+using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
 
 namespace BattleScene.Domain.Aggregate
 {
-    public class HitPointAggregate
+    public class HitPointAggregate : BaseEntity<HitPointAggregate, CharacterId>
     {
         private PointValueObject _pointValueObject;
 
         public HitPointAggregate(
-            CharacterId characterId,
+            CharacterId id,
             int defaultHitPoint)
         {
-            CharacterId = characterId;
+            Id = id;
             _pointValueObject = new PointValueObject(defaultHitPoint);
         }
 
-        public CharacterId CharacterId { get; }
+        public override CharacterId Id { get; }
 
         public int GetMax()
         {

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
+using BattleScene.Domain.Aggregate;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Entity;
@@ -20,6 +21,8 @@ namespace BattleScene.UseCase.BusinessLogic
         private readonly ICharacterRepository _characterRepository;
         private readonly CharactersDomainService _characters;
         private readonly IEnemyRepository _enemyRepository;
+        private readonly HitPointCreatorService _hitPointCreator;
+        private readonly IRepository<HitPointAggregate, CharacterId> _hitPointRepository;
 
         public BattleStartLogic(
             ActionTimeCreatorService actionTimeCreator,
@@ -27,7 +30,9 @@ namespace BattleScene.UseCase.BusinessLogic
             CharactersDomainService characters,
             IRepository<ActionTimeEntity, CharacterId> actionTimeRepository,
             ICharacterRepository characterRepository,
-            IEnemyRepository enemyRepository)
+            IEnemyRepository enemyRepository,
+            HitPointCreatorService hitPointCreator,
+            IRepository<HitPointAggregate, CharacterId> hitPointRepository)
         {
             _actionTimeCreator = actionTimeCreator;
             _characterCreator = characterCreator;
@@ -35,6 +40,8 @@ namespace BattleScene.UseCase.BusinessLogic
             _actionTimeRepository = actionTimeRepository;
             _characterRepository = characterRepository;
             _enemyRepository = enemyRepository;
+            _hitPointCreator = hitPointCreator;
+            _hitPointRepository = hitPointRepository;
         }
 
         public void Execute()
@@ -42,6 +49,10 @@ namespace BattleScene.UseCase.BusinessLogic
             var enemyTypeIdList = new List<CharacterTypeId> { Bee, Dragon, Mantis, Shuten, Slime };
             var enemyCharacterList = _characterCreator.CreateEnemyList(enemyTypeIdList);
             _characterRepository.Update(enemyCharacterList);
+
+            var hitPointList = _hitPointCreator.Create(enemyCharacterList);
+            _hitPointRepository.Update(hitPointList);
+            
             var enemyList = enemyCharacterList
                 .OrderBy(x => x.Property.CharacterTypeId)
                 .Select((x, i) => new EnemyEntity(x.CharacterId, i))

@@ -1,4 +1,6 @@
+using BattleScene.Domain.Aggregate;
 using BattleScene.Domain.DomainService;
+using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
 using BattleScene.UseCase.Event.Interface;
 using BattleScene.UseCase.Event.Runner;
@@ -25,7 +27,7 @@ namespace BattleScene.UseCase.Event
         private readonly IDigitViewPresenter _digitView;
         private readonly HitPointBarOutputDataFactory _hitPointBarOutputDataFactory;
         private readonly IHitPointBarViewPresenter _hitPointBarView;
-        private readonly IHitPointRepository _hitPointRepository;
+        private readonly IRepository<HitPointAggregate, CharacterId> _hitPointRepository;
         private readonly MessageOutputDataFactory _messageOutputDataFactory;
         private readonly IMessageViewPresenter _messageView;
         private readonly ResultDomainService _result;
@@ -41,7 +43,7 @@ namespace BattleScene.UseCase.Event
             IDigitViewPresenter digitView,
             HitPointBarOutputDataFactory hitPointBarOutputDataFactory,
             IHitPointBarViewPresenter hitPointBarView,
-            IHitPointRepository hitPointRepository,
+            IRepository<HitPointAggregate, CharacterId> hitPointRepository,
             MessageOutputDataFactory messageOutputDataFactory,
             IMessageViewPresenter messageView,
             ResultDomainService result,

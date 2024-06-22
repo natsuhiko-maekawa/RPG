@@ -1,4 +1,5 @@
-﻿using BattleScene.Domain.Entity;
+﻿using BattleScene.Domain.Aggregate;
+using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.IFactory;
 using BattleScene.Domain.IRepository;
@@ -74,7 +75,7 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<ICharacterRepository, CharacterRepository>(Lifetime.Singleton);
             builder.Register<IEnemyRepository, EnemyRepository>(Lifetime.Singleton);
             builder.Register<IFrameRepository, FrameRepository>(Lifetime.Singleton);
-            builder.Register<IHitPointRepository, HitPointRepository>(Lifetime.Singleton);
+            // builder.Register<IHitPointRepository, HitPointRepository>(Lifetime.Singleton);
             // builder.Register<IOrderRepository, OrderRepository>(Lifetime.Singleton);
             builder.Register<IResultRepository, ResultRepository>(Lifetime.Singleton);
             builder.Register<ISelectorRepository, SelectorRepository>(Lifetime.Singleton);
@@ -86,6 +87,8 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<IRepository<ActionTimeEntity, CharacterId>, Repository<ActionTimeEntity, CharacterId>>(
                 Lifetime.Singleton);
             builder.Register<IRepository<BuffEntity, BuffId>, Repository<BuffEntity, BuffId>>(
+                Lifetime.Singleton);
+            builder.Register<IRepository<HitPointAggregate, CharacterId>, Repository<HitPointAggregate, CharacterId>>(
                 Lifetime.Singleton);
             builder.Register<IRepository<OrderedItemEntity, OrderNumber>, Repository<OrderedItemEntity, OrderNumber>>(
                 Lifetime.Singleton);

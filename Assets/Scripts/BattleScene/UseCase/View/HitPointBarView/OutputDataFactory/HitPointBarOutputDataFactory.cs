@@ -1,6 +1,8 @@
 using System.Collections.Immutable;
 using System.Linq;
+using BattleScene.Domain.Aggregate;
 using BattleScene.Domain.DomainService;
+using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
 using BattleScene.UseCase.Service;
 using BattleScene.UseCase.View.HitPointBarView.OutputData;
@@ -11,13 +13,13 @@ namespace BattleScene.UseCase.View.HitPointBarView.OutputDataFactory
     {
         private readonly ICharacterRepository _characterRepository;
         private readonly IEnemyRepository _enemyRepository;
-        private readonly IHitPointRepository _hitPointRepository;
+        private readonly IRepository<HitPointAggregate, CharacterId> _hitPointRepository;
         private readonly ResultDomainService _result;
 
         public HitPointBarOutputDataFactory(
             ICharacterRepository characterRepository,
             IEnemyRepository enemyRepository,
-            IHitPointRepository hitPointRepository,
+            IRepository<HitPointAggregate, CharacterId> hitPointRepository,
             ResultDomainService result)
         {
             _characterRepository = characterRepository;

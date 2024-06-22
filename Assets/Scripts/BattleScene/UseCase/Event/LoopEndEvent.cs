@@ -1,4 +1,6 @@
+using BattleScene.Domain.Aggregate;
 using BattleScene.Domain.DomainService;
+using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
 using BattleScene.Domain.ValueObject;
 using BattleScene.UseCase.Event.Interface;
@@ -21,7 +23,7 @@ namespace BattleScene.UseCase.Event
         private readonly IBuffViewPresenter _buffView;
         private readonly CharactersDomainService _characters;
         private readonly IFrameViewPresenter _frameView;
-        private readonly IHitPointRepository _hitPointRepository;
+        private readonly IRepository<HitPointAggregate, CharacterId> _hitPointRepository;
         private readonly OrderedItemsDomainService _orderedItems;
 
         public LoopEndEvent(
@@ -33,7 +35,7 @@ namespace BattleScene.UseCase.Event
             IBuffViewPresenter buffView,
             CharactersDomainService characters,
             IFrameViewPresenter frameView,
-            IHitPointRepository hitPointRepository,
+            IRepository<HitPointAggregate, CharacterId> hitPointRepository,
             OrderedItemsDomainService orderedItems)
         {
             _ailment = ailment;

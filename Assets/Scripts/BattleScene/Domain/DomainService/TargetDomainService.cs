@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Immutable;
 using System.Linq;
+using BattleScene.Domain.Aggregate;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
 using Utility.Interface;
@@ -12,13 +13,13 @@ namespace BattleScene.Domain.DomainService
     {
         private readonly ICharacterRepository _characterRepository;
         private readonly CharactersDomainService _characters;
-        private readonly IHitPointRepository _hitPointRepository;
+        private readonly IRepository<HitPointAggregate, CharacterId> _hitPointRepository;
         private readonly IRandomEx _randomEx;
 
         public TargetDomainService(
             ICharacterRepository characterRepository,
             CharactersDomainService characters,
-            IHitPointRepository hitPointRepository,
+            IRepository<HitPointAggregate, CharacterId> hitPointRepository,
             IRandomEx randomEx)
         {
             _characterRepository = characterRepository;

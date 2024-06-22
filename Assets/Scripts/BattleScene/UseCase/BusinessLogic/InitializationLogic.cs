@@ -14,30 +14,39 @@ namespace BattleScene.UseCase.BusinessLogic
         private readonly CharacterCreatorService _characterCreator;
         private readonly ICharacterRepository _characterRepository;
         private readonly CharactersDomainService _characters;
+        private readonly HitPointCreatorService _hitPointCreator;
         private readonly IPlayerPropertyFactory _playerPropertyFactory;
         private readonly ISelectorRepository _selectorRepository;
         private readonly ISkillSelectorRepository _skillSelectorRepository;
+        private readonly IRepository<HitPointAggregate, CharacterId> _hitPointRepository;
 
         public InitializationLogic(
             CharacterCreatorService characterCreator,
             ICharacterRepository characterRepository,
             CharactersDomainService characters,
+            HitPointCreatorService hitPointCreator,
             IPlayerPropertyFactory playerPropertyFactory,
             ISelectorRepository selectorRepository,
-            ISkillSelectorRepository skillSelectorRepository)
+            ISkillSelectorRepository skillSelectorRepository,
+            IRepository<HitPointAggregate, CharacterId> hitPointRepository)
         {
             _characterCreator = characterCreator;
             _characterRepository = characterRepository;
             _characters = characters;
+            _hitPointCreator = hitPointCreator;
             _playerPropertyFactory = playerPropertyFactory;
             _selectorRepository = selectorRepository;
             _skillSelectorRepository = skillSelectorRepository;
+            _hitPointRepository = hitPointRepository;
         }
 
         public void Execute()
         {
             var player = _characterCreator.CreatePlayer();
             _characterRepository.Update(player);
+
+            var hitPoint = _hitPointCreator.Create(player);
+            _hitPointRepository.Update(hitPoint);
 
             var actionSelectorId = new SelectorId(EventCode.SelectActionEvent);
             var actionSelector =

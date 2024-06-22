@@ -1,6 +1,8 @@
 using System.Collections.Immutable;
 using System.Linq;
+using BattleScene.Domain.Aggregate;
 using BattleScene.Domain.DomainService;
+using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
 using BattleScene.UseCase.Event.Interface;
 using BattleScene.UseCase.Event.Runner;
@@ -22,7 +24,7 @@ namespace BattleScene.UseCase.Event
         private readonly IAilmentViewPresenter _ailmentViewPresenter;
         private readonly EnemyOutputDataFactory _enemyOutputDataFactory;
         private readonly IEnemyViewPresenter _enemyViewPresenter;
-        private readonly IHitPointRepository _hitPointRepository;
+        private readonly IRepository<HitPointAggregate, CharacterId> _hitPointRepository;
         private readonly MessageOutputDataFactory _messageOutputDataFactory;
         private readonly IMessageViewPresenter _messageViewPresenter;
         private readonly ResultDomainService _result;
@@ -33,7 +35,7 @@ namespace BattleScene.UseCase.Event
             IAilmentViewPresenter ailmentViewPresenter,
             EnemyOutputDataFactory enemyOutputDataFactory,
             IEnemyViewPresenter enemyViewPresenter,
-            IHitPointRepository hitPointRepository,
+            IRepository<HitPointAggregate, CharacterId> hitPointRepository,
             MessageOutputDataFactory messageOutputDataFactory,
             IMessageViewPresenter messageViewPresenter,
             ResultDomainService result)
@@ -53,7 +55,7 @@ namespace BattleScene.UseCase.Event
         {
             var deadEnemyList = _hitPointRepository.Select()
                 .Where(x => !x.IsSurvive())
-                .Select(x => x.CharacterId)
+                .Select(x => x.Id)
                 .ToImmutableList();
 
             _ailmentRepository.Delete(deadEnemyList);
@@ -72,7 +74,7 @@ namespace BattleScene.UseCase.Event
         {
             var deadEnemyList = _hitPointRepository.Select()
                 .Where(x => !x.IsSurvive())
-                .Select(x => x.CharacterId)
+                .Select(x => x.Id)
                 .ToImmutableHashSet();
             var targetList = _result.LastDamage().DamageList
                 .Select(x => x.TargetId)

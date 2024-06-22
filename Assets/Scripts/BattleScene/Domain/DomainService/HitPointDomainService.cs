@@ -1,14 +1,16 @@
 ﻿using System.Linq;
+using BattleScene.Domain.Aggregate;
+using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
 
 namespace BattleScene.Domain.DomainService
 {
     public class HitPointDomainService
     {
-        private readonly IHitPointRepository _hitPointRepository;
+        private readonly IRepository<HitPointAggregate, CharacterId> _hitPointRepository;
 
         public HitPointDomainService(
-            IHitPointRepository hitPointRepository)
+            IRepository<HitPointAggregate, CharacterId> hitPointRepository)
         {
             _hitPointRepository = hitPointRepository;
         }

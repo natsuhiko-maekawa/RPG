@@ -73,6 +73,7 @@ namespace BattleScene.UseCase
             builder.Register<CureSkillService>(Lifetime.Singleton);
             builder.Register<DamageSkillService>(Lifetime.Singleton);
             builder.Register<DestroyedPartCreatorService>(Lifetime.Singleton);
+            builder.Register<HitPointCreatorService>(Lifetime.Singleton);
             builder.Register<OrderedItemCreatorService>(Lifetime.Singleton);
             builder.Register<ResetSkillService>(Lifetime.Singleton);
             builder.Register<SelectSkillService>(Lifetime.Singleton);
