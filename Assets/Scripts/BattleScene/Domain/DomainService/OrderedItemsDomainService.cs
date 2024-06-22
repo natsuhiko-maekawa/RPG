@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using BattleScene.Domain.Code;
+using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.Interface;
 using BattleScene.Domain.IRepository;
@@ -10,20 +11,20 @@ namespace BattleScene.Domain.DomainService
 {
     public class OrderedItemsDomainService
     {
-        private readonly IOrderRepository _orderRepository;
+        private readonly IRepository<OrderedItemEntity, OrderNumber> _orderedItemRepository;
 
         public OrderedItemsDomainService(
-            IOrderRepository orderRepository)
+            IRepository<OrderedItemEntity, OrderNumber> orderedItemRepository)
         {
-            _orderRepository = orderRepository;
+            _orderedItemRepository = orderedItemRepository;
         }
 
         public IOrderedItem FirstItem()
         {
-            return _orderRepository.Select().OrderedItemList
-                .OrderBy(x => x.OrderNumber)
-                .First()
-                .OrderedItem;
+            return _orderedItemRepository.Select()
+                .OrderBy(x => x.Id)
+                .FirstOrDefault()
+                ?.OrderedItem;
         }
 
         public CharacterId FirstCharacterId()

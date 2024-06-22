@@ -22,7 +22,6 @@ using BattleScene.InterfaceAdapter.Presenter.SelectSkillView;
 using BattleScene.InterfaceAdapter.Presenter.StatusBarView;
 using BattleScene.InterfaceAdapter.Service;
 using BattleScene.UseCase.IController;
-using BattleScene.UseCase.Service;
 using BattleScene.UseCase.View.AilmentView.OutputBoundary;
 using BattleScene.UseCase.View.AttackCountView.OutputBoundary;
 using BattleScene.UseCase.View.BuffView.OutputBoundary;
@@ -76,7 +75,7 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<IEnemyRepository, EnemyRepository>(Lifetime.Singleton);
             builder.Register<IFrameRepository, FrameRepository>(Lifetime.Singleton);
             builder.Register<IHitPointRepository, HitPointRepository>(Lifetime.Singleton);
-            builder.Register<IOrderRepository, OrderRepository>(Lifetime.Singleton);
+            // builder.Register<IOrderRepository, OrderRepository>(Lifetime.Singleton);
             builder.Register<IResultRepository, ResultRepository>(Lifetime.Singleton);
             builder.Register<ISelectorRepository, SelectorRepository>(Lifetime.Singleton);
             builder.Register<ISkillRepository, SkillRepository>(Lifetime.Singleton);
@@ -85,6 +84,8 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<ITargetRepository, TargetRepository>(Lifetime.Singleton);
             builder.Register<ITechnicalPointRepository, TechnicalPointRepository>(Lifetime.Singleton);
             builder.Register<IRepository<ActionTimeEntity, CharacterId>, Repository<ActionTimeEntity, CharacterId>>(
+                Lifetime.Singleton);
+            builder.Register<IRepository<OrderedItemEntity, OrderNumber>, Repository<OrderedItemEntity, OrderNumber>>(
                 Lifetime.Singleton);
 
             builder.Register<IAilmentFactory, AilmentFactory>(Lifetime.Singleton);

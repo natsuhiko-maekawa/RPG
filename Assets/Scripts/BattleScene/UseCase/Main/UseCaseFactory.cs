@@ -2,7 +2,6 @@
 using BattleScene.Domain.Code;
 using BattleScene.UseCase.BusinessLogic;
 using BattleScene.UseCase.BusinessLogic.Interface;
-using BattleScene.UseCase.Event;
 using VContainer;
 
 namespace BattleScene.UseCase.Main

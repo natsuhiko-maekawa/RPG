@@ -7,7 +7,6 @@ using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
 using BattleScene.UseCase.BusinessLogic.Interface;
-using BattleScene.UseCase.Main;
 using BattleScene.UseCase.Service;
 using static BattleScene.Domain.Code.CharacterTypeId;
 

@@ -36,7 +36,7 @@ namespace BattleScene.UseCase.Service
             _slipDamageRepository = slipDamageRepository;
         }
 
-        public OrderAggregate Create(IList<CharacterId> characterList)
+        public ImmutableList<OrderedItemEntity> Create(IList<CharacterId> characterList)
         {
             var iOrderedItemList = Enumerable
                 .Repeat(characterList, Domain.Constant.MaxOrderNumber)
@@ -57,12 +57,10 @@ namespace BattleScene.UseCase.Service
             var slipDamages = _slipDamageRepository.Select();
             iOrderedItemList = InsertAilmentsEnd(ailments, iOrderedItemList);
             iOrderedItemList = InsertSlipDamage(slipDamages, iOrderedItemList);
-
-            var orderedItemList = iOrderedItemList
+            
+            return iOrderedItemList
                 .Select((x, i) => new OrderedItemEntity(new OrderNumber(i), x))
                 .ToImmutableList();
-
-            return new OrderAggregate(orderedItemList);
         }
 
         private ImmutableList<IOrderedItem> InsertAilmentsEnd(

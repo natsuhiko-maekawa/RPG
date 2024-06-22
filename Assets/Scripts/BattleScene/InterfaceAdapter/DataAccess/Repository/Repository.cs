@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Interface;
@@ -17,6 +18,11 @@ namespace BattleScene.InterfaceAdapter.DataAccess.Repository
         {
             return _entitySet
                 .First(x => x.Id == id);
+        }
+
+        public ImmutableList<TEntity> Select()
+        {
+            return _entitySet.ToImmutableList();
         }
 
         public void Update(TEntity entity)

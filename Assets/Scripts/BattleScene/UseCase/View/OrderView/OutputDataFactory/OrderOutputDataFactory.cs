@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Immutable;
 using System.Linq;
+using BattleScene.Domain.Entity;
+using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
 using BattleScene.Domain.ValueObject;
 using BattleScene.UseCase.View.OrderView.OutputData;
@@ -10,19 +12,19 @@ namespace BattleScene.UseCase.View.OrderView.OutputDataFactory
     internal class OrderOutputDataFactory
     {
         private readonly ICharacterRepository _characterRepository;
-        private readonly IOrderRepository _orderRepository;
+        private readonly IRepository<OrderedItemEntity, OrderNumber> _orderedItemRepository;
 
         public OrderOutputDataFactory(
             ICharacterRepository characterRepository,
-            IOrderRepository orderRepository)
+            IRepository<OrderedItemEntity, OrderNumber> orderedItemRepository)
         {
             _characterRepository = characterRepository;
-            _orderRepository = orderRepository;
+            _orderedItemRepository = orderedItemRepository;
         }
 
         public ImmutableList<OrderOutputData> Create()
         {
-            return _orderRepository.Select().OrderedItemList
+            return _orderedItemRepository.Select()
                 .Select(x =>
                 {
                     return x.OrderedItem switch

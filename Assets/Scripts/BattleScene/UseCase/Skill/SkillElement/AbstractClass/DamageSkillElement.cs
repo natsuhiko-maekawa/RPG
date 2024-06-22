@@ -2,7 +2,6 @@
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Id;
-using BattleScene.Domain.Interface;
 using BattleScene.UseCase.Skill.Expression;
 
 namespace BattleScene.UseCase.Skill.SkillElement.AbstractClass

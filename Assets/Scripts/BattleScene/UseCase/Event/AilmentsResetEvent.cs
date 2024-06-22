@@ -25,7 +25,6 @@ namespace BattleScene.UseCase.Event
         private readonly MessageOutputDataFactory _messageOutputDataFactory;
         private readonly IMessageViewPresenter _messageView;
         private readonly OrderedItemsDomainService _orderedItems;
-        private readonly IOrderRepository _orderRepository;
         private readonly IPlayerImageViewPresenter _playerImageView;
         private readonly SkillCreatorService _skillCreator;
         private readonly ISkillRepository _skillRepository;
@@ -38,7 +37,6 @@ namespace BattleScene.UseCase.Event
             MessageOutputDataFactory messageOutputDataFactory,
             IMessageViewPresenter messageView,
             OrderedItemsDomainService orderedItems,
-            IOrderRepository orderRepository,
             IPlayerImageViewPresenter playerImageView,
             SkillCreatorService skillCreator,
             ISkillRepository skillRepository)
@@ -50,7 +48,6 @@ namespace BattleScene.UseCase.Event
             _messageOutputDataFactory = messageOutputDataFactory;
             _messageView = messageView;
             _orderedItems = orderedItems;
-            _orderRepository = orderRepository;
             _playerImageView = playerImageView;
             _skillCreator = skillCreator;
             _skillRepository = skillRepository;

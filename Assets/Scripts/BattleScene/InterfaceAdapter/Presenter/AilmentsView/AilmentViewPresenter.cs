@@ -4,7 +4,6 @@ using System.Linq;
 using BattleScene.Domain.IRepository;
 using BattleScene.InterfaceAdapter.IView;
 using BattleScene.InterfaceAdapter.Service;
-using BattleScene.UseCase.Service;
 using BattleScene.UseCase.View.AilmentView.OutputBoundary;
 using BattleScene.UseCase.View.AilmentView.OutputData;
 

@@ -3,17 +3,17 @@ using BattleScene.Domain.Interface;
 
 namespace BattleScene.Domain.Entity
 {
-    public class OrderedItemEntity
+    public class OrderedItemEntity : BaseEntity<OrderedItemEntity, OrderNumber>
     {
         public OrderedItemEntity(
             OrderNumber orderNumber,
             IOrderedItem orderedItem)
         {
-            OrderNumber = orderNumber;
+            Id = orderNumber;
             OrderedItem = orderedItem;
         }
 
-        public OrderNumber OrderNumber { get; }
+        public override OrderNumber Id { get; }
         public IOrderedItem OrderedItem { get; }
     }
 }

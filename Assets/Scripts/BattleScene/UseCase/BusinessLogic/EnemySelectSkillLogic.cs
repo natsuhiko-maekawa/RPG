@@ -1,10 +1,8 @@
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Entity;
-using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
 using BattleScene.UseCase.BusinessLogic.Interface;
 using BattleScene.UseCase.Event.Runner;
-using BattleScene.UseCase.Main;
 using BattleScene.UseCase.Service;
 using Utility.Interface;
 

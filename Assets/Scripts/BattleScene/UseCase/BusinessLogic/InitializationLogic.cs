@@ -5,7 +5,6 @@ using BattleScene.Domain.IFactory;
 using BattleScene.Domain.IRepository;
 using BattleScene.UseCase.BusinessLogic.Interface;
 using BattleScene.UseCase.Event.Runner;
-using BattleScene.UseCase.Main;
 using BattleScene.UseCase.Service;
 
 namespace BattleScene.UseCase.BusinessLogic

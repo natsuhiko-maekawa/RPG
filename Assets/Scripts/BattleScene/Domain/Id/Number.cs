@@ -1,8 +1,9 @@
 ﻿using System;
+using BattleScene.Domain.Interface;
 
 namespace BattleScene.Domain.Id
 {
-    public abstract class Number<T> : IComparable<T> where T : Number<T>
+    public abstract class Number<T> : IId, IComparable<T> where T : Number<T>
     {
         private readonly int _number;
 
