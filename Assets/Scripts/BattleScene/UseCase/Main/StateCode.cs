@@ -4,6 +4,11 @@
     {
         NoTrigger,
         Initialize,
-        CantAction
+        ResetAilment,
+        SlipDamage,
+        PlayerCantAction,
+        EnemyCantAction,
+        SelectAction,
+        EnemySkill,
     }
 }
