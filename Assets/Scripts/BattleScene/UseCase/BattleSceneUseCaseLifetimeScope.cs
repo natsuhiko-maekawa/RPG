@@ -196,6 +196,7 @@ namespace BattleScene.UseCase
             builder.Register<StateMachine>(Lifetime.Singleton);
             builder.Register<StateFactory>(Lifetime.Singleton);
             builder.Register<InitializeStateFactory>(Lifetime.Singleton);
+            builder.Register<EnemySkillStateFactory>(Lifetime.Singleton);
         }
     }
 }

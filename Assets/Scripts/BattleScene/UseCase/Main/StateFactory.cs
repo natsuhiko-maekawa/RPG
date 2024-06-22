@@ -18,6 +18,7 @@ namespace BattleScene.UseCase.Main
             return stateCode switch
             {
                 StateCode.Initialize => _container.Resolve<InitializeStateFactory>().Create(),
+                StateCode.EnemySkill => _container.Resolve<EnemySkillStateFactory>().Create(),
                 _ => throw new ArgumentOutOfRangeException()
             };
         }
