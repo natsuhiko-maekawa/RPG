@@ -1,6 +1,5 @@
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Id;
-using BattleScene.Domain.IFactory;
 using BattleScene.Domain.IRepository;
 using BattleScene.UseCase.Event.Interface;
 using BattleScene.UseCase.Event.Runner;
@@ -24,7 +23,6 @@ namespace BattleScene.UseCase.Event
         private readonly IInfoViewPresenter _infoView;
         private readonly IMessageViewPresenter _messageView;
         private readonly IPlayerImageViewPresenter _playerImageView;
-        private readonly IPlayerPropertyFactory _playerPropertyFactory;
         private readonly SelectSkillService _selectSkill;
         private readonly SelectSkillMessageOutputDataFactory _selectSkillMessageOutputDataFactory;
         private readonly SelectSkillOutputDataFactory _selectSkillOutputDataFactory;
@@ -39,7 +37,6 @@ namespace BattleScene.UseCase.Event
             IInfoViewPresenter infoView,
             IMessageViewPresenter messageView,
             IPlayerImageViewPresenter playerImageView,
-            IPlayerPropertyFactory playerPropertyFactory,
             SelectSkillService selectSkill,
             SelectSkillMessageOutputDataFactory selectSkillMessageOutputDataFactory,
             SelectSkillOutputDataFactory selectSkillOutputDataFactory,
@@ -53,7 +50,6 @@ namespace BattleScene.UseCase.Event
             _infoView = infoView;
             _messageView = messageView;
             _playerImageView = playerImageView;
-            _playerPropertyFactory = playerPropertyFactory;
             _selectSkill = selectSkill;
             _selectSkillMessageOutputDataFactory = selectSkillMessageOutputDataFactory;
             _selectSkillOutputDataFactory = selectSkillOutputDataFactory;

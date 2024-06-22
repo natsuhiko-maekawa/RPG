@@ -7,18 +7,15 @@ namespace BattleScene.UseCase.View.PlayerImageView.OutputDataFactory
 {
     public class PlayerAttackPlayerImageOutputDataFactory
     {
-        private readonly IAilmentViewInfoFactory _ailmentViewInfoFactory;
         private readonly CharactersDomainService _characters;
         private readonly ISkillRepository _skillRepository;
         private readonly ISkillViewInfoFactory _skillViewInfoFactory;
 
         public PlayerAttackPlayerImageOutputDataFactory(
-            IAilmentViewInfoFactory ailmentViewInfoFactory,
             CharactersDomainService characters,
             ISkillRepository skillRepository,
             ISkillViewInfoFactory skillViewInfoFactory)
         {
-            _ailmentViewInfoFactory = ailmentViewInfoFactory;
             _characters = characters;
             _skillRepository = skillRepository;
             _skillViewInfoFactory = skillViewInfoFactory;

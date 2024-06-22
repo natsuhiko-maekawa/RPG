@@ -19,7 +19,6 @@ namespace BattleScene.UseCase.Event
         private readonly BuffOutputDataFactory _buffOutputDataFactory;
         private readonly IBuffViewPresenter _buffView;
         private readonly IBuffViewInfoFactory _buffViewInfoFactory;
-        private readonly CharactersDomainService _characters;
         private readonly MessageOutputDataFactory _messageOutputDataFactory;
         private readonly IMessageViewPresenter _messageView;
         private readonly OrderedItemsDomainService _orderedItems;
@@ -30,7 +29,6 @@ namespace BattleScene.UseCase.Event
             BuffOutputDataFactory buffOutputDataFactory,
             IBuffViewPresenter buffView,
             IBuffViewInfoFactory buffViewInfoFactory,
-            CharactersDomainService characters,
             MessageOutputDataFactory messageOutputDataFactory,
             IMessageViewPresenter messageView,
             OrderedItemsDomainService orderedItems,
@@ -40,7 +38,6 @@ namespace BattleScene.UseCase.Event
             _buffOutputDataFactory = buffOutputDataFactory;
             _buffView = buffView;
             _buffViewInfoFactory = buffViewInfoFactory;
-            _characters = characters;
             _messageOutputDataFactory = messageOutputDataFactory;
             _messageView = messageView;
             _orderedItems = orderedItems;

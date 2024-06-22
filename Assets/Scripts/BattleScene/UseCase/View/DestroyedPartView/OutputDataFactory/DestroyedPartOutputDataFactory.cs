@@ -13,18 +13,15 @@ namespace BattleScene.UseCase.View.DestroyedPartView.OutputDataFactory
     {
         private readonly IBodyPartRepository _bodyPartRepository;
         private readonly CharacterOutputDataCreatorService _characterOutputDataCreator;
-        private readonly ICharacterRepository _characterRepository;
         private readonly ToBodyPartNumberService _toBodyPartNumber;
 
         public DestroyedPartOutputDataFactory(
             IBodyPartRepository bodyPartRepository,
             CharacterOutputDataCreatorService characterOutputDataCreator,
-            ICharacterRepository characterRepository,
             ToBodyPartNumberService toBodyPartNumber)
         {
             _bodyPartRepository = bodyPartRepository;
             _characterOutputDataCreator = characterOutputDataCreator;
-            _characterRepository = characterRepository;
             _toBodyPartNumber = toBodyPartNumber;
         }
 

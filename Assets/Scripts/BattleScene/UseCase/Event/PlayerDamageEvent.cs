@@ -27,7 +27,6 @@ namespace BattleScene.UseCase.Event
         private readonly AttackCountOutputDataFactory _attackCountOutputDataFactory;
         private readonly IAttackCountViewPresenter _attackCountViewPresenter;
         private readonly ICharacterRepository _characterRepository;
-        private readonly CharactersDomainService _characters;
         private readonly CharacterVibesOutputDataFactory _characterVibesOutputDataFactory;
         private readonly ICharacterVibesViewPresenter _characterVibesView;
         private readonly DamageDigitOutputDataFactory _damageDigitOutputDataFactory;
@@ -42,7 +41,6 @@ namespace BattleScene.UseCase.Event
         private readonly IPlayerImageViewPresenter _playerImageView;
         private readonly ResultDomainService _result;
         private readonly IResultRepository _resultRepository;
-        private readonly SkillCreatorService _skillCreatorService;
         private readonly ISkillRepository _skillRepository;
         private readonly ISkillViewInfoFactory _skillViewInfoFactory;
 
@@ -50,7 +48,6 @@ namespace BattleScene.UseCase.Event
             AttackCountOutputDataFactory attackCountOutputDataFactory,
             IAttackCountViewPresenter attackCountViewPresenter,
             ICharacterRepository characterRepository,
-            CharactersDomainService characters,
             CharacterVibesOutputDataFactory characterVibesOutputDataFactory,
             ICharacterVibesViewPresenter characterVibesView,
             DamageDigitOutputDataFactory damageDigitOutputDataFactory,
@@ -65,14 +62,12 @@ namespace BattleScene.UseCase.Event
             IPlayerImageViewPresenter playerImageView,
             ResultDomainService result,
             IResultRepository resultRepository,
-            SkillCreatorService skillCreatorService,
             ISkillRepository skillRepository,
             ISkillViewInfoFactory skillViewInfoFactory)
         {
             _attackCountOutputDataFactory = attackCountOutputDataFactory;
             _attackCountViewPresenter = attackCountViewPresenter;
             _characterRepository = characterRepository;
-            _characters = characters;
             _characterVibesOutputDataFactory = characterVibesOutputDataFactory;
             _characterVibesView = characterVibesView;
             _damageDigitOutputDataFactory = damageDigitOutputDataFactory;
@@ -87,7 +82,6 @@ namespace BattleScene.UseCase.Event
             _playerImageView = playerImageView;
             _result = result;
             _resultRepository = resultRepository;
-            _skillCreatorService = skillCreatorService;
             _skillRepository = skillRepository;
             _skillViewInfoFactory = skillViewInfoFactory;
         }

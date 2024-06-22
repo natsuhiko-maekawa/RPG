@@ -30,7 +30,6 @@ namespace BattleScene.UseCase.Event
         private readonly OrderedItemsDomainService _orderedItems;
         private readonly PlayerAttackPlayerImageOutputDataFactory _playerAttackPlayerImageOutputDataFactory;
         private readonly IPlayerImageViewPresenter _playerImageView;
-        private readonly ResultDomainService _result;
         private readonly ISkillRepository _skillRepository;
         private readonly ISkillViewInfoFactory _skillViewInfoFactory;
         private readonly TargetFrameOutputDataFactory _targetFrameOutputDataFactory;
@@ -48,7 +47,6 @@ namespace BattleScene.UseCase.Event
             OrderedItemsDomainService orderedItems,
             PlayerAttackPlayerImageOutputDataFactory playerAttackPlayerImageOutputDataFactory,
             IPlayerImageViewPresenter playerImageView,
-            ResultDomainService result,
             ISkillRepository skillRepository,
             ISkillViewInfoFactory skillViewInfoFactory,
             TargetFrameOutputDataFactory targetFrameOutputDataFactory,
@@ -65,7 +63,6 @@ namespace BattleScene.UseCase.Event
             _orderedItems = orderedItems;
             _playerAttackPlayerImageOutputDataFactory = playerAttackPlayerImageOutputDataFactory;
             _playerImageView = playerImageView;
-            _result = result;
             _skillRepository = skillRepository;
             _skillViewInfoFactory = skillViewInfoFactory;
             _targetFrameOutputDataFactory = targetFrameOutputDataFactory;

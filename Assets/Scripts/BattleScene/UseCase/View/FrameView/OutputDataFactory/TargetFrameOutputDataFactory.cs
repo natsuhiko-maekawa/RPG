@@ -2,7 +2,6 @@ using System.Collections.Immutable;
 using System.Linq;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.IRepository;
-using BattleScene.UseCase.View.FrameView.OutputBoundary;
 using BattleScene.UseCase.View.FrameView.OutputData;
 
 namespace BattleScene.UseCase.View.FrameView.OutputDataFactory
@@ -11,20 +10,17 @@ namespace BattleScene.UseCase.View.FrameView.OutputDataFactory
     {
         private readonly ICharacterRepository _characterRepository;
         private readonly IEnemyRepository _enemyRepository;
-        private readonly IFrameViewPresenter _frameView;
         private readonly OrderedItemsDomainService _orderedItems;
         private readonly ITargetRepository _targetRepository;
 
         public TargetFrameOutputDataFactory(
             ICharacterRepository characterRepository,
             IEnemyRepository enemyRepository,
-            IFrameViewPresenter frameView,
             OrderedItemsDomainService orderedItems,
             ITargetRepository targetRepository)
         {
             _characterRepository = characterRepository;
             _enemyRepository = enemyRepository;
-            _frameView = frameView;
             _orderedItems = orderedItems;
             _targetRepository = targetRepository;
         }

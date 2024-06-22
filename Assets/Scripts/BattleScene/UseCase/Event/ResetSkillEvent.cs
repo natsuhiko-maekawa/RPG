@@ -6,12 +6,6 @@ using BattleScene.UseCase.Event.Interface;
 using BattleScene.UseCase.Event.Runner;
 using BattleScene.UseCase.Event.TemplateMethod;
 using BattleScene.UseCase.Service;
-using BattleScene.UseCase.View.AilmentView.OutputBoundary;
-using BattleScene.UseCase.View.AilmentView.OutputDataFactory;
-using BattleScene.UseCase.View.DestroyedPartView.OutputBoundary;
-using BattleScene.UseCase.View.DestroyedPartView.OutputDataFactory;
-using BattleScene.UseCase.View.MessageView.OutputBoundary;
-using BattleScene.UseCase.View.MessageView.OutputDataFactory;
 using static BattleScene.UseCase.Event.Runner.EventCode;
 
 namespace BattleScene.UseCase.Event
@@ -21,14 +15,7 @@ namespace BattleScene.UseCase.Event
     /// </summary>
     internal class ResetSkillEvent : SkillEvent, IEvent
     {
-        private readonly AilmentOutputDataFactory _ailmentOutputDataFactory;
         private readonly IAilmentRepository _ailmentRepository;
-        private readonly IAilmentViewPresenter _ailmentViewPresenter;
-        private readonly CharactersDomainService _characters;
-        private readonly DestroyedPartOutputDataFactory _destroyedPartOutputDataFactory;
-        private readonly IDestroyedPartViewPresenter _destroyedPartViewPresenter;
-        private readonly MessageOutputDataFactory _messageOutputDataFactory;
-        private readonly IMessageViewPresenter _messageViewPresenter;
         private readonly OrderedItemsDomainService _orderedItems;
         private readonly ResetSkillService _resetSkill;
         private readonly ResultDomainService _result;
@@ -37,14 +24,7 @@ namespace BattleScene.UseCase.Event
         private readonly ISkillRepository _skillRepository;
 
         public ResetSkillEvent(
-            AilmentOutputDataFactory ailmentOutputDataFactory,
             IAilmentRepository ailmentRepository,
-            IAilmentViewPresenter ailmentViewPresenter,
-            CharactersDomainService characters,
-            DestroyedPartOutputDataFactory destroyedPartOutputDataFactory,
-            IDestroyedPartViewPresenter destroyedPartViewPresenter,
-            MessageOutputDataFactory messageOutputDataFactory,
-            IMessageViewPresenter messageViewPresenter,
             OrderedItemsDomainService orderedItems,
             ResetSkillService resetSkill,
             ResultDomainService result,
@@ -52,14 +32,7 @@ namespace BattleScene.UseCase.Event
             SkillCreatorService skillCreator,
             ISkillRepository skillRepository)
         {
-            _ailmentOutputDataFactory = ailmentOutputDataFactory;
             _ailmentRepository = ailmentRepository;
-            _ailmentViewPresenter = ailmentViewPresenter;
-            _characters = characters;
-            _destroyedPartOutputDataFactory = destroyedPartOutputDataFactory;
-            _destroyedPartViewPresenter = destroyedPartViewPresenter;
-            _messageOutputDataFactory = messageOutputDataFactory;
-            _messageViewPresenter = messageViewPresenter;
             _orderedItems = orderedItems;
             _resetSkill = resetSkill;
             _result = result;

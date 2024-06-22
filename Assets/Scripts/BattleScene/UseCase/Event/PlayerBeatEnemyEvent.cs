@@ -20,11 +20,9 @@ namespace BattleScene.UseCase.Event
         private readonly AilmentOutputDataFactory _ailmentOutputDataFactory;
         private readonly IAilmentRepository _ailmentRepository;
         private readonly IAilmentViewPresenter _ailmentViewPresenter;
-        private readonly CharactersDomainService _characters;
         private readonly EnemyOutputDataFactory _enemyOutputDataFactory;
         private readonly IEnemyViewPresenter _enemyViewPresenter;
         private readonly IHitPointRepository _hitPointRepository;
-        private readonly MessageOutputDataFactory _messageGenerator;
         private readonly MessageOutputDataFactory _messageOutputDataFactory;
         private readonly IMessageViewPresenter _messageViewPresenter;
         private readonly ResultDomainService _result;
@@ -33,11 +31,9 @@ namespace BattleScene.UseCase.Event
             AilmentOutputDataFactory ailmentOutputDataFactory,
             IAilmentRepository ailmentRepository,
             IAilmentViewPresenter ailmentViewPresenter,
-            CharactersDomainService characters,
             EnemyOutputDataFactory enemyOutputDataFactory,
             IEnemyViewPresenter enemyViewPresenter,
             IHitPointRepository hitPointRepository,
-            MessageOutputDataFactory messageGenerator,
             MessageOutputDataFactory messageOutputDataFactory,
             IMessageViewPresenter messageViewPresenter,
             ResultDomainService result)
@@ -45,11 +41,9 @@ namespace BattleScene.UseCase.Event
             _ailmentOutputDataFactory = ailmentOutputDataFactory;
             _ailmentRepository = ailmentRepository;
             _ailmentViewPresenter = ailmentViewPresenter;
-            _characters = characters;
             _enemyOutputDataFactory = enemyOutputDataFactory;
             _enemyViewPresenter = enemyViewPresenter;
             _hitPointRepository = hitPointRepository;
-            _messageGenerator = messageGenerator;
             _messageOutputDataFactory = messageOutputDataFactory;
             _messageViewPresenter = messageViewPresenter;
             _result = result;

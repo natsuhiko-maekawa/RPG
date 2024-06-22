@@ -3,7 +3,6 @@ using BattleScene.Domain.IFactory;
 using BattleScene.Domain.IRepository;
 using BattleScene.UseCase.Event.Interface;
 using BattleScene.UseCase.Event.Runner;
-using BattleScene.UseCase.View.AilmentView.OutputDataFactory;
 using BattleScene.UseCase.View.MessageView.OutputBoundary;
 using BattleScene.UseCase.View.MessageView.OutputDataFactory;
 using BattleScene.UseCase.View.PlayerImageView.OutputBoundary;
@@ -15,7 +14,6 @@ namespace BattleScene.UseCase.Event
     {
         private readonly AilmentMessageOutputDataFactory _ailmentMessageOutputDataFactory;
         private readonly IAilmentRepository _ailmentRepository;
-        private readonly AilmentOutputDataFactory _ailmentViewInfoFactory;
         private readonly CharactersDomainService _characters;
         private readonly IMessageViewPresenter _messageView;
         private readonly OrderedItemsDomainService _orderedItems;
@@ -26,7 +24,6 @@ namespace BattleScene.UseCase.Event
         public SlipDamageMessageEvent(
             AilmentMessageOutputDataFactory ailmentMessageOutputDataFactory,
             IAilmentRepository ailmentRepository,
-            AilmentOutputDataFactory ailmentViewInfoFactory,
             CharactersDomainService characters,
             IMessageViewPresenter messageView,
             OrderedItemsDomainService orderedItems,
@@ -36,7 +33,6 @@ namespace BattleScene.UseCase.Event
         {
             _ailmentMessageOutputDataFactory = ailmentMessageOutputDataFactory;
             _ailmentRepository = ailmentRepository;
-            _ailmentViewInfoFactory = ailmentViewInfoFactory;
             _characters = characters;
             _messageView = messageView;
             _orderedItems = orderedItems;

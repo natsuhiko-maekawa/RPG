@@ -22,10 +22,8 @@ namespace BattleScene.UseCase.Event
         private readonly IDigitViewPresenter _digitViewPresenter;
         private readonly HitPointBarOutputDataFactory _hitPointBarOutputDataFactory;
         private readonly IHitPointBarViewPresenter _hitPointBarViewPresenter;
-        private readonly MessageOutputDataFactory _messageGenerator;
         private readonly MessageOutputDataFactory _messageOutputDataFactory;
         private readonly IMessageViewPresenter _messageViewPresenter;
-        private readonly OrderedItemsDomainService _order;
         private readonly OrderedItemsDomainService _orderedItems;
         private readonly ResultDomainService _result;
         private readonly IResultRepository _resultRepository;
@@ -37,10 +35,8 @@ namespace BattleScene.UseCase.Event
             IDigitViewPresenter digitViewPresenter,
             HitPointBarOutputDataFactory hitPointBarOutputDataFactory,
             IHitPointBarViewPresenter hitPointBarViewPresenter,
-            MessageOutputDataFactory messageGenerator,
             MessageOutputDataFactory messageOutputDataFactory,
             IMessageViewPresenter messageViewPresenter,
-            OrderedItemsDomainService order,
             OrderedItemsDomainService orderedItems,
             ResultDomainService result,
             IResultRepository resultRepository,
@@ -51,10 +47,8 @@ namespace BattleScene.UseCase.Event
             _digitViewPresenter = digitViewPresenter;
             _hitPointBarOutputDataFactory = hitPointBarOutputDataFactory;
             _hitPointBarViewPresenter = hitPointBarViewPresenter;
-            _messageGenerator = messageGenerator;
             _messageOutputDataFactory = messageOutputDataFactory;
             _messageViewPresenter = messageViewPresenter;
-            _order = order;
             _orderedItems = orderedItems;
             _result = result;
             _resultRepository = resultRepository;
