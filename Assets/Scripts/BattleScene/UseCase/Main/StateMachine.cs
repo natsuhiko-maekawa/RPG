@@ -14,6 +14,8 @@
         public void Start()
         {
             _state = _stateFactory.Create(StateCode.Initialize);
+            _state.Start();
+            _state.Update();
         }
 
         public void Update()

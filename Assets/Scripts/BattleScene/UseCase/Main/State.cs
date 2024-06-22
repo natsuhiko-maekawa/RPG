@@ -38,11 +38,13 @@ namespace BattleScene.UseCase.Main
 
         private void Execute(Event @event)
         {
-            foreach (var useCase in @event.UseCaseList)
-                useCase.Execute();
-
-            foreach (var output in @event.OutputList)
-                output.Out();
+            if (@event?.UseCaseList != null)
+                foreach (var useCase in @event.UseCaseList)
+                    useCase.Execute();
+            
+            if (@event?.OutputList != null)
+                foreach (var output in @event.OutputList)
+                    output.Out();
         }
 
         public StateCode Triggers()
