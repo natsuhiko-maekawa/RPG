@@ -7,7 +7,7 @@ namespace BattleScene.Domain.IRepository
 {
     public interface IRepository<TEntity, TId> 
         where TEntity : BaseEntity<TEntity, TId>
-        where TId : class, IId
+        where TId : IId
     {
         public TEntity Select(TId id);
         public ImmutableList<TEntity> Select();

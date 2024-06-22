@@ -8,7 +8,7 @@ using BattleScene.Domain.IRepository;
 
 namespace BattleScene.InterfaceAdapter.DataAccess.Repository
 {
-    public class BuffRepository : IBuffRepository
+    public class BuffRepository// : IBuffRepository
     {
         private readonly HashSet<BuffEntity> _buffSet = new();
         

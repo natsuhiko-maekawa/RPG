@@ -10,14 +10,14 @@ namespace BattleScene.InterfaceAdapter.DataAccess.Repository
 {
     public class Repository<TEntity, TId> : IRepository<TEntity, TId> 
         where TEntity : BaseEntity<TEntity, TId> 
-        where TId : class, IId
+        where TId : IId
     {
         private readonly HashSet<TEntity> _entitySet = new();
 
         public TEntity Select(TId id)
         {
             return _entitySet
-                .First(x => x.Id == id);
+                .First(x => Equals(x.Id, id));
         }
 
         public ImmutableList<TEntity> Select()
@@ -40,7 +40,7 @@ namespace BattleScene.InterfaceAdapter.DataAccess.Repository
 
         public void Delete(TId id)
         {
-            _entitySet.RemoveWhere(x => x.Id == id);
+            _entitySet.RemoveWhere(x => Equals(x.Id, id));
         }
 
         public void Delete(IList<TId> idList)

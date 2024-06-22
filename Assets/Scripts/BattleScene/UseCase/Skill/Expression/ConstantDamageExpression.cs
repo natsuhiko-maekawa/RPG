@@ -12,7 +12,6 @@ namespace BattleScene.UseCase.Skill.Expression
     {
         private readonly BodyPartDomainService _bodyPartDomainService;
         private readonly BuffDomainService _buffDomainService;
-        private readonly IBuffRepository _buffRepository;
         private readonly ICharacterRepository _characterRepository;
         private readonly IRandomEx _randomEx;
 

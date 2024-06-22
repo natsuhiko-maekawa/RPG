@@ -1,6 +1,8 @@
-﻿namespace BattleScene.Domain.Id
+﻿using BattleScene.Domain.Interface;
+
+namespace BattleScene.Domain.Id
 {
-    public class HashId
+    public class HashId : AbstractId<HashId, int>
     {
         private readonly int _id;
 

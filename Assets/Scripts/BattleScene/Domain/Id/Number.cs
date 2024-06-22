@@ -3,7 +3,7 @@ using BattleScene.Domain.Interface;
 
 namespace BattleScene.Domain.Id
 {
-    public abstract class Number<T> : IId, IComparable<T> where T : Number<T>
+    public abstract class Number<T> : AbstractId<Number<T>, int>, IComparable<T> where T : Number<T>
     {
         private readonly int _number;
 
@@ -20,18 +20,6 @@ namespace BattleScene.Domain.Id
         public int Get()
         {
             return _number;
-        }
-
-        public override bool Equals(object obj)
-        {
-            if (obj == null || GetType() != obj.GetType()) return false;
-            var number = (T)obj;
-            return _number == number._number;
-        }
-
-        public override int GetHashCode()
-        {
-            return _number.GetHashCode();
         }
     }
 }

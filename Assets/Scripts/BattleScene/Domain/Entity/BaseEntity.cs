@@ -4,7 +4,7 @@ namespace BattleScene.Domain.Entity
 {
     public abstract class BaseEntity<TEntity, TId>
         where TEntity : BaseEntity<TEntity, TId>
-        where TId : class, IId
+        where TId : IId
     {
         public abstract TId Id { get; }
 
@@ -12,7 +12,7 @@ namespace BattleScene.Domain.Entity
         {
             if (obj == null || GetType() != obj.GetType()) return false;
             var entity = (TEntity)obj;
-            return Id == entity.Id;
+            return Equals(Id, entity.Id);
         }
 
         public override int GetHashCode()

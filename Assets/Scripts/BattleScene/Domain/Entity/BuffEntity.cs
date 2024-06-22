@@ -4,7 +4,7 @@ using BattleScene.Domain.ValueObject;
 
 namespace BattleScene.Domain.Entity
 {
-    public class BuffEntity
+    public class BuffEntity : BaseEntity<BuffEntity, BuffId>
     {
         private readonly TurnValueObject _turn;
 
@@ -20,6 +20,7 @@ namespace BattleScene.Domain.Entity
             _turn = turn;
         }
 
+        public override BuffId Id => new(CharacterId, BuffCode);
         public CharacterId CharacterId { get; }
         public BuffCode BuffCode { get; }
         public float Rate { get; }
