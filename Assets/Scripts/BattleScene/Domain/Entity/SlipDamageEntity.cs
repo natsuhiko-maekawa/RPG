@@ -1,10 +1,11 @@
 ﻿using System;
 using BattleScene.Domain.Code;
+using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
 
 namespace BattleScene.Domain.Entity
 {
-    public class SlipDamageEntity
+    public class SlipDamageEntity : BaseEntity<SlipDamageEntity, SlipDamageId>
     {
         private readonly int _defaultTurn;
         private TurnValueObject _turn;
@@ -23,6 +24,7 @@ namespace BattleScene.Domain.Entity
             _defaultTurn = _turn.Get().GetValueOrDefault();
         }
 
+        public override SlipDamageId Id => new(SlipDamageCode);
         public SlipDamageCode SlipDamageCode { get; }
         public float DamageRate { get; }
         public int EnemyIntelligence { get; }

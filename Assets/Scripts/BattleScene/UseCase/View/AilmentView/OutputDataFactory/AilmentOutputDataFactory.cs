@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
+using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
 using BattleScene.UseCase.View.AilmentView.OutputData;
@@ -11,12 +12,12 @@ namespace BattleScene.UseCase.View.AilmentView.OutputDataFactory
     {
         private readonly IAilmentRepository _ailmentRepository;
         private readonly ICharacterRepository _characterRepository;
-        private readonly ISlipDamageRepository _slipDamageRepository;
+        private readonly IRepository<SlipDamageEntity, SlipDamageId> _slipDamageRepository;
 
         public AilmentOutputDataFactory(
             IAilmentRepository ailmentRepository,
             ICharacterRepository characterRepository,
-            ISlipDamageRepository slipDamageRepository)
+            IRepository<SlipDamageEntity, SlipDamageId> slipDamageRepository)
         {
             _ailmentRepository = ailmentRepository;
             _characterRepository = characterRepository;

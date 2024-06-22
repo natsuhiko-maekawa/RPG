@@ -1,4 +1,6 @@
 ﻿using BattleScene.Domain.Code;
+using BattleScene.Domain.Entity;
+using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
 using Utility.Interface;
 
@@ -7,10 +9,10 @@ namespace BattleScene.Domain.DomainService
     public class SlipDamageDomainService
     {
         private readonly IRandomEx _randomEx;
-        private readonly ISlipDamageRepository _slipDamageRepository;
+        private readonly IRepository<SlipDamageEntity, SlipDamageId> _slipDamageRepository;
 
         public SlipDamageDomainService(
-            ISlipDamageRepository slipDamageRepository,
+            IRepository<SlipDamageEntity, SlipDamageId> slipDamageRepository,
             IRandomEx randomEx)
         {
             _slipDamageRepository = slipDamageRepository;
@@ -25,7 +27,8 @@ namespace BattleScene.Domain.DomainService
 
         public int GetDamageAmount(SlipDamageCode slipDamageCode)
         {
-            var slipDamageEntity = _slipDamageRepository.Select(slipDamageCode);
+            var slipDamageId = new SlipDamageId(slipDamageCode);
+            var slipDamageEntity = _slipDamageRepository.Select(slipDamageId);
 
             var enemyIntelligence = slipDamageEntity.EnemyIntelligence;
             var playerIntelligence = slipDamageEntity.PlayerIntelligence;

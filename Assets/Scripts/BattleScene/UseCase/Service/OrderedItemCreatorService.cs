@@ -17,7 +17,7 @@ namespace BattleScene.UseCase.Service
         private readonly IAilmentRepository _ailmentRepository;
         private readonly ICharacterRepository _characterRepository;
         private readonly CharactersDomainService _characters;
-        private readonly ISlipDamageRepository _slipDamageRepository;
+        private readonly IRepository<SlipDamageEntity, SlipDamageId> _slipDamageRepository;
 
         public OrderedItemCreatorService(
             IRepository<ActionTimeEntity, CharacterId> actionTimeRepository,
@@ -25,7 +25,7 @@ namespace BattleScene.UseCase.Service
             IAilmentRepository ailmentRepository,
             ICharacterRepository characterRepository,
             CharactersDomainService characters,
-            ISlipDamageRepository slipDamageRepository)
+            IRepository<SlipDamageEntity, SlipDamageId> slipDamageRepository)
         {
             _actionTimeRepository = actionTimeRepository;
             _agilityToSpeed = agilityToSpeed;
