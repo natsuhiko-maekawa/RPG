@@ -5,7 +5,7 @@ namespace BattleScene.Domain.Id
 {
     public abstract class AutoGenerationId : AbstractId<AutoGenerationId, Guid>, IComparable<AutoGenerationId>
     {
-        private readonly Guid _guid = Guid.NewGuid();
+        protected override Guid Id { get; } = Guid.NewGuid();
 
         public int CompareTo(AutoGenerationId other)
         {
@@ -14,7 +14,7 @@ namespace BattleScene.Domain.Id
 
         public override string ToString()
         {
-            return _guid.ToString("N");
+            return Id.ToString("N");
         }
     }
 }

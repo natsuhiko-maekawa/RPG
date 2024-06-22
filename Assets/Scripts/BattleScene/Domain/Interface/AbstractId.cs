@@ -2,18 +2,18 @@
 {
     public abstract class AbstractId<TId, T> : IId where TId : AbstractId<TId, T>
     {
-        private readonly T _id;
+        protected abstract T Id { get; }
         
         public override bool Equals(object obj)
         {
             if (obj == null || GetType() != obj.GetType()) return false;
-            var id = (TId)obj;
-            return Equals(_id, id._id);
+            var idObject = (TId)obj;
+            return Equals(Id, idObject.Id);
         }
 
         public override int GetHashCode()
         {
-            return _id.GetHashCode();
+            return Id.GetHashCode();
         }
     }
 }
