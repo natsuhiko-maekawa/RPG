@@ -7,27 +7,25 @@ namespace BattleScene.Framework
 {
     public class SpriteFlyweight : ISpriteFlyweight
     {
-        private readonly Dictionary<string, Sprite> _spritePool = new();
+        private readonly Dictionary<string, ValueTask<Sprite>> _spriteCache = new();
 
-        public async Task<Sprite> Get(string imagePath)
+        public ValueTask<Sprite> Get(string imagePath)
         {
-            if (_spritePool.TryGetValue(imagePath, out var sprite))
-                return sprite;
-
-            await Load(imagePath);
-            return _spritePool[imagePath];
+            if (_spriteCache.TryGetValue(imagePath, out var valueTask))
+            {
+                return valueTask;
+            }
+            
+            return Load(imagePath);
         }
         
-        private async Task Load(string imagePath)
+        private async ValueTask<Sprite> Load(string imagePath)
         {
-            var handle = Addressables.LoadAssetAsync<Sprite>(imagePath);
-            var sprite = await handle.Task;
-            _spritePool.Add(imagePath, sprite); 
-        }
-
-        public void Add(string imageName, Sprite sprite)
-        {
-            _spritePool.Add(imageName, sprite);
+            var task = Addressables.LoadAssetAsync<Sprite>(imagePath).Task;
+            _spriteCache.Add(imagePath, new ValueTask<Sprite>(task));
+            var sprite = await task;
+            _spriteCache[imagePath] = new ValueTask<Sprite>(sprite);
+            return sprite;
         }
     }
 }
