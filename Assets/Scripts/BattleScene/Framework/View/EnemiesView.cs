@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
 using System.Threading.Tasks;
 using BattleScene.InterfaceAdapter.IView;
@@ -18,12 +19,14 @@ namespace BattleScene.Framework.View
     {
         private const int MaxEnemyNum = 4;
         [SerializeField] private GameObject enemyView;
+        private ImmutableList<IEnemyView> _enemyViewList;
         private readonly List<EnemyAilmentsView> _enemyAilmentsViewList = new();
         private readonly List<DigitView> _enemyDmgViewList = new();
         private readonly List<FrameView> _enemyFrameViewList = new();
         private readonly List<StatusBarView> _enemyHpBarViewList = new();
         private readonly List<Image> _enemyImageList = new();
         private readonly List<EnemyVibesView> _enemyVibesViewList = new();
+        private ISpriteFlyweight _spriteFlyweight;
 
         private void Awake()
         {
@@ -89,25 +92,41 @@ namespace BattleScene.Framework.View
             await _enemyVibesViewList[dto.EnemyInt].StartAnimation();
         }
 
-        public Task StartEnemyView(List<EnemyViewDto> dtoList)
-        {
-            foreach (var (enemyImage, index) in _enemyImageList.Select((x, i) => (x, i)))
-                enemyImage.enabled = dtoList.Exists(x => x.EnemyInt == index);
+        public IEnemyView this[int i] => _enemyViewList[i];
 
-            return Task.CompletedTask;
+        public async Task StartEnemyView(EnemyViewDto dto)
+        {
+            var enemyViewArray = await Task.WhenAll(Enumerable.Range(0, dto.EnemyCount)
+                .Where(x => dto.EnemyDtoList.Any(y => y.EnemyNumber == x))
+                .Select(async x =>
+                {
+                    var instance = Instantiate(enemyView, transform);
+                    var enemyImagePath = dto.EnemyDtoList.First(y => y.EnemyNumber == x).EnemyImagePath;
+                    var sprite = await _spriteFlyweight.Get(enemyImagePath);
+                    var vector3 = new Vector3(X[dto.EnemyCount - 1][x], 0.0f);
+                    return new EnemyView(
+                        instance: instance,
+                        sprite: sprite,
+                        vector3: vector3,
+                        transform: transform);
+                }));
+            
+            _enemyViewList = enemyViewArray.ToImmutableList<IEnemyView>();
         }
-        // private static readonly float[][] EnemyPositionX =
-        // {
-        //     new[] { 0.0f },
-        //     new[] { -100.0f, 100.0f },
-        //     new[] { -200.0f, 0.0f, 200.0f },
-        //     new[] { -300.0f, -100.0f, 100.0f, 300.0f }
-        // };
+        
+        private static readonly float[][] X =
+        {
+            new[] { 0.0f },
+            new[] { -100.0f, 100.0f },
+            new[] { -200.0f, 0.0f, 200.0f },
+            new[] { -300.0f, -100.0f, 100.0f, 300.0f }
+        };
 
         [Inject]
         public void Construct(
             ISpriteFlyweight spriteFlyweight)
         {
+            _spriteFlyweight = spriteFlyweight;
         }
     }
 }

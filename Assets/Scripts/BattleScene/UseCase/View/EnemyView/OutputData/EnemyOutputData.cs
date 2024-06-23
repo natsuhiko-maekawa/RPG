@@ -1,7 +1,8 @@
-﻿namespace BattleScene.UseCase.View.EnemyView.OutputData
+﻿using System.Collections.Generic;
+using BattleScene.Domain.Id;
+
+namespace BattleScene.UseCase.View.EnemyView.OutputData
 {
     public record EnemyOutputData(
-        int EnemyNumber,
-        string EnemyImagePath,
-        bool IsSurvive);
+        IList<CharacterId> EnemyCharacterIdList);
 }

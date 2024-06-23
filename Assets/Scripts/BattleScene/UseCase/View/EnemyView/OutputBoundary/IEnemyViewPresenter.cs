@@ -5,6 +5,6 @@ namespace BattleScene.UseCase.View.EnemyView.OutputBoundary
 {
     public interface IEnemyViewPresenter
     {
-        public void Start(IList<EnemyOutputData> enemyOutputDataList);
+        public void Start(EnemyOutputData enemyOutputData);
     }
 }

@@ -45,7 +45,7 @@ namespace BattleScene.Domain.Aggregate
 
         public bool IsSurvive()
         {
-            return _pointValueObject.Get() <= 0;
+            return 0 < _pointValueObject.Get();
         }
     }
 }
