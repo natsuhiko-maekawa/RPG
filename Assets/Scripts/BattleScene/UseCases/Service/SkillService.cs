@@ -1,3 +1,4 @@
+using BattleScene.Domain.Aggregate;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Entity;
@@ -9,17 +10,20 @@ namespace BattleScene.UseCases.Service
     public class SkillService
     {
         private readonly BodyPartDomainService _bodyPart;
+        private readonly CharactersDomainService _characters;
         private readonly ICharacterRepository _characterRepository;
         private readonly SkillCreatorService _skillCreatorService;
-        private readonly ITechnicalPointRepository _technicalPointRepository;
+        private readonly IRepository<TechnicalPointAggregate, CharacterId> _technicalPointRepository;
 
         public SkillService(
             BodyPartDomainService bodyPart,
+            CharactersDomainService characters,
             ICharacterRepository characterRepository,
             SkillCreatorService skillCreatorService,
-            ITechnicalPointRepository technicalPointRepository)
+            IRepository<TechnicalPointAggregate, CharacterId> technicalPointRepository)
         {
             _bodyPart = bodyPart;
+            _characters = characters;
             _characterRepository = characterRepository;
             _skillCreatorService = skillCreatorService;
             _technicalPointRepository = technicalPointRepository;
@@ -46,7 +50,8 @@ namespace BattleScene.UseCases.Service
 
         private bool TechnicalPointAvailable(SkillEntity skill)
         {
-            var technicalPointAggregate = _technicalPointRepository.Select();
+            var playerId = _characters.GetPlayerId();
+            var technicalPointAggregate = _technicalPointRepository.Select(playerId);
             return skill.AbstractSkill.GetTechnicalPoint() <= technicalPointAggregate.GetCurrent();
         }
 

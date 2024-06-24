@@ -1,5 +1,6 @@
 using System;
 using BattleScene.UseCases.Event.Interface;
+using BattleScene.UseCases.UseCase;
 using VContainer;
 
 namespace BattleScene.UseCases.Event.Runner
@@ -28,7 +29,6 @@ namespace BattleScene.UseCases.Event.Runner
                 EventCode.EnemySuicideEvent => _container.Resolve<EnemySuicideEvent>(),
                 EventCode.IsContinueEvent => _container.Resolve<IsContinueEvent>(),
                 EventCode.LoopEndEvent => _container.Resolve<LoopEndEvent>(),
-                EventCode.PlayerAttackEvent => _container.Resolve<PlayerAttackEvent>(),
                 EventCode.PlayerBeatEnemyEvent => _container.Resolve<PlayerBeatEnemyEvent>(),
                 EventCode.PlayerDeadEvent => _container.Resolve<PlayerDeadEvent>(),
                 EventCode.PlayerDamageEvent => _container.Resolve<PlayerDamageEvent>(),

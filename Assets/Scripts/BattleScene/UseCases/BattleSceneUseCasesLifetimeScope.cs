@@ -50,7 +50,7 @@ namespace BattleScene.UseCases
             builder.Register<IsContinueEvent>(Lifetime.Singleton);
             builder.Register<LoopEndEvent>(Lifetime.Singleton);
             builder.Register<OrderDecision>(Lifetime.Singleton);
-            builder.Register<PlayerAttackEvent>(Lifetime.Singleton);
+            builder.Register<Attack>(Lifetime.Singleton);
             builder.Register<PlayerBeatEnemyEvent>(Lifetime.Singleton);
             builder.Register<PlayerDeadEvent>(Lifetime.Singleton);
             builder.Register<PlayerDamageEvent>(Lifetime.Singleton);

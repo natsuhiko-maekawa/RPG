@@ -4,6 +4,7 @@ using BattleScene.Domain.IFactory;
 using BattleScene.Domain.IRepository;
 using BattleScene.UseCases.Event.Interface;
 using BattleScene.UseCases.Event.Runner;
+using BattleScene.UseCases.UseCase.Interface;
 using BattleScene.UseCases.View.FrameView.OutputBoundary;
 using BattleScene.UseCases.View.FrameView.OutputDataFactory;
 using BattleScene.UseCases.View.MessageView.OutputBoundary;
@@ -15,9 +16,9 @@ using BattleScene.UseCases.View.TechnicalPointBarView.OutputDaraFactory;
 using static BattleScene.UseCases.Event.Runner.EventCode;
 using static BattleScene.Domain.Code.MessageCode;
 
-namespace BattleScene.UseCases.Event
+namespace BattleScene.UseCases.UseCase
 {
-    internal class PlayerAttackEvent : IEvent, IWait
+    internal class Attack : IUseCase
     {
         private readonly ICharacterRepository _characterRepository;
         private readonly IFrameViewPresenter _frameView;
@@ -31,9 +32,8 @@ namespace BattleScene.UseCases.Event
         private readonly TargetFrameOutputDataFactory _targetFrameOutputDataFactory;
         private readonly TechnicalPointBarOutputDataFactory _technicalPointBarOutputDataFactory;
         private readonly ITechnicalPointBarViewPresenter _technicalPointBarView;
-        private readonly ITechnicalPointRepository _technicalPointRepository;
 
-        public PlayerAttackEvent(
+        public Attack(
             ICharacterRepository characterRepository,
             IFrameViewPresenter frameView,
             MessageOutputDataFactory messageOutputDataFactory,
@@ -45,8 +45,7 @@ namespace BattleScene.UseCases.Event
             ISkillViewInfoFactory skillViewInfoFactory,
             TargetFrameOutputDataFactory targetFrameOutputDataFactory,
             TechnicalPointBarOutputDataFactory technicalPointBarOutputDataFactory,
-            ITechnicalPointBarViewPresenter technicalPointBarView,
-            ITechnicalPointRepository technicalPointRepository)
+            ITechnicalPointBarViewPresenter technicalPointBarView)
         {
             _characterRepository = characterRepository;
             _frameView = frameView;
@@ -60,20 +59,12 @@ namespace BattleScene.UseCases.Event
             _targetFrameOutputDataFactory = targetFrameOutputDataFactory;
             _technicalPointBarOutputDataFactory = technicalPointBarOutputDataFactory;
             _technicalPointBarView = technicalPointBarView;
-            _technicalPointRepository = technicalPointRepository;
         }
 
-        public EventCode Run()
+        public void Execute()
         {
             var characterId = _orderedItems.FirstCharacterId();
             var skill = _skillRepository.Select(characterId);
-
-            if (_characterRepository.Select(characterId).IsPlayer())
-            {
-                var technicalPoint = _technicalPointRepository.Select();
-                technicalPoint.Reduce(skill.AbstractSkill.GetTechnicalPoint());
-                _technicalPointRepository.Update(technicalPoint);
-            }
 
             if (_characterRepository.Select(characterId).IsPlayer())
             {
@@ -102,8 +93,6 @@ namespace BattleScene.UseCases.Event
                 var messageOutputData = _messageOutputDataFactory.Create(messageCode);
                 _messageView.Start(messageOutputData);
             }
-
-            return WaitEvent;
         }
 
         public EventCode NextEvent()

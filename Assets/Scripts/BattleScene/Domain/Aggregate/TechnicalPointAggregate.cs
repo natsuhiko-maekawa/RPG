@@ -1,21 +1,22 @@
-﻿using BattleScene.Domain.Id;
+﻿using BattleScene.Domain.Entity;
+using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
 
 namespace BattleScene.Domain.Aggregate
 {
-    public class TechnicalPointAggregate
+    public class TechnicalPointAggregate : BaseEntity<TechnicalPointAggregate, CharacterId>
     {
         private PointValueObject _pointValueObject;
 
         public TechnicalPointAggregate(
-            CharacterId characterId,
+            CharacterId id,
             int defaultTechnicalPoint)
         {
-            CharacterId = characterId;
+            Id = id;
             _pointValueObject = new PointValueObject(defaultTechnicalPoint);
         }
 
-        public CharacterId CharacterId { get; }
+        public override CharacterId Id { get; }
 
         public int GetMax()
         {

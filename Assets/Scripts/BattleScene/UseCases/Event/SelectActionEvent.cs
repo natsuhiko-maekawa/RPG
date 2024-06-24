@@ -1,3 +1,4 @@
+using BattleScene.Domain.Code;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
@@ -90,7 +91,7 @@ namespace BattleScene.UseCases.Event
             switch (selector.GetSelection())
             {
                 case 0:
-                    skill = _skillCreator.Create(playerId, Attack);
+                    skill = _skillCreator.Create(playerId, SkillCode.Attack);
                     _skillRepository.Update(skill);
                     return EventCode.SelectTargetEvent;
                 case 1:
