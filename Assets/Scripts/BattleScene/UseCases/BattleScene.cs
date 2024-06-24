@@ -1,5 +1,4 @@
-﻿using BattleScene.UseCases.Main;
-using UnityEngine;
+﻿using UnityEngine;
 using VContainer;
 
 namespace BattleScene.UseCases

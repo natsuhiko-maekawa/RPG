@@ -1,7 +1,6 @@
 ﻿using BattleScene.Domain.DomainService;
 using BattleScene.UseCases.Event;
 using BattleScene.UseCases.Event.Runner;
-using BattleScene.UseCases.Main;
 using BattleScene.UseCases.Service;
 using BattleScene.UseCases.Skill;
 using BattleScene.UseCases.Skill.Expression;
