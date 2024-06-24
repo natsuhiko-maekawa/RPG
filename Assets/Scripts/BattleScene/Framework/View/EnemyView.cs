@@ -7,6 +7,7 @@ using BattleScene.InterfaceAdapter.Presenter.FrameView;
 using BattleScene.InterfaceAdapter.Presenter.StatusBarView;
 using UnityEngine;
 using UnityEngine.UI;
+// ReSharper disable Unity.PerformanceCriticalCodeInvocation
 
 namespace BattleScene.Framework.View
 {
