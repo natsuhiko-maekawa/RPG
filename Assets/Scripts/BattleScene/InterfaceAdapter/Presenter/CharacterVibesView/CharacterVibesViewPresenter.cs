@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using BattleScene.InterfaceAdapter.IView;
-using BattleScene.UseCase.View.CharacterVibesView.OutputBoundary;
-using BattleScene.UseCase.View.CharacterVibesView.OutputData;
+using BattleScene.UseCases.View.CharacterVibesView.OutputBoundary;
+using BattleScene.UseCases.View.CharacterVibesView.OutputData;
 
 namespace BattleScene.InterfaceAdapter.Presenter.CharacterVibesView
 {

@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 using BattleScene.InterfaceAdapter.IView;
-using BattleScene.UseCase.View.BuffView.OutputBoundary;
-using BattleScene.UseCase.View.BuffView.OutputData;
+using BattleScene.UseCases.View.BuffView.OutputBoundary;
+using BattleScene.UseCases.View.BuffView.OutputData;
 
 namespace BattleScene.InterfaceAdapter.Presenter.BuffView
 {

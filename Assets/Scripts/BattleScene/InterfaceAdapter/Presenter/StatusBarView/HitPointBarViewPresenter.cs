@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using BattleScene.InterfaceAdapter.IView;
-using BattleScene.UseCase.View.HitPointBarView.OutputBoundary;
-using BattleScene.UseCase.View.HitPointBarView.OutputData;
+using BattleScene.UseCases.View.HitPointBarView.OutputBoundary;
+using BattleScene.UseCases.View.HitPointBarView.OutputData;
 
 namespace BattleScene.InterfaceAdapter.Presenter.StatusBarView
 {

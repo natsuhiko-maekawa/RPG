@@ -1,7 +1,7 @@
 ﻿using System;
 using BattleScene.InterfaceAdapter.IView;
-using BattleScene.UseCase.View.PlayerImageView.OutputBoundary;
-using BattleScene.UseCase.View.PlayerImageView.OutputData;
+using BattleScene.UseCases.View.PlayerImageView.OutputBoundary;
+using BattleScene.UseCases.View.PlayerImageView.OutputData;
 
 namespace BattleScene.InterfaceAdapter.Presenter.PlayerView
 {

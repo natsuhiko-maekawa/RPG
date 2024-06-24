@@ -1,7 +1,7 @@
 ﻿using BattleScene.InterfaceAdapter.IView;
-using BattleScene.UseCase;
-using BattleScene.UseCase.View.SelectActionView.OutputBoundary;
-using BattleScene.UseCase.View.SelectActionView.OutputData;
+using BattleScene.UseCases;
+using BattleScene.UseCases.View.SelectActionView.OutputBoundary;
+using BattleScene.UseCases.View.SelectActionView.OutputData;
 
 namespace BattleScene.InterfaceAdapter.Presenter.SelectActionView
 {

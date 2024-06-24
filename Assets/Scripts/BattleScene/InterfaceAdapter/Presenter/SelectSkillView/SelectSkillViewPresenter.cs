@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using BattleScene.InterfaceAdapter.IView;
-using BattleScene.UseCase.View.SelectSkillView.OutputBoundary;
-using BattleScene.UseCase.View.SelectSkillView.OutputData;
+using BattleScene.UseCases.View.SelectSkillView.OutputBoundary;
+using BattleScene.UseCases.View.SelectSkillView.OutputData;
 
 namespace BattleScene.InterfaceAdapter.Presenter.SelectSkillView
 {

@@ -1,6 +1,6 @@
 ﻿using BattleScene.InterfaceAdapter.IView;
-using BattleScene.UseCase.View.TechnicalPointBarView.OutputBoundary;
-using BattleScene.UseCase.View.TechnicalPointBarView.OutputData;
+using BattleScene.UseCases.View.TechnicalPointBarView.OutputBoundary;
+using BattleScene.UseCases.View.TechnicalPointBarView.OutputData;
 
 namespace BattleScene.InterfaceAdapter.Presenter.StatusBarView
 {

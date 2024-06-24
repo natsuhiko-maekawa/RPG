@@ -3,8 +3,8 @@ using System.Linq;
 using BattleScene.Domain.IFactory;
 using BattleScene.Domain.IRepository;
 using BattleScene.InterfaceAdapter.IView;
-using BattleScene.UseCase.View.EnemyView.OutputBoundary;
-using BattleScene.UseCase.View.EnemyView.OutputData;
+using BattleScene.UseCases.View.EnemyView.OutputBoundary;
+using BattleScene.UseCases.View.EnemyView.OutputData;
 
 namespace BattleScene.InterfaceAdapter.Presenter.EnemyView
 {

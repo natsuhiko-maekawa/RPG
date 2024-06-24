@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using BattleScene.InterfaceAdapter.IView;
-using BattleScene.UseCase.View.FrameView.OutputBoundary;
-using BattleScene.UseCase.View.FrameView.OutputData;
+using BattleScene.UseCases.View.FrameView.OutputBoundary;
+using BattleScene.UseCases.View.FrameView.OutputData;
 using UnityEngine;
 
 namespace BattleScene.InterfaceAdapter.Presenter.FrameView

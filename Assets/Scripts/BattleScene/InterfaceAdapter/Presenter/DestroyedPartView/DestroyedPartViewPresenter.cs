@@ -1,8 +1,8 @@
 ﻿using System.Collections.Immutable;
 using System.Linq;
 using BattleScene.InterfaceAdapter.IView;
-using BattleScene.UseCase.View.DestroyedPartView.OutputBoundary;
-using BattleScene.UseCase.View.DestroyedPartView.OutputData;
+using BattleScene.UseCases.View.DestroyedPartView.OutputBoundary;
+using BattleScene.UseCases.View.DestroyedPartView.OutputData;
 
 namespace BattleScene.InterfaceAdapter.Presenter.DestroyedPartView
 {

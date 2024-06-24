@@ -1,6 +1,6 @@
 ﻿using BattleScene.InterfaceAdapter.IView;
-using BattleScene.UseCase.View.AttackCountView.OutputBoundary;
-using BattleScene.UseCase.View.AttackCountView.OutputData;
+using BattleScene.UseCases.View.AttackCountView.OutputBoundary;
+using BattleScene.UseCases.View.AttackCountView.OutputData;
 
 namespace BattleScene.InterfaceAdapter.Presenter.PlayerAttackCountView
 {

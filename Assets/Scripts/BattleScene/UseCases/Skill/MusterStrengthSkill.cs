@@ -1,0 +1,51 @@
+using System.Collections.Immutable;
+using BattleScene.Domain.AbstractClass;
+using BattleScene.Domain.Code;
+using BattleScene.Domain.Interface;
+using BattleScene.UseCases.Skill.SkillElement;
+
+namespace BattleScene.UseCases.Skill
+{
+    /// <summary>
+    ///     力溜め
+    /// </summary>
+    internal class MusterStrengthSkill : AbstractSkill
+    {
+        private readonly MusterStrengthSkillElement _musterStrengthSkillElement;
+
+        public MusterStrengthSkill(MusterStrengthSkillElement musterStrengthSkillElement)
+        {
+            _musterStrengthSkillElement = musterStrengthSkillElement;
+        }
+
+        public override int GetTechnicalPoint()
+        {
+            return 3;
+        }
+
+        public override Range GetRange()
+        {
+            return Range.Oneself;
+        }
+
+        public override PlayerImageCode GetPlayerImageCode()
+        {
+            return PlayerImageCode.Katana;
+        }
+
+        public override MessageCode GetDescription()
+        {
+            return MessageCode.MusterStrengthDescription;
+        }
+
+        public override MessageCode GetAttackMessage()
+        {
+            return MessageCode.BuffMessage;
+        }
+
+        public override ImmutableList<ISkillElement> GetSkillService()
+        {
+            return ImmutableList.Create<ISkillElement>(_musterStrengthSkillElement);
+        }
+    }
+}

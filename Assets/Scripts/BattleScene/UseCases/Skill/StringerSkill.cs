@@ -1,0 +1,45 @@
+using System.Collections.Immutable;
+using BattleScene.Domain.AbstractClass;
+using BattleScene.Domain.Code;
+using BattleScene.Domain.Interface;
+using BattleScene.UseCases.Skill.SkillElement;
+
+namespace BattleScene.UseCases.Skill
+{
+    /// <summary>
+    ///     毒針
+    /// </summary>
+    internal class StringerSkill : AbstractSkill
+    {
+        private readonly BasicDamageSkillElement _basicDamageSkillElement;
+        private readonly PoisoningSkillElement _poisoningSkillElement;
+
+        public StringerSkill(
+            BasicDamageSkillElement basicDamageSkillElement,
+            PoisoningSkillElement poisoningSkillElement)
+        {
+            _basicDamageSkillElement = basicDamageSkillElement;
+            _poisoningSkillElement = poisoningSkillElement;
+        }
+
+        public override Range GetRange()
+        {
+            return Range.Solo;
+        }
+
+        public override PlayerImageCode GetPlayerImageCode()
+        {
+            return PlayerImageCode.Damaged;
+        }
+
+        public override MessageCode GetAttackMessage()
+        {
+            return MessageCode.StringerMessage;
+        }
+
+        public override ImmutableList<ISkillElement> GetSkillService()
+        {
+            return ImmutableList.Create<ISkillElement>(_basicDamageSkillElement, _poisoningSkillElement);
+        }
+    }
+}

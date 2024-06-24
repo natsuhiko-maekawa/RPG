@@ -5,9 +5,9 @@ using BattleScene.Domain.Code;
 using BattleScene.Domain.IFactory;
 using BattleScene.InterfaceAdapter.IView;
 using BattleScene.InterfaceAdapter.Service;
-using BattleScene.UseCase.View.OrderView.OutputBoundary;
-using BattleScene.UseCase.View.OrderView.OutputData;
-using static BattleScene.UseCase.View.OrderView.OutputData.OrderOutputDataType;
+using BattleScene.UseCases.View.OrderView.OutputBoundary;
+using BattleScene.UseCases.View.OrderView.OutputData;
+using static BattleScene.UseCases.View.OrderView.OutputData.OrderOutputDataType;
 
 namespace BattleScene.InterfaceAdapter.Presenter.OrderView
 {

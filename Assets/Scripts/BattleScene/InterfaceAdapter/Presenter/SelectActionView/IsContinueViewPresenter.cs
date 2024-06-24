@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using BattleScene.InterfaceAdapter.IView;
-using BattleScene.UseCase;
-using BattleScene.UseCase.View.IsContinueView.OutputBoundary;
-using BattleScene.UseCase.View.IsContinueView.OutputData;
+using BattleScene.UseCases;
+using BattleScene.UseCases.View.IsContinueView.OutputBoundary;
+using BattleScene.UseCases.View.IsContinueView.OutputData;
 
 namespace BattleScene.InterfaceAdapter.Presenter.SelectActionView
 {

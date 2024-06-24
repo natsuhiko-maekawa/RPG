@@ -1,7 +1,7 @@
 ﻿using BattleScene.InterfaceAdapter.IView;
 using BattleScene.InterfaceAdapter.Service;
-using BattleScene.UseCase.View.MessageView.OutputBoundary;
-using BattleScene.UseCase.View.MessageView.OutputData;
+using BattleScene.UseCases.View.MessageView.OutputBoundary;
+using BattleScene.UseCases.View.MessageView.OutputData;
 
 namespace BattleScene.InterfaceAdapter.Presenter.MessageView
 {

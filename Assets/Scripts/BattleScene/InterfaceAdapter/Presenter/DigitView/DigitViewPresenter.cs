@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 using BattleScene.InterfaceAdapter.IView;
-using BattleScene.UseCase.View.DigitView.OutputBoundary;
-using BattleScene.UseCase.View.DigitView.OutputData;
+using BattleScene.UseCases.View.DigitView.OutputBoundary;
+using BattleScene.UseCases.View.DigitView.OutputData;
 
 namespace BattleScene.InterfaceAdapter.Presenter.DigitView
 {

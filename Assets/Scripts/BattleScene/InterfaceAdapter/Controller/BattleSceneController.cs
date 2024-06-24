@@ -1,6 +1,6 @@
 ﻿using System;
 using BattleScene.InterfaceAdapter.IInputSystem;
-using BattleScene.UseCase.IController;
+using BattleScene.UseCases.IController;
 using UnityEngine;
 
 namespace BattleScene.InterfaceAdapter.Controller
