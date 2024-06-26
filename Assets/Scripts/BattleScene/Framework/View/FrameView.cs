@@ -1,10 +1,12 @@
+using System;
 using System.Threading.Tasks;
+using BattleScene.InterfaceAdapter.Presenter.FrameView;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace BattleScene.Framework.View
 {
-    public class FrameView : MonoBehaviour
+    public class FrameView : BaseView<FrameViewDto>
     {
         [SerializeField] private Image frame;
         private Image _frame;
@@ -15,9 +17,17 @@ namespace BattleScene.Framework.View
             _frame.enabled = false;
         }
 
+        [Obsolete]
         public Task StartAnimation(Color color)
         {
             _frame.color = color;
+            _frame.enabled = true;
+            return Task.CompletedTask;
+        }
+
+        public override Task StartAnimation(FrameViewDto dto)
+        {
+            _frame.color = dto.Color;
             _frame.enabled = true;
             return Task.CompletedTask;
         }

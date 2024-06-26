@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using BattleScene.Domain.Id;
 using BattleScene.InterfaceAdapter.IView;
 using BattleScene.UseCases.View.FrameView.OutputBoundary;
 using BattleScene.UseCases.View.FrameView.OutputData;
@@ -11,7 +12,7 @@ namespace BattleScene.InterfaceAdapter.Presenter.FrameView
     {
         private readonly IEnemiesView _enemiesView;
         private readonly IPlayerView _playerView;
-
+        
         public void Start(IList<FrameOutputData> outputDataList)
         {
             foreach (var outputData in outputDataList)

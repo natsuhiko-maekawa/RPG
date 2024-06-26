@@ -59,6 +59,12 @@ namespace BattleScene.Framework.View
             return Task.CompletedTask;
         }
 
+        public Task StartFrameView(FrameViewDto dto)
+        {
+            _playerFrameView.StartAnimation(dto);
+            return Task.CompletedTask;
+        }
+
         public void StopPlayerFrameView()
         {
             _playerFrameView.StopAnimation();
