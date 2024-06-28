@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Collections.Immutable;
+using BattleScene.InterfaceAdapter.DataAccess.Factory.Dto;
 using UnityEngine;
 
-namespace BattleScene.Framework.Resource
+namespace BattleScene.InterfaceAdapter.DataAccess.Resource
 {
     public abstract class BaseListScriptableObject<TItem, TId> : ScriptableObject, ISerializationCallbackReceiver
         where TItem : IListScriptableObjectItem<TId>

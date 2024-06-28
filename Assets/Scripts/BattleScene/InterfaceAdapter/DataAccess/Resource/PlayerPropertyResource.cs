@@ -3,7 +3,7 @@ using BattleScene.InterfaceAdapter.DataAccess.Factory.Dto;
 using BattleScene.InterfaceAdapter.DataAccess.IResource;
 using UnityEngine;
 
-namespace BattleScene.Framework.Resource
+namespace BattleScene.InterfaceAdapter.DataAccess.Resource
 {
     public class PlayerPropertyResource : MonoBehaviour, IPlayerPropertyResource
     {

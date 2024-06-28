@@ -1,6 +1,5 @@
 ﻿using System;
 using BattleScene.Domain.Code;
-using BattleScene.Framework.Resource;
 using UnityEngine;
 
 namespace BattleScene.InterfaceAdapter.DataAccess.Factory.Dto

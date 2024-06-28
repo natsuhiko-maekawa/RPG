@@ -1,4 +1,4 @@
-﻿namespace BattleScene.Framework.Resource
+﻿namespace BattleScene.InterfaceAdapter.DataAccess.Factory.Dto
 {
     public interface IListScriptableObjectItem<out TId>
     {

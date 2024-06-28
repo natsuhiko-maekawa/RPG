@@ -2,7 +2,7 @@
 using BattleScene.InterfaceAdapter.DataAccess.Factory.Dto;
 using UnityEngine;
 
-namespace BattleScene.Framework.Resource
+namespace BattleScene.InterfaceAdapter.DataAccess.Resource
 {
     [CreateAssetMenu(menuName = "ScriptableObjects/EnemyViewInfo")]
     public class EnemyViewInfoScriptableObject : ScriptableObject

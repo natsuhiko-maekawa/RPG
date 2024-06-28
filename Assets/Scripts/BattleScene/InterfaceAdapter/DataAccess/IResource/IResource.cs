@@ -1,5 +1,5 @@
 ﻿using System.Collections.Immutable;
-using BattleScene.Framework.Resource;
+using BattleScene.InterfaceAdapter.DataAccess.Factory.Dto;
 
 namespace BattleScene.InterfaceAdapter.DataAccess.IResource
 {
