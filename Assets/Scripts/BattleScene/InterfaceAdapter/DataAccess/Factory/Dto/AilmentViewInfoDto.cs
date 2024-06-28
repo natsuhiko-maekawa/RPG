@@ -1,17 +1,18 @@
 ﻿using System;
 using BattleScene.Domain.Code;
+using BattleScene.Framework.Resource;
 using UnityEngine;
 
 namespace BattleScene.InterfaceAdapter.DataAccess.Factory.Dto
 {
     [Serializable]
-    public class AilmentViewInfoDto : ISerializationCallbackReceiver
+    public class AilmentViewInfoDto : IListScriptableObjectItem<AilmentCode>, ISerializationCallbackReceiver
     {
         [SerializeField] private string ailmentCode;
         public string ailmentName;
         [SerializeField] private string messageCode;
         [SerializeField] private string playerImageCode;
-        public AilmentCode AilmentCode { get; private set; }
+        public AilmentCode Id { get; private set; }
         public MessageCode MessageCode { get; private set; }
         public PlayerImageCode PlayerImageCode { get; private set; }
         
@@ -21,7 +22,7 @@ namespace BattleScene.InterfaceAdapter.DataAccess.Factory.Dto
 
         public void OnAfterDeserialize()
         {
-            AilmentCode = Enum.Parse<AilmentCode>(ailmentCode);
+            Id = Enum.Parse<AilmentCode>(ailmentCode);
             MessageCode = Enum.Parse<MessageCode>(messageCode);
             PlayerImageCode = Enum.Parse<PlayerImageCode>(playerImageCode);
         }
