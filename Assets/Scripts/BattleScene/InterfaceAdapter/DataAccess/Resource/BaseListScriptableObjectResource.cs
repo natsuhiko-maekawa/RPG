@@ -6,9 +6,10 @@ using UnityEngine;
 
 namespace BattleScene.InterfaceAdapter.DataAccess.Resource
 {
-    public abstract class BaseResource<TListScriptableObject, TItem, TId> : MonoBehaviour, IResource<TItem, TId>
+    public abstract class BaseListScriptableObjectResource<TListScriptableObject, TItem, TId>
+        : MonoBehaviour, IResource<TItem, TId>
         where TListScriptableObject : BaseListScriptableObject<TItem, TId>
-        where TItem : IListScriptableObjectItem<TId>
+        where TItem : IUniqueItem<TId>
     {
         [SerializeField] private TListScriptableObject listScriptableObject;
         

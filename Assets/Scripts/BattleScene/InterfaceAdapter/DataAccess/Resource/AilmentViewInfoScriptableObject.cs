@@ -7,6 +7,5 @@ namespace BattleScene.InterfaceAdapter.DataAccess.Resource
     [CreateAssetMenu(menuName = "ScriptableObjects/AilmentViewInfo")]
     public class AilmentViewInfoScriptableObject : BaseListScriptableObject<AilmentViewInfoDto, AilmentCode>
     {
-        // [SerializeField] private List<AilmentViewInfoDto> ailmentViewInfoDtoList = new();
     }
 }
