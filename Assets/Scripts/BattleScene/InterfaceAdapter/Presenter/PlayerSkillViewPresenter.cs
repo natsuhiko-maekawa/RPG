@@ -21,7 +21,7 @@ namespace BattleScene.InterfaceAdapter.Presenter
     public class PlayerSkillViewPresenter : IPlayerSkillViewPresenter
     {
         private readonly CharactersDomainService _characters;
-        private readonly IResource<PlayerViewInfoValueObject, PlayerImageCode> _playerViewInfoResource;
+        private readonly IFactory<PlayerViewInfoValueObject, PlayerImageCode> _playerViewInfoFactory;
         private readonly ISkillViewInfoFactory _skillViewInfoFactory;
         private readonly IRepository<TechnicalPointAggregate, CharacterId> _technicalPointRepository;
         private readonly IPlayerView _playerView;
@@ -29,7 +29,7 @@ namespace BattleScene.InterfaceAdapter.Presenter
         public void Out(SkillEntity skill)
         {
             var playerImageCode = _skillViewInfoFactory.Create(skill.SkillCode).PlayerImageCode;
-            var playerImagePath = _playerViewInfoResource.Select(playerImageCode).PlayerImagePath;
+            var playerImagePath = _playerViewInfoFactory.Create(playerImageCode).PlayerImagePath;
             var playerViewDto = new PlayerViewDto(playerImagePath);
             _playerView.StartAnimation(playerViewDto);
 

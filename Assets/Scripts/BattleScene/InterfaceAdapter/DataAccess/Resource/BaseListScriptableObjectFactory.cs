@@ -6,19 +6,19 @@ using UnityEngine;
 
 namespace BattleScene.InterfaceAdapter.DataAccess.Resource
 {
-    public abstract class BaseListScriptableObjectResource<TListScriptableObject, TItem, TId>
-        : MonoBehaviour, IResource<TItem, TId>
+    public abstract class BaseListScriptableObjectFactory<TListScriptableObject, TItem, TId>
+        : MonoBehaviour, IFactory<TItem, TId>
         where TListScriptableObject : BaseListScriptableObject<TItem, TId>
         where TItem : IUniqueItem<TId>
     {
         [SerializeField] private TListScriptableObject listScriptableObject;
         
-        public ImmutableList<TItem> Select()
+        public ImmutableList<TItem> Create()
         {
             return listScriptableObject.ItemList;
         }
 
-        public TItem Select(TId id)
+        public TItem Create(TId id)
         {
             return listScriptableObject.ItemList
                 .First(x => Equals(x.Id, id));

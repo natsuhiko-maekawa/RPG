@@ -3,10 +3,10 @@ using BattleScene.InterfaceAdapter.DataAccess.Factory.Dto;
 
 namespace BattleScene.InterfaceAdapter.DataAccess.IResource
 {
-    public interface IResource<TItem, in TId>
+    public interface IFactory<TItem, in TId>
         where TItem : IUniqueItem<TId>
     {
-        public ImmutableList<TItem> Select();
-        public TItem Select(TId id);
+        public ImmutableList<TItem> Create();
+        public TItem Create(TId id);
     }
 }
