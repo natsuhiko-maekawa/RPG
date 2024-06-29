@@ -2,5 +2,5 @@
 {
     public record MessageViewDto(
         string Message,
-        bool NoWait);
+        bool NoWait=false);
 }
