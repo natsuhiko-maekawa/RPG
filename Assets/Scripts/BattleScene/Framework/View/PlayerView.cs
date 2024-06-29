@@ -82,6 +82,12 @@ namespace BattleScene.Framework.View
             return Task.CompletedTask;
         }
 
+        public Task StartTechnicalPointBarView(TechnicalPointBarViewDto dto)
+        {
+            _playerTpBarView.StartAnimation(dto);
+            return Task.CompletedTask;
+        }
+
         public async Task StartPlayerVibesView()
         {
             await _playerVibesView.StartAnimation();

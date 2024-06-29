@@ -16,7 +16,9 @@ namespace BattleScene.InterfaceAdapter.IView
         public Task StartFrameView(FrameViewDto dto);
         public void StopPlayerFrameView();
         public Task StartPlayerHpBarView(PlayerHpBarViewDto dto);
+        [Obsolete]
         public Task StartPlayerTpBarView(PlayerTpBarViewDto dto);
+        public Task StartTechnicalPointBarView(TechnicalPointBarViewDto dto);
         public Task StartPlayerVibesView();
     }
 }
