@@ -11,9 +11,9 @@ namespace BattleScene.UseCases.Skill
     /// </summary>
     internal class StarShellSkill : AbstractSkill
     {
-        public StarShellSkill(StarShellSkillElement starShellSkillElement)
+        public StarShellSkill(StarShell starShell)
         {
-            BuffSkillElementList = ImmutableList.Create<BuffSkillElement>(starShellSkillElement);
+            BuffSkillElementList = ImmutableList.Create<AbstractBuff>(starShell);
         }
 
         public override int GetTechnicalPoint()

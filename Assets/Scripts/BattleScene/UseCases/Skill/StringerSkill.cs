@@ -12,11 +12,11 @@ namespace BattleScene.UseCases.Skill
     internal class StringerSkill : AbstractSkill
     {
         public StringerSkill(
-            BasicDamageSkillElement basicDamageSkillElement,
-            PoisoningSkillElement poisoningSkillElement)
+            BasicDamage basicDamage,
+            PoisoningSkill poisoningSkill)
         {
-            DamageSkillElementList = ImmutableList.Create<DamageSkillElement>(basicDamageSkillElement);
-            SlipDamageElementList = ImmutableList.Create<SlipDamageElement>(poisoningSkillElement);
+            DamageSkillElementList = ImmutableList.Create<AbstractDamage>(basicDamage);
+            SlipDamageElementList = ImmutableList.Create<AbstractSlipDamage>(poisoningSkill);
         }
 
         public override Range GetRange()

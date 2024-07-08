@@ -8,9 +8,9 @@ namespace BattleScene.UseCases.Skill
 {
     internal class AttackSkill : AbstractSkill
     {
-        public AttackSkill(BasicDamageSkillElement basicDamageSkillElement)
+        public AttackSkill(BasicDamage basicDamage)
         {
-            DamageSkillElementList = ImmutableList.Create<DamageSkillElement>(basicDamageSkillElement);
+            DamageSkillElementList = ImmutableList.Create<AbstractDamage>(basicDamage);
         }
 
         public override Range GetRange()

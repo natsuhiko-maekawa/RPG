@@ -11,11 +11,11 @@ namespace BattleScene.UseCases.Skill
     /// </summary>
     internal class PunchSkill : AbstractSkill
     {
-        private readonly BasicDamageSkillElement _basicDamageSkillElement;
+        private readonly BasicDamage _basicDamage;
 
-        public PunchSkill(BasicDamageSkillElement basicDamageSkillElement)
+        public PunchSkill(BasicDamage basicDamage)
         {
-            DamageSkillElementList = ImmutableList.Create<DamageSkillElement>(basicDamageSkillElement);
+            DamageSkillElementList = ImmutableList.Create<AbstractDamage>(basicDamage);
         }
 
         public override Range GetRange()

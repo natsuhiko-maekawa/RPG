@@ -11,9 +11,9 @@ namespace BattleScene.UseCases.Skill
     /// </summary>
     internal class MusterStrengthSkill : AbstractSkill
     {
-        public MusterStrengthSkill(MusterStrengthSkillElement musterStrengthSkillElement)
+        public MusterStrengthSkill(MusterStrength musterStrength)
         {
-            BuffSkillElementList = ImmutableList.Create<BuffSkillElement>(musterStrengthSkillElement);
+            BuffSkillElementList = ImmutableList.Create<AbstractBuff>(musterStrength);
         }
 
         public override int GetTechnicalPoint()

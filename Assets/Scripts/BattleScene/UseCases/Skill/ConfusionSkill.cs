@@ -12,9 +12,9 @@ namespace BattleScene.UseCases.Skill
     /// </summary>
     internal class ConfusionSkill : AbstractSkill
     {
-        public ConfusionSkill(AlwaysHitDamageSkillElement alwaysHitDamageSkillElement)
+        public ConfusionSkill(AlwaysHitDamage alwaysHitDamage)
         {
-            DamageSkillElementList = ImmutableList.Create<DamageSkillElement>(alwaysHitDamageSkillElement);
+            DamageSkillElementList = ImmutableList.Create<AbstractDamage>(alwaysHitDamage);
         }
 
         public override Range GetRange()

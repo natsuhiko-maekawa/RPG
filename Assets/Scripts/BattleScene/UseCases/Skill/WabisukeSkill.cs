@@ -11,15 +11,15 @@ namespace BattleScene.UseCases.Skill
     /// </summary>
     internal class WabisukeSkill : AbstractSkill
     {
-        private readonly BasicDamageSkillElement _basicDamageSkillElement;
-        private readonly WabisukeSkillElement _wabisukeSkillElement;
+        private readonly BasicDamage _basicDamage;
+        private readonly Wabisuke _wabisuke;
 
         public WabisukeSkill(
-            BasicDamageSkillElement basicDamageSkillElement, 
-            WabisukeSkillElement wabisukeSkillElement)
+            BasicDamage basicDamage, 
+            Wabisuke wabisuke)
         {
-            DamageSkillElementList = ImmutableList.Create<DamageSkillElement>(basicDamageSkillElement);
-            BuffSkillElementList = ImmutableList.Create<BuffSkillElement>(wabisukeSkillElement);
+            DamageSkillElementList = ImmutableList.Create<AbstractDamage>(basicDamage);
+            BuffSkillElementList = ImmutableList.Create<AbstractBuff>(wabisuke);
         }
 
         public override int GetTechnicalPoint()

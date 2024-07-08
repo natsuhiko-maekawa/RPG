@@ -14,11 +14,11 @@ namespace BattleScene.UseCases.Skill
     internal class LiquidSkill : AbstractSkill
     {
         public LiquidSkill(
-            BasicDamageSkillElement basicDamageSkillElement,
-            SuffocationSkillElement suffocationSkillElement)
+            BasicDamage basicDamage,
+            SuffocationSkill suffocationSkill)
         {
-            DamageSkillElementList = ImmutableList.Create<DamageSkillElement>(basicDamageSkillElement);
-            SlipDamageElementList = ImmutableList.Create<SlipDamageElement>(suffocationSkillElement);
+            DamageSkillElementList = ImmutableList.Create<AbstractDamage>(basicDamage);
+            SlipDamageElementList = ImmutableList.Create<AbstractSlipDamage>(suffocationSkill);
         }
 
         public override Range GetRange()

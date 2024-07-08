@@ -11,9 +11,9 @@ namespace BattleScene.UseCases.Skill
     /// </summary>
     internal class FieldRationSkill : AbstractSkill
     {
-        public FieldRationSkill(BasicCureSkillElement basicCureSkillElement)
+        public FieldRationSkill(BasicCure basicCure)
         {
-            CureSkillElementList = ImmutableList.Create<CureSkillElement>(basicCureSkillElement);
+            CureSkillElementList = ImmutableList.Create<AbstractCure>(basicCure);
         }
 
         public override int GetTechnicalPoint()

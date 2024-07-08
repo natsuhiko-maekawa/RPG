@@ -22,7 +22,7 @@ namespace BattleScene.UseCases.Skill.Expression
             _randomEx = randomEx;
         }
 
-        public int Evaluate(CharacterId actorId, CharacterId targetId, CureSkillElement cureSkillElement)
+        public int Evaluate(CharacterId actorId, CharacterId targetId, AbstractCure cure)
         {
             var actor = _characterRepository.Select(actorId);
             var restore = actor.Property.Wisdom * 8 + _randomEx.Range(0, 2);

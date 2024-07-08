@@ -11,9 +11,9 @@ namespace BattleScene.UseCases.Skill
     /// </summary>
     internal class FirstAidSkill : AbstractSkill
     {
-        public FirstAidSkill(FirstAidSkillElement firstAidSkillElement)
+        public FirstAidSkill(FirstAid firstAid)
         {
-            ResetSkillElementList = ImmutableList.Create<ResetSkillElement>(firstAidSkillElement);
+            ResetSkillElementList = ImmutableList.Create<AbstractReset>(firstAid);
         }
 
         public override int GetTechnicalPoint()

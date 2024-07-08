@@ -11,15 +11,15 @@ namespace BattleScene.UseCases.Skill
     /// </summary>
     internal class TaserGunSkill : AbstractSkill
     {
-        private readonly BasicDamageSkillElement _basicDamageSkillElement;
-        private readonly EnemyParalysisSkillElement _enemyParalysisSkillElement;
+        private readonly BasicDamage _basicDamage;
+        private readonly EnemyParalysis _enemyParalysis;
 
         public TaserGunSkill(
-            BasicDamageSkillElement basicDamageSkillElement,
-            EnemyParalysisSkillElement enemyParalysisSkillElement)
+            BasicDamage basicDamage,
+            EnemyParalysis enemyParalysis)
         {
-            DamageSkillElementList = ImmutableList.Create<DamageSkillElement>(basicDamageSkillElement);
-            AilmentSkillElementList = ImmutableList.Create<AilmentSkillElement>(enemyParalysisSkillElement);
+            DamageSkillElementList = ImmutableList.Create<AbstractDamage>(basicDamage);
+            AilmentSkillElementList = ImmutableList.Create<AbstractAilment>(enemyParalysis);
         }
 
         public override int GetTechnicalPoint()

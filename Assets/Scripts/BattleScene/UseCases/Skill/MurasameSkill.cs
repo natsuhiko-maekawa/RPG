@@ -12,11 +12,11 @@ namespace BattleScene.UseCases.Skill
     internal class MurasameSkill : AbstractSkill
     {
         public MurasameSkill(
-            BasicDamageSkillElement basicDamageSkillElement,
-            BurningResetSkillElement burningResetSkillElement)
+            BasicDamage basicDamage,
+            BurningReset burningReset)
         {
-            DamageSkillElementList = ImmutableList.Create<DamageSkillElement>(basicDamageSkillElement);
-            ResetSkillElementList = ImmutableList.Create<ResetSkillElement>(burningResetSkillElement);
+            DamageSkillElementList = ImmutableList.Create<AbstractDamage>(basicDamage);
+            ResetSkillElementList = ImmutableList.Create<AbstractReset>(burningReset);
         }
 
         public override int GetTechnicalPoint()

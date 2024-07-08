@@ -11,9 +11,9 @@ namespace BattleScene.UseCases.Skill
     /// </summary>
     internal class DefenceSkill : AbstractSkill
     {
-        public DefenceSkill(DefenceSkillElement defenceSkillElement)
+        public DefenceSkill(Defence defence)
         {
-            BuffSkillElementList = ImmutableList.Create<BuffSkillElement>(defenceSkillElement);
+            BuffSkillElementList = ImmutableList.Create<AbstractBuff>(defence);
             // TODO: TPを回復するスキルをAddする
         }
 

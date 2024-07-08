@@ -18,12 +18,12 @@ namespace BattleScene.UseCases.StateMachine.Service
 
             var triggerDict = new Dictionary<Func<bool>, StateCode>
             {
-                { () => skill is DamageSkillElement, StateCode.Damage },
-                { () => skill is AilmentSkillElement, StateCode.Ailment },
-                { () => skill is DestroyPartSkillElement, StateCode.DestroyedPart },
-                { () => skill is CureSkillElement, StateCode.Cure },
-                { () => skill is ResetSkillElement, StateCode.Reset },
-                { () => skill is BuffSkillElement, StateCode.Buff }
+                { () => skill is AbstractDamage, StateCode.Damage },
+                { () => skill is AbstractAilment, StateCode.Ailment },
+                { () => skill is AbstractDestroyPart, StateCode.DestroyedPart },
+                { () => skill is AbstractCure, StateCode.Cure },
+                { () => skill is AbstractReset, StateCode.Reset },
+                { () => skill is AbstractBuff, StateCode.Buff }
             };
 
             return new State(

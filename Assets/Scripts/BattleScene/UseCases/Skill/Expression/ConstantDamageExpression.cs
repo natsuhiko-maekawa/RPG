@@ -27,14 +27,14 @@ namespace BattleScene.UseCases.Skill.Expression
             _buffDomainService = buffDomainService;
         }
 
-        public int Evaluate(CharacterId actorId, DamageSkillElement damageSkillElement)
+        public int Evaluate(CharacterId actorId, AbstractDamage damage)
         {
             var actorStrength = _characterRepository.Select(actorId).Property.Strength;
             var targetVitality = 1;
             var actorBuffRate = _buffDomainService.GetRate(actorId, Attack);
             var targetBuffRate = 1;
             var destroyedRate = 1.0f - _bodyPartDomainService.Count(actorId, Arm) * 0.5f;
-            var rate = damageSkillElement.GetDamageRate();
+            var rate = damage.GetDamageRate();
             return (int)(actorStrength * actorStrength / (float)targetVitality * actorBuffRate / targetBuffRate
                          * destroyedRate * rate * 1.5f) + _randomEx.Range(1, 3);
         }

@@ -11,9 +11,9 @@ namespace BattleScene.UseCases.Skill
     /// </summary>
     internal class SilverBulletSkill : AbstractSkill
     {
-        public SilverBulletSkill(ConstantDamageSkillElement constantDamageSkillElement)
+        public SilverBulletSkill(ConstantDamage constantDamage)
         {
-            DamageSkillElementList = ImmutableList.Create<DamageSkillElement>(constantDamageSkillElement);
+            DamageSkillElementList = ImmutableList.Create<AbstractDamage>(constantDamage);
         }
 
         public override int GetTechnicalPoint()

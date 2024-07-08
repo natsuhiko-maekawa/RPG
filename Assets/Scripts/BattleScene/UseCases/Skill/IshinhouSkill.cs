@@ -11,9 +11,9 @@ namespace BattleScene.UseCases.Skill
     /// </summary>
     internal class IshinhouSkill : AbstractSkill
     {
-        public IshinhouSkill(IshinhouSkillElement ishinhouSkillElement)
+        public IshinhouSkill(Ishinhou ishinhou)
         {
-            ResetSkillElementList = ImmutableList.Create<ResetSkillElement>(ishinhouSkillElement);
+            ResetSkillElementList = ImmutableList.Create<AbstractReset>(ishinhou);
         }
 
         public override int GetTechnicalPoint()

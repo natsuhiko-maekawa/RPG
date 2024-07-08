@@ -11,9 +11,9 @@ namespace BattleScene.UseCases.Skill
     /// </summary>
     internal class OnikoroshiSkill : AbstractSkill
     {
-        public OnikoroshiSkill(ConfusionSkillElement confusionSkillElement)
+        public OnikoroshiSkill(Confusion confusion)
         {
-            AilmentSkillElementList = ImmutableList.Create<AilmentSkillElement>(confusionSkillElement);
+            AilmentSkillElementList = ImmutableList.Create<AbstractAilment>(confusion);
         }
 
         public override ImmutableList<BodyPartCode> GetDependencyList()

@@ -13,11 +13,11 @@ namespace BattleScene.UseCases.Skill
     internal class NumbLiquidSkill : AbstractSkill
     {
         public NumbLiquidSkill(
-            BasicDamageSkillElement basicDamageSkillElement,
-            ParalysisSkillElement paralysisSkillElement)
+            BasicDamage basicDamage,
+            Paralysis paralysis)
         {
-            DamageSkillElementList = ImmutableList.Create<DamageSkillElement>(basicDamageSkillElement);
-            AilmentSkillElementList = ImmutableList.Create<AilmentSkillElement>(paralysisSkillElement);
+            DamageSkillElementList = ImmutableList.Create<AbstractDamage>(basicDamage);
+            AilmentSkillElementList = ImmutableList.Create<AbstractAilment>(paralysis);
         }
 
         public override PlayerImageCode GetPlayerImageCode()

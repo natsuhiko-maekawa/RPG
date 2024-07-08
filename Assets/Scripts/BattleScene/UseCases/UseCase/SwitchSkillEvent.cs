@@ -23,12 +23,12 @@ namespace BattleScene.UseCases.Event
             var skill = _skillRepository.Select(characterId);
             return skill.FirstSkillService() switch
             {
-                DamageSkillElement => EventCode.PlayerDamageEvent,
-                AilmentSkillElement => EventCode.AilmentEvent,
-                DestroyPartSkillElement => EventCode.DestroyedPartEvent,
-                CureSkillElement => EventCode.CureEvent,
-                ResetSkillElement => EventCode.ResetEvent,
-                BuffSkillElement => EventCode.BuffEvent,
+                AbstractDamage => EventCode.PlayerDamageEvent,
+                AbstractAilment => EventCode.AilmentEvent,
+                AbstractDestroyPart => EventCode.DestroyedPartEvent,
+                AbstractCure => EventCode.CureEvent,
+                AbstractReset => EventCode.ResetEvent,
+                AbstractBuff => EventCode.BuffEvent,
                 _ => EventCode.LoopEndEvent
             };
         }

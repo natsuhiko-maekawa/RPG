@@ -11,9 +11,9 @@ namespace BattleScene.UseCases.Skill
     /// </summary>
     internal class KuchiyoseSkill : AbstractSkill
     {
-        public KuchiyoseSkill(ConfusionSkillElement confusionSkillElement)
+        public KuchiyoseSkill(Confusion confusion)
         {
-            AilmentSkillElementList = ImmutableList.Create<AilmentSkillElement>(confusionSkillElement);
+            AilmentSkillElementList = ImmutableList.Create<AbstractAilment>(confusion);
         }
 
         public override int GetTechnicalPoint()

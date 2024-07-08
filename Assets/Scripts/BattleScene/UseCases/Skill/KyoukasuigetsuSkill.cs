@@ -16,11 +16,11 @@ namespace BattleScene.UseCases.Skill
     internal class KyoukasuigetsuSkill : AbstractSkill
     {
         public KyoukasuigetsuSkill(
-            AbsoluteConfusionSkillElement absoluteConfusionSkillElement,
-            BasicDamageSkillElement basicDamageSkillElement)
+            AbsoluteConfusion absoluteConfusion,
+            BasicDamage basicDamage)
         {
-            AilmentSkillElementList = ImmutableList.Create<AilmentSkillElement>(absoluteConfusionSkillElement);
-            DamageSkillElementList = ImmutableList.Create<DamageSkillElement>(basicDamageSkillElement);
+            AilmentSkillElementList = ImmutableList.Create<AbstractAilment>(absoluteConfusion);
+            DamageSkillElementList = ImmutableList.Create<AbstractDamage>(basicDamage);
         }
 
         public override ImmutableList<BodyPartCode> GetDependencyList()

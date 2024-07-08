@@ -15,14 +15,14 @@ namespace BattleScene.UseCases.Skill.SkillElement.BaseClass
         {
             return skillElement switch
             {
-                DamageSkillElement => (int)SkillElementEnum.DamageSkillElement,
-                AilmentSkillElement => (int)SkillElementEnum.AilmentSkillElement,
-                SlipDamageElement => (int)SkillElementEnum.SlipDamageElement,
-                DestroyPartSkillElement => (int)SkillElementEnum.DestroyPartElement,
-                BuffSkillElement => (int)SkillElementEnum.BuffSkillElement,
-                CureSkillElement => (int)SkillElementEnum.CureSkillElement,
-                ResetSkillElement => (int)SkillElementEnum.ResetSkillElement,
-                RestoreTechnicalPointSkillElement => (int)SkillElementEnum.RestoreTechnicalPointElement,
+                AbstractDamage => (int)SkillElementEnum.DamageSkillElement,
+                AbstractAilment => (int)SkillElementEnum.AilmentSkillElement,
+                AbstractSlipDamage => (int)SkillElementEnum.SlipDamageElement,
+                AbstractDestroyPart => (int)SkillElementEnum.DestroyPartElement,
+                AbstractBuff => (int)SkillElementEnum.BuffSkillElement,
+                AbstractCure => (int)SkillElementEnum.CureSkillElement,
+                AbstractReset => (int)SkillElementEnum.ResetSkillElement,
+                AbstractRestoreTechnicalPoint => (int)SkillElementEnum.RestoreTechnicalPointElement,
                 _ => throw new ArgumentOutOfRangeException()
             };
         }

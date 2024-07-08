@@ -31,7 +31,7 @@ namespace BattleScene.UseCases.Skill.Expression
             _randomEx = randomEx;
         }
 
-        public bool Evaluate(CharacterId actorId, CharacterId targetId, DamageSkillElement damageSkillElement)
+        public bool Evaluate(CharacterId actorId, CharacterId targetId, AbstractDamage damage)
         {
             // 両脚損傷時、必ず命中する
             if (!_bodyPartDomainService.IsAvailable(targetId, BodyPartCode.Leg)) return true;
@@ -48,7 +48,7 @@ namespace BattleScene.UseCases.Skill.Expression
             var destroyedReduce = _bodyPartDomainService.Count(targetId, BodyPartCode.Leg) * 0.5f;
             var hitRateBuffId = new BuffId(actorId, BuffCode.HitRate);
             var buff = Mathf.Log(_buffRepository.Select(hitRateBuffId).Rate, 2.0f);
-            var add = Mathf.Log(damageSkillElement.GetHitRate(), 2.0f);
+            var add = Mathf.Log(damage.GetHitRate(), 2.0f);
             var actorFixedAgility = actorAgility + (isActorBlind ? -threshold : 0);
             var targetFixedAgility = targetAgility + (isTargetDeaf ? -threshold : 0);
             var hitRate = 1.0f + (actorFixedAgility - targetFixedAgility) / threshold;

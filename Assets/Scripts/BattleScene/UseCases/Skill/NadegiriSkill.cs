@@ -11,9 +11,9 @@ namespace BattleScene.UseCases.Skill
     /// </summary>
     internal class NadegiriSkill : AbstractSkill
     {
-        public NadegiriSkill(NadegiriSkillElement nadegiriSkillElement)
+        public NadegiriSkill(Nadegiri nadegiri)
         {
-            DamageSkillElementList = ImmutableList.Create<DamageSkillElement>(nadegiriSkillElement);
+            DamageSkillElementList = ImmutableList.Create<AbstractDamage>(nadegiri);
         }
 
         public override int GetTechnicalPoint()

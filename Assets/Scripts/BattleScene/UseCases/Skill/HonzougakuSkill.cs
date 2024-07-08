@@ -11,11 +11,11 @@ namespace BattleScene.UseCases.Skill
     /// </summary>
     internal class HonzougakuSkill : AbstractSkill
     {
-        private readonly HonzougakuSkillElement _honzougakuSkillElement;
+        private readonly Honzougaku _honzougaku;
 
-        public HonzougakuSkill(HonzougakuSkillElement honzougakuSkillElement)
+        public HonzougakuSkill(Honzougaku honzougaku)
         {
-            ResetSkillElementList = ImmutableList.Create<ResetSkillElement>(honzougakuSkillElement);
+            ResetSkillElementList = ImmutableList.Create<AbstractReset>(honzougaku);
         }
 
         public override int GetTechnicalPoint()

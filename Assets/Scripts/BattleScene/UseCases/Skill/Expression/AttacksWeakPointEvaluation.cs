@@ -15,10 +15,10 @@ namespace BattleScene.UseCases.Skill.Expression
             _characterRepository = characterRepository;
         }
 
-        public bool Evaluate(CharacterId targetId, DamageSkillElement damageSkillElement)
+        public bool Evaluate(CharacterId targetId, AbstractDamage damage)
         {
             return _characterRepository.Select(targetId).GetWeakPoints()
-                .Intersect(damageSkillElement.GetMatAttrCode())
+                .Intersect(damage.GetMatAttrCode())
                 .Any();
         }
     }

@@ -19,17 +19,17 @@ namespace BattleScene.UseCases.Skill
         private long _seed;
 
         public BiteOffSkill(
-            BasicDamageSkillElement basicDamageSkillElement,
-            BleedingSkillElement bleedingSkillElement,
-            DestroyArmSkillElement destroyArmSkillElement,
-            DestroyLegSkillElement destroyLegSkillElement,
-            DestroyStomachSkillElement destroyStomachSkillElement,
+            BasicDamage basicDamage,
+            BleedingSkill bleedingSkill,
+            destroyArm destroyArm,
+            destroyLeg destroyLeg,
+            destroyStomach destroyStomach,
             IRandomEx randomEx)
         {
             _randomEx = randomEx;
-            DamageSkillElementList = ImmutableList.Create<DamageSkillElement>(basicDamageSkillElement);
-            SlipDamageElementList = ImmutableList.Create<SlipDamageElement>(bleedingSkillElement);
-            SetDestroyPart(destroyArmSkillElement, destroyLegSkillElement, destroyStomachSkillElement);
+            DamageSkillElementList = ImmutableList.Create<AbstractDamage>(basicDamage);
+            SlipDamageElementList = ImmutableList.Create<AbstractSlipDamage>(bleedingSkill);
+            SetDestroyPart(destroyArm, destroyLeg, destroyStomach);
         }
 
         public override Range GetRange()
@@ -49,7 +49,7 @@ namespace BattleScene.UseCases.Skill
             return _randomEx.Choice(attackMessageList, _seed);
         }
 
-        private void SetDestroyPart(params DestroyPartSkillElement[] destroyPartSkillElementList)
+        private void SetDestroyPart(params AbstractDestroyPart[] destroyPartSkillElementList)
         {
             _seed = DateTime.Now.Ticks;
             var destroyPartSkillElement = _randomEx.Choice(destroyPartSkillElementList, _seed);

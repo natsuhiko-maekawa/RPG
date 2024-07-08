@@ -15,9 +15,9 @@ namespace BattleScene.UseCases.Skill
     {
         private readonly int _rand = Random.Range(0, 2);
 
-        public CutUpSkill(FiveTimeDamageSkillElement fiveTimeDamageSkillElement)
+        public CutUpSkill(FiveTimeDamage fiveTimeDamage)
         {
-            DamageSkillElementList = ImmutableList.Create<DamageSkillElement>(fiveTimeDamageSkillElement);
+            DamageSkillElementList = ImmutableList.Create<AbstractDamage>(fiveTimeDamage);
         }
 
         public override ImmutableList<BodyPartCode> GetDependencyList()

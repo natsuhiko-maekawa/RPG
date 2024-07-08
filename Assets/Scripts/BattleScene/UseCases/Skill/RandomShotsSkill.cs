@@ -11,9 +11,9 @@ namespace BattleScene.UseCases.Skill
     /// </summary>
     internal class RandomShotsSkill : AbstractSkill
     {
-        public RandomShotsSkill(RandomShotSkillElement randomShotSkillElement)
+        public RandomShotsSkill(RandomShot randomShot)
         {
-            DamageSkillElementList = ImmutableList.Create<DamageSkillElement>(randomShotSkillElement);
+            DamageSkillElementList = ImmutableList.Create<AbstractDamage>(randomShot);
         }
 
         public override int GetTechnicalPoint()

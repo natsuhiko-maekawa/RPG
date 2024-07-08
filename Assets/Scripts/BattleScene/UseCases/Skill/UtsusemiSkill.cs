@@ -13,9 +13,9 @@ namespace BattleScene.UseCases.Skill
     /// </summary>
     internal class UtsusemiSkill : AbstractSkill
     {
-        public UtsusemiSkill(UtsusemiSkillElement utsusemiSkillElement)
+        public UtsusemiSkill(Utsusemi utsusemi)
         {
-            BuffSkillElementList = ImmutableList.Create<BuffSkillElement>(utsusemiSkillElement);
+            BuffSkillElementList = ImmutableList.Create<AbstractBuff>(utsusemi);
         }
 
         public override int GetTechnicalPoint()

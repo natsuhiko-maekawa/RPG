@@ -11,11 +11,11 @@ namespace BattleScene.UseCases.Skill
     /// </summary>
     internal class ShichishitouSkill : AbstractSkill
     {
-        private readonly ShichishitouSkillElement _shichishitouSkillElement;
+        private readonly Shichishitou _shichishitou;
 
-        public ShichishitouSkill(ShichishitouSkillElement shichishitouSkillElement)
+        public ShichishitouSkill(Shichishitou shichishitou)
         {
-            DamageSkillElementList = ImmutableList.Create<DamageSkillElement>(shichishitouSkillElement);
+            DamageSkillElementList = ImmutableList.Create<AbstractDamage>(shichishitou);
         }
 
         public override int GetTechnicalPoint()

@@ -26,7 +26,7 @@ namespace BattleScene.UseCases.Service
         public ResultEntity Execute(SkillEntity skill)
         {
             var actorId = _orderedItems.FirstCharacterId();
-            var damageSkill = (DamageSkillElement)skill.FirstSkillService();
+            var damageSkill = (AbstractDamage)skill.FirstSkillService();
             var damageList = new List<DamageValueObject>();
             for (var i = 0; i < damageSkill.GetAttackNum(); ++i)
             {

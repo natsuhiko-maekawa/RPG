@@ -11,13 +11,13 @@ namespace BattleScene.UseCases.Skill
     /// </summary>
     internal class FlameThrowSkill : AbstractSkill
     {
-        private readonly BasicDamageSkillElement _basicDamageSkillElement;
-        private readonly BurningSkillElement _burningSkillElement;
+        private readonly BasicDamage _basicDamage;
+        private readonly BurningSkill _burningSkill;
 
-        public FlameThrowSkill(BasicDamageSkillElement basicDamageSkillElement, BurningSkillElement burningSkillElement)
+        public FlameThrowSkill(BasicDamage basicDamage, BurningSkill burningSkill)
         {
-            DamageSkillElementList = ImmutableList.Create<DamageSkillElement>(basicDamageSkillElement);
-            SlipDamageElementList = ImmutableList.Create<SlipDamageElement>(burningSkillElement);
+            DamageSkillElementList = ImmutableList.Create<AbstractDamage>(basicDamage);
+            SlipDamageElementList = ImmutableList.Create<AbstractSlipDamage>(burningSkill);
         }
 
         public override PlayerImageCode GetPlayerImageCode()

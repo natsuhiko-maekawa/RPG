@@ -11,11 +11,11 @@ namespace BattleScene.UseCases.Skill
     /// </summary>
     internal class RaikiriSkill : AbstractSkill
     {
-        private readonly LightningDamageSkillElement _lightningDamageSkillElement;
+        private readonly LightningDamage _lightningDamage;
 
-        public RaikiriSkill(LightningDamageSkillElement lightningDamageSkillElement)
+        public RaikiriSkill(LightningDamage lightningDamage)
         {
-            DamageSkillElementList = ImmutableList.Create<DamageSkillElement>(lightningDamageSkillElement);
+            DamageSkillElementList = ImmutableList.Create<AbstractDamage>(lightningDamage);
         }
 
         public override int GetTechnicalPoint()

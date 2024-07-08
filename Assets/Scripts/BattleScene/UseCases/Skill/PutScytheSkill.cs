@@ -14,10 +14,10 @@ namespace BattleScene.UseCases.Skill
     {
         private readonly RandomEx _randomEx;
 
-        public PutScytheSkill(BasicDamageSkillElement basicDamageSkillElement, RandomEx randomEx)
+        public PutScytheSkill(BasicDamage basicDamage, RandomEx randomEx)
         {
             _randomEx = randomEx;
-            DamageSkillElementList = ImmutableList.Create<DamageSkillElement>(basicDamageSkillElement);
+            DamageSkillElementList = ImmutableList.Create<AbstractDamage>(basicDamage);
         }
 
         public override Range GetRange()

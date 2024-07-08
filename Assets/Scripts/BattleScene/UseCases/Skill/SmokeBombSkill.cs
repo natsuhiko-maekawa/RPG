@@ -11,9 +11,9 @@ namespace BattleScene.UseCases.Skill
     /// </summary>
     internal class SmokeBombSkill : AbstractSkill
     {
-        public SmokeBombSkill(BlindSkillElement blindSkillElement)
+        public SmokeBombSkill(Blind blind)
         {
-            AilmentSkillElementList = ImmutableList.Create<AilmentSkillElement>(blindSkillElement);
+            AilmentSkillElementList = ImmutableList.Create<AbstractAilment>(blind);
         }
 
         public override int GetTechnicalPoint()

@@ -12,9 +12,9 @@ namespace BattleScene.UseCases.Skill
     /// </summary>
     internal class AfterimageSkill : AbstractSkill
     {
-        public AfterimageSkill(AfterImageSkillElement afterimageSkillSkillElement)
+        public AfterimageSkill(AfterImage afterimageSkill)
         {
-            BuffSkillElementList = ImmutableList.Create<BuffSkillElement>(afterimageSkillSkillElement);
+            BuffSkillElementList = ImmutableList.Create<AbstractBuff>(afterimageSkill);
         }
 
         public override Range GetRange()
