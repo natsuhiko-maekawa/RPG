@@ -3,7 +3,7 @@ using BattleScene.Domain.Code;
 
 namespace BattleScene.UseCases.Skill.SkillElement.AbstractClass
 {
-    public class AbstractReset : BaseClass.SkillElement
+    public class AbstractReset
     {
         public virtual ImmutableList<AilmentCode> GetResetAilment()
         {

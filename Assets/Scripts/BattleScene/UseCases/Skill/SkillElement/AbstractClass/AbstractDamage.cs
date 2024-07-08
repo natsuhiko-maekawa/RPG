@@ -6,7 +6,7 @@ using BattleScene.UseCases.Skill.Expression;
 
 namespace BattleScene.UseCases.Skill.SkillElement.AbstractClass
 {
-    public abstract class AbstractDamage : BaseClass.SkillElement
+    public abstract class AbstractDamage
     {
         private readonly AttacksWeakPointEvaluation _attacksWeakPointEvaluation;
         private readonly DamageExpression _damageExpression;

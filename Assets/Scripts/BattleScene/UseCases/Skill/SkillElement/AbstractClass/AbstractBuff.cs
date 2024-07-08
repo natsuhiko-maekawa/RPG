@@ -2,7 +2,7 @@
 
 namespace BattleScene.UseCases.Skill.SkillElement.AbstractClass
 {
-    public abstract class AbstractBuff : BaseClass.SkillElement
+    public abstract class AbstractBuff
     {
         public abstract BuffCode GetBuff();
         public abstract float GetBuffRate();
