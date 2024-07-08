@@ -5,7 +5,7 @@ using BattleScene.Domain.Interface;
 using BattleScene.UseCases.Skill.SkillElement.AbstractClass;
 using Range = BattleScene.Domain.Code.Range;
 
-namespace BattleScene.Domain.AbstractClass
+namespace BattleScene.UseCases.Skill.AbstractClass
 {
     internal abstract class AbstractSkill : ISkill
     {

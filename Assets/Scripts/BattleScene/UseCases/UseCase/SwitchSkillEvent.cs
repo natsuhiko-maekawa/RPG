@@ -4,7 +4,7 @@ using BattleScene.UseCases.Event.Interface;
 using BattleScene.UseCases.Event.Runner;
 using BattleScene.UseCases.Skill.SkillElement.AbstractClass;
 
-namespace BattleScene.UseCases.Event
+namespace BattleScene.UseCases.UseCase
 {
     public class SwitchSkillEvent : IEvent
     {

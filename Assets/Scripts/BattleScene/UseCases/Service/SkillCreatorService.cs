@@ -1,9 +1,9 @@
 using System;
-using BattleScene.Domain.AbstractClass;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.UseCases.Skill;
+using BattleScene.UseCases.Skill.AbstractClass;
 using VContainer;
 using static BattleScene.Domain.Code.SkillCode;
 
