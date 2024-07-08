@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using BattleScene.Domain.Id;
 using BattleScene.InterfaceAdapter.IView;
 using BattleScene.UseCases.View.FrameView.OutputBoundary;
 using BattleScene.UseCases.View.FrameView.OutputData;

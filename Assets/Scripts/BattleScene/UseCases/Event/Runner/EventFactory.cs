@@ -1,6 +1,5 @@
 using System;
 using BattleScene.UseCases.Event.Interface;
-using BattleScene.UseCases.UseCase;
 using VContainer;
 
 namespace BattleScene.UseCases.Event.Runner

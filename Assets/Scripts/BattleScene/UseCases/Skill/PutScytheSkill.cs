@@ -1,7 +1,6 @@
 using System.Collections.Immutable;
 using BattleScene.Domain.AbstractClass;
 using BattleScene.Domain.Code;
-using BattleScene.Domain.Interface;
 using BattleScene.UseCases.Skill.SkillElement;
 using BattleScene.UseCases.Skill.SkillElement.AbstractClass;
 using Utility;

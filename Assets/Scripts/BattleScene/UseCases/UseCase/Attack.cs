@@ -2,7 +2,6 @@ using System.Linq;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.IFactory;
 using BattleScene.Domain.IRepository;
-using BattleScene.UseCases.Event.Interface;
 using BattleScene.UseCases.Event.Runner;
 using BattleScene.UseCases.UseCase.Interface;
 using BattleScene.UseCases.View.FrameView.OutputBoundary;
@@ -13,7 +12,6 @@ using BattleScene.UseCases.View.PlayerImageView.OutputBoundary;
 using BattleScene.UseCases.View.PlayerImageView.OutputDataFactory;
 using BattleScene.UseCases.View.TechnicalPointBarView.OutputBoundary;
 using BattleScene.UseCases.View.TechnicalPointBarView.OutputDaraFactory;
-using static BattleScene.UseCases.Event.Runner.EventCode;
 using static BattleScene.Domain.Code.MessageCode;
 
 namespace BattleScene.UseCases.UseCase
