@@ -3,6 +3,7 @@ using BattleScene.Domain.AbstractClass;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.Interface;
 using BattleScene.UseCases.Skill.SkillElement;
+using BattleScene.UseCases.Skill.SkillElement.AbstractClass;
 
 namespace BattleScene.UseCases.Skill
 {
@@ -11,11 +12,9 @@ namespace BattleScene.UseCases.Skill
     /// </summary>
     internal class StarShellSkill : AbstractSkill
     {
-        private readonly StarShellSkillElement _starShellSkillElement;
-
         public StarShellSkill(StarShellSkillElement starShellSkillElement)
         {
-            _starShellSkillElement = starShellSkillElement;
+            BuffSkillElementList = ImmutableList.Create<BuffSkillElement>(starShellSkillElement);
         }
 
         public override int GetTechnicalPoint()
@@ -51,11 +50,6 @@ namespace BattleScene.UseCases.Skill
         public override MessageCode GetAttackMessage()
         {
             return MessageCode.BuffMessage;
-        }
-
-        public override ImmutableList<ISkillElement> GetSkillService()
-        {
-            return ImmutableList.Create<ISkillElement>(_starShellSkillElement);
         }
     }
 }

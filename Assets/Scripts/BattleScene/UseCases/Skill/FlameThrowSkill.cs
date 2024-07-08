@@ -3,6 +3,7 @@ using BattleScene.Domain.AbstractClass;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.Interface;
 using BattleScene.UseCases.Skill.SkillElement;
+using BattleScene.UseCases.Skill.SkillElement.AbstractClass;
 
 namespace BattleScene.UseCases.Skill
 {
@@ -16,8 +17,8 @@ namespace BattleScene.UseCases.Skill
 
         public FlameThrowSkill(BasicDamageSkillElement basicDamageSkillElement, BurningSkillElement burningSkillElement)
         {
-            _basicDamageSkillElement = basicDamageSkillElement;
-            _burningSkillElement = burningSkillElement;
+            DamageSkillElementList = ImmutableList.Create<DamageSkillElement>(basicDamageSkillElement);
+            SlipDamageElementList = ImmutableList.Create<SlipDamageElement>(burningSkillElement);
         }
 
         public override PlayerImageCode GetPlayerImageCode()
@@ -33,11 +34,6 @@ namespace BattleScene.UseCases.Skill
         public override MessageCode GetAttackMessage()
         {
             return MessageCode.FrameThrowMessage;
-        }
-
-        public override ImmutableList<ISkillElement> GetSkillService()
-        {
-            return ImmutableList.Create<ISkillElement>(_basicDamageSkillElement, _burningSkillElement);
         }
     }
 }

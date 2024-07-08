@@ -1,6 +1,5 @@
 ﻿using System.Collections.Immutable;
 using System.Linq;
-using BattleScene.Domain.AbstractClass;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.Interface;
@@ -14,7 +13,7 @@ namespace BattleScene.Domain.Entity
         public SkillEntity(
             CharacterId characterId,
             SkillCode skillCode,
-            AbstractSkill abstractSkill)
+            ISkill abstractSkill)
         {
             CharacterId = characterId;
             SkillCode = skillCode;
@@ -26,7 +25,7 @@ namespace BattleScene.Domain.Entity
 
         public CharacterId CharacterId { get; }
         public SkillCode SkillCode { get; }
-        public AbstractSkill AbstractSkill { get; }
+        public ISkill AbstractSkill { get; }
 
         public ISkillElement FirstSkillService()
         {

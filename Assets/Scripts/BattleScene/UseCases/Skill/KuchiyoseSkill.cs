@@ -3,6 +3,7 @@ using BattleScene.Domain.AbstractClass;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.Interface;
 using BattleScene.UseCases.Skill.SkillElement;
+using BattleScene.UseCases.Skill.SkillElement.AbstractClass;
 
 namespace BattleScene.UseCases.Skill
 {
@@ -11,11 +12,9 @@ namespace BattleScene.UseCases.Skill
     /// </summary>
     internal class KuchiyoseSkill : AbstractSkill
     {
-        private readonly ConfusionSkillElement _confusionSkillElement;
-
         public KuchiyoseSkill(ConfusionSkillElement confusionSkillElement)
         {
-            _confusionSkillElement = confusionSkillElement;
+            AilmentSkillElementList = ImmutableList.Create<AilmentSkillElement>(confusionSkillElement);
         }
 
         public override int GetTechnicalPoint()
@@ -41,11 +40,6 @@ namespace BattleScene.UseCases.Skill
         public override MessageCode GetAttackMessage()
         {
             return MessageCode.NoMessage;
-        }
-
-        public override ImmutableList<ISkillElement> GetSkillService()
-        {
-            return ImmutableList.Create<ISkillElement>(_confusionSkillElement);
         }
     }
 }

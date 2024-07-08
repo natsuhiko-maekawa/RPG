@@ -1,8 +1,8 @@
 using System.Collections.Immutable;
 using BattleScene.Domain.AbstractClass;
 using BattleScene.Domain.Code;
-using BattleScene.Domain.Interface;
 using BattleScene.UseCases.Skill.SkillElement;
+using BattleScene.UseCases.Skill.SkillElement.AbstractClass;
 using static BattleScene.Domain.Code.Range;
 
 namespace BattleScene.UseCases.Skill
@@ -12,11 +12,9 @@ namespace BattleScene.UseCases.Skill
     /// </summary>
     internal class AfterimageSkill : AbstractSkill
     {
-        private readonly AfterImageSkillElement _afterimageSkillSkillElement;
-
         public AfterimageSkill(AfterImageSkillElement afterimageSkillSkillElement)
         {
-            _afterimageSkillSkillElement = afterimageSkillSkillElement;
+            BuffSkillElementList = ImmutableList.Create<BuffSkillElement>(afterimageSkillSkillElement);
         }
 
         public override Range GetRange()
@@ -27,11 +25,6 @@ namespace BattleScene.UseCases.Skill
         public override MessageCode GetAttackMessage()
         {
             return MessageCode.AfterimageMessage;
-        }
-
-        public override ImmutableList<ISkillElement> GetSkillService()
-        {
-            return ImmutableList.Create<ISkillElement>(_afterimageSkillSkillElement);
         }
     }
 }

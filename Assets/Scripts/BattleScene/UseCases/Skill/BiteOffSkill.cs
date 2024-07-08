@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using BattleScene.Domain.AbstractClass;
 using BattleScene.Domain.Code;
-using BattleScene.Domain.Interface;
 using BattleScene.UseCases.Skill.SkillElement;
+using BattleScene.UseCases.Skill.SkillElement.AbstractClass;
 using Utility.Interface;
 using Range = BattleScene.Domain.Code.Range;
 
@@ -15,11 +15,6 @@ namespace BattleScene.UseCases.Skill
     /// </summary>
     internal class BiteOffSkill : AbstractSkill
     {
-        private readonly BasicDamageSkillElement _basicDamageSkillElement;
-        private readonly BleedingSkillElement _bleedingSkillElement;
-        private readonly DestroyArmSkillElement _destroyArmSkillElement;
-        private readonly DestroyLegSkillElement _destroyLegSkillElement;
-        private readonly DestroyStomachSkillElement _destroyStomachSkillElement;
         private readonly IRandomEx _randomEx;
         private long _seed;
 
@@ -31,12 +26,10 @@ namespace BattleScene.UseCases.Skill
             DestroyStomachSkillElement destroyStomachSkillElement,
             IRandomEx randomEx)
         {
-            _basicDamageSkillElement = basicDamageSkillElement;
-            _bleedingSkillElement = bleedingSkillElement;
-            _destroyArmSkillElement = destroyArmSkillElement;
-            _destroyLegSkillElement = destroyLegSkillElement;
-            _destroyStomachSkillElement = destroyStomachSkillElement;
             _randomEx = randomEx;
+            DamageSkillElementList = ImmutableList.Create<DamageSkillElement>(basicDamageSkillElement);
+            SlipDamageElementList = ImmutableList.Create<SlipDamageElement>(bleedingSkillElement);
+            SetDestroyPart(destroyArmSkillElement, destroyLegSkillElement, destroyStomachSkillElement);
         }
 
         public override Range GetRange()
@@ -56,21 +49,11 @@ namespace BattleScene.UseCases.Skill
             return _randomEx.Choice(attackMessageList, _seed);
         }
 
-        public override ImmutableList<ISkillElement> GetSkillService()
+        private void SetDestroyPart(params DestroyPartSkillElement[] destroyPartSkillElementList)
         {
             _seed = DateTime.Now.Ticks;
-            var skillElementList = new List<ISkillElement>
-            {
-                _basicDamageSkillElement,
-                _bleedingSkillElement
-            };
-
-            var destroyPartSkillElementList
-                = new List<ISkillElement>
-                    { _destroyArmSkillElement, _destroyLegSkillElement, _destroyStomachSkillElement };
             var destroyPartSkillElement = _randomEx.Choice(destroyPartSkillElementList, _seed);
-            skillElementList.Add(destroyPartSkillElement);
-            return skillElementList.ToImmutableList();
+            DestroyPartSkillElementList = ImmutableList.Create(destroyPartSkillElement);
         }
     }
 }

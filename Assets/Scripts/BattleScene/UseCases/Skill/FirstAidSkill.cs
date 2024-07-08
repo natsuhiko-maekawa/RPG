@@ -1,8 +1,8 @@
 using System.Collections.Immutable;
 using BattleScene.Domain.AbstractClass;
 using BattleScene.Domain.Code;
-using BattleScene.Domain.Interface;
 using BattleScene.UseCases.Skill.SkillElement;
+using BattleScene.UseCases.Skill.SkillElement.AbstractClass;
 
 namespace BattleScene.UseCases.Skill
 {
@@ -11,11 +11,9 @@ namespace BattleScene.UseCases.Skill
     /// </summary>
     internal class FirstAidSkill : AbstractSkill
     {
-        private readonly FirstAidSkillElement _firstAidSkillElement;
-
         public FirstAidSkill(FirstAidSkillElement firstAidSkillElement)
         {
-            _firstAidSkillElement = firstAidSkillElement;
+            ResetSkillElementList = ImmutableList.Create<ResetSkillElement>(firstAidSkillElement);
         }
 
         public override int GetTechnicalPoint()
@@ -41,11 +39,6 @@ namespace BattleScene.UseCases.Skill
         public override MessageCode GetAttackMessage()
         {
             return MessageCode.RecoverDestroyedPartMessage;
-        }
-
-        public override ImmutableList<ISkillElement> GetSkillService()
-        {
-            return ImmutableList.Create<ISkillElement>(_firstAidSkillElement);
         }
     }
 }

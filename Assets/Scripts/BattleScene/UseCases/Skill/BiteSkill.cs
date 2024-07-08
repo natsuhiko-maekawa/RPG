@@ -3,6 +3,7 @@ using BattleScene.Domain.AbstractClass;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.Interface;
 using BattleScene.UseCases.Skill.SkillElement;
+using BattleScene.UseCases.Skill.SkillElement.AbstractClass;
 using Utility.Interface;
 using static BattleScene.Domain.Code.MessageCode;
 
@@ -13,13 +14,12 @@ namespace BattleScene.UseCases.Skill
     /// </summary>
     internal class BiteSkill : AbstractSkill
     {
-        private readonly BasicDamageSkillElement _basicDamageSkillElement;
         private readonly IRandomEx _randomEx;
 
         public BiteSkill(BasicDamageSkillElement basicDamageSkillElement, IRandomEx randomEx)
         {
-            _basicDamageSkillElement = basicDamageSkillElement;
             _randomEx = randomEx;
+            DamageSkillElementList = ImmutableList.Create<DamageSkillElement>(basicDamageSkillElement);
         }
 
         public override Range GetRange()
@@ -35,11 +35,6 @@ namespace BattleScene.UseCases.Skill
         public override MessageCode GetAttackMessage()
         {
             return _randomEx.Choice(new[] { BiteArmMessage, BiteLegMessage, BiteStomachMessage });
-        }
-
-        public override ImmutableList<ISkillElement> GetSkillService()
-        {
-            return ImmutableList.Create<ISkillElement>(_basicDamageSkillElement);
         }
     }
 }

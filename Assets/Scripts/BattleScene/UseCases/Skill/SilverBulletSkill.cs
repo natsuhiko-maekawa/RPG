@@ -3,6 +3,7 @@ using BattleScene.Domain.AbstractClass;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.Interface;
 using BattleScene.UseCases.Skill.SkillElement;
+using BattleScene.UseCases.Skill.SkillElement.AbstractClass;
 
 namespace BattleScene.UseCases.Skill
 {
@@ -11,11 +12,9 @@ namespace BattleScene.UseCases.Skill
     /// </summary>
     internal class SilverBulletSkill : AbstractSkill
     {
-        private readonly ConstantDamageSkillElement _constantDamageSkillElement;
-
         public SilverBulletSkill(ConstantDamageSkillElement constantDamageSkillElement)
         {
-            _constantDamageSkillElement = constantDamageSkillElement;
+            DamageSkillElementList = ImmutableList.Create<DamageSkillElement>(constantDamageSkillElement);
         }
 
         public override int GetTechnicalPoint()
@@ -46,11 +45,6 @@ namespace BattleScene.UseCases.Skill
         public override MessageCode GetAttackMessage()
         {
             return MessageCode.AttackMessage;
-        }
-
-        public override ImmutableList<ISkillElement> GetSkillService()
-        {
-            return ImmutableList.Create<ISkillElement>(_constantDamageSkillElement);
         }
     }
 }

@@ -3,6 +3,7 @@ using BattleScene.Domain.AbstractClass;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.Interface;
 using BattleScene.UseCases.Skill.SkillElement;
+using BattleScene.UseCases.Skill.SkillElement.AbstractClass;
 
 namespace BattleScene.UseCases.Skill
 {
@@ -14,10 +15,12 @@ namespace BattleScene.UseCases.Skill
         private readonly BasicDamageSkillElement _basicDamageSkillElement;
         private readonly WabisukeSkillElement _wabisukeSkillElement;
 
-        public WabisukeSkill(BasicDamageSkillElement basicDamageSkillElement, WabisukeSkillElement wabisukeSkillElement)
+        public WabisukeSkill(
+            BasicDamageSkillElement basicDamageSkillElement, 
+            WabisukeSkillElement wabisukeSkillElement)
         {
-            _basicDamageSkillElement = basicDamageSkillElement;
-            _wabisukeSkillElement = wabisukeSkillElement;
+            DamageSkillElementList = ImmutableList.Create<DamageSkillElement>(basicDamageSkillElement);
+            BuffSkillElementList = ImmutableList.Create<BuffSkillElement>(wabisukeSkillElement);
         }
 
         public override int GetTechnicalPoint()
@@ -48,11 +51,6 @@ namespace BattleScene.UseCases.Skill
         public override MessageCode GetAttackMessage()
         {
             return MessageCode.AttackMessage;
-        }
-
-        public override ImmutableList<ISkillElement> GetSkillService()
-        {
-            return ImmutableList.Create<ISkillElement>(_basicDamageSkillElement, _wabisukeSkillElement);
         }
     }
 }

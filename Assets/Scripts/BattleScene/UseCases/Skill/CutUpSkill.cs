@@ -3,6 +3,7 @@ using BattleScene.Domain.AbstractClass;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.Interface;
 using BattleScene.UseCases.Skill.SkillElement;
+using BattleScene.UseCases.Skill.SkillElement.AbstractClass;
 using static BattleScene.Domain.Code.MessageCode;
 using Random = UnityEngine.Random;
 
@@ -13,13 +14,11 @@ namespace BattleScene.UseCases.Skill
     /// </summary>
     internal class CutUpSkill : AbstractSkill
     {
-        private readonly FiveTimeDamageSkillElement _fiveTimeDamageSkillElement;
-
         private readonly int _rand = Random.Range(0, 2);
 
         public CutUpSkill(FiveTimeDamageSkillElement fiveTimeDamageSkillElement)
         {
-            _fiveTimeDamageSkillElement = fiveTimeDamageSkillElement;
+            DamageSkillElementList = ImmutableList.Create<DamageSkillElement>(fiveTimeDamageSkillElement);
         }
 
         public override ImmutableList<BodyPartCode> GetDependencyList()
@@ -40,11 +39,6 @@ namespace BattleScene.UseCases.Skill
         public override MessageCode GetAttackMessage()
         {
             return new[] { CutUpArmMessage, CutUpLegMessage, CutUpStomachMessage }[_rand];
-        }
-
-        public override ImmutableList<ISkillElement> GetSkillService()
-        {
-            return ImmutableList.Create<ISkillElement>(_fiveTimeDamageSkillElement);
         }
     }
 }

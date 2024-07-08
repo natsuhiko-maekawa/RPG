@@ -3,6 +3,7 @@ using BattleScene.Domain.AbstractClass;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.Interface;
 using BattleScene.UseCases.Skill.SkillElement;
+using BattleScene.UseCases.Skill.SkillElement.AbstractClass;
 
 namespace BattleScene.UseCases.Skill
 {
@@ -11,15 +12,12 @@ namespace BattleScene.UseCases.Skill
     /// </summary>
     internal class MurasameSkill : AbstractSkill
     {
-        private readonly BasicDamageSkillElement _basicDamageSkillElement;
-        private readonly BurningResetSkillElement _burningResetSkillElement;
-
         public MurasameSkill(
             BasicDamageSkillElement basicDamageSkillElement,
             BurningResetSkillElement burningResetSkillElement)
         {
-            _basicDamageSkillElement = basicDamageSkillElement;
-            _burningResetSkillElement = burningResetSkillElement;
+            DamageSkillElementList = ImmutableList.Create<DamageSkillElement>(basicDamageSkillElement);
+            ResetSkillElementList = ImmutableList.Create<ResetSkillElement>(burningResetSkillElement);
         }
 
         public override int GetTechnicalPoint()
@@ -45,11 +43,6 @@ namespace BattleScene.UseCases.Skill
         public override MessageCode GetAttackMessage()
         {
             return MessageCode.DamageMessage;
-        }
-
-        public override ImmutableList<ISkillElement> GetSkillService()
-        {
-            return ImmutableList.Create<ISkillElement>(_basicDamageSkillElement, _burningResetSkillElement);
         }
     }
 }

@@ -3,6 +3,7 @@ using BattleScene.Domain.AbstractClass;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.Interface;
 using BattleScene.UseCases.Skill.SkillElement;
+using BattleScene.UseCases.Skill.SkillElement.AbstractClass;
 using static BattleScene.Domain.Code.MessageCode;
 using Range = BattleScene.Domain.Code.Range;
 
@@ -13,15 +14,12 @@ namespace BattleScene.UseCases.Skill
     /// </summary>
     internal class LiquidSkill : AbstractSkill
     {
-        private readonly BasicDamageSkillElement _basicDamageSkillElement;
-        private readonly SuffocationSkillElement _suffocationSkillElement;
-
         public LiquidSkill(
             BasicDamageSkillElement basicDamageSkillElement,
             SuffocationSkillElement suffocationSkillElement)
         {
-            _basicDamageSkillElement = basicDamageSkillElement;
-            _suffocationSkillElement = suffocationSkillElement;
+            DamageSkillElementList = ImmutableList.Create<DamageSkillElement>(basicDamageSkillElement);
+            SlipDamageElementList = ImmutableList.Create<SlipDamageElement>(suffocationSkillElement);
         }
 
         public override Range GetRange()
@@ -37,11 +35,6 @@ namespace BattleScene.UseCases.Skill
         public override MessageCode GetAttackMessage()
         {
             return InvasiveMouthMessage;
-        }
-
-        public override ImmutableList<ISkillElement> GetSkillService()
-        {
-            return ImmutableList.Create<ISkillElement>(_basicDamageSkillElement, _suffocationSkillElement);
         }
     }
 }

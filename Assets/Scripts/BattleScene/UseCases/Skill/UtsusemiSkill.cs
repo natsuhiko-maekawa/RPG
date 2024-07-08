@@ -4,6 +4,7 @@ using BattleScene.Domain.AbstractClass;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.Interface;
 using BattleScene.UseCases.Skill.SkillElement;
+using BattleScene.UseCases.Skill.SkillElement.AbstractClass;
 using Range = BattleScene.Domain.Code.Range;
 
 namespace BattleScene.UseCases.Skill
@@ -13,11 +14,9 @@ namespace BattleScene.UseCases.Skill
     /// </summary>
     internal class UtsusemiSkill : AbstractSkill
     {
-        private readonly UtsusemiSkillElement _utsusemiSkillElement;
-
         public UtsusemiSkill(UtsusemiSkillElement utsusemiSkillElement)
         {
-            _utsusemiSkillElement = utsusemiSkillElement;
+            BuffSkillElementList = ImmutableList.Create<BuffSkillElement>(utsusemiSkillElement);
         }
 
         public override int GetTechnicalPoint()
@@ -43,11 +42,6 @@ namespace BattleScene.UseCases.Skill
         public override MessageCode GetAttackMessage()
         {
             throw new NotImplementedException();
-        }
-
-        public override ImmutableList<ISkillElement> GetSkillService()
-        {
-            return ImmutableList.Create<ISkillElement>(_utsusemiSkillElement);
         }
     }
 }

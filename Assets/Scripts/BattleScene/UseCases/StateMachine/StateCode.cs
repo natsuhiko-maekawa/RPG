@@ -10,5 +10,12 @@
         EnemyCantAction,
         SelectAction,
         EnemySkill,
+        Damage,
+        Ailment,
+        DestroyedPart,
+        Cure,
+        Reset,
+        Buff,
+        LoopEnd
     }
 }

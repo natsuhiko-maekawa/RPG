@@ -3,6 +3,7 @@ using BattleScene.Domain.AbstractClass;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.Interface;
 using BattleScene.UseCases.Skill.SkillElement;
+using BattleScene.UseCases.Skill.SkillElement.AbstractClass;
 
 namespace BattleScene.UseCases.Skill
 {
@@ -11,11 +12,9 @@ namespace BattleScene.UseCases.Skill
     /// </summary>
     internal class IshinhouSkill : AbstractSkill
     {
-        private readonly IshinhouSkillElement _ishinhouSkillElement;
-
         public IshinhouSkill(IshinhouSkillElement ishinhouSkillElement)
         {
-            _ishinhouSkillElement = ishinhouSkillElement;
+            ResetSkillElementList = ImmutableList.Create<ResetSkillElement>(ishinhouSkillElement);
         }
 
         public override int GetTechnicalPoint()
@@ -41,11 +40,6 @@ namespace BattleScene.UseCases.Skill
         public override MessageCode GetAttackMessage()
         {
             return MessageCode.RemoveAilmentsMessage;
-        }
-
-        public override ImmutableList<ISkillElement> GetSkillService()
-        {
-            return ImmutableList.Create<ISkillElement>(_ishinhouSkillElement);
         }
     }
 }

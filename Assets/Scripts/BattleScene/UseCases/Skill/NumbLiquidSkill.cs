@@ -3,6 +3,7 @@ using BattleScene.Domain.AbstractClass;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.Interface;
 using BattleScene.UseCases.Skill.SkillElement;
+using BattleScene.UseCases.Skill.SkillElement.AbstractClass;
 using Range = BattleScene.Domain.Code.Range;
 
 namespace BattleScene.UseCases.Skill
@@ -12,15 +13,12 @@ namespace BattleScene.UseCases.Skill
     /// </summary>
     internal class NumbLiquidSkill : AbstractSkill
     {
-        private readonly BasicDamageSkillElement _basicDamageSkillElement;
-        private readonly ParalysisSkillElement _paralysisSkillElement;
-
         public NumbLiquidSkill(
             BasicDamageSkillElement basicDamageSkillElement,
             ParalysisSkillElement paralysisSkillElement)
         {
-            _basicDamageSkillElement = basicDamageSkillElement;
-            _paralysisSkillElement = paralysisSkillElement;
+            DamageSkillElementList = ImmutableList.Create<DamageSkillElement>(basicDamageSkillElement);
+            AilmentSkillElementList = ImmutableList.Create<AilmentSkillElement>(paralysisSkillElement);
         }
 
         public override PlayerImageCode GetPlayerImageCode()
@@ -36,11 +34,6 @@ namespace BattleScene.UseCases.Skill
         public override MessageCode GetAttackMessage()
         {
             return MessageCode.NumbLiquidMessage;
-        }
-
-        public override ImmutableList<ISkillElement> GetSkillService()
-        {
-            return ImmutableList.Create<ISkillElement>(_basicDamageSkillElement, _paralysisSkillElement);
         }
     }
 }

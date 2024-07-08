@@ -4,6 +4,7 @@ using BattleScene.Domain.AbstractClass;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.Interface;
 using BattleScene.UseCases.Skill.SkillElement;
+using BattleScene.UseCases.Skill.SkillElement.AbstractClass;
 using static BattleScene.Domain.Code.PlayerImageCode;
 using static BattleScene.Domain.Code.MessageCode;
 using Range = BattleScene.Domain.Code.Range;
@@ -15,15 +16,12 @@ namespace BattleScene.UseCases.Skill
     /// </summary>
     internal class KyoukasuigetsuSkill : AbstractSkill
     {
-        private readonly AbsoluteConfusionSkillElement _absoluteConfusionSkillElement;
-        private readonly BasicDamageSkillElement _basicDamageSkillElement;
-
         public KyoukasuigetsuSkill(
             AbsoluteConfusionSkillElement absoluteConfusionSkillElement,
             BasicDamageSkillElement basicDamageSkillElement)
         {
-            _absoluteConfusionSkillElement = absoluteConfusionSkillElement;
-            _basicDamageSkillElement = basicDamageSkillElement;
+            AilmentSkillElementList = ImmutableList.Create<AilmentSkillElement>(absoluteConfusionSkillElement);
+            DamageSkillElementList = ImmutableList.Create<DamageSkillElement>(basicDamageSkillElement);
         }
 
         public override ImmutableList<BodyPartCode> GetDependencyList()
@@ -49,11 +47,6 @@ namespace BattleScene.UseCases.Skill
         public override MessageCode GetAttackMessage()
         {
             throw new NotImplementedException();
-        }
-
-        public override ImmutableList<ISkillElement> GetSkillService()
-        {
-            return ImmutableList.Create<ISkillElement>(_basicDamageSkillElement, _absoluteConfusionSkillElement);
         }
     }
 }
