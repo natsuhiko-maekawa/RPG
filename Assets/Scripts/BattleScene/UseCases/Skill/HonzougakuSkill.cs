@@ -15,7 +15,7 @@ namespace BattleScene.UseCases.Skill
 
         public HonzougakuSkill(Honzougaku honzougaku)
         {
-            ResetSkillElementList = ImmutableList.Create<AbstractReset>(honzougaku);
+            ResetList = ImmutableList.Create<AbstractReset>(honzougaku);
         }
 
         public override int GetTechnicalPoint()

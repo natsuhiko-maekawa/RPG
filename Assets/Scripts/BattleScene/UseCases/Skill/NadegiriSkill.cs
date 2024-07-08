@@ -13,7 +13,7 @@ namespace BattleScene.UseCases.Skill
     {
         public NadegiriSkill(Nadegiri nadegiri)
         {
-            DamageSkillElementList = ImmutableList.Create<AbstractDamage>(nadegiri);
+            DamageList = ImmutableList.Create<AbstractDamage>(nadegiri);
         }
 
         public override int GetTechnicalPoint()

@@ -17,8 +17,8 @@ namespace BattleScene.UseCases.Skill
             BasicDamage basicDamage,
             SuffocationSkill suffocationSkill)
         {
-            DamageSkillElementList = ImmutableList.Create<AbstractDamage>(basicDamage);
-            SlipDamageElementList = ImmutableList.Create<AbstractSlipDamage>(suffocationSkill);
+            DamageList = ImmutableList.Create<AbstractDamage>(basicDamage);
+            SlipDamageList = ImmutableList.Create<AbstractSlipDamage>(suffocationSkill);
         }
 
         public override Range GetRange()

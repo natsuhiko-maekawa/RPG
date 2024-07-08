@@ -18,8 +18,8 @@ namespace BattleScene.UseCases.Skill
             BasicDamage basicDamage,
             EnemyParalysis enemyParalysis)
         {
-            DamageSkillElementList = ImmutableList.Create<AbstractDamage>(basicDamage);
-            AilmentSkillElementList = ImmutableList.Create<AbstractAilment>(enemyParalysis);
+            DamageList = ImmutableList.Create<AbstractDamage>(basicDamage);
+            AilmentList = ImmutableList.Create<AbstractAilment>(enemyParalysis);
         }
 
         public override int GetTechnicalPoint()

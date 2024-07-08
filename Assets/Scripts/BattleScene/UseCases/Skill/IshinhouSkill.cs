@@ -13,7 +13,7 @@ namespace BattleScene.UseCases.Skill
     {
         public IshinhouSkill(Ishinhou ishinhou)
         {
-            ResetSkillElementList = ImmutableList.Create<AbstractReset>(ishinhou);
+            ResetList = ImmutableList.Create<AbstractReset>(ishinhou);
         }
 
         public override int GetTechnicalPoint()

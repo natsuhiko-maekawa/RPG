@@ -27,8 +27,8 @@ namespace BattleScene.UseCases.Skill
             IRandomEx randomEx)
         {
             _randomEx = randomEx;
-            DamageSkillElementList = ImmutableList.Create<AbstractDamage>(basicDamage);
-            SlipDamageElementList = ImmutableList.Create<AbstractSlipDamage>(bleedingSkill);
+            DamageList = ImmutableList.Create<AbstractDamage>(basicDamage);
+            SlipDamageList = ImmutableList.Create<AbstractSlipDamage>(bleedingSkill);
             SetDestroyPart(destroyArm, destroyLeg, destroyStomach);
         }
 
@@ -53,7 +53,7 @@ namespace BattleScene.UseCases.Skill
         {
             _seed = DateTime.Now.Ticks;
             var destroyPartSkillElement = _randomEx.Choice(destroyPartSkillElementList, _seed);
-            DestroyPartSkillElementList = ImmutableList.Create(destroyPartSkillElement);
+            DestroyPartList = ImmutableList.Create(destroyPartSkillElement);
         }
     }
 }

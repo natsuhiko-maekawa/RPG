@@ -19,8 +19,8 @@ namespace BattleScene.UseCases.Skill
             AbsoluteConfusion absoluteConfusion,
             BasicDamage basicDamage)
         {
-            AilmentSkillElementList = ImmutableList.Create<AbstractAilment>(absoluteConfusion);
-            DamageSkillElementList = ImmutableList.Create<AbstractDamage>(basicDamage);
+            AilmentList = ImmutableList.Create<AbstractAilment>(absoluteConfusion);
+            DamageList = ImmutableList.Create<AbstractDamage>(basicDamage);
         }
 
         public override ImmutableList<BodyPartCode> GetDependencyList()

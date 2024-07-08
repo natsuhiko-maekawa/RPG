@@ -15,8 +15,8 @@ namespace BattleScene.UseCases.Skill
             BasicDamage basicDamage,
             PoisoningSkill poisoningSkill)
         {
-            DamageSkillElementList = ImmutableList.Create<AbstractDamage>(basicDamage);
-            SlipDamageElementList = ImmutableList.Create<AbstractSlipDamage>(poisoningSkill);
+            DamageList = ImmutableList.Create<AbstractDamage>(basicDamage);
+            SlipDamageList = ImmutableList.Create<AbstractSlipDamage>(poisoningSkill);
         }
 
         public override Range GetRange()

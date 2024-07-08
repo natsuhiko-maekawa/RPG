@@ -18,8 +18,8 @@ namespace BattleScene.UseCases.Skill
             BasicDamage basicDamage, 
             Wabisuke wabisuke)
         {
-            DamageSkillElementList = ImmutableList.Create<AbstractDamage>(basicDamage);
-            BuffSkillElementList = ImmutableList.Create<AbstractBuff>(wabisuke);
+            DamageList = ImmutableList.Create<AbstractDamage>(basicDamage);
+            BuffList = ImmutableList.Create<AbstractBuff>(wabisuke);
         }
 
         public override int GetTechnicalPoint()

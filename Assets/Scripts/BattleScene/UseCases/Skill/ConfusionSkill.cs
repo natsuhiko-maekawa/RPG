@@ -14,7 +14,7 @@ namespace BattleScene.UseCases.Skill
     {
         public ConfusionSkill(AlwaysHitDamage alwaysHitDamage)
         {
-            DamageSkillElementList = ImmutableList.Create<AbstractDamage>(alwaysHitDamage);
+            DamageList = ImmutableList.Create<AbstractDamage>(alwaysHitDamage);
         }
 
         public override Range GetRange()

@@ -15,7 +15,7 @@ namespace BattleScene.UseCases.Skill
 
         public ShichishitouSkill(Shichishitou shichishitou)
         {
-            DamageSkillElementList = ImmutableList.Create<AbstractDamage>(shichishitou);
+            DamageList = ImmutableList.Create<AbstractDamage>(shichishitou);
         }
 
         public override int GetTechnicalPoint()

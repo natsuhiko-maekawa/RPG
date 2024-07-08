@@ -13,7 +13,7 @@ namespace BattleScene.UseCases.Skill
     {
         public KuchiyoseSkill(Confusion confusion)
         {
-            AilmentSkillElementList = ImmutableList.Create<AbstractAilment>(confusion);
+            AilmentList = ImmutableList.Create<AbstractAilment>(confusion);
         }
 
         public override int GetTechnicalPoint()

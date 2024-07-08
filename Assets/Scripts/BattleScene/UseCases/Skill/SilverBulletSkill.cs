@@ -13,7 +13,7 @@ namespace BattleScene.UseCases.Skill
     {
         public SilverBulletSkill(ConstantDamage constantDamage)
         {
-            DamageSkillElementList = ImmutableList.Create<AbstractDamage>(constantDamage);
+            DamageList = ImmutableList.Create<AbstractDamage>(constantDamage);
         }
 
         public override int GetTechnicalPoint()

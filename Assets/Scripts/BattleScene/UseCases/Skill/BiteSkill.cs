@@ -18,7 +18,7 @@ namespace BattleScene.UseCases.Skill
         public BiteSkill(BasicDamage basicDamage, IRandomEx randomEx)
         {
             _randomEx = randomEx;
-            DamageSkillElementList = ImmutableList.Create<AbstractDamage>(basicDamage);
+            DamageList = ImmutableList.Create<AbstractDamage>(basicDamage);
         }
 
         public override Range GetRange()

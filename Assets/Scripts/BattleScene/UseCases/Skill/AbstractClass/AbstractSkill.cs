@@ -33,14 +33,14 @@ namespace BattleScene.UseCases.Skill.AbstractClass
 
         public abstract MessageCode GetAttackMessage();
 
-        protected ImmutableList<AbstractAilment> AilmentSkillElementList {  get; set; }
-        protected ImmutableList<AbstractSlipDamage> SlipDamageElementList { get; set; }
-        protected ImmutableList<AbstractDestroyPart> DestroyPartSkillElementList { get; set; }
-        protected ImmutableList<AbstractDamage> DamageSkillElementList { get; set; }
-        protected ImmutableList<AbstractBuff> BuffSkillElementList { get; set; }
-        protected ImmutableList<AbstractCure> CureSkillElementList { get; set; }
-        protected ImmutableList<AbstractReset> ResetSkillElementList { get; set; }
-        protected ImmutableList<AbstractRestoreTechnicalPoint> RestoreTechnicalPointSkillElementList { get; set; }
+        protected ImmutableList<AbstractAilment> AilmentList {  get; set; }
+        protected ImmutableList<AbstractSlipDamage> SlipDamageList { get; set; }
+        protected ImmutableList<AbstractDestroyPart> DestroyPartList { get; set; }
+        protected ImmutableList<AbstractDamage> DamageList { get; set; }
+        protected ImmutableList<AbstractBuff> BuffList { get; set; }
+        protected ImmutableList<AbstractCure> CureList { get; set; }
+        protected ImmutableList<AbstractReset> ResetList { get; set; }
+        protected ImmutableList<AbstractRestoreTechnicalPoint> RestoreTechnicalPointList { get; set; }
 
         [Obsolete]
         public ImmutableList<ISkillElement> GetSkillService()

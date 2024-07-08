@@ -17,7 +17,7 @@ namespace BattleScene.UseCases.Skill
 
         public CutUpSkill(FiveTimeDamage fiveTimeDamage)
         {
-            DamageSkillElementList = ImmutableList.Create<AbstractDamage>(fiveTimeDamage);
+            DamageList = ImmutableList.Create<AbstractDamage>(fiveTimeDamage);
         }
 
         public override ImmutableList<BodyPartCode> GetDependencyList()

@@ -13,7 +13,7 @@ namespace BattleScene.UseCases.Skill
     {
         public RandomShotsSkill(RandomShot randomShot)
         {
-            DamageSkillElementList = ImmutableList.Create<AbstractDamage>(randomShot);
+            DamageList = ImmutableList.Create<AbstractDamage>(randomShot);
         }
 
         public override int GetTechnicalPoint()

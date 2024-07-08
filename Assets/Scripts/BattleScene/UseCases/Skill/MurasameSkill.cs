@@ -15,8 +15,8 @@ namespace BattleScene.UseCases.Skill
             BasicDamage basicDamage,
             BurningReset burningReset)
         {
-            DamageSkillElementList = ImmutableList.Create<AbstractDamage>(basicDamage);
-            ResetSkillElementList = ImmutableList.Create<AbstractReset>(burningReset);
+            DamageList = ImmutableList.Create<AbstractDamage>(basicDamage);
+            ResetList = ImmutableList.Create<AbstractReset>(burningReset);
         }
 
         public override int GetTechnicalPoint()

@@ -13,7 +13,7 @@ namespace BattleScene.UseCases.Skill
     {
         public OnikoroshiSkill(Confusion confusion)
         {
-            AilmentSkillElementList = ImmutableList.Create<AbstractAilment>(confusion);
+            AilmentList = ImmutableList.Create<AbstractAilment>(confusion);
         }
 
         public override ImmutableList<BodyPartCode> GetDependencyList()

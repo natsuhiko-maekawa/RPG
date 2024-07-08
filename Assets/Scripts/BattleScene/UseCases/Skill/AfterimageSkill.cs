@@ -14,7 +14,7 @@ namespace BattleScene.UseCases.Skill
     {
         public AfterimageSkill(AfterImage afterimageSkill)
         {
-            BuffSkillElementList = ImmutableList.Create<AbstractBuff>(afterimageSkill);
+            BuffList = ImmutableList.Create<AbstractBuff>(afterimageSkill);
         }
 
         public override Range GetRange()

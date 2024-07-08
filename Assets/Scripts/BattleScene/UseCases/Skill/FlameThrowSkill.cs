@@ -16,8 +16,8 @@ namespace BattleScene.UseCases.Skill
 
         public FlameThrowSkill(BasicDamage basicDamage, BurningSkill burningSkill)
         {
-            DamageSkillElementList = ImmutableList.Create<AbstractDamage>(basicDamage);
-            SlipDamageElementList = ImmutableList.Create<AbstractSlipDamage>(burningSkill);
+            DamageList = ImmutableList.Create<AbstractDamage>(basicDamage);
+            SlipDamageList = ImmutableList.Create<AbstractSlipDamage>(burningSkill);
         }
 
         public override PlayerImageCode GetPlayerImageCode()

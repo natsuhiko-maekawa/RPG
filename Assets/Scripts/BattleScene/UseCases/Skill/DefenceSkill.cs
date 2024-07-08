@@ -13,7 +13,7 @@ namespace BattleScene.UseCases.Skill
     {
         public DefenceSkill(Defence defence)
         {
-            BuffSkillElementList = ImmutableList.Create<AbstractBuff>(defence);
+            BuffList = ImmutableList.Create<AbstractBuff>(defence);
             // TODO: TPを回復するスキルをAddする
         }
 

@@ -15,7 +15,7 @@ namespace BattleScene.UseCases.Skill
 
         public RaikiriSkill(LightningDamage lightningDamage)
         {
-            DamageSkillElementList = ImmutableList.Create<AbstractDamage>(lightningDamage);
+            DamageList = ImmutableList.Create<AbstractDamage>(lightningDamage);
         }
 
         public override int GetTechnicalPoint()

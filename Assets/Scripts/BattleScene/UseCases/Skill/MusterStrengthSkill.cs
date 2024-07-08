@@ -13,7 +13,7 @@ namespace BattleScene.UseCases.Skill
     {
         public MusterStrengthSkill(MusterStrength musterStrength)
         {
-            BuffSkillElementList = ImmutableList.Create<AbstractBuff>(musterStrength);
+            BuffList = ImmutableList.Create<AbstractBuff>(musterStrength);
         }
 
         public override int GetTechnicalPoint()

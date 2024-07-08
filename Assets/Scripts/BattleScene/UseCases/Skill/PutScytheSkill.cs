@@ -17,7 +17,7 @@ namespace BattleScene.UseCases.Skill
         public PutScytheSkill(BasicDamage basicDamage, RandomEx randomEx)
         {
             _randomEx = randomEx;
-            DamageSkillElementList = ImmutableList.Create<AbstractDamage>(basicDamage);
+            DamageList = ImmutableList.Create<AbstractDamage>(basicDamage);
         }
 
         public override Range GetRange()

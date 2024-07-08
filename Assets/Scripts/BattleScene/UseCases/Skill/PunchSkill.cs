@@ -15,7 +15,7 @@ namespace BattleScene.UseCases.Skill
 
         public PunchSkill(BasicDamage basicDamage)
         {
-            DamageSkillElementList = ImmutableList.Create<AbstractDamage>(basicDamage);
+            DamageList = ImmutableList.Create<AbstractDamage>(basicDamage);
         }
 
         public override Range GetRange()

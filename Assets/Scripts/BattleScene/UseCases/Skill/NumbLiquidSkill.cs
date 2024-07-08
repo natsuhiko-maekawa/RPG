@@ -16,8 +16,8 @@ namespace BattleScene.UseCases.Skill
             BasicDamage basicDamage,
             Paralysis paralysis)
         {
-            DamageSkillElementList = ImmutableList.Create<AbstractDamage>(basicDamage);
-            AilmentSkillElementList = ImmutableList.Create<AbstractAilment>(paralysis);
+            DamageList = ImmutableList.Create<AbstractDamage>(basicDamage);
+            AilmentList = ImmutableList.Create<AbstractAilment>(paralysis);
         }
 
         public override PlayerImageCode GetPlayerImageCode()

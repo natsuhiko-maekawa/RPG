@@ -13,7 +13,7 @@ namespace BattleScene.UseCases.Skill
     {
         public FirstAidSkill(FirstAid firstAid)
         {
-            ResetSkillElementList = ImmutableList.Create<AbstractReset>(firstAid);
+            ResetList = ImmutableList.Create<AbstractReset>(firstAid);
         }
 
         public override int GetTechnicalPoint()

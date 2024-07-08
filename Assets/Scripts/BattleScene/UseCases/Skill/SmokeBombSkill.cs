@@ -13,7 +13,7 @@ namespace BattleScene.UseCases.Skill
     {
         public SmokeBombSkill(Blind blind)
         {
-            AilmentSkillElementList = ImmutableList.Create<AbstractAilment>(blind);
+            AilmentList = ImmutableList.Create<AbstractAilment>(blind);
         }
 
         public override int GetTechnicalPoint()

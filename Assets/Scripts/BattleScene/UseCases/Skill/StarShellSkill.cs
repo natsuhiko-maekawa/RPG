@@ -13,7 +13,7 @@ namespace BattleScene.UseCases.Skill
     {
         public StarShellSkill(StarShell starShell)
         {
-            BuffSkillElementList = ImmutableList.Create<AbstractBuff>(starShell);
+            BuffList = ImmutableList.Create<AbstractBuff>(starShell);
         }
 
         public override int GetTechnicalPoint()
