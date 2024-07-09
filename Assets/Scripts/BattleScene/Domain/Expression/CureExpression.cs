@@ -6,7 +6,7 @@ using Utility.Interface;
 
 namespace BattleScene.UseCases.Skill.Expression
 {
-    internal class CureExpression
+    public class CureExpression
     {
         private readonly ICharacterRepository _characterRepository;
         private readonly IRepository<HitPointAggregate, CharacterId> _hitPointRepository;

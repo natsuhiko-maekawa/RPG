@@ -4,7 +4,7 @@ using BattleScene.UseCases.Skill.SkillElement.AbstractClass;
 
 namespace BattleScene.UseCases.Skill.SkillElement
 {
-    internal class BasicCure : AbstractCure
+    public class BasicCure : AbstractCure
     {
         public BasicCure(
             CureExpression cureExpression,

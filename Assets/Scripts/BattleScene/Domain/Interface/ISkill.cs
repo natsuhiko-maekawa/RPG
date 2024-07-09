@@ -6,6 +6,7 @@ namespace BattleScene.Domain.Interface
 {
     public interface ISkill
     {
+        public int TechnicalPoint { get; }
         public int GetTechnicalPoint();
 
         public ImmutableList<BodyPartCode> GetDependencyList();

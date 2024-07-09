@@ -3,7 +3,7 @@ using BattleScene.Domain.Interface;
 
 namespace BattleScene.UseCases.Skill.Interface
 {
-    internal interface IDestroyedPartSkill : ISkillElement
+    public interface IDestroyedPartSkill : ISkillElement
     {
         public BodyPartCode GetDestroyedPart();
         public float GetLuckRate();

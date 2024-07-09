@@ -7,8 +7,10 @@ using Range = BattleScene.Domain.Code.Range;
 
 namespace BattleScene.UseCases.Skill.AbstractClass
 {
-    internal abstract class AbstractSkill : ISkill
+    public abstract class AbstractSkill : ISkill
     {
+        public int TechnicalPoint { get; } = 0;
+
         public virtual int GetTechnicalPoint()
         {
             return 0;
@@ -46,6 +48,30 @@ namespace BattleScene.UseCases.Skill.AbstractClass
         public ImmutableList<ISkillElement> GetSkillService()
         {
             throw new NotImplementedException();
+        }
+    }
+
+    public interface ISkillQueue<T>
+    {
+        
+    }
+
+    public class SkillQueue<T> : ISkillQueue<T>
+    {
+        private ImmutableQueue<T> _skillList;
+        public bool IsEmpty { get; private set; }
+
+        public SkillQueue(params T[] array)
+        {
+            _skillList = ImmutableQueue.Create(array);
+            IsEmpty = _skillList.IsEmpty;
+        }
+
+        public T Pop()
+        {
+            var item = _skillList.Peek();
+            _skillList = _skillList.Dequeue();
+            return item;
         }
     }
 }

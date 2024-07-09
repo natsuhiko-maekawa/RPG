@@ -4,7 +4,7 @@ using BattleScene.UseCases.Skill.Expression;
 
 namespace BattleScene.UseCases.Skill.SkillElement.AbstractClass
 {
-    internal abstract class AbstractCure
+    public abstract class AbstractCure
     {
         private readonly CureExpression _cureExpression;
         private readonly OrderedItemsDomainService _orderedItems;
