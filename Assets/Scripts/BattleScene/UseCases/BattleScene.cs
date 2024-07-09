@@ -1,26 +1,51 @@
-﻿using UnityEngine;
-using VContainer;
+﻿using BattleScene.UseCases.StateMachine;
 
 namespace BattleScene.UseCases
 {
-    internal class BattleScene : MonoBehaviour
+    internal class BattleScene
     {
-        private StateMachine.StateMachine _stateMachine;
-
-        private void Start()
+        private readonly EventExecutor _eventExecutor;
+        private StateCode _stateCode;
+        private StateCode StateCode
         {
-            _stateMachine.Start();
+            get => _stateCode;
+            set
+            {
+                _stateCode = value;
+                OnChangeState();
+            }
         }
 
-        private void Update()
+        public BattleScene(
+            EventExecutor eventExecutor)
         {
-            _stateMachine.Update();
+            _eventExecutor = eventExecutor;
         }
 
-        [Inject]
-        public void Construct(StateMachine.StateMachine stateMachine)
+        public void Start()
         {
-            _stateMachine = stateMachine;
+            StateCode = StateCode.Initialize;
+        }
+
+        public void OnSelect()
+        {
+            
+        }
+
+        public void OnRight()
+        {
+            
+        }
+
+        private void OnChangeState()
+        {
+            var stateCode = _eventExecutor.Execute(StateCode);
+            StateCode = stateCode;
+        }
+
+        public void Update()
+        {
+            
         }
     }
 }
