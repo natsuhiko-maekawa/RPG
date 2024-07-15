@@ -30,6 +30,7 @@ namespace BattleScene.UseCases.Service
             return Create(_propertyFactory.Get(Player));
         }
 
+        [Obsolete]
         public ImmutableList<CharacterAggregate> CreateEnemyList(IList<CharacterTypeId> characterTypeIdList)
         {
             var options = _propertyFactory.Get(characterTypeIdList)

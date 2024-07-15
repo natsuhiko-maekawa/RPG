@@ -38,5 +38,10 @@ namespace BattleScene.Domain.ValueObject
         public int Luck { get; }
         public ImmutableList<MatAttrCode> WeakPoints { get; }
         public ImmutableList<SkillCode> Skills { get; }
+
+        public int SumParameter()
+        {
+            return (int)(HitPoint / 10.0f * (Strength + Vitality + Intelligence + Agility + Luck)) / 10;
+        }
     }
 }

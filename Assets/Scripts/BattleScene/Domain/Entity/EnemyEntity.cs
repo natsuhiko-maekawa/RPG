@@ -2,17 +2,17 @@
 
 namespace BattleScene.Domain.Entity
 {
-    public class EnemyEntity
+    public class EnemyEntity : BaseEntity<EnemyEntity, CharacterId>
     {
         public EnemyEntity(
-            CharacterId characterId,
+            CharacterId id,
             int enemyNumber)
         {
-            CharacterId = characterId;
+            Id = id;
             EnemyNumber = enemyNumber;
         }
         
-        public CharacterId CharacterId { get; }
+        public override CharacterId Id { get; }
         public int EnemyNumber { get; }
     }
 }

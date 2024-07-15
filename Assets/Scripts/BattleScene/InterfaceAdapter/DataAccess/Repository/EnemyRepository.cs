@@ -13,7 +13,7 @@ namespace BattleScene.InterfaceAdapter.DataAccess.Repository
         
         public EnemyEntity Select(CharacterId characterId)
         {
-            return _enemySet.First(x => Equals(x.CharacterId, characterId));
+            return _enemySet.First(x => Equals(x.Id, characterId));
         }
 
         public void Update(IList<EnemyEntity> enemyList)
