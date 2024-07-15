@@ -1,8 +1,8 @@
 ﻿using System.Collections.Immutable;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DomainService;
-using BattleScene.UseCases.Skill.Expression;
-using BattleScene.UseCases.Skill.SkillElement.AbstractClass;
+using BattleScene.Domain.Expression;
+using BattleScene.Domain.ValueObject;
 
 namespace BattleScene.UseCases.Skill.SkillElement
 {

@@ -2,7 +2,7 @@ using BattleScene.Domain.Code;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
-using BattleScene.UseCases.Event.Runner;
+using BattleScene.UseCases.OldEvent.Runner;
 
 namespace BattleScene.UseCases.Service
 {

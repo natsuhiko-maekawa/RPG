@@ -1,9 +1,9 @@
 ﻿using System.Linq;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
-using BattleScene.UseCases.Skill.SkillElement.AbstractClass;
+using BattleScene.Domain.ValueObject;
 
-namespace BattleScene.UseCases.Skill.Expression
+namespace BattleScene.Domain.Expression
 {
     public class AttacksWeakPointEvaluation
     {

@@ -1,8 +1,8 @@
 ﻿using BattleScene.Domain.DomainService;
+using BattleScene.Domain.Expression;
 using BattleScene.Domain.Id;
-using BattleScene.UseCases.Skill.Expression;
 
-namespace BattleScene.UseCases.Skill.SkillElement.AbstractClass
+namespace BattleScene.Domain.ValueObject
 {
     public abstract class AbstractCure
     {

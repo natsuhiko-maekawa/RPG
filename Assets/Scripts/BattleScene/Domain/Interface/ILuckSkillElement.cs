@@ -1,4 +1,4 @@
-﻿namespace BattleScene.UseCases.Skill.Interface
+﻿namespace BattleScene.Domain.Interface
 {
     public interface ILuckSkillElement
     {

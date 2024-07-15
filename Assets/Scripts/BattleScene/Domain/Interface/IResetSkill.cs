@@ -1,7 +1,7 @@
 ﻿using System.Collections.Immutable;
 using BattleScene.Domain.Code;
 
-namespace BattleScene.UseCases.Skill.Interface
+namespace BattleScene.Domain.Interface
 {
     public interface IResetSkill
     {

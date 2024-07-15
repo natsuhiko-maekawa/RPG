@@ -5,10 +5,10 @@ using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
-using BattleScene.UseCases.Skill.SkillElement.AbstractClass;
+using BattleScene.Domain.ValueObject;
 using Utility.Interface;
 
-namespace BattleScene.UseCases.Skill.Expression
+namespace BattleScene.Domain.Expression
 {
     public class DamageExpression
     {

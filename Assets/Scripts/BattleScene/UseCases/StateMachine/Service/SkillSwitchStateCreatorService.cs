@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.IRepository;
-using BattleScene.UseCases.Skill.SkillElement.AbstractClass;
+using BattleScene.Domain.ValueObject;
 
 namespace BattleScene.UseCases.StateMachine.Service
 {

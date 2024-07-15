@@ -1,9 +1,9 @@
 ﻿using BattleScene.Domain.Id;
+using BattleScene.Domain.Interface;
 using BattleScene.Domain.IRepository;
-using BattleScene.UseCases.Skill.Interface;
 using Utility.Interface;
 
-namespace BattleScene.UseCases.Skill.Expression
+namespace BattleScene.Domain.Expression
 {
     public class Luck
     {

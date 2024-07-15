@@ -2,10 +2,9 @@
 using System.Collections.Immutable;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.Interface;
-using BattleScene.UseCases.Skill.SkillElement.AbstractClass;
 using Range = BattleScene.Domain.Code.Range;
 
-namespace BattleScene.UseCases.Skill.AbstractClass
+namespace BattleScene.Domain.ValueObject
 {
     public abstract class AbstractSkill : ISkill
     {

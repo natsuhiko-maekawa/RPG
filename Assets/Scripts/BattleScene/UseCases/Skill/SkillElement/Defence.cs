@@ -1,6 +1,6 @@
 ﻿using System;
 using BattleScene.Domain.Code;
-using BattleScene.UseCases.Skill.SkillElement.AbstractClass;
+using BattleScene.Domain.ValueObject;
 
 namespace BattleScene.UseCases.Skill.SkillElement
 {

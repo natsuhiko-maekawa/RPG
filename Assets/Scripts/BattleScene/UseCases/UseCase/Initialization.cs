@@ -3,7 +3,7 @@ using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.IFactory;
 using BattleScene.Domain.IRepository;
-using BattleScene.UseCases.Event.Runner;
+using BattleScene.UseCases.OldEvent.Runner;
 using BattleScene.UseCases.Service;
 using BattleScene.UseCases.UseCase.Interface;
 

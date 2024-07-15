@@ -2,9 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using BattleScene.Domain.Code;
-using BattleScene.UseCases.Skill.AbstractClass;
+using BattleScene.Domain.ValueObject;
 using BattleScene.UseCases.Skill.SkillElement;
-using BattleScene.UseCases.Skill.SkillElement.AbstractClass;
 using Utility.Interface;
 using Range = BattleScene.Domain.Code.Range;
 

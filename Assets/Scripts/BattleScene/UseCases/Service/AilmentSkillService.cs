@@ -3,9 +3,9 @@ using System.Linq;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
+using BattleScene.Domain.Interface;
 using BattleScene.Domain.IRepository;
 using BattleScene.Domain.ValueObject;
-using BattleScene.UseCases.Skill.Interface;
 using Utility.Interface;
 
 namespace BattleScene.UseCases.Service

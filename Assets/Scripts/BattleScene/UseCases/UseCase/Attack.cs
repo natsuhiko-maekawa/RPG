@@ -2,7 +2,7 @@ using System.Linq;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.IFactory;
 using BattleScene.Domain.IRepository;
-using BattleScene.UseCases.Event.Runner;
+using BattleScene.UseCases.OldEvent.Runner;
 using BattleScene.UseCases.UseCase.Interface;
 using BattleScene.UseCases.View.FrameView.OutputBoundary;
 using BattleScene.UseCases.View.FrameView.OutputDataFactory;

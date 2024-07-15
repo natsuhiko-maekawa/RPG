@@ -1,7 +1,6 @@
 ﻿using BattleScene.Domain.Id;
-using BattleScene.Domain.Interface;
 
-namespace BattleScene.UseCases.Skill.Interface
+namespace BattleScene.Domain.Interface
 {
     public interface ICureSkill : ISkillElement
     {

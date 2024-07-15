@@ -1,7 +1,6 @@
 ﻿using BattleScene.Domain.Code;
-using BattleScene.Domain.Interface;
 
-namespace BattleScene.UseCases.Skill.Interface
+namespace BattleScene.Domain.Interface
 {
     public interface IAilmentSkill : ISkillElement, ILuckSkillElement
     {

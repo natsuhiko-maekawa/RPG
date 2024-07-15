@@ -1,6 +1,6 @@
 ﻿using BattleScene.Domain.Code;
 
-namespace BattleScene.UseCases.Skill.SkillElement.AbstractClass
+namespace BattleScene.Domain.ValueObject
 {
     public abstract class AbstractBuff
     {

@@ -2,8 +2,8 @@ using System.Collections.Immutable;
 using System.Linq;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Entity;
+using BattleScene.Domain.Interface;
 using BattleScene.Domain.ValueObject;
-using BattleScene.UseCases.Skill.Interface;
 
 namespace BattleScene.UseCases.Service
 {

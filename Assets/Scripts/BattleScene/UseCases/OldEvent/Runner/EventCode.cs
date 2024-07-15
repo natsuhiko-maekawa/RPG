@@ -1,0 +1,42 @@
+namespace BattleScene.UseCases.OldEvent.Runner
+{
+    public enum EventCode
+    {
+        AilmentEvent,
+        AilmentFailureViewEvent,
+        AilmentResetEvent,
+        AilmentSuccessViewEvent,
+        AilmentsSlipDamageEvent,
+        AilmentsSlipMessageEvent,
+        BattleStartEvent,
+        BuffEvent,
+        CantActionEvent,
+        CureEvent,
+        DebuffEvent,
+        DestroyedPartEvent,
+        EnemyAttackEvent,
+        EnemyConfusionEvent,
+        EnemyDamageEvent,
+        EnemySelectSkillEvent,
+        EnemySuicideEvent,
+        EnhanceEvent,
+        InitializationEvent,
+        IsContinueEvent,
+        LoopEndEvent,
+        OrderDecisionEvent,
+        PlayerAttackEvent,
+        PlayerBeatEnemyEvent,
+        PlayerConfusionEvent,
+        PlayerDeadEvent,
+        PlayerDefenceEvent,
+        PlayerDamageEvent,
+        PlayerWinEvent,
+        ResetEvent,
+        SelectActionEvent,
+        SelectFatalitySkillEvent,
+        SelectSkillEvent,
+        SelectTargetEvent,
+        SwitchSkillEvent,
+        WaitEvent
+    }
+}
