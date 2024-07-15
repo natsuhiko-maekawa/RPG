@@ -1,5 +1,6 @@
 using BattleScene.Domain.Aggregate;
 using BattleScene.Domain.DomainService;
+using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
 using BattleScene.Domain.ValueObject;
@@ -58,7 +59,7 @@ namespace BattleScene.UseCases.OldEvent
             if (!_hitPointRepository.Select(_characters.GetPlayerId()).IsSurvive()) return EventCode.PlayerDeadEvent;
 
             // 先頭が状態異常だった場合、以下の処理は実行しないためreturnする
-            if (_orderedItems.FirstItem() is not OrderedCharacterValueObject) return EventCode.OrderDecisionEvent;
+            if (!_orderedItems.First().TryGetCharacterId(out _)) return EventCode.OrderDecisionEvent;
 
             // 敵全体が死亡した場合、プレイヤーの勝利
             if (_characters.GetEnemies().IsEmpty) return EventCode.PlayerWinEvent;

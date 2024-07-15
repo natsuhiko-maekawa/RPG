@@ -27,7 +27,7 @@ namespace BattleScene.UseCases.View.OrderView.OutputDataFactory
             return _orderedItemRepository.Select()
                 .Select(x =>
                 {
-                    return x.OrderedItem switch
+                    return x.ObsoleteOrderedItem switch
                     {
                         OrderedCharacterValueObject orderedCharacter
                             when _characterRepository.Select(orderedCharacter.CharacterId).IsPlayer()

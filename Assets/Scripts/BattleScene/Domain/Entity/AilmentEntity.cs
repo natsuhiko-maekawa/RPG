@@ -4,7 +4,7 @@ using BattleScene.Domain.ValueObject;
 
 namespace BattleScene.Domain.Entity
 {
-    public class AilmentEntity
+    public class AilmentEntity : BaseEntity<AilmentEntity, AilmentId>
     {
         private TurnValueObject _turn;
 
@@ -20,6 +20,7 @@ namespace BattleScene.Domain.Entity
             _turn = turn;
         }
 
+        public override AilmentId Id => new(CharacterId, AilmentCode);
         public CharacterId CharacterId { get; }
         public AilmentCode AilmentCode { get; }
         public Priority Priority { get; }

@@ -2,6 +2,7 @@
 {
     public enum SlipDamageCode
     {
+        NoSlipDamage,
         Burning,
         Freeze,
         ElectricShock,

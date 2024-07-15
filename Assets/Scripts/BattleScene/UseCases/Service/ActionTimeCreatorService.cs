@@ -27,7 +27,7 @@ namespace BattleScene.UseCases.Service
 
         public ImmutableList<ActionTimeEntity> Create(IList<CharacterId> characterIdList)
         {
-            if (_orderedItems.FirstItem() is not OrderedCharacterValueObject orderedCharacter)
+            if (_orderedItems.First().TryGetCharacterId(out var characterId))
                 return ImmutableList<ActionTimeEntity>.Empty;
 
             return characterIdList
@@ -39,7 +39,7 @@ namespace BattleScene.UseCases.Service
                         .Min();
                     actionTime.Reduce(minTime);
 
-                    if (!Equals(x, orderedCharacter.CharacterId))
+                    if (!Equals(x, characterId))
                         return actionTime;
 
                     actionTime.Add(Constant.MaxAgility / _agilityToSpeed.Convert(x));

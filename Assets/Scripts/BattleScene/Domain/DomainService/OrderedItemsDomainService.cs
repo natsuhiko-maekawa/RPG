@@ -19,33 +19,34 @@ namespace BattleScene.Domain.DomainService
             _orderedItemRepository = orderedItemRepository;
         }
 
+        [Obsolete]
         public IOrderedItem FirstItem()
         {
-            return _orderedItemRepository.Select()
-                .OrderBy(x => x.Id)
-                .FirstOrDefault()
-                ?.OrderedItem;
+            throw new NotImplementedException();
         }
 
+        public OrderedItemEntity First()
+        {
+            return _orderedItemRepository.Select()
+                .First();
+        }
+
+        [Obsolete]
         public CharacterId FirstCharacterId()
         {
-            if (FirstItem() is not OrderedCharacterValueObject orderedCharacter)
-                throw new InvalidOperationException();
-            return orderedCharacter.CharacterId;
+            throw new NotImplementedException();
         }
 
+        [Obsolete]
         public AilmentCode FirstAilmentCode()
         {
-            if (FirstItem() is not OrderedAilmentValueObject orderedAilment)
-                throw new InvalidOperationException();
-            return orderedAilment.AilmentCode;
+            throw new NotImplementedException();
         }
 
+        [Obsolete]
         public SlipDamageCode FirstSlipDamageCode()
         {
-            if (FirstItem() is not OrderedSlipDamageValueObject orderedSlipDamage)
-                throw new InvalidOperationException();
-            return orderedSlipDamage.SlipDamageCode;
+            throw new NotImplementedException();
         }
     }
 }

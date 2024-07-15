@@ -31,8 +31,7 @@ namespace BattleScene.UseCases.UseCase
 
         public void Execute()
         {
-            var order = _orderedItemCreator.Create(_characters.GetIdList());
-            _orderedItemRepository.Update(order);
+            _orderedItemCreator.Create(_characters.GetIdList());
 
             var actionTimeList = _actionTimeCreator.Create(_characters.GetIdList());
             _actionTimeRepository.Update(actionTimeList);
