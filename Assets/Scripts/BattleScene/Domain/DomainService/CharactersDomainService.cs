@@ -1,4 +1,5 @@
-﻿using System.Collections.Immutable;
+﻿using System;
+using System.Collections.Immutable;
 using System.Linq;
 using BattleScene.Domain.Aggregate;
 using BattleScene.Domain.Id;
@@ -19,18 +20,20 @@ namespace BattleScene.Domain.DomainService
         public ImmutableList<CharacterId> GetIdList()
         {
             return _characterRepository.Select()
-                .Select(x => x.CharacterId)
+                .Select(x => x.Id)
                 .ToImmutableList();
         }
 
+        [Obsolete]
         public CharacterAggregate GetPlayer()
         {
             return _characterRepository.Select().First(x => x.IsPlayer());
         }
 
+        [Obsolete]
         public CharacterId GetPlayerId()
         {
-            return _characterRepository.Select().First(x => x.IsPlayer()).CharacterId;
+            return _characterRepository.Select().First(x => x.IsPlayer()).Id;
         }
 
         public ImmutableList<CharacterAggregate> GetEnemies()
@@ -44,7 +47,7 @@ namespace BattleScene.Domain.DomainService
         {
             return _characterRepository.Select()
                 .Where(x => !x.IsPlayer())
-                .Select(x => x.CharacterId)
+                .Select(x => x.Id)
                 .ToImmutableList();
         }
     }

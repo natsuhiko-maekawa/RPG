@@ -9,7 +9,7 @@ namespace BattleScene.UseCases.Service
     {
         public HitPointAggregate Create(CharacterAggregate character)
         {
-            var characterId = character.CharacterId;
+            var characterId = character.Id;
             var hitPoint = character.Property.HitPoint;
             return new HitPointAggregate(characterId, hitPoint);
         }

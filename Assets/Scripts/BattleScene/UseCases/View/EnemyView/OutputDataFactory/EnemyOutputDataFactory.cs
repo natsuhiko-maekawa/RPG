@@ -18,7 +18,7 @@ namespace BattleScene.UseCases.View.EnemyView.OutputDataFactory
         public EnemyOutputData Create()
         {
             var enemyCharacterIdList = _characters.GetEnemies()
-                .Select(x => x.CharacterId)
+                .Select(x => x.Id)
                 .ToImmutableList();
             return new EnemyOutputData(enemyCharacterIdList);
         }

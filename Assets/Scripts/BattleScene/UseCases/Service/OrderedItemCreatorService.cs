@@ -46,7 +46,7 @@ namespace BattleScene.UseCases.Service
                 .SelectMany(x => x)
                 .OrderBy(x => x.speed)
                 .ThenBy(x => _characterRepository.Select(x.character).Property.Agility)
-                .ThenBy(x => _characterRepository.Select(x.character).CharacterId)
+                .ThenBy(x => _characterRepository.Select(x.character).Id)
                 .Select(x => new OrderedCharacterValueObject(x.character))
                 .Cast<IOrderedItem>()
                 .ToImmutableList()

@@ -11,42 +11,24 @@ namespace BattleScene.UseCases.UseCase
 {
     internal class Initialization : IUseCase
     {
-        private readonly CharacterCreatorService _characterCreator;
-        private readonly ICharacterRepository _characterRepository;
-        private readonly CharactersDomainService _characters;
-        private readonly HitPointCreatorService _hitPointCreator;
+        private readonly PlayerDomainService _player;
         private readonly IPlayerPropertyFactory _playerPropertyFactory;
         private readonly ISelectorRepository _selectorRepository;
         private readonly ISkillSelectorRepository _skillSelectorRepository;
-        private readonly IRepository<HitPointAggregate, CharacterId> _hitPointRepository;
 
         public Initialization(
-            CharacterCreatorService characterCreator,
-            ICharacterRepository characterRepository,
-            CharactersDomainService characters,
-            HitPointCreatorService hitPointCreator,
             IPlayerPropertyFactory playerPropertyFactory,
             ISelectorRepository selectorRepository,
-            ISkillSelectorRepository skillSelectorRepository,
-            IRepository<HitPointAggregate, CharacterId> hitPointRepository)
+            ISkillSelectorRepository skillSelectorRepository)
         {
-            _characterCreator = characterCreator;
-            _characterRepository = characterRepository;
-            _characters = characters;
-            _hitPointCreator = hitPointCreator;
             _playerPropertyFactory = playerPropertyFactory;
             _selectorRepository = selectorRepository;
             _skillSelectorRepository = skillSelectorRepository;
-            _hitPointRepository = hitPointRepository;
         }
 
         public void Execute()
         {
-            var player = _characterCreator.CreatePlayer();
-            _characterRepository.Update(player);
-
-            var hitPoint = _hitPointCreator.Create(player);
-            _hitPointRepository.Update(hitPoint);
+            _player.Add();
 
             var actionSelectorId = new SelectorId(EventCode.SelectActionEvent);
             var actionSelector =
@@ -54,7 +36,7 @@ namespace BattleScene.UseCases.UseCase
             _selectorRepository.Update(actionSelector);
 
             var skillSelectorId = new SkillSelectorId(EventCode.SelectSkillEvent);
-            var skillNumber = _characterRepository.Select(_characters.GetPlayerId()).GetSkills().Count;
+            var skillNumber = _player.Get().GetSkills().Count;
             var skillSelector =
                 new SkillSelectorAggregate(skillSelectorId, Constant.SelectSkillSlotNumber, skillNumber);
             _skillSelectorRepository.Update(skillSelector);

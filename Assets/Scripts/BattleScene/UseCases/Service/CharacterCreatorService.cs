@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
@@ -23,6 +24,7 @@ namespace BattleScene.UseCases.Service
             _randomEx = randomEx;
         }
 
+        [Obsolete]
         public CharacterAggregate CreatePlayer()
         {
             return Create(_propertyFactory.Get(Player));

@@ -27,7 +27,7 @@ namespace BattleScene.UseCases.View.AilmentView.OutputDataFactory
         public ImmutableList<AilmentOutputData> Create()
         {
             var ailmentOutputDataList = _characterRepository.Select()
-                .Select(x => Create(x.CharacterId))
+                .Select(x => Create(x.Id))
                 .ToImmutableList();
             return ailmentOutputDataList;
         }

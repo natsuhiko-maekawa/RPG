@@ -14,7 +14,7 @@ namespace BattleScene.InterfaceAdapter.DataAccess.Repository
 
         public CharacterAggregate Select(CharacterId characterId)
         {
-            return _characterSet.First(x => Equals(x.CharacterId, characterId));
+            return _characterSet.First(x => Equals(x.Id, characterId));
         }
 
         public ImmutableList<CharacterAggregate> Select()
@@ -35,7 +35,7 @@ namespace BattleScene.InterfaceAdapter.DataAccess.Repository
 
         public void Delete(CharacterId characterId)
         {
-            _characterSet.RemoveWhere(x => Equals(x.CharacterId, characterId));
+            _characterSet.RemoveWhere(x => Equals(x.Id, characterId));
         }
     }
 }

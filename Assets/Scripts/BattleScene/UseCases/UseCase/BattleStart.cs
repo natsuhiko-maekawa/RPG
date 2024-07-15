@@ -55,7 +55,7 @@ namespace BattleScene.UseCases.UseCase
             
             var enemyList = enemyCharacterList
                 .OrderBy(x => x.Property.CharacterTypeId)
-                .Select((x, i) => new EnemyEntity(x.CharacterId, i))
+                .Select((x, i) => new EnemyEntity(x.Id, i))
                 .ToImmutableList();
             _enemyRepository.Update(enemyList);
 

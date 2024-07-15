@@ -38,7 +38,7 @@ namespace BattleScene.Domain.DomainService
                         ? ImmutableList<CharacterId>.Empty
                         : ImmutableList.Create(characterId),
                 Range.Solo when !_characterRepository.Select(characterId).IsPlayer() =>
-                    ImmutableList.Create(_characters.GetPlayer().CharacterId),
+                    ImmutableList.Create(_characters.GetPlayer().Id),
                 Range.Solo when _characterRepository.Select(characterId).IsPlayer() =>
                     throw new NotImplementedException(),
                 // TODO プレイヤーが選択したターゲットを返す処理を書くこと
@@ -51,7 +51,7 @@ namespace BattleScene.Domain.DomainService
         private ImmutableList<CharacterId> GetRandom(CharacterId characterId)
         {
             var targetList = _characterRepository.Select()
-                .Select(x => x.CharacterId)
+                .Select(x => x.Id)
                 .Where(x => !Equals(x, characterId) && _hitPointRepository.Select(x).IsSurvive())
                 .ToList();
             if (targetList.Count == 0) return ImmutableList<CharacterId>.Empty;

@@ -24,6 +24,9 @@ namespace BattleScene.UseCases.Event
         private readonly ICharacterRepository _characterRepository;
         private readonly OrderedItemsDomainService _orderedItems;
         private readonly IRandomEx _randomEx;
+        private readonly Initialization _initialization;
+        private readonly BattleStart _battleStart;
+        private readonly OrderDecision _orderDecision;
 
         public InitializationEvent(
             IObjectResolver container,
@@ -41,21 +44,12 @@ namespace BattleScene.UseCases.Event
 
         public StateCode Execute()
         {
-            var useCaseList = new List<IUseCase>
-            {
-                _container.Resolve<Initialization>(),
-                _container.Resolve<BattleStart>(),
-                _container.Resolve<OrderDecision>()
-            };
-
             var outputList = new List<IOutput>
             {
                 _container.Resolve<EnemyViewOutput>(),
                 _container.Resolve<AilmentViewOutput>(),
                 _container.Resolve<OrderViewOutput>()
             };
-
-            var startEvent = new State.Event(useCaseList, outputList);
 
             var triggerDict = new Dictionary<Func<bool>, StateCode>
             {
@@ -72,7 +66,9 @@ namespace BattleScene.UseCases.Event
 
         public override void UseCase()
         {
-            throw new NotImplementedException();
+            _initialization.Execute();
+            _battleStart.Execute();
+            _orderDecision.Execute();
         }
 
         public override void Output()

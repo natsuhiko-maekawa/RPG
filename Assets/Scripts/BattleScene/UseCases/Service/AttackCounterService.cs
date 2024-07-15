@@ -36,7 +36,7 @@ namespace BattleScene.UseCases.Service
         {
             var resultList = _resultRepository.Select();
             var player = _characterRepository.Select().First(x => x.IsPlayer());
-            var playerId = player.CharacterId;
+            var playerId = player.Id;
             var fatalitySkills = _playerPropertyFactory.Get().FatalitySkills;
             return resultList
                 .OrderByDescending(x => x)

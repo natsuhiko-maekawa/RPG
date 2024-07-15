@@ -1,21 +1,22 @@
 ﻿using System.Collections.Immutable;
 using BattleScene.Domain.Code;
+using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
 
 namespace BattleScene.Domain.Aggregate
 {
-    public class CharacterAggregate
+    public class CharacterAggregate : BaseEntity<CharacterAggregate, CharacterId>
     {
         public CharacterAggregate(
-            CharacterId characterId,
+            CharacterId id,
             PropertyValueObject property)
         {
-            CharacterId = characterId;
+            Id = id;
             Property = property;
         }
 
-        public CharacterId CharacterId { get; }
+        public override CharacterId Id { get; }
         public PropertyValueObject Property { get; }
 
         public bool IsPlayer()
@@ -39,12 +40,12 @@ namespace BattleScene.Domain.Aggregate
         {
             if (obj == null || GetType() != obj.GetType()) return false;
             var characterAggregate = (CharacterAggregate)obj;
-            return CharacterId == characterAggregate.CharacterId;
+            return Id == characterAggregate.Id;
         }
 
         public override int GetHashCode()
         {
-            return CharacterId.GetHashCode();
+            return Id.GetHashCode();
         }
     }
 }

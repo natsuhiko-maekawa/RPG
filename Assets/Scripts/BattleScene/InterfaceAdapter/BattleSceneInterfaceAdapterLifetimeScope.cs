@@ -88,6 +88,8 @@ namespace BattleScene.InterfaceAdapter
                 Lifetime.Singleton);
             builder.Register<IRepository<BuffEntity, BuffId>, Repository<BuffEntity, BuffId>>(
                 Lifetime.Singleton);
+            builder.Register<IRepository<CharacterAggregate, CharacterId>, Repository<CharacterAggregate, CharacterId>>(
+                Lifetime.Singleton);
             builder.Register<IRepository<HitPointAggregate, CharacterId>, Repository<HitPointAggregate, CharacterId>>(
                 Lifetime.Singleton);
             builder.Register<IRepository<OrderedItemEntity, OrderNumber>, Repository<OrderedItemEntity, OrderNumber>>(
