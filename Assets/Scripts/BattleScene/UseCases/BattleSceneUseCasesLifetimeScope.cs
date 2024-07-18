@@ -1,5 +1,6 @@
 ﻿using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Expression;
+using BattleScene.UseCases.Event;
 using BattleScene.UseCases.OldEvent;
 using BattleScene.UseCases.OldEvent.Runner;
 using BattleScene.UseCases.Service;
@@ -200,6 +201,8 @@ namespace BattleScene.UseCases
             builder.Register<StateCreatorService>(Lifetime.Singleton);
             builder.Register<InitializeStateCreatorService>(Lifetime.Singleton);
             builder.Register<EnemySkillStateCreatorService>(Lifetime.Singleton);
+
+            builder.Register<InitializationEvent>(Lifetime.Singleton);
         }
     }
 }

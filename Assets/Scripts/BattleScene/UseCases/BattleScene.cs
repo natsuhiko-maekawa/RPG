@@ -1,8 +1,9 @@
 ﻿using BattleScene.UseCases.StateMachine;
+using UnityEngine;
 
 namespace BattleScene.UseCases
 {
-    internal class BattleScene
+    internal class BattleScene : MonoBehaviour
     {
         private readonly EventExecutor _eventExecutor;
         private StateCode _stateCode;
