@@ -1,11 +1,12 @@
 ﻿using BattleScene.UseCases.StateMachine;
 using UnityEngine;
+using VContainer;
 
 namespace BattleScene.UseCases
 {
     internal class BattleScene : MonoBehaviour
     {
-        private readonly EventExecutor _eventExecutor;
+        private EventExecutor _eventExecutor;
         private StateCode _stateCode;
         private StateCode StateCode
         {
@@ -17,7 +18,8 @@ namespace BattleScene.UseCases
             }
         }
 
-        public BattleScene(
+        [Inject]
+        public void Construct(
             EventExecutor eventExecutor)
         {
             _eventExecutor = eventExecutor;
@@ -42,6 +44,7 @@ namespace BattleScene.UseCases
         {
             var stateCode = _eventExecutor.Execute(StateCode);
             StateCode = stateCode;
+            Debug.Log(StateCode.ToString());
         }
 
         public void Update()

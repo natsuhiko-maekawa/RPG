@@ -21,7 +21,23 @@ namespace BattleScene.Domain.DomainService
         private readonly IRepository<CharacterAggregate, CharacterId> _characterRepository;
         private readonly IRepository<EnemyEntity, CharacterId> _enemyRepository;
         private readonly IRepository<HitPointAggregate, CharacterId> _hitPointRepository;
-        
+
+        public EnemiesDomainService(
+            IPropertyFactory propertyFactory,
+            IRandomEx randomEx, 
+            IRepository<ActionTimeEntity, CharacterId> actionTimeRepository,
+            IRepository<CharacterAggregate, CharacterId> characterRepository,
+            IRepository<EnemyEntity, CharacterId> enemyRepository, 
+            IRepository<HitPointAggregate, CharacterId> hitPointRepository)
+        {
+            _propertyFactory = propertyFactory;
+            _randomEx = randomEx;
+            _actionTimeRepository = actionTimeRepository;
+            _characterRepository = characterRepository;
+            _enemyRepository = enemyRepository;
+            _hitPointRepository = hitPointRepository;
+        }
+
         public void Add(IList<CharacterTypeId> characterTypeIdList)
         {
             var options = _propertyFactory.Get(characterTypeIdList)

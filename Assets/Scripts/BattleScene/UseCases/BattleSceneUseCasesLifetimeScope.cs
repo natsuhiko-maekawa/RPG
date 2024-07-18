@@ -89,8 +89,10 @@ namespace BattleScene.UseCases
             builder.Register<BodyPartDomainService>(Lifetime.Singleton);
             builder.Register<BuffDomainService>(Lifetime.Singleton);
             builder.Register<CharactersDomainService>(Lifetime.Singleton);
+            builder.Register<EnemiesDomainService>(Lifetime.Singleton);
             builder.Register<HitPointDomainService>(Lifetime.Singleton);
             builder.Register<OrderedItemsDomainService>(Lifetime.Singleton);
+            builder.Register<PlayerDomainService>(Lifetime.Singleton);
             builder.Register<ResultCreatorDomainService>(Lifetime.Singleton);
             builder.Register<ResultDomainService>(Lifetime.Singleton);
             builder.Register<SlipDamageDomainService>(Lifetime.Singleton);
@@ -203,6 +205,9 @@ namespace BattleScene.UseCases
             builder.Register<EnemySkillStateCreatorService>(Lifetime.Singleton);
 
             builder.Register<InitializationEvent>(Lifetime.Singleton);
+            builder.Register<EnemyInitializerEvent>(Lifetime.Singleton);
+            builder.Register<OrderEvent>(Lifetime.Singleton);
+            builder.Register<EventExecutor>(Lifetime.Singleton);
         }
     }
 }

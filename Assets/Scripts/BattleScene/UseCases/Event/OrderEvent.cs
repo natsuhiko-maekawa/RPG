@@ -11,7 +11,7 @@ using static BattleScene.Domain.Code.AilmentCode;
 
 namespace BattleScene.UseCases.Event
 {
-    public class OrderEvent : BaseEvent
+    internal class OrderEvent : BaseEvent
     {
         private readonly AilmentDomainService _ailment;
         private readonly IRepository<CharacterAggregate, CharacterId> _characterRepository;
@@ -19,6 +19,21 @@ namespace BattleScene.UseCases.Event
         private readonly OrderedItemsDomainService _orderedItems;
         private readonly OrderDecision _orderDecision;
         private readonly OrderViewOutput _orderView;
+
+        public OrderEvent(
+            AilmentDomainService ailment, 
+            IRepository<CharacterAggregate, CharacterId> characterRepository, 
+            IRandomEx randomEx, OrderedItemsDomainService orderedItems,
+            OrderDecision orderDecision, 
+            OrderViewOutput orderView)
+        {
+            _ailment = ailment;
+            _characterRepository = characterRepository;
+            _randomEx = randomEx;
+            _orderedItems = orderedItems;
+            _orderDecision = orderDecision;
+            _orderView = orderView;
+        }
 
         public override void UseCase()
         {

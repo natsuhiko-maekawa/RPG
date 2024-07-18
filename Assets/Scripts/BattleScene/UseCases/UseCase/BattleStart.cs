@@ -17,6 +17,11 @@ namespace BattleScene.UseCases.UseCase
     {
         private readonly EnemiesDomainService _enemies;
 
+        public BattleStart(EnemiesDomainService enemies)
+        {
+            _enemies = enemies;
+        }
+
         public void Execute()
         {
             var enemyTypeIdList = new List<CharacterTypeId> { Bee, Dragon, Mantis, Shuten, Slime };

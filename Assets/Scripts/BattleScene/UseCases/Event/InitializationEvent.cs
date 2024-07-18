@@ -9,6 +9,14 @@ namespace BattleScene.UseCases.Event
         private readonly Initialization _initialization;
         private readonly AilmentViewOutput _ailmentView;
 
+        public InitializationEvent(
+            Initialization initialization, 
+            AilmentViewOutput ailmentView)
+        {
+            _initialization = initialization;
+            _ailmentView = ailmentView;
+        }
+
         public override StateCode GetStateCode()
         {
             return StateCode.InitializeEnemy;

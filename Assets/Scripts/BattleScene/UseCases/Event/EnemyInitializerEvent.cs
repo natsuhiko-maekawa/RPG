@@ -4,11 +4,19 @@ using BattleScene.UseCases.View.EnemyView;
 
 namespace BattleScene.UseCases.Event
 {
-    public class EnemyInitializerEvent : BaseEvent
+    internal class EnemyInitializerEvent : BaseEvent
     {
         private readonly BattleStart _battleStart;
         private readonly EnemyViewOutput _enemyView;
-        
+
+        public EnemyInitializerEvent(
+            BattleStart battleStart, 
+            EnemyViewOutput enemyView)
+        {
+            _battleStart = battleStart;
+            _enemyView = enemyView;
+        }
+
         public override void UseCase()
         {
             _battleStart.Execute();
@@ -21,7 +29,7 @@ namespace BattleScene.UseCases.Event
 
         public override StateCode GetStateCode()
         {
-            throw new System.NotImplementedException();
+            return StateCode.Order;
         }
     }
 }

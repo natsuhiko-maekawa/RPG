@@ -17,10 +17,12 @@ namespace BattleScene.UseCases.UseCase
         private readonly ISkillSelectorRepository _skillSelectorRepository;
 
         public Initialization(
+            PlayerDomainService player,
             IPlayerPropertyFactory playerPropertyFactory,
             ISelectorRepository selectorRepository,
             ISkillSelectorRepository skillSelectorRepository)
         {
+            _player = player;
             _playerPropertyFactory = playerPropertyFactory;
             _selectorRepository = selectorRepository;
             _skillSelectorRepository = skillSelectorRepository;

@@ -18,7 +18,9 @@ namespace BattleScene.UseCases
         {
             return stateCode switch
             {
-                StateCode.Initialize => _container.Resolve<InitializationEvent>().GetStateCode(),
+                StateCode.Initialize => _container.Resolve<InitializationEvent>().Execute(),
+                StateCode.InitializeEnemy => _container.Resolve<EnemyInitializerEvent>().Execute(),
+                StateCode.Order => _container.Resolve<OrderEvent>().Execute(),
                 _ => throw new ArgumentOutOfRangeException()
             };
         }

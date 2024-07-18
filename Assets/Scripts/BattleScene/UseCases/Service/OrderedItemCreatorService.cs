@@ -19,6 +19,22 @@ namespace BattleScene.UseCases.Service
         private readonly IRepository<OrderedItemEntity, OrderNumber> _orderedItemRepository;
         private readonly IRepository<SlipDamageEntity, SlipDamageId> _slipDamageRepository;
 
+        public OrderedItemCreatorService(
+            IRepository<ActionTimeEntity, CharacterId> actionTimeRepository,
+            IRepository<AilmentEntity, AilmentId> ailmentRepository, 
+            IRepository<BuffEntity, BuffId> buffRepository, 
+            IRepository<CharacterAggregate, CharacterId> characterRepository,
+            IRepository<OrderedItemEntity, OrderNumber> orderedItemRepository, 
+            IRepository<SlipDamageEntity, SlipDamageId> slipDamageRepository)
+        {
+            _actionTimeRepository = actionTimeRepository;
+            _ailmentRepository = ailmentRepository;
+            _buffRepository = buffRepository;
+            _characterRepository = characterRepository;
+            _orderedItemRepository = orderedItemRepository;
+            _slipDamageRepository = slipDamageRepository;
+        }
+
         public void Create(IList<CharacterId> characterList)
         {
             var orderedItemList = Enumerable

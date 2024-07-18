@@ -5,6 +5,7 @@
         NoTrigger,
         Initialize,
         InitializeEnemy,
+        Order,
         ResetAilment,
         SlipDamage,
         PlayerCantAction,

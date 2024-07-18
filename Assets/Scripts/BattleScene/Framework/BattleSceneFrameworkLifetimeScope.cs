@@ -20,7 +20,7 @@ namespace BattleScene.Framework
             builder.RegisterComponentInHierarchy<IPlayerStatusView>();
             builder.RegisterComponentInHierarchy<ISelectActionView>();
             builder.RegisterComponentInHierarchy<ISelectSkillView>();
-            builder.RegisterComponentInHierarchy<IAilmentViewInfoResource>();
+            // builder.RegisterComponentInHierarchy<IAilmentViewInfoResource>();
             builder.RegisterComponentInHierarchy<IEnemyViewInfoResource>();
             builder.RegisterComponentInHierarchy<IPlayerPropertyResource>();
             builder.RegisterComponentInHierarchy<IPropertyResource>();
