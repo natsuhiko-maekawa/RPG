@@ -206,6 +206,7 @@ namespace BattleScene.UseCases
             builder.Register<InitializationEvent>(Lifetime.Singleton);
             builder.Register<EnemyInitializerEvent>(Lifetime.Singleton);
             builder.Register<OrderEvent>(Lifetime.Singleton);
+            builder.Register<EnemySkillSelectorEvent>(Lifetime.Singleton);
             builder.Register<EventExecutor>(Lifetime.Singleton);
 
             builder.Register<OrderView>(Lifetime.Singleton);
