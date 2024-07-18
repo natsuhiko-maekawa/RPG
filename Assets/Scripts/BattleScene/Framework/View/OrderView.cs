@@ -41,7 +41,7 @@ namespace BattleScene.Framework.View
             _ailmentsIconArray = SpriteEx.CreateByGrid(ailmentsIconTexture, 4, 4);
         }
 
-        public async Task StartAnimation(List<OrderViewDto> dtoList)
+        public async Task StartAnimation(IList<OrderViewDto> dtoList)
         {
             float diff = 0;
 

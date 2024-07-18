@@ -2,6 +2,7 @@
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
+using BattleScene.UseCases.Output;
 using BattleScene.UseCases.StateMachine;
 using BattleScene.UseCases.UseCase;
 using BattleScene.UseCases.View.OrderView;
@@ -18,14 +19,14 @@ namespace BattleScene.UseCases.Event
         private readonly IRandomEx _randomEx;
         private readonly OrderedItemsDomainService _orderedItems;
         private readonly OrderDecision _orderDecision;
-        private readonly OrderViewOutput _orderView;
+        private readonly OrderView _orderView;
 
         public OrderEvent(
             AilmentDomainService ailment, 
             IRepository<CharacterAggregate, CharacterId> characterRepository, 
             IRandomEx randomEx, OrderedItemsDomainService orderedItems,
             OrderDecision orderDecision, 
-            OrderViewOutput orderView)
+            OrderView orderView)
         {
             _ailment = ailment;
             _characterRepository = characterRepository;

@@ -3,6 +3,7 @@ using BattleScene.Domain.Expression;
 using BattleScene.UseCases.Event;
 using BattleScene.UseCases.OldEvent;
 using BattleScene.UseCases.OldEvent.Runner;
+using BattleScene.UseCases.Output;
 using BattleScene.UseCases.Service;
 using BattleScene.UseCases.Skill;
 using BattleScene.UseCases.Skill.SkillElement;
@@ -208,6 +209,8 @@ namespace BattleScene.UseCases
             builder.Register<EnemyInitializerEvent>(Lifetime.Singleton);
             builder.Register<OrderEvent>(Lifetime.Singleton);
             builder.Register<EventExecutor>(Lifetime.Singleton);
+
+            builder.Register<OrderView>(Lifetime.Singleton);
         }
     }
 }

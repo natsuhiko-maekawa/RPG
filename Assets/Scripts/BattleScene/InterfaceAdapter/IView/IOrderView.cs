@@ -6,6 +6,6 @@ namespace BattleScene.InterfaceAdapter.IView
 {
     public interface IOrderView
     {
-        public Task StartAnimation(List<OrderViewDto> dtoList);
+        public Task StartAnimation(IList<OrderViewDto> dtoList);
     }
 }
