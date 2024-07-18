@@ -5,7 +5,6 @@ using BattleScene.Domain.IRepository;
 using BattleScene.UseCases.Output;
 using BattleScene.UseCases.StateMachine;
 using BattleScene.UseCases.UseCase;
-using BattleScene.UseCases.View.OrderView;
 using Utility.Interface;
 using static BattleScene.Domain.Code.AilmentCode;
 

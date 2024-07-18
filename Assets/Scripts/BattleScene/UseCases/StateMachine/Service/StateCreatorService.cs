@@ -17,7 +17,7 @@ namespace BattleScene.UseCases.StateMachine.Service
         {
             return stateCode switch
             {
-                StateCode.Initialize => _container.Resolve<InitializeStateCreatorService>().Create(),
+                // StateCode.Initialize => _container.Resolve<InitializeStateCreatorService>().Create(),
                 StateCode.EnemySkill => _container.Resolve<EnemySkillStateCreatorService>().Create(),
                 _ => throw new ArgumentOutOfRangeException()
             };

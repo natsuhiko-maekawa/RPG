@@ -1,7 +1,6 @@
 ﻿using System;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.Id;
-using BattleScene.Domain.Interface;
 using JetBrains.Annotations;
 
 namespace BattleScene.Domain.Entity
@@ -19,8 +18,6 @@ namespace BattleScene.Domain.Entity
         }
 
         public override OrderNumber Id { get; }
-        [Obsolete]
-        public IOrderedItem ObsoleteOrderedItem { get; }
         [CanBeNull] private CharacterId CharacterId { get; }
         private AilmentCode AilmentCode { get; }
         private SlipDamageCode SlipDamageCode { get; }

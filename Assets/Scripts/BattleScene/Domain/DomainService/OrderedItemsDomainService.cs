@@ -19,12 +19,6 @@ namespace BattleScene.Domain.DomainService
             _orderedItemRepository = orderedItemRepository;
         }
 
-        [Obsolete]
-        public IOrderedItem FirstItem()
-        {
-            throw new NotImplementedException();
-        }
-
         public OrderedItemEntity First()
         {
             return _orderedItemRepository.Select()

@@ -72,9 +72,8 @@ namespace BattleScene.InterfaceAdapter.Service
         private string ReplaceActor(string message)
         {
             if (!message.Contains(Actor)) return message;
-            if (_orderedItems.FirstItem() is not OrderedCharacterValueObject orderedCharacter)
+            if (!_orderedItems.First().TryGetCharacterId(out var characterId))
                 throw new InvalidOperationException();
-            var characterId = orderedCharacter.CharacterId;
             var actorName = _characterRepository.Select(characterId).IsPlayer()
                 ? _playerViewInfoFactory.Create().PlayerName
                 : _enemyViewInfoFactory.Create(_characterRepository.Select(characterId).Property.CharacterTypeId)
@@ -119,9 +118,8 @@ namespace BattleScene.InterfaceAdapter.Service
         private string ReplaceSkill(string message)
         {
             if (!message.Contains(Skill)) return message;
-            if (_orderedItems.FirstItem() is not OrderedCharacterValueObject orderedCharacter)
+            if (!_orderedItems.First().TryGetCharacterId(out var characterId))
                 throw new InvalidOperationException();
-            var characterId = orderedCharacter.CharacterId;
             var skillCode = _skillRepository.Select(characterId).SkillCode;
             var skillName = _skillViewInfoFactory.Create(skillCode).SkillName;
             return message.Replace(Skill, skillName);
@@ -130,9 +128,8 @@ namespace BattleScene.InterfaceAdapter.Service
         private string ReplaceTarget(string message)
         {
             if (!message.Contains(Target)) return message;
-            if (_orderedItems.FirstItem() is not OrderedCharacterValueObject orderedCharacter)
+            if (!_orderedItems.First().TryGetCharacterId(out var characterId))
                 throw new InvalidOperationException();
-            var characterId = orderedCharacter.CharacterId;
             var targetNameList = _targetRepository.Select(characterId).TargetIdList
                 .Select(x => _characterRepository.Select(x).IsPlayer()
                     ? _playerViewInfoFactory.Create().PlayerName

@@ -22,8 +22,6 @@ using BattleScene.UseCases.View.FrameView.OutputDataFactory;
 using BattleScene.UseCases.View.HitPointBarView.OutputDataFactory;
 using BattleScene.UseCases.View.IsContinueView.OutputDataFactory;
 using BattleScene.UseCases.View.MessageView.OutputDataFactory;
-using BattleScene.UseCases.View.OrderView;
-using BattleScene.UseCases.View.OrderView.OutputDataFactory;
 using BattleScene.UseCases.View.PlayerImageView.OutputDataFactory;
 using BattleScene.UseCases.View.SelectActionView.OutputDataFactory;
 using BattleScene.UseCases.View.SelectSkillView.OutputDataFactory;
@@ -114,7 +112,7 @@ namespace BattleScene.UseCases
             builder.Register<DamageMessageOutputDataFactory>(Lifetime.Singleton);
             builder.Register<MessageOutputDataFactory>(Lifetime.Singleton);
             builder.Register<SelectSkillMessageOutputDataFactory>(Lifetime.Singleton);
-            builder.Register<OrderOutputDataFactory>(Lifetime.Singleton);
+            // builder.Register<OrderOutputDataFactory>(Lifetime.Singleton);
             builder.Register<AilmentPlayerImageOutputDataFactory>(Lifetime.Singleton);
             builder.Register<PlayerAttackPlayerImageOutputDataFactory>(Lifetime.Singleton);
             builder.Register<PlayerImageOutputDataFactory>(Lifetime.Singleton);
@@ -198,11 +196,11 @@ namespace BattleScene.UseCases
 
             builder.Register<AilmentViewOutput>(Lifetime.Singleton);
             builder.Register<EnemyViewOutput>(Lifetime.Singleton);
-            builder.Register<OrderViewOutput>(Lifetime.Singleton);
+            // builder.Register<OrderViewOutput>(Lifetime.Singleton);
 
             builder.Register<StateMachine.StateMachine>(Lifetime.Singleton);
             builder.Register<StateCreatorService>(Lifetime.Singleton);
-            builder.Register<InitializeStateCreatorService>(Lifetime.Singleton);
+            // builder.Register<InitializeStateCreatorService>(Lifetime.Singleton);
             builder.Register<EnemySkillStateCreatorService>(Lifetime.Singleton);
 
             builder.Register<InitializationEvent>(Lifetime.Singleton);
