@@ -1,5 +1,8 @@
 ﻿using System.Collections.Immutable;
 using System.Linq;
+using BattleScene.Domain.Aggregate;
+using BattleScene.Domain.Entity;
+using BattleScene.Domain.Id;
 using BattleScene.Domain.IFactory;
 using BattleScene.Domain.IRepository;
 using BattleScene.InterfaceAdapter.IView;
@@ -10,14 +13,14 @@ namespace BattleScene.InterfaceAdapter.Presenter.EnemyView
 {
     internal class EnemyViewPresenter : IEnemyViewPresenter
     {
-        private readonly ICharacterRepository _characterRepository;
-        private readonly IEnemyRepository _enemyRepository;
+        private readonly IRepository<CharacterAggregate, CharacterId> _characterRepository;
+        private readonly IRepository<EnemyEntity, CharacterId> _enemyRepository;
         private readonly IEnemyViewInfoFactory _enemyViewInfoFactory;
         private readonly IEnemiesView _enemiesView;
 
         public EnemyViewPresenter(
-            ICharacterRepository characterRepository,
-            IEnemyRepository enemyRepository,
+            IRepository<CharacterAggregate, CharacterId> characterRepository,
+            IRepository<EnemyEntity, CharacterId> enemyRepository,
             IEnemyViewInfoFactory enemyViewInfoFactory,
             IEnemiesView enemiesView)
         {

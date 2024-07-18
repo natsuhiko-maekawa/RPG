@@ -11,8 +11,5 @@ namespace BattleScene.Domain.IRepository
     {
         public CharacterAggregate Select(CharacterId characterId);
         public ImmutableList<CharacterAggregate> Select();
-        public void Update(CharacterAggregate character);
-        public void Update(IList<CharacterAggregate> characterList);
-        public void Delete(CharacterId characterId);
     }
 }

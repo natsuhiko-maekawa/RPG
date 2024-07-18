@@ -9,10 +9,10 @@ namespace BattleScene.Domain.DomainService
 {
     public class CharactersDomainService
     {
-        private readonly ICharacterRepository _characterRepository;
+        private readonly IRepository<CharacterAggregate, CharacterId> _characterRepository;
 
         public CharactersDomainService(
-            ICharacterRepository characterRepository)
+            IRepository<CharacterAggregate, CharacterId> characterRepository)
         {
             _characterRepository = characterRepository;
         }
