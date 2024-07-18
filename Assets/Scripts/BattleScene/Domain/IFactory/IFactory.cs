@@ -1,7 +1,7 @@
 ﻿using System.Collections.Immutable;
-using BattleScene.InterfaceAdapter.DataAccess.Factory.Dto;
+using BattleScene.Domain.Interface;
 
-namespace BattleScene.InterfaceAdapter.DataAccess.IResource
+namespace BattleScene.Domain.IFactory
 {
     public interface IFactory<TItem, in TId>
         where TItem : IUniqueItem<TId>

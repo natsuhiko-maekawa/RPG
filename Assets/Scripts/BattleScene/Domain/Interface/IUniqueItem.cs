@@ -1,4 +1,4 @@
-﻿namespace BattleScene.InterfaceAdapter.DataAccess.Factory.Dto
+﻿namespace BattleScene.Domain.Interface
 {
     public interface IUniqueItem<out TId>
     {

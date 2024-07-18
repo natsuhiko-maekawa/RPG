@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Collections.Immutable;
+using BattleScene.Domain.Interface;
 using BattleScene.InterfaceAdapter.DataAccess.Factory.Dto;
 using UnityEngine;
 
