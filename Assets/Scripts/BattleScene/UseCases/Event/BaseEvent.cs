@@ -8,11 +8,11 @@ namespace BattleScene.UseCases.Event
         {
             UseCase();
             Output();
-            return StateCode;
+            return GetStateCode();
         }
 
         public abstract void UseCase();
         public abstract void Output();
-        public abstract StateCode StateCode { get; set; }
+        public abstract StateCode GetStateCode();
     }
 }
