@@ -4,21 +4,24 @@ using UnityEngine;
 
 namespace BattleScene.InterfaceAdapter.DataAccess.Factory.Dto
 {
+
     [Serializable]
-    public class PlayerViewInfoValueObject : IUniqueItem<PlayerImageCode>, ISerializationCallbackReceiver
+    public class PlayerViewInfoValueObject : IUniqueItem<CharacterTypeId>, ISerializationCallbackReceiver
     {
         [SerializeField] private string playerImageCode;
-        public PlayerImageCode Id { get; private set; }
-        public string PlayerImagePath { get; private set; }
-        
+        [SerializeField] private string playerName;
+        public CharacterTypeId Id { get; private set; }
+        public string PlayerName { get; private set; }
+    
         public void OnBeforeSerialize()
         {
         }
 
         public void OnAfterDeserialize()
         {
-            Id = Enum.Parse<PlayerImageCode>(playerImageCode);
-            PlayerImagePath = $"{playerImageCode}[{playerImageCode}]";
+            Id = Enum.Parse<CharacterTypeId>(playerImageCode);
+            PlayerName = playerName;
         }
     }
+    
 }

@@ -5,6 +5,8 @@ using BattleScene.Domain.DomainService;
 using BattleScene.Domain.IFactory;
 using BattleScene.Domain.IRepository;
 using BattleScene.Domain.ValueObject;
+using BattleScene.InterfaceAdapter.DataAccess.Factory.Dto;
+using BattleScene.InterfaceAdapter.DataAccess.IResource;
 
 namespace BattleScene.InterfaceAdapter.Service
 {
@@ -23,7 +25,7 @@ namespace BattleScene.InterfaceAdapter.Service
         private readonly IEnemyViewInfoFactory _enemyViewInfoFactory;
         private readonly IMessageFactory _messageFactory;
         private readonly OrderedItemsDomainService _orderedItems;
-        private readonly IPlayerViewInfoFactory _playerViewInfoFactory;
+        private readonly IFactory<PlayerViewInfoValueObject, CharacterTypeId> _playerViewInfoFactory;
         private readonly ResultDomainService _result;
         private readonly ISkillRepository _skillRepository;
         private readonly ISkillViewInfoFactory _skillViewInfoFactory;
@@ -36,7 +38,7 @@ namespace BattleScene.InterfaceAdapter.Service
             IEnemyViewInfoFactory enemyViewInfoFactory,
             IMessageFactory messageFactory,
             OrderedItemsDomainService orderedItems,
-            IPlayerViewInfoFactory playerViewInfoFactory,
+            IFactory<PlayerViewInfoValueObject, CharacterTypeId> playerViewInfoFactory,
             ResultDomainService result,
             ISkillRepository skillRepository,
             ISkillViewInfoFactory skillViewInfoFactory,
@@ -75,7 +77,7 @@ namespace BattleScene.InterfaceAdapter.Service
             if (!_orderedItems.First().TryGetCharacterId(out var characterId))
                 throw new InvalidOperationException();
             var actorName = _characterRepository.Select(characterId).IsPlayer()
-                ? _playerViewInfoFactory.Create().PlayerName
+                ? _playerViewInfoFactory.Create(CharacterTypeId.Player).PlayerName
                 : _enemyViewInfoFactory.Create(_characterRepository.Select(characterId).Property.CharacterTypeId)
                     .EnemyName;
             return message.Replace(Actor, actorName);
@@ -132,7 +134,7 @@ namespace BattleScene.InterfaceAdapter.Service
                 throw new InvalidOperationException();
             var targetNameList = _targetRepository.Select(characterId).TargetIdList
                 .Select(x => _characterRepository.Select(x).IsPlayer()
-                    ? _playerViewInfoFactory.Create().PlayerName
+                    ? _playerViewInfoFactory.Create(CharacterTypeId.Player).PlayerName
                     : _enemyViewInfoFactory.Create(_characterRepository.Select(x).Property.CharacterTypeId).EnemyName)
                 .ToList();
             var totalSuffix = targetNameList.Count == 1 ? "" : "たち";
