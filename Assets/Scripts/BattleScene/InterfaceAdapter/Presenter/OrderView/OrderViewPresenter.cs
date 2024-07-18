@@ -9,7 +9,7 @@ using BattleScene.Domain.IFactory;
 using BattleScene.Domain.IRepository;
 using BattleScene.InterfaceAdapter.IView;
 using BattleScene.InterfaceAdapter.Service;
-using BattleScene.UseCases.View.OrderView.OutputBoundary;
+using BattleScene.UseCases.IPresenter;
 
 namespace BattleScene.InterfaceAdapter.Presenter.OrderView
 {

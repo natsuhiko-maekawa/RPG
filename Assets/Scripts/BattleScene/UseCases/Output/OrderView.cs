@@ -1,8 +1,8 @@
 ﻿using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
+using BattleScene.UseCases.IPresenter;
 using BattleScene.UseCases.Output.Interface;
-using BattleScene.UseCases.View.OrderView.OutputBoundary;
 
 namespace BattleScene.UseCases.Output
 {

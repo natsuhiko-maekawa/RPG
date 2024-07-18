@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using BattleScene.Domain.Entity;
 
-namespace BattleScene.UseCases.View.OrderView.OutputBoundary
+namespace BattleScene.UseCases.IPresenter
 {
     public interface IOrderViewPresenter
     {
