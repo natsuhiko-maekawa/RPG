@@ -4,6 +4,7 @@
     {
         NoTrigger,
         Initialize,
+        InitializeEnemy,
         ResetAilment,
         SlipDamage,
         PlayerCantAction,
