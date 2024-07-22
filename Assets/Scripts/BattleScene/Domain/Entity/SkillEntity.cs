@@ -6,16 +6,16 @@ using BattleScene.Domain.Interface;
 
 namespace BattleScene.Domain.Entity
 {
-    public class SkillEntity
+    public class SkillEntity : BaseEntity<SkillEntity, CharacterId>
     {
         private ImmutableQueue<ISkillElement> _skillServiceQueue;
 
         public SkillEntity(
-            CharacterId characterId,
+            CharacterId id,
             SkillCode skillCode,
             ISkill abstractSkill)
         {
-            CharacterId = characterId;
+            Id = id;
             SkillCode = skillCode;
             AbstractSkill = abstractSkill;
             _skillServiceQueue = ImmutableQueue.Create(abstractSkill.GetSkillService()
@@ -23,7 +23,7 @@ namespace BattleScene.Domain.Entity
                 .ToArray());
         }
 
-        public CharacterId CharacterId { get; }
+        public override CharacterId Id { get; }
         public SkillCode SkillCode { get; }
         public ISkill AbstractSkill { get; }
 

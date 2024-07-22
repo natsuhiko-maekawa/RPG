@@ -14,7 +14,7 @@ namespace BattleScene.InterfaceAdapter.DataAccess.Repository
         public SkillEntity Select(CharacterId characterId)
         {
             return _skillSet
-                .First(x => Equals(x.CharacterId, characterId));
+                .First(x => Equals(x.Id, characterId));
         }
 
         public void Update(SkillEntity skillEntity)

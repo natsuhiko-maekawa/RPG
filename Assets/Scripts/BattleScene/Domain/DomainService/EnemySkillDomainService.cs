@@ -53,7 +53,7 @@ namespace BattleScene.Domain.DomainService
             var skillCode = _randomEx.Choice(skillCodeList);
             var skill = _skillFactory.Create(skillCode);
             var skillEntity = new SkillEntity(
-                characterId: characterId,
+                id: characterId,
                 skillCode: skillCode,
                 abstractSkill: skill);
 
