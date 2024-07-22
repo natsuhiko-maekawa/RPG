@@ -11,13 +11,13 @@ namespace BattleScene.Domain.DomainService
 {
     public class TargetDomainService
     {
-        private readonly ICharacterRepository _characterRepository;
+        private readonly IRepository<CharacterAggregate,CharacterId> _characterRepository;
         private readonly CharactersDomainService _characters;
         private readonly IRepository<HitPointAggregate, CharacterId> _hitPointRepository;
         private readonly IRandomEx _randomEx;
 
         public TargetDomainService(
-            ICharacterRepository characterRepository,
+            IRepository<CharacterAggregate,CharacterId> characterRepository,
             CharactersDomainService characters,
             IRepository<HitPointAggregate, CharacterId> hitPointRepository,
             IRandomEx randomEx)
