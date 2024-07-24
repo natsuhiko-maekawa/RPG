@@ -2,7 +2,7 @@
 using BattleScene.Domain.Code;
 using BattleScene.Domain.ValueObject;
 
-namespace BattleScene.UseCases.Skill.SkillElement
+namespace BattleScene.InterfaceAdapter.Skill.SkillElement
 {
     public class BurningReset : AbstractReset
     {

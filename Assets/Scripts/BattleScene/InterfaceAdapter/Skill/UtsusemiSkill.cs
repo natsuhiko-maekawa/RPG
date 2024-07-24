@@ -1,10 +1,10 @@
 using System.Collections.Immutable;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.ValueObject;
-using BattleScene.UseCases.Skill.SkillElement;
+using BattleScene.InterfaceAdapter.Skill.SkillElement;
 using Range = BattleScene.Domain.Code.Range;
 
-namespace BattleScene.UseCases.Skill
+namespace BattleScene.InterfaceAdapter.Skill
 {
     /// <summary>
     ///     空蝉

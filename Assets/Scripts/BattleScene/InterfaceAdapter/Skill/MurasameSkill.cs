@@ -4,9 +4,9 @@ using BattleScene.Domain.Entity;
 using BattleScene.Domain.IRepository;
 using BattleScene.Domain.OldId;
 using BattleScene.Domain.ValueObject;
-using BattleScene.UseCases.Skill.SkillElement;
+using BattleScene.InterfaceAdapter.Skill.SkillElement;
 
-namespace BattleScene.UseCases.Skill
+namespace BattleScene.InterfaceAdapter.Skill
 {
     /// <summary>
     ///     村雨

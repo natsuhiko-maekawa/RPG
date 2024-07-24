@@ -1,6 +1,6 @@
 ﻿using BattleScene.Domain.ValueObject;
 
-namespace BattleScene.UseCases.Skill.SkillElement
+namespace BattleScene.InterfaceAdapter.Skill.SkillElement
 {
     public class Nadegiri : AbstractDamage
     {

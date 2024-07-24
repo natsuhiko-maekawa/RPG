@@ -2,11 +2,11 @@ using System;
 using System.Collections.Immutable;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.ValueObject;
-using BattleScene.UseCases.Skill.SkillElement;
+using BattleScene.InterfaceAdapter.Skill.SkillElement;
 using Utility.Interface;
 using Range = BattleScene.Domain.Code.Range;
 
-namespace BattleScene.UseCases.Skill
+namespace BattleScene.InterfaceAdapter.Skill
 {
     /// <summary>
     ///     命を刈る鎌

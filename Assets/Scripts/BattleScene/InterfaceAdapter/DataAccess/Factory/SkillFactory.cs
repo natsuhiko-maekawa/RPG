@@ -2,7 +2,7 @@
 using BattleScene.Domain.Code;
 using BattleScene.Domain.IFactory;
 using BattleScene.Domain.ValueObject;
-using BattleScene.UseCases.Skill;
+using BattleScene.InterfaceAdapter.Skill;
 using VContainer;
 using static BattleScene.Domain.Code.SkillCode;
 
