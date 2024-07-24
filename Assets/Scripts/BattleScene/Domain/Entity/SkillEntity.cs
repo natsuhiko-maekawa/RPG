@@ -3,6 +3,7 @@ using System.Linq;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.Interface;
 using BattleScene.Domain.OldId;
+using BattleScene.Domain.ValueObject;
 
 namespace BattleScene.Domain.Entity
 {
@@ -21,6 +22,13 @@ namespace BattleScene.Domain.Entity
             _skillServiceQueue = ImmutableQueue.Create(abstractSkill.GetSkillService()
                 .OrderBy(x => x)
                 .ToArray());
+        }
+
+        public SkillEntity(
+            CharacterId id,
+            SkillValueObject skill)
+        {
+            
         }
 
         public override CharacterId Id { get; }

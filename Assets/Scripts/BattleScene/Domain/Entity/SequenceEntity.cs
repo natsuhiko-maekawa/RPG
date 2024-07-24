@@ -11,7 +11,7 @@ namespace BattleScene.Domain.Entity
         public int Turn { get; }
         public CharacterId ActorId { get; }
         public ImmutableList<CharacterId> TargetIdList { get; }
-        public AbstractSkill Skill { get; }
+        public SkillValueObject Skill { get; }
         public AbstractAilment Ailment { get; }
 
         public SequenceEntity(

@@ -19,7 +19,7 @@ namespace BattleScene.Domain.DomainService
         private readonly IRepository<OrderedItemEntity, OrderNumber> _orderItemsRepository;
         private readonly IRepository<HitPointAggregate, CharacterId> _hitPointRepository;
         private readonly IRandomEx _randomEx;
-        private readonly IFactory<AbstractSkill, SkillCode> _skillFactory;
+        private readonly IFactory<SkillValueObject, SkillCode> _skillFactory;
         private readonly ISkillRepository _skillRepository;
         private readonly ITargetRepository _targetRepository;
 
@@ -27,7 +27,7 @@ namespace BattleScene.Domain.DomainService
             IRepository<CharacterAggregate, CharacterId> characterRepository,
             IRepository<OrderedItemEntity, OrderNumber> orderItemsRepository,
             IRandomEx randomEx,
-            IFactory<AbstractSkill, SkillCode> skillFactory,
+            IFactory<SkillValueObject, SkillCode> skillFactory,
             ISkillRepository skillRepository,
             ITargetRepository targetRepository)
         {
@@ -54,8 +54,7 @@ namespace BattleScene.Domain.DomainService
             var skill = _skillFactory.Create(skillCode);
             var skillEntity = new SkillEntity(
                 id: characterId,
-                skillCode: skillCode,
-                abstractSkill: skill);
+                skill: skill);
 
             _skillRepository.Update(skillEntity);
 

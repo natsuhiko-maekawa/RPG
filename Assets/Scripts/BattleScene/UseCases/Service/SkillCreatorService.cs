@@ -20,11 +20,10 @@ namespace BattleScene.UseCases.Service
         {
             return new SkillEntity(
                 characterId,
-                skillCode,
                 CreateSkill(skillCode));
         }
 
-        private AbstractSkill CreateSkill(SkillCode skillCode)
+        private SkillValueObject CreateSkill(SkillCode skillCode)
         {
             return skillCode switch
             {

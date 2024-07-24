@@ -8,9 +8,9 @@ namespace BattleScene.UseCases.Event
     public class SkillIterator
     {
         private readonly AilmentSkillService _ailmentSkill;
-        private AbstractSkill _skill;
+        private SkillValueObject _skill;
 
-        public void SetSkill(AbstractSkill skill)
+        public void SetSkill(SkillValueObject skill)
         {
             _skill = skill;
         }
@@ -27,7 +27,7 @@ namespace BattleScene.UseCases.Event
             
             foreach (var ailment in _skill.AilmentList)
             {
-                _ailmentSkill.Execute(_skill, ailment);
+                // _ailmentSkill.Execute(_skill, ailment);
                 yield return StateCode.Ailment;
             }
 

@@ -23,7 +23,7 @@ namespace BattleScene.Domain.Entity
         public ResultEntity(
             TurnNumber turn,
             SequenceNumber sequence,
-            AbstractSkill skill)
+            SkillValueObject skill)
         {
             Turn = turn;
             Id = sequence;
@@ -32,7 +32,7 @@ namespace BattleScene.Domain.Entity
 
         public ResultEntity(TurnNumber turn,
             SequenceNumber sequence,
-            AbstractSkill skill,
+            SkillValueObject skill,
             ImmutableList<CharacterId> targetIdList,
             AilmentCode ailmentCode)
         {
@@ -47,7 +47,7 @@ namespace BattleScene.Domain.Entity
         public override SequenceNumber Id { get; }
         [Obsolete]
         public IResult Result { get; }
-        public AbstractSkill Skill { get; }
+        public SkillValueObject Skill { get; }
         public ImmutableList<CharacterId> TargetIdList { get; }
         public AilmentCode AilmentCode { get; }
 

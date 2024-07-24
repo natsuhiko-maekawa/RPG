@@ -26,7 +26,7 @@ namespace BattleScene.UseCases.Service
             _target = target;
         }
 
-        public ResultEntity Execute(AbstractSkill skill, AbstractDamage damageInfo)
+        public ResultEntity Execute(SkillValueObject skill, AbstractDamage damageInfo)
         {
             _orderedItems.First().TryGetCharacterId(out var actorId);
             var damageList = new List<DamageValueObject>();
