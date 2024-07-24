@@ -2,18 +2,13 @@
 
 namespace BattleScene.Domain.Entity
 {
-    public class SequenceEntity
+    public class SequenceEntity : BaseEntity<SequenceEntity, SequenceNumber>
     {
-        private int _sequence;
+        public override SequenceNumber Id { get; }
 
-        public void Increment()
+        public SequenceEntity()
         {
-            ++_sequence;
-        }
-
-        public SequenceNumber Get()
-        {
-            return new SequenceNumber(_sequence);
+            
         }
     }
 }

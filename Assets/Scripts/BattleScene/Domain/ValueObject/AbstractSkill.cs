@@ -34,14 +34,14 @@ namespace BattleScene.Domain.ValueObject
 
         public abstract MessageCode GetAttackMessage();
 
-        protected ImmutableList<AbstractAilment> AilmentList {  get; set; }
-        protected ImmutableList<AbstractSlipDamage> SlipDamageList { get; set; }
-        protected ImmutableList<AbstractDestroyPart> DestroyPartList { get; set; }
-        protected ImmutableList<AbstractDamage> DamageList { get; set; }
-        protected ImmutableList<AbstractBuff> BuffList { get; set; }
-        protected ImmutableList<AbstractCure> CureList { get; set; }
-        protected ImmutableList<AbstractReset> ResetList { get; set; }
-        protected ImmutableList<AbstractRestoreTechnicalPoint> RestoreTechnicalPointList { get; set; }
+        public ImmutableList<AbstractAilment> AilmentList {  get; set; } = ImmutableList<AbstractAilment>.Empty;
+        public ImmutableList<AbstractSlipDamage> SlipDamageList { get; set; }
+        public ImmutableList<AbstractDestroyPart> DestroyPartList { get; set; }
+        public ImmutableList<AbstractDamage> DamageList { get; set; }
+        public ImmutableList<AbstractBuff> BuffList { get; set; }
+        public ImmutableList<AbstractCure> CureList { get; set; }
+        public ImmutableList<AbstractReset> ResetList { get; set; }
+        public ImmutableList<AbstractRestoreTechnicalPoint> RestoreTechnicalPointList { get; set; }
 
         [Obsolete]
         public ImmutableList<ISkillElement> GetSkillService()

@@ -1,5 +1,6 @@
 ﻿using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Expression;
+using BattleScene.Domain.ValueObject;
 using BattleScene.UseCases.Event;
 using BattleScene.UseCases.OldEvent;
 using BattleScene.UseCases.OldEvent.Runner;

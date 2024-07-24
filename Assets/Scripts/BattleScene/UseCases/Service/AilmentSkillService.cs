@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Immutable;
 using System.Linq;
 using BattleScene.Domain.DomainService;
@@ -15,6 +16,7 @@ namespace BattleScene.UseCases.Service
         private const float Threshold = 40.0f; // 大きいほど命中しやすくなる
         private readonly ICharacterRepository _characterRepository;
         private readonly OrderedItemsDomainService _orderedItems;
+        
         private readonly IRandomEx _randomEx;
         private readonly ResultCreatorDomainService _resultCreator;
         private readonly TargetDomainService _target;
@@ -33,25 +35,26 @@ namespace BattleScene.UseCases.Service
             _target = target;
         }
 
-        public ResultEntity Execute(SkillEntity skill)
+        public ResultEntity Execute(AbstractSkill skill, AbstractAilment ailment)
         {
-            var actorId = _orderedItems.FirstCharacterId();
-            var ailmentSkill = (IAilmentSkill)skill.FirstSkillService();
-            var targetIdList = _target.Get(actorId, skill.AbstractSkill.GetRange())
-                .Where(x => IsTarget(x, ailmentSkill.GetLuckRate()))
+            _orderedItems.First().TryGetCharacterId(out var actorId);
+            var targetIdList = _target.Get(actorId, skill.GetRange())
+                .Where(x => IsTarget(x, ailment.GetLuckRate()))
                 .ToImmutableList();
 
-            var ailmentSkillResult = targetIdList.IsEmpty
-                ? new AilmentSkillResultValueObject(
-                    _orderedItems.FirstCharacterId(),
-                    skill.SkillCode)
-                : new AilmentSkillResultValueObject(
-                    _orderedItems.FirstCharacterId(),
-                    skill.SkillCode,
-                    ailmentSkill.GetAilmentsCode(),
-                    targetIdList);
+            // var ailmentSkillResult = targetIdList.IsEmpty
+            //     ? new AilmentSkillResultValueObject(
+            //         _orderedItems.FirstCharacterId(),
+            //         skill.SkillCode)
+            //     : new AilmentSkillResultValueObject(
+            //         _orderedItems.FirstCharacterId(),
+            //         skill.SkillCode,
+            //         ailmentSkill.GetAilmentsCode(),
+            //         targetIdList);
+            //
+            // return _resultCreator.Create(ailmentSkillResult);
 
-            return _resultCreator.Create(ailmentSkillResult);
+            throw new NotImplementedException();
         }
 
         private bool IsTarget(CharacterId target, float luckRate)

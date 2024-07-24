@@ -4,18 +4,18 @@ using BattleScene.Domain.Id;
 namespace BattleScene.Domain.Entity
 {
     [Obsolete]
-    public class TurnEntity
+    public class OldSequenceEntity
     {
-        private int _turn;
+        private int _sequence;
 
         public void Increment()
         {
-            ++_turn;
+            ++_sequence;
         }
 
-        public TurnNumber Get()
+        public SequenceNumber Get()
         {
-            return new TurnNumber(_turn);
+            return new SequenceNumber(_sequence);
         }
     }
 }
