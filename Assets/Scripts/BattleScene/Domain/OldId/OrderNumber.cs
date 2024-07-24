@@ -1,4 +1,4 @@
-﻿namespace BattleScene.Domain.Id
+﻿namespace BattleScene.Domain.OldId
 {
     public class OrderNumber : Number<OrderNumber>
     {

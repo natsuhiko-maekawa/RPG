@@ -1,7 +1,7 @@
 ﻿using BattleScene.Domain.Code;
 using BattleScene.Domain.Interface;
 
-namespace BattleScene.Domain.Id
+namespace BattleScene.Domain.OldId
 {
     public class AilmentId : AbstractId<AilmentId, HashId>
     {

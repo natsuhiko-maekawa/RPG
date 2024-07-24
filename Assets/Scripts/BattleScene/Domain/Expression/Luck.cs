@@ -1,6 +1,6 @@
-﻿using BattleScene.Domain.Id;
-using BattleScene.Domain.Interface;
+﻿using BattleScene.Domain.Interface;
 using BattleScene.Domain.IRepository;
+using BattleScene.Domain.OldId;
 using Utility.Interface;
 
 namespace BattleScene.Domain.Expression

@@ -1,6 +1,6 @@
 ﻿using BattleScene.Domain.Interface;
 
-namespace BattleScene.Domain.Id
+namespace BattleScene.Domain.OldId
 {
     public class HashId : AbstractId<HashId, int>
     {

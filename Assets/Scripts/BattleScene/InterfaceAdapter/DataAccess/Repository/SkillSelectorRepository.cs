@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using BattleScene.Domain.Aggregate;
-using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
+using BattleScene.Domain.OldId;
 using Utility;
 
 namespace BattleScene.InterfaceAdapter.DataAccess.Repository

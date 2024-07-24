@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using BattleScene.Domain.Id;
+using BattleScene.Domain.OldId;
 
 namespace BattleScene.UseCases.View.EnemyView.OutputData
 {

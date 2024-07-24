@@ -1,6 +1,6 @@
 ﻿using System.Linq;
-using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
+using BattleScene.Domain.OldId;
 using BattleScene.Domain.ValueObject;
 
 namespace BattleScene.Domain.Expression

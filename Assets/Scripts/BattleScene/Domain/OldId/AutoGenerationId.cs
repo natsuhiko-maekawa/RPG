@@ -1,7 +1,7 @@
 ﻿using System;
 using BattleScene.Domain.Interface;
 
-namespace BattleScene.Domain.Id
+namespace BattleScene.Domain.OldId
 {
     public abstract class AutoGenerationId : AbstractId<AutoGenerationId, Guid>, IComparable<AutoGenerationId>
     {

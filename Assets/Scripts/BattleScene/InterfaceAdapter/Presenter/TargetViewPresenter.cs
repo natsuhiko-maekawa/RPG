@@ -1,6 +1,6 @@
 ﻿using BattleScene.Domain.Entity;
-using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
+using BattleScene.Domain.OldId;
 using BattleScene.InterfaceAdapter.IView;
 using BattleScene.InterfaceAdapter.Presenter.FrameView;
 using BattleScene.UseCases.IPresenter;

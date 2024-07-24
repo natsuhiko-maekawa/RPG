@@ -1,5 +1,5 @@
-using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
+using BattleScene.Domain.OldId;
 
 namespace BattleScene.UseCases.Service
 {

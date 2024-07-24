@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using BattleScene.Domain.Entity;
-using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
+using BattleScene.Domain.OldId;
 
 namespace BattleScene.InterfaceAdapter.DataAccess.Repository
 {

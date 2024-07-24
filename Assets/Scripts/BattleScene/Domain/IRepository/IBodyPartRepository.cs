@@ -2,7 +2,7 @@
 using System.Collections.Immutable;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.Entity;
-using BattleScene.Domain.Id;
+using BattleScene.Domain.OldId;
 
 namespace BattleScene.Domain.IRepository
 {

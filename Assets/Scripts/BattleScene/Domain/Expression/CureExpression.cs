@@ -1,6 +1,6 @@
 ﻿using BattleScene.Domain.Aggregate;
-using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
+using BattleScene.Domain.OldId;
 using BattleScene.Domain.ValueObject;
 using Utility.Interface;
 

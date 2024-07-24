@@ -2,7 +2,7 @@
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Expression;
-using BattleScene.Domain.Id;
+using BattleScene.Domain.OldId;
 
 namespace BattleScene.Domain.ValueObject
 {

@@ -1,7 +1,7 @@
 ﻿using BattleScene.Domain.Code;
 using BattleScene.Domain.Entity;
-using BattleScene.Domain.Id;
 using BattleScene.Domain.Interface;
+using BattleScene.Domain.OldId;
 
 namespace BattleScene.Domain.Aggregate
 {

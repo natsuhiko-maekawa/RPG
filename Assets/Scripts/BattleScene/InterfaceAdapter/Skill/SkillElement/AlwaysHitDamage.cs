@@ -1,6 +1,6 @@
 ﻿using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Expression;
-using BattleScene.Domain.Id;
+using BattleScene.Domain.OldId;
 using BattleScene.Domain.ValueObject;
 
 namespace BattleScene.UseCases.Skill.SkillElement

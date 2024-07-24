@@ -1,7 +1,7 @@
 ﻿using System;
 using BattleScene.Domain.Interface;
 
-namespace BattleScene.Domain.Id
+namespace BattleScene.Domain.OldId
 {
     public abstract class Number<T> : AbstractId<Number<T>, int>, IComparable<T> where T : Number<T>
     {

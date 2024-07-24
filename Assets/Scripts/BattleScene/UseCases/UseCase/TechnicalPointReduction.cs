@@ -1,7 +1,7 @@
 ﻿using BattleScene.Domain.Aggregate;
 using BattleScene.Domain.DomainService;
-using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
+using BattleScene.Domain.OldId;
 using BattleScene.UseCases.UseCase.Interface;
 
 namespace BattleScene.UseCases.UseCase
