@@ -10,41 +10,15 @@ namespace BattleScene.UseCases.Skill
     /// </summary>
     internal class RaikiriSkill : AbstractSkill
     {
-        private readonly LightningDamage _lightningDamage;
+        public override SkillCode SkillCode { get; } = SkillCode.Raikiri;
+        public override int TechnicalPoint { get; } = 5;
+        public override ImmutableList<BodyPartCode> DependencyList { get; } = ImmutableList.Create(BodyPartCode.Arm);
+        public override Range Range { get; } = Range.Solo;
+        public override PlayerImageCode PlayerImageCode { get; } = PlayerImageCode.Katana;
+        public override MessageCode Description { get; } = MessageCode.RaikiriDescription;
+        public override MessageCode AttackMessageCode { get; } = MessageCode.AttackMessage;
 
-        public RaikiriSkill(LightningDamage lightningDamage)
-        {
-            DamageList = ImmutableList.Create<AbstractDamage>(lightningDamage);
-        }
-
-        public override int GetTechnicalPoint()
-        {
-            return 5;
-        }
-
-        public override Range GetRange()
-        {
-            return Range.Solo;
-        }
-
-        public override ImmutableList<BodyPartCode> GetDependencyList()
-        {
-            return ImmutableList.Create(BodyPartCode.Arm);
-        }
-
-        public override PlayerImageCode GetPlayerImageCode()
-        {
-            return PlayerImageCode.Katana;
-        }
-
-        public override MessageCode GetDescription()
-        {
-            return MessageCode.RaikiriDescription;
-        }
-
-        public override MessageCode GetAttackMessage()
-        {
-            return MessageCode.DamageMessage;
-        }
+        public override ImmutableList<AbstractDamage> DamageList { get; }
+            = ImmutableList.Create<AbstractDamage>(new LightningDamage());
     }
 }

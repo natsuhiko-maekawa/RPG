@@ -1,8 +1,10 @@
+using System;
 using System.Collections.Immutable;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.ValueObject;
 using BattleScene.UseCases.Skill.SkillElement;
-using Utility;
+using Utility.Interface;
+using Range = BattleScene.Domain.Code.Range;
 
 namespace BattleScene.UseCases.Skill
 {
@@ -11,33 +13,28 @@ namespace BattleScene.UseCases.Skill
     /// </summary>
     internal class PutScytheSkill : AbstractSkill
     {
-        private readonly RandomEx _randomEx;
+        private readonly IRandomEx _randomEx;
+        private readonly long _seed;
 
-        public PutScytheSkill(BasicDamage basicDamage, RandomEx randomEx)
+        public PutScytheSkill(
+            IRandomEx randomEx)
         {
             _randomEx = randomEx;
-            DamageList = ImmutableList.Create<AbstractDamage>(basicDamage);
+            _seed = DateTime.Now.Ticks;
         }
 
-        public override Range GetRange()
-        {
-            return Range.Solo;
-        }
+        public override SkillCode SkillCode { get; } = SkillCode.PutScythe;
+        public override ImmutableList<BodyPartCode> DependencyList { get; } = ImmutableList.Create(BodyPartCode.Arm);
+        public override Range Range { get; } = Range.Solo;
+        public override MessageCode AttackMessageCode => GetAttackMessageCode();
 
-        public override ImmutableList<BodyPartCode> GetDependencyList()
-        {
-            return ImmutableList.Create(BodyPartCode.Arm);
-        }
+        public override ImmutableList<AbstractDamage> DamageList { get; }
+            = ImmutableList.Create<AbstractDamage>(new BasicDamage());
 
-        public override PlayerImageCode GetPlayerImageCode()
-        {
-            return PlayerImageCode.Damaged;
-        }
-
-        public override MessageCode GetAttackMessage()
+        private MessageCode GetAttackMessageCode()
         {
             return _randomEx.Choice(
-                new[] { MessageCode.CutArmMessage, MessageCode.CutLegMessage, MessageCode.CutStomachMessage });
+                new[] { MessageCode.CutArmMessage, MessageCode.CutLegMessage, MessageCode.CutStomachMessage }, _seed);
         }
     }
 }

@@ -11,27 +11,14 @@ namespace BattleScene.UseCases.Skill
     /// </summary>
     internal class NumbLiquidSkill : AbstractSkill
     {
-        public NumbLiquidSkill(
-            BasicDamage basicDamage,
-            Paralysis paralysis)
-        {
-            DamageList = ImmutableList.Create<AbstractDamage>(basicDamage);
-            AilmentList = ImmutableList.Create<AbstractAilment>(paralysis);
-        }
+        public override SkillCode SkillCode { get; } = SkillCode.NumbLiquid;
+        public override Range Range { get; } = Range.Solo;
+        public override MessageCode AttackMessageCode { get; } = MessageCode.NumbLiquidMessage;
 
-        public override PlayerImageCode GetPlayerImageCode()
-        {
-            return PlayerImageCode.Damaged;
-        }
+        public override ImmutableList<AbstractDamage> DamageList { get; }
+            = ImmutableList.Create<AbstractDamage>(new BasicDamage());
 
-        public override Range GetRange()
-        {
-            return Range.Solo;
-        }
-
-        public override MessageCode GetAttackMessage()
-        {
-            return MessageCode.NumbLiquidMessage;
-        }
+        public override ImmutableList<AbstractAilment> AilmentList { get; }
+            = ImmutableList.Create<AbstractAilment>(new Paralysis());
     }
 }

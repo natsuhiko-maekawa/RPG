@@ -10,45 +10,18 @@ namespace BattleScene.UseCases.Skill
     /// </summary>
     internal class TaserGunSkill : AbstractSkill
     {
-        private readonly BasicDamage _basicDamage;
-        private readonly EnemyParalysis _enemyParalysis;
+        public override SkillCode SkillCode { get; } = SkillCode.TaserGun;
+        public override int TechnicalPoint { get; } = 5;
+        public override Range Range { get; } = Range.Solo;
+        public override ImmutableList<BodyPartCode> DependencyList { get; } = ImmutableList.Create(BodyPartCode.Arm);
+        public override PlayerImageCode PlayerImageCode { get; } = PlayerImageCode.Gun;
+        public override MessageCode Description { get; } = MessageCode.TaserGunDescription;
+        public override MessageCode AttackMessageCode { get; } = MessageCode.AttackMessage;
 
-        public TaserGunSkill(
-            BasicDamage basicDamage,
-            EnemyParalysis enemyParalysis)
-        {
-            DamageList = ImmutableList.Create<AbstractDamage>(basicDamage);
-            AilmentList = ImmutableList.Create<AbstractAilment>(enemyParalysis);
-        }
+        public override ImmutableList<AbstractDamage> DamageList { get; }
+            = ImmutableList.Create<AbstractDamage>(new BasicDamage());
 
-        public override int GetTechnicalPoint()
-        {
-            return 5;
-        }
-
-        public override ImmutableList<BodyPartCode> GetDependencyList()
-        {
-            return ImmutableList.Create(BodyPartCode.Arm);
-        }
-
-        public override Range GetRange()
-        {
-            return Range.Solo;
-        }
-
-        public override PlayerImageCode GetPlayerImageCode()
-        {
-            return PlayerImageCode.Gun;
-        }
-
-        public override MessageCode GetDescription()
-        {
-            return MessageCode.TaserGunDescription;
-        }
-
-        public override MessageCode GetAttackMessage()
-        {
-            return MessageCode.AttackMessage;
-        }
+        public override ImmutableList<AbstractAilment> AilmentList { get; }
+            = ImmutableList.Create<AbstractAilment>(new EnemyParalysis());
     }
 }

@@ -1,9 +1,11 @@
+using System;
 using System.Collections.Immutable;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.ValueObject;
 using BattleScene.UseCases.Skill.SkillElement;
 using Utility.Interface;
 using static BattleScene.Domain.Code.MessageCode;
+using Range = BattleScene.Domain.Code.Range;
 
 namespace BattleScene.UseCases.Skill
 {
@@ -13,26 +15,25 @@ namespace BattleScene.UseCases.Skill
     internal class BiteSkill : AbstractSkill
     {
         private readonly IRandomEx _randomEx;
+        private readonly long _seed;
 
-        public BiteSkill(BasicDamage basicDamage, IRandomEx randomEx)
+        public BiteSkill(
+            IRandomEx randomEx)
         {
             _randomEx = randomEx;
-            DamageList = ImmutableList.Create<AbstractDamage>(basicDamage);
+            _seed = DateTime.Now.Ticks;
         }
 
-        public override Range GetRange()
-        {
-            return Range.Solo;
-        }
+        public override SkillCode SkillCode { get; } = SkillCode.Bite;
+        public override Range Range { get; } = Range.Solo;
+        public override MessageCode AttackMessageCode => GetAttackMessageCode();
 
-        public override PlayerImageCode GetPlayerImageCode()
-        {
-            return PlayerImageCode.Damaged;
-        }
+        public override ImmutableList<AbstractDamage> DamageList { get; }
+            = ImmutableList.Create<AbstractDamage>(new BasicDamage());
 
-        public override MessageCode GetAttackMessage()
+        private MessageCode GetAttackMessageCode()
         {
-            return _randomEx.Choice(new[] { BiteArmMessage, BiteLegMessage, BiteStomachMessage });
+            return _randomEx.Choice(new[] { BiteArmMessage, BiteLegMessage, BiteStomachMessage }, _seed);
         }
     }
 }

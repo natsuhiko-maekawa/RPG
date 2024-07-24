@@ -10,45 +10,18 @@ namespace BattleScene.UseCases.Skill
     /// </summary>
     internal class WabisukeSkill : AbstractSkill
     {
-        private readonly BasicDamage _basicDamage;
-        private readonly Wabisuke _wabisuke;
+        public override SkillCode SkillCode { get; } = SkillCode.Wabisuke;
+        public override int TechnicalPoint { get; } = 10;
+        public override ImmutableList<BodyPartCode> DependencyList { get; } = ImmutableList.Create(BodyPartCode.Arm);
+        public override Range Range { get; } = Range.Solo;
+        public override PlayerImageCode PlayerImageCode { get; } = PlayerImageCode.Katana;
+        public override MessageCode Description { get; } = MessageCode.WabisukeDescription;
+        public override MessageCode AttackMessageCode { get; } = MessageCode.AttackMessage;
 
-        public WabisukeSkill(
-            BasicDamage basicDamage, 
-            Wabisuke wabisuke)
-        {
-            DamageList = ImmutableList.Create<AbstractDamage>(basicDamage);
-            BuffList = ImmutableList.Create<AbstractBuff>(wabisuke);
-        }
+        public override ImmutableList<AbstractDamage> DamageList { get; }
+            = ImmutableList.Create<AbstractDamage>(new BasicDamage());
 
-        public override int GetTechnicalPoint()
-        {
-            return 10;
-        }
-
-        public override ImmutableList<BodyPartCode> GetDependencyList()
-        {
-            return ImmutableList.Create(BodyPartCode.Arm);
-        }
-
-        public override Range GetRange()
-        {
-            return Range.Solo;
-        }
-
-        public override PlayerImageCode GetPlayerImageCode()
-        {
-            return PlayerImageCode.Katana;
-        }
-
-        public override MessageCode GetDescription()
-        {
-            return MessageCode.WabisukeDescription;
-        }
-
-        public override MessageCode GetAttackMessage()
-        {
-            return MessageCode.AttackMessage;
-        }
+        public override ImmutableList<AbstractBuff> BuffList { get; }
+            = ImmutableList.Create<AbstractBuff>(new Wabisuke());
     }
 }

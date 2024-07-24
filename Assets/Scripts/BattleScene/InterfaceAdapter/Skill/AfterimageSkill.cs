@@ -2,7 +2,6 @@ using System.Collections.Immutable;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.ValueObject;
 using BattleScene.UseCases.Skill.SkillElement;
-using static BattleScene.Domain.Code.Range;
 
 namespace BattleScene.UseCases.Skill
 {
@@ -11,19 +10,10 @@ namespace BattleScene.UseCases.Skill
     /// </summary>
     internal class AfterimageSkill : AbstractSkill
     {
-        public AfterimageSkill(AfterImage afterimageSkill)
-        {
-            BuffList = ImmutableList.Create<AbstractBuff>(afterimageSkill);
-        }
-
-        public override Range GetRange()
-        {
-            return Oneself;
-        }
-
-        public override MessageCode GetAttackMessage()
-        {
-            return MessageCode.AfterimageMessage;
-        }
+        public override SkillCode SkillCode { get; } = SkillCode.Afterimage;
+        public override Range Range { get; } = Range.Oneself;
+        public override MessageCode AttackMessageCode { get; } = MessageCode.AfterimageMessage;
+        public override ImmutableList<AbstractBuff> BuffList { get; }
+            = ImmutableList.Create<AbstractBuff>(new AfterImage());
     }
 }

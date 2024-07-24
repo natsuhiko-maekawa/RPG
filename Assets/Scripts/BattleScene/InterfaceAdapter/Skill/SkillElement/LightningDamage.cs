@@ -8,22 +8,7 @@ namespace BattleScene.UseCases.Skill.SkillElement
 {
     public class LightningDamage : AbstractDamage
     {
-        public LightningDamage(
-            AttacksWeakPointEvaluation attacksWeakPointEvaluation,
-            DamageExpression damageExpression,
-            HitEvaluation hitEvaluation,
-            OrderedItemsDomainService orderedItems)
-            : base(
-                attacksWeakPointEvaluation,
-                damageExpression,
-                hitEvaluation,
-                orderedItems)
-        {
-        }
-
-        public override ImmutableList<MatAttrCode> GetMatAttrCode()
-        {
-            return ImmutableList.Create(MatAttrCode.Lightning);
-        }
+        public override ImmutableList<MatAttrCode> MatAttrCode { get; } =
+            ImmutableList.Create(Domain.Code.MatAttrCode.Lightning);
     }
 }

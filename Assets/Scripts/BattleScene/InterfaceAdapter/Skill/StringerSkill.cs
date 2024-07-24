@@ -10,27 +10,14 @@ namespace BattleScene.UseCases.Skill
     /// </summary>
     internal class StringerSkill : AbstractSkill
     {
-        public StringerSkill(
-            BasicDamage basicDamage,
-            PoisoningSkill poisoningSkill)
-        {
-            DamageList = ImmutableList.Create<AbstractDamage>(basicDamage);
-            SlipDamageList = ImmutableList.Create<AbstractSlipDamage>(poisoningSkill);
-        }
+        public override SkillCode SkillCode { get; } = SkillCode.Stringer;
+        public override Range Range { get; } = Range.Solo;
+        public override MessageCode AttackMessageCode { get; } = MessageCode.StringerMessage;
 
-        public override Range GetRange()
-        {
-            return Range.Solo;
-        }
+        public override ImmutableList<AbstractDamage> DamageList { get; }
+            = ImmutableList.Create<AbstractDamage>(new BasicDamage());
 
-        public override PlayerImageCode GetPlayerImageCode()
-        {
-            return PlayerImageCode.Damaged;
-        }
-
-        public override MessageCode GetAttackMessage()
-        {
-            return MessageCode.StringerMessage;
-        }
+        public override ImmutableList<AbstractSlipDamage> SlipDamageList { get; }
+            = ImmutableList.Create<AbstractSlipDamage>(new PoisoningSkill());
     }
 }

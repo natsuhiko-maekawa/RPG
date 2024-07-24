@@ -10,41 +10,15 @@ namespace BattleScene.UseCases.Skill
     /// </summary>
     internal class ShichishitouSkill : AbstractSkill
     {
-        private readonly Shichishitou _shichishitou;
+        public override SkillCode SkillCode { get; } = SkillCode.Shichishitou;
+        public override int TechnicalPoint { get; } = 5;
+        public override Range Range { get; } = Range.Solo;
+        public override ImmutableList<BodyPartCode> DependencyList { get; } = ImmutableList.Create(BodyPartCode.Arm);
+        public override PlayerImageCode PlayerImageCode { get; } = PlayerImageCode.Katana;
+        public override MessageCode Description { get; } = MessageCode.ShichishitouDescription;
+        public override MessageCode AttackMessageCode { get; } = MessageCode.AttackMessage;
 
-        public ShichishitouSkill(Shichishitou shichishitou)
-        {
-            DamageList = ImmutableList.Create<AbstractDamage>(shichishitou);
-        }
-
-        public override int GetTechnicalPoint()
-        {
-            return 5;
-        }
-
-        public override Range GetRange()
-        {
-            return Range.Solo;
-        }
-
-        public override ImmutableList<BodyPartCode> GetDependencyList()
-        {
-            return ImmutableList.Create(BodyPartCode.Arm);
-        }
-
-        public override PlayerImageCode GetPlayerImageCode()
-        {
-            return PlayerImageCode.Katana;
-        }
-
-        public override MessageCode GetDescription()
-        {
-            return MessageCode.ShichishitouDescription;
-        }
-
-        public override MessageCode GetAttackMessage()
-        {
-            return MessageCode.AttackMessage;
-        }
+        public override ImmutableList<AbstractDamage> DamageList { get; }
+            = ImmutableList.Create<AbstractDamage>(new Shichishitou());
     }
 }

@@ -10,29 +10,12 @@ namespace BattleScene.UseCases.Skill
     /// </summary>
     internal class OnikoroshiSkill : AbstractSkill
     {
-        public OnikoroshiSkill(Confusion confusion)
-        {
-            AilmentList = ImmutableList.Create<AbstractAilment>(confusion);
-        }
+        public override SkillCode SkillCode { get; } = SkillCode.Onikoroshi;
+        public override ImmutableList<BodyPartCode> DependencyList { get; } = ImmutableList.Create(BodyPartCode.Arm);
+        public override Range Range { get; } = Range.Solo;
+        public override MessageCode AttackMessageCode { get; } = MessageCode.OnikoroshiMessage;
 
-        public override ImmutableList<BodyPartCode> GetDependencyList()
-        {
-            return ImmutableList.Create(BodyPartCode.Arm);
-        }
-
-        public override Range GetRange()
-        {
-            return Range.Solo;
-        }
-
-        public override PlayerImageCode GetPlayerImageCode()
-        {
-            return PlayerImageCode.Damaged;
-        }
-
-        public override MessageCode GetAttackMessage()
-        {
-            return MessageCode.OnikoroshiMessage;
-        }
+        public override ImmutableList<AbstractAilment> AilmentList { get; }
+            = ImmutableList.Create<AbstractAilment>(new Confusion());
     }
 }

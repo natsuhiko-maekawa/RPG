@@ -10,39 +10,15 @@ namespace BattleScene.UseCases.Skill
     /// </summary>
     internal class SilverBulletSkill : AbstractSkill
     {
-        public SilverBulletSkill(ConstantDamage constantDamage)
-        {
-            DamageList = ImmutableList.Create<AbstractDamage>(constantDamage);
-        }
+        public override SkillCode SkillCode { get; } = SkillCode.SilverBullet;
+        public override int TechnicalPoint { get; } = 7;
+        public override Range Range { get; } = Range.Solo;
+        public override ImmutableList<BodyPartCode> DependencyList { get; } = ImmutableList.Create(BodyPartCode.Arm);
+        public override PlayerImageCode PlayerImageCode { get; } = PlayerImageCode.Gun;
+        public override MessageCode Description { get; } = MessageCode.SilverBulletDescription;
+        public override MessageCode AttackMessageCode { get; } = MessageCode.AttackMessage;
 
-        public override int GetTechnicalPoint()
-        {
-            return 7;
-        }
-
-        public override Range GetRange()
-        {
-            return Range.Solo;
-        }
-
-        public override ImmutableList<BodyPartCode> GetDependencyList()
-        {
-            return ImmutableList.Create(BodyPartCode.Arm);
-        }
-
-        public override PlayerImageCode GetPlayerImageCode()
-        {
-            return PlayerImageCode.Gun;
-        }
-
-        public override MessageCode GetDescription()
-        {
-            return MessageCode.SilverBulletDescription;
-        }
-
-        public override MessageCode GetAttackMessage()
-        {
-            return MessageCode.AttackMessage;
-        }
+        public override ImmutableList<AbstractDamage> DamageList { get; }
+            = ImmutableList.Create<AbstractDamage>(new ConstantDamage());
     }
 }

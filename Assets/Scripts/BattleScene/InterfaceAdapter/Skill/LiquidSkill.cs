@@ -2,7 +2,6 @@ using System.Collections.Immutable;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.ValueObject;
 using BattleScene.UseCases.Skill.SkillElement;
-using static BattleScene.Domain.Code.MessageCode;
 using Range = BattleScene.Domain.Code.Range;
 
 namespace BattleScene.UseCases.Skill
@@ -12,27 +11,14 @@ namespace BattleScene.UseCases.Skill
     /// </summary>
     internal class LiquidSkill : AbstractSkill
     {
-        public LiquidSkill(
-            BasicDamage basicDamage,
-            SuffocationSkill suffocationSkill)
-        {
-            DamageList = ImmutableList.Create<AbstractDamage>(basicDamage);
-            SlipDamageList = ImmutableList.Create<AbstractSlipDamage>(suffocationSkill);
-        }
+        public override SkillCode SkillCode { get; } = SkillCode.Liquid;
+        public override Range Range { get; } = Range.Solo;
+        public override MessageCode AttackMessageCode { get; } = MessageCode.InvasiveMouthMessage;
 
-        public override Range GetRange()
-        {
-            return Range.Solo;
-        }
+        public override ImmutableList<AbstractDamage> DamageList { get; }
+            = ImmutableList.Create<AbstractDamage>(new BasicDamage());
 
-        public override PlayerImageCode GetPlayerImageCode()
-        {
-            return PlayerImageCode.Suffocation;
-        }
-
-        public override MessageCode GetAttackMessage()
-        {
-            return InvasiveMouthMessage;
-        }
+        public override ImmutableList<AbstractSlipDamage> SlipDamageList { get; }
+            = ImmutableList.Create<AbstractSlipDamage>(new SuffocationSkill());
     }
 }

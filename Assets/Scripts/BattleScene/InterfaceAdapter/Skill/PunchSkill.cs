@@ -10,31 +10,12 @@ namespace BattleScene.UseCases.Skill
     /// </summary>
     internal class PunchSkill : AbstractSkill
     {
-        private readonly BasicDamage _basicDamage;
+        public override SkillCode SkillCode { get; } = SkillCode.Punch;
+        public override ImmutableList<BodyPartCode> DependencyList { get; } = ImmutableList.Create(BodyPartCode.Arm);
+        public override Range Range { get; } = Range.Solo;
+        public override MessageCode AttackMessageCode { get; } = MessageCode.PunchStomachMessage;
 
-        public PunchSkill(BasicDamage basicDamage)
-        {
-            DamageList = ImmutableList.Create<AbstractDamage>(basicDamage);
-        }
-
-        public override Range GetRange()
-        {
-            return Range.Solo;
-        }
-
-        public override ImmutableList<BodyPartCode> GetDependencyList()
-        {
-            return ImmutableList.Create(BodyPartCode.Arm);
-        }
-
-        public override PlayerImageCode GetPlayerImageCode()
-        {
-            return PlayerImageCode.Damaged;
-        }
-
-        public override MessageCode GetAttackMessage()
-        {
-            return MessageCode.PunchStomachMessage;
-        }
+        public override ImmutableList<AbstractDamage> DamageList { get; }
+            = ImmutableList.Create<AbstractDamage>(new BasicDamage());
     }
 }

@@ -125,7 +125,7 @@ namespace BattleScene.UseCases
             builder.Register<AttacksWeakPointEvaluation>(Lifetime.Singleton);
             builder.Register<ConstantDamageExpression>(Lifetime.Singleton);
             builder.Register<CureExpression>(Lifetime.Singleton);
-            builder.Register<DamageExpression>(Lifetime.Singleton);
+            builder.Register<BasicDamageExpression>(Lifetime.Singleton);
             builder.Register<HitEvaluation>(Lifetime.Singleton);
             builder.Register<Luck>(Lifetime.Singleton);
 

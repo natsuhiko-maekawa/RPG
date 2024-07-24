@@ -11,24 +11,11 @@ namespace BattleScene.UseCases.Skill
     /// </summary>
     internal class ConfusionSkill : AbstractSkill
     {
-        public ConfusionSkill(AlwaysHitDamage alwaysHitDamage)
-        {
-            DamageList = ImmutableList.Create<AbstractDamage>(alwaysHitDamage);
-        }
-
-        public override Range GetRange()
-        {
-            return Oneself;
-        }
-
-        public override PlayerImageCode GetPlayerImageCode()
-        {
-            return PlayerImageCode.Confusion;
-        }
-
-        public override MessageCode GetAttackMessage()
-        {
-            return MessageCode.ConfusionActMessage;
-        }
+        public override SkillCode SkillCode { get; } = SkillCode.Confusion;
+        public override Range Range { get; } = Oneself;
+        public override PlayerImageCode PlayerImageCode { get; } = PlayerImageCode.Confusion;
+        public override MessageCode AttackMessageCode { get; } = MessageCode.ConfusionActMessage;
+        public override ImmutableList<AbstractDamage> DamageList { get; }
+            = ImmutableList.Create<AbstractDamage>(new AlwaysHitDamage());
     }
 }

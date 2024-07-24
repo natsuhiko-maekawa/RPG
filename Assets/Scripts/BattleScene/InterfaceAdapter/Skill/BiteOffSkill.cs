@@ -15,28 +15,28 @@ namespace BattleScene.UseCases.Skill
     internal class BiteOffSkill : AbstractSkill
     {
         private readonly IRandomEx _randomEx;
-        private long _seed;
+        private readonly long _seed;
 
         public BiteOffSkill(
-            BasicDamage basicDamage,
-            BleedingSkill bleedingSkill,
-            destroyArm destroyArm,
-            destroyLeg destroyLeg,
-            destroyStomach destroyStomach,
             IRandomEx randomEx)
         {
             _randomEx = randomEx;
-            DamageList = ImmutableList.Create<AbstractDamage>(basicDamage);
-            SlipDamageList = ImmutableList.Create<AbstractSlipDamage>(bleedingSkill);
-            SetDestroyPart(destroyArm, destroyLeg, destroyStomach);
+            _seed = DateTime.Now.Ticks;
         }
 
-        public override Range GetRange()
-        {
-            return Range.Solo;
-        }
+        public override SkillCode SkillCode { get; } = SkillCode.BiteOff;
+        public override Range Range { get; } = Range.Solo;
+        public override MessageCode AttackMessageCode => GetAttackMessageCode();
 
-        public override MessageCode GetAttackMessage()
+        public override ImmutableList<AbstractDamage> DamageList { get; } =
+            ImmutableList.Create<AbstractDamage>(new BasicDamage());
+
+        public override ImmutableList<AbstractSlipDamage> SlipDamageList { get; } =
+            ImmutableList.Create<AbstractSlipDamage>(new BleedingSkill());
+
+        public override ImmutableList<AbstractDestroyPart> DestroyPartList => GetDestroyPartList();
+
+        private MessageCode GetAttackMessageCode()
         {
             var attackMessageList = new List<MessageCode>
             {
@@ -48,11 +48,11 @@ namespace BattleScene.UseCases.Skill
             return _randomEx.Choice(attackMessageList, _seed);
         }
 
-        private void SetDestroyPart(params AbstractDestroyPart[] destroyPartSkillElementList)
+        private ImmutableList<AbstractDestroyPart> GetDestroyPartList()
         {
-            _seed = DateTime.Now.Ticks;
-            var destroyPartSkillElement = _randomEx.Choice(destroyPartSkillElementList, _seed);
-            DestroyPartList = ImmutableList.Create(destroyPartSkillElement);
+            var destroyList = new List<AbstractDestroyPart>()
+                { new destroyArm(), new destroyLeg(), new destroyStomach() };
+            return ImmutableList.Create(_randomEx.Choice(destroyList, _seed));
         }
     }
 }

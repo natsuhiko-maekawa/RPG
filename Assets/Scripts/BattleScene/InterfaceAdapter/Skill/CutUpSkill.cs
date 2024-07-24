@@ -1,9 +1,12 @@
+using System;
 using System.Collections.Immutable;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.ValueObject;
 using BattleScene.UseCases.Skill.SkillElement;
+using Utility;
+using Utility.Interface;
 using static BattleScene.Domain.Code.MessageCode;
-using Random = UnityEngine.Random;
+using Range = BattleScene.Domain.Code.Range;
 
 namespace BattleScene.UseCases.Skill
 {
@@ -12,31 +15,27 @@ namespace BattleScene.UseCases.Skill
     /// </summary>
     internal class CutUpSkill : AbstractSkill
     {
-        private readonly int _rand = Random.Range(0, 2);
+        private readonly IRandomEx _randomEx;
+        private readonly long _seed;
 
-        public CutUpSkill(FiveTimeDamage fiveTimeDamage)
+        public CutUpSkill(
+            IRandomEx randomEx)
         {
-            DamageList = ImmutableList.Create<AbstractDamage>(fiveTimeDamage);
+            _randomEx = randomEx;
+            _seed = DateTime.Now.Ticks;
         }
 
-        public override ImmutableList<BodyPartCode> GetDependencyList()
-        {
-            return ImmutableList.Create(BodyPartCode.Arm);
-        }
+        public override SkillCode SkillCode { get; } = SkillCode.CutUp;
+        public override Range Range { get; } = Range.Solo;
+        public override ImmutableList<BodyPartCode> DependencyList { get; } = ImmutableList.Create(BodyPartCode.Arm);
+        public override MessageCode AttackMessageCode => GetAttackMessageCode();
 
-        public override Range GetRange()
-        {
-            return Range.Solo;
-        }
+        public override ImmutableList<AbstractDamage> DamageList { get; }
+            = ImmutableList.Create<AbstractDamage>(new FiveTimeDamage());
 
-        public override PlayerImageCode GetPlayerImageCode()
+        private MessageCode GetAttackMessageCode()
         {
-            return PlayerImageCode.Damaged;
-        }
-
-        public override MessageCode GetAttackMessage()
-        {
-            return new[] { CutUpArmMessage, CutUpLegMessage, CutUpStomachMessage }[_rand];
+            return _randomEx.Choice(new[] { CutUpArmMessage, CutUpLegMessage, CutUpStomachMessage }, _seed);
         }
     }
 }

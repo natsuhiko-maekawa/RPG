@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Immutable;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.ValueObject;
@@ -12,34 +11,14 @@ namespace BattleScene.UseCases.Skill
     /// </summary>
     internal class UtsusemiSkill : AbstractSkill
     {
-        public UtsusemiSkill(Utsusemi utsusemi)
-        {
-            BuffList = ImmutableList.Create<AbstractBuff>(utsusemi);
-        }
+        public override SkillCode SkillCode { get; } = SkillCode.Utsusemi;
+        public override int TechnicalPoint { get; } = 5;
+        public override Range Range { get; } = Range.Oneself;
+        public override PlayerImageCode PlayerImageCode { get; } = PlayerImageCode.Katana;
+        public override MessageCode Description { get; } = MessageCode.UtsusemiDescription;
+        public override MessageCode AttackMessageCode { get; } = MessageCode.NoMessage;
 
-        public override int GetTechnicalPoint()
-        {
-            return 5;
-        }
-
-        public override Range GetRange()
-        {
-            return Range.Oneself;
-        }
-
-        public override PlayerImageCode GetPlayerImageCode()
-        {
-            return PlayerImageCode.Katana;
-        }
-
-        public override MessageCode GetDescription()
-        {
-            return MessageCode.UtsusemiDescription;
-        }
-
-        public override MessageCode GetAttackMessage()
-        {
-            throw new NotImplementedException();
-        }
+        public override ImmutableList<AbstractBuff> BuffList { get; }
+            = ImmutableList.Create<AbstractBuff>(new Utsusemi());
     }
 }

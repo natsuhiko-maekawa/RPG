@@ -15,29 +15,13 @@ namespace BattleScene.UseCases.Skill
             CureList = ImmutableList.Create<AbstractCure>(basicCure);
         }
 
-        public override int GetTechnicalPoint()
-        {
-            return 3;
-        }
+        public override SkillCode SkillCode { get; } = SkillCode.FieldRation;
+        public override int TechnicalPoint { get; } = 3;
+        public override Range Range { get; } = Range.Oneself;
+        public override PlayerImageCode PlayerImageCode { get; } = PlayerImageCode.Gun;
+        public override MessageCode Description { get; } = MessageCode.FieldRationDescription;
+        public override MessageCode AttackMessageCode { get; } = MessageCode.RestoreHitPointMessage;
 
-        public override PlayerImageCode GetPlayerImageCode()
-        {
-            return PlayerImageCode.Gun;
-        }
-
-        public override Range GetRange()
-        {
-            return Range.Oneself;
-        }
-
-        public override MessageCode GetDescription()
-        {
-            return MessageCode.FieldRationDescription;
-        }
-
-        public override MessageCode GetAttackMessage()
-        {
-            return MessageCode.RestoreHitPointMessage;
-        }
+        public override ImmutableList<AbstractCure> CureList { get; }
     }
 }

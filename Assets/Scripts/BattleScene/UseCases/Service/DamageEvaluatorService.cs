@@ -1,0 +1,66 @@
+﻿using System;
+using System.Linq;
+using BattleScene.Domain.Aggregate;
+using BattleScene.Domain.Code;
+using BattleScene.Domain.DomainService;
+using BattleScene.Domain.Entity;
+using BattleScene.Domain.Expression;
+using BattleScene.Domain.IRepository;
+using BattleScene.Domain.OldId;
+using BattleScene.Domain.ValueObject;
+using Utility.Interface;
+
+namespace BattleScene.UseCases.Service
+{
+    public class DamageEvaluatorService
+    {
+        private readonly BasicDamageExpression _basicDamageExpression;
+        private readonly ConstantDamageExpression _constantDamageExpression;
+        private readonly BodyPartDomainService _bodyPartDomainService;
+        private readonly BuffDomainService _buffDomainService;
+        private readonly IRepository<BuffEntity, BuffId> _buffRepository;
+        private readonly IRepository<CharacterAggregate, CharacterId> _characterRepository;
+        private readonly IRandomEx _randomEx;
+        
+        public int Evaluate(CharacterId actorId, CharacterId targetId, AbstractDamage damage)
+        {
+            return damage.DamageExpressionCode switch
+            {
+                DamageExpressionCode.Basic => BasicEvaluate(actorId, targetId, damage),
+                DamageExpressionCode.Constant => ConstantEvaluate(actorId, damage),
+                _ => throw new ArgumentOutOfRangeException()
+            };
+        }
+
+        private int BasicEvaluate(CharacterId actorId, CharacterId targetId, AbstractDamage damage)
+        {
+            var actorStrength = _characterRepository.Select(actorId).Property.Strength;
+            var targetVitality = _characterRepository.Select(targetId).Property.Vitality;
+            var actorMatAttr = damage.MatAttrCode;
+            var targetWeekPoint = _characterRepository.Select(targetId).GetWeakPoints();
+            var attackBuffId = new BuffId(actorId, BuffCode.Attack);
+            var actorBuffRate = _buffRepository.Select(attackBuffId).Rate;
+            var defenceBuffId = new BuffId(targetId, BuffCode.Defence);
+            var targetBuffRate = _buffRepository.Select(defenceBuffId).Rate;
+            var destroyedRate = 1.0f - _bodyPartDomainService.Count(actorId, BodyPartCode.Arm) * 0.5f;
+            var defenceSkillBuffId = new BuffId(targetId, BuffCode.DefenceSkill);
+            var targetDefence = _buffRepository.Select(defenceSkillBuffId) == null ? 1.0f : 0.5f;
+            var rate = damage.DamageRate;
+            var weekPointRate = (int)Math.Pow(2, actorMatAttr.Intersect(targetWeekPoint).Count());
+            return (int)(actorStrength * actorStrength / (float)targetVitality * weekPointRate * actorBuffRate
+                / targetBuffRate * destroyedRate * targetDefence * rate * 1.5f) + _randomEx.Range(1, 3);
+        }
+        
+        private int ConstantEvaluate(CharacterId actorId, AbstractDamage damage)
+        {
+            var actorStrength = _characterRepository.Select(actorId).Property.Strength;
+            const int targetVitality = 1;
+            var actorBuffRate = _buffDomainService.GetRate(actorId, BuffCode.Attack);
+            const int targetBuffRate = 1;
+            var destroyedRate = 1.0f - _bodyPartDomainService.Count(actorId, BodyPartCode.Arm) * 0.5f;
+            var rate = damage.DamageRate;
+            return (int)(actorStrength * actorStrength / (float)targetVitality * actorBuffRate / targetBuffRate
+                         * destroyedRate * rate * 1.5f) + _randomEx.Range(1, 3);
+        }
+    }
+}

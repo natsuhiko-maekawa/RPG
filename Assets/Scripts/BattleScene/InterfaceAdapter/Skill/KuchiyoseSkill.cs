@@ -10,34 +10,14 @@ namespace BattleScene.UseCases.Skill
     /// </summary>
     internal class KuchiyoseSkill : AbstractSkill
     {
-        public KuchiyoseSkill(Confusion confusion)
-        {
-            AilmentList = ImmutableList.Create<AbstractAilment>(confusion);
-        }
+        public override SkillCode SkillCode { get; } = SkillCode.Kuchiyose;
+        public override int TechnicalPoint { get; } = 10;
+        public override Range Range { get; } = Range.Solo;
+        public override PlayerImageCode PlayerImageCode { get; } = PlayerImageCode.Katana;
+        public override MessageCode Description { get; } = MessageCode.KuchiyoseDescription;
+        public override MessageCode AttackMessageCode { get; } = MessageCode.NoMessage;
 
-        public override int GetTechnicalPoint()
-        {
-            return 10;
-        }
-
-        public override PlayerImageCode GetPlayerImageCode()
-        {
-            return PlayerImageCode.Katana;
-        }
-
-        public override Range GetRange()
-        {
-            return Range.Solo;
-        }
-
-        public override MessageCode GetDescription()
-        {
-            return MessageCode.KuchiyoseDescription;
-        }
-
-        public override MessageCode GetAttackMessage()
-        {
-            return MessageCode.NoMessage;
-        }
+        public override ImmutableList<AbstractAilment> AilmentList { get; }
+            = ImmutableList.Create<AbstractAilment>(new Confusion());
     }
 }

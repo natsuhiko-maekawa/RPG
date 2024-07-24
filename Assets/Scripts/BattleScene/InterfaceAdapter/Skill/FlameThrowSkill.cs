@@ -10,28 +10,14 @@ namespace BattleScene.UseCases.Skill
     /// </summary>
     internal class FlameThrowSkill : AbstractSkill
     {
-        private readonly BasicDamage _basicDamage;
-        private readonly BurningSkill _burningSkill;
+        public override SkillCode SkillCode { get; } = SkillCode.FlameThrow;
+        public override Range Range { get; } = Range.Solo;
+        public override MessageCode AttackMessageCode { get; } = MessageCode.FrameThrowMessage;
 
-        public FlameThrowSkill(BasicDamage basicDamage, BurningSkill burningSkill)
-        {
-            DamageList = ImmutableList.Create<AbstractDamage>(basicDamage);
-            SlipDamageList = ImmutableList.Create<AbstractSlipDamage>(burningSkill);
-        }
+        public override ImmutableList<AbstractDamage> DamageList { get; }
+            = ImmutableList.Create<AbstractDamage>(new BasicDamage());
 
-        public override PlayerImageCode GetPlayerImageCode()
-        {
-            return PlayerImageCode.Damaged;
-        }
-
-        public override Range GetRange()
-        {
-            return Range.Solo;
-        }
-
-        public override MessageCode GetAttackMessage()
-        {
-            return MessageCode.FrameThrowMessage;
-        }
+        public override ImmutableList<AbstractSlipDamage> SlipDamageList { get; }
+            = ImmutableList.Create<AbstractSlipDamage>(new BleedingSkill());
     }
 }

@@ -10,34 +10,14 @@ namespace BattleScene.UseCases.Skill
     /// </summary>
     internal class IshinhouSkill : AbstractSkill
     {
-        public IshinhouSkill(Ishinhou ishinhou)
-        {
-            ResetList = ImmutableList.Create<AbstractReset>(ishinhou);
-        }
+        public override SkillCode SkillCode { get; } = SkillCode.Ishinhou;
+        public override int TechnicalPoint { get; } = 3;
+        public override Range Range { get; } = Range.Oneself;
+        public override PlayerImageCode PlayerImageCode { get; } = PlayerImageCode.Katana;
+        public override MessageCode Description { get; } = MessageCode.IshinhouDescription;
+        public override MessageCode AttackMessageCode { get; } = MessageCode.RemoveAilmentsMessage;
 
-        public override int GetTechnicalPoint()
-        {
-            return 3;
-        }
-
-        public override PlayerImageCode GetPlayerImageCode()
-        {
-            return PlayerImageCode.Katana;
-        }
-
-        public override Range GetRange()
-        {
-            return Range.Oneself;
-        }
-
-        public override MessageCode GetDescription()
-        {
-            return MessageCode.IshinhouDescription;
-        }
-
-        public override MessageCode GetAttackMessage()
-        {
-            return MessageCode.RemoveAilmentsMessage;
-        }
+        public override ImmutableList<AbstractReset> ResetList { get; }
+            = ImmutableList.Create<AbstractReset>(new Ishinhou());
     }
 }

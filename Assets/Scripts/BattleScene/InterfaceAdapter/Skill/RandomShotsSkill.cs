@@ -10,39 +10,15 @@ namespace BattleScene.UseCases.Skill
     /// </summary>
     internal class RandomShotsSkill : AbstractSkill
     {
-        public RandomShotsSkill(RandomShot randomShot)
-        {
-            DamageList = ImmutableList.Create<AbstractDamage>(randomShot);
-        }
+        public override SkillCode SkillCode { get; } = SkillCode.RandomShots;
+        public override int TechnicalPoint { get; } = 15;
+        public override Range Range { get; } = Range.Random;
+        public override ImmutableList<BodyPartCode> DependencyList { get; } = ImmutableList.Create(BodyPartCode.Arm);
+        public override PlayerImageCode PlayerImageCode { get; } = PlayerImageCode.Gun;
+        public override MessageCode Description { get; } = MessageCode.RandomShotDescription;
+        public override MessageCode AttackMessageCode { get; } = MessageCode.AttackMessage;
 
-        public override int GetTechnicalPoint()
-        {
-            return 15;
-        }
-
-        public override Range GetRange()
-        {
-            return Range.Random;
-        }
-
-        public override ImmutableList<BodyPartCode> GetDependencyList()
-        {
-            return ImmutableList.Create(BodyPartCode.Arm);
-        }
-
-        public override PlayerImageCode GetPlayerImageCode()
-        {
-            return PlayerImageCode.Gun;
-        }
-
-        public override MessageCode GetDescription()
-        {
-            return MessageCode.RandomShotDescription;
-        }
-
-        public override MessageCode GetAttackMessage()
-        {
-            return MessageCode.DamageMessage;
-        }
+        public override ImmutableList<AbstractDamage> DamageList { get; }
+            = ImmutableList.Create<AbstractDamage>(new RandomShot());
     }
 }

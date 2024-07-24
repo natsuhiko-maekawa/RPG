@@ -10,36 +10,14 @@ namespace BattleScene.UseCases.Skill
     /// </summary>
     internal class HonzougakuSkill : AbstractSkill
     {
-        private readonly Honzougaku _honzougaku;
+        public override SkillCode SkillCode { get; } = SkillCode.Honzougaku;
+        public override int TechnicalPoint { get; } = 3;
+        public override Range Range { get; } = Range.Oneself;
+        public override PlayerImageCode PlayerImageCode { get; } = PlayerImageCode.Katana;
+        public override MessageCode Description { get; } = MessageCode.HonzougakuDescription;
+        public override MessageCode AttackMessageCode { get; } = MessageCode.RemoveAilmentsMessage;
 
-        public HonzougakuSkill(Honzougaku honzougaku)
-        {
-            ResetList = ImmutableList.Create<AbstractReset>(honzougaku);
-        }
-
-        public override int GetTechnicalPoint()
-        {
-            return 3;
-        }
-
-        public override PlayerImageCode GetPlayerImageCode()
-        {
-            return PlayerImageCode.Katana;
-        }
-
-        public override Range GetRange()
-        {
-            return Range.Oneself;
-        }
-
-        public override MessageCode GetDescription()
-        {
-            return MessageCode.HonzougakuDescription;
-        }
-
-        public override MessageCode GetAttackMessage()
-        {
-            return MessageCode.RemoveAilmentsMessage;
-        }
+        public override ImmutableList<AbstractReset> ResetList { get; } 
+            = ImmutableList.Create<AbstractReset>(new Honzougaku());
     }
 }

@@ -10,14 +10,14 @@ using Utility.Interface;
 
 namespace BattleScene.Domain.Expression
 {
-    public class DamageExpression
+    public class BasicDamageExpression
     {
         private readonly BodyPartDomainService _bodyPartDomainService;
         private readonly IRepository<BuffEntity, BuffId> _buffRepository;
         private readonly ICharacterRepository _characterRepository;
         private readonly IRandomEx _randomEx;
 
-        public DamageExpression(
+        public BasicDamageExpression(
             ICharacterRepository characterRepository,
             IRepository<BuffEntity, BuffId> buffRepository,
             IRandomEx randomEx,

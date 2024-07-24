@@ -12,14 +12,11 @@ namespace BattleScene.UseCases.Skill
             DamageList = ImmutableList.Create<AbstractDamage>(basicDamage);
         }
 
-        public override Range GetRange()
-        {
-            return Range.Solo;
-        }
+        public override SkillCode SkillCode { get; } = SkillCode.Attack;
+        public override Range Range { get; } = Range.Solo;
+        public override MessageCode AttackMessageCode { get; } = MessageCode.AttackMessage;
 
-        public override MessageCode GetAttackMessage()
-        {
-            return MessageCode.AttackMessage;
-        }
+        public override ImmutableList<AbstractDamage> DamageList { get; } =
+            ImmutableList.Create<AbstractDamage>(new BasicDamage());
     }
 }

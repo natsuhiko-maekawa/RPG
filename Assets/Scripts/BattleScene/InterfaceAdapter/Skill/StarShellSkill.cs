@@ -10,44 +10,15 @@ namespace BattleScene.UseCases.Skill
     /// </summary>
     internal class StarShellSkill : AbstractSkill
     {
-        public StarShellSkill(StarShell starShell)
-        {
-            BuffList = ImmutableList.Create<AbstractBuff>(starShell);
-        }
+        public override SkillCode SkillCode { get; } = SkillCode.StarShell;
+        public override int TechnicalPoint { get; } = 3;
+        public override Range Range { get; } = Range.Oneself;
+        public override ImmutableList<BodyPartCode> DependencyList { get; } = ImmutableList.Create(BodyPartCode.Arm);
+        public override PlayerImageCode PlayerImageCode { get; } = PlayerImageCode.Gun;
+        public override MessageCode Description { get; } = MessageCode.StarShellDescription;
+        public override MessageCode AttackMessageCode { get; } = MessageCode.BuffMessage;
 
-        public override int GetTechnicalPoint()
-        {
-            return 3;
-        }
-
-        public override ImmutableList<BodyPartCode> GetDependencyList()
-        {
-            return ImmutableList.Create(BodyPartCode.Arm);
-        }
-
-        public MessageCode GetMsg()
-        {
-            return MessageCode.BuffMessage;
-        }
-
-        public override Range GetRange()
-        {
-            return Range.Oneself;
-        }
-
-        public override PlayerImageCode GetPlayerImageCode()
-        {
-            return PlayerImageCode.Gun;
-        }
-
-        public override MessageCode GetDescription()
-        {
-            return MessageCode.StarShellDescription;
-        }
-
-        public override MessageCode GetAttackMessage()
-        {
-            return MessageCode.BuffMessage;
-        }
+        public override ImmutableList<AbstractBuff> BuffList { get; }
+            = ImmutableList.Create<AbstractBuff>(new StarShell());
     }
 }

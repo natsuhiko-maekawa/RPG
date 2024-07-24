@@ -10,39 +10,15 @@ namespace BattleScene.UseCases.Skill
     /// </summary>
     internal class NadegiriSkill : AbstractSkill
     {
-        public NadegiriSkill(Nadegiri nadegiri)
-        {
-            DamageList = ImmutableList.Create<AbstractDamage>(nadegiri);
-        }
+        public override SkillCode SkillCode { get; } = SkillCode.Nadegiri;
+        public override int TechnicalPoint { get; } = 7;
+        public override ImmutableList<BodyPartCode> DependencyList { get; } = ImmutableList.Create(BodyPartCode.Arm);
+        public override Range Range { get; } = Range.Line;
+        public override PlayerImageCode PlayerImageCode { get; } = PlayerImageCode.Katana;
+        public override MessageCode Description { get; } = MessageCode.NadegiriDescription;
+        public override MessageCode AttackMessageCode { get; } = MessageCode.AttackMessage;
 
-        public override int GetTechnicalPoint()
-        {
-            return 7;
-        }
-
-        public override ImmutableList<BodyPartCode> GetDependencyList()
-        {
-            return ImmutableList.Create(BodyPartCode.Arm);
-        }
-
-        public override Range GetRange()
-        {
-            return Range.Line;
-        }
-
-        public override PlayerImageCode GetPlayerImageCode()
-        {
-            return PlayerImageCode.Katana;
-        }
-
-        public override MessageCode GetDescription()
-        {
-            return MessageCode.NadegiriDescription;
-        }
-
-        public override MessageCode GetAttackMessage()
-        {
-            return MessageCode.AttackMessage;
-        }
+        public override ImmutableList<AbstractDamage> DamageList { get; }
+            = ImmutableList.Create<AbstractDamage>(new Nadegiri());
     }
 }

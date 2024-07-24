@@ -10,34 +10,14 @@ namespace BattleScene.UseCases.Skill
     /// </summary>
     internal class FirstAidSkill : AbstractSkill
     {
-        public FirstAidSkill(FirstAid firstAid)
-        {
-            ResetList = ImmutableList.Create<AbstractReset>(firstAid);
-        }
+        public override SkillCode SkillCode { get; } = SkillCode.FirstAid;
+        public override int TechnicalPoint { get; } = 3;
+        public override Range Range { get; } = Range.Oneself;
+        public override PlayerImageCode PlayerImageCode { get; } = PlayerImageCode.Gun;
+        public override MessageCode Description { get; } = MessageCode.FirstAidDescription;
+        public override MessageCode AttackMessageCode { get; } = MessageCode.RecoverDestroyedPartMessage;
 
-        public override int GetTechnicalPoint()
-        {
-            return 3;
-        }
-
-        public override PlayerImageCode GetPlayerImageCode()
-        {
-            return PlayerImageCode.Gun;
-        }
-
-        public override Range GetRange()
-        {
-            return Range.Oneself;
-        }
-
-        public override MessageCode GetDescription()
-        {
-            return MessageCode.FirstAidDescription;
-        }
-
-        public override MessageCode GetAttackMessage()
-        {
-            return MessageCode.RecoverDestroyedPartMessage;
-        }
+        public override ImmutableList<AbstractReset> ResetList { get; }
+            = ImmutableList.Create<AbstractReset>(new FirstAid());
     }
 }

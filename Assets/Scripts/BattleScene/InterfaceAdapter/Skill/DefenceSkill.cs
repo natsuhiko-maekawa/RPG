@@ -10,30 +10,14 @@ namespace BattleScene.UseCases.Skill
     /// </summary>
     internal class DefenceSkill : AbstractSkill
     {
-        public DefenceSkill(Defence defence)
-        {
-            BuffList = ImmutableList.Create<AbstractBuff>(defence);
-            // TODO: TPを回復するスキルをAddする
-        }
+        public override SkillCode SkillCode { get; } = SkillCode.Defence;
+        public override Range Range { get; } = Range.Oneself;
+        public override PlayerImageCode PlayerImageCode { get; } = PlayerImageCode.Defence;
+        public override MessageCode AttackMessageCode { get; } = MessageCode.DefenceMessage;
 
-        public override Range GetRange()
-        {
-            return Range.Oneself;
-        }
+        public override ImmutableList<AbstractBuff> BuffList { get; }
+            = ImmutableList.Create<AbstractBuff>(new Defence());
+        // TODO: TPを回復するスキルをAddする
 
-        public override PlayerImageCode GetPlayerImageCode()
-        {
-            return PlayerImageCode.Defence;
-        }
-
-        public override MessageCode GetDescription()
-        {
-            return MessageCode.DefenceDescription;
-        }
-
-        public override MessageCode GetAttackMessage()
-        {
-            return MessageCode.DefenceMessage;
-        }
     }
 }
