@@ -1,21 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.Immutable;
+using System.Linq;
 using BattleScene.Domain.Entity;
+using BattleScene.Domain.Id;
+using BattleScene.Domain.Interface;
 using BattleScene.Domain.IRepository;
-using BattleScene.Domain.OldId;
 
 namespace BattleScene.InterfaceAdapter.DataAccess.Repository
 {
-    public class AutoIncrementRepository<TEntity, TId> : IAutoIncrementRepository<TEntity, TId>
+    public class AutoIncrementIdRepository<TEntity, TId> : IRepository<TEntity, TId>
         where TEntity : BaseEntity<TEntity, TId>
-        where TId : Number<TId>, new()
+        where TId : AutoIncrementId<IId>
     {
         private readonly Repository<TEntity, TId> _repository = new();
         
-        public TId GenerateId()
+        public AutoIncrementId<TId> GenerateId()
         {
-            throw new NotImplementedException();
+            if (_repository.IsEmpty) return new AutoIncrementId<TId>(0);
+            var number = Select()
+                .Select(x => x.Id.Id)
+                .OrderBy(x => x)
+                .Last();
+            return new AutoIncrementId<TId>(number + 1);
         }
 
         public TEntity Select(TId id)

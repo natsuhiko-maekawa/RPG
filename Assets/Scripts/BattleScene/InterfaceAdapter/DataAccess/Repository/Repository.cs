@@ -13,6 +13,8 @@ namespace BattleScene.InterfaceAdapter.DataAccess.Repository
         where TId : IId
     {
         private readonly HashSet<TEntity> _entitySet = new();
+        
+        public bool IsEmpty => _entitySet.Count == 0;
 
         public TEntity Select(TId id)
         {

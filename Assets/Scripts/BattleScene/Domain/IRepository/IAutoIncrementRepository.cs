@@ -1,11 +1,11 @@
 ﻿using BattleScene.Domain.Entity;
-using BattleScene.Domain.OldId;
+using BattleScene.Domain.Interface;
 
 namespace BattleScene.Domain.IRepository
 {
     public interface IAutoIncrementRepository<TEntity, TId> : IAutoIncrement<TId>, IRepository<TEntity, TId>
         where TEntity : BaseEntity<TEntity, TId>
-        where TId : Number<TId>, new()
+        where TId : IId
     {
     }
 }

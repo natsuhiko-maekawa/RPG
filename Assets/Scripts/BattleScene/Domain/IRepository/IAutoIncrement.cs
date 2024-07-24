@@ -1,10 +1,11 @@
-﻿using BattleScene.Domain.OldId;
+﻿using BattleScene.Domain.Id;
+using BattleScene.Domain.Interface;
 
 namespace BattleScene.Domain.IRepository
 {
-    public interface IAutoIncrement<out TId>
-        where TId : Number<TId>, new()
+    public interface IAutoIncrement<TId>
+        where TId : IId
     {
-        public TId GenerateId();
+        public AutoIncrementId<TId> GenerateId();
     }
 }
