@@ -1,6 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.Immutable;
+using System.Linq;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.IFactory;
+using BattleScene.Domain.ValueObject;
 using BattleScene.InterfaceAdapter.Skill;
 using BattleScene.InterfaceAdapter.Skill.AbstractClass;
 using VContainer;
@@ -8,14 +12,26 @@ using static BattleScene.Domain.Code.SkillCode;
 
 namespace BattleScene.InterfaceAdapter.DataAccess.Factory
 {
-    public class SkillFactory : IFactory<AbstractSkill, SkillCode>
+    public class SkillFactory : IFactory<SkillValueObject, SkillCode>
     {
         private readonly IObjectResolver _container;
 
-        public AbstractSkill Create(SkillCode skillCode)
+        public SkillValueObject Create(SkillCode skillCode)
+        {
+            var skill = Resolve(skillCode);
+            var ailmentList = CreateAilmentValueObject(skill.AilmentList);
+            return new SkillValueObject(
+                skillCode: skillCode,
+                range: skill.Range,
+                ailmentList: ailmentList,
+                buffList: null);
+        }
+
+        private AbstractSkill Resolve(SkillCode skillCode)
         {
             return skillCode switch
             {
+                #region Resolve Skills.
                 Afterimage => _container.Resolve<AfterimageSkill>(),
                 Attack => _container.Resolve<AttackSkill>(),
                 Bite => _container.Resolve<BiteSkill>(),
@@ -48,8 +64,18 @@ namespace BattleScene.InterfaceAdapter.DataAccess.Factory
                 TaserGun => _container.Resolve<TaserGunSkill>(),
                 Utsusemi => _container.Resolve<UtsusemiSkill>(),
                 Wabisuke => _container.Resolve<WabisukeSkill>(),
+                #endregion
                 _ => throw new ArgumentOutOfRangeException(nameof(skillCode), skillCode, null)
             };
+        }
+
+        private ImmutableList<AilmentValueObject> CreateAilmentValueObject(IList<AbstractAilment> ailmentList)
+        {
+            if (ailmentList == null) return ImmutableList<AilmentValueObject>.Empty;
+            return ailmentList
+                .Select(x => new AilmentValueObject(
+                    LuckRate: x.LuckRate))
+                .ToImmutableList();
         }
     }
 }

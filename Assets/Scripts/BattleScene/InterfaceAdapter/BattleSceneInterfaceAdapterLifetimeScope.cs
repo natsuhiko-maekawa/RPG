@@ -4,6 +4,7 @@ using BattleScene.Domain.Entity;
 using BattleScene.Domain.IFactory;
 using BattleScene.Domain.IRepository;
 using BattleScene.Domain.OldId;
+using BattleScene.Domain.ValueObject;
 using BattleScene.InterfaceAdapter.Controller;
 using BattleScene.InterfaceAdapter.DataAccess.Factory;
 using BattleScene.InterfaceAdapter.DataAccess.Repository;
@@ -24,7 +25,6 @@ using BattleScene.InterfaceAdapter.Presenter.SelectSkillView;
 using BattleScene.InterfaceAdapter.Presenter.StatusBarView;
 using BattleScene.InterfaceAdapter.Service;
 using BattleScene.InterfaceAdapter.Skill;
-using BattleScene.InterfaceAdapter.Skill.AbstractClass;
 using BattleScene.InterfaceAdapter.Skill.SkillElement;
 using BattleScene.UseCases.IController;
 using BattleScene.UseCases.IPresenter;
@@ -107,7 +107,7 @@ namespace BattleScene.InterfaceAdapter
             builder
                 .Register<IRepository<TechnicalPointAggregate, CharacterId>,
                     Repository<TechnicalPointAggregate, CharacterId>>(Lifetime.Singleton);
-            builder.Register<IFactory<AbstractSkill, SkillCode>, SkillFactory>(Lifetime.Singleton);
+            builder.Register<IFactory<SkillValueObject, SkillCode>, SkillFactory>(Lifetime.Singleton);
 
             builder.Register<IAilmentFactory, AilmentFactory>(Lifetime.Singleton);
             builder.Register<IAilmentViewInfoFactory, AilmentViewInfoFactory>(Lifetime.Singleton);

@@ -5,6 +5,8 @@ namespace BattleScene.InterfaceAdapter.Skill.SkillElement
 {
     public class Blind : AbstractAilment
     {
+        public override AilmentCode AilmentCode { get; } = AilmentCode.Blind;
+
         public override AilmentCode GetAilmentCode()
         {
             return AilmentCode.Blind;

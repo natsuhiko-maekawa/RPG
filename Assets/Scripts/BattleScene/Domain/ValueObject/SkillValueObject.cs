@@ -9,5 +9,17 @@ namespace BattleScene.Domain.ValueObject
         public Range Range { get; }
         public ImmutableList<AilmentValueObject> AilmentList { get; }
         public ImmutableList<BuffValueObject> BuffList { get; }
+
+        public SkillValueObject(
+            SkillCode skillCode,
+            Range range,
+            ImmutableList<AilmentValueObject> ailmentList,
+            ImmutableList<BuffValueObject> buffList)
+        {
+            SkillCode = skillCode;
+            Range = range;
+            AilmentList = ailmentList;
+            BuffList = buffList;
+        }
     }
 }
