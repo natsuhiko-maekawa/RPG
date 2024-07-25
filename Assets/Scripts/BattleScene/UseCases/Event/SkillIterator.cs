@@ -27,7 +27,7 @@ namespace BattleScene.UseCases.Event
             
             foreach (var ailment in _skill.AilmentList)
             {
-                // _ailmentSkill.Execute(_skill, ailment);
+                _ailmentSkill.Execute(_skill, ailment);
                 yield return StateCode.Ailment;
             }
 

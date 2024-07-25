@@ -46,7 +46,7 @@ namespace BattleScene.UseCases.OldEvent
 
         public EventCode Run()
         {
-            var ailmentSkillResult = _result.Last<AilmentSkillResultValueObject>();
+            var ailmentSkillResult = _result.Last<AilmentResultValueObject>();
 
             var ailmentOutputData = _ailmentOutputDataFactory.Create(ailmentSkillResult.TargetIdList);
             _ailmentView.Start(ailmentOutputData);

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Immutable;
 using System.Linq;
+using BattleScene.Domain.Aggregate;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.IRepository;
@@ -13,7 +14,7 @@ namespace BattleScene.UseCases.Service
     internal class AilmentSkillService
     {
         private const float Threshold = 40.0f; // 大きいほど命中しやすくなる
-        private readonly ICharacterRepository _characterRepository;
+        private readonly IRepository<CharacterAggregate, CharacterId> _characterRepository;
         private readonly OrderedItemsDomainService _orderedItems;
         
         private readonly IRandomEx _randomEx;
@@ -21,7 +22,7 @@ namespace BattleScene.UseCases.Service
         private readonly TargetDomainService _target;
 
         public AilmentSkillService(
-            ICharacterRepository characterRepository,
+            IRepository<CharacterAggregate, CharacterId> characterRepository,
             OrderedItemsDomainService orderedItems,
             IRandomEx randomEx,
             ResultCreatorDomainService resultCreator,
@@ -41,24 +42,25 @@ namespace BattleScene.UseCases.Service
                 .Where(x => IsTarget(x, ailment.LuckRate))
                 .ToImmutableList();
 
-            // var ailmentSkillResult = targetIdList.IsEmpty
-            //     ? new AilmentSkillResultValueObject(
-            //         _orderedItems.FirstCharacterId(),
-            //         skill.SkillCode)
-            //     : new AilmentSkillResultValueObject(
-            //         _orderedItems.FirstCharacterId(),
-            //         skill.SkillCode,
-            //         ailmentSkill.GetAilmentsCode(),
-            //         targetIdList);
-            //
-            // return _resultCreator.Create(ailmentSkillResult);
+            var ailmentSkillResult = targetIdList.IsEmpty
+                ? new AilmentResultValueObject(
+                    actorId: actorId,
+                    skill.SkillCode)
+                : new AilmentResultValueObject(
+                    actorId: actorId,
+                    skill.SkillCode,
+                    ailment.AilmentCode,
+                    targetIdList);
+            
+            return _resultCreator.Create(ailmentSkillResult);
 
             throw new NotImplementedException();
         }
 
         private bool IsTarget(CharacterId target, float luckRate)
         {
-            var actorLuck = _characterRepository.Select(_orderedItems.FirstCharacterId()).Property.Luck;
+            _orderedItems.First().TryGetCharacterId(out var characterId);
+            var actorLuck = _characterRepository.Select(characterId).Property.Luck;
             var targetLuck = _characterRepository.Select(target).Property.Luck;
             var rate = luckRate * (1.0f + (actorLuck - targetLuck) / Threshold);
             return _randomEx.Probability(rate);

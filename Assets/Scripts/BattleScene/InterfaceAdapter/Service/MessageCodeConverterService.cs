@@ -84,7 +84,7 @@ namespace BattleScene.InterfaceAdapter.Service
         private string ReplaceAilments(string message)
         {
             if (!message.Contains(Ailment)) return message;
-            var ailmentCode = _result.Last<AilmentSkillResultValueObject>().AilmentCode;
+            var ailmentCode = _result.Last<AilmentResultValueObject>().AilmentCode;
             var ailmentName = _ailmentViewInfoFactory.Create(ailmentCode).AilmentName;
             return message.Replace(Ailment, ailmentName);
         }

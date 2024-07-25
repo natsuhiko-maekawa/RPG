@@ -62,7 +62,7 @@ namespace BattleScene.UseCases.OldEvent
 
         protected override EventCode RunSkillEvent()
         {
-            var ailmentSkillResult = _result.Last<AilmentSkillResultValueObject>();
+            var ailmentSkillResult = _result.Last<AilmentResultValueObject>();
 
             // ダメージを与えるスキルで状態異常に失敗したとき、失敗のメッセージを表示せず次のイベントに移る
             // 失敗のメッセージを表示しているとゲームのテンポが悪くなるため

@@ -74,6 +74,7 @@ namespace BattleScene.InterfaceAdapter.DataAccess.Factory
             if (ailmentList == null) return ImmutableList<AilmentValueObject>.Empty;
             return ailmentList
                 .Select(x => new AilmentValueObject(
+                    AilmentCode: x.AilmentCode,
                     LuckRate: x.LuckRate))
                 .ToImmutableList();
         }

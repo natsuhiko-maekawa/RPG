@@ -6,9 +6,9 @@ using BattleScene.Domain.OldId;
 
 namespace BattleScene.Domain.ValueObject
 {
-    public class AilmentSkillResultValueObject : ISkillResult
+    public class AilmentResultValueObject : ISkillResult
     {
-        public AilmentSkillResultValueObject(
+        public AilmentResultValueObject(
             CharacterId actorId,
             SkillCode skillCode,
             AilmentCode ailmentCode,
@@ -20,7 +20,7 @@ namespace BattleScene.Domain.ValueObject
             TargetIdList = targetIdList.ToImmutableList();
         }
 
-        public AilmentSkillResultValueObject(
+        public AilmentResultValueObject(
             CharacterId actorId,
             SkillCode skillCode)
         {
