@@ -1,3 +1,4 @@
+using System;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.IRepository;
 using BattleScene.UseCases.OldEvent.Interface;
@@ -18,18 +19,19 @@ namespace BattleScene.UseCases.UseCase
 
         public EventCode Run()
         {
-            var characterId = _orderedItems.FirstCharacterId();
-            var skill = _skillRepository.Select(characterId);
-            return skill.FirstSkillService() switch
-            {
-                // AbstractDamage => EventCode.PlayerDamageEvent,
-                // AbstractAilment => EventCode.AilmentEvent,
-                // AbstractDestroyPart => EventCode.DestroyedPartEvent,
-                // AbstractCure => EventCode.CureEvent,
-                // AbstractReset => EventCode.ResetEvent,
-                // AbstractBuff => EventCode.BuffEvent,
-                _ => EventCode.LoopEndEvent
-            };
+            // var characterId = _orderedItems.FirstCharacterId();
+            // var skill = _skillRepository.Select(characterId);
+            // return skill.FirstSkillService() switch
+            // {
+            //     AbstractDamage => EventCode.PlayerDamageEvent,
+            //     AbstractAilment => EventCode.AilmentEvent,
+            //     AbstractDestroyPart => EventCode.DestroyedPartEvent,
+            //     AbstractCure => EventCode.CureEvent,
+            //     AbstractReset => EventCode.ResetEvent,
+            //     AbstractBuff => EventCode.BuffEvent,
+            //     _ => EventCode.LoopEndEvent
+            // };
+            throw new NotImplementedException();
         }
     }
 }

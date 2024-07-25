@@ -1,9 +1,9 @@
-﻿using System;
-
-namespace BattleScene.Domain.Interface
-{
-    [Obsolete]
-    public interface ISkillElement : IComparable<ISkillElement>
-    {
-    }
-}
+﻿// using System;
+//
+// namespace BattleScene.Domain.Interface
+// {
+//     [Obsolete]
+//     public interface ISkillElement : IComparable<ISkillElement>
+//     {
+//     }
+// }

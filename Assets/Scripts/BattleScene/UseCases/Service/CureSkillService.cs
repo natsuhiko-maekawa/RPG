@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Immutable;
 using System.Linq;
 using BattleScene.Domain.DomainService;
@@ -25,20 +26,21 @@ namespace BattleScene.UseCases.Service
 
         public ResultEntity Execute(SkillEntity skill)
         {
-            var actorId = _orderedItems.FirstCharacterId();
-            var cureSkill = (ICureSkill)skill.FirstSkillService();
-            var cureList = _target.Get(actorId, skill.Skill.Range)
-                .Select(x => new CureResultValueObject(
-                    cureSkill.GetCureAmount(x),
-                    x))
-                .ToImmutableList();
-
-            var cureSkillResult = new CureSkillResultValueObject(
-                actorId,
-                skill.SkillCode,
-                cureList);
-
-            return _resultCreator.Create(cureSkillResult);
+            // var actorId = _orderedItems.FirstCharacterId();
+            // var cureSkill = (ICureSkill)skill.FirstSkillService();
+            // var cureList = _target.Get(actorId, skill.Skill.Range)
+            //     .Select(x => new CureResultValueObject(
+            //         cureSkill.GetCureAmount(x),
+            //         x))
+            //     .ToImmutableList();
+            //
+            // var cureSkillResult = new CureSkillResultValueObject(
+            //     actorId,
+            //     skill.SkillCode,
+            //     cureList);
+            //
+            // return _resultCreator.Create(cureSkillResult);
+            throw new NotImplementedException();
         }
     }
 }

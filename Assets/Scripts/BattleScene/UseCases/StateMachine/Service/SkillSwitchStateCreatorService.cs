@@ -12,21 +12,22 @@ namespace BattleScene.UseCases.StateMachine.Service
 
         public State Create()
         {
-            var characterId = _orderedItems.FirstCharacterId();
-            var skill = _skillRepository.Select(characterId).FirstSkillService();
-
-            var triggerDict = new Dictionary<Func<bool>, StateCode>
-            {
-                // { () => skill is AbstractDamage, StateCode.Damage },
-                // { () => skill is AbstractAilment, StateCode.Ailment },
-                // { () => skill is AbstractDestroyPart, StateCode.DestroyedPart },
-                // { () => skill is AbstractCure, StateCode.Cure },
-                // { () => skill is AbstractReset, StateCode.Reset },
-                // { () => skill is AbstractBuff, StateCode.Buff }
-            };
-
-            return new State(
-                triggerDict: triggerDict);
+            // var characterId = _orderedItems.FirstCharacterId();
+            // var skill = _skillRepository.Select(characterId).FirstSkillService();
+            //
+            // var triggerDict = new Dictionary<Func<bool>, StateCode>
+            // {
+            //     { () => skill is AbstractDamage, StateCode.Damage },
+            //     { () => skill is AbstractAilment, StateCode.Ailment },
+            //     { () => skill is AbstractDestroyPart, StateCode.DestroyedPart },
+            //     { () => skill is AbstractCure, StateCode.Cure },
+            //     { () => skill is AbstractReset, StateCode.Reset },
+            //     { () => skill is AbstractBuff, StateCode.Buff }
+            // };
+            //
+            // return new State(
+            //     triggerDict: triggerDict);
+            throw new NotImplementedException();
         }
     }
 }

@@ -52,8 +52,8 @@ namespace BattleScene.UseCases.OldEvent
 
         public EventCode Run()
         {
-            if (_skillRepository.Select(_orderedItems.FirstCharacterId())
-                    .DequeSkillElement() is not IDestroyedPartSkill)
+            // if (_skillRepository.Select(_orderedItems.FirstCharacterId())
+            //         .DequeSkillElement() is not IDestroyedPartSkill)
                 throw new InvalidCastException();
 
             var destroyedPartSkillResult = _result.Last<DestroyedPartSkillResultValueObject>();

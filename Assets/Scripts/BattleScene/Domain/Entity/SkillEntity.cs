@@ -36,22 +36,22 @@ namespace BattleScene.Domain.Entity
         public SkillCode SkillCode { get; }
         public SkillValueObject Skill { get; }
 
-        [Obsolete]
-        public ISkillElement FirstSkillService()
-        {
-            // return _skillServiceQueue.FirstOrDefault();
-            throw new NotImplementedException();
-        }
+        // [Obsolete]
+        // public ISkillElement FirstSkillService()
+        // {
+        //     // return _skillServiceQueue.FirstOrDefault();
+        //     throw new NotImplementedException();
+        // }
 
-        [Obsolete]
-        public ISkillElement DequeSkillElement()
-        {
-            // if (_skillServiceQueue.IsEmpty) return null;
-            // var skillService = _skillServiceQueue.Peek();
-            // var newSkillServiceQueue = _skillServiceQueue.Dequeue();
-            // _skillServiceQueue = newSkillServiceQueue;
-            // return skillService;
-            throw new NotImplementedException();
-        }
+        // [Obsolete]
+        // public ISkillElement DequeSkillElement()
+        // {
+        //     // if (_skillServiceQueue.IsEmpty) return null;
+        //     // var skillService = _skillServiceQueue.Peek();
+        //     // var newSkillServiceQueue = _skillServiceQueue.Dequeue();
+        //     // _skillServiceQueue = newSkillServiceQueue;
+        //     // return skillService;
+        //     throw new NotImplementedException();
+        // }
     }
 }

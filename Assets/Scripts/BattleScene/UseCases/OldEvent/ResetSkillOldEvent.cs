@@ -43,10 +43,10 @@ namespace BattleScene.UseCases.OldEvent
 
         protected override void UpdateResultRepository()
         {
-            var characterId = _orderedItems.FirstCharacterId();
-            var skill = _skillRepository.Select(characterId);
-            skill.DequeSkillElement();
-            _skillRepository.Update(skill);
+            // var characterId = _orderedItems.FirstCharacterId();
+            // var skill = _skillRepository.Select(characterId);
+            // skill.DequeSkillElement();
+            // _skillRepository.Update(skill);
         }
 
         protected override void UpdateSkillRepository()
