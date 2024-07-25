@@ -1,5 +1,4 @@
-﻿using System.Collections.Immutable;
-using System.Linq;
+﻿using System;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.Interface;
 using BattleScene.Domain.OldId;
@@ -9,7 +8,7 @@ namespace BattleScene.Domain.Entity
 {
     public class SkillEntity : BaseEntity<SkillEntity, CharacterId>
     {
-        private ImmutableQueue<ISkillElement> _skillServiceQueue;
+        // private ImmutableQueue<ISkillElement> _skillServiceQueue;
 
         // public SkillEntity(
         //     CharacterId id,
@@ -28,25 +27,31 @@ namespace BattleScene.Domain.Entity
             CharacterId id,
             SkillValueObject skill)
         {
-            
+            Id = id;
+            Skill = skill;
         }
 
         public override CharacterId Id { get; }
+        [Obsolete]
         public SkillCode SkillCode { get; }
         public SkillValueObject Skill { get; }
 
+        [Obsolete]
         public ISkillElement FirstSkillService()
         {
-            return _skillServiceQueue.FirstOrDefault();
+            // return _skillServiceQueue.FirstOrDefault();
+            throw new NotImplementedException();
         }
 
+        [Obsolete]
         public ISkillElement DequeSkillElement()
         {
-            if (_skillServiceQueue.IsEmpty) return null;
-            var skillService = _skillServiceQueue.Peek();
-            var newSkillServiceQueue = _skillServiceQueue.Dequeue();
-            _skillServiceQueue = newSkillServiceQueue;
-            return skillService;
+            // if (_skillServiceQueue.IsEmpty) return null;
+            // var skillService = _skillServiceQueue.Peek();
+            // var newSkillServiceQueue = _skillServiceQueue.Dequeue();
+            // _skillServiceQueue = newSkillServiceQueue;
+            // return skillService;
+            throw new NotImplementedException();
         }
     }
 }
