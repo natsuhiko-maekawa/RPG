@@ -3,7 +3,7 @@ using BattleScene.InterfaceAdapter.Skill.AbstractClass;
 
 namespace BattleScene.InterfaceAdapter.Skill.SkillElement
 {
-    public class destroyArm : AbstractDestroyPart
+    public class DestroyArm : AbstractDestroyPart
     {
         public override BodyPartCode GetDestroyPart()
         {
