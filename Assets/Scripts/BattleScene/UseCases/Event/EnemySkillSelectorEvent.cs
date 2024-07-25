@@ -25,7 +25,7 @@ namespace BattleScene.UseCases.Event
 
         public override StateCode GetStateCode()
         {
-            return StateCode.EnemyAttack;
+            return StateCode.ExecuteSkill;
         }
     }
 }

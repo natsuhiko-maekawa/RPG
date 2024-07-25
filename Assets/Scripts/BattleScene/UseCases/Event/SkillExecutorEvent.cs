@@ -6,7 +6,13 @@ namespace BattleScene.UseCases.Event
     {
         private readonly SkillIterator _skillIterator;
         private StateCode _stateCode;
-        
+
+        public SkillExecutorEvent(
+            SkillIterator skillIterator)
+        {
+            _skillIterator = skillIterator;
+        }
+
         public override void UseCase()
         {
             _stateCode = _skillIterator.TryExecuteNext(out var stateCode)

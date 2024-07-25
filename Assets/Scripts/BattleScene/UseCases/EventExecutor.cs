@@ -22,6 +22,7 @@ namespace BattleScene.UseCases
                 StateCode.InitializeEnemy => _container.Resolve<EnemyInitializerEvent>().Execute(),
                 StateCode.Order => _container.Resolve<OrderEvent>().Execute(),
                 StateCode.EnemySkill => _container.Resolve<EnemySkillSelectorEvent>().Execute(),
+                StateCode.ExecuteSkill => _container.Resolve<SkillExecutorEvent>().Execute(),
                 _ => throw new ArgumentOutOfRangeException()
             };
         }
