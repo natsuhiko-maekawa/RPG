@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.Immutable;
 using BattleScene.Domain.Aggregate;
 using BattleScene.Domain.OldId;

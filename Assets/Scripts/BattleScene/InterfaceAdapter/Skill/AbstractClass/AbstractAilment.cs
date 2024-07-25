@@ -1,7 +1,7 @@
 ﻿using BattleScene.Domain.Code;
 using BattleScene.Domain.Interface;
 
-namespace BattleScene.Domain.ValueObject
+namespace BattleScene.InterfaceAdapter.Skill.AbstractClass
 {
     public abstract class AbstractAilment : ILuckSkillElement
     {

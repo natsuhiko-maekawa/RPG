@@ -3,7 +3,6 @@ using System.Collections.Immutable;
 using System.Linq;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Entity;
-using BattleScene.Domain.Interface;
 using BattleScene.Domain.IRepository;
 using BattleScene.Domain.OldId;
 using BattleScene.Domain.ValueObject;

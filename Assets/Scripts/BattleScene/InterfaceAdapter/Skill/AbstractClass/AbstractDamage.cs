@@ -3,7 +3,7 @@ using System.Collections.Immutable;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.OldId;
 
-namespace BattleScene.Domain.ValueObject
+namespace BattleScene.InterfaceAdapter.Skill.AbstractClass
 {
     public abstract class AbstractDamage
     {

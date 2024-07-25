@@ -7,8 +7,6 @@ using BattleScene.Domain.IFactory;
 using BattleScene.Domain.IRepository;
 using BattleScene.Domain.OldId;
 using BattleScene.Domain.ValueObject;
-using BattleScene.InterfaceAdapter.DataAccess.Factory.Dto;
-using BattleScene.InterfaceAdapter.DataAccess.IResource;
 using BattleScene.InterfaceAdapter.IView;
 using BattleScene.InterfaceAdapter.Presenter.MessageView;
 using BattleScene.InterfaceAdapter.Presenter.PlayerView;

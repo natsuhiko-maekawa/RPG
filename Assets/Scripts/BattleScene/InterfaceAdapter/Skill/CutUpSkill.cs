@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Immutable;
 using BattleScene.Domain.Code;
-using BattleScene.Domain.ValueObject;
+using BattleScene.InterfaceAdapter.Skill.AbstractClass;
 using BattleScene.InterfaceAdapter.Skill.SkillElement;
 using Utility.Interface;
 using static BattleScene.Domain.Code.MessageCode;

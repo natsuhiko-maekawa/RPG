@@ -5,7 +5,6 @@ using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.IRepository;
 using BattleScene.Domain.OldId;
-using BattleScene.Domain.ValueObject;
 
 namespace BattleScene.UseCases.Service
 {

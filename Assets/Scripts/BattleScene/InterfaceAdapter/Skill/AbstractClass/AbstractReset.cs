@@ -1,7 +1,7 @@
 ﻿using System.Collections.Immutable;
 using BattleScene.Domain.Code;
 
-namespace BattleScene.Domain.ValueObject
+namespace BattleScene.InterfaceAdapter.Skill.AbstractClass
 {
     public class AbstractReset
     {

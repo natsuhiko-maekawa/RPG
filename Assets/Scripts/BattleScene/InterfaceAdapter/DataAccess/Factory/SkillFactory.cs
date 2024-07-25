@@ -1,8 +1,8 @@
 ﻿using System;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.IFactory;
-using BattleScene.Domain.ValueObject;
 using BattleScene.InterfaceAdapter.Skill;
+using BattleScene.InterfaceAdapter.Skill.AbstractClass;
 using VContainer;
 using static BattleScene.Domain.Code.SkillCode;
 

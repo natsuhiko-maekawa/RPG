@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using BattleScene.Domain.Code;
-using BattleScene.Domain.ValueObject;
+using BattleScene.InterfaceAdapter.Skill.AbstractClass;
 using BattleScene.InterfaceAdapter.Skill.SkillElement;
 using Utility.Interface;
 using Range = BattleScene.Domain.Code.Range;

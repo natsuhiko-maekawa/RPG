@@ -4,7 +4,7 @@ using BattleScene.Domain.Code;
 using BattleScene.Domain.Interface;
 using Range = BattleScene.Domain.Code.Range;
 
-namespace BattleScene.Domain.ValueObject
+namespace BattleScene.InterfaceAdapter.Skill.AbstractClass
 {
     public abstract class AbstractSkill : ISkill
     {

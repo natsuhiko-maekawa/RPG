@@ -1,6 +1,6 @@
 using System.Collections.Immutable;
 using BattleScene.Domain.Code;
-using BattleScene.Domain.ValueObject;
+using BattleScene.InterfaceAdapter.Skill.AbstractClass;
 using BattleScene.InterfaceAdapter.Skill.SkillElement;
 
 namespace BattleScene.InterfaceAdapter.Skill

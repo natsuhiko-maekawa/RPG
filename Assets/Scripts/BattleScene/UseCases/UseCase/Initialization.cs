@@ -4,7 +4,6 @@ using BattleScene.Domain.IFactory;
 using BattleScene.Domain.IRepository;
 using BattleScene.Domain.OldId;
 using BattleScene.UseCases.OldEvent.Runner;
-using BattleScene.UseCases.Service;
 using BattleScene.UseCases.UseCase.Interface;
 
 namespace BattleScene.UseCases.UseCase

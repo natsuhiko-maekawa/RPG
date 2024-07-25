@@ -2,8 +2,6 @@
 using System.Linq;
 using BattleScene.Domain.IFactory;
 using BattleScene.Domain.Interface;
-using BattleScene.InterfaceAdapter.DataAccess.Factory.Dto;
-using BattleScene.InterfaceAdapter.DataAccess.IResource;
 using UnityEngine;
 
 namespace BattleScene.InterfaceAdapter.DataAccess.Resource

@@ -2,10 +2,8 @@
 using System.Linq;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.Entity;
-using BattleScene.Domain.Interface;
 using BattleScene.Domain.IRepository;
 using BattleScene.Domain.OldId;
-using BattleScene.Domain.ValueObject;
 
 namespace BattleScene.Domain.DomainService
 {

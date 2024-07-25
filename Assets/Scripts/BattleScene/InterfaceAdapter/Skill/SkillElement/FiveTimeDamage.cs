@@ -1,4 +1,4 @@
-﻿using BattleScene.Domain.ValueObject;
+﻿using BattleScene.InterfaceAdapter.Skill.AbstractClass;
 
 namespace BattleScene.InterfaceAdapter.Skill.SkillElement
 {
