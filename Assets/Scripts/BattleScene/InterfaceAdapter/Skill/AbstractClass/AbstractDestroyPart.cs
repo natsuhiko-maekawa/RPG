@@ -3,7 +3,7 @@ using BattleScene.Domain.Interface;
 
 namespace BattleScene.InterfaceAdapter.Skill.AbstractClass
 {
-    public abstract class AbstractDestroyPart : ILuckSkillElement
+    public abstract class AbstractDestroyPart
     {
         public float GetLuckRate()
         {

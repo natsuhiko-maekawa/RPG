@@ -2,7 +2,7 @@
 
 namespace BattleScene.Domain.Interface
 {
-    public interface IAilmentSkill : ISkillElement, ILuckSkillElement
+    public interface IAilmentSkill : ISkillElement
     {
         public AilmentCode GetAilmentsCode();
     }

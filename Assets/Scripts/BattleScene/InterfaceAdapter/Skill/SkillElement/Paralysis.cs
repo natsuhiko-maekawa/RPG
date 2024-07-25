@@ -6,10 +6,5 @@ namespace BattleScene.InterfaceAdapter.Skill.SkillElement
     public class Paralysis : AbstractAilment
     {
         public override AilmentCode AilmentCode { get; } = AilmentCode.Paralysis;
-
-        public override AilmentCode GetAilmentCode()
-        {
-            return AilmentCode.Paralysis;
-        }
     }
 }
