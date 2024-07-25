@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.IRepository;
 

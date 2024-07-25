@@ -1,7 +1,5 @@
-using System;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.IFactory;
-using BattleScene.Domain.Interface;
 using BattleScene.Domain.IRepository;
 using BattleScene.Domain.ValueObject;
 using BattleScene.UseCases.OldEvent.Interface;

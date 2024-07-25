@@ -1,6 +1,5 @@
 ﻿using System;
 using BattleScene.Domain.Code;
-using BattleScene.Domain.Interface;
 using BattleScene.Domain.OldId;
 using BattleScene.Domain.ValueObject;
 
