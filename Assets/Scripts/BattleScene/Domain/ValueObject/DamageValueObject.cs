@@ -1,38 +1,16 @@
-﻿using BattleScene.Domain.OldId;
+﻿using System.Collections.Immutable;
+using BattleScene.Domain.Code;
 
 namespace BattleScene.Domain.ValueObject
 {
     public class DamageValueObject
     {
-        public DamageValueObject(
-            int amount,
-            CharacterId targetId,
-            bool isHit,
-            bool attacksWeakPoint,
-            int number)
-        {
-            Amount = amount;
-            TargetId = targetId;
-            IsHit = isHit;
-            AttacksWeakPoint = attacksWeakPoint;
-            Number = number;
-        }
-
-        public DamageValueObject(
-            int amount,
-            CharacterId targetId)
-        {
-            Amount = amount;
-            TargetId = targetId;
-            IsHit = true;
-            AttacksWeakPoint = false;
-            Number = 0;
-        }
-
-        public int Amount { get; }
-        public CharacterId TargetId { get; }
-        public bool IsHit { get; }
-        public bool AttacksWeakPoint { get; }
-        public int Number { get; }
+        public int AttackNumber { get; }
+        public float DamageRate { get; }
+        public float HitRate { get; }
+        public ImmutableList<MatAttrCode> MatAttrCode { get; }
+        public DamageExpressionCode DamageExpressionCode { get; }
+        public HitEvaluationCode HitEvaluationCode { get; }
+        public AttacksWeakPointEvaluationCode AttacksWeakPointEvaluationCode { get; }
     }
 }

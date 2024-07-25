@@ -12,7 +12,7 @@ namespace BattleScene.Domain.Entity
         public CharacterId ActorId { get; }
         public ImmutableList<CharacterId> TargetIdList { get; }
         public SkillValueObject Skill { get; }
-        public AbstractAilment Ailment { get; }
+        public AilmentValueObject Ailment { get; }
 
         public SequenceEntity(
             AutoIncrementId<ISequence> id)

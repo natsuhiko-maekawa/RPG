@@ -2,6 +2,6 @@
 {
     public class AilmentValueObject
     {
-        
+        public float LuckRate { get; }
     }
 }

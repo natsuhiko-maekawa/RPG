@@ -4,7 +4,6 @@ using BattleScene.Domain.Aggregate;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Entity;
-using BattleScene.Domain.Expression;
 using BattleScene.Domain.IRepository;
 using BattleScene.Domain.OldId;
 using BattleScene.Domain.ValueObject;
@@ -14,15 +13,13 @@ namespace BattleScene.UseCases.Service
 {
     public class DamageEvaluatorService
     {
-        private readonly BasicDamageExpression _basicDamageExpression;
-        private readonly ConstantDamageExpression _constantDamageExpression;
         private readonly BodyPartDomainService _bodyPartDomainService;
         private readonly BuffDomainService _buffDomainService;
         private readonly IRepository<BuffEntity, BuffId> _buffRepository;
         private readonly IRepository<CharacterAggregate, CharacterId> _characterRepository;
         private readonly IRandomEx _randomEx;
         
-        public int Evaluate(CharacterId actorId, CharacterId targetId, AbstractDamage damage)
+        public int Evaluate(CharacterId actorId, CharacterId targetId, DamageValueObject damage)
         {
             return damage.DamageExpressionCode switch
             {
@@ -32,7 +29,7 @@ namespace BattleScene.UseCases.Service
             };
         }
 
-        private int BasicEvaluate(CharacterId actorId, CharacterId targetId, AbstractDamage damage)
+        private int BasicEvaluate(CharacterId actorId, CharacterId targetId, DamageValueObject damage)
         {
             var actorStrength = _characterRepository.Select(actorId).Property.Strength;
             var targetVitality = _characterRepository.Select(targetId).Property.Vitality;
@@ -51,7 +48,7 @@ namespace BattleScene.UseCases.Service
                 / targetBuffRate * destroyedRate * targetDefence * rate * 1.5f) + _randomEx.Range(1, 3);
         }
         
-        private int ConstantEvaluate(CharacterId actorId, AbstractDamage damage)
+        private int ConstantEvaluate(CharacterId actorId, DamageValueObject damage)
         {
             var actorStrength = _characterRepository.Select(actorId).Property.Strength;
             const int targetVitality = 1;

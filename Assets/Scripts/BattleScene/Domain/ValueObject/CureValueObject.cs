@@ -1,8 +1,9 @@
-﻿using BattleScene.Domain.OldId;
+﻿using BattleScene.Domain.Code;
 
 namespace BattleScene.Domain.ValueObject
 {
-    public record CureValueObject(
-        int Amount,
-        CharacterId TargetId);
+    public class CureValueObject
+    {
+        public CureExpressionCode CureExpressionCode { get; }
+    }
 }

@@ -1,6 +1,4 @@
 ﻿using BattleScene.Domain.DomainService;
-using BattleScene.Domain.Expression;
-using BattleScene.Domain.ValueObject;
 using BattleScene.UseCases.Event;
 using BattleScene.UseCases.OldEvent;
 using BattleScene.UseCases.OldEvent.Runner;
@@ -119,15 +117,6 @@ namespace BattleScene.UseCases
             builder.Register<SelectActionOutputDataFactory>(Lifetime.Singleton);
             builder.Register<SelectSkillOutputDataFactory>(Lifetime.Singleton);
             builder.Register<TechnicalPointBarOutputDataFactory>(Lifetime.Singleton);
-            
-
-            
-            builder.Register<AttacksWeakPointEvaluation>(Lifetime.Singleton);
-            builder.Register<ConstantDamageExpression>(Lifetime.Singleton);
-            builder.Register<CureExpression>(Lifetime.Singleton);
-            builder.Register<BasicDamageExpression>(Lifetime.Singleton);
-            builder.Register<HitEvaluation>(Lifetime.Singleton);
-            builder.Register<Luck>(Lifetime.Singleton);
 
             builder.Register<AilmentViewOutput>(Lifetime.Singleton);
             builder.Register<EnemyViewOutput>(Lifetime.Singleton);

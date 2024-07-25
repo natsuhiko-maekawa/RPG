@@ -19,7 +19,7 @@ namespace BattleScene.UseCases.Service
         private readonly IRepository<CharacterAggregate, CharacterId> _characterRepository;
         private readonly IRandomEx _randomEx;
         
-        public bool Evaluate(CharacterId actorId, CharacterId targetId, AbstractDamage damage)
+        public bool Evaluate(CharacterId actorId, CharacterId targetId, DamageValueObject damage)
         {
             return damage.HitEvaluationCode switch
             {
@@ -29,7 +29,7 @@ namespace BattleScene.UseCases.Service
             };
         }
         
-        private bool BasicEvaluate(CharacterId actorId, CharacterId targetId, AbstractDamage damage)
+        private bool BasicEvaluate(CharacterId actorId, CharacterId targetId, DamageValueObject damage)
         {
             // 両脚損傷時、必ず命中する
             if (!_bodyPartDomainService.IsAvailable(targetId, BodyPartCode.Leg)) return true;

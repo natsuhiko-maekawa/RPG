@@ -1,5 +1,6 @@
 ﻿using System;
 using BattleScene.Domain.Aggregate;
+using BattleScene.Domain.Code;
 using BattleScene.Domain.IRepository;
 using BattleScene.Domain.OldId;
 using BattleScene.Domain.ValueObject;
@@ -13,7 +14,7 @@ namespace BattleScene.UseCases.Service
         private readonly IRepository<HitPointAggregate, CharacterId> _hitPointRepository;
         private readonly IRandomEx _randomEx;
         
-        public int Evaluate(CharacterId actorId, AbstractCure cure)
+        public int Evaluate(CharacterId actorId, CureValueObject cure)
         {
             return cure.CureExpressionCode switch
             {

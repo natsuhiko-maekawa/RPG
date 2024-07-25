@@ -65,21 +65,4 @@ namespace BattleScene.Domain.ValueObject
             throw new NotImplementedException();
         }
     }
-
-    public enum DamageExpressionCode
-    {
-        Basic,
-        Constant
-    }
-
-    public enum HitEvaluationCode
-    {
-        Basic,
-        AlwaysHit
-    }
-
-    public enum AttacksWeakPointEvaluationCode
-    {
-        Basic
-    }
 }

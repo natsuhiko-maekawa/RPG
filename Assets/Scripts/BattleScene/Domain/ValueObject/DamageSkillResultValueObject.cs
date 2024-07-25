@@ -11,7 +11,7 @@ namespace BattleScene.Domain.ValueObject
         public DamageSkillResultValueObject(
             CharacterId actorId,
             SkillCode skillCode,
-            ImmutableList<DamageValueObject> damageList)
+            ImmutableList<DamageResultValueObject> damageList)
         {
             ActorId = actorId;
             SkillCode = skillCode;
@@ -21,7 +21,7 @@ namespace BattleScene.Domain.ValueObject
             DamageList = damageList;
         }
 
-        public ImmutableList<DamageValueObject> DamageList { get; }
+        public ImmutableList<DamageResultValueObject> DamageList { get; }
 
         public int GetTotal()
         {

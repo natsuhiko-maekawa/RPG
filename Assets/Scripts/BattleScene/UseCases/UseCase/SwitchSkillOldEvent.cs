@@ -23,12 +23,12 @@ namespace BattleScene.UseCases.UseCase
             var skill = _skillRepository.Select(characterId);
             return skill.FirstSkillService() switch
             {
-                AbstractDamage => EventCode.PlayerDamageEvent,
-                AbstractAilment => EventCode.AilmentEvent,
-                AbstractDestroyPart => EventCode.DestroyedPartEvent,
-                AbstractCure => EventCode.CureEvent,
-                AbstractReset => EventCode.ResetEvent,
-                AbstractBuff => EventCode.BuffEvent,
+                // AbstractDamage => EventCode.PlayerDamageEvent,
+                // AbstractAilment => EventCode.AilmentEvent,
+                // AbstractDestroyPart => EventCode.DestroyedPartEvent,
+                // AbstractCure => EventCode.CureEvent,
+                // AbstractReset => EventCode.ResetEvent,
+                // AbstractBuff => EventCode.BuffEvent,
                 _ => EventCode.LoopEndEvent
             };
         }

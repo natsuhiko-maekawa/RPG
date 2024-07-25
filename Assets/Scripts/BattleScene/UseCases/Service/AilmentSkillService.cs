@@ -35,11 +35,11 @@ namespace BattleScene.UseCases.Service
             _target = target;
         }
 
-        public ResultEntity Execute(SkillValueObject skill, AbstractAilment ailment)
+        public ResultEntity Execute(SkillValueObject skill, AilmentValueObject ailment)
         {
             _orderedItems.First().TryGetCharacterId(out var actorId);
             var targetIdList = _target.Get(actorId, skill.Range)
-                .Where(x => IsTarget(x, ailment.GetLuckRate()))
+                .Where(x => IsTarget(x, ailment.LuckRate))
                 .ToImmutableList();
 
             // var ailmentSkillResult = targetIdList.IsEmpty

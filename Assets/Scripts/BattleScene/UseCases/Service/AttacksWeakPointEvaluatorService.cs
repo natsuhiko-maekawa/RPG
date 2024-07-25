@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using BattleScene.Domain.Aggregate;
+using BattleScene.Domain.Code;
 using BattleScene.Domain.IRepository;
 using BattleScene.Domain.OldId;
 using BattleScene.Domain.ValueObject;
@@ -12,7 +13,7 @@ namespace BattleScene.UseCases.Service
         private readonly IRepository<CharacterAggregate, CharacterId> _characterRepository;
 
         
-        public bool Evaluate(CharacterId actorId, CharacterId targetId, AbstractDamage damage)
+        public bool Evaluate(CharacterId actorId, CharacterId targetId, DamageValueObject damage)
         {
             return damage.AttacksWeakPointEvaluationCode switch
             {
@@ -21,7 +22,7 @@ namespace BattleScene.UseCases.Service
             };
         }
 
-        private bool BasicEvaluate(CharacterId targetId, AbstractDamage damage)
+        private bool BasicEvaluate(CharacterId targetId, DamageValueObject damage)
         {
             return _characterRepository.Select(targetId).GetWeakPoints()
                 .Intersect(damage.MatAttrCode)

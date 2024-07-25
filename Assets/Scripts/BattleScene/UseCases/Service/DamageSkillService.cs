@@ -26,16 +26,16 @@ namespace BattleScene.UseCases.Service
             _target = target;
         }
 
-        public ResultEntity Execute(SkillValueObject skill, AbstractDamage damageInfo)
+        public ResultEntity Execute(SkillValueObject skill, DamageValueObject damageInfo)
         {
             _orderedItems.First().TryGetCharacterId(out var actorId);
-            var damageList = new List<DamageValueObject>();
+            var damageList = new List<DamageResultValueObject>();
             for (var i = 0; i < damageInfo.AttackNumber; ++i)
             {
                 var targetIdList = _target.Get(actorId, skill.Range);
                 foreach (var targetId in targetIdList)
                 {
-                    var damage = new DamageValueObject(
+                    var damage = new DamageResultValueObject(
                         amount: _damageEvaluator.Evaluate(actorId, targetId, damageInfo),
                         isHit: _isHitEvaluator.Evaluate(actorId, targetId, damageInfo),
                         attacksWeakPoint: _attacksWeakPointEvaluator.Evaluate(actorId, targetId, damageInfo),

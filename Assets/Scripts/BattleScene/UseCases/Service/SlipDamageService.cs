@@ -28,7 +28,7 @@ namespace BattleScene.UseCases.Service
         {
             var slipDamageCode = _orderedItems.FirstSlipDamageCode();
             var slipDamageAmount = _slipDamage.GetDamageAmount(slipDamageCode);
-            var damage = new DamageValueObject(
+            var damage = new DamageResultValueObject(
                 slipDamageAmount,
                 _characters.GetPlayerId());
             var slipDamageResult = new SlipDamageResultValueObject(

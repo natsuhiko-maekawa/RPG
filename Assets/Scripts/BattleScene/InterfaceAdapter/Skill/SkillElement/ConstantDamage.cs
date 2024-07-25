@@ -1,4 +1,5 @@
-﻿using BattleScene.Domain.ValueObject;
+﻿using BattleScene.Domain.Code;
+using BattleScene.Domain.ValueObject;
 
 namespace BattleScene.InterfaceAdapter.Skill.SkillElement
 {
