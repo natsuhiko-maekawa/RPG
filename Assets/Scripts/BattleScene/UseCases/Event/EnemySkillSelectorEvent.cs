@@ -1,22 +1,31 @@
 ﻿using BattleScene.UseCases.StateMachine;
+using BattleScene.UseCases.UseCase;
 
 namespace BattleScene.UseCases.Event
 {
-    public class EnemySkillSelectorEvent : BaseEvent
+    internal class EnemySkillSelectorEvent : BaseEvent
     {
+        private readonly EnemySelectSkill _enemySelectSkill;
+
+        public EnemySkillSelectorEvent(
+            EnemySelectSkill enemySelectSkill)
+        {
+            _enemySelectSkill = enemySelectSkill;
+        }
+
         public override void UseCase()
         {
-            throw new System.NotImplementedException();
+            _enemySelectSkill.Execute();
         }
 
         public override void Output()
         {
-            throw new System.NotImplementedException();
+            // throw new System.NotImplementedException();
         }
 
         public override StateCode GetStateCode()
         {
-            throw new System.NotImplementedException();
+            return StateCode.EnemyAttack;
         }
     }
 }

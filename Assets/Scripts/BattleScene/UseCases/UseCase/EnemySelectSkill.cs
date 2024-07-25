@@ -1,8 +1,12 @@
+using BattleScene.Domain.Aggregate;
+using BattleScene.Domain.Code;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Entity;
+using BattleScene.Domain.IFactory;
 using BattleScene.Domain.IRepository;
+using BattleScene.Domain.OldId;
+using BattleScene.Domain.ValueObject;
 using BattleScene.UseCases.OldEvent.Runner;
-using BattleScene.UseCases.Service;
 using BattleScene.UseCases.UseCase.Interface;
 using Utility.Interface;
 
@@ -10,19 +14,19 @@ namespace BattleScene.UseCases.UseCase
 {
     internal class EnemySelectSkill : IUseCase
     {
-        private readonly ICharacterRepository _characterRepository;
+        private readonly IRepository<CharacterAggregate, CharacterId> _characterRepository;
         private readonly OrderedItemsDomainService _orderItems;
         private readonly IRandomEx _randomEx;
-        private readonly SkillCreatorService _skillCreatorService;
+        private readonly IFactory<SkillValueObject, SkillCode> _skillCreatorService;
         private readonly ISkillRepository _skillRepository;
         private readonly TargetDomainService _target;
         private readonly ITargetRepository _targetRepository;
 
         public EnemySelectSkill(
-            ICharacterRepository characterRepository,
+            IRepository<CharacterAggregate, CharacterId> characterRepository,
             OrderedItemsDomainService orderItems,
             IRandomEx randomEx,
-            SkillCreatorService skillCreatorService,
+            IFactory<SkillValueObject, SkillCode> skillCreatorService,
             ISkillRepository skillRepository,
             TargetDomainService target,
             ITargetRepository targetRepository)
@@ -39,14 +43,14 @@ namespace BattleScene.UseCases.UseCase
         public void Execute()
         {
             // TODO: 敵がスキルを選択する際、ランダムに選択する仮のアルゴリズムを実装している
-            var characterId = _orderItems.FirstCharacterId();
+            _orderItems.First().TryGetCharacterId(out var characterId);
             var skillCodeList = _characterRepository.Select(characterId).GetSkills();
             var skillCode = _randomEx.Choice(skillCodeList);
-            var skill = _skillCreatorService.Create(characterId, skillCode);
+            var skill = _skillCreatorService.Create(skillCode);
 
-            _skillRepository.Update(skill);
+            _skillRepository.Update(new SkillEntity(characterId, skill));
 
-            var target = new TargetEntity(characterId, _target.Get(characterId, skill.Skill.Range));
+            var target = new TargetEntity(characterId, _target.Get(characterId, skill.Range));
             _targetRepository.Update(target);
         }
 

@@ -16,6 +16,12 @@ namespace BattleScene.InterfaceAdapter.DataAccess.Factory
     {
         private readonly IObjectResolver _container;
 
+        public SkillFactory(
+            IObjectResolver container)
+        {
+            _container = container;
+        }
+
         public SkillValueObject Create(SkillCode skillCode)
         {
             var skill = Resolve(skillCode);

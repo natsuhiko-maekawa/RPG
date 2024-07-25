@@ -120,7 +120,7 @@ namespace BattleScene.InterfaceAdapter
 
             builder.Register<ToAilmentNumberService>(Lifetime.Singleton);
             
-                        builder.Register<AfterimageSkill>(Lifetime.Singleton);
+            builder.Register<AfterimageSkill>(Lifetime.Singleton);
             builder.Register<AttackSkill>(Lifetime.Singleton);
             builder.Register<BiteSkill>(Lifetime.Singleton);
             builder.Register<BiteOffSkill>(Lifetime.Singleton);

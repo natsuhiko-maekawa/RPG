@@ -12,6 +12,7 @@
         EnemyCantAction,
         SelectAction,
         EnemySkill,
+        EnemyAttack,
         Damage,
         Ailment,
         DestroyedPart,
