@@ -46,7 +46,7 @@ namespace BattleScene.UseCases.UseCase
 
             _skillRepository.Update(skill);
 
-            var target = new TargetEntity(characterId, _target.Get(characterId, skill.AbstractSkill.GetRange()));
+            var target = new TargetEntity(characterId, _target.Get(characterId, skill.Skill.Range));
             _targetRepository.Update(target);
         }
 

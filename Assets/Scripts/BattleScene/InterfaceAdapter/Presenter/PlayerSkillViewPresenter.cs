@@ -46,7 +46,7 @@ namespace BattleScene.InterfaceAdapter.Presenter
             _playerView.StartTechnicalPointBarView(technicalPointBarViewDto);
             
             // TODO: SkillMessageViewPresenterに移動すること
-            var messageCode = skill.AbstractSkill.GetType().ToString().Split(".").Last() == "AttackSkill"
+            var messageCode = skill.Skill.GetType().ToString().Split(".").Last() == "AttackSkill"
                 ? MessageCode.AttackMessage
                 : MessageCode.SkillMessage;
             var message = _messageCodeConverter.ToMessage(messageCode);

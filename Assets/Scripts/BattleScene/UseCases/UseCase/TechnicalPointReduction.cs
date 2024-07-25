@@ -21,7 +21,7 @@ namespace BattleScene.UseCases.UseCase
             var skill = _skillRepository.Select(characterId);
             
             var technicalPoint = _technicalPointRepository.Select(characterId);
-            technicalPoint.Reduce(skill.AbstractSkill.GetTechnicalPoint());
+            technicalPoint.Reduce(skill.Skill.TechnicalPoint);
             _technicalPointRepository.Update(technicalPoint);
         }
     }

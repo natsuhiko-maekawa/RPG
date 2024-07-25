@@ -47,7 +47,7 @@ namespace BattleScene.UseCases.OldEvent
 
         public EventCode Run()
         {
-            if (_skillRepository.Select(_orderedItems.FirstCharacterId()).AbstractSkill is not IBuffSkill)
+            if (_skillRepository.Select(_orderedItems.FirstCharacterId()).Skill is not IBuffSkill)
                 throw new InvalidCastException();
 
             var buffSkillResult = _result.Last<BuffSkillResultValueObject>();

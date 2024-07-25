@@ -43,7 +43,7 @@ namespace BattleScene.UseCases.View.SelectSkillView.OutputDataFactory
             var skillInfoList = skillSelector.GetSkillList(skillCodeList)
                 .Select(x => new SkillInfo(
                     _skillViewInfoFactory.Create(x).SkillName,
-                    _skillCreatorService.Create(_characters.GetPlayerId(), x).AbstractSkill.GetTechnicalPoint(),
+                    _skillCreatorService.Create(_characters.GetPlayerId(), x).Skill.TechnicalPoint,
                     _skill.Available(_characters.GetPlayerId(), x)
                 ))
                 .ToImmutableList();

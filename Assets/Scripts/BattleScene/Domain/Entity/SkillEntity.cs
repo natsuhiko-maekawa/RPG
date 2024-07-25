@@ -11,18 +11,18 @@ namespace BattleScene.Domain.Entity
     {
         private ImmutableQueue<ISkillElement> _skillServiceQueue;
 
-        public SkillEntity(
-            CharacterId id,
-            SkillCode skillCode,
-            ISkill abstractSkill)
-        {
-            Id = id;
-            SkillCode = skillCode;
-            AbstractSkill = abstractSkill;
-            _skillServiceQueue = ImmutableQueue.Create(abstractSkill.GetSkillService()
-                .OrderBy(x => x)
-                .ToArray());
-        }
+        // public SkillEntity(
+        //     CharacterId id,
+        //     SkillCode skillCode,
+        //     ISkill abstractSkill)
+        // {
+        //     Id = id;
+        //     SkillCode = skillCode;
+        //     AbstractSkill = abstractSkill;
+        //     _skillServiceQueue = ImmutableQueue.Create(abstractSkill.GetSkillService()
+        //         .OrderBy(x => x)
+        //         .ToArray());
+        // }
 
         public SkillEntity(
             CharacterId id,
@@ -33,7 +33,7 @@ namespace BattleScene.Domain.Entity
 
         public override CharacterId Id { get; }
         public SkillCode SkillCode { get; }
-        public ISkill AbstractSkill { get; }
+        public SkillValueObject Skill { get; }
 
         public ISkillElement FirstSkillService()
         {

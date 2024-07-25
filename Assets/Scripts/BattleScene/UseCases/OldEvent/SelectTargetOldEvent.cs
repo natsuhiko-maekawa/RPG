@@ -69,7 +69,7 @@ namespace BattleScene.UseCases.OldEvent
             var playerId = _characters.GetPlayerId();
             var skill = _skillRepository.Select(playerId);
             var targetEntity = _targetRepository.Select(playerId);
-            switch (skill.AbstractSkill.GetRange())
+            switch (skill.Skill.Range)
             {
                 case Solo:
                     targetEntity.Set(new List<CharacterId> { _characters.GetEnemiesId()[selector.GetSelection()] });
@@ -97,7 +97,7 @@ namespace BattleScene.UseCases.OldEvent
         {
             var playerId = _characters.GetPlayerId();
             var skill = _skillRepository.Select(playerId);
-            if (skill.AbstractSkill.GetRange() != Solo) return;
+            if (skill.Skill.Range != Solo) return;
             _frameView.Stop();
             var targetEntity = _targetRepository.Select(playerId);
             var selector = _selectorRepository.Select(new SelectorId(EventCode.SelectTargetEvent));

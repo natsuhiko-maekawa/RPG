@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Immutable;
+﻿using System.Collections.Immutable;
 using BattleScene.Domain.Code;
-using BattleScene.Domain.Interface;
 using Range = BattleScene.Domain.Code.Range;
 
 namespace BattleScene.InterfaceAdapter.Skill.AbstractClass
 {
-    public abstract class AbstractSkill : ISkill
+    public abstract class AbstractSkill
     {
         public abstract SkillCode SkillCode { get; }
         public virtual int TechnicalPoint { get; } = 0;
@@ -16,61 +14,20 @@ namespace BattleScene.InterfaceAdapter.Skill.AbstractClass
         public virtual MessageCode Description { get; } = MessageCode.NoMessage;
         public abstract MessageCode AttackMessageCode { get; }
 
-        [Obsolete]
-        public virtual int GetTechnicalPoint()
-        {
-            return 0;
-        }
+        public virtual ImmutableList<AbstractAilment> AilmentList { get; } = ImmutableList<AbstractAilment>.Empty;
 
-        [Obsolete]
-        public virtual ImmutableList<BodyPartCode> GetDependencyList()
-        {
-            return ImmutableList<BodyPartCode>.Empty;
-        }
+        public virtual ImmutableList<AbstractSlipDamage> SlipDamageList { get; } =
+            ImmutableList<AbstractSlipDamage>.Empty;
 
-        [Obsolete]
-        public Range GetRange()
-        {
-            throw new NotImplementedException();
-        }
+        public virtual ImmutableList<AbstractDestroyPart> DestroyPartList { get; } =
+            ImmutableList<AbstractDestroyPart>.Empty;
 
-        public virtual ImmutableList<AbstractAilment> AilmentList {  get; } = ImmutableList<AbstractAilment>.Empty;
-        public virtual ImmutableList<AbstractSlipDamage> SlipDamageList { get;  }
-        public virtual ImmutableList<AbstractDestroyPart> DestroyPartList { get; }
-        public virtual ImmutableList<AbstractDamage> DamageList { get; }
-        public virtual ImmutableList<AbstractBuff> BuffList { get; }
-        public virtual ImmutableList<AbstractCure> CureList { get;  }
-        public virtual ImmutableList<AbstractReset> ResetList { get; }
-        public virtual ImmutableList<AbstractRestoreTechnicalPoint> RestoreTechnicalPointList { get; }
+        public virtual ImmutableList<AbstractDamage> DamageList { get; } = ImmutableList<AbstractDamage>.Empty;
+        public virtual ImmutableList<AbstractBuff> BuffList { get; } = ImmutableList<AbstractBuff>.Empty;
+        public virtual ImmutableList<AbstractCure> CureList { get; } = ImmutableList<AbstractCure>.Empty;
+        public virtual ImmutableList<AbstractReset> ResetList { get; } = ImmutableList<AbstractReset>.Empty;
 
-        [Obsolete]
-        public ImmutableList<ISkillElement> GetSkillService()
-        {
-            throw new NotImplementedException();
-        }
-    }
-
-    public interface ISkillQueue<T>
-    {
-        
-    }
-
-    public class SkillQueue<T> : ISkillQueue<T>
-    {
-        private ImmutableQueue<T> _skillList;
-        public bool IsEmpty { get; private set; }
-
-        public SkillQueue(params T[] array)
-        {
-            _skillList = ImmutableQueue.Create(array);
-            IsEmpty = _skillList.IsEmpty;
-        }
-
-        public T Pop()
-        {
-            var item = _skillList.Peek();
-            _skillList = _skillList.Dequeue();
-            return item;
-        }
+        public virtual ImmutableList<AbstractRestoreTechnicalPoint> RestoreTechnicalPointList { get; } =
+            ImmutableList<AbstractRestoreTechnicalPoint>.Empty;
     }
 }

@@ -52,12 +52,12 @@ namespace BattleScene.UseCases.Service
         {
             var playerId = _characters.GetPlayerId();
             var technicalPointAggregate = _technicalPointRepository.Select(playerId);
-            return skill.AbstractSkill.GetTechnicalPoint() <= technicalPointAggregate.GetCurrent();
+            return skill.Skill.TechnicalPoint <= technicalPointAggregate.GetCurrent();
         }
 
         private bool BodyPartAvailable(CharacterId characterId, SkillEntity skill)
         {
-            return _bodyPart.IsAvailable(characterId, skill.AbstractSkill.GetDependencyList());
+            return _bodyPart.IsAvailable(characterId, skill.Skill.DependencyList);
         }
     }
 }

@@ -58,7 +58,7 @@ namespace BattleScene.Domain.DomainService
 
             _skillRepository.Update(skillEntity);
 
-            var targetIdList = GetTargetIdList(characterId, skillEntity.AbstractSkill.GetRange());
+            var targetIdList = GetTargetIdList(characterId, skillEntity.Skill.Range);
             var target = new TargetEntity(characterId, targetIdList);
             _targetRepository.Update(target);
         }
