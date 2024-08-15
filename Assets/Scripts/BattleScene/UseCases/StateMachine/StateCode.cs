@@ -1,7 +1,11 @@
-﻿namespace BattleScene.UseCases.StateMachine
+﻿using System;
+
+namespace BattleScene.UseCases.StateMachine
 {
     public enum StateCode
     {
+        NoState,
+        [Obsolete]
         NoTrigger,
         Initialize,
         InitializeEnemy,

@@ -1,10 +1,8 @@
-﻿using System;
-using BattleScene.Domain.OldId;
+﻿using BattleScene.Domain.OldId;
 
 namespace BattleScene.Domain.Entity
 {
-    [Obsolete]
-    public class TurnEntity
+    public class TurnEntity : BaseEntity<TurnEntity, TurnId>
     {
         private int _turn;
 
@@ -16,6 +14,18 @@ namespace BattleScene.Domain.Entity
         public TurnNumber Get()
         {
             return new TurnNumber(_turn);
+        }
+
+        public override TurnId Id { get; }
+        
+        public int Turn { get; }
+
+        public TurnEntity(
+            TurnId id,
+            int turn)
+        {
+            Id = id;
+            Turn = turn;
         }
     }
 }

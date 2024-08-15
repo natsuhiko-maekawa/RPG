@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Immutable;
 using System.Linq;
 using BattleScene.Domain.Aggregate;
@@ -15,46 +14,48 @@ namespace BattleScene.UseCases.Service
     {
         private const float Threshold = 40.0f; // 大きいほど命中しやすくなる
         private readonly IRepository<CharacterAggregate, CharacterId> _characterRepository;
+        private readonly IRepository<ResultEntity, ResultId> _resultRepository;
+        private readonly IRepository<TurnEntity, TurnId> _turnRepository;
         private readonly OrderedItemsDomainService _orderedItems;
         
         private readonly IRandomEx _randomEx;
-        private readonly ResultCreatorDomainService _resultCreator;
         private readonly TargetDomainService _target;
 
         public AilmentSkillService(
             IRepository<CharacterAggregate, CharacterId> characterRepository,
             OrderedItemsDomainService orderedItems,
             IRandomEx randomEx,
-            ResultCreatorDomainService resultCreator,
             TargetDomainService target)
         {
             _characterRepository = characterRepository;
             _orderedItems = orderedItems;
             _randomEx = randomEx;
-            _resultCreator = resultCreator;
             _target = target;
         }
 
-        public ResultEntity Execute(SkillValueObject skill, AilmentValueObject ailment)
+        public void Execute(SkillValueObject skill, AilmentValueObject ailment)
         {
             _orderedItems.First().TryGetCharacterId(out var actorId);
             var targetIdList = _target.Get(actorId, skill.Range)
                 .Where(x => IsTarget(x, ailment.LuckRate))
                 .ToImmutableList();
 
-            var ailmentSkillResult = targetIdList.IsEmpty
-                ? new AilmentResultValueObject(
-                    actorId: actorId,
-                    skill.SkillCode)
-                : new AilmentResultValueObject(
-                    actorId: actorId,
-                    skill.SkillCode,
-                    ailment.AilmentCode,
-                    targetIdList);
-            
-            return _resultCreator.Create(ailmentSkillResult);
-
-            throw new NotImplementedException();
+            var resultId = new ResultId();
+            var currentTurn = _turnRepository.Select()
+                .OrderByDescending(x => x.Turn)
+                .Select(x => x.Turn)
+                .First();
+            var nextSequence = _resultRepository.Select()
+                .OrderByDescending(x => x.Sequence)
+                .Select(x => x.Sequence)
+                .First();
+            var result = new ResultEntity(
+                id: resultId,
+                turn: currentTurn,
+                sequence: nextSequence,
+                targetIdList: targetIdList,
+                ailmentCode: ailment.AilmentCode);
+            _resultRepository.Update(result);
         }
 
         private bool IsTarget(CharacterId target, float luckRate)

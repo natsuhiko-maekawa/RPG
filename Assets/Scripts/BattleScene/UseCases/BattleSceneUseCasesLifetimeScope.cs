@@ -79,7 +79,7 @@ namespace BattleScene.UseCases
             builder.Register<SlipDamageService>(Lifetime.Singleton);
             builder.Register<ToBodyPartNumberService>(Lifetime.Singleton);
             builder.Register<ToBuffNumberService>(Lifetime.Singleton);
-            builder.Register<TurnService>(Lifetime.Singleton);
+            // builder.Register<TurnService>(Lifetime.Singleton);
 
             builder.Register<AilmentDomainService>(Lifetime.Singleton);
             builder.Register<BodyPartDomainService>(Lifetime.Singleton);

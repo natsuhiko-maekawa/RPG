@@ -6,6 +6,7 @@ using BattleScene.Domain.IFactory;
 using BattleScene.Domain.IRepository;
 using BattleScene.Domain.OldId;
 using BattleScene.Domain.ValueObject;
+using BattleScene.UseCases.Event;
 using BattleScene.UseCases.OldEvent.Runner;
 using BattleScene.UseCases.UseCase.Interface;
 using Utility.Interface;
@@ -21,6 +22,7 @@ namespace BattleScene.UseCases.UseCase
         private readonly ISkillRepository _skillRepository;
         private readonly TargetDomainService _target;
         private readonly ITargetRepository _targetRepository;
+        private readonly SkillIterator _skillIterator;
 
         public EnemySelectSkill(
             IRepository<CharacterAggregate, CharacterId> characterRepository,
@@ -29,7 +31,8 @@ namespace BattleScene.UseCases.UseCase
             IFactory<SkillValueObject, SkillCode> skillCreatorService,
             ISkillRepository skillRepository,
             TargetDomainService target,
-            ITargetRepository targetRepository)
+            ITargetRepository targetRepository,
+            SkillIterator skillIterator)
         {
             _characterRepository = characterRepository;
             _orderItems = orderItems;
@@ -38,6 +41,7 @@ namespace BattleScene.UseCases.UseCase
             _skillRepository = skillRepository;
             _target = target;
             _targetRepository = targetRepository;
+            _skillIterator = skillIterator;
         }
 
         public void Execute()
@@ -49,6 +53,7 @@ namespace BattleScene.UseCases.UseCase
             var skill = _skillCreatorService.Create(skillCode);
 
             _skillRepository.Update(new SkillEntity(characterId, skill));
+            _skillIterator.SetSkill(skill);
 
             var target = new TargetEntity(characterId, _target.Get(characterId, skill.Range));
             _targetRepository.Update(target);

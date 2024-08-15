@@ -26,11 +26,13 @@ namespace BattleScene.InterfaceAdapter.DataAccess.Factory
         {
             var skill = Resolve(skillCode);
             var ailmentList = CreateAilmentValueObject(skill.AilmentList);
+            var damageList = CreateDamageValueObject(skill.DamageList);
             return new SkillValueObject(
                 skillCode: skillCode,
                 range: skill.Range,
                 ailmentList: ailmentList,
-                buffList: null);
+                buffList: null,
+                damageList: damageList);
         }
 
         private AbstractSkill Resolve(SkillCode skillCode)
@@ -82,6 +84,21 @@ namespace BattleScene.InterfaceAdapter.DataAccess.Factory
                 .Select(x => new AilmentValueObject(
                     AilmentCode: x.AilmentCode,
                     LuckRate: x.LuckRate))
+                .ToImmutableList();
+        }
+
+        private ImmutableList<DamageValueObject> CreateDamageValueObject(IList<AbstractDamage> damageList)
+        {
+            if (damageList == null) return ImmutableList<DamageValueObject>.Empty;
+            return damageList
+                .Select(x => new DamageValueObject(
+                    AttackNumber: x.AttackNumber,
+                    DamageRate: x.DamageRate,
+                    HitRate: x.HitRate,
+                    MatAttrCode: x.MatAttrCode,
+                    DamageExpressionCode: x.DamageExpressionCode,
+                    HitEvaluationCode: x.HitEvaluationCode,
+                    AttacksWeakPointEvaluationCode: x.AttacksWeakPointEvaluationCode))
                 .ToImmutableList();
         }
     }

@@ -1,14 +1,26 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using BattleScene.Domain.Code;
 using BattleScene.Domain.ValueObject;
 using BattleScene.UseCases.Service;
 using BattleScene.UseCases.StateMachine;
 
 namespace BattleScene.UseCases.Event
 {
-    public class SkillIterator
+    internal class SkillIterator
     {
         private readonly AilmentSkillService _ailmentSkill;
         private SkillValueObject _skill;
+
+        private Func<StateCode> _skillDelegate;
+        private List<Func<StateCode>> _skillDelegateList;
+
+
+        public SkillIterator(
+            AilmentSkillService ailmentSkill)
+        {
+            _ailmentSkill = ailmentSkill;
+        }
 
         public void SetSkill(SkillValueObject skill)
         {
@@ -17,17 +29,25 @@ namespace BattleScene.UseCases.Event
         
         public bool TryExecuteNext(out StateCode stateCode)
         {
-            stateCode = SkillEnumerator().Current;
-            return SkillEnumerator().MoveNext();
+            if (SkillEnumerator().MoveNext())
+            {
+                stateCode = SkillEnumerator().Current;
+                return true;
+            }
+            
+            stateCode = StateCode.NoState;
+            return false;
         }
         
         private IEnumerator<StateCode> SkillEnumerator()
         {
+            yield return StateCode.Damage;
+
             if (_skill == null) yield break;
             
             foreach (var ailment in _skill.AilmentList)
             {
-                _ailmentSkill.Execute(_skill, ailment);
+                // _ailmentSkill.Execute(_skill, ailment);
                 yield return StateCode.Ailment;
             }
 
@@ -35,6 +55,12 @@ namespace BattleScene.UseCases.Event
             {
                 // Execute
                 yield return StateCode.Buff;
+            }
+
+            foreach (var damage in _skill.DamageList)
+            {
+                // Execute
+                yield return StateCode.Damage;
             }
         }
     }

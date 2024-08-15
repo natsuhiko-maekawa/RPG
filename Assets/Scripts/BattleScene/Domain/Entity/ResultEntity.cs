@@ -7,7 +7,7 @@ using BattleScene.Domain.ValueObject;
 
 namespace BattleScene.Domain.Entity
 {
-    public class ResultEntity : BaseEntity<ResultEntity, SequenceNumber>, IComparable<ResultEntity>
+    public class ResultEntity : BaseEntity<ResultEntity, ResultId>, IComparable<ResultEntity>
     {
         [Obsolete]
         public ResultEntity(
@@ -15,36 +15,32 @@ namespace BattleScene.Domain.Entity
             SequenceNumber sequence,
             IResult result)
         {
-            Turn = turn;
-            Id = sequence;
             Result = result;
         }
 
         public ResultEntity(
             TurnNumber turn,
-            SequenceNumber sequence,
             SkillValueObject skill)
         {
-            Turn = turn;
-            Id = sequence;
             Skill = skill;
         }
 
-        public ResultEntity(TurnNumber turn,
-            SequenceNumber sequence,
-            SkillValueObject skill,
+        public ResultEntity(ResultId id,
+            int turn,
+            int sequence,
             ImmutableList<CharacterId> targetIdList,
             AilmentCode ailmentCode)
         {
+            Id = id;
             Turn = turn;
-            Id = sequence;
-            Skill = skill;
+            Sequence = sequence;
             TargetIdList = targetIdList;
             AilmentCode = ailmentCode;
         }
-
-        public TurnNumber Turn { get; }
-        public override SequenceNumber Id { get; }
+        
+        public int Turn { get; }
+        public int Sequence { get; }
+        public override ResultId Id { get; }
         [Obsolete]
         public IResult Result { get; }
         public SkillValueObject Skill { get; }
