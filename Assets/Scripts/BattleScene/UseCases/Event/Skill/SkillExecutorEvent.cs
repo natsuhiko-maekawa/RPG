@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.IRepository;
@@ -13,7 +12,6 @@ namespace BattleScene.UseCases.Event.Skill
 {
     internal class SkillExecutorEvent : BaseEvent
     {
-        private readonly SkillQueueFactory _skillQueueFactory;
         [CanBeNull] private SkillQueue _skillQueue;
         private readonly OrderedItemsDomainService _orderedItems;
         private readonly IRepository<SkillEntity, CharacterId> _skillRepository;
@@ -21,11 +19,9 @@ namespace BattleScene.UseCases.Event.Skill
         private StateCode _stateCode;
 
         public SkillExecutorEvent(
-            SkillQueueFactory skillQueueFactory,
             OrderedItemsDomainService orderedItems,
             IRepository<SkillEntity, CharacterId> skillRepository)
         {
-            _skillQueueFactory = skillQueueFactory;
             _orderedItems = orderedItems;
             _skillRepository = skillRepository;
         }
