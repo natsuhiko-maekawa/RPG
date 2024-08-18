@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using BattleScene.Domain.Code;
 using BattleScene.Domain.ValueObject;
 using BattleScene.UseCases.Service;
 using BattleScene.UseCases.StateMachine;
 
-namespace BattleScene.UseCases.Event
+namespace BattleScene.UseCases.Event.Skill
 {
     internal class SkillIterator
     {

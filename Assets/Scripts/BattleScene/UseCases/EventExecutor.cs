@@ -1,5 +1,6 @@
 ﻿using System;
 using BattleScene.UseCases.Event;
+using BattleScene.UseCases.Event.Skill;
 using BattleScene.UseCases.StateMachine;
 using VContainer;
 

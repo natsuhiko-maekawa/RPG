@@ -1,7 +1,7 @@
 ﻿using BattleScene.Domain.ValueObject;
 using BattleScene.UseCases.Service;
 
-namespace BattleScene.UseCases.Event
+namespace BattleScene.UseCases.Event.Skill
 {
     internal class SkillQueueFactory
     {

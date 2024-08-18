@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Immutable;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.OldId;
 using BattleScene.Domain.ValueObject;
@@ -7,21 +8,6 @@ namespace BattleScene.Domain.Entity
 {
     public class SkillEntity : BaseEntity<SkillEntity, CharacterId>
     {
-        // private ImmutableQueue<ISkillElement> _skillServiceQueue;
-
-        // public SkillEntity(
-        //     CharacterId id,
-        //     SkillCode skillCode,
-        //     ISkill abstractSkill)
-        // {
-        //     Id = id;
-        //     SkillCode = skillCode;
-        //     AbstractSkill = abstractSkill;
-        //     _skillServiceQueue = ImmutableQueue.Create(abstractSkill.GetSkillService()
-        //         .OrderBy(x => x)
-        //         .ToArray());
-        // }
-
         public SkillEntity(
             CharacterId id,
             SkillValueObject skill)
@@ -34,23 +20,27 @@ namespace BattleScene.Domain.Entity
         [Obsolete]
         public SkillCode SkillCode { get; }
         public SkillValueObject Skill { get; }
+        
+        public ImmutableList<AilmentValueObject> AilmentList { get; private set; }
+        public ImmutableList<BuffValueObject> BuffList { get; private set; }
+        public ImmutableList<DamageValueObject> DamageList { get; }
+        
+        public bool TryRemoveFirstEffect()
+        {
+            if (!AilmentList.IsEmpty)
+            {
+                AilmentList = AilmentList.RemoveAt(0);
+                return true;
+            }
 
-        // [Obsolete]
-        // public ISkillElement FirstSkillService()
-        // {
-        //     // return _skillServiceQueue.FirstOrDefault();
-        //     throw new NotImplementedException();
-        // }
+            if (!BuffList.IsEmpty)
+            {
+                BuffList = BuffList.RemoveAt(0);
+                return true;
+            }
 
-        // [Obsolete]
-        // public ISkillElement DequeSkillElement()
-        // {
-        //     // if (_skillServiceQueue.IsEmpty) return null;
-        //     // var skillService = _skillServiceQueue.Peek();
-        //     // var newSkillServiceQueue = _skillServiceQueue.Dequeue();
-        //     // _skillServiceQueue = newSkillServiceQueue;
-        //     // return skillService;
-        //     throw new NotImplementedException();
-        // }
+            throw new NotImplementedException();
+            return false;
+        }
     }
 }

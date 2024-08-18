@@ -32,7 +32,7 @@ namespace BattleScene.UseCases.Service
             _randomEx = randomEx;
             _target = target;
         }
-
+        
         public void Execute(SkillValueObject skill, AilmentValueObject ailment)
         {
             _orderedItems.First().TryGetCharacterId(out var actorId);

@@ -2,11 +2,12 @@
 {
     public enum SkillStateCode
     {
+        NoSkill,
         Damage,
         Ailment,
         DestroyedPart,
         Cure,
         Reset,
-        Buff
+        Buff,
     }
 }

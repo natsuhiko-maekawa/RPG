@@ -1,12 +1,14 @@
 ﻿using System;
+using System.Linq;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.IRepository;
 using BattleScene.Domain.OldId;
+using BattleScene.UseCases.Service;
 using BattleScene.UseCases.StateMachine;
 using JetBrains.Annotations;
 
-namespace BattleScene.UseCases.Event
+namespace BattleScene.UseCases.Event.Skill
 {
     internal class SkillExecutorEvent : BaseEvent
     {
@@ -14,6 +16,7 @@ namespace BattleScene.UseCases.Event
         [CanBeNull] private SkillQueue _skillQueue;
         private readonly OrderedItemsDomainService _orderedItems;
         private readonly IRepository<SkillEntity, CharacterId> _skillRepository;
+        private readonly AilmentSkillService _ailmentSkill;
         private StateCode _stateCode;
 
         public SkillExecutorEvent(
@@ -30,8 +33,7 @@ namespace BattleScene.UseCases.Event
         {
             if (!_orderedItems.First().TryGetCharacterId(out var characterId)) throw new InvalidOperationException();
             var skill = _skillRepository.Select(characterId);
-            _skillQueue ??= _skillQueueFactory.Create(skill.Skill);
-            _stateCode = _skillQueue.Invoke();
+            _stateCode = ExecuteSkill(skill);
         }
 
         public override void Output()
@@ -41,6 +43,14 @@ namespace BattleScene.UseCases.Event
         public override StateCode GetStateCode()
         {
             return _stateCode;
+        }
+
+        private StateCode ExecuteSkill(SkillEntity skill)
+        {
+            _ailmentSkill.Execute(skill.Skill, skill.AilmentList.First());
+            skill.TryRemoveFirstEffect();
+            _skillRepository.Update(skill);
+            throw new NotImplementedException();
         }
     }
 }

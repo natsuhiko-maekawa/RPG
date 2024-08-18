@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using BattleScene.Domain.ValueObject;
 using BattleScene.UseCases.Service;
-using BattleScene.UseCases.StateMachine;
 
-namespace BattleScene.UseCases.Event
+namespace BattleScene.UseCases.Event.Skill
 {
-    internal class SkillQueue : Queue<Func<StateCode>>
+    internal class SkillQueue
     {
-        private readonly Queue<Func<StateCode>> _skillQueue = new();
+        private readonly Queue<Func<SkillStateCode>> _skillQueue = new();
         
         public SkillQueue(
             SkillValueObject skill,
@@ -16,14 +15,16 @@ namespace BattleScene.UseCases.Event
         {
             foreach (var ailment in skill.AilmentList)
             {
-                _skillQueue.Enqueue(() => { ailmentSkill.Execute(skill, ailment);
-                    return StateCode.Ailment;
+                _skillQueue.Enqueue(() => { 
+                    ailmentSkill.Execute(skill, ailment);
+                    return SkillStateCode.Ailment;
                 });
-                
             }
+            
+            _skillQueue.Enqueue(() => SkillStateCode.NoSkill);
         }
 
-        public StateCode Invoke()
+        public SkillStateCode Invoke()
         {
             return _skillQueue.Dequeue().Invoke();
         }

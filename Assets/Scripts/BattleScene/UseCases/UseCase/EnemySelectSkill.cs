@@ -7,6 +7,7 @@ using BattleScene.Domain.IRepository;
 using BattleScene.Domain.OldId;
 using BattleScene.Domain.ValueObject;
 using BattleScene.UseCases.Event;
+using BattleScene.UseCases.Event.Skill;
 using BattleScene.UseCases.OldEvent.Runner;
 using BattleScene.UseCases.UseCase.Interface;
 using Utility.Interface;
