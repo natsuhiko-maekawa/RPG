@@ -1,5 +1,6 @@
 ﻿using System.Collections.Immutable;
 using BattleScene.Domain.Code;
+using BattleScene.Domain.Interface;
 
 namespace BattleScene.Domain.ValueObject
 {
@@ -11,5 +12,5 @@ namespace BattleScene.Domain.ValueObject
         DamageExpressionCode DamageExpressionCode,
         HitEvaluationCode HitEvaluationCode,
         AttacksWeakPointEvaluationCode AttacksWeakPointEvaluationCode
-    );
+    ) : ISkillEffect;
 }

@@ -4,6 +4,7 @@ using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.IRepository;
 using BattleScene.Domain.OldId;
+using BattleScene.Domain.ValueObject;
 using BattleScene.UseCases.Service;
 using BattleScene.UseCases.StateMachine;
 using JetBrains.Annotations;
@@ -47,8 +48,14 @@ namespace BattleScene.UseCases.Event.Skill
 
         private StateCode ExecuteSkill(SkillEntity skill)
         {
-            _ailmentSkill.Execute(skill.Skill, skill.AilmentList.First());
-            skill.TryRemoveFirstEffect();
+            if (skill.SkillEffectList.IsEmpty) throw new NotImplementedException();
+            var skillEffect = skill.DequeueSkillEffect();
+
+            if (skillEffect is AilmentValueObject ailment)
+            {
+                _ailmentSkill.Execute(skill.Skill, ailment);
+            }
+            
             _skillRepository.Update(skill);
             throw new NotImplementedException();
         }

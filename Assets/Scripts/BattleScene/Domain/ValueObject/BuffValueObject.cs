@@ -1,7 +1,6 @@
-﻿namespace BattleScene.Domain.ValueObject
+﻿using BattleScene.Domain.Interface;
+
+namespace BattleScene.Domain.ValueObject
 {
-    public class BuffValueObject
-    {
-        
-    }
+    public record BuffValueObject() : ISkillEffect;
 }
