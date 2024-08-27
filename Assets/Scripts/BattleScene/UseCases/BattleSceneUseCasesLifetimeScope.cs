@@ -127,6 +127,8 @@ namespace BattleScene.UseCases
 
             builder.Register<InitializationState>(Lifetime.Singleton);
             builder.Register<InitializationEnemyState>(Lifetime.Singleton);
+            builder.Register<OrderState>(Lifetime.Singleton);
+            builder.Register<EnemySelectSkillState>(Lifetime.Singleton);
         }
     }
 }

@@ -24,6 +24,7 @@ namespace BattleScene.UseCases.StateMachine
         {
             _battleStart.Execute();
             _enemyView.Out();
+            Context.TransitionTo(_container.Resolve<OrderState>());
         }
     }
 }
