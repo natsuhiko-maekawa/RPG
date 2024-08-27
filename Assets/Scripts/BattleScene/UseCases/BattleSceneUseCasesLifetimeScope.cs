@@ -5,7 +5,6 @@ using BattleScene.UseCases.OldEvent;
 using BattleScene.UseCases.OldEvent.Runner;
 using BattleScene.UseCases.Output;
 using BattleScene.UseCases.Service;
-using BattleScene.UseCases.StateMachine.Service;
 using BattleScene.UseCases.UseCase;
 using BattleScene.UseCases.View.AilmentView;
 using BattleScene.UseCases.View.AilmentView.OutputDataFactory;
@@ -122,11 +121,6 @@ namespace BattleScene.UseCases
             builder.Register<AilmentViewOutput>(Lifetime.Singleton);
             builder.Register<EnemyViewOutput>(Lifetime.Singleton);
             // builder.Register<OrderViewOutput>(Lifetime.Singleton);
-
-            builder.Register<StateMachine.StateMachine>(Lifetime.Singleton);
-            builder.Register<StateCreatorService>(Lifetime.Singleton);
-            // builder.Register<InitializeStateCreatorService>(Lifetime.Singleton);
-            builder.Register<EnemySkillStateCreatorService>(Lifetime.Singleton);
 
             builder.Register<InitializationEvent>(Lifetime.Singleton);
             builder.Register<EnemyInitializerEvent>(Lifetime.Singleton);
