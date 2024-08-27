@@ -5,6 +5,7 @@ using BattleScene.UseCases.OldEvent;
 using BattleScene.UseCases.OldEvent.Runner;
 using BattleScene.UseCases.Output;
 using BattleScene.UseCases.Service;
+using BattleScene.UseCases.StateMachine;
 using BattleScene.UseCases.UseCase;
 using BattleScene.UseCases.View.AilmentView;
 using BattleScene.UseCases.View.AilmentView.OutputDataFactory;
@@ -122,15 +123,10 @@ namespace BattleScene.UseCases
             builder.Register<EnemyViewOutput>(Lifetime.Singleton);
             // builder.Register<OrderViewOutput>(Lifetime.Singleton);
 
-            builder.Register<InitializationEvent>(Lifetime.Singleton);
-            builder.Register<EnemyInitializerEvent>(Lifetime.Singleton);
-            builder.Register<OrderEvent>(Lifetime.Singleton);
-            builder.Register<EnemySkillSelectorEvent>(Lifetime.Singleton);
-            builder.Register<SkillExecutorEvent>(Lifetime.Singleton);
-            builder.Register<SkillIterator>(Lifetime.Singleton);
-            builder.Register<EventExecutor>(Lifetime.Singleton);
-
             builder.Register<OrderView>(Lifetime.Singleton);
+
+            builder.Register<InitializationState>(Lifetime.Singleton);
+            builder.Register<InitializationEnemyState>(Lifetime.Singleton);
         }
     }
 }

@@ -19,10 +19,6 @@ namespace BattleScene.UseCases.StateMachine
         public override void Start()
         {
             _initialization.Execute();
-        }
-
-        public override void Select()
-        {
             Context.TransitionTo(_container.Resolve<InitializationEnemyState>());
         }
     }

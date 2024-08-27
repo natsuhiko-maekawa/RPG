@@ -6,45 +6,19 @@ namespace BattleScene.UseCases
 {
     internal class BattleScene : MonoBehaviour
     {
-        private EventExecutor _eventExecutor;
-        private StateCode _stateCode;
-        private StateCode StateCode
-        {
-            get => _stateCode;
-            set
-            {
-                _stateCode = value;
-                OnChangeState();
-            }
-        }
+        private Context _context;
+        private IObjectResolver _container;
 
         [Inject]
         public void Construct(
-            EventExecutor eventExecutor)
+            IObjectResolver container)
         {
-            _eventExecutor = eventExecutor;
+            _container = container;
         }
 
         public void Start()
         {
-            StateCode = StateCode.Initialize;
-        }
-
-        public void OnSelect()
-        {
-            
-        }
-
-        public void OnRight()
-        {
-            
-        }
-
-        private void OnChangeState()
-        {
-            var stateCode = _eventExecutor.Execute(StateCode);
-            StateCode = stateCode;
-            Debug.Log(StateCode.ToString());
+            _context = new Context(_container.Resolve<InitializationState>());
         }
 
         public void Update()
