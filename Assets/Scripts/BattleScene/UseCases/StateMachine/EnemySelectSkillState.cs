@@ -1,7 +1,20 @@
-﻿namespace BattleScene.UseCases.StateMachine
+﻿using BattleScene.UseCases.UseCase;
+
+namespace BattleScene.UseCases.StateMachine
 {
-    public class EnemySelectSkillState : AbstractState
+    internal class EnemySelectSkillState : AbstractState
     {
-        
+        private readonly EnemySelectSkill _enemySelectSkill;
+
+        public EnemySelectSkillState(
+            EnemySelectSkill enemySelectSkill)
+        {
+            _enemySelectSkill = enemySelectSkill;
+        }
+
+        public override void Start()
+        {
+            _enemySelectSkill.Execute();
+        }
     }
 }
