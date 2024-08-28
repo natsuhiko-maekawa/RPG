@@ -53,10 +53,5 @@ namespace BattleScene.UseCases.UseCase
             var target = new TargetEntity(characterId, _target.Get(characterId, skill.Range));
             _targetRepository.Update(target);
         }
-
-        public EventCode NextEvent()
-        {
-            return EventCode.EnemyAttackEvent;
-        }
     }
 }
