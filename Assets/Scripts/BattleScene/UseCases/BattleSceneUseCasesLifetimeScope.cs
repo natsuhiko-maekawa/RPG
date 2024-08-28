@@ -56,9 +56,6 @@ namespace BattleScene.UseCases
             builder.Register<SelectFatalitySkillOldEvent>(Lifetime.Singleton);
             builder.Register<SelectSkillOldEvent>(Lifetime.Singleton);
             builder.Register<SelectTargetOldEvent>(Lifetime.Singleton);
-            // builder.Register<Runner>(Lifetime.Singleton);
-            // builder.Register<UseCaseFactory>(Lifetime.Singleton);
-            // builder.Register<OutputFactory>(Lifetime.Singleton);
             builder.Register<IEventFactory, EventFactory>(Lifetime.Singleton);
             builder.Register<ActionTimeCreatorService>(Lifetime.Singleton);
             builder.Register<AgilityToSpeedService>(Lifetime.Singleton);
@@ -78,7 +75,6 @@ namespace BattleScene.UseCases
             builder.Register<SlipDamageService>(Lifetime.Singleton);
             builder.Register<ToBodyPartNumberService>(Lifetime.Singleton);
             builder.Register<ToBuffNumberService>(Lifetime.Singleton);
-            // builder.Register<TurnService>(Lifetime.Singleton);
 
             builder.Register<AilmentDomainService>(Lifetime.Singleton);
             builder.Register<BodyPartDomainService>(Lifetime.Singleton);
@@ -108,7 +104,6 @@ namespace BattleScene.UseCases
             builder.Register<DamageMessageOutputDataFactory>(Lifetime.Singleton);
             builder.Register<MessageOutputDataFactory>(Lifetime.Singleton);
             builder.Register<SelectSkillMessageOutputDataFactory>(Lifetime.Singleton);
-            // builder.Register<OrderOutputDataFactory>(Lifetime.Singleton);
             builder.Register<AilmentPlayerImageOutputDataFactory>(Lifetime.Singleton);
             builder.Register<PlayerAttackPlayerImageOutputDataFactory>(Lifetime.Singleton);
             builder.Register<PlayerImageOutputDataFactory>(Lifetime.Singleton);
@@ -119,7 +114,6 @@ namespace BattleScene.UseCases
 
             builder.Register<AilmentViewOutput>(Lifetime.Singleton);
             builder.Register<EnemyViewOutput>(Lifetime.Singleton);
-            // builder.Register<OrderViewOutput>(Lifetime.Singleton);
 
             builder.Register<OrderView>(Lifetime.Singleton);
 
