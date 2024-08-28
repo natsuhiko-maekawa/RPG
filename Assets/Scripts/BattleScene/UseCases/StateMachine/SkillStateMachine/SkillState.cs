@@ -1,15 +1,17 @@
 ﻿using System.Collections.Generic;
+using BattleScene.Domain.Entity;
 using BattleScene.UseCases.StateMachine.SkillStateMachine;
 using VContainer;
 
 namespace BattleScene.UseCases.StateMachine.SkillStack
 {
-    public class SkillContextStack : AbstractState
+    public class SkillState : AbstractState
     {
         private readonly IObjectResolver _container;
         private readonly Queue<SkillContext> _skillContextQueue;
 
-        public SkillContextStack(
+        public SkillState(
+            SkillEntity skillEntity,
             IObjectResolver container)
         {
             _container = container;
