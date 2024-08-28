@@ -20,7 +20,7 @@ namespace BattleScene.UseCases.StateMachine
         public override void Start()
         {
             _enemySelectSkill.Execute();
-            _container.Resolve<SkillState>();
+            _container.Resolve<SkillStateFactory>().Create(null);
         }
     }
 }

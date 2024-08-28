@@ -130,7 +130,7 @@ namespace BattleScene.UseCases
             builder.Register<InitializationEnemyState>(Lifetime.Singleton);
             builder.Register<OrderState>(Lifetime.Singleton);
             builder.Register<EnemySelectSkillState>(Lifetime.Singleton);
-            builder.Register<SkillState>(Lifetime.Singleton);
+            builder.Register<SkillStateFactory>(Lifetime.Singleton);
             builder.Register<TurnEndState>(Lifetime.Singleton);
         }
     }
