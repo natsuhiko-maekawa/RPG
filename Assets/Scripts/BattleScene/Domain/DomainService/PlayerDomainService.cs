@@ -6,7 +6,6 @@ using BattleScene.Domain.IFactory;
 using BattleScene.Domain.IRepository;
 using BattleScene.Domain.OldId;
 using BattleScene.Domain.ValueObject;
-using Utility.Interface;
 
 namespace BattleScene.Domain.DomainService
 {

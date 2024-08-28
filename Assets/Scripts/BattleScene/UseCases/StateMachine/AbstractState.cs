@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.OldId;
 

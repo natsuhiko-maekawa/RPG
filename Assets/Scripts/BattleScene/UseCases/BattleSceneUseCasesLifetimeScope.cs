@@ -1,12 +1,9 @@
 ﻿using BattleScene.Domain.DomainService;
-using BattleScene.UseCases.Event;
-using BattleScene.UseCases.Event.Skill;
 using BattleScene.UseCases.OldEvent;
 using BattleScene.UseCases.OldEvent.Runner;
 using BattleScene.UseCases.Output;
 using BattleScene.UseCases.Service;
 using BattleScene.UseCases.StateMachine;
-using BattleScene.UseCases.StateMachine.SkillStack;
 using BattleScene.UseCases.UseCase;
 using BattleScene.UseCases.View.AilmentView;
 using BattleScene.UseCases.View.AilmentView.OutputDataFactory;
