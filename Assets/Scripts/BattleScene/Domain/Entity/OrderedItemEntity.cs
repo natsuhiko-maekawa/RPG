@@ -64,7 +64,7 @@ namespace BattleScene.Domain.Entity
     
     public class OrderedItem
     {
-        [CanBeNull] public CharacterId CharacterId { get; } = null;
+        [CanBeNull] public CharacterId CharacterId { get; }
         public AilmentCode AilmentCode { get; } = AilmentCode.NoAilment;
         public SlipDamageCode SlipDamageCode { get; } = SlipDamageCode.NoSlipDamage;
 
