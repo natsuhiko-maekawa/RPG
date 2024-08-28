@@ -7,7 +7,7 @@ namespace BattleScene.UseCases.StateMachine
 {
     public abstract class AbstractState
     {
-        protected Context Context { get; set; }
+        protected Context Context { get; private set; }
 
         // ReSharper disable once ParameterHidesMember
         public void SetContext(Context context)
