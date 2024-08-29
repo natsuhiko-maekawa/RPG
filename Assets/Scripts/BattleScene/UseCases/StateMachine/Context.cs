@@ -13,7 +13,7 @@ namespace BattleScene.UseCases.StateMachine
 
         public void TransitionTo(AbstractState state)
         {
-            Debug.Log(state.GetType().FullName);
+            Debug.Log(state.GetType().Name);
             _state = state;
             _state.SetContext(this);
             _state.Start();
