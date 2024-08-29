@@ -2,11 +2,10 @@
 using BattleScene.Domain.IRepository;
 using BattleScene.Domain.OldId;
 using BattleScene.UseCases.IPresenter;
-using BattleScene.UseCases.Output.Interface;
 
 namespace BattleScene.UseCases.Output
 {
-    public class OrderView : IOutput
+    public class OrderView
     {
         private readonly IRepository<OrderedItemEntity, OrderNumber> _orderedItemRepository;
         private readonly IOrderViewPresenter _orderView;

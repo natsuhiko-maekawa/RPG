@@ -1,11 +1,10 @@
 ﻿using BattleScene.Domain.DomainService;
 using BattleScene.Domain.IRepository;
 using BattleScene.UseCases.IPresenter;
-using BattleScene.UseCases.Output.Interface;
 
 namespace BattleScene.UseCases.Output
 {
-    public class PlayerSkillView : IOutput
+    public class PlayerSkillView
     {
         private readonly CharactersDomainService _characters;
         private readonly ISkillRepository _skillRepository;

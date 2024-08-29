@@ -1,10 +1,9 @@
-﻿using BattleScene.UseCases.Output.Interface;
-using BattleScene.UseCases.View.EnemyView.OutputBoundary;
+﻿using BattleScene.UseCases.View.EnemyView.OutputBoundary;
 using BattleScene.UseCases.View.EnemyView.OutputDataFactory;
 
 namespace BattleScene.UseCases.View.EnemyView
 {
-    public class EnemyViewOutput : IOutput
+    public class EnemyViewOutput
     {
         private readonly EnemyOutputDataFactory _enemyOutputDataFactory;
         private readonly IEnemyViewPresenter _enemyView;

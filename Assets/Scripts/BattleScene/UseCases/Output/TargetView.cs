@@ -1,11 +1,10 @@
 ﻿using BattleScene.Domain.DomainService;
 using BattleScene.Domain.IRepository;
 using BattleScene.UseCases.IPresenter;
-using BattleScene.UseCases.Output.Interface;
 
 namespace BattleScene.UseCases.Output
 {
-    public class TargetView : IOutput
+    public class TargetView
     {
         private readonly OrderedItemsDomainService _orderedItems;
         private readonly ITargetRepository _targetRepository;
