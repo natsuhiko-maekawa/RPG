@@ -1,7 +1,4 @@
-﻿using System;
-using BattleScene.Domain.DomainService;
-using BattleScene.Domain.IRepository;
-using BattleScene.UseCases.UseCase;
+﻿using BattleScene.UseCases.UseCase;
 using VContainer;
 
 namespace BattleScene.UseCases.StateMachine
