@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Collections.Immutable;
+﻿using System.Collections.Immutable;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.OldId;
 using BattleScene.Domain.ValueObject;

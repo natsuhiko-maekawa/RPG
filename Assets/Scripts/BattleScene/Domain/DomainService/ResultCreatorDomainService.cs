@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Interface;
 using BattleScene.Domain.IRepository;

@@ -1,7 +1,4 @@
-﻿using BattleScene.Domain.Entity;
-using BattleScene.Domain.IRepository;
-using BattleScene.Domain.OldId;
-using BattleScene.Domain.ValueObject;
+﻿using BattleScene.Domain.ValueObject;
 using BattleScene.UseCases.Service;
 
 namespace BattleScene.UseCases.StateMachine.SkillStateMachine
