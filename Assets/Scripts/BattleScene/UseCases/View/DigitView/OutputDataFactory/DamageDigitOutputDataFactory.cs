@@ -24,7 +24,7 @@ namespace BattleScene.UseCases.View.DigitView.OutputDataFactory
 
         public ImmutableList<DigitOutputData> Create()
         {
-            return _result.LastDamage().DamageList
+            return _result.LastDamage().AttackList
                 .Select(x => new DigitOutputData(
                     x.Number,
                     x.Amount,

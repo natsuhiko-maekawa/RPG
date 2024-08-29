@@ -97,7 +97,7 @@ namespace BattleScene.InterfaceAdapter.Service
         private string ReplaceDamage(string message)
         {
             if (!message.Contains(Damage)) return message;
-            var totalPrefix = _result.LastDamage().DamageList.Count(x => x.IsHit) == 1 ? "" : "計";
+            var totalPrefix = _result.LastDamage().AttackList.Count(x => x.IsHit) == 1 ? "" : "計";
             var damage = _result.LastDamage().GetTotal().ToString();
             return message.Replace(Damage, totalPrefix + damage);
         }

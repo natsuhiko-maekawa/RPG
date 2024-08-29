@@ -5,7 +5,7 @@ namespace BattleScene.Domain.Interface
 {
     public interface IDamageResult : IResult
     {
-        public ImmutableList<AttackValueObject> DamageList { get; }
+        public ImmutableList<AttackValueObject> AttackList { get; }
         public int GetTotal();
     }
 }

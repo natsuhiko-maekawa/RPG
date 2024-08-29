@@ -1,4 +1,6 @@
-﻿using BattleScene.Domain.Entity;
+﻿using System;
+using System.Linq;
+using BattleScene.Domain.Entity;
 using BattleScene.Domain.Interface;
 using BattleScene.Domain.IRepository;
 
@@ -11,10 +13,7 @@ namespace BattleScene.Domain.DomainService
 
         public ResultEntity Create(IResult result)
         {
-            return new ResultEntity(
-                _turnRepository.Select().Get(),
-                _sequenceRepository.Select().Get(),
-                result);
+            throw new NotImplementedException();
         }
     }
 }

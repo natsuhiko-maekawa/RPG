@@ -76,7 +76,7 @@ namespace BattleScene.UseCases.OldEvent
                 .Where(x => !x.IsSurvive())
                 .Select(x => x.Id)
                 .ToImmutableHashSet();
-            var targetList = _result.LastDamage().DamageList
+            var targetList = _result.LastDamage().AttackList
                 .Select(x => x.TargetId)
                 .Distinct()
                 .ToImmutableHashSet();

@@ -11,21 +11,21 @@ namespace BattleScene.Domain.ValueObject
         public DamageValueObject(
             CharacterId actorId,
             SkillCode skillCode,
-            ImmutableList<AttackValueObject> damageList)
+            ImmutableList<AttackValueObject> attackList)
         {
             ActorId = actorId;
             SkillCode = skillCode;
-            TargetIdList = damageList
+            TargetIdList = attackList
                 .Select(x => x.TargetId)
                 .ToImmutableList();
-            DamageList = damageList;
+            AttackList = attackList;
         }
 
-        public ImmutableList<AttackValueObject> DamageList { get; }
+        public ImmutableList<AttackValueObject> AttackList { get; }
 
         public int GetTotal()
         {
-            return DamageList
+            return AttackList
                 .Sum(x => x.IsHit ? x.Amount : 0);
         }
 
@@ -35,12 +35,12 @@ namespace BattleScene.Domain.ValueObject
 
         public bool Success()
         {
-            return DamageList.All(x => !x.IsHit);
+            return AttackList.All(x => !x.IsHit);
         }
 
         public int HitCount()
         {
-            return DamageList
+            return AttackList
                 .Count(x => x.IsHit);
         }
     }

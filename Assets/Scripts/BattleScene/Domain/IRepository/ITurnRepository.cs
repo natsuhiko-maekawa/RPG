@@ -1,9 +1,10 @@
-﻿using BattleScene.Domain.Entity;
+﻿using System.Collections.Immutable;
+using BattleScene.Domain.Entity;
 
 namespace BattleScene.Domain.IRepository
 {
     public interface ITurnRepository
     {
-        public TurnEntity Select();
+        public ImmutableList<TurnEntity> Select();
     }
 }

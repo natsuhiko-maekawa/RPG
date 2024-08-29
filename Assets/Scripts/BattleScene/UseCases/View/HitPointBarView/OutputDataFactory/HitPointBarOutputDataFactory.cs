@@ -30,7 +30,7 @@ namespace BattleScene.UseCases.View.HitPointBarView.OutputDataFactory
 
         public ImmutableList<HitPointBarOutputData> Create()
         {
-            return _result.LastDamage().DamageList
+            return _result.LastDamage().AttackList
                 .GroupBy(x => x.TargetId)
                 .Where(x => x.Any(y => y.IsHit))
                 .Select(x => x

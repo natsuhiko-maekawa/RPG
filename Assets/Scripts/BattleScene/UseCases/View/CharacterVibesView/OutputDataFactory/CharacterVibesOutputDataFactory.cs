@@ -25,7 +25,7 @@ namespace BattleScene.UseCases.View.CharacterVibesView.OutputDataFactory
 
         public ImmutableList<CharacterVibesOutputData> Create()
         {
-            return _result.LastDamage().DamageList
+            return _result.LastDamage().AttackList
                 .GroupBy(x => x.TargetId)
                 .Where(x => x
                     .Any(y => y.IsHit))

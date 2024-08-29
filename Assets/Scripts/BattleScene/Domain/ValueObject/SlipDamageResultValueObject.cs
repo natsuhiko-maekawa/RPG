@@ -12,15 +12,15 @@ namespace BattleScene.Domain.ValueObject
             ImmutableList<AttackValueObject> damageList)
         {
             SlipDamageCode = slipDamageCode;
-            DamageList = damageList;
+            AttackList = damageList;
         }
 
         public SlipDamageCode SlipDamageCode { get; }
-        public ImmutableList<AttackValueObject> DamageList { get; }
+        public ImmutableList<AttackValueObject> AttackList { get; }
 
         public int GetTotal()
         {
-            return DamageList
+            return AttackList
                 .Sum(x => x.Amount);
         }
     }
