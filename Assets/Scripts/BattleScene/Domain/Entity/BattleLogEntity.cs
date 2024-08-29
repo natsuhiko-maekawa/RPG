@@ -20,18 +20,15 @@ namespace BattleScene.Domain.Entity
             BattleLogId battleLogId,
             int sequence,
             int turn,
-            IList<AttackValueObject> attackList,
-            CharacterId actorId,
-            SkillCode skillCode,
-            IList<CharacterId> targetIdList)
+            DamageValueObject damage)
         {
             Id = battleLogId;
             Sequence = sequence;
             Turn = turn;
-            AttackList = attackList.ToImmutableList();
-            ActorId = actorId;
-            SkillCode = skillCode;
-            TargetIdList = targetIdList.ToImmutableList();
+            AttackList = damage.AttackList.ToImmutableList();
+            ActorId = damage.ActorId;
+            SkillCode = damage.SkillCode;
+            TargetIdList = damage.TargetIdList.ToImmutableList();
         }
     }
 }

@@ -27,10 +27,7 @@ namespace BattleScene.UseCases.Service
                 battleLogId: battleLogId,
                 sequence: nextSequence,
                 turn: turn,
-                attackList: damage.AttackList,
-                actorId: damage.ActorId,
-                skillCode: damage.SkillCode,
-                targetIdList: damage.TargetIdList);
+                damage: damage);
             _battleLogRepository.Update(battleLog);
         }
     }
