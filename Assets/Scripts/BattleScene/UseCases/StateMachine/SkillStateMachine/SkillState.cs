@@ -16,10 +16,12 @@ namespace BattleScene.UseCases.StateMachine.SkillStateMachine
 
         public SkillState(
             SkillCode skillCode,
-            IObjectResolver container)
+            IObjectResolver container,
+            IFactory<SkillValueObject, SkillCode> skillFactory)
         {
             _skillCode = skillCode;
             _container = container;
+            _skillFactory = skillFactory;
         }
 
         public override void Start()
