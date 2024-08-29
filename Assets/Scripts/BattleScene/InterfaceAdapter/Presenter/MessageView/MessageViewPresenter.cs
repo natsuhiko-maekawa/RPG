@@ -31,7 +31,8 @@ namespace BattleScene.InterfaceAdapter.Presenter.MessageView
         {
             _messageView.StopAnimation();
             var message = _messageFactory.Create(messageCode);
-            
+            var replacedMessage = _messageCodeConverter.Replace(message);
+            _messageView.StartAnimation(new MessageViewDto(replacedMessage, noWait));
         }
         
         public void Start(MessageOutputData outputData)
