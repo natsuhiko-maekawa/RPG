@@ -78,6 +78,7 @@ namespace BattleScene.UseCases
             builder.Register<ToBuffNumberService>(Lifetime.Singleton);
 
             builder.Register<AilmentDomainService>(Lifetime.Singleton);
+            builder.Register<BattleLoggerService>(Lifetime.Singleton);
             builder.Register<BodyPartDomainService>(Lifetime.Singleton);
             builder.Register<BuffDomainService>(Lifetime.Singleton);
             builder.Register<CharactersDomainService>(Lifetime.Singleton);
