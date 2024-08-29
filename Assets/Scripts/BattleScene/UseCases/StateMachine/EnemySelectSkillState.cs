@@ -8,33 +8,21 @@ namespace BattleScene.UseCases.StateMachine
 {
     internal class EnemySelectSkillState : AbstractState
     {
-        private readonly EnemySelectSkill _enemySelectSkill;
-        private readonly ISkillRepository _skillRepository;
-        private readonly OrderedItemsDomainService _orderedItems;
+        private readonly EnemySkillSelector _enemySkillSelector;
         private readonly IObjectResolver _container;
 
         public EnemySelectSkillState(
-            EnemySelectSkill enemySelectSkill,
-            ISkillRepository skillRepository,
-            OrderedItemsDomainService orderedItems,
+            EnemySkillSelector enemySkillSelector,
             IObjectResolver container)
         {
-            _enemySelectSkill = enemySelectSkill;
-            _skillRepository = skillRepository;
-            _orderedItems = orderedItems;
+            _enemySkillSelector = enemySkillSelector;
             _container = container;
         }
 
         public override void Start()
         {
-            _enemySelectSkill.Execute();
-            if (!_orderedItems.First().TryGetCharacterId(out var characterId))
-            {
-                throw new InvalidOperationException();
-            }
-
-            var skill = _skillRepository.Select(characterId);
-            var nextState = _container.Resolve<SkillStateFactory>().Create(skill.SkillCode);
+            var skillCode = _enemySkillSelector.Select();
+            var nextState = _container.Resolve<SkillStateFactory>().Create(skillCode);
             Context.TransitionTo(nextState);
         }
     }

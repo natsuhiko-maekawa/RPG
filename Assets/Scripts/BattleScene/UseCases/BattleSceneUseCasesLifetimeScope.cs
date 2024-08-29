@@ -41,7 +41,7 @@ namespace BattleScene.UseCases
             builder.Register<CantActionOldEvent>(Lifetime.Singleton);
             builder.Register<CureOldEvent>(Lifetime.Singleton);
             builder.Register<DestroyedPartOldEvent>(Lifetime.Singleton);
-            builder.Register<EnemySelectSkill>(Lifetime.Singleton);
+            builder.Register<EnemySkillSelector>(Lifetime.Singleton);
             builder.Register<EnemySuicideOldEvent>(Lifetime.Singleton);
             builder.Register<Initialization>(Lifetime.Singleton);
             builder.Register<IsContinueOldEvent>(Lifetime.Singleton);
@@ -125,6 +125,7 @@ namespace BattleScene.UseCases
             builder.Register<EnemySelectSkillState>(Lifetime.Singleton);
             builder.Register<SkillStateFactory>(Lifetime.Singleton);
             builder.Register<DamageStateFactory>(Lifetime.Singleton);
+            builder.Register<DamageMessageState>(Lifetime.Singleton);
             builder.Register<TurnEndState>(Lifetime.Singleton);
         }
     }

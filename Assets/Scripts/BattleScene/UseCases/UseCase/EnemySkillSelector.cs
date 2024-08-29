@@ -11,7 +11,7 @@ using Utility.Interface;
 
 namespace BattleScene.UseCases.UseCase
 {
-    internal class EnemySelectSkill : IUseCase
+    internal class EnemySkillSelector
     {
         private readonly IRepository<CharacterAggregate, CharacterId> _characterRepository;
         private readonly OrderedItemsDomainService _orderItems;
@@ -21,7 +21,7 @@ namespace BattleScene.UseCases.UseCase
         private readonly TargetDomainService _target;
         private readonly ITargetRepository _targetRepository;
 
-        public EnemySelectSkill(
+        public EnemySkillSelector(
             IRepository<CharacterAggregate, CharacterId> characterRepository,
             OrderedItemsDomainService orderItems,
             IRandomEx randomEx,
@@ -39,18 +39,20 @@ namespace BattleScene.UseCases.UseCase
             _targetRepository = targetRepository;
         }
 
-        public void Execute()
+        public SkillCode Select()
         {
             // TODO: 敵がスキルを選択する際、ランダムに選択する仮のアルゴリズムを実装している
             _orderItems.First().TryGetCharacterId(out var characterId);
             var skillCodeList = _characterRepository.Select(characterId).GetSkills();
             var skillCode = _randomEx.Choice(skillCodeList);
             var skill = _skillCreatorService.Create(skillCode);
-
+            // TODO:　以下の一行を削除すること
             _skillRepository.Update(new SkillEntity(characterId, skill));
 
             var target = new TargetEntity(characterId, _target.Get(characterId, skill.Range));
             _targetRepository.Update(target);
+            
+            return skillCode;
         }
     }
 }
