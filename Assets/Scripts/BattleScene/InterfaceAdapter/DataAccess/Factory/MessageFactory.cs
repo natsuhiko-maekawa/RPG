@@ -5,7 +5,7 @@ using BattleScene.InterfaceAdapter.DataAccess.IResource;
 
 namespace BattleScene.InterfaceAdapter.DataAccess.Factory
 {
-    public class MessageFactory : IMessageFactory
+    public class MessageFactory : IFactory<string, MessageCode>
     {
         private readonly IBattleSceneScriptableObject _battleSceneScriptableObject;
 
@@ -15,7 +15,7 @@ namespace BattleScene.InterfaceAdapter.DataAccess.Factory
             _battleSceneScriptableObject = battleSceneScriptableObject;
         }
 
-        public string GetMessage(MessageCode messageCode)
+        public string Create(MessageCode messageCode)
         {
             return _battleSceneScriptableObject.GetMsgScriptableObject()
                 .First(x => x.key == messageCode)
