@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using BattleScene.Domain.Code;
 using BattleScene.Domain.Entity;
 using BattleScene.UseCases.StateMachine.SkillStateMachine;
 using VContainer;
@@ -8,14 +9,14 @@ namespace BattleScene.UseCases.StateMachine.SkillStack
     public class SkillState : AbstractState
     {
         private readonly IObjectResolver _container;
-        private readonly SkillEntity _skillEntity;
+        private readonly SkillCode _skillCode;
         private readonly Queue<SkillContext> _skillContextQueue;
 
         public SkillState(
-            SkillEntity skillEntity,
+            SkillCode skillCode,
             IObjectResolver container)
         {
-            _skillEntity = skillEntity;
+            _skillCode = skillCode;
             _container = container;
         }
 

@@ -1,4 +1,5 @@
-﻿using BattleScene.Domain.Entity;
+﻿using BattleScene.Domain.Code;
+using BattleScene.Domain.Entity;
 using BattleScene.UseCases.StateMachine.SkillStack;
 using VContainer;
 
@@ -14,6 +15,6 @@ namespace BattleScene.UseCases.StateMachine
             _container = container;
         }
 
-        public SkillState Create(SkillEntity skill) => new SkillState(skill, _container);
+        public SkillState Create(SkillCode skillCode) => new SkillState(skillCode, _container);
     }
 }

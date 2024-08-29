@@ -34,7 +34,7 @@ namespace BattleScene.UseCases.StateMachine
             }
 
             var skill = _skillRepository.Select(characterId);
-            _container.Resolve<SkillStateFactory>().Create(skill);
+            _container.Resolve<SkillStateFactory>().Create(skill.SkillCode);
         }
     }
 }
