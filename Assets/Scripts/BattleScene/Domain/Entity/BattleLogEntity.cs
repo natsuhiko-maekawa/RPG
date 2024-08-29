@@ -1,11 +1,12 @@
-﻿using System.Collections.Immutable;
+﻿using System;
+using System.Collections.Immutable;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.OldId;
 using BattleScene.Domain.ValueObject;
 
 namespace BattleScene.Domain.Entity
 {
-    public class BattleLogEntity : BaseEntity<BattleLogEntity, BattleLogId>
+    public class BattleLogEntity : BaseEntity<BattleLogEntity, BattleLogId>, IComparable<BattleLogEntity>
     {
         public override BattleLogId Id { get; }
         public int Sequence { get; }
@@ -28,6 +29,11 @@ namespace BattleScene.Domain.Entity
             ActorId = damage.ActorId;
             SkillCode = damage.SkillCode;
             TargetIdList = damage.TargetIdList.ToImmutableList();
+        }
+
+        public int CompareTo(BattleLogEntity other)
+        {
+            return Sequence - other.Sequence;
         }
     }
 }
