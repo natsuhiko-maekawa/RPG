@@ -1,4 +1,6 @@
-﻿namespace BattleScene.UseCases.StateMachine
+﻿using UnityEngine;
+
+namespace BattleScene.UseCases.StateMachine
 {
     public class Context
     {
@@ -11,6 +13,7 @@
 
         public void TransitionTo(AbstractState state)
         {
+            Debug.Log(state.GetType().FullName);
             _state = state;
             _state.SetContext(this);
             _state.Start();
