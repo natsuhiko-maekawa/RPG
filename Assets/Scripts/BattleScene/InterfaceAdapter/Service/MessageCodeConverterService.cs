@@ -5,6 +5,7 @@ using BattleScene.Domain.DomainService;
 using BattleScene.Domain.IFactory;
 using BattleScene.Domain.IRepository;
 using BattleScene.Domain.ValueObject;
+using BattleScene.InterfaceAdapter.DataAccess.Factory;
 
 namespace BattleScene.InterfaceAdapter.Service
 {
@@ -21,7 +22,7 @@ namespace BattleScene.InterfaceAdapter.Service
         private readonly IBodyPartViewInfoFactory _bodyPartViewInfoFactory;
         private readonly ICharacterRepository _characterRepository;
         private readonly IEnemyViewInfoFactory _enemyViewInfoFactory;
-        private readonly IMessageFactory _messageFactory;
+        private readonly IFactory<string, MessageCode> _messageFactory;
         private readonly OrderedItemsDomainService _orderedItems;
         private readonly IFactory<PlayerViewInfoValueObject, CharacterTypeId> _playerViewInfoFactory;
         private readonly ResultDomainService _result;
@@ -34,7 +35,7 @@ namespace BattleScene.InterfaceAdapter.Service
             IBodyPartViewInfoFactory bodyPartViewInfoFactory,
             ICharacterRepository characterRepository,
             IEnemyViewInfoFactory enemyViewInfoFactory,
-            IMessageFactory messageFactory,
+            IFactory<string, MessageCode> messageFactory,
             OrderedItemsDomainService orderedItems,
             IFactory<PlayerViewInfoValueObject, CharacterTypeId> playerViewInfoFactory,
             ResultDomainService result,
@@ -57,7 +58,7 @@ namespace BattleScene.InterfaceAdapter.Service
 
         public string ToMessage(MessageCode messageCode)
         {
-            var message = _messageFactory.GetMessage(messageCode);
+            var message = _messageFactory.Create(messageCode);
             message = ReplaceActor(message);
             message = ReplaceAilments(message);
             message = ReplaceBuff(message);
