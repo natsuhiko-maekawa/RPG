@@ -3,7 +3,7 @@ using BattleScene.UseCases.Service;
 
 namespace BattleScene.UseCases.StateMachine.SkillStateMachine
 {
-    public class AilmentState : AbstractState
+    public class AilmentState : AbstractSkillState
     {
         private readonly AilmentValueObject _ailment;
         private readonly AilmentSkillService _ailmentSkill;
