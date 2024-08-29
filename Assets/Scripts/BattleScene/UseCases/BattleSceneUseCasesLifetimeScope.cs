@@ -4,6 +4,7 @@ using BattleScene.UseCases.OldEvent.Runner;
 using BattleScene.UseCases.Output;
 using BattleScene.UseCases.Service;
 using BattleScene.UseCases.StateMachine;
+using BattleScene.UseCases.StateMachine.SkillStateMachine;
 using BattleScene.UseCases.UseCase;
 using BattleScene.UseCases.View.AilmentView;
 using BattleScene.UseCases.View.AilmentView.OutputDataFactory;
@@ -64,7 +65,7 @@ namespace BattleScene.UseCases
             builder.Register<CharacterCreatorService>(Lifetime.Singleton);
             builder.Register<CharacterOutputDataCreatorService>(Lifetime.Singleton);
             builder.Register<CureSkillService>(Lifetime.Singleton);
-            builder.Register<DamageSkillService>(Lifetime.Singleton);
+            builder.Register<DamageGeneratorService>(Lifetime.Singleton);
             builder.Register<DestroyedPartCreatorService>(Lifetime.Singleton);
             builder.Register<HitPointCreatorService>(Lifetime.Singleton);
             builder.Register<OrderedItemCreatorService>(Lifetime.Singleton);
@@ -122,6 +123,7 @@ namespace BattleScene.UseCases
             builder.Register<OrderState>(Lifetime.Singleton);
             builder.Register<EnemySelectSkillState>(Lifetime.Singleton);
             builder.Register<SkillStateFactory>(Lifetime.Singleton);
+            builder.Register<DamageStateFactory>(Lifetime.Singleton);
             builder.Register<TurnEndState>(Lifetime.Singleton);
         }
     }

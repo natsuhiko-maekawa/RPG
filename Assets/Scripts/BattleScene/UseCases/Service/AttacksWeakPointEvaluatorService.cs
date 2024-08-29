@@ -13,19 +13,19 @@ namespace BattleScene.UseCases.Service
         private readonly IRepository<CharacterAggregate, CharacterId> _characterRepository;
 
         
-        public bool Evaluate(CharacterId actorId, CharacterId targetId, DamageValueObject damage)
+        public bool Evaluate(CharacterId actorId, CharacterId targetId, DamageParameterValueObject damageParameter)
         {
-            return damage.AttacksWeakPointEvaluationCode switch
+            return damageParameter.AttacksWeakPointEvaluationCode switch
             {
-                AttacksWeakPointEvaluationCode.Basic => BasicEvaluate(targetId, damage),
+                AttacksWeakPointEvaluationCode.Basic => BasicEvaluate(targetId, damageParameter),
                 _ => throw new ArgumentOutOfRangeException()
             };
         }
 
-        private bool BasicEvaluate(CharacterId targetId, DamageValueObject damage)
+        private bool BasicEvaluate(CharacterId targetId, DamageParameterValueObject damageParameter)
         {
             return _characterRepository.Select(targetId).GetWeakPoints()
-                .Intersect(damage.MatAttrCode)
+                .Intersect(damageParameter.MatAttrCode)
                 .Any();
         }
     }

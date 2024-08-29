@@ -7,7 +7,7 @@ using BattleScene.Domain.ValueObject;
 
 namespace BattleScene.UseCases.Service
 {
-    public class DamageSkillService
+    public class DamageGeneratorService
     {
         private readonly OrderedItemsDomainService _orderedItems;
         private readonly ResultCreatorDomainService _resultCreator;
@@ -16,7 +16,7 @@ namespace BattleScene.UseCases.Service
         private readonly AttacksWeakPointEvaluatorService _attacksWeakPointEvaluator;
         private readonly TargetDomainService _target;
 
-        public DamageSkillService(
+        public DamageGeneratorService(
             OrderedItemsDomainService orderedItems,
             ResultCreatorDomainService resultCreator,
             TargetDomainService target)
@@ -26,19 +26,21 @@ namespace BattleScene.UseCases.Service
             _target = target;
         }
 
-        public ResultEntity Execute(SkillValueObject skill, DamageValueObject damageInfo)
+        public DamageValueObject Generate(
+            SkillCommonValueObject skillCommon,
+            DamageParameterValueObject damageParameter)
         {
             _orderedItems.First().TryGetCharacterId(out var actorId);
-            var damageList = new List<DamageResultValueObject>();
-            for (var i = 0; i < damageInfo.AttackNumber; ++i)
+            var damageList = new List<AttackValueObject>();
+            for (var i = 0; i < damageParameter.AttackNumber; ++i)
             {
-                var targetIdList = _target.Get(actorId, skill.Range);
+                var targetIdList = _target.Get(actorId, skillCommon.Range);
                 foreach (var targetId in targetIdList)
                 {
-                    var damage = new DamageResultValueObject(
-                        amount: _damageEvaluator.Evaluate(actorId, targetId, damageInfo),
-                        isHit: _isHitEvaluator.Evaluate(actorId, targetId, damageInfo),
-                        attacksWeakPoint: _attacksWeakPointEvaluator.Evaluate(actorId, targetId, damageInfo),
+                    var damage = new AttackValueObject(
+                        amount: _damageEvaluator.Evaluate(actorId, targetId, damageParameter),
+                        isHit: _isHitEvaluator.Evaluate(actorId, targetId, damageParameter),
+                        attacksWeakPoint: _attacksWeakPointEvaluator.Evaluate(actorId, targetId, damageParameter),
                         targetId: targetId,
                         number: i);
                     damageList.Add(damage);
@@ -46,7 +48,34 @@ namespace BattleScene.UseCases.Service
             }
 
             damageList.Sort((x, y) => x.Number - y.Number);
-            var damageSkillResult = new DamageSkillResultValueObject(
+            
+            return new DamageValueObject(
+                actorId,
+                skillCommon.SkillCode,
+                damageList.ToImmutableList());
+        }
+        
+        public ResultEntity Execute(SkillValueObject skill, DamageParameterValueObject damageParameterInfo)
+        {
+            _orderedItems.First().TryGetCharacterId(out var actorId);
+            var damageList = new List<AttackValueObject>();
+            for (var i = 0; i < damageParameterInfo.AttackNumber; ++i)
+            {
+                var targetIdList = _target.Get(actorId, skill.Range);
+                foreach (var targetId in targetIdList)
+                {
+                    var damage = new AttackValueObject(
+                        amount: _damageEvaluator.Evaluate(actorId, targetId, damageParameterInfo),
+                        isHit: _isHitEvaluator.Evaluate(actorId, targetId, damageParameterInfo),
+                        attacksWeakPoint: _attacksWeakPointEvaluator.Evaluate(actorId, targetId, damageParameterInfo),
+                        targetId: targetId,
+                        number: i);
+                    damageList.Add(damage);
+                }
+            }
+
+            damageList.Sort((x, y) => x.Number - y.Number);
+            var damageSkillResult = new DamageValueObject(
                 actorId,
                 skill.SkillCode,
                 damageList.ToImmutableList());

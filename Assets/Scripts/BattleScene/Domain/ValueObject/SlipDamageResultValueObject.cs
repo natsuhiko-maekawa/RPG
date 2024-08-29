@@ -9,14 +9,14 @@ namespace BattleScene.Domain.ValueObject
     {
         public SlipDamageResultValueObject(
             SlipDamageCode slipDamageCode,
-            ImmutableList<DamageResultValueObject> damageList)
+            ImmutableList<AttackValueObject> damageList)
         {
             SlipDamageCode = slipDamageCode;
             DamageList = damageList;
         }
 
         public SlipDamageCode SlipDamageCode { get; }
-        public ImmutableList<DamageResultValueObject> DamageList { get; }
+        public ImmutableList<AttackValueObject> DamageList { get; }
 
         public int GetTotal()
         {

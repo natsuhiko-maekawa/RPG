@@ -87,11 +87,11 @@ namespace BattleScene.InterfaceAdapter.DataAccess.Factory
                 .ToImmutableList();
         }
 
-        private ImmutableList<DamageValueObject> CreateDamageValueObject(IList<AbstractDamage> damageList)
+        private ImmutableList<DamageParameterValueObject> CreateDamageValueObject(IList<AbstractDamage> damageList)
         {
-            if (damageList == null) return ImmutableList<DamageValueObject>.Empty;
+            if (damageList == null) return ImmutableList<DamageParameterValueObject>.Empty;
             return damageList
-                .Select(x => new DamageValueObject(
+                .Select(x => new DamageParameterValueObject(
                     AttackNumber: x.AttackNumber,
                     DamageRate: x.DamageRate,
                     HitRate: x.HitRate,

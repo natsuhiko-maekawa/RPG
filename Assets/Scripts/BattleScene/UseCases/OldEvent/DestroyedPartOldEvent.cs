@@ -59,7 +59,7 @@ namespace BattleScene.UseCases.OldEvent
 
             // ダメージを与えるスキルで部位破壊に失敗したとき、失敗のメッセージを表示せず次のイベントに移る
             // 失敗のメッセージを表示しているとゲームのテンポが悪くなるため
-            if (_result.TryGetLast<DamageSkillResultValueObject>(out _)
+            if (_result.TryGetLast<DamageValueObject>(out _)
                 && !destroyedPartSkillResult.Success()) return GetIndex();
 
             if (!destroyedPartSkillResult.Success())

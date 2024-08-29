@@ -2,9 +2,9 @@
 
 namespace BattleScene.Domain.ValueObject
 {
-    public class DamageResultValueObject
+    public class AttackValueObject
     {
-        public DamageResultValueObject(
+        public AttackValueObject(
             int amount,
             CharacterId targetId,
             bool isHit,
@@ -18,7 +18,7 @@ namespace BattleScene.Domain.ValueObject
             Number = number;
         }
 
-        public DamageResultValueObject(
+        public AttackValueObject(
             int amount,
             CharacterId targetId)
         {

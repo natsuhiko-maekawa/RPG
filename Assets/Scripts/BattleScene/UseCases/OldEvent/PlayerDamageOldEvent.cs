@@ -31,7 +31,7 @@ namespace BattleScene.UseCases.OldEvent
         private readonly ICharacterVibesViewPresenter _characterVibesView;
         private readonly DamageDigitOutputDataFactory _damageDigitOutputDataFactory;
         private readonly DamageMessageOutputDataFactory _damageMessageOutputDataFactory;
-        private readonly DamageSkillService _damageSkill;
+        private readonly DamageGeneratorService _damageGenerator;
         private readonly IDigitViewPresenter _digitView;
         private readonly HitPointDomainService _hitPoint;
         private readonly HitPointBarOutputDataFactory _hitPointBarOutputDataFactory;
@@ -52,7 +52,7 @@ namespace BattleScene.UseCases.OldEvent
             ICharacterVibesViewPresenter characterVibesView,
             DamageDigitOutputDataFactory damageDigitOutputDataFactory,
             DamageMessageOutputDataFactory damageMessageOutputDataFactory,
-            DamageSkillService damageSkill,
+            DamageGeneratorService damageGenerator,
             IDigitViewPresenter digitView,
             HitPointDomainService hitPoint,
             HitPointBarOutputDataFactory hitPointBarOutputDataFactory,
@@ -72,7 +72,7 @@ namespace BattleScene.UseCases.OldEvent
             _characterVibesView = characterVibesView;
             _damageDigitOutputDataFactory = damageDigitOutputDataFactory;
             _damageMessageOutputDataFactory = damageMessageOutputDataFactory;
-            _damageSkill = damageSkill;
+            _damageGenerator = damageGenerator;
             _digitView = digitView;
             _hitPoint = hitPoint;
             _hitPointBarOutputDataFactory = hitPointBarOutputDataFactory;
@@ -90,10 +90,10 @@ namespace BattleScene.UseCases.OldEvent
         {
             var characterId = _orderedItems.FirstCharacterId();
             var skill = _skillRepository.Select(characterId);
-            var result = _damageSkill.Execute(skill);
+            var result = _damageGenerator.Execute(skill);
             _resultRepository.Update(result);
 
-            var isAvoid = !_result.Last<DamageSkillResultValueObject>().Success();
+            var isAvoid = !_result.Last<DamageValueObject>().Success();
             if (!_characterRepository.Select(characterId).IsPlayer())
                 _playerImageView.Start(new PlayerImageOutputData(
                     isAvoid
@@ -121,7 +121,7 @@ namespace BattleScene.UseCases.OldEvent
 
         public EventCode NextEvent()
         {
-            return _result.Last<DamageSkillResultValueObject>().Success()
+            return _result.Last<DamageValueObject>().Success()
                 ? GetIndex()
                 : GetIndexWhenAvoid();
         }

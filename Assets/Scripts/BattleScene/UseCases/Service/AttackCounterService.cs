@@ -41,7 +41,7 @@ namespace BattleScene.UseCases.Service
             return resultList
                 .OrderByDescending(x => x)
                 .Select(x => x.Result)
-                .OfType<DamageSkillResultValueObject>()
+                .OfType<DamageValueObject>()
                 .TakeWhile(x => Equals(x.ActorId, playerId)
                                 && fatalitySkills.Contains(x.SkillCode))
                 .Select(x => x.HitCount())

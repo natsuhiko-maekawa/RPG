@@ -19,17 +19,17 @@ namespace BattleScene.UseCases.Service
         private readonly IRepository<CharacterAggregate, CharacterId> _characterRepository;
         private readonly IRandomEx _randomEx;
         
-        public bool Evaluate(CharacterId actorId, CharacterId targetId, DamageValueObject damage)
+        public bool Evaluate(CharacterId actorId, CharacterId targetId, DamageParameterValueObject damageParameter)
         {
-            return damage.HitEvaluationCode switch
+            return damageParameter.HitEvaluationCode switch
             {
-                HitEvaluationCode.Basic => BasicEvaluate(actorId, targetId, damage),
+                HitEvaluationCode.Basic => BasicEvaluate(actorId, targetId, damageParameter),
                 HitEvaluationCode.AlwaysHit => AlwaysHitEvaluate(),
                 _ => throw new ArgumentOutOfRangeException()
             };
         }
         
-        private bool BasicEvaluate(CharacterId actorId, CharacterId targetId, DamageValueObject damage)
+        private bool BasicEvaluate(CharacterId actorId, CharacterId targetId, DamageParameterValueObject damageParameter)
         {
             // 両脚損傷時、必ず命中する
             if (!_bodyPartDomainService.IsAvailable(targetId, BodyPartCode.Leg)) return true;
@@ -46,7 +46,7 @@ namespace BattleScene.UseCases.Service
             var destroyedReduce = _bodyPartDomainService.Count(targetId, BodyPartCode.Leg) * 0.5f;
             var hitRateBuffId = new BuffId(actorId, BuffCode.HitRate);
             var buff = Mathf.Log(_buffRepository.Select(hitRateBuffId).Rate, 2.0f);
-            var add = Mathf.Log(damage.HitRate, 2.0f);
+            var add = Mathf.Log(damageParameter.HitRate, 2.0f);
             var actorFixedAgility = actorAgility + (isActorBlind ? -threshold : 0);
             var targetFixedAgility = targetAgility + (isTargetDeaf ? -threshold : 0);
             var hitRate = 1.0f + (actorFixedAgility - targetFixedAgility) / threshold;

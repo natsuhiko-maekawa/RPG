@@ -9,9 +9,10 @@ namespace BattleScene.Domain.ValueObject
         public int TechnicalPoint { get; }
         public ImmutableList<BodyPartCode> DependencyList { get; }
         public Range Range { get; }
+        public SkillCommonValueObject SkillCommon { get; }
         public ImmutableList<AilmentValueObject> AilmentList { get; }
         public ImmutableList<BuffValueObject> BuffList { get; }
-        public ImmutableList<DamageValueObject> DamageList { get; }
+        public ImmutableList<DamageParameterValueObject> DamageList { get; }
 
         public SkillValueObject(
             SkillCode skillCode,
@@ -20,7 +21,7 @@ namespace BattleScene.Domain.ValueObject
             ImmutableList<BodyPartCode> dependencyList = null,
             ImmutableList<AilmentValueObject> ailmentList = null,
             ImmutableList<BuffValueObject> buffList = null,
-            ImmutableList<DamageValueObject> damageList = null)
+            ImmutableList<DamageParameterValueObject> damageList = null)
         {
             SkillCode = skillCode;
             Range = range;
@@ -28,7 +29,7 @@ namespace BattleScene.Domain.ValueObject
             DependencyList = dependencyList ?? ImmutableList<BodyPartCode>.Empty;
             AilmentList = ailmentList ?? ImmutableList<AilmentValueObject>.Empty;
             BuffList = buffList ?? ImmutableList<BuffValueObject>.Empty;
-            DamageList = damageList ?? ImmutableList<DamageValueObject>.Empty;
+            DamageList = damageList ?? ImmutableList<DamageParameterValueObject>.Empty;
         }
     }
 }
