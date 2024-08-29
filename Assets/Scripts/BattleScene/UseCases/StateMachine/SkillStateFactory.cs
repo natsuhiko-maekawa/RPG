@@ -1,6 +1,5 @@
 ﻿using BattleScene.Domain.Code;
-using BattleScene.Domain.Entity;
-using BattleScene.UseCases.StateMachine.SkillStack;
+using BattleScene.UseCases.StateMachine.SkillStateMachine;
 using VContainer;
 
 namespace BattleScene.UseCases.StateMachine
