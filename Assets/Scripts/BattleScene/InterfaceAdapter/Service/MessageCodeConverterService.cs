@@ -56,6 +56,20 @@ namespace BattleScene.InterfaceAdapter.Service
             _targetRepository = targetRepository;
         }
 
+        public string Replace(string message)
+        {
+            message = ReplaceActor(message);
+            message = ReplaceAilments(message);
+            message = ReplaceBuff(message);
+            message = ReplaceDamage(message);
+            message = ReplaceCure(message);
+            message = ReplaceBodyPart(message);
+            message = ReplaceSkill(message);
+            message = ReplaceTarget(message);
+            return message;
+        }
+        
+        [Obsolete]
         public string ToMessage(MessageCode messageCode)
         {
             var message = _messageFactory.Create(messageCode);
