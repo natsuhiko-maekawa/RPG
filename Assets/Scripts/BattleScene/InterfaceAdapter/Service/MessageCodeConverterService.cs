@@ -22,7 +22,7 @@ namespace BattleScene.InterfaceAdapter.Service
         private readonly IFactory<BodyPartViewInfoDto, BodyPartCode> _bodyPartViewInfoFactory;
         private readonly ICharacterRepository _characterRepository;
         private readonly IEnemyViewInfoFactory _enemyViewInfoFactory;
-        private readonly IFactory<string, MessageCode> _messageFactory;
+        private readonly IFactory<MessageDto, MessageCode> _messageFactory;
         private readonly OrderedItemsDomainService _orderedItems;
         private readonly IFactory<PlayerViewInfoValueObject, CharacterTypeId> _playerViewInfoFactory;
         private readonly ResultDomainService _result;
@@ -35,7 +35,7 @@ namespace BattleScene.InterfaceAdapter.Service
             IFactory<BodyPartViewInfoDto, BodyPartCode> bodyPartViewInfoFactory,
             ICharacterRepository characterRepository,
             IEnemyViewInfoFactory enemyViewInfoFactory,
-            IFactory<string, MessageCode> messageFactory,
+            IFactory<MessageDto, MessageCode> messageFactory,
             OrderedItemsDomainService orderedItems,
             IFactory<PlayerViewInfoValueObject, CharacterTypeId> playerViewInfoFactory,
             ResultDomainService result,
@@ -72,7 +72,7 @@ namespace BattleScene.InterfaceAdapter.Service
         [Obsolete]
         public string ToMessage(MessageCode messageCode)
         {
-            var message = _messageFactory.Create(messageCode);
+            var message = _messageFactory.Create(messageCode).Message;
             message = ReplaceActor(message);
             message = ReplaceAilments(message);
             message = ReplaceBuff(message);
