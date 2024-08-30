@@ -2,9 +2,10 @@
 using System.Linq;
 using BattleScene.Domain.IFactory;
 using BattleScene.Domain.Interface;
+using BattleScene.InterfaceAdapter.DataAccess.Resource;
 using UnityEngine;
 
-namespace BattleScene.InterfaceAdapter.DataAccess.Resource
+namespace BattleScene.InterfaceAdapter.DataAccess.Factory
 {
     public abstract class BaseListScriptableObjectFactory<TListScriptableObject, TItem, TId>
         : MonoBehaviour, IFactory<TItem, TId>
