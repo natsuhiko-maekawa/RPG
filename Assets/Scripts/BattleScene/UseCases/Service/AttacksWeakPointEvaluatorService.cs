@@ -12,7 +12,12 @@ namespace BattleScene.UseCases.Service
     {
         private readonly IRepository<CharacterAggregate, CharacterId> _characterRepository;
 
-        
+        public AttacksWeakPointEvaluatorService(
+            IRepository<CharacterAggregate, CharacterId> characterRepository)
+        {
+            _characterRepository = characterRepository;
+        }
+
         public bool Evaluate(CharacterId actorId, CharacterId targetId, DamageParameterValueObject damageParameter)
         {
             return damageParameter.AttacksWeakPointEvaluationCode switch
