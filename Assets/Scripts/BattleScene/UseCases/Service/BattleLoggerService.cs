@@ -8,9 +8,16 @@ namespace BattleScene.UseCases.Service
 {
     public class BattleLoggerService
     {
-        private readonly ISkillRepository _skillRepository;
-        private readonly ITurnRepository _turnRepository;
         private readonly IRepository<BattleLogEntity, BattleLogId> _battleLogRepository;
+        private readonly IRepository<TurnEntity, TurnId> _turnRepository;
+
+        public BattleLoggerService(
+            IRepository<BattleLogEntity, BattleLogId> battleLogRepository,
+            IRepository<TurnEntity, TurnId> turnRepository)
+        {
+            _battleLogRepository = battleLogRepository;
+            _turnRepository = turnRepository;
+        }
 
         public void Log(DamageValueObject damage)
         {
