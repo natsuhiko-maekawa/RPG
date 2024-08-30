@@ -24,7 +24,7 @@ namespace BattleScene.InterfaceAdapter.DataAccess.Repository
 
         public ImmutableList<TEntity> Select()
         {
-            return _entitySet.ToImmutableList();
+            return _entitySet.Count == 0 ? null : _entitySet.ToImmutableList();
         }
 
         public void Update(TEntity entity)
