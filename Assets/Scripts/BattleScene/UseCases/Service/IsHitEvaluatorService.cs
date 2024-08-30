@@ -64,8 +64,8 @@ namespace BattleScene.UseCases.Service
             var isTargetDeaf = _ailmentRepository.Select()
                 .FirstOrDefault(x => Equals(x.CharacterId, targetId) && x.AilmentCode == AilmentCode.Deaf) != null;
             var destroyedReduce = _bodyPartDomainService.Count(targetId, BodyPartCode.Leg) * 0.5f;
-            var hitRateBuffId = new BuffId(actorId, BuffCode.HitRate);
-            var buff = Mathf.Log(_buffRepository.Select(hitRateBuffId).Rate, 2.0f);
+            var buff = Mathf.Log(_buffRepository.Select()
+                .FirstOrDefault(x => Equals(x.CharacterId, actorId) && x.BuffCode == BuffCode.HitRate)?.Rate ?? 1, 2.0f);
             var add = Mathf.Log(damageParameter.HitRate, 2.0f);
             var actorFixedAgility = actorAgility + (isActorBlind ? -threshold : 0);
             var targetFixedAgility = targetAgility + (isTargetDeaf ? -threshold : 0);
