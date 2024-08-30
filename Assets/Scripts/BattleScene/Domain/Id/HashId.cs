@@ -1,7 +1,9 @@
-﻿using BattleScene.Domain.Interface;
+﻿using System;
+using BattleScene.Domain.Interface;
 
 namespace BattleScene.Domain.Id
 {
+    [Obsolete]
     public class HashId : AbstractId<HashId, int>
     {
         protected override int Id { get; }
