@@ -79,5 +79,12 @@ namespace BattleScene.Domain.DomainService
                 .ToImmutableList();
             _actionTimeRepository.Update(actionTimeList);
         }
+
+        public ImmutableList<CharacterAggregate> Get()
+        {
+            return _characterRepository.Select()
+                .Where(x => !x.IsPlayer())
+                .ToImmutableList();
+        }
     }
 }
