@@ -18,14 +18,16 @@ namespace BattleScene.InterfaceAdapter.Presenter.GridView
         
         public void Start(GridViewOutputData outputData)
         {
-            var rowList = outputData.ActionCodeList
+            var rowList = outputData.Row
                 .Select(x =>
                 {
                     var rowName = x.ToString();
-                    var rowDescription = GetDescription(x);
+                    var rowDescription = GetDescription(x.ActionCode);
+                    var enabled = x.Enabled;
                     return new RowDto(
                         RowName: rowName,
-                        RowDescription: rowDescription);
+                        RowDescription: rowDescription,
+                        Enabled: enabled);
                 })
                 .ToImmutableList();
             var dto = new GridViewDto(rowList);

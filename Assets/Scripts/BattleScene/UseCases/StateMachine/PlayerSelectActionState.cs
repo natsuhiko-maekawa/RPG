@@ -26,9 +26,13 @@ namespace BattleScene.UseCases.StateMachine
         
         public override void Start()
         {
-            var actionList
-                = ImmutableList.Create(ActionCode.Attack, ActionCode.Skill, ActionCode.Defence, ActionCode.FatalitySkill);
-            var outputData = new GridViewOutputData(actionList);
+            var fatalitySkillEnabled = _attackCounter.IsOverflow();
+            var rowList = ImmutableList.Create(
+                new Row(ActionCode: ActionCode.Attack, Enabled: true),
+                new Row(ActionCode: ActionCode.Skill, Enabled: true),
+                new Row(ActionCode: ActionCode.Defence, Enabled: true),
+                new Row(ActionCode: ActionCode.FatalitySkill, Enabled: fatalitySkillEnabled));
+            var outputData = new GridViewOutputData(rowList);
             _gridView.Start(outputData);
             _playerImageView.Start(_outputDataFactory.CreatePlayerImageOutputData());
         }

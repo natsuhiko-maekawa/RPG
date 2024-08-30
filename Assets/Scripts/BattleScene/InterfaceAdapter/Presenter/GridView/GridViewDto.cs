@@ -8,5 +8,6 @@ namespace BattleScene.InterfaceAdapter.Presenter.GridView
 
     public record RowDto(
         string RowName,
-        string RowDescription);
+        string RowDescription,
+        bool Enabled);
 }
