@@ -18,7 +18,21 @@ namespace BattleScene.UseCases.Service
         private readonly IRepository<BuffEntity, BuffId> _buffRepository;
         private readonly IRepository<CharacterAggregate, CharacterId> _characterRepository;
         private readonly IRandomEx _randomEx;
-        
+
+        public IsHitEvaluatorService(
+            IAilmentRepository ailmentRepository,
+            BodyPartDomainService bodyPartDomainService,
+            IRepository<BuffEntity, BuffId> buffRepository,
+            IRepository<CharacterAggregate, CharacterId> characterRepository,
+            IRandomEx randomEx)
+        {
+            _ailmentRepository = ailmentRepository;
+            _bodyPartDomainService = bodyPartDomainService;
+            _buffRepository = buffRepository;
+            _characterRepository = characterRepository;
+            _randomEx = randomEx;
+        }
+
         public bool Evaluate(CharacterId actorId, CharacterId targetId, DamageParameterValueObject damageParameter)
         {
             return damageParameter.HitEvaluationCode switch
@@ -28,8 +42,11 @@ namespace BattleScene.UseCases.Service
                 _ => throw new ArgumentOutOfRangeException()
             };
         }
-        
-        private bool BasicEvaluate(CharacterId actorId, CharacterId targetId, DamageParameterValueObject damageParameter)
+
+        private bool BasicEvaluate(
+            CharacterId actorId,
+            CharacterId targetId,
+            DamageParameterValueObject damageParameter)
         {
             // 両脚損傷時、必ず命中する
             if (!_bodyPartDomainService.IsAvailable(targetId, BodyPartCode.Leg)) return true;
