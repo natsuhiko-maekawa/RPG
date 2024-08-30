@@ -204,6 +204,7 @@ namespace BattleScene.InterfaceAdapter
             
             // TODO: DomainのServiceを登録している
             builder.Register<OrderedItemsDomainService>(Lifetime.Singleton);
+            builder.Register<ResultDomainService>(Lifetime.Singleton);
         }
     }
 }
