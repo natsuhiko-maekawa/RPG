@@ -74,22 +74,16 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<ICharacterVibesViewPresenter, CharacterVibesViewPresenter>(Lifetime.Singleton);
             builder.Register<IBattleSceneController, BattleSceneController>(Lifetime.Singleton);
             
-            // builder.Register<IActionTimeRepository, ActionTimeRepository>(Lifetime.Singleton);
             builder.Register<IAilmentRepository, AilmentRepository>(Lifetime.Singleton);
             builder.Register<IBodyPartRepository, BodyPartRepository>(Lifetime.Singleton);
-            // builder.Register<IBuffRepository, BuffRepository>(Lifetime.Singleton);
             builder.Register<ICharacterRepository, CharacterRepository>(Lifetime.Singleton);
             builder.Register<IEnemyRepository, EnemyRepository>(Lifetime.Singleton);
             builder.Register<IFrameRepository, FrameRepository>(Lifetime.Singleton);
-            // builder.Register<IHitPointRepository, HitPointRepository>(Lifetime.Singleton);
-            // builder.Register<IOrderRepository, OrderRepository>(Lifetime.Singleton);
             builder.Register<IResultRepository, ResultRepository>(Lifetime.Singleton);
             builder.Register<ISelectorRepository, SelectorRepository>(Lifetime.Singleton);
             builder.Register<ISkillRepository, SkillRepository>(Lifetime.Singleton);
             builder.Register<ISkillSelectorRepository, SkillSelectorRepository>(Lifetime.Singleton);
-            // builder.Register<ISlipDamageRepository, SlipDamageRepository>(Lifetime.Singleton);
             builder.Register<ITargetRepository, TargetRepository>(Lifetime.Singleton);
-            // builder.Register<ITechnicalPointRepository, TechnicalPointRepository>(Lifetime.Singleton);
             builder.Register<IRepository<ActionTimeEntity, CharacterId>, Repository<ActionTimeEntity, CharacterId>>(
                 Lifetime.Singleton);
             builder.Register<IRepository<AilmentEntity, AilmentId>, Repository<AilmentEntity, AilmentId>>(
