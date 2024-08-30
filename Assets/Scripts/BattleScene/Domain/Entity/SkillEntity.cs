@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Immutable;
-using System.Linq;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.Id;
-using BattleScene.Domain.Interface;
 using BattleScene.Domain.ValueObject;
 
 namespace BattleScene.Domain.Entity

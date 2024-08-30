@@ -1,7 +1,6 @@
 ﻿using System;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Interface;
-using BattleScene.Domain.IRepository;
 
 namespace BattleScene.Domain.DomainService
 {
