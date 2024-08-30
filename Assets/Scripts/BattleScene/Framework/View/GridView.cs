@@ -37,6 +37,7 @@ namespace BattleScene.Framework.View
             _rightArrow.enabled = true;
             _rightArrow.rectTransform.localPosition 
                 = new Vector3(rightArrowX, -_selectedRow * slotHeight + rightArrowY, 0);
+            SetText(dto.RowList.Count);
             foreach (var (row, index) in dto.RowList.Select((x, i) => (x, i)))
             {
                 _textList[index].text = row.RowName;

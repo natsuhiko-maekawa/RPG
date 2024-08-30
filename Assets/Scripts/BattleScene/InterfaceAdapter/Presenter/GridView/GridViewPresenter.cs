@@ -31,7 +31,7 @@ namespace BattleScene.InterfaceAdapter.Presenter.GridView
             var rowList = outputData.Row
                 .Select(x =>
                 {
-                    var rowName = x.ToString();
+                    var rowName = x.ActionCode.ToString();
                     var rowDescription = GetDescription(x.ActionCode);
                     var enabled = x.Enabled;
                     return new RowDto(
