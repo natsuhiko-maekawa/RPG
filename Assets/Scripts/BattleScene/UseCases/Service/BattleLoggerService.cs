@@ -16,9 +16,8 @@ namespace BattleScene.UseCases.Service
         {
             var battleLogId = new BattleLogId();
             var sequence = _battleLogRepository.Select()
-                .OrderBy(x => x.Sequence)
-                .Last()
-                .Sequence;
+                ?.Max(x => x)
+                .Sequence ?? 0;
             var nextSequence = sequence + 1;
             var turn = _turnRepository.Select()
                 .First()
