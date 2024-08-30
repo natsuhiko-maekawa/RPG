@@ -10,7 +10,6 @@ namespace BattleScene.Domain.ValueObject
     {
         [SerializeField] private string id;
         [SerializeField] private string enemyName;
-        [SerializeField] private string enemyImagePath;
         public CharacterTypeId Id { get; private set; }
         public string EnemyName { get; private set; }
         public string EnemyImagePath { get; private set; }
@@ -23,7 +22,7 @@ namespace BattleScene.Domain.ValueObject
         {
             Id = Enum.Parse<CharacterTypeId>(id);
             EnemyName = enemyName;
-            EnemyImagePath = enemyImagePath;
+            EnemyImagePath = $"{id}[{id}]";
         }
     }
 }
