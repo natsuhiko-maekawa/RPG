@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Immutable;
 using BattleScene.Domain.Code;
-using BattleScene.Domain.OldId;
+using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
 
 namespace BattleScene.Domain.Entity

@@ -1,7 +1,7 @@
 ﻿using BattleScene.Domain.Code;
 using BattleScene.Domain.Interface;
 
-namespace BattleScene.Domain.OldId
+namespace BattleScene.Domain.Id
 {
     public class SlipDamageId : AbstractId<SlipDamageId, HashId>
     {

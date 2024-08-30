@@ -3,9 +3,9 @@ using System.Linq;
 using BattleScene.Domain.Aggregate;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DomainService;
+using BattleScene.Domain.Id;
 using BattleScene.Domain.IFactory;
 using BattleScene.Domain.IRepository;
-using BattleScene.Domain.OldId;
 using BattleScene.Domain.ValueObject;
 using BattleScene.InterfaceAdapter.DataAccess.Factory.Dto;
 

@@ -1,7 +1,7 @@
 ﻿using BattleScene.Domain.Code;
 using BattleScene.Domain.Entity;
+using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
-using BattleScene.Domain.OldId;
 using Utility.Interface;
 
 namespace BattleScene.Domain.DomainService

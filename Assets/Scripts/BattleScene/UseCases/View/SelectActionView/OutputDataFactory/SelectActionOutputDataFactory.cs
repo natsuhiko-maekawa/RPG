@@ -1,6 +1,6 @@
 using System.Collections.Generic;
+using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
-using BattleScene.Domain.OldId;
 using BattleScene.UseCases.OldEvent.Runner;
 using BattleScene.UseCases.Service;
 using BattleScene.UseCases.View.SelectActionView.OutputData;

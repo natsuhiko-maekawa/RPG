@@ -2,8 +2,8 @@
 using System.Collections.Immutable;
 using System.Linq;
 using BattleScene.Domain.Aggregate;
+using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
-using BattleScene.Domain.OldId;
 
 namespace BattleScene.Domain.DomainService
 {

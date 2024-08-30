@@ -1,7 +1,7 @@
 ﻿using BattleScene.Domain.Code;
 using BattleScene.Domain.Entity;
+using BattleScene.Domain.Id;
 using BattleScene.Domain.IFactory;
-using BattleScene.Domain.OldId;
 using BattleScene.Domain.ValueObject;
 using BattleScene.InterfaceAdapter.DataAccess.IResource;
 

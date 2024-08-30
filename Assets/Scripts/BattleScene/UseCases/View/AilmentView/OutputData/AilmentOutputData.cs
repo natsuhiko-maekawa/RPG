@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using BattleScene.Domain.Code;
-using BattleScene.Domain.OldId;
+using BattleScene.Domain.Id;
 
 namespace BattleScene.UseCases.View.AilmentView.OutputData
 {

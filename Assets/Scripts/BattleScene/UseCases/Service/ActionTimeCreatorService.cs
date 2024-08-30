@@ -3,8 +3,8 @@ using System.Collections.Immutable;
 using System.Linq;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Entity;
+using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
-using BattleScene.Domain.OldId;
 
 namespace BattleScene.UseCases.Service
 {

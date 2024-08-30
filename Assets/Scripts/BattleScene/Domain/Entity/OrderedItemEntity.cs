@@ -1,6 +1,6 @@
 ﻿using System;
 using BattleScene.Domain.Code;
-using BattleScene.Domain.OldId;
+using BattleScene.Domain.Id;
 using JetBrains.Annotations;
 
 namespace BattleScene.Domain.Entity

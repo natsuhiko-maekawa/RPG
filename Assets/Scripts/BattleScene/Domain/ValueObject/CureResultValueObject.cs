@@ -1,4 +1,4 @@
-﻿using BattleScene.Domain.OldId;
+﻿using BattleScene.Domain.Id;
 
 namespace BattleScene.Domain.ValueObject
 {

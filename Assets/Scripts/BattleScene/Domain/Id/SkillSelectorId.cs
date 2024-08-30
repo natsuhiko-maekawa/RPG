@@ -1,4 +1,4 @@
-﻿namespace BattleScene.Domain.OldId
+﻿namespace BattleScene.Domain.Id
 {
     public class SkillSelectorId : HashId
     {

@@ -2,8 +2,8 @@ using System;
 using System.Collections.Immutable;
 using System.Linq;
 using BattleScene.Domain.Code;
+using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
-using BattleScene.Domain.OldId;
 using BattleScene.UseCases.Service;
 using BattleScene.UseCases.View.DestroyedPartView.OutputData;
 

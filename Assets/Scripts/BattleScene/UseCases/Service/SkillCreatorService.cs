@@ -1,7 +1,7 @@
 using System;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.Entity;
-using BattleScene.Domain.OldId;
+using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
 using VContainer;
 

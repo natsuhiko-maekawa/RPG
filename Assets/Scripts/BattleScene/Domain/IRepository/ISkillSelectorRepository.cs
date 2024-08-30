@@ -1,5 +1,5 @@
 ﻿using BattleScene.Domain.Aggregate;
-using BattleScene.Domain.OldId;
+using BattleScene.Domain.Id;
 
 namespace BattleScene.Domain.IRepository
 {

@@ -1,7 +1,7 @@
 using BattleScene.Domain.DomainService;
+using BattleScene.Domain.Id;
 using BattleScene.Domain.IFactory;
 using BattleScene.Domain.IRepository;
-using BattleScene.Domain.OldId;
 using BattleScene.UseCases.OldEvent.Runner;
 using BattleScene.UseCases.View.PlayerImageView.OutputData;
 

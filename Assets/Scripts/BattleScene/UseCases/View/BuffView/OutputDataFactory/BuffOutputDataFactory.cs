@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
-using BattleScene.Domain.OldId;
+using BattleScene.Domain.Id;
 using BattleScene.UseCases.Service;
 using BattleScene.UseCases.View.BuffView.OutputData;
 

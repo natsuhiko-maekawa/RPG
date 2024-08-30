@@ -1,8 +1,8 @@
 ﻿using System.Collections.Immutable;
 using System.Linq;
 using BattleScene.Domain.Code;
+using BattleScene.Domain.Id;
 using BattleScene.Domain.Interface;
-using BattleScene.Domain.OldId;
 
 namespace BattleScene.Domain.ValueObject
 {
