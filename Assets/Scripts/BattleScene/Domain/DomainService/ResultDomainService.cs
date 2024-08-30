@@ -8,9 +8,6 @@ namespace BattleScene.Domain.DomainService
     [Obsolete]
     public class ResultDomainService
     {
-        private readonly IResultRepository _resultRepository;
-        private readonly ITurnRepository _turnRepository;
-
         public IDamageResult LastDamage()
         {
             throw new NotImplementedException();
