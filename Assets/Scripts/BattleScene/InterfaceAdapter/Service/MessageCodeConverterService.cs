@@ -24,7 +24,7 @@ namespace BattleScene.InterfaceAdapter.Service
         private readonly IEnemyViewInfoFactory _enemyViewInfoFactory;
         private readonly IFactory<MessageDto, MessageCode> _messageFactory;
         private readonly OrderedItemsDomainService _orderedItems;
-        private readonly IFactory<PlayerViewInfoValueObject, CharacterTypeId> _playerViewInfoFactory;
+        private readonly IFactory<PlayerViewInfoDto, CharacterTypeId> _playerViewInfoFactory;
         private readonly ResultDomainService _result;
         private readonly ISkillRepository _skillRepository;
         private readonly ISkillViewInfoFactory _skillViewInfoFactory;
@@ -37,7 +37,7 @@ namespace BattleScene.InterfaceAdapter.Service
             IEnemyViewInfoFactory enemyViewInfoFactory,
             IFactory<MessageDto, MessageCode> messageFactory,
             OrderedItemsDomainService orderedItems,
-            IFactory<PlayerViewInfoValueObject, CharacterTypeId> playerViewInfoFactory,
+            IFactory<PlayerViewInfoDto, CharacterTypeId> playerViewInfoFactory,
             ResultDomainService result,
             ISkillRepository skillRepository,
             ISkillViewInfoFactory skillViewInfoFactory,

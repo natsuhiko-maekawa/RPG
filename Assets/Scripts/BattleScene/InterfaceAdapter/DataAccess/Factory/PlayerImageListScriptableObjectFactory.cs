@@ -4,8 +4,8 @@ using BattleScene.InterfaceAdapter.DataAccess.Resource;
 
 namespace BattleScene.InterfaceAdapter.DataAccess.Factory
 {
-    public class PlayerViewInfoListScriptableObjectFactory
-        : BaseListScriptableObjectFactory<PlayerViewInfoListScriptableObject, PlayerImageValueObject, PlayerImageCode>
+    public class PlayerImageListScriptableObjectFactory
+        : BaseListScriptableObjectFactory<PlayerImageListScriptableObject, PlayerImageValueObject, PlayerImageCode>
     {
     }
 }
