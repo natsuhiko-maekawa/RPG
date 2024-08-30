@@ -2,9 +2,8 @@
 using BattleScene.Domain.Code;
 using BattleScene.Domain.Interface;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-namespace BattleScene.Domain.ValueObject
+namespace BattleScene.InterfaceAdapter.DataAccess.Factory.Dto
 {
 
     [Serializable]
