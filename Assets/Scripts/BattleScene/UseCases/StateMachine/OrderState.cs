@@ -54,7 +54,7 @@ namespace BattleScene.UseCases.StateMachine
             if (IsSlipDamage()) throw new NotImplementedException();
             if (PlayerCantAction()) throw new NotImplementedException();
             if (EnemyCantAction()) throw new NotImplementedException();
-            if (IsPlayer()) return _container.Resolve<PlayerSelectSkillState>();
+            if (IsPlayer()) return _container.Resolve<PlayerSelectActionState>();
             return _container.Resolve<EnemySelectSkillState>();
         }
         

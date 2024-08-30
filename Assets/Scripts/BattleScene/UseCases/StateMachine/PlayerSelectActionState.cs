@@ -1,6 +1,6 @@
 ﻿namespace BattleScene.UseCases.StateMachine
 {
-    public class PlayerSelectSkillState : AbstractState
+    public class PlayerSelectActionState : AbstractState
     {
         
     }
