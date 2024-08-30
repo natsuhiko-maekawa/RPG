@@ -7,10 +7,8 @@ using BattleScene.UseCases.Service;
 using BattleScene.UseCases.View;
 using BattleScene.UseCases.View.GridView;
 using BattleScene.UseCases.View.InfoView.OutputBoundary;
-using BattleScene.UseCases.View.MessageView.OutputBoundary;
 using BattleScene.UseCases.View.PlayerImageView.OutputBoundary;
 using BattleScene.UseCases.View.SelectActionView.OutputBoundary;
-using static BattleScene.UseCases.Constant;
 
 namespace BattleScene.UseCases.StateMachine
 {
@@ -19,7 +17,6 @@ namespace BattleScene.UseCases.StateMachine
         private readonly AttackCounterService _attackCounter;
         private readonly CharactersDomainService _characters;
         private readonly IInfoViewPresenter _infoView;
-        private readonly IMessageViewPresenter _messageView;
         private readonly SelectActionEventOutputDataFactory _outputDataFactory;
         private readonly ISelectActionViewPresenter _selectActionView;
         private readonly IPlayerImageViewPresenter _playerImageView;
@@ -33,8 +30,6 @@ namespace BattleScene.UseCases.StateMachine
                 = ImmutableList.Create(ActionCode.Attack, ActionCode.Skill, ActionCode.Defence, ActionCode.FatalitySkill);
             var outputData = new GridViewOutputData(actionList);
             _gridView.Start(outputData);
-            _selectActionView.Start(_outputDataFactory.CreateSelectActionOutputData());
-            _messageView.Start(_outputDataFactory.CreateMessageOutputDataFactory());
             _playerImageView.Start(_outputDataFactory.CreatePlayerImageOutputData());
         }
 
