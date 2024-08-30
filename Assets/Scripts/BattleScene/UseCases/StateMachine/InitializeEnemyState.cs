@@ -4,13 +4,13 @@ using VContainer;
 
 namespace BattleScene.UseCases.StateMachine
 {
-    internal class InitializationEnemyState : AbstractState
+    internal class InitializeEnemyState : AbstractState
     {
         private readonly BattleStart _battleStart;
         private readonly EnemyViewOutput _enemyView;
         private readonly IObjectResolver _container;
 
-        public InitializationEnemyState(
+        public InitializeEnemyState(
             BattleStart battleStart,
             EnemyViewOutput enemyView,
             IObjectResolver container)

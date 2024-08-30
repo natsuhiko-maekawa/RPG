@@ -123,8 +123,8 @@ namespace BattleScene.UseCases
 
             builder.Register<OrderView>(Lifetime.Singleton);
 
-            builder.Register<InitializationState>(Lifetime.Singleton);
-            builder.Register<InitializationEnemyState>(Lifetime.Singleton);
+            builder.Register<InitializePlayerState>(Lifetime.Singleton);
+            builder.Register<InitializeEnemyState>(Lifetime.Singleton);
             builder.Register<OrderState>(Lifetime.Singleton);
             builder.Register<EnemySelectSkillState>(Lifetime.Singleton);
             builder.Register<SkillStateFactory>(Lifetime.Singleton);

@@ -3,12 +3,12 @@ using VContainer;
 
 namespace BattleScene.UseCases.StateMachine
 {
-    internal class InitializationState : AbstractState
+    internal class InitializePlayerState : AbstractState
     {
         private readonly Initialization _initialization;
         private readonly IObjectResolver _container;
 
-        public InitializationState(
+        public InitializePlayerState(
             Initialization initialization, 
             IObjectResolver container)
         {
@@ -19,7 +19,7 @@ namespace BattleScene.UseCases.StateMachine
         public override void Start()
         {
             _initialization.Execute();
-            Context.TransitionTo(_container.Resolve<InitializationEnemyState>());
+            Context.TransitionTo(_container.Resolve<InitializeEnemyState>());
         }
     }
 }
