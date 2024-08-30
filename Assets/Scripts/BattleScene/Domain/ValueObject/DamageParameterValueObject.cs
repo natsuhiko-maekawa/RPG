@@ -12,5 +12,5 @@ namespace BattleScene.Domain.ValueObject
         DamageExpressionCode DamageExpressionCode,
         HitEvaluationCode HitEvaluationCode,
         AttacksWeakPointEvaluationCode AttacksWeakPointEvaluationCode
-    ) : ISkillEffect;
+    );
 }

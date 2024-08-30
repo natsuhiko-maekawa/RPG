@@ -5,5 +5,5 @@ namespace BattleScene.Domain.ValueObject
 {
     public record AilmentValueObject(
         AilmentCode AilmentCode,
-        float LuckRate) : ISkillEffect;
+        float LuckRate);
 }
