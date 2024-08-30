@@ -11,6 +11,7 @@ namespace BattleScene.Domain.Entity
         public override BattleLogId Id { get; }
         public int Sequence { get; }
         public int Turn { get; }
+        public ActionCode ActionCode { get; }
         public ImmutableList<AttackValueObject> AttackList { get; }
         public CharacterId ActorId { get; }
         public SkillCode SkillCode { get; }
@@ -25,6 +26,7 @@ namespace BattleScene.Domain.Entity
             Id = battleLogId;
             Sequence = sequence;
             Turn = turn;
+            ActionCode = ActionCode.Skill;
             AttackList = damage.AttackList.ToImmutableList();
             ActorId = damage.ActorId;
             SkillCode = damage.SkillCode;

@@ -1,25 +1,24 @@
 using System.Linq;
-using BattleScene.Domain.IFactory;
+using BattleScene.Domain.Aggregate;
+using BattleScene.Domain.Code;
+using BattleScene.Domain.Entity;
+using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
-using BattleScene.Domain.ValueObject;
 using UnityEngine;
 
 namespace BattleScene.UseCases.Service
 {
     public class AttackCounterService
     {
-        private readonly ICharacterRepository _characterRepository;
-        private readonly IPlayerPropertyFactory _playerPropertyFactory;
-        private readonly IResultRepository _resultRepository;
+        private readonly IRepository<CharacterAggregate, CharacterId> _characterRepository;
+        private readonly IRepository<BattleLogEntity, BattleLogId> _battleLogRepository;
 
         public AttackCounterService(
-            ICharacterRepository characterRepository,
-            IPlayerPropertyFactory playerPropertyFactory,
-            IResultRepository resultRepository)
+            IRepository<CharacterAggregate, CharacterId> characterRepository,
+            IRepository<BattleLogEntity, BattleLogId> battleLogRepository)
         {
             _characterRepository = characterRepository;
-            _playerPropertyFactory = playerPropertyFactory;
-            _resultRepository = resultRepository;
+            _battleLogRepository = battleLogRepository;
         }
 
         public float GetRate()
@@ -34,18 +33,16 @@ namespace BattleScene.UseCases.Service
 
         private int Count()
         {
-            var resultList = _resultRepository.Select();
+            var battleLogList = _battleLogRepository.Select();
             var player = _characterRepository.Select().First(x => x.IsPlayer());
             var playerId = player.Id;
-            var fatalitySkills = _playerPropertyFactory.Get().FatalitySkills;
-            return resultList
+            return battleLogList
                 .OrderByDescending(x => x)
-                .Select(x => x.Result)
-                .OfType<DamageValueObject>()
-                .TakeWhile(x => Equals(x.ActorId, playerId)
-                                && fatalitySkills.Contains(x.SkillCode))
-                .Select(x => x.HitCount())
-                .Aggregate((x, y) => x + y);
+                .TakeWhile(x => x.ActionCode == ActionCode.FatalitySkill)
+                .Where(x => Equals(x.ActorId, playerId))
+                .Select(x => x.AttackList
+                    .Count(y => y.IsHit))
+                .Sum();
         }
     }
 }
