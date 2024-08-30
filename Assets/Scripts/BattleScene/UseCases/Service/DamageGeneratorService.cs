@@ -19,10 +19,16 @@ namespace BattleScene.UseCases.Service
         public DamageGeneratorService(
             OrderedItemsDomainService orderedItems,
             ResultCreatorDomainService resultCreator,
+            DamageEvaluatorService damageEvaluator,
+            IsHitEvaluatorService isHitEvaluator,
+            AttacksWeakPointEvaluatorService attacksWeakPointEvaluator,
             TargetDomainService target)
         {
             _orderedItems = orderedItems;
             _resultCreator = resultCreator;
+            _damageEvaluator = damageEvaluator;
+            _isHitEvaluator = isHitEvaluator;
+            _attacksWeakPointEvaluator = attacksWeakPointEvaluator;
             _target = target;
         }
 
