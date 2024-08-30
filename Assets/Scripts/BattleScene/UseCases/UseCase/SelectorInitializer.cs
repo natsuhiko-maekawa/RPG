@@ -1,22 +1,22 @@
+using System;
 using BattleScene.Domain.Aggregate;
 using BattleScene.Domain.DomainService;
-using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.IFactory;
 using BattleScene.Domain.IRepository;
 using BattleScene.UseCases.OldEvent.Runner;
-using BattleScene.UseCases.UseCase.Interface;
 
 namespace BattleScene.UseCases.UseCase
 {
-    internal class Initialization : IUseCase
+    [Obsolete]
+    internal class SelectorInitializer
     {
         private readonly PlayerDomainService _player;
         private readonly IPlayerPropertyFactory _playerPropertyFactory;
         private readonly ISelectorRepository _selectorRepository;
         private readonly ISkillSelectorRepository _skillSelectorRepository;
 
-        public Initialization(
+        public SelectorInitializer(
             PlayerDomainService player,
             IPlayerPropertyFactory playerPropertyFactory,
             ISelectorRepository selectorRepository,
@@ -30,8 +30,6 @@ namespace BattleScene.UseCases.UseCase
 
         public void Execute()
         {
-            _player.Add();
-
             var actionSelectorId = new SelectorId(EventCode.SelectActionEvent);
             var actionSelector =
                 new SelectorAggregate(actionSelectorId, Constant.ActionList.Count, Constant.ActionList.Count);
