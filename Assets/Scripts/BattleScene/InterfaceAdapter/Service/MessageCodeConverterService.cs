@@ -27,7 +27,7 @@ namespace BattleScene.InterfaceAdapter.Service
         private readonly IFactory<PlayerViewInfoDto, CharacterTypeId> _playerViewInfoFactory;
         private readonly ResultDomainService _result;
         private readonly ISkillRepository _skillRepository;
-        private readonly ISkillViewInfoFactory _skillViewInfoFactory;
+        private readonly IFactory<SkillViewInfoValueObject, SkillCode> _skillViewInfoFactory;
         private readonly ITargetRepository _targetRepository;
 
         public MessageCodeConverterService(
@@ -40,7 +40,7 @@ namespace BattleScene.InterfaceAdapter.Service
             IFactory<PlayerViewInfoDto, CharacterTypeId> playerViewInfoFactory,
             ResultDomainService result,
             ISkillRepository skillRepository,
-            ISkillViewInfoFactory skillViewInfoFactory,
+            IFactory<SkillViewInfoValueObject, SkillCode> skillViewInfoFactory,
             ITargetRepository targetRepository)
         {
             _ailmentViewInfoFactory = ailmentViewInfoFactory;
