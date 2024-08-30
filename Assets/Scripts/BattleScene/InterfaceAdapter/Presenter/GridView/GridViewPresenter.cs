@@ -15,7 +15,17 @@ namespace BattleScene.InterfaceAdapter.Presenter.GridView
         private readonly IFactory<MessageDto, MessageCode> _messageFactory;
         private readonly MessageCodeConverterService _messageCodeConverter;
         private readonly IGridView _gridView;
-        
+
+        public GridViewPresenter(
+            IFactory<MessageDto, MessageCode> messageFactory,
+            MessageCodeConverterService messageCodeConverter,
+            IGridView gridView)
+        {
+            _messageFactory = messageFactory;
+            _messageCodeConverter = messageCodeConverter;
+            _gridView = gridView;
+        }
+
         public void Start(GridViewOutputData outputData)
         {
             var rowList = outputData.Row
