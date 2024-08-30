@@ -1,5 +1,6 @@
 using BattleScene.Domain.Aggregate;
 using BattleScene.Domain.DomainService;
+using BattleScene.Domain.Entity;
 using BattleScene.Domain.IFactory;
 using BattleScene.Domain.IRepository;
 using BattleScene.Domain.OldId;
@@ -11,17 +12,20 @@ namespace BattleScene.UseCases.UseCase
     internal class Initialization : IUseCase
     {
         private readonly PlayerDomainService _player;
+        private readonly IRepository<TurnEntity, TurnId> _turnRepository;
         private readonly IPlayerPropertyFactory _playerPropertyFactory;
         private readonly ISelectorRepository _selectorRepository;
         private readonly ISkillSelectorRepository _skillSelectorRepository;
 
         public Initialization(
             PlayerDomainService player,
+            IRepository<TurnEntity, TurnId> turnRepository,
             IPlayerPropertyFactory playerPropertyFactory,
             ISelectorRepository selectorRepository,
             ISkillSelectorRepository skillSelectorRepository)
         {
             _player = player;
+            _turnRepository = turnRepository;
             _playerPropertyFactory = playerPropertyFactory;
             _selectorRepository = selectorRepository;
             _skillSelectorRepository = skillSelectorRepository;
@@ -30,6 +34,10 @@ namespace BattleScene.UseCases.UseCase
         public void Execute()
         {
             _player.Add();
+
+            var turnId = new TurnId();
+            var turn = new TurnEntity(turnId, 0);
+            _turnRepository.Update(turn);
 
             var actionSelectorId = new SelectorId(EventCode.SelectActionEvent);
             var actionSelector =
