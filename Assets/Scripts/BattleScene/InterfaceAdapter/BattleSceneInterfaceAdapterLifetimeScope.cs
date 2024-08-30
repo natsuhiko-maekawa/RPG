@@ -1,5 +1,6 @@
 ﻿using BattleScene.Domain.Aggregate;
 using BattleScene.Domain.Code;
+using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.IFactory;
 using BattleScene.Domain.IRepository;
@@ -199,6 +200,9 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<SuffocationSkill>(Lifetime.Singleton);
             builder.Register<Utsusemi>(Lifetime.Singleton);
             builder.Register<Wabisuke>(Lifetime.Singleton);
+            
+            // TODO: DomainのServiceを登録している
+            builder.Register<OrderedItemsDomainService>(Lifetime.Singleton);
         }
     }
 }
