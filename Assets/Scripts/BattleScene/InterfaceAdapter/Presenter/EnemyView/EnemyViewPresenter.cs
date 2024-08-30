@@ -6,7 +6,7 @@ using BattleScene.Domain.Entity;
 using BattleScene.Domain.IFactory;
 using BattleScene.Domain.IRepository;
 using BattleScene.Domain.OldId;
-using BattleScene.Domain.ValueObject;
+using BattleScene.InterfaceAdapter.DataAccess.Factory.Dto;
 using BattleScene.InterfaceAdapter.IView;
 using BattleScene.UseCases.View.EnemyView.OutputBoundary;
 using BattleScene.UseCases.View.EnemyView.OutputData;
