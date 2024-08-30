@@ -1264,6 +1264,57 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &532393380
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 532393381}
+  - component: {fileID: 532393382}
+  m_Layer: 0
+  m_Name: GridView
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &532393381
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 532393380}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 729711379}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &532393382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 532393380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85c5a42cb6464b93858d6aa71fbd8435, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slotHeight: 46
+  rightArrowX: -147
+  rightArrowY: 69
+  text: {fileID: 9174667490277282050, guid: 7e3c42b2049f89f48acac7d56173deeb, type: 3}
+  rightArrow: {fileID: 2625844333402814109, guid: d089d47bce62c314390533e724b4f44d, type: 3}
+  window: {fileID: 23258171635463122, guid: 7c390dad3c1735a4d8a0315d1966d228, type: 3}
+  messageView: {fileID: 1554560971}
 --- !u!1 &533048980
 GameObject:
   m_ObjectHideFlags: 0
@@ -2192,6 +2243,7 @@ Transform:
   - {fileID: 150653030}
   - {fileID: 1102319906}
   - {fileID: 1602999275}
+  - {fileID: 532393381}
   m_Father: {fileID: 2076084072}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &752415534
