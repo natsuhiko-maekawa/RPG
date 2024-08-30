@@ -27,6 +27,11 @@ namespace BattleScene.Domain.ValueObject
             Range = range;
             TechnicalPoint = technicalPoint;
             DependencyList = dependencyList ?? ImmutableList<BodyPartCode>.Empty;
+            SkillCommon = new SkillCommonValueObject(
+                skillCode: skillCode,
+                technicalPoint: technicalPoint,
+                dependencyList: dependencyList,
+                range: range);
             AilmentList = ailmentList ?? ImmutableList<AilmentValueObject>.Empty;
             BuffList = buffList ?? ImmutableList<BuffValueObject>.Empty;
             DamageList = damageList ?? ImmutableList<DamageParameterValueObject>.Empty;
