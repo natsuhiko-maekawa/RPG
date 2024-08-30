@@ -129,6 +129,7 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<ISlipDamageFactory, SlipDamageFactory>(Lifetime.Singleton);
 
             builder.Register<ToAilmentNumberService>(Lifetime.Singleton);
+            builder.Register<MessageCodeConverterService>(Lifetime.Singleton);
             
             builder.Register<AfterimageSkill>(Lifetime.Singleton);
             builder.Register<AttackSkill>(Lifetime.Singleton);
