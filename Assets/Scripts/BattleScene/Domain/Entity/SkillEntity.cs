@@ -16,25 +16,11 @@ namespace BattleScene.Domain.Entity
         {
             Id = id;
             Skill = skill;
-            SkillEffectList = skill.AilmentList
-                .Cast<ISkillEffect>()
-                .Concat(skill.BuffList)
-                .Concat(skill.DamageList)
-                .ToImmutableList();
         }
 
         public override CharacterId Id { get; }
         [Obsolete]
         public SkillCode SkillCode { get; }
         public SkillValueObject Skill { get; }
-
-        public ImmutableList<ISkillEffect> SkillEffectList { get; private set; }
-        
-        public ISkillEffect DequeueSkillEffect()
-        {
-            var skillEffect = SkillEffectList.First();
-            SkillEffectList = SkillEffectList.RemoveAt(0);
-            return skillEffect;
-        }
     }
 }
