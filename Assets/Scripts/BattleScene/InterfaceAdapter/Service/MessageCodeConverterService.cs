@@ -19,7 +19,7 @@ namespace BattleScene.InterfaceAdapter.Service
         private const string Skill = "skill";
         private const string Target = "target";
         private readonly IFactory<AilmentViewInfoDto, AilmentCode> _ailmentViewInfoFactory;
-        private readonly IBodyPartViewInfoFactory _bodyPartViewInfoFactory;
+        private readonly IFactory<BodyPartViewInfoDto, BodyPartCode> _bodyPartViewInfoFactory;
         private readonly ICharacterRepository _characterRepository;
         private readonly IEnemyViewInfoFactory _enemyViewInfoFactory;
         private readonly IFactory<string, MessageCode> _messageFactory;
@@ -32,7 +32,7 @@ namespace BattleScene.InterfaceAdapter.Service
 
         public MessageCodeConverterService(
             IFactory<AilmentViewInfoDto, AilmentCode> ailmentViewInfoFactory,
-            IBodyPartViewInfoFactory bodyPartViewInfoFactory,
+            IFactory<BodyPartViewInfoDto, BodyPartCode> bodyPartViewInfoFactory,
             ICharacterRepository characterRepository,
             IEnemyViewInfoFactory enemyViewInfoFactory,
             IFactory<string, MessageCode> messageFactory,

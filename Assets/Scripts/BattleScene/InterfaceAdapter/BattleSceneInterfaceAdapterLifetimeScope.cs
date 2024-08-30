@@ -124,6 +124,7 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<IFactory<AilmentViewInfoDto, AilmentCode>, AilmentViewInfoListScriptableObjectFactory>(
                 Lifetime.Singleton);
             builder.Register<IBodyPartFactory, BodyPartFactory>(Lifetime.Singleton);
+            builder.Register<IFactory<BodyPartViewInfoDto, BodyPartCode>, BodyPartViewInfoFactory>(Lifetime.Singleton);
             builder.Register<IEnemyViewInfoFactory, EnemyViewInfoFactory>(Lifetime.Singleton);
             builder.Register<IFactory<MessageDto, MessageCode>, MessageFactory>(Lifetime.Singleton);
             builder.Register<IPlayerPropertyFactory, PlayerPropertyFactory>(Lifetime.Singleton);
