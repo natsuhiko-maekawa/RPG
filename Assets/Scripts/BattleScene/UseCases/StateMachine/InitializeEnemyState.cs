@@ -1,7 +1,10 @@
 ﻿using System.Collections.Generic;
+using System.Collections.Immutable;
+using System.Linq;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DomainService;
-using BattleScene.UseCases.View.EnemyView;
+using BattleScene.UseCases.View.EnemyView.OutputBoundary;
+using BattleScene.UseCases.View.EnemyView.OutputData;
 using VContainer;
 using static BattleScene.Domain.Code.CharacterTypeCode;
 
@@ -10,12 +13,12 @@ namespace BattleScene.UseCases.StateMachine
     internal class InitializeEnemyState : AbstractState
     {
         private readonly EnemiesDomainService _enemies;
-        private readonly EnemyViewOutput _enemyView;
+        private readonly IEnemyViewPresenter _enemyView;
         private readonly IObjectResolver _container;
 
         public InitializeEnemyState(
             EnemiesDomainService enemies,
-            EnemyViewOutput enemyView,
+            IEnemyViewPresenter enemyView,
             IObjectResolver container)
         {
             _enemies = enemies;
@@ -26,7 +29,7 @@ namespace BattleScene.UseCases.StateMachine
         public override void Start()
         {
             SetEnemies();
-            _enemyView.Out();
+            StartEnemyView();
             Context.TransitionTo(_container.Resolve<OrderState>());
         }
 
@@ -34,6 +37,15 @@ namespace BattleScene.UseCases.StateMachine
         {
             var enemyTypeIdList = new List<CharacterTypeCode> { Bee, Dragon, Mantis, Shuten, Slime };
             _enemies.Add(enemyTypeIdList);
+        }
+        
+        private void StartEnemyView()
+        {
+            var enemyIdList = _enemies.Get()
+                .Select(x => x.Id)
+                .ToImmutableList();
+            var enemyOutputData = new EnemyOutputData(enemyIdList);
+            _enemyView.Start(enemyOutputData);
         }
     }
 }
