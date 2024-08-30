@@ -45,7 +45,7 @@ namespace BattleScene.UseCases.Service
                                Constant.MaxAgility / GetSpeed(y) * i)))
                 .SelectMany(x => x)
                 .OrderBy(x => x.speed)
-                .ThenBy(x => _characterRepository.Select(x.character).Property.Agility)
+                .ThenByDescending(x => _characterRepository.Select(x.character).Property.Agility)
                 .ThenBy(x => _characterRepository.Select(x.character).Id)
                 .Select(x => new OrderedItem(x.character))
                 .ToImmutableList()
