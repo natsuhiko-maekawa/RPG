@@ -414,7 +414,6 @@ GameObject:
   - component: {fileID: 231664261}
   - component: {fileID: 231664260}
   - component: {fileID: 231664262}
-  - component: {fileID: 231664263}
   - component: {fileID: 231664264}
   - component: {fileID: 231664265}
   - component: {fileID: 231664266}
@@ -497,19 +496,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   listScriptableObject: {fileID: 0}
---- !u!114 &231664263
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 231664257}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba6c5f2141664c1f8eb340cf0d90e88f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyViewInfoScriptableObject: {fileID: 11400000, guid: aca3f2f7e89514c41a9036e2ab7ffe0a, type: 2}
 --- !u!114 &231664264
 MonoBehaviour:
   m_ObjectHideFlags: 0
