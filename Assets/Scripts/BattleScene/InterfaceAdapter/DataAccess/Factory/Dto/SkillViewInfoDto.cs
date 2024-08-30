@@ -3,7 +3,7 @@ using BattleScene.Domain.Code;
 using BattleScene.Domain.Interface;
 using UnityEngine;
 
-namespace BattleScene.InterfaceAdapter.DataAccess.Factory.Dto
+namespace BattleScene.Domain.ValueObject
 {
     [Serializable]
     public class SkillViewInfoDto : IUniqueItem<SkillCode>, ISerializationCallbackReceiver
