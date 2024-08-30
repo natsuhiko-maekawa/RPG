@@ -50,9 +50,9 @@ namespace BattleScene.UseCases.Service
             var actorMatAttr = damageParameter.MatAttrCode;
             var targetWeekPoint = _characterRepository.Select(targetId).GetWeakPoints();
             var attackBuffId = new BuffId(actorId, BuffCode.Attack);
-            var actorBuffRate = _buffRepository.Select(attackBuffId).Rate;
+            var actorBuffRate = _buffRepository.Select(attackBuffId)?.Rate ?? 1;
             var defenceBuffId = new BuffId(targetId, BuffCode.Defence);
-            var targetBuffRate = _buffRepository.Select(defenceBuffId).Rate;
+            var targetBuffRate = _buffRepository.Select(defenceBuffId)?.Rate ?? 1;
             var destroyedRate = 1.0f - _bodyPartDomainService.Count(actorId, BodyPartCode.Arm) * 0.5f;
             var defenceSkillBuffId = new BuffId(targetId, BuffCode.DefenceSkill);
             var targetDefence = _buffRepository.Select(defenceSkillBuffId) == null ? 1.0f : 0.5f;
