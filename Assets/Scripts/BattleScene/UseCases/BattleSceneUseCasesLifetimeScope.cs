@@ -90,6 +90,10 @@ namespace BattleScene.UseCases
             builder.Register<ResultDomainService>(Lifetime.Singleton);
             builder.Register<SlipDamageDomainService>(Lifetime.Singleton);
             builder.Register<TargetDomainService>(Lifetime.Singleton);
+            
+            builder.Register<DamageEvaluatorService>(Lifetime.Singleton);
+            builder.Register<IsHitEvaluatorService>(Lifetime.Singleton);
+            builder.Register<AttacksWeakPointEvaluatorService>(Lifetime.Singleton);
 
             builder.Register<AilmentOutputDataFactory>(Lifetime.Singleton);
             builder.Register<AttackCountOutputDataFactory>(Lifetime.Singleton);
