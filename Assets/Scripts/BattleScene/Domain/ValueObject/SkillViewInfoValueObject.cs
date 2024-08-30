@@ -25,8 +25,12 @@ namespace BattleScene.Domain.ValueObject
         {
             Id = Enum.Parse<SkillCode>(id);
             SkillName = skillName;
-            PlayerImageCode = Enum.Parse<PlayerImageCode>(playerImageCode);
-            Description = Enum.Parse<MessageCode>(description);
+            PlayerImageCode = playerImageCode.Length == 0
+                ? PlayerImageCode.NoImage
+                : Enum.Parse<PlayerImageCode>(playerImageCode);
+            Description = description.Length == 0
+                ? MessageCode.NoMessage 
+                : Enum.Parse<MessageCode>(description);
         }
     }
 }
