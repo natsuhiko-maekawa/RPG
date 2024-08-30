@@ -10,6 +10,7 @@ using BattleScene.InterfaceAdapter.Controller;
 using BattleScene.InterfaceAdapter.DataAccess.Factory;
 using BattleScene.InterfaceAdapter.DataAccess.Factory.Dto;
 using BattleScene.InterfaceAdapter.DataAccess.Repository;
+using BattleScene.InterfaceAdapter.DataAccess.Resource;
 using BattleScene.InterfaceAdapter.Presenter.AilmentsView;
 using BattleScene.InterfaceAdapter.Presenter.BuffView;
 using BattleScene.InterfaceAdapter.Presenter.CharacterVibesView;
@@ -127,7 +128,7 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<IBodyPartFactory, BodyPartFactory>(Lifetime.Singleton);
             builder.Register<IFactory<BodyPartViewInfoDto, BodyPartCode>, BodyPartViewInfoFactory>(Lifetime.Singleton);
             builder.Register<IEnemyViewInfoFactory, EnemyViewInfoFactory>(Lifetime.Singleton);
-            builder.Register<IFactory<MessageDto, MessageCode>, MessageFactory>(Lifetime.Singleton);
+            builder.RegisterComponentInHierarchy<IFactory<MessageDto, MessageCode>>();
             builder.Register<IPlayerPropertyFactory, PlayerPropertyFactory>(Lifetime.Singleton);
             builder.Register<IFactory<PlayerViewInfoDto, CharacterTypeId>, PlayerViewInfoFactory>(Lifetime.Singleton);
             builder.Register<IPropertyFactory, PropertyFactory>(Lifetime.Singleton);

@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace BattleScene.InterfaceAdapter.DataAccess.Factory
 {
-    public abstract class BaseListScriptableObjectFactory<TListScriptableObject, TItem, TId>
+    public class BaseListScriptableObjectFactory<TListScriptableObject, TItem, TId>
         : MonoBehaviour, IFactory<TItem, TId>
         where TListScriptableObject : BaseListScriptableObject<TItem, TId>
         where TItem : IUniqueItem<TId>

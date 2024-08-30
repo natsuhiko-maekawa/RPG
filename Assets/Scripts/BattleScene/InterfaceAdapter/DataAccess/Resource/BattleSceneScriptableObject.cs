@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using BattleScene.InterfaceAdapter.DataAccess.Factory.Dto;
 using BattleScene.InterfaceAdapter.DataAccess.IResource;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace BattleScene.InterfaceAdapter.DataAccess.Resource
 {
     [Obsolete]
     public class BattleSceneScriptableObject : MonoBehaviour, IBattleSceneScriptableObject
     {
-        [SerializeField] private MsgScriptableObject msgScriptableObject;
+        [FormerlySerializedAs("msgScriptableObject")] [SerializeField] private MessageScriptableObject messageScriptableObject;
         [SerializeField] private PropertyScriptableObject propertyScriptableObject;
         
         public List<MessageDto> GetMsgScriptableObject()

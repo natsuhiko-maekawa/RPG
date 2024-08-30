@@ -8,7 +8,7 @@ namespace BattleScene.InterfaceAdapter.DataAccess.Factory.Dto
     [Serializable]
     public class MessageDto : IUniqueItem<MessageCode>, ISerializationCallbackReceiver
     {
-        [SerializeField] private string id;
+        [SerializeField] private string key;
         [SerializeField] private string message;
         public MessageCode Id { get; private set; }
         public string Message { get; private set; }
@@ -19,7 +19,7 @@ namespace BattleScene.InterfaceAdapter.DataAccess.Factory.Dto
 
         public void OnAfterDeserialize()
         {
-            Id = Enum.Parse<MessageCode>(id);
+            Id = Enum.Parse<MessageCode>(key);
             Message = message;
         }
     }

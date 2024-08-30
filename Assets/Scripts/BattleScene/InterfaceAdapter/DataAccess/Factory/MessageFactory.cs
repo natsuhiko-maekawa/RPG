@@ -5,7 +5,7 @@ using BattleScene.InterfaceAdapter.DataAccess.Resource;
 namespace BattleScene.InterfaceAdapter.DataAccess.Factory
 {
     public class MessageFactory
-        : BaseListScriptableObjectFactory<MsgScriptableObject, MessageDto, MessageCode>
+        : BaseListScriptableObjectFactory<MessageScriptableObject, MessageDto, MessageCode>
     {
     }
 }

@@ -415,6 +415,7 @@ GameObject:
   - component: {fileID: 231664260}
   - component: {fileID: 231664262}
   - component: {fileID: 231664263}
+  - component: {fileID: 231664264}
   m_Layer: 5
   m_Name: ScriptableObject
   m_TagString: Untagged
@@ -453,7 +454,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd1e91c6a17743068daffbd1b4a95120, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  msgScriptableObject: {fileID: 11400000, guid: 2817b9b223bf6834db413e4adf655508, type: 2}
+  messageScriptableObject: {fileID: 11400000, guid: 2817b9b223bf6834db413e4adf655508, type: 2}
   propertyScriptableObject: {fileID: 0}
 --- !u!114 &231664260
 MonoBehaviour:
@@ -507,6 +508,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyViewInfoScriptableObject: {fileID: 11400000, guid: aca3f2f7e89514c41a9036e2ab7ffe0a, type: 2}
+--- !u!114 &231664264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 231664257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 537cd7d43ce64abd9eaca2f4ece3093f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  listScriptableObject: {fileID: 11400000, guid: ae3a7c6d1bed78c43a5edb188bfa6ee5, type: 2}
 --- !u!1 &238567162
 GameObject:
   m_ObjectHideFlags: 0
