@@ -13,13 +13,13 @@ namespace BattleScene.InterfaceAdapter.Service
 {
     public class MessageCodeConverterService
     {
-        private const string Actor = "actor";
-        private const string Ailment = "ailment";
-        // private const string Buff = "buff";
-        private const string Damage = "damage";
-        private const string Part = "part";
-        private const string Skill = "skill";
-        private const string Target = "target";
+        private const string Actor = "[actor]";
+        private const string Ailment = "[ailment]";
+        // private const string Buff = "[buff]";
+        private const string Damage = "[damage]";
+        private const string Part = "[part]";
+        private const string Skill = "[skill]";
+        private const string Target = "[target]";
         private readonly IFactory<AilmentViewInfoDto, AilmentCode> _ailmentViewInfoFactory;
         private readonly IFactory<BodyPartViewInfoDto, BodyPartCode> _bodyPartViewInfoFactory;
         private readonly IRepository<CharacterAggregate, CharacterId> _characterRepository;
