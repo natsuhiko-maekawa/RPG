@@ -13,6 +13,7 @@ namespace BattleScene.Framework
             builder.RegisterComponentInHierarchy<IEnemiesView>();
             builder.RegisterComponentInHierarchy<IInfoView>();
             builder.RegisterComponentInHierarchy<IBattleSceneInputSystem>();
+            builder.RegisterComponentInHierarchy<IGridView>();
             builder.RegisterComponentInHierarchy<IMessageView>();
             builder.RegisterComponentInHierarchy<IOrderView>();
             builder.RegisterComponentInHierarchy<IPlayerAttackCountView>();
