@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Linq;
+using BattleScene.Domain.Aggregate;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.IFactory;
 using BattleScene.Domain.IRepository;
+using BattleScene.Domain.OldId;
 using BattleScene.Domain.ValueObject;
 using BattleScene.InterfaceAdapter.DataAccess.Factory.Dto;
 
@@ -20,7 +22,7 @@ namespace BattleScene.InterfaceAdapter.Service
         private const string Target = "target";
         private readonly IFactory<AilmentViewInfoDto, AilmentCode> _ailmentViewInfoFactory;
         private readonly IFactory<BodyPartViewInfoDto, BodyPartCode> _bodyPartViewInfoFactory;
-        private readonly ICharacterRepository _characterRepository;
+        private readonly IRepository<CharacterAggregate, CharacterId> _characterRepository;
         private readonly IEnemyViewInfoFactory _enemyViewInfoFactory;
         private readonly IFactory<MessageDto, MessageCode> _messageFactory;
         private readonly OrderedItemsDomainService _orderedItems;
@@ -33,7 +35,7 @@ namespace BattleScene.InterfaceAdapter.Service
         public MessageCodeConverterService(
             IFactory<AilmentViewInfoDto, AilmentCode> ailmentViewInfoFactory,
             IFactory<BodyPartViewInfoDto, BodyPartCode> bodyPartViewInfoFactory,
-            ICharacterRepository characterRepository,
+            IRepository<CharacterAggregate, CharacterId> characterRepository,
             IEnemyViewInfoFactory enemyViewInfoFactory,
             IFactory<MessageDto, MessageCode> messageFactory,
             OrderedItemsDomainService orderedItems,
