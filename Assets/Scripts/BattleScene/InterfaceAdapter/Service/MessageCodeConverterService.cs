@@ -5,6 +5,7 @@ using BattleScene.Domain.DomainService;
 using BattleScene.Domain.IFactory;
 using BattleScene.Domain.IRepository;
 using BattleScene.Domain.ValueObject;
+using BattleScene.InterfaceAdapter.DataAccess.Factory.Dto;
 
 namespace BattleScene.InterfaceAdapter.Service
 {
@@ -17,7 +18,7 @@ namespace BattleScene.InterfaceAdapter.Service
         private const string Part = "part";
         private const string Skill = "skill";
         private const string Target = "target";
-        private readonly IAilmentViewInfoFactory _ailmentViewInfoFactory;
+        private readonly IFactory<AilmentViewInfoDto, AilmentCode> _ailmentViewInfoFactory;
         private readonly IBodyPartViewInfoFactory _bodyPartViewInfoFactory;
         private readonly ICharacterRepository _characterRepository;
         private readonly IEnemyViewInfoFactory _enemyViewInfoFactory;
@@ -30,7 +31,7 @@ namespace BattleScene.InterfaceAdapter.Service
         private readonly ITargetRepository _targetRepository;
 
         public MessageCodeConverterService(
-            IAilmentViewInfoFactory ailmentViewInfoFactory,
+            IFactory<AilmentViewInfoDto, AilmentCode> ailmentViewInfoFactory,
             IBodyPartViewInfoFactory bodyPartViewInfoFactory,
             ICharacterRepository characterRepository,
             IEnemyViewInfoFactory enemyViewInfoFactory,

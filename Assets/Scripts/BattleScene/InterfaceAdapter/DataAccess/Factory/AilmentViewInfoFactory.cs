@@ -22,7 +22,7 @@ namespace BattleScene.InterfaceAdapter.DataAccess.Factory
                 .First(x => x.Id == ailmentCode);
             return new AilmentViewInfoValueObject(
                 ailmentCode,
-                ailmentViewInfoDto.ailmentName,
+                ailmentViewInfoDto.AilmentName,
                 ailmentViewInfoDto.MessageCode,
                 ailmentViewInfoDto.PlayerImageCode);
         }
