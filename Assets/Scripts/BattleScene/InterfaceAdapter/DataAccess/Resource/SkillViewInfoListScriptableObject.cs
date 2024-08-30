@@ -3,7 +3,7 @@ using BattleScene.Domain.ValueObject;
 
 namespace BattleScene.InterfaceAdapter.DataAccess.Resource
 {
-    public class SkillViewInfoListScriptableObject : BaseListScriptableObject<SkillViewInfoDto, SkillCode>
+    public class SkillViewInfoListScriptableObject : BaseListScriptableObject<SkillViewInfoValueObject, SkillCode>
     {
     }
 }
