@@ -9,17 +9,20 @@ namespace BattleScene.Domain.ValueObject
         public int TechnicalPoint { get; }
         public ImmutableList<BodyPartCode> DependencyList { get; }
         public Range Range { get; }
+        public MessageCode MessageCode { get; }
         
         public SkillCommonValueObject(
             SkillCode skillCode,
             int technicalPoint,
             ImmutableList<BodyPartCode> dependencyList,
-            Range range)
+            Range range,
+            MessageCode messageCode)
         {
             SkillCode = skillCode;
             TechnicalPoint = technicalPoint;
             DependencyList = dependencyList;
             Range = range;
+            MessageCode = messageCode;
         }
     }
 }

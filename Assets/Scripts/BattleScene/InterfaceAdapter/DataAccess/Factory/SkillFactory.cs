@@ -30,6 +30,7 @@ namespace BattleScene.InterfaceAdapter.DataAccess.Factory
             return new SkillValueObject(
                 skillCode: skillCode,
                 range: skill.Range,
+                messageCode: skill.AttackMessageCode,
                 ailmentList: ailmentList,
                 buffList: null,
                 damageList: damageList);

@@ -11,16 +11,16 @@ namespace BattleScene.UseCases.StateMachine.SkillStateMachine
 {
     public class DamageMessageState : AbstractSkillState
     {
-        private readonly IFactory<SkillViewInfoValueObject, SkillCode> _skillViewInfoFactory;
+        private readonly IFactory<SkillValueObject, SkillCode> _skillFactory;
         private readonly IRepository<BattleLogEntity, BattleLogId> _battleLogRepository;
         private readonly IMessageViewPresenter _messageView;
 
         public DamageMessageState(
-            IFactory<SkillViewInfoValueObject, SkillCode> skillViewInfoFactory,
+            IFactory<SkillValueObject, SkillCode> skillFactory,
             IRepository<BattleLogEntity, BattleLogId> battleLogRepository,
             IMessageViewPresenter messageView)
         {
-            _skillViewInfoFactory = skillViewInfoFactory;
+            _skillFactory = skillFactory;
             _battleLogRepository = battleLogRepository;
             _messageView = messageView;
         }
@@ -29,8 +29,8 @@ namespace BattleScene.UseCases.StateMachine.SkillStateMachine
         {
             var battleLog = _battleLogRepository.Select()
                 .Max(x => x);
-            var skillViewInfo = _skillViewInfoFactory.Create(battleLog.SkillCode);
-            _messageView.Start(skillViewInfo.MessageCode);
+            var skill = _skillFactory.Create(battleLog.SkillCode);
+            _messageView.Start(skill.SkillCommon.MessageCode);
         }
     }
 }

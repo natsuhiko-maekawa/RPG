@@ -1,7 +1,9 @@
 using System.Linq;
+using BattleScene.Domain.Code;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.IFactory;
 using BattleScene.Domain.IRepository;
+using BattleScene.Domain.ValueObject;
 using BattleScene.UseCases.OldEvent.Runner;
 using BattleScene.UseCases.UseCase.Interface;
 using BattleScene.UseCases.View.FrameView.OutputBoundary;
@@ -30,6 +32,7 @@ namespace BattleScene.UseCases.UseCase
         private readonly TargetFrameOutputDataFactory _targetFrameOutputDataFactory;
         private readonly TechnicalPointBarOutputDataFactory _technicalPointBarOutputDataFactory;
         private readonly ITechnicalPointBarViewPresenter _technicalPointBarView;
+        private readonly IFactory<SkillValueObject, SkillCode> _skillFactory;
 
         public Attack(
             ICharacterRepository characterRepository,
@@ -43,7 +46,8 @@ namespace BattleScene.UseCases.UseCase
             ISkillViewInfoFactory skillViewInfoFactory,
             TargetFrameOutputDataFactory targetFrameOutputDataFactory,
             TechnicalPointBarOutputDataFactory technicalPointBarOutputDataFactory,
-            ITechnicalPointBarViewPresenter technicalPointBarView)
+            ITechnicalPointBarViewPresenter technicalPointBarView,
+            IFactory<SkillValueObject, SkillCode> skillFactory)
         {
             _characterRepository = characterRepository;
             _frameView = frameView;
@@ -57,6 +61,7 @@ namespace BattleScene.UseCases.UseCase
             _targetFrameOutputDataFactory = targetFrameOutputDataFactory;
             _technicalPointBarOutputDataFactory = technicalPointBarOutputDataFactory;
             _technicalPointBarView = technicalPointBarView;
+            _skillFactory = skillFactory;
         }
 
         public void Execute()
@@ -86,8 +91,8 @@ namespace BattleScene.UseCases.UseCase
             else
             {
                 var messageCode =
-                    _skillViewInfoFactory.Create(_skillRepository.Select(_orderedItems.FirstCharacterId()).SkillCode)
-                        .MessageCode;
+                    _skillFactory.Create(_skillRepository.Select(_orderedItems.FirstCharacterId()).SkillCode)
+                        .SkillCommon.MessageCode;
                 var messageOutputData = _messageOutputDataFactory.Create(messageCode);
                 _messageView.Start(messageOutputData);
             }

@@ -17,6 +17,7 @@ namespace BattleScene.Domain.ValueObject
         public SkillValueObject(
             SkillCode skillCode,
             Range range,
+            MessageCode messageCode,
             int technicalPoint = 0,
             ImmutableList<BodyPartCode> dependencyList = null,
             ImmutableList<AilmentValueObject> ailmentList = null,
@@ -31,7 +32,8 @@ namespace BattleScene.Domain.ValueObject
                 skillCode: skillCode,
                 technicalPoint: technicalPoint,
                 dependencyList: dependencyList,
-                range: range);
+                range: range,
+                messageCode: messageCode);
             AilmentList = ailmentList ?? ImmutableList<AilmentValueObject>.Empty;
             BuffList = buffList ?? ImmutableList<BuffValueObject>.Empty;
             DamageList = damageList ?? ImmutableList<DamageParameterValueObject>.Empty;
