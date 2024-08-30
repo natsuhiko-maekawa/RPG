@@ -27,6 +27,7 @@ namespace BattleScene.InterfaceAdapter.Presenter.GridView
                     return new RowDto(
                         RowName: rowName,
                         RowDescription: rowDescription,
+                        PlayerImagePath: GetPlayerImagePath(x.ActionCode),
                         Enabled: enabled);
                 })
                 .ToImmutableList();
@@ -48,6 +49,11 @@ namespace BattleScene.InterfaceAdapter.Presenter.GridView
             var message = _messageFactory.Create(messageCode).Message;
             message = _messageCodeConverter.Replace(message);
             return message;
+        }
+
+        private string GetPlayerImagePath(ActionCode actionCode)
+        {
+            return $"{actionCode}[{actionCode}]";
         }
     }
 }

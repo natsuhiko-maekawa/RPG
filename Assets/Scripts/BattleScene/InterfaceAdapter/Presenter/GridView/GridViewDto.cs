@@ -9,5 +9,6 @@ namespace BattleScene.InterfaceAdapter.Presenter.GridView
     public record RowDto(
         string RowName,
         string RowDescription,
+        string PlayerImagePath,
         bool Enabled);
 }
