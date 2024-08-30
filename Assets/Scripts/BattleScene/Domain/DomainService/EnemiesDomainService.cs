@@ -38,14 +38,14 @@ namespace BattleScene.Domain.DomainService
             _hitPointRepository = hitPointRepository;
         }
 
-        public void Add(IList<CharacterTypeId> characterTypeIdList)
+        public void Add(IList<CharacterTypeCode> characterTypeIdList)
         {
             var options = _propertyFactory.Get(characterTypeIdList)
-                .Select(x => (Id: x.CharacterTypeId, Parameter: x.SumParameter()))
+                .Select(x => (Id: x.CharacterTypeCode, Parameter: x.SumParameter()))
                 .Combination(1, 4)
                 .Where(x =>
                 {
-                    var diff = _propertyFactory.Get(CharacterTypeId.Player).SumParameter() - x.Sum(y => y.Parameter);
+                    var diff = _propertyFactory.Get(CharacterTypeCode.Player).SumParameter() - x.Sum(y => y.Parameter);
                     return diff is >= 0 and <= 5;
                 })
                 .Select(x => x
@@ -69,7 +69,7 @@ namespace BattleScene.Domain.DomainService
             _hitPointRepository.Update(hitPointList);
             
             var enemyList = characterList
-                .OrderBy(x => x.Property.CharacterTypeId)
+                .OrderBy(x => x.Property.CharacterTypeCode)
                 .Select((x, i) => new EnemyEntity(x.Id, i))
                 .ToImmutableList();
             _enemyRepository.Update(enemyList);

@@ -9,7 +9,7 @@ namespace BattleScene.InterfaceAdapter.DataAccess.Factory.Dto
     {
         [SerializeField] private string enemyTypeId;
         public string enemyName;
-        public CharacterTypeId EnemyTypeId { get; private set; }
+        public CharacterTypeCode EnemyTypeCode { get; private set; }
         
         public void OnBeforeSerialize()
         {
@@ -17,7 +17,7 @@ namespace BattleScene.InterfaceAdapter.DataAccess.Factory.Dto
 
         public void OnAfterDeserialize()
         {
-            EnemyTypeId = Enum.Parse<CharacterTypeId>(enemyTypeId);
+            EnemyTypeCode = Enum.Parse<CharacterTypeCode>(enemyTypeId);
         }
     }
 }

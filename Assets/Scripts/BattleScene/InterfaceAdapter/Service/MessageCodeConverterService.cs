@@ -23,10 +23,10 @@ namespace BattleScene.InterfaceAdapter.Service
         private readonly IFactory<AilmentViewInfoDto, AilmentCode> _ailmentViewInfoFactory;
         private readonly IFactory<BodyPartViewInfoDto, BodyPartCode> _bodyPartViewInfoFactory;
         private readonly IRepository<CharacterAggregate, CharacterId> _characterRepository;
-        private readonly IFactory<EnemyViewInfoValueObject, CharacterTypeId> _enemyViewInfoFactory;
+        private readonly IFactory<EnemyViewInfoValueObject, CharacterTypeCode> _enemyViewInfoFactory;
         private readonly IFactory<MessageDto, MessageCode> _messageFactory;
         private readonly OrderedItemsDomainService _orderedItems;
-        private readonly IFactory<PlayerViewInfoDto, CharacterTypeId> _playerViewInfoFactory;
+        private readonly IFactory<PlayerViewInfoDto, CharacterTypeCode> _playerViewInfoFactory;
         private readonly ResultDomainService _result;
         private readonly ISkillRepository _skillRepository;
         private readonly IFactory<SkillViewInfoValueObject, SkillCode> _skillViewInfoFactory;
@@ -36,10 +36,10 @@ namespace BattleScene.InterfaceAdapter.Service
             IFactory<AilmentViewInfoDto, AilmentCode> ailmentViewInfoFactory,
             IFactory<BodyPartViewInfoDto, BodyPartCode> bodyPartViewInfoFactory,
             IRepository<CharacterAggregate, CharacterId> characterRepository,
-            IFactory<EnemyViewInfoValueObject, CharacterTypeId> enemyViewInfoFactory,
+            IFactory<EnemyViewInfoValueObject, CharacterTypeCode> enemyViewInfoFactory,
             IFactory<MessageDto, MessageCode> messageFactory,
             OrderedItemsDomainService orderedItems,
-            IFactory<PlayerViewInfoDto, CharacterTypeId> playerViewInfoFactory,
+            IFactory<PlayerViewInfoDto, CharacterTypeCode> playerViewInfoFactory,
             ResultDomainService result,
             ISkillRepository skillRepository,
             IFactory<SkillViewInfoValueObject, SkillCode> skillViewInfoFactory,
@@ -92,8 +92,8 @@ namespace BattleScene.InterfaceAdapter.Service
             if (!_orderedItems.First().TryGetCharacterId(out var characterId))
                 throw new InvalidOperationException();
             var actorName = _characterRepository.Select(characterId).IsPlayer()
-                ? _playerViewInfoFactory.Create(CharacterTypeId.Player).PlayerName
-                : _enemyViewInfoFactory.Create(_characterRepository.Select(characterId).Property.CharacterTypeId)
+                ? _playerViewInfoFactory.Create(CharacterTypeCode.Player).PlayerName
+                : _enemyViewInfoFactory.Create(_characterRepository.Select(characterId).Property.CharacterTypeCode)
                     .EnemyName;
             return message.Replace(Actor, actorName);
         }
@@ -149,8 +149,8 @@ namespace BattleScene.InterfaceAdapter.Service
                 throw new InvalidOperationException();
             var targetNameList = _targetRepository.Select(characterId).TargetIdList
                 .Select(x => _characterRepository.Select(x).IsPlayer()
-                    ? _playerViewInfoFactory.Create(CharacterTypeId.Player).PlayerName
-                    : _enemyViewInfoFactory.Create(_characterRepository.Select(x).Property.CharacterTypeId).EnemyName)
+                    ? _playerViewInfoFactory.Create(CharacterTypeCode.Player).PlayerName
+                    : _enemyViewInfoFactory.Create(_characterRepository.Select(x).Property.CharacterTypeCode).EnemyName)
                 .ToList();
             var totalSuffix = targetNameList.Count == 1 ? "" : "たち";
             return message.Replace(Target, targetNameList.First() + totalSuffix);

@@ -8,11 +8,11 @@ namespace BattleScene.Domain.ValueObject
 {
 
     [Serializable]
-    public class PlayerViewInfoDto : IUniqueItem<CharacterTypeId>, ISerializationCallbackReceiver
+    public class PlayerViewInfoDto : IUniqueItem<CharacterTypeCode>, ISerializationCallbackReceiver
     {
         [SerializeField] private string characterTypeCode;
         [SerializeField] private string playerName;
-        public CharacterTypeId Id { get; private set; }
+        public CharacterTypeCode Id { get; private set; }
         public string PlayerName { get; private set; }
     
         public void OnBeforeSerialize()
@@ -21,7 +21,7 @@ namespace BattleScene.Domain.ValueObject
 
         public void OnAfterDeserialize()
         {
-            Id = Enum.Parse<CharacterTypeId>(characterTypeCode);
+            Id = Enum.Parse<CharacterTypeCode>(characterTypeCode);
             PlayerName = playerName;
         }
     }

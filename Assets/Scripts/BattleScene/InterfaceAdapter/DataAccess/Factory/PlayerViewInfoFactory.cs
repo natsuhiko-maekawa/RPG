@@ -5,7 +5,7 @@ using BattleScene.InterfaceAdapter.DataAccess.Resource;
 namespace BattleScene.InterfaceAdapter.DataAccess.Factory
 {
     public class PlayerViewInfoFactory
-        : BaseListScriptableObjectFactory<PlayerViewInfoListScriptableObject, PlayerViewInfoDto, CharacterTypeId>
+        : BaseListScriptableObjectFactory<PlayerViewInfoListScriptableObject, PlayerViewInfoDto, CharacterTypeCode>
     {
     }
 }

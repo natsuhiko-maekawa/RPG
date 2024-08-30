@@ -6,11 +6,11 @@ using UnityEngine;
 namespace BattleScene.Domain.ValueObject
 {
     [Serializable]
-    public class EnemyViewInfoValueObject : IUniqueItem<CharacterTypeId>, ISerializationCallbackReceiver
+    public class EnemyViewInfoValueObject : IUniqueItem<CharacterTypeCode>, ISerializationCallbackReceiver
     {
         [SerializeField] private string id;
         [SerializeField] private string enemyName;
-        public CharacterTypeId Id { get; private set; }
+        public CharacterTypeCode Id { get; private set; }
         public string EnemyName { get; private set; }
         public string EnemyImagePath { get; private set; }
         
@@ -20,7 +20,7 @@ namespace BattleScene.Domain.ValueObject
 
         public void OnAfterDeserialize()
         {
-            Id = Enum.Parse<CharacterTypeId>(id);
+            Id = Enum.Parse<CharacterTypeCode>(id);
             EnemyName = enemyName;
             EnemyImagePath = $"{id}[{id}]";
         }

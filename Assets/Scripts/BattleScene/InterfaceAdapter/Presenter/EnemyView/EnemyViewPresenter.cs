@@ -17,13 +17,13 @@ namespace BattleScene.InterfaceAdapter.Presenter.EnemyView
     {
         private readonly IRepository<CharacterAggregate, CharacterId> _characterRepository;
         private readonly IRepository<EnemyEntity, CharacterId> _enemyRepository;
-        private readonly IFactory<EnemyViewInfoValueObject, CharacterTypeId> _enemyViewInfoFactory;
+        private readonly IFactory<EnemyViewInfoValueObject, CharacterTypeCode> _enemyViewInfoFactory;
         private readonly IEnemiesView _enemiesView;
 
         public EnemyViewPresenter(
             IRepository<CharacterAggregate, CharacterId> characterRepository,
             IRepository<EnemyEntity, CharacterId> enemyRepository,
-            IFactory<EnemyViewInfoValueObject, CharacterTypeId> enemyViewInfoFactory,
+            IFactory<EnemyViewInfoValueObject, CharacterTypeCode> enemyViewInfoFactory,
             IEnemiesView enemiesView)
         {
             _characterRepository = characterRepository;
@@ -37,7 +37,7 @@ namespace BattleScene.InterfaceAdapter.Presenter.EnemyView
             var enemyDto = enemyOutputData.EnemyCharacterIdList
                 .Select(x =>
                 {
-                    var characterTypeId = _characterRepository.Select(x).Property.CharacterTypeId;
+                    var characterTypeId = _characterRepository.Select(x).Property.CharacterTypeCode;
                     return new EnemyDto(
                         EnemyNumber: _enemyRepository.Select(x).EnemyNumber,
                         EnemyImagePath: _enemyViewInfoFactory.Create(characterTypeId).EnemyImagePath);

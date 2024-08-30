@@ -1,6 +1,6 @@
 ﻿namespace BattleScene.Domain.Code
 {
-    public enum CharacterTypeId
+    public enum CharacterTypeCode
     {
         Bee,
         Slime,

@@ -30,7 +30,7 @@ namespace BattleScene.Domain.DomainService
 
         public void Add()
         {
-            PropertyValueObject property = _propertyFactory.Get(CharacterTypeId.Player);
+            PropertyValueObject property = _propertyFactory.Get(CharacterTypeCode.Player);
             var characterId = new CharacterId();
             var player = new CharacterAggregate(characterId, property);
             _characterRepository.Update(player);

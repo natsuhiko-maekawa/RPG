@@ -9,7 +9,7 @@ using BattleScene.Domain.OldId;
 using BattleScene.Domain.ValueObject;
 using Utility;
 using Utility.Interface;
-using static BattleScene.Domain.Code.CharacterTypeId;
+using static BattleScene.Domain.Code.CharacterTypeCode;
 
 namespace BattleScene.UseCases.Service
 {
@@ -31,11 +31,11 @@ namespace BattleScene.UseCases.Service
         }
 
         [Obsolete]
-        public ImmutableList<CharacterAggregate> CreateEnemyList(IList<CharacterTypeId> characterTypeIdList)
+        public ImmutableList<CharacterAggregate> CreateEnemyList(IList<CharacterTypeCode> characterTypeIdList)
         {
             var options = _propertyFactory.Get(characterTypeIdList)
                 // TODO タプルに名前を付ける
-                .Select(x => (Id: x.CharacterTypeId, SumParameter(x)))
+                .Select(x => (Id: x.CharacterTypeCode, SumParameter(x)))
                 .Combination(1, 4)
                 .Where(x =>
                 {

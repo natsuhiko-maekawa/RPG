@@ -40,7 +40,7 @@ namespace BattleScene.Domain.Aggregate
         [Obsolete]
         public bool IsPlayer()
         {
-            return Property.CharacterTypeId == CharacterTypeId.Player;
+            return Property.CharacterTypeCode == CharacterTypeCode.Player;
         }
 
         [Obsolete]

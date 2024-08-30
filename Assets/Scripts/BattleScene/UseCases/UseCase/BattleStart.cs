@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DomainService;
 using BattleScene.UseCases.UseCase.Interface;
-using static BattleScene.Domain.Code.CharacterTypeId;
+using static BattleScene.Domain.Code.CharacterTypeCode;
 
 namespace BattleScene.UseCases.UseCase
 {
@@ -17,7 +17,7 @@ namespace BattleScene.UseCases.UseCase
 
         public void Execute()
         {
-            var enemyTypeIdList = new List<CharacterTypeId> { Bee, Dragon, Mantis, Shuten, Slime };
+            var enemyTypeIdList = new List<CharacterTypeCode> { Bee, Dragon, Mantis, Shuten, Slime };
             _enemies.Add(enemyTypeIdList);
         }
     }

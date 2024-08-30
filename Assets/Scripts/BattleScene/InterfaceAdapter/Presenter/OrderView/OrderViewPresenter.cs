@@ -17,13 +17,13 @@ namespace BattleScene.InterfaceAdapter.Presenter.OrderView
 {
     internal class OrderViewPresenter : IOrderViewPresenter
     {
-        private readonly IFactory<EnemyViewInfoValueObject, CharacterTypeId> _enemyViewInfoFactory;
+        private readonly IFactory<EnemyViewInfoValueObject, CharacterTypeCode> _enemyViewInfoFactory;
         private readonly IOrderView _orderView;
         private readonly IRepository<CharacterAggregate, CharacterId> _characterRepository;
         private readonly ToAilmentNumberService _toAilmentNumber;
 
         public OrderViewPresenter(
-            IFactory<EnemyViewInfoValueObject, CharacterTypeId> enemyViewInfoFactory,
+            IFactory<EnemyViewInfoValueObject, CharacterTypeCode> enemyViewInfoFactory,
             IOrderView orderView,
             IRepository<CharacterAggregate, CharacterId> characterRepository,
             ToAilmentNumberService toAilmentNumber)
@@ -67,7 +67,7 @@ namespace BattleScene.InterfaceAdapter.Presenter.OrderView
 
         private OrderViewDto CreateEnemyViewDto(CharacterId characterId)
         {
-            var characterTypeId = _characterRepository.Select(characterId).Property.CharacterTypeId;
+            var characterTypeId = _characterRepository.Select(characterId).Property.CharacterTypeCode;
             var enemyImagePath = _enemyViewInfoFactory.Create(characterTypeId).EnemyImagePath;
             return new OrderViewDto(ItemType.Enemy, EnemyImagePath: enemyImagePath);
         }

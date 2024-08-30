@@ -18,16 +18,16 @@ namespace BattleScene.InterfaceAdapter.DataAccess.Factory
             _propertyResource = propertyResource;
         }
 
-        public PropertyValueObject Get(CharacterTypeId characterTypeId)
+        public PropertyValueObject Get(CharacterTypeCode characterTypeCode)
         {
             return _propertyResource.Get()
-                .Where(x => x.CharacterTypeId == characterTypeId)
-                .Select(x => new PropertyValueObject(x.CharacterTypeId, x.hp, x.strength, x.vitality, x.intelligence,
+                .Where(x => x.CharacterTypeCode == characterTypeCode)
+                .Select(x => new PropertyValueObject(x.CharacterTypeCode, x.hp, x.strength, x.vitality, x.intelligence,
                     x.wisdom, x.agility, x.luck, x.WeakPoints, x.Skills))
                 .First();
         }
 
-        public ImmutableList<PropertyValueObject> Get(IList<CharacterTypeId> characterTypeIdList)
+        public ImmutableList<PropertyValueObject> Get(IList<CharacterTypeCode> characterTypeIdList)
         {
             return characterTypeIdList.Select(Get).ToImmutableList();
         }
@@ -35,7 +35,7 @@ namespace BattleScene.InterfaceAdapter.DataAccess.Factory
         public ImmutableList<PropertyValueObject> Get()
         {
             return _propertyResource.Get()
-                .Select(x => new PropertyValueObject(x.CharacterTypeId, x.hp, x.strength, x.vitality, x.intelligence,
+                .Select(x => new PropertyValueObject(x.CharacterTypeCode, x.hp, x.strength, x.vitality, x.intelligence,
                     x.wisdom, x.agility, x.luck, x.WeakPoints, x.Skills))
                 .ToImmutableList();
         }

@@ -5,7 +5,7 @@ namespace BattleScene.Domain.ValueObject
 {
     public class PropertyValueObject
     {
-        public PropertyValueObject(CharacterTypeId characterTypeId,
+        public PropertyValueObject(CharacterTypeCode characterTypeCode,
             int hitPoint,
             int strength,
             int vitality,
@@ -16,7 +16,7 @@ namespace BattleScene.Domain.ValueObject
             MatAttrCode[] weakPoints,
             SkillCode[] skills)
         {
-            CharacterTypeId = characterTypeId;
+            CharacterTypeCode = characterTypeCode;
             HitPoint = hitPoint;
             Strength = strength;
             Vitality = vitality;
@@ -28,7 +28,7 @@ namespace BattleScene.Domain.ValueObject
             Skills = ImmutableList.Create(skills);
         }
 
-        public CharacterTypeId CharacterTypeId { get; }
+        public CharacterTypeCode CharacterTypeCode { get; }
         public int HitPoint { get; }
         public int Strength { get; }
         public int Vitality { get; }

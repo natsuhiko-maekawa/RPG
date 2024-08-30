@@ -18,7 +18,7 @@ namespace BattleScene.InterfaceAdapter.DataAccess.Factory.Dto
         public int luck;
         [SerializeField] private string[] skills;
         [SerializeField] private string[] weakPoints;
-        public CharacterTypeId CharacterTypeId { get; private set; }
+        public CharacterTypeCode CharacterTypeCode { get; private set; }
         public SkillCode[] Skills { get; private set; }
         public MatAttrCode[] WeakPoints { get; private set; }
 
@@ -28,7 +28,7 @@ namespace BattleScene.InterfaceAdapter.DataAccess.Factory.Dto
 
         public void OnAfterDeserialize()
         {
-            CharacterTypeId = Enum.Parse<CharacterTypeId>(characterTypeId);
+            CharacterTypeCode = Enum.Parse<CharacterTypeCode>(characterTypeId);
             Skills = skills.Select(Enum.Parse<SkillCode>).ToArray();
             WeakPoints = weakPoints.Select(Enum.Parse<MatAttrCode>).ToArray();
         }
