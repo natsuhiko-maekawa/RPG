@@ -118,7 +118,6 @@ namespace BattleScene.UseCases
             builder.Register<TechnicalPointBarOutputDataFactory>(Lifetime.Singleton);
 
             builder.Register<AilmentViewOutput>(Lifetime.Singleton);
-            builder.Register<EnemyViewOutput>(Lifetime.Singleton);
 
             builder.Register<OrderView>(Lifetime.Singleton);
 
