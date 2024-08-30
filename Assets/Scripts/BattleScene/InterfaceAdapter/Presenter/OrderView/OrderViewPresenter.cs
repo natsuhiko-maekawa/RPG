@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 using BattleScene.Domain.Aggregate;
+using BattleScene.Domain.Code;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.IFactory;
 using BattleScene.Domain.IRepository;
 using BattleScene.Domain.OldId;
+using BattleScene.Domain.ValueObject;
 using BattleScene.InterfaceAdapter.IView;
 using BattleScene.InterfaceAdapter.Service;
 using BattleScene.UseCases.IPresenter;
@@ -15,13 +17,13 @@ namespace BattleScene.InterfaceAdapter.Presenter.OrderView
 {
     internal class OrderViewPresenter : IOrderViewPresenter
     {
-        private readonly IEnemyViewInfoFactory _enemyViewInfoFactory;
+        private readonly IFactory<EnemyViewInfoValueObject, CharacterTypeId> _enemyViewInfoFactory;
         private readonly IOrderView _orderView;
         private readonly IRepository<CharacterAggregate, CharacterId> _characterRepository;
         private readonly ToAilmentNumberService _toAilmentNumber;
 
         public OrderViewPresenter(
-            IEnemyViewInfoFactory enemyViewInfoFactory,
+            IFactory<EnemyViewInfoValueObject, CharacterTypeId> enemyViewInfoFactory,
             IOrderView orderView,
             IRepository<CharacterAggregate, CharacterId> characterRepository,
             ToAilmentNumberService toAilmentNumber)

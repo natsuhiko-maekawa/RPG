@@ -5,6 +5,6 @@ namespace BattleScene.Domain.IFactory
 {
     public interface IEnemyViewInfoFactory
     {
-        public EnemyViewInfoValueObject Create(CharacterTypeId characterTypeId);
+        
     }
 }

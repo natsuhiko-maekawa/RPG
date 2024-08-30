@@ -23,7 +23,7 @@ namespace BattleScene.InterfaceAdapter.Service
         private readonly IFactory<AilmentViewInfoDto, AilmentCode> _ailmentViewInfoFactory;
         private readonly IFactory<BodyPartViewInfoDto, BodyPartCode> _bodyPartViewInfoFactory;
         private readonly IRepository<CharacterAggregate, CharacterId> _characterRepository;
-        private readonly IEnemyViewInfoFactory _enemyViewInfoFactory;
+        private readonly IFactory<EnemyViewInfoValueObject, CharacterTypeId> _enemyViewInfoFactory;
         private readonly IFactory<MessageDto, MessageCode> _messageFactory;
         private readonly OrderedItemsDomainService _orderedItems;
         private readonly IFactory<PlayerViewInfoDto, CharacterTypeId> _playerViewInfoFactory;
@@ -36,7 +36,7 @@ namespace BattleScene.InterfaceAdapter.Service
             IFactory<AilmentViewInfoDto, AilmentCode> ailmentViewInfoFactory,
             IFactory<BodyPartViewInfoDto, BodyPartCode> bodyPartViewInfoFactory,
             IRepository<CharacterAggregate, CharacterId> characterRepository,
-            IEnemyViewInfoFactory enemyViewInfoFactory,
+            IFactory<EnemyViewInfoValueObject, CharacterTypeId> enemyViewInfoFactory,
             IFactory<MessageDto, MessageCode> messageFactory,
             OrderedItemsDomainService orderedItems,
             IFactory<PlayerViewInfoDto, CharacterTypeId> playerViewInfoFactory,

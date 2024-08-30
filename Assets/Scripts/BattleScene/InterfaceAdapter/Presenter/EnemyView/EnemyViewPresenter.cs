@@ -1,10 +1,12 @@
 ﻿using System.Collections.Immutable;
 using System.Linq;
 using BattleScene.Domain.Aggregate;
+using BattleScene.Domain.Code;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.IFactory;
 using BattleScene.Domain.IRepository;
 using BattleScene.Domain.OldId;
+using BattleScene.Domain.ValueObject;
 using BattleScene.InterfaceAdapter.IView;
 using BattleScene.UseCases.View.EnemyView.OutputBoundary;
 using BattleScene.UseCases.View.EnemyView.OutputData;
@@ -15,13 +17,13 @@ namespace BattleScene.InterfaceAdapter.Presenter.EnemyView
     {
         private readonly IRepository<CharacterAggregate, CharacterId> _characterRepository;
         private readonly IRepository<EnemyEntity, CharacterId> _enemyRepository;
-        private readonly IEnemyViewInfoFactory _enemyViewInfoFactory;
+        private readonly IFactory<EnemyViewInfoValueObject, CharacterTypeId> _enemyViewInfoFactory;
         private readonly IEnemiesView _enemiesView;
 
         public EnemyViewPresenter(
             IRepository<CharacterAggregate, CharacterId> characterRepository,
             IRepository<EnemyEntity, CharacterId> enemyRepository,
-            IEnemyViewInfoFactory enemyViewInfoFactory,
+            IFactory<EnemyViewInfoValueObject, CharacterTypeId> enemyViewInfoFactory,
             IEnemiesView enemiesView)
         {
             _characterRepository = characterRepository;
