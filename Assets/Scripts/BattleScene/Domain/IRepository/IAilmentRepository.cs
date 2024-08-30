@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.Immutable;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.Entity;
@@ -6,6 +7,7 @@ using BattleScene.Domain.OldId;
 
 namespace BattleScene.Domain.IRepository
 {
+    [Obsolete]
     public interface IAilmentRepository
     {
         public ImmutableList<AilmentEntity> Select(CharacterId characterId);
