@@ -22,7 +22,7 @@ namespace BattleScene.UseCases
 
         public void Start()
         {
-            _context = new Context(_container.Resolve<InitializePlayerState>());
+            _context = new Context(_container.Resolve<InitializeBattleState>());
             _battleSceneController.SetOnNextAction(_context.Select);
         }
 
