@@ -5,7 +5,7 @@
         Attack,
         Skill,
         Defence,
-        Escape,
+        FatalitySkill,
         Continue,
         Quit
     }
