@@ -1,24 +1,35 @@
-﻿using BattleScene.Domain.Code;
+﻿using System;
+using BattleScene.Domain.Code;
+using BattleScene.Domain.Interface;
+using UnityEngine;
 
 namespace BattleScene.Domain.ValueObject
 {
-    public class SkillViewInfoValueObject
+    [Serializable]
+    public class SkillViewInfoValueObject : IUniqueItem<SkillCode>, ISerializationCallbackReceiver
     {
-        public SkillViewInfoValueObject(
-            string skillName,
-            PlayerImageCode playerImageCode,
-            MessageCode description,
-            MessageCode messageCode)
+        [SerializeField] private string id;
+        [SerializeField] private string skillName;
+        [SerializeField] private string playerImageCode;
+        [SerializeField] private string description;
+        [SerializeField] private string messageCode;
+        public SkillCode Id { get; private set; }
+        public string SkillName { get; private set; }
+        public PlayerImageCode PlayerImageCode { get; private set; }
+        public MessageCode Description { get; private set; }
+        public MessageCode MessageCode { get; private set; }
+        
+        public void OnBeforeSerialize()
         {
-            SkillName = skillName;
-            PlayerImageCode = playerImageCode;
-            Description = description;
-            MessageCode = messageCode;
         }
 
-        public string SkillName { get; }
-        public PlayerImageCode PlayerImageCode { get; }
-        public MessageCode Description { get; }
-        public MessageCode MessageCode { get; }
+        public void OnAfterDeserialize()
+        {
+            Id = Enum.Parse<SkillCode>(id);
+            SkillName = skillName;
+            PlayerImageCode = Enum.Parse<PlayerImageCode>(playerImageCode);
+            Description = Enum.Parse<MessageCode>(description);
+            MessageCode = Enum.Parse<MessageCode>(messageCode);
+        }
     }
 }

@@ -115,6 +115,8 @@ namespace BattleScene.InterfaceAdapter
                     Repository<TechnicalPointAggregate, CharacterId>>(Lifetime.Singleton);
             builder.Register<IRepository<TurnEntity, TurnId>, Repository<TurnEntity, TurnId>>(Lifetime.Singleton);
             builder.Register<IFactory<SkillValueObject, SkillCode>, SkillFactory>(Lifetime.Singleton);
+            builder.Register<IFactory<SkillViewInfoValueObject, SkillCode>, SkillViewInfoListScriptableObjectFactory>
+                (Lifetime.Singleton);
 
             builder.Register<IAilmentFactory, AilmentFactory>(Lifetime.Singleton);
             builder.Register<IAilmentViewInfoFactory, AilmentViewInfoFactory>(Lifetime.Singleton);
