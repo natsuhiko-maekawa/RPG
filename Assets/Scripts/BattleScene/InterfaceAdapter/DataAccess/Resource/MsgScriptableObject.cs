@@ -1,12 +1,11 @@
-using System.Collections.Generic;
+using BattleScene.Domain.Code;
 using BattleScene.InterfaceAdapter.DataAccess.Factory.Dto;
 using UnityEngine;
 
 namespace BattleScene.InterfaceAdapter.DataAccess.Resource
 {
-    [CreateAssetMenu(menuName = "ScriptableObjects/Msg")]
-    public class MsgScriptableObject : ScriptableObject
+    [CreateAssetMenu(menuName = "ScriptableObjects/Message")]
+    public class MsgScriptableObject : BaseListScriptableObject<MessageDto, MessageCode>
     {
-        public List<MessageDto> msgList = new();
     }
 }
