@@ -120,7 +120,7 @@ namespace BattleScene.InterfaceAdapter
                 Lifetime.Singleton);
             builder.Register<IBodyPartFactory, BodyPartFactory>(Lifetime.Singleton);
             builder.Register<IFactory<BodyPartViewInfoDto, BodyPartCode>, BodyPartViewInfoFactory>(Lifetime.Singleton);
-            builder.RegisterComponentInHierarchy<IFactory<EnemyViewInfoValueObject, CharacterTypeCode>>();
+            builder.RegisterComponentInHierarchy<IFactory<EnemyViewInfoDto, CharacterTypeCode>>();
             builder.RegisterComponentInHierarchy<IFactory<MessageDto, MessageCode>>();
             builder.RegisterComponentInHierarchy<IFactory<PlayerViewInfoDto, CharacterTypeCode>>();
             builder.Register<IPlayerPropertyFactory, PlayerPropertyFactory>(Lifetime.Singleton);
