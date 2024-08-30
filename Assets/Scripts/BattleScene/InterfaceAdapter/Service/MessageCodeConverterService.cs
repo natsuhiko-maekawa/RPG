@@ -62,9 +62,9 @@ namespace BattleScene.InterfaceAdapter.Service
         {
             message = ReplaceActor(message);
             message = ReplaceAilments(message);
-            message = ReplaceBuff(message);
+            // message = ReplaceBuff(message);
             message = ReplaceDamage(message);
-            message = ReplaceCure(message);
+            // message = ReplaceCure(message);
             message = ReplaceBodyPart(message);
             message = ReplaceSkill(message);
             message = ReplaceTarget(message);
