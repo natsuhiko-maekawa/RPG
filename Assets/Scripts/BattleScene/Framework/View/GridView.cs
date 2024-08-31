@@ -22,6 +22,7 @@ namespace BattleScene.Framework.View
         [SerializeField] private Image window;
         [SerializeField] private MessageView messageView;
         [SerializeField] private InputAction moveAction;
+        [SerializeField] private InputAction selectAction;
         private readonly List<Text> _textList = new();
         private Image _rightArrow;
         private Image _window;
@@ -35,6 +36,7 @@ namespace BattleScene.Framework.View
             _rightArrow = Instantiate(rightArrow, transform);
             _rightArrow.enabled = false;
             SetMoveAction(MoveArrow);
+            SetSelectAction(SelectRow);
         }
 
         public async Task StartAnimationAsync(GridViewDto dto)
@@ -123,6 +125,17 @@ namespace BattleScene.Framework.View
         {
             moveAction.performed += x => func.Invoke(x.ReadValue<Vector2>());
             moveAction?.Enable();
+        }
+
+        private void SelectRow()
+        {
+            var id = _dto.RowList[_gridState.SelectedRow].RowId;
+        }
+        
+        private void SetSelectAction(Action action)
+        {
+            selectAction.performed += _ => action.Invoke();
+            selectAction?.Enable();
         }
     }
 }

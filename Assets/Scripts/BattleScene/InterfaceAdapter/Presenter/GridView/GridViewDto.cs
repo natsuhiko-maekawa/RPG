@@ -7,6 +7,7 @@ namespace BattleScene.InterfaceAdapter.Presenter.GridView
         ImmutableList<RowDto> RowList) : IDto;
 
     public record RowDto(
+        int RowId,
         string RowName,
         string RowDescription,
         string PlayerImagePath,

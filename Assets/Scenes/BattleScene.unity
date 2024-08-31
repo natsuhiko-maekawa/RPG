@@ -1405,6 +1405,31 @@ MonoBehaviour:
       m_Action: Direction
       m_Flags: 8
     m_Flags: 0
+  selectAction:
+    m_Name: Ok
+    m_Type: 1
+    m_ExpectedControlType: Button
+    m_Id: c4ba95c9-4bef-4c7a-9484-c14977364fd9
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 435861d1-d661-4ee4-841a-17999c300bfa
+      m_Path: <SwitchProControllerHID>/buttonEast
+      m_Interactions: Press
+      m_Processors: 
+      m_Groups: 
+      m_Action: Ok
+      m_Flags: 0
+    - m_Name: 
+      m_Id: 75068b29-a0c1-4f29-ad20-fd0c8e714e93
+      m_Path: <Keyboard>/space
+      m_Interactions: Press
+      m_Processors: 
+      m_Groups: 
+      m_Action: Ok
+      m_Flags: 0
+    m_Flags: 0
 --- !u!1 &533048980
 GameObject:
   m_ObjectHideFlags: 0
