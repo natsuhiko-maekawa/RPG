@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BattleScene.InterfaceAdapter.IView;
 using BattleScene.InterfaceAdapter.Presenter.GridView;
 using BattleScene.InterfaceAdapter.Presenter.MessageView;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 namespace BattleScene.Framework.View
@@ -14,14 +16,17 @@ namespace BattleScene.Framework.View
         [SerializeField] private int slotHeight = 46;
         [SerializeField] private int rightArrowX = -147;
         [SerializeField] private int rightArrowY = 69;
+        [SerializeField] private int maxGridSize = 4;
         [SerializeField] private Text text;
         [SerializeField] private Image rightArrow;
         [SerializeField] private Image window;
         [SerializeField] private MessageView messageView;
+        [SerializeField] private InputAction moveAction;
         private readonly List<Text> _textList = new();
         private Image _rightArrow;
         private Image _window;
-        private int _selectedRow;
+        private GridViewDto _dto;
+        private GridState _gridState;
 
         private void Awake()
         {
@@ -29,14 +34,21 @@ namespace BattleScene.Framework.View
             _window.enabled = false;
             _rightArrow = Instantiate(rightArrow, transform);
             _rightArrow.enabled = false;
+            SetMoveAction(MoveArrow);
         }
 
         public async Task StartAnimationAsync(GridViewDto dto)
         {
             _window.enabled = true;
             _rightArrow.enabled = true;
+
+            _dto = dto;
+            _gridState ??= new GridState(
+                maxGridSize: maxGridSize,
+                itemCount: dto.RowList.Count);
+            
             _rightArrow.rectTransform.localPosition 
-                = new Vector3(rightArrowX, -_selectedRow * slotHeight + rightArrowY, 0);
+                = new Vector3(rightArrowX, -_gridState.SelectedRow * slotHeight + rightArrowY, 0);
             SetText(dto.RowList.Count);
             foreach (var (row, index) in dto.RowList.Select((x, i) => (x, i)))
             {
@@ -50,7 +62,7 @@ namespace BattleScene.Framework.View
                 _textList[index].enabled = true;
             }
 
-            var message = dto.RowList[_selectedRow].RowDescription;
+            var message = dto.RowList[_gridState.SelectedRow].RowDescription;
             var messageViewDto = new MessageViewDto(message, NoWait:true);
             await messageView.StartAnimation(messageViewDto);
         }
@@ -94,6 +106,23 @@ namespace BattleScene.Framework.View
                 Destroy(_textList[i]);
                 _textList.RemoveAt(i);
             }
+        }
+
+        private async Task MoveArrow(Vector2 vector2)
+        {
+            if (vector2.y == 0) return;
+            
+            if (vector2.y > 0)
+                _gridState.Up();
+            else
+                _gridState.Down();
+            await StartAnimationAsync(_dto);
+        }
+        
+        private void SetMoveAction(Func<Vector2, Task> func)
+        {
+            moveAction.performed += x => func.Invoke(x.ReadValue<Vector2>());
+            moveAction?.Enable();
         }
     }
 }
