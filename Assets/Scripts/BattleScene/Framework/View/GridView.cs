@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BattleScene.InterfaceAdapter.Controller;
 using BattleScene.InterfaceAdapter.IView;
 using BattleScene.InterfaceAdapter.Presenter.GridView;
 using BattleScene.InterfaceAdapter.Presenter.MessageView;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using VContainer;
 
 namespace BattleScene.Framework.View
 {
@@ -23,12 +25,20 @@ namespace BattleScene.Framework.View
         [SerializeField] private MessageView messageView;
         [SerializeField] private InputAction moveAction;
         [SerializeField] private InputAction selectAction;
+        private SelectActionController _selectActionController;
         private readonly List<Text> _textList = new();
         private Image _rightArrow;
         private Image _window;
         private GridViewDto _dto;
         private GridState _gridState;
 
+        [Inject]
+        public void Construct(
+            SelectActionController selectActionController)
+        {
+            _selectActionController = selectActionController;
+        }
+        
         private void Awake()
         {
             _window = Instantiate(window, transform);
@@ -130,6 +140,7 @@ namespace BattleScene.Framework.View
         private void SelectRow()
         {
             var id = _dto.RowList[_gridState.SelectedRow].RowId;
+            _selectActionController.SelectAction(id);
         }
         
         private void SetSelectAction(Action action)

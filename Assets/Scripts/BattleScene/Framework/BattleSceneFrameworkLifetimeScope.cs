@@ -1,4 +1,5 @@
-﻿using BattleScene.InterfaceAdapter.DataAccess.IResource;
+﻿using BattleScene.InterfaceAdapter.Controller;
+using BattleScene.InterfaceAdapter.DataAccess.IResource;
 using BattleScene.InterfaceAdapter.IInputSystem;
 using BattleScene.InterfaceAdapter.IView;
 using VContainer;
@@ -23,6 +24,7 @@ namespace BattleScene.Framework
             builder.RegisterComponentInHierarchy<ISelectSkillView>();
             builder.RegisterComponentInHierarchy<IPlayerPropertyResource>();
             builder.RegisterComponentInHierarchy<IPropertyResource>();
+            builder.Register<SelectActionController>(Lifetime.Singleton);
         }
     }
 }
