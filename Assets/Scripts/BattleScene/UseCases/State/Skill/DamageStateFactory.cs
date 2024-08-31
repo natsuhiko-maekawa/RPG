@@ -2,7 +2,7 @@
 using BattleScene.UseCases.Service;
 using VContainer;
 
-namespace BattleScene.UseCases.StateMachine.SkillStateMachine
+namespace BattleScene.UseCases.State.Skill
 {
     public class DamageStateFactory
     {

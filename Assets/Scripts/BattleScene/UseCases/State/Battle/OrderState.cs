@@ -9,8 +9,7 @@ using BattleScene.UseCases.UseCase;
 using Utility.Interface;
 using VContainer;
 
-
-namespace BattleScene.UseCases.StateMachine
+namespace BattleScene.UseCases.State.Battle
 {
     internal class OrderState : AbstractState
     {

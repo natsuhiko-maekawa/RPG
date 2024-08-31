@@ -1,10 +1,10 @@
 ﻿using BattleScene.Domain.Code;
 using BattleScene.Domain.IFactory;
 using BattleScene.Domain.ValueObject;
-using BattleScene.UseCases.StateMachine.SkillStateMachine;
+using BattleScene.UseCases.State.Skill;
 using VContainer;
 
-namespace BattleScene.UseCases.StateMachine
+namespace BattleScene.UseCases.State.Battle
 {
     public class SkillStateFactory
     {

@@ -1,7 +1,7 @@
 ﻿using BattleScene.UseCases.UseCase;
 using VContainer;
 
-namespace BattleScene.UseCases.StateMachine
+namespace BattleScene.UseCases.State.Battle
 {
     internal class EnemySelectSkillState : AbstractState
     {

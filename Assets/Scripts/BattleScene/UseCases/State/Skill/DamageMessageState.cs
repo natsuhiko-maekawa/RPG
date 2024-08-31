@@ -7,7 +7,7 @@ using BattleScene.Domain.IRepository;
 using BattleScene.Domain.ValueObject;
 using BattleScene.UseCases.View.MessageView.OutputBoundary;
 
-namespace BattleScene.UseCases.StateMachine.SkillStateMachine
+namespace BattleScene.UseCases.State.Skill
 {
     public class DamageMessageState : AbstractSkillState
     {

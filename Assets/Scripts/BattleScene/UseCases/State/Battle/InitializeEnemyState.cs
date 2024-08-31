@@ -8,7 +8,7 @@ using BattleScene.UseCases.View.EnemyView.OutputData;
 using VContainer;
 using static BattleScene.Domain.Code.CharacterTypeCode;
 
-namespace BattleScene.UseCases.StateMachine
+namespace BattleScene.UseCases.State.Battle
 {
     internal class InitializeEnemyState : AbstractState
     {

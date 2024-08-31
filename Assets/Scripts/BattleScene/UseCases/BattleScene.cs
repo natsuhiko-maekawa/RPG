@@ -1,5 +1,6 @@
 ﻿using BattleScene.UseCases.IController;
-using BattleScene.UseCases.StateMachine;
+using BattleScene.UseCases.State;
+using BattleScene.UseCases.State.Battle;
 using UnityEngine;
 using VContainer;
 

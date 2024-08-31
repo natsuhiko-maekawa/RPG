@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BattleScene.UseCases.StateMachine
+namespace BattleScene.UseCases.State.Battle
 {
     public enum StateCode
     {

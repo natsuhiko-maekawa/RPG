@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace BattleScene.UseCases.StateMachine
+namespace BattleScene.UseCases.State.Battle
 {
     public class Context
     {

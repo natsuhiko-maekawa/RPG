@@ -2,7 +2,7 @@
 using BattleScene.Domain.Code;
 using BattleScene.Domain.Id;
 
-namespace BattleScene.UseCases.StateMachine
+namespace BattleScene.UseCases.State.Battle
 {
     public abstract class AbstractState
     {
