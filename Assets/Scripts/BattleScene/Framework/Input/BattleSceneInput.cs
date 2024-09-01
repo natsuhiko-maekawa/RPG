@@ -1,9 +1,9 @@
 ﻿using System;
-using BattleScene.InterfaceAdapter.IInputSystem;
+using BattleScene.InterfaceAdapter.IInput;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace BattleScene.Framework.InputSystem
+namespace BattleScene.Framework.Input
 {
     public class BattleSceneInput : MonoBehaviour, IBattleSceneInput
     {

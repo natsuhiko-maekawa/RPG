@@ -1,4 +1,4 @@
-﻿using BattleScene.InterfaceAdapter.IInputSystem;
+﻿using BattleScene.InterfaceAdapter.IInput;
 using BattleScene.InterfaceAdapter.IView;
 using VContainer.Unity;
 

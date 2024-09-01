@@ -11,7 +11,7 @@ using BattleScene.InterfaceAdapter.DataAccess.Factory;
 using BattleScene.InterfaceAdapter.DataAccess.Factory.Dto;
 using BattleScene.InterfaceAdapter.DataAccess.IResource;
 using BattleScene.InterfaceAdapter.DataAccess.Repository;
-using BattleScene.InterfaceAdapter.IInputSystem;
+using BattleScene.InterfaceAdapter.IInput;
 using BattleScene.InterfaceAdapter.IView;
 using BattleScene.InterfaceAdapter.Presenter.AilmentsView;
 using BattleScene.InterfaceAdapter.Presenter.BuffView;

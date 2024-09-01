@@ -1,7 +1,6 @@
 ﻿using System;
-using UnityEngine;
 
-namespace BattleScene.InterfaceAdapter.IInputSystem
+namespace BattleScene.InterfaceAdapter.IInput
 {
     public interface IBattleSceneInput
     {
