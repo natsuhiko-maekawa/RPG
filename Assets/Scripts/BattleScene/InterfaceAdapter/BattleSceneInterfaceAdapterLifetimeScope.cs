@@ -228,6 +228,7 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<InitializeEnemyState>(Lifetime.Singleton);
             builder.Register<OrderState>(Lifetime.Singleton);
             builder.Register<PlayerSelectActionState>(Lifetime.Singleton);
+            builder.Register<SelectTargetStateFactory>(Lifetime.Singleton);
             builder.Register<EnemySelectSkillState>(Lifetime.Singleton);
             builder.Register<SkillStateFactory>(Lifetime.Singleton);
             builder.Register<DamageStateFactory>(Lifetime.Singleton);

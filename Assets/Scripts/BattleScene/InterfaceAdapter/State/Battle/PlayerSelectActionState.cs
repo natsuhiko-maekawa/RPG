@@ -1,22 +1,30 @@
-﻿using System.Collections.Immutable;
+﻿using System;
+using System.Collections.Immutable;
 using BattleScene.Domain.Code;
 using BattleScene.UseCases.Service;
 using BattleScene.UseCases.View;
 using BattleScene.UseCases.View.GridView;
+using VContainer;
 
 namespace BattleScene.InterfaceAdapter.State.Battle
 {
     public class PlayerSelectActionState : AbstractState
     {
         private readonly AttackCounterService _attackCounter;
+        private readonly SelectTargetStateFactory _selectTargetStateFactory;
         private readonly IViewPresenter<GridViewOutputData> _gridView;
+        private readonly IObjectResolver _container;
 
         public PlayerSelectActionState(
             AttackCounterService attackCounter,
-            IViewPresenter<GridViewOutputData> gridView)
+            SelectTargetStateFactory selectTargetStateFactory,
+            IViewPresenter<GridViewOutputData> gridView,
+            IObjectResolver container)
         {
             _attackCounter = attackCounter;
+            _selectTargetStateFactory = selectTargetStateFactory;
             _gridView = gridView;
+            _container = container;
         }
 
         public override void Start()
@@ -33,7 +41,13 @@ namespace BattleScene.InterfaceAdapter.State.Battle
 
         public override void Select(ActionCode actionCode)
         {
-            base.Select(actionCode);
+            var nextState = actionCode switch
+            {
+                ActionCode.Attack => _selectTargetStateFactory.Create(actionCode),
+                _ => throw new ArgumentOutOfRangeException()
+            };
+            
+            Context.TransitionTo(nextState);
         }
     }
 }
