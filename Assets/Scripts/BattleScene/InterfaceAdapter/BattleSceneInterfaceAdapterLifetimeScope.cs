@@ -67,7 +67,7 @@ namespace BattleScene.InterfaceAdapter
         {
             builder.RegisterComponentInHierarchy<IEnemiesView>();
             builder.RegisterComponentInHierarchy<IInfoView>();
-            builder.RegisterComponentInHierarchy<IBattleSceneInputSystem>();
+            builder.RegisterComponentInHierarchy<IBattleSceneInput>();
             builder.RegisterComponentInHierarchy<IGridView>();
             builder.RegisterComponentInHierarchy<IMessageView>();
             builder.RegisterComponentInHierarchy<IOrderView>();
