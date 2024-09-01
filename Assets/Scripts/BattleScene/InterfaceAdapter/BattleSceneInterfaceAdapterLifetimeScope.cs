@@ -35,6 +35,7 @@ using BattleScene.UseCases.IController;
 using BattleScene.UseCases.IPresenter;
 using BattleScene.UseCases.Output;
 using BattleScene.UseCases.Service;
+using BattleScene.UseCases.UseCase;
 using BattleScene.UseCases.View;
 using BattleScene.UseCases.View.AilmentView.OutputBoundary;
 using BattleScene.UseCases.View.AttackCountView.OutputBoundary;
@@ -257,6 +258,8 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<OrderView>(Lifetime.Singleton);
 
             builder.RegisterEntryPoint<StateMachine>();
+
+            builder.Register<OrderDecision>(Lifetime.Singleton);
         }
     }
 }
