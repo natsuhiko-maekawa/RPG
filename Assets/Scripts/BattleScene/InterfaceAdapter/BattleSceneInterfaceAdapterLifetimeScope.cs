@@ -79,7 +79,7 @@ namespace BattleScene.InterfaceAdapter
             builder.RegisterComponentInHierarchy<ISelectSkillView>();
             builder.RegisterComponentInHierarchy<IPlayerPropertyResource>();
             builder.RegisterComponentInHierarchy<IPropertyResource>();
-            builder.RegisterComponentInHierarchy<IGameLoop>();
+            // builder.RegisterComponentInHierarchy<IGameLoop>();
             
             builder.Register<IAilmentViewPresenter, AilmentViewPresenter>(Lifetime.Singleton);
             builder.Register<IBuffViewPresenter, BuffViewPresenter>(Lifetime.Singleton);
@@ -222,7 +222,7 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<Utsusemi>(Lifetime.Singleton);
             builder.Register<Wabisuke>(Lifetime.Singleton);
 
-            builder.RegisterComponentInHierarchy<IGameLoop>();
+            // builder.RegisterComponentInHierarchy<IGameLoop>();
             
             // TODO: DomainのServiceを登録している
             builder.Register<InitializeBattleState>(Lifetime.Singleton);
