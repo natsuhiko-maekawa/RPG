@@ -2,29 +2,11 @@
 using System.Collections.Immutable;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.Id;
-using BattleScene.Domain.Interface;
-using BattleScene.Domain.ValueObject;
 
 namespace BattleScene.Domain.Entity
 {
     public class ResultEntity : BaseEntity<ResultEntity, ResultId>, IComparable<ResultEntity>
     {
-        [Obsolete]
-        public ResultEntity(
-            TurnNumber turn,
-            SequenceNumber sequence,
-            IResult result)
-        {
-            Result = result;
-        }
-
-        public ResultEntity(
-            TurnNumber turn,
-            SkillValueObject skill)
-        {
-            Skill = skill;
-        }
-
         public ResultEntity(ResultId id,
             int turn,
             int sequence,
@@ -41,9 +23,6 @@ namespace BattleScene.Domain.Entity
         public int Turn { get; }
         public int Sequence { get; }
         public override ResultId Id { get; }
-        [Obsolete]
-        public IResult Result { get; }
-        public SkillValueObject Skill { get; }
         public ImmutableList<CharacterId> TargetIdList { get; }
         public AilmentCode AilmentCode { get; }
 
