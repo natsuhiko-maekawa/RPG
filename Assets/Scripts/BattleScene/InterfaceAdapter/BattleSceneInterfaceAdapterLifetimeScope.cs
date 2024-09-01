@@ -6,7 +6,6 @@ using BattleScene.Domain.Id;
 using BattleScene.Domain.IFactory;
 using BattleScene.Domain.IRepository;
 using BattleScene.Domain.ValueObject;
-using BattleScene.InterfaceAdapter.Controller;
 using BattleScene.InterfaceAdapter.DataAccess.Factory;
 using BattleScene.InterfaceAdapter.DataAccess.Factory.Dto;
 using BattleScene.InterfaceAdapter.DataAccess.IResource;
@@ -274,10 +273,10 @@ namespace BattleScene.InterfaceAdapter
             
             builder.Register<OrderView>(Lifetime.Singleton);
 
-            builder.Register<StateMachine>(Lifetime.Singleton);
+            builder.RegisterEntryPoint<StateMachine>();
 
             builder.Register<OrderDecision>(Lifetime.Singleton);
-            builder.RegisterEntryPoint<Controller.Controller>();
+            // builder.RegisterEntryPoint<Controller.Controller>();
         }
     }
 }
