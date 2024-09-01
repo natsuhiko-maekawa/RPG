@@ -1,7 +1,6 @@
 ﻿using BattleScene.Domain.Code;
 using BattleScene.InterfaceAdapter.State.Battle;
 using VContainer;
-using VContainer.Unity;
 
 namespace BattleScene.InterfaceAdapter
 {

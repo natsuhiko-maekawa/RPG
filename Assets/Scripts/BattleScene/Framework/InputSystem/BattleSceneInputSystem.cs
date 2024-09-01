@@ -1,9 +1,7 @@
 ﻿using System;
-using BattleScene.InterfaceAdapter.Controller;
 using BattleScene.InterfaceAdapter.IInputSystem;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using VContainer;
 
 namespace BattleScene.Framework.InputSystem
 {

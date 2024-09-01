@@ -1,9 +1,5 @@
-﻿using System;
-using BattleScene.Domain.Code;
-using BattleScene.InterfaceAdapter.IInputSystem;
+﻿using BattleScene.InterfaceAdapter.IInputSystem;
 using BattleScene.InterfaceAdapter.IView;
-using BattleScene.UseCases;
-using BattleScene.UseCases.IController;
 using VContainer.Unity;
 
 namespace BattleScene.InterfaceAdapter.Controller
