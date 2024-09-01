@@ -3,19 +3,11 @@ using BattleScene.Domain.Code;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
-using VContainer;
 
 namespace BattleScene.UseCases.Service
 {
     public class SkillCreatorService
     {
-        private readonly IObjectResolver _container;
-
-        public SkillCreatorService(IObjectResolver container)
-        {
-            _container = container;
-        }
-
         public SkillEntity Create(CharacterId characterId, SkillCode skillCode)
         {
             return new SkillEntity(
