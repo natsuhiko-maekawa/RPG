@@ -46,7 +46,7 @@ namespace BattleScene.Framework.View
             _rightArrow = Instantiate(rightArrow, transform);
             _rightArrow.enabled = false;
             SetMoveAction(MoveArrow);
-            SetSelectAction(SelectRow);
+            // SetSelectAction(SelectRow);
         }
 
         public async Task StartAnimationAsync(GridViewDto dto)
@@ -143,9 +143,10 @@ namespace BattleScene.Framework.View
             // _selectActionController.SelectAction(id);
         }
         
-        private void SetSelectAction(Action action)
+        public void SetSelectAction(Action<int> action)
         {
-            selectAction.performed += _ => action.Invoke();
+            var id = _dto.RowList[_gridState.SelectedRow].RowId;
+            selectAction.performed += _ => action.Invoke(id);
             selectAction?.Enable();
         }
     }
