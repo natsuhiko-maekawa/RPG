@@ -1,22 +1,24 @@
 ﻿using BattleScene.Domain.Code;
 using BattleScene.InterfaceAdapter.State.Battle;
 using VContainer;
+using VContainer.Unity;
 
 namespace BattleScene.InterfaceAdapter
 {
-    public class StateMachine
+    public class StateMachine　: IInitializable
     {
         private Context _context;
-        private readonly Controller.Controller _controller;
         private readonly IObjectResolver _container;
 
         public StateMachine(
-            Controller.Controller controller,
             IObjectResolver container)
         {
-            _controller = controller;
             _container = container;
-            _controller.Subscribe(this);
+        }
+
+        void IInitializable.Initialize()
+        {
+            _context = new Context(_container.Resolve<InitializeBattleState>());
         }
         
         public void Start()

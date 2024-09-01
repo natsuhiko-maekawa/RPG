@@ -255,6 +255,8 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<AttacksWeakPointEvaluatorService>(Lifetime.Singleton);
             
             builder.Register<OrderView>(Lifetime.Singleton);
+
+            builder.RegisterEntryPoint<StateMachine>();
         }
     }
 }
