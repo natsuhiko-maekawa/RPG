@@ -9,7 +9,10 @@ using BattleScene.Domain.ValueObject;
 using BattleScene.InterfaceAdapter.Controller;
 using BattleScene.InterfaceAdapter.DataAccess.Factory;
 using BattleScene.InterfaceAdapter.DataAccess.Factory.Dto;
+using BattleScene.InterfaceAdapter.DataAccess.IResource;
 using BattleScene.InterfaceAdapter.DataAccess.Repository;
+using BattleScene.InterfaceAdapter.IInputSystem;
+using BattleScene.InterfaceAdapter.IView;
 using BattleScene.InterfaceAdapter.Presenter.AilmentsView;
 using BattleScene.InterfaceAdapter.Presenter.BuffView;
 using BattleScene.InterfaceAdapter.Presenter.CharacterVibesView;
@@ -63,6 +66,21 @@ namespace BattleScene.InterfaceAdapter
     {
         protected override void Configure(IContainerBuilder builder)
         {
+            builder.RegisterComponentInHierarchy<IEnemiesView>();
+            builder.RegisterComponentInHierarchy<IInfoView>();
+            builder.RegisterComponentInHierarchy<IBattleSceneInputSystem>();
+            builder.RegisterComponentInHierarchy<IGridView>();
+            builder.RegisterComponentInHierarchy<IMessageView>();
+            builder.RegisterComponentInHierarchy<IOrderView>();
+            builder.RegisterComponentInHierarchy<IPlayerAttackCountView>();
+            builder.RegisterComponentInHierarchy<IPlayerView>();
+            builder.RegisterComponentInHierarchy<IPlayerStatusView>();
+            builder.RegisterComponentInHierarchy<ISelectActionView>();
+            builder.RegisterComponentInHierarchy<ISelectSkillView>();
+            builder.RegisterComponentInHierarchy<IPlayerPropertyResource>();
+            builder.RegisterComponentInHierarchy<IPropertyResource>();
+            builder.RegisterComponentInHierarchy<IGameLoop>();
+            
             builder.Register<IAilmentViewPresenter, AilmentViewPresenter>(Lifetime.Singleton);
             builder.Register<IBuffViewPresenter, BuffViewPresenter>(Lifetime.Singleton);
             builder.Register<IDestroyedPartViewPresenter, DestroyedPartViewPresenter>(Lifetime.Singleton);
@@ -257,9 +275,10 @@ namespace BattleScene.InterfaceAdapter
             
             builder.Register<OrderView>(Lifetime.Singleton);
 
-            builder.RegisterEntryPoint<StateMachine>();
+            builder.Register<StateMachine>(Lifetime.Singleton);
 
             builder.Register<OrderDecision>(Lifetime.Singleton);
+            builder.RegisterEntryPoint<Controller.Controller>();
         }
     }
 }

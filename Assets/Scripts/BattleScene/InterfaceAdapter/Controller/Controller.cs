@@ -8,7 +8,7 @@ using VContainer.Unity;
 
 namespace BattleScene.InterfaceAdapter.Controller
 {
-    public class Controller : IInitializable
+    public class Controller : IStartable
     {
         private readonly StateMachine _stateMachine;
         private readonly IBattleSceneInputSystem _battleSceneInputSystem;
@@ -24,10 +24,11 @@ namespace BattleScene.InterfaceAdapter.Controller
             _gridView = gridView;
         }
 
-        void IInitializable.Initialize()
+        void IStartable.Start()
         {
+            _stateMachine.Start();
             _battleSceneInputSystem.SetOnNextAction(_stateMachine.Select);
-            _gridView.SetSelectAction(x => _stateMachine.SelectAction((ActionCode)x));
+            _gridView.SetSelectAction(x => _stateMachine.SelectAction(x));
         }
     }
 }

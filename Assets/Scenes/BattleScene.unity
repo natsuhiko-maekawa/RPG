@@ -2713,10 +2713,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentReference:
-    TypeName: BattleScene.InterfaceAdapter.BattleSceneInterfaceAdapterLifetimeScope
+    TypeName: 
   autoRun: 1
-  autoInjectGameObjects:
-  - {fileID: 2054981623}
+  autoInjectGameObjects: []
 --- !u!114 &809505087
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2730,10 +2729,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentReference:
-    TypeName: Utility.UtilityLifetimeScope
+    TypeName: BattleScene.InterfaceAdapter.BattleSceneInterfaceAdapterLifetimeScope
   autoRun: 1
-  autoInjectGameObjects:
-  - {fileID: 2054981623}
+  autoInjectGameObjects: []
 --- !u!114 &809505088
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2747,9 +2745,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentReference:
-    TypeName: BattleScene.Framework.BattleSceneFrameworkLifetimeScope
+    TypeName: Utility.UtilityLifetimeScope
   autoRun: 1
-  autoInjectGameObjects: []
+  autoInjectGameObjects:
+  - {fileID: 2054981623}
 --- !u!114 &809505089
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5905,7 +5904,7 @@ RectTransform:
   m_Children:
   - {fileID: 2076084072}
   - {fileID: 231664258}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 2054981625}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -6500,7 +6499,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1875979656}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2054981626
@@ -6927,7 +6927,6 @@ SceneRoots:
   m_Roots:
   - {fileID: 519420032}
   - {fileID: 1173533035}
-  - {fileID: 1875979656}
   - {fileID: 1588216062}
   - {fileID: 1931555642}
   - {fileID: 809505081}

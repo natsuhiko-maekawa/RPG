@@ -145,7 +145,8 @@ namespace BattleScene.Framework.View
         
         public void SetSelectAction(Action<int> action)
         {
-            var id = _dto.RowList[_gridState.SelectedRow].RowId;
+            var selectedRow = _gridState?.SelectedRow ?? 0;
+            var id = _dto?.RowList[selectedRow].RowId ?? 0;
             selectAction.performed += _ => action.Invoke(id);
             selectAction?.Enable();
         }

@@ -5,7 +5,7 @@ using VContainer.Unity;
 
 namespace BattleScene.InterfaceAdapter
 {
-    public class StateMachine　: IStartable
+    public class StateMachine
     {
         private Context _context;
         private readonly IObjectResolver _container;
@@ -16,19 +16,19 @@ namespace BattleScene.InterfaceAdapter
             _container = container;
         }
 
-        void IStartable.Start()
+        public void Start()
         {
             _context = new Context(_container.Resolve<InitializeBattleState>());
         }
-
+        
         public void Select()
         {
             _context.Select();
         }
         
-        public void SelectAction(ActionCode actionCode)
+        public void SelectAction(int actionCode)
         {
-            _context.Select(actionCode);
+            _context.Select((ActionCode)actionCode);
         }
     }
 }
