@@ -7,7 +7,7 @@ using BattleScene.UseCases.UseCase.Interface;
 
 namespace BattleScene.UseCases.UseCase
 {
-    internal class OrderDecision : IUseCase
+    public class OrderDecision : IUseCase
     {
         private readonly ActionTimeCreatorService _actionTimeCreator;
         private readonly IRepository<ActionTimeEntity, CharacterId> _actionTimeRepository;

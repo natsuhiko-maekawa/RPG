@@ -10,7 +10,7 @@ using Utility.Interface;
 
 namespace BattleScene.UseCases.Service
 {
-    internal class AilmentSkillService
+    public class AilmentSkillService
     {
         private const float Threshold = 40.0f; // 大きいほど命中しやすくなる
         private readonly IRepository<CharacterAggregate, CharacterId> _characterRepository;

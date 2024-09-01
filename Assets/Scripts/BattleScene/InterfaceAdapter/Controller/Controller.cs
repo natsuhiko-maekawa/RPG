@@ -7,7 +7,7 @@ using BattleScene.UseCases.IController;
 
 namespace BattleScene.InterfaceAdapter.Controller
 {
-    public class Controller : IController
+    public class Controller// : IController
     {
         private readonly IBattleSceneInputSystem _battleSceneInputSystem;
         private readonly IGameLoop _gameLoop;

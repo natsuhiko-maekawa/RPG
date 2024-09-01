@@ -31,6 +31,10 @@ using BattleScene.InterfaceAdapter.Skill;
 using BattleScene.InterfaceAdapter.Skill.SkillElement;
 using BattleScene.UseCases.IController;
 using BattleScene.UseCases.IPresenter;
+using BattleScene.UseCases.Output;
+using BattleScene.UseCases.Service;
+using BattleScene.UseCases.State.Battle;
+using BattleScene.UseCases.State.Skill;
 using BattleScene.UseCases.View;
 using BattleScene.UseCases.View.AilmentView.OutputBoundary;
 using BattleScene.UseCases.View.AttackCountView.OutputBoundary;
@@ -202,8 +206,55 @@ namespace BattleScene.InterfaceAdapter
             builder.RegisterComponentInHierarchy<IGameLoop>();
             
             // TODO: DomainのServiceを登録している
+            builder.Register<InitializeBattleState>(Lifetime.Singleton);
+            builder.Register<InitializePlayerState>(Lifetime.Singleton);
+            builder.Register<InitializeEnemyState>(Lifetime.Singleton);
+            builder.Register<OrderState>(Lifetime.Singleton);
+            builder.Register<PlayerSelectActionState>(Lifetime.Singleton);
+            builder.Register<EnemySelectSkillState>(Lifetime.Singleton);
+            builder.Register<SkillStateFactory>(Lifetime.Singleton);
+            builder.Register<DamageStateFactory>(Lifetime.Singleton);
+            builder.Register<DamageMessageState>(Lifetime.Singleton);
+            builder.Register<TurnEndState>(Lifetime.Singleton);
+            
+            builder.Register<ActionTimeCreatorService>(Lifetime.Singleton);
+            builder.Register<AgilityToSpeedService>(Lifetime.Singleton);
+            builder.Register<AilmentSkillService>(Lifetime.Singleton);
+            builder.Register<AttackCounterService>(Lifetime.Singleton);
+            builder.Register<CharacterCreatorService>(Lifetime.Singleton);
+            builder.Register<CharacterOutputDataCreatorService>(Lifetime.Singleton);
+            builder.Register<CureSkillService>(Lifetime.Singleton);
+            builder.Register<DamageGeneratorService>(Lifetime.Singleton);
+            builder.Register<DestroyedPartCreatorService>(Lifetime.Singleton);
+            builder.Register<HitPointCreatorService>(Lifetime.Singleton);
+            builder.Register<OrderedItemCreatorService>(Lifetime.Singleton);
+            builder.Register<ResetSkillService>(Lifetime.Singleton);
+            builder.Register<SelectSkillService>(Lifetime.Singleton);
+            builder.Register<SkillCreatorService>(Lifetime.Singleton);
+            builder.Register<SkillService>(Lifetime.Singleton);
+            builder.Register<SlipDamageService>(Lifetime.Singleton);
+            builder.Register<ToBodyPartNumberService>(Lifetime.Singleton);
+            builder.Register<ToBuffNumberService>(Lifetime.Singleton);
+
+            builder.Register<AilmentDomainService>(Lifetime.Singleton);
+            builder.Register<BattleLoggerService>(Lifetime.Singleton);
+            builder.Register<BodyPartDomainService>(Lifetime.Singleton);
+            builder.Register<BuffDomainService>(Lifetime.Singleton);
+            builder.Register<CharactersDomainService>(Lifetime.Singleton);
+            builder.Register<EnemiesDomainService>(Lifetime.Singleton);
+            builder.Register<HitPointDomainService>(Lifetime.Singleton);
             builder.Register<OrderedItemsDomainService>(Lifetime.Singleton);
+            builder.Register<PlayerDomainService>(Lifetime.Singleton);
+            builder.Register<ResultCreatorDomainService>(Lifetime.Singleton);
             builder.Register<ResultDomainService>(Lifetime.Singleton);
+            builder.Register<SlipDamageDomainService>(Lifetime.Singleton);
+            builder.Register<TargetDomainService>(Lifetime.Singleton);
+            
+            builder.Register<DamageEvaluatorService>(Lifetime.Singleton);
+            builder.Register<IsHitEvaluatorService>(Lifetime.Singleton);
+            builder.Register<AttacksWeakPointEvaluatorService>(Lifetime.Singleton);
+            
+            builder.Register<OrderView>(Lifetime.Singleton);
         }
     }
 }

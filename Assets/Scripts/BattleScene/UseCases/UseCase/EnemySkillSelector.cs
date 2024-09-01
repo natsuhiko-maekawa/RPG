@@ -10,7 +10,7 @@ using Utility.Interface;
 
 namespace BattleScene.UseCases.UseCase
 {
-    internal class EnemySkillSelector
+    public class EnemySkillSelector
     {
         private readonly IRepository<CharacterAggregate, CharacterId> _characterRepository;
         private readonly OrderedItemsDomainService _orderItems;
