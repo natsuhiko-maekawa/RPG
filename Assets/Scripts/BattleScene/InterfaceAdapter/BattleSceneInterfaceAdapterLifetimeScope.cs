@@ -34,7 +34,6 @@ using BattleScene.InterfaceAdapter.Skill;
 using BattleScene.InterfaceAdapter.Skill.SkillElement;
 using BattleScene.InterfaceAdapter.State.Battle;
 using BattleScene.InterfaceAdapter.State.Skill;
-using BattleScene.UseCases.IController;
 using BattleScene.UseCases.IPresenter;
 using BattleScene.UseCases.Output;
 using BattleScene.UseCases.Service;
@@ -98,7 +97,7 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<ISelectSkillViewPresenter, SelectSkillViewPresenter>(Lifetime.Singleton);
             builder.Register<ITechnicalPointBarViewPresenter, TechnicalPointBarViewPresenter>(Lifetime.Singleton);
             builder.Register<ICharacterVibesViewPresenter, CharacterVibesViewPresenter>(Lifetime.Singleton);
-            builder.Register<IBattleSceneController, BattleSceneController>(Lifetime.Singleton);
+            // builder.Register<IBattleSceneController, BattleSceneController>(Lifetime.Singleton);
             builder.Register<IViewPresenter<GridViewOutputData>, GridViewPresenter>(Lifetime.Singleton);
             
             builder.Register<IAilmentRepository, AilmentRepository>(Lifetime.Singleton);
