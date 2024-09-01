@@ -1,18 +1,17 @@
 ﻿using BattleScene.Domain.Code;
-using BattleScene.InterfaceAdapter.Controller;
-using BattleScene.UseCases.State.Battle;
+using BattleScene.InterfaceAdapter.State.Battle;
 using VContainer;
 
-namespace BattleScene.UseCases
+namespace BattleScene.InterfaceAdapter
 {
     public class StateMachine
     {
         private Context _context;
-        private readonly Controller _controller;
+        private readonly Controller.Controller _controller;
         private readonly IObjectResolver _container;
 
         public StateMachine(
-            Controller controller,
+            Controller.Controller controller,
             IObjectResolver container)
         {
             _controller = controller;

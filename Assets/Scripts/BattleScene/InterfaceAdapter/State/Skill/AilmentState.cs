@@ -1,7 +1,7 @@
 ﻿using BattleScene.Domain.ValueObject;
 using BattleScene.UseCases.Service;
 
-namespace BattleScene.UseCases.State.Skill
+namespace BattleScene.InterfaceAdapter.State.Skill
 {
     public class AilmentState : AbstractSkillState
     {

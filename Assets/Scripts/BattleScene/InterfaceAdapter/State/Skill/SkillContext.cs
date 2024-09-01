@@ -1,4 +1,4 @@
-﻿namespace BattleScene.UseCases.State.Skill
+﻿namespace BattleScene.InterfaceAdapter.State.Skill
 {
     public class SkillContext
     {

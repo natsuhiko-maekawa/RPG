@@ -4,7 +4,7 @@ using BattleScene.UseCases.Service;
 using BattleScene.UseCases.View;
 using BattleScene.UseCases.View.GridView;
 
-namespace BattleScene.UseCases.State.Battle
+namespace BattleScene.InterfaceAdapter.State.Battle
 {
     public class PlayerSelectActionState : AbstractState
     {

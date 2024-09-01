@@ -3,7 +3,7 @@ using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
 using VContainer;
 
-namespace BattleScene.UseCases.State.Battle
+namespace BattleScene.InterfaceAdapter.State.Battle
 {
     public class InitializeBattleState : AbstractState
     {

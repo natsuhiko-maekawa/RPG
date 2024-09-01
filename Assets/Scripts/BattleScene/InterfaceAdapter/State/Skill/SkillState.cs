@@ -3,10 +3,10 @@ using System.Linq;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.IFactory;
 using BattleScene.Domain.ValueObject;
-using BattleScene.UseCases.State.Battle;
+using BattleScene.InterfaceAdapter.State.Battle;
 using VContainer;
 
-namespace BattleScene.UseCases.State.Skill
+namespace BattleScene.InterfaceAdapter.State.Skill
 {
     public class SkillState : AbstractState
     {

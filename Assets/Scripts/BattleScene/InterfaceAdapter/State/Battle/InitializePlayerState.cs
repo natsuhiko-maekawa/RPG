@@ -1,7 +1,7 @@
 ﻿using BattleScene.Domain.DomainService;
 using VContainer;
 
-namespace BattleScene.UseCases.State.Battle
+namespace BattleScene.InterfaceAdapter.State.Battle
 {
     internal class InitializePlayerState : AbstractState
     {

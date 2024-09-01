@@ -1,4 +1,4 @@
-﻿namespace BattleScene.UseCases.State.Battle
+﻿namespace BattleScene.InterfaceAdapter.State.Battle
 {
     public class TurnEndState : AbstractState
     {
