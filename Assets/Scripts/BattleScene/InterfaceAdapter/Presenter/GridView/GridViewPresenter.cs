@@ -46,6 +46,11 @@ namespace BattleScene.InterfaceAdapter.Presenter.GridView
             _gridView.StartAnimationAsync(dto);
         }
 
+        public void Stop()
+        {
+            _gridView.StopAnimation();
+        }
+
         private string GetDescription(ActionCode actionCode)
         {
             var messageCode = actionCode switch

@@ -7,6 +7,7 @@ namespace BattleScene.InterfaceAdapter.IView
     public interface IGridView
     {
         public Task StartAnimationAsync(GridViewDto dto);
+        public void StopAnimation();
         public void SetSelectAction(Action<int> action);
     }
 }
