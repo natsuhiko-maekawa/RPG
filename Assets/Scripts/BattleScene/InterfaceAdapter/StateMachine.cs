@@ -20,11 +20,6 @@ namespace BattleScene.InterfaceAdapter
         {
             _context = new Context(_container.Resolve<InitializeBattleState>());
         }
-        
-        public void Start()
-        {
-            _context = new Context(_container.Resolve<InitializeBattleState>());
-        }
 
         public void Select()
         {

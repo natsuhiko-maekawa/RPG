@@ -23,7 +23,6 @@ namespace BattleScene.InterfaceAdapter.Controller
         public void Subscribe(StateMachine stateMachine)
         {
             _battleSceneInputSystem.SetOnNextAction(stateMachine.Select);
-            _gameLoop.Subscribe(stateMachine.Start);
         }
     }
 }
