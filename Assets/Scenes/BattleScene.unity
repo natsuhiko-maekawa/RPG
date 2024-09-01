@@ -2732,7 +2732,8 @@ MonoBehaviour:
   parentReference:
     TypeName: Utility.UtilityLifetimeScope
   autoRun: 1
-  autoInjectGameObjects: []
+  autoInjectGameObjects:
+  - {fileID: 2054981623}
 --- !u!114 &809505088
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4768,6 +4769,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1588216062}
   - component: {fileID: 1588216061}
+  - component: {fileID: 1588216063}
   m_Layer: 0
   m_Name: Input
   m_TagString: Untagged
@@ -4941,6 +4943,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1588216063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1588216060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f6d1a45288b4e31877eb776fa69023a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1594794924
 GameObject:
   m_ObjectHideFlags: 0
@@ -6466,7 +6480,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2054981625}
-  - component: {fileID: 2054981624}
+  - component: {fileID: 2054981626}
   m_Layer: 0
   m_Name: BattleScene
   m_TagString: Untagged
@@ -6474,18 +6488,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2054981624
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2054981623}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e64969749b82437abf8b495353959641, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &2054981625
 Transform:
   m_ObjectHideFlags: 0
@@ -6501,6 +6503,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2054981626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2054981623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8610a816b394a5ca97c6f54f54ac627, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2055325478
 GameObject:
   m_ObjectHideFlags: 0

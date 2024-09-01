@@ -1,7 +1,9 @@
 ﻿using System;
+using BattleScene.InterfaceAdapter.Controller;
 using BattleScene.InterfaceAdapter.IInputSystem;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using VContainer;
 
 namespace BattleScene.Framework.InputSystem
 {
@@ -10,6 +12,19 @@ namespace BattleScene.Framework.InputSystem
         [SerializeField] private InputAction nextAction;
         [SerializeField] private InputAction cancelAction;
         [SerializeField] private InputAction selectAction;
+        // private SelectActionController _selectActionController;
+        //
+        // [Inject]
+        // public void Construct(
+        //     SelectActionController selectActionController)
+        // {
+        //     _selectActionController = selectActionController;
+        // }
+        //
+        // private void Awake()
+        // {
+        //     SetOnNextAction(_selectActionController.Select);
+        // }
 
         public void SetOnNextAction(Action action)
         {

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using BattleScene.Domain.Code;
+using UnityEngine;
 
 namespace BattleScene.UseCases.State.Battle
 {
@@ -20,5 +21,6 @@ namespace BattleScene.UseCases.State.Battle
         }
 
         public void Select() => _state.Select();
+        public void Select(ActionCode actionCode) => _state.Select(actionCode);
     }
 }

@@ -198,6 +198,8 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<SuffocationSkill>(Lifetime.Singleton);
             builder.Register<Utsusemi>(Lifetime.Singleton);
             builder.Register<Wabisuke>(Lifetime.Singleton);
+
+            builder.RegisterComponentInHierarchy<IGameLoop>();
             
             // TODO: DomainのServiceを登録している
             builder.Register<OrderedItemsDomainService>(Lifetime.Singleton);
