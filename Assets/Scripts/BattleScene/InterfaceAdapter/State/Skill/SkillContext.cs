@@ -1,4 +1,6 @@
-﻿namespace BattleScene.InterfaceAdapter.State.Skill
+﻿using UnityEngine;
+
+namespace BattleScene.InterfaceAdapter.State.Skill
 {
     public class SkillContext
     {
@@ -11,6 +13,7 @@
 
         public void TransitionTo(AbstractSkillState skillState)
         {
+            Debug.Log(skillState.GetType().Name);
             _skillState = skillState;
             _skillState.SetContext(this);
             _skillState.Start();

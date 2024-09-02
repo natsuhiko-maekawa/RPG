@@ -10,15 +10,18 @@ namespace BattleScene.InterfaceAdapter.State.Battle
     {
         private readonly IObjectResolver _container;
         private readonly IFactory<SkillValueObject, SkillCode> _skillFactory;
+        private readonly BuffStateFactory _buffStateFactory;
         private readonly DamageStateFactory _damageStateFactory;
         
         public SkillStateFactory(
             IObjectResolver container,
             IFactory<SkillValueObject, SkillCode> skillFactory,
+            BuffStateFactory buffStateFactory,
             DamageStateFactory damageStateFactory)
         {
             _container = container;
             _skillFactory = skillFactory;
+            _buffStateFactory = buffStateFactory;
             _damageStateFactory = damageStateFactory;
         }
 
@@ -26,6 +29,7 @@ namespace BattleScene.InterfaceAdapter.State.Battle
             skillCode: skillCode,
             container: _container, 
             skillFactory: _skillFactory,
+            buffStateFactory: _buffStateFactory,
             damageStateFactory: _damageStateFactory);
     }
 }
