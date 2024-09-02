@@ -12,17 +12,20 @@ namespace BattleScene.InterfaceAdapter.State.Battle
     {
         private readonly AttackCounterService _attackCounter;
         private readonly SelectTargetStateFactory _selectTargetStateFactory;
+        private readonly SkillStateFactory _skillStateFactory;
         private readonly IViewPresenter<GridViewOutputData> _gridView;
         private readonly IObjectResolver _container;
 
         public PlayerSelectActionState(
             AttackCounterService attackCounter,
             SelectTargetStateFactory selectTargetStateFactory,
+            SkillStateFactory skillStateFactory,
             IViewPresenter<GridViewOutputData> gridView,
             IObjectResolver container)
         {
             _attackCounter = attackCounter;
             _selectTargetStateFactory = selectTargetStateFactory;
+            _skillStateFactory = skillStateFactory;
             _gridView = gridView;
             _container = container;
         }
@@ -41,9 +44,10 @@ namespace BattleScene.InterfaceAdapter.State.Battle
 
         public override void Select(ActionCode actionCode)
         {
-            var nextState = actionCode switch
+            AbstractState nextState = actionCode switch
             {
                 ActionCode.Attack => _selectTargetStateFactory.Create(actionCode),
+                ActionCode.Defence => _skillStateFactory.Create(SkillCode.Defence),
                 _ => throw new ArgumentOutOfRangeException()
             };
             
