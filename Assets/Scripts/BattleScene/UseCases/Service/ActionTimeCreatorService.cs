@@ -26,7 +26,7 @@ namespace BattleScene.UseCases.Service
 
         public ImmutableList<ActionTimeEntity> Create(IList<CharacterId> characterIdList)
         {
-            if (_orderedItems.First().TryGetCharacterId(out var characterId))
+            if (!_orderedItems.First().TryGetCharacterId(out var characterId))
                 return ImmutableList<ActionTimeEntity>.Empty;
 
             return characterIdList

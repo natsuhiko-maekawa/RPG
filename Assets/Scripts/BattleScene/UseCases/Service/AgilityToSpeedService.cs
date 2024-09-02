@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using BattleScene.Domain.Aggregate;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
@@ -10,11 +11,11 @@ namespace BattleScene.UseCases.Service
     public class AgilityToSpeedService
     {
         private readonly IRepository<BuffEntity, BuffId> _buffRepository;
-        private readonly ICharacterRepository _characterRepository;
+        private readonly IRepository<CharacterAggregate, CharacterId> _characterRepository;
 
         public AgilityToSpeedService(
             IRepository<BuffEntity, BuffId> buffRepository,
-            ICharacterRepository characterRepository)
+            IRepository<CharacterAggregate, CharacterId> characterRepository)
         {
             _buffRepository = buffRepository;
             _characterRepository = characterRepository;

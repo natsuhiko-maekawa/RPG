@@ -281,6 +281,7 @@ namespace BattleScene.InterfaceAdapter
 
             builder.Register<OrderDecision>(Lifetime.Singleton);
             // builder.RegisterEntryPoint<Controller.Controller>();
+            builder.Register<EnemySkillSelector>(Lifetime.Singleton);
         }
     }
 }
