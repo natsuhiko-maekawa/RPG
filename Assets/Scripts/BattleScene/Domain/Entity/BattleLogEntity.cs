@@ -22,7 +22,7 @@ namespace BattleScene.Domain.Entity
             BattleLogId battleLogId,
             int sequence,
             int turn,
-            BuffSkillResultValueObject buff)
+            BuffValueObject buff)
         {
             Id = battleLogId;
             Sequence = sequence;

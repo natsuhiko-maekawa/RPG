@@ -16,14 +16,14 @@ namespace BattleScene.UseCases.Service
             _target = target;
         }
 
-        public BuffSkillResultValueObject Generate(
+        public BuffValueObject Generate(
             SkillCommonValueObject skillCommon,
             BuffParameterValueObject buffParameter)
         {
             _orderedItems.First().TryGetCharacterId(out var actorId);
             var targetIdList = _target.Get(actorId, skillCommon.Range);
 
-            return new BuffSkillResultValueObject(
+            return new BuffValueObject(
                 actorId: actorId,
                 skillCode: skillCommon.SkillCode,
                 buffCode: buffParameter.BuffCode,

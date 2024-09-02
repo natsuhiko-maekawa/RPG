@@ -6,9 +6,9 @@ using BattleScene.Domain.Interface;
 
 namespace BattleScene.Domain.ValueObject
 {
-    public class BuffSkillResultValueObject : ISkillResult
+    public class BuffValueObject : ISkillResult
     {
-        public BuffSkillResultValueObject(
+        public BuffValueObject(
             CharacterId actorId,
             SkillCode skillCode,
             BuffCode buffCode,
@@ -20,7 +20,7 @@ namespace BattleScene.Domain.ValueObject
             TargetIdList = targetIdList.ToImmutableList();
         }
 
-        public BuffSkillResultValueObject(
+        public BuffValueObject(
             CharacterId actorId,
             SkillCode skillCode)
         {

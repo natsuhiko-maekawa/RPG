@@ -19,7 +19,7 @@ namespace BattleScene.UseCases.Service
             _turnRepository = turnRepository;
         }
 
-        public void Log(BuffSkillResultValueObject buff)
+        public void Log(BuffValueObject buff)
         {
             var battleLogId = new BattleLogId();
             var sequence = _battleLogRepository.Select()
