@@ -28,6 +28,7 @@ namespace BattleScene.Framework.View
         private Image _window;
         private GridViewDto _dto;
         private GridState _gridState;
+        private int _id;
         
         private void Awake()
         {
@@ -117,6 +118,8 @@ namespace BattleScene.Framework.View
                 _gridState.Up();
             else
                 _gridState.Down();
+            var selectedRow = _gridState?.SelectedRow ?? 0;
+            _id = _dto?.RowList[selectedRow].RowId ?? 0;
             await StartAnimationAsync(_dto);
         }
         
@@ -128,9 +131,7 @@ namespace BattleScene.Framework.View
         
         public void SetSelectAction(Action<int> action)
         {
-            var selectedRow = _gridState?.SelectedRow ?? 0;
-            var id = _dto?.RowList[selectedRow].RowId ?? 0;
-            selectAction.performed += _ => action.Invoke(id);
+            selectAction.performed += _ => action.Invoke(_id);
             selectAction?.Enable();
         }
     }
