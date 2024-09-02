@@ -18,7 +18,7 @@ namespace BattleScene.UseCases.Service
 
         public BuffSkillResultValueObject Generate(
             SkillCommonValueObject skillCommon,
-            BuffValueObject buff)
+            BuffParameterValueObject buffParameter)
         {
             _orderedItems.First().TryGetCharacterId(out var actorId);
             var targetIdList = _target.Get(actorId, skillCommon.Range);
@@ -26,7 +26,7 @@ namespace BattleScene.UseCases.Service
             return new BuffSkillResultValueObject(
                 actorId: actorId,
                 skillCode: skillCommon.SkillCode,
-                buffCode: buff.BuffCode,
+                buffCode: buffParameter.BuffCode,
                 targetIdList: targetIdList);
         }
     }

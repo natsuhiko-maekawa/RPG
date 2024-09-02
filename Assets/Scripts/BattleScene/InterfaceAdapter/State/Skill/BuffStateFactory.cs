@@ -18,10 +18,10 @@ namespace BattleScene.InterfaceAdapter.State.Skill
 
         public BuffState Create(
             SkillCommonValueObject skillCommon,
-            BuffValueObject buff) => new BuffState(
+            BuffParameterValueObject buffParameter) => new BuffState(
             battleLogger: _battleLogger,
             buffGenerator: _buffGenerator,
             skillCommon: skillCommon,
-            buffParameter: buff);
+            buffParameter: buffParameter);
     }
 }

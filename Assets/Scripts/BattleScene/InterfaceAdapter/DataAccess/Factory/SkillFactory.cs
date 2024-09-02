@@ -89,10 +89,10 @@ namespace BattleScene.InterfaceAdapter.DataAccess.Factory
                 .ToImmutableList();
         }
 
-        private ImmutableList<BuffValueObject> CreateBuffParameterList(IList<AbstractBuff> buffList)
+        private ImmutableList<BuffParameterValueObject> CreateBuffParameterList(IList<AbstractBuff> buffList)
         {
             return buffList
-                .Select(x => new BuffValueObject(
+                .Select(x => new BuffParameterValueObject(
                     BuffCode: x.BuffCode,
                     Rate: x.Rate,
                     Turn: x.Turn,

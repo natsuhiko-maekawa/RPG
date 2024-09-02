@@ -8,13 +8,13 @@ namespace BattleScene.InterfaceAdapter.State.Skill
         private readonly BattleLoggerService _battleLogger;
         private readonly BuffGeneratorService _buffGenerator;
         private readonly SkillCommonValueObject _skillCommon;
-        private readonly BuffValueObject _buffParameter;
+        private readonly BuffParameterValueObject _buffParameter;
 
         public BuffState(
             BattleLoggerService battleLogger,
             BuffGeneratorService buffGenerator,
             SkillCommonValueObject skillCommon,
-            BuffValueObject buffParameter)
+            BuffParameterValueObject buffParameter)
         {
             _battleLogger = battleLogger;
             _buffGenerator = buffGenerator;
@@ -26,7 +26,7 @@ namespace BattleScene.InterfaceAdapter.State.Skill
         {
             var buff = _buffGenerator.Generate(
                 skillCommon: _skillCommon,
-                buff: _buffParameter);
+                buffParameter: _buffParameter);
             _battleLogger.Log(buff);
         }
     }
