@@ -233,7 +233,7 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<SkillStateFactory>(Lifetime.Singleton);
             builder.Register<BuffStateFactory>(Lifetime.Singleton);
             builder.Register<DamageStateFactory>(Lifetime.Singleton);
-            builder.Register<DamageMessageState>(Lifetime.Singleton);
+            builder.Register<SkillMessageStateFactory>(Lifetime.Singleton);
             builder.Register<TurnEndState>(Lifetime.Singleton);
             
             builder.Register<ActionTimeCreatorService>(Lifetime.Singleton);

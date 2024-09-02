@@ -1,6 +1,5 @@
 ﻿using BattleScene.Domain.ValueObject;
 using BattleScene.UseCases.Service;
-using VContainer;
 
 namespace BattleScene.InterfaceAdapter.State.Skill
 {
@@ -8,16 +7,16 @@ namespace BattleScene.InterfaceAdapter.State.Skill
     {
         private readonly BattleLoggerService _battleLogger;
         private readonly DamageGeneratorService _damageGenerator;
-        private readonly IObjectResolver _container;
+        private readonly SkillMessageStateFactory _skillMessageStateFactory;
 
         public DamageStateFactory(
             BattleLoggerService battleLogger,
             DamageGeneratorService damageGenerator,
-            IObjectResolver container)
+            SkillMessageStateFactory skillMessageStateFactory)
         {
             _battleLogger = battleLogger;
             _damageGenerator = damageGenerator;
-            _container = container;
+            _skillMessageStateFactory = skillMessageStateFactory;
         }
 
         public DamageState Create(
@@ -25,7 +24,7 @@ namespace BattleScene.InterfaceAdapter.State.Skill
             DamageParameterValueObject damageParameter) => new DamageState(
             battleLogger: _battleLogger,
             damageGenerator: _damageGenerator,
-            container: _container,
+            skillMessageStateFactory: _skillMessageStateFactory,
             skillCommon: skillCommon,
             damageParameter: damageParameter);
     }

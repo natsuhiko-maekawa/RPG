@@ -9,6 +9,7 @@ namespace BattleScene.InterfaceAdapter.State.Skill
         private readonly BattleLoggerService _battleLogger;
         private readonly BuffDomainService _buff;
         private readonly BuffGeneratorService _buffGenerator;
+        private readonly SkillMessageStateFactory _skillMessageStateFactory;
         private readonly SkillCommonValueObject _skillCommon;
         private readonly BuffParameterValueObject _buffParameter;
 
@@ -16,12 +17,14 @@ namespace BattleScene.InterfaceAdapter.State.Skill
             BattleLoggerService battleLogger,
             BuffDomainService buff,
             BuffGeneratorService buffGenerator,
+            SkillMessageStateFactory skillMessageStateFactory,
             SkillCommonValueObject skillCommon,
             BuffParameterValueObject buffParameter)
         {
             _battleLogger = battleLogger;
             _buff = buff;
             _buffGenerator = buffGenerator;
+            _skillMessageStateFactory = skillMessageStateFactory;
             _skillCommon = skillCommon;
             _buffParameter = buffParameter;
         }
@@ -33,6 +36,7 @@ namespace BattleScene.InterfaceAdapter.State.Skill
                 buffParameter: _buffParameter);
             _buff.Add(buff);
             _battleLogger.Log(buff);
+            SkillContext.TransitionTo(_skillMessageStateFactory.Create(SkillTypeCode.Buff));
         }
     }
 }

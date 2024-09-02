@@ -1,6 +1,5 @@
 ﻿using BattleScene.Domain.ValueObject;
 using BattleScene.UseCases.Service;
-using VContainer;
 
 namespace BattleScene.InterfaceAdapter.State.Skill
 {
@@ -10,18 +9,18 @@ namespace BattleScene.InterfaceAdapter.State.Skill
         private readonly SkillCommonValueObject _skillCommon;
         private readonly DamageParameterValueObject _damageParameter;
         private readonly BattleLoggerService _battleLogger;
-        private readonly IObjectResolver _container;
+        private readonly SkillMessageStateFactory _skillMessageStateFactory;
         
         public DamageState(
             BattleLoggerService battleLogger,
             DamageGeneratorService damageGenerator,
-            IObjectResolver container,
+            SkillMessageStateFactory skillMessageStateFactory,
             SkillCommonValueObject skillCommon,
             DamageParameterValueObject damageParameter)
         {
             _battleLogger = battleLogger;
             _damageGenerator = damageGenerator;
-            _container = container;
+            _skillMessageStateFactory = skillMessageStateFactory;
             _skillCommon = skillCommon;
             _damageParameter = damageParameter;
         }
@@ -32,7 +31,7 @@ namespace BattleScene.InterfaceAdapter.State.Skill
                 skillCommon: _skillCommon,
                 damageParameter: _damageParameter);
             _battleLogger.Log(damage);
-            SkillContext.TransitionTo(_container.Resolve<DamageMessageState>());
+            SkillContext.TransitionTo(_skillMessageStateFactory.Create(SkillTypeCode.Damage));
         }
     }
 }

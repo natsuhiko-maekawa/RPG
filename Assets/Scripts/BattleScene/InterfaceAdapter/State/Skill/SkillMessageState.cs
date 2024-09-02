@@ -9,20 +9,23 @@ using BattleScene.UseCases.View.MessageView.OutputBoundary;
 
 namespace BattleScene.InterfaceAdapter.State.Skill
 {
-    public class DamageMessageState : AbstractSkillState
+    public class SkillMessageState : AbstractSkillState
     {
         private readonly IFactory<SkillValueObject, SkillCode> _skillFactory;
         private readonly IRepository<BattleLogEntity, BattleLogId> _battleLogRepository;
         private readonly IMessageViewPresenter _messageView;
+        private readonly SkillTypeCode _skillTypeCode;
 
-        public DamageMessageState(
+        public SkillMessageState(
             IFactory<SkillValueObject, SkillCode> skillFactory,
             IRepository<BattleLogEntity, BattleLogId> battleLogRepository,
-            IMessageViewPresenter messageView)
+            IMessageViewPresenter messageView,
+            SkillTypeCode skillTypeCode)
         {
             _skillFactory = skillFactory;
             _battleLogRepository = battleLogRepository;
             _messageView = messageView;
+            _skillTypeCode = skillTypeCode;
         }
 
         public override void Start()
@@ -31,6 +34,11 @@ namespace BattleScene.InterfaceAdapter.State.Skill
                 .Max(x => x);
             var skill = _skillFactory.Create(battleLog.SkillCode);
             _messageView.Start(skill.SkillCommon.MessageCode);
+        }
+
+        public override void Select()
+        {
+            
         }
     }
 }
