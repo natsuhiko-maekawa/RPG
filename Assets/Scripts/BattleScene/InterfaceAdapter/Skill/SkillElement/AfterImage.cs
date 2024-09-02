@@ -5,6 +5,11 @@ namespace BattleScene.InterfaceAdapter.Skill.SkillElement
 {
     public class AfterImage : AbstractBuff
     {
+        public override BuffCode BuffCode { get; } = BuffCode.Speed;
+        public override float Rate { get; } = 2.0f;
+        public override int Turn { get; } = 5;
+        public override LifetimeCode LifetimeCode { get; } = LifetimeCode.ToEndTurn;
+
         public override BuffCode GetBuff()
         {
             return BuffCode.Speed;

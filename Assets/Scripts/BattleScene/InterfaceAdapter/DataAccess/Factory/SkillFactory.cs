@@ -27,12 +27,13 @@ namespace BattleScene.InterfaceAdapter.DataAccess.Factory
             var skill = Resolve(skillCode);
             var ailmentList = CreateAilmentValueObject(skill.AilmentList);
             var damageList = CreateDamageValueObject(skill.DamageList);
+            var buffParameterList = CreateBuffParameterList(skill.BuffList);
             return new SkillValueObject(
                 skillCode: skillCode,
                 range: skill.Range,
                 messageCode: skill.AttackMessageCode,
                 ailmentList: ailmentList,
-                buffList: null,
+                buffList: buffParameterList,
                 damageList: damageList);
         }
 
@@ -85,6 +86,17 @@ namespace BattleScene.InterfaceAdapter.DataAccess.Factory
                 .Select(x => new AilmentValueObject(
                     AilmentCode: x.AilmentCode,
                     LuckRate: x.LuckRate))
+                .ToImmutableList();
+        }
+
+        private ImmutableList<BuffValueObject> CreateBuffParameterList(IList<AbstractBuff> buffList)
+        {
+            return buffList
+                .Select(x => new BuffValueObject(
+                    BuffCode: x.BuffCode,
+                    Rate: x.Rate,
+                    Turn: x.Turn,
+                    LifetimeCode: x.LifetimeCode))
                 .ToImmutableList();
         }
 

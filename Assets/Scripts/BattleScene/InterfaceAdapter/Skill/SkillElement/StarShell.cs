@@ -5,6 +5,11 @@ namespace BattleScene.InterfaceAdapter.Skill.SkillElement
 {
     public class StarShell : AbstractBuff
     {
+        public override BuffCode BuffCode { get; } = BuffCode.HitRate;
+        public override float Rate { get; } = 2.0f;
+        public override int Turn { get; } = 15;
+        public override LifetimeCode LifetimeCode { get; } = LifetimeCode.ToEndTurn;
+
         public override BuffCode GetBuff()
         {
             return BuffCode.HitRate;
