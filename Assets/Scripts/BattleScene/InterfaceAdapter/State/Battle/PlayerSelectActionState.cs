@@ -51,6 +51,7 @@ namespace BattleScene.InterfaceAdapter.State.Battle
                 _ => throw new ArgumentOutOfRangeException()
             };
             
+            _gridView.Stop();
             Context.TransitionTo(nextState);
         }
     }
