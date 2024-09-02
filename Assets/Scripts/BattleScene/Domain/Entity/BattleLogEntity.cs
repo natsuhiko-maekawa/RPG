@@ -16,7 +16,24 @@ namespace BattleScene.Domain.Entity
         public CharacterId ActorId { get; }
         public SkillCode SkillCode { get; }
         public ImmutableList<CharacterId> TargetIdList { get; }
+        public BuffCode BuffCode { get; } = BuffCode.NoBuff;
 
+        public BattleLogEntity(
+            BattleLogId battleLogId,
+            int sequence,
+            int turn,
+            BuffSkillResultValueObject buff)
+        {
+            Id = battleLogId;
+            Sequence = sequence;
+            Turn = turn;
+            ActionCode = ActionCode.Skill;
+            ActorId = buff.ActorId;
+            TargetIdList = buff.TargetIdList;
+            SkillCode = buff.SkillCode;
+            BuffCode = buff.BuffCode;
+        }
+        
         public BattleLogEntity(
             BattleLogId battleLogId,
             int sequence,
@@ -27,10 +44,10 @@ namespace BattleScene.Domain.Entity
             Sequence = sequence;
             Turn = turn;
             ActionCode = ActionCode.Skill;
-            AttackList = damage.AttackList.ToImmutableList();
+            AttackList = damage.AttackList;
             ActorId = damage.ActorId;
             SkillCode = damage.SkillCode;
-            TargetIdList = damage.TargetIdList.ToImmutableList();
+            TargetIdList = damage.TargetIdList;
         }
 
         public int CompareTo(BattleLogEntity other)

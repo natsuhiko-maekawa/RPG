@@ -240,6 +240,7 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<AgilityToSpeedService>(Lifetime.Singleton);
             builder.Register<AilmentSkillService>(Lifetime.Singleton);
             builder.Register<AttackCounterService>(Lifetime.Singleton);
+            builder.Register<BuffGeneratorService>(Lifetime.Singleton);
             builder.Register<CharacterCreatorService>(Lifetime.Singleton);
             builder.Register<CharacterOutputDataCreatorService>(Lifetime.Singleton);
             builder.Register<CureSkillService>(Lifetime.Singleton);
