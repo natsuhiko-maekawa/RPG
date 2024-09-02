@@ -14,17 +14,20 @@ namespace BattleScene.InterfaceAdapter.State.Skill
         private readonly IFactory<SkillValueObject, SkillCode> _skillFactory;
         private readonly IRepository<BattleLogEntity, BattleLogId> _battleLogRepository;
         private readonly IMessageViewPresenter _messageView;
+        private readonly SkillEndState _skillEndState;
         private readonly SkillTypeCode _skillTypeCode;
 
         public SkillMessageState(
             IFactory<SkillValueObject, SkillCode> skillFactory,
             IRepository<BattleLogEntity, BattleLogId> battleLogRepository,
             IMessageViewPresenter messageView,
+            SkillEndState skillEndState,
             SkillTypeCode skillTypeCode)
         {
             _skillFactory = skillFactory;
             _battleLogRepository = battleLogRepository;
             _messageView = messageView;
+            _skillEndState = skillEndState;
             _skillTypeCode = skillTypeCode;
         }
 
@@ -38,7 +41,7 @@ namespace BattleScene.InterfaceAdapter.State.Skill
 
         public override void Select()
         {
-            
+            SkillContext.TransitionTo(_skillEndState);
         }
     }
 }

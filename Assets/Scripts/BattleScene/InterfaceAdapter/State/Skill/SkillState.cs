@@ -38,13 +38,15 @@ namespace BattleScene.InterfaceAdapter.State.Skill
 
         public override void Select()
         {
-            if (_skillContextQueue.TryDequeue(out var skillContext))
+            var skillContext = _skillContextQueue.Peek();
+            skillContext.Select();
+            if (skillContext.HasEndState() && _skillContextQueue.Count <= 1)
             {
-                skillContext.Select();
-                Context.TransitionTo(this);
+                Context.TransitionTo(_container.Resolve<TurnEndState>());
+                return;
             }
-            
-            Context.TransitionTo(_container.Resolve<TurnEndState>());
+
+            _skillContextQueue.Dequeue();
         }
 
         private void SetSkillContextQueue()

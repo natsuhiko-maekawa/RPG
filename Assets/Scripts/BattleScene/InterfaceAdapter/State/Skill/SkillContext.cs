@@ -20,5 +20,7 @@ namespace BattleScene.InterfaceAdapter.State.Skill
         }
 
         public void Select() => _skillState.Select();
+
+        public bool HasEndState() => _skillState is SkillEndState;
     }
 }
