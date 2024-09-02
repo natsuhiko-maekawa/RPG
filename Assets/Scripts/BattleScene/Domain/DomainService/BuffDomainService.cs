@@ -18,14 +18,14 @@ namespace BattleScene.Domain.DomainService
             _buffRepository = buffRepository;
         }
 
-        public void Register(BuffValueObject buffParameter)
+        public void Add(BuffValueObject buff)
         {
-            var turn = new TurnValueObject(buffParameter.Turn);
-            var buffList = buffParameter.TargetIdList
+            var turn = new TurnValueObject(buff.Turn);
+            var buffList = buff.TargetIdList
                 .Select(x => new BuffEntity(
                     characterId: x,
-                    buffCode: buffParameter.BuffCode,
-                    rate: buffParameter.Rate,
+                    buffCode: buff.BuffCode,
+                    rate: buff.Rate,
                     turn: turn))
                 .ToImmutableList();
             _buffRepository.Update(buffList);
