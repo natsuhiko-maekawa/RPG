@@ -4,6 +4,7 @@ using BattleScene.Domain.Code;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
+using BattleScene.Domain.ValueObject;
 
 namespace BattleScene.Domain.DomainService
 {
@@ -17,6 +18,19 @@ namespace BattleScene.Domain.DomainService
             _buffRepository = buffRepository;
         }
 
+        public void Register(BuffValueObject buffParameter)
+        {
+            var turn = new TurnValueObject(buffParameter.Turn);
+            var buffList = buffParameter.TargetIdList
+                .Select(x => new BuffEntity(
+                    characterId: x,
+                    buffCode: buffParameter.BuffCode,
+                    rate: buffParameter.Rate,
+                    turn: turn))
+                .ToImmutableList();
+            _buffRepository.Update(buffList);
+        }
+        
         public float GetRate(CharacterId characterId, BuffCode buffCode)
         {
             var buffId = new BuffId(characterId, buffCode);

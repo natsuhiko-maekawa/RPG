@@ -25,9 +25,12 @@ namespace BattleScene.UseCases.Service
 
             return new BuffValueObject(
                 actorId: actorId,
+                targetIdList: targetIdList,
                 skillCode: skillCommon.SkillCode,
                 buffCode: buffParameter.BuffCode,
-                targetIdList: targetIdList);
+                rate: buffParameter.Rate,
+                turn: buffParameter.Turn,
+                lifetimeCode: buffParameter.LifetimeCode);
         }
     }
 }

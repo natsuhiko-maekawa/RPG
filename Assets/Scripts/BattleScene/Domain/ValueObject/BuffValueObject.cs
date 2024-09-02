@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.Immutable;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.Id;
@@ -10,31 +11,31 @@ namespace BattleScene.Domain.ValueObject
     {
         public BuffValueObject(
             CharacterId actorId,
+            IList<CharacterId> targetIdList,
             SkillCode skillCode,
             BuffCode buffCode,
-            IList<CharacterId> targetIdList)
+            float rate,
+            int turn,
+            LifetimeCode lifetimeCode)
         {
             ActorId = actorId;
+            TargetIdList = targetIdList.ToImmutableList();
             SkillCode = skillCode;
             BuffCode = buffCode;
-            TargetIdList = targetIdList.ToImmutableList();
+            Rate = rate;
+            Turn = turn;
+            LifetimeCode = lifetimeCode;
         }
 
-        public BuffValueObject(
-            CharacterId actorId,
-            SkillCode skillCode)
-        {
-            ActorId = actorId;
-            SkillCode = skillCode;
-            BuffCode = BuffCode.NoBuff;
-            TargetIdList = ImmutableList<CharacterId>.Empty;
-        }
-
-        public BuffCode BuffCode { get; }
         public CharacterId ActorId { get; }
-        public SkillCode SkillCode { get; }
         public ImmutableList<CharacterId> TargetIdList { get; }
+        public SkillCode SkillCode { get; }
+        public BuffCode BuffCode { get; }
+        public float Rate { get; }
+        public int Turn { get; }
+        public LifetimeCode LifetimeCode { get; }
 
+        [Obsolete]
         public bool Success()
         {
             return !TargetIdList.IsEmpty;
