@@ -5,11 +5,8 @@ using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
 using BattleScene.UseCases.OldEvent.Interface;
 using BattleScene.UseCases.OldEvent.Runner;
-using BattleScene.UseCases.OutputDataFactory;
 using BattleScene.UseCases.Service;
 using BattleScene.UseCases.View.InfoView.OutputBoundary;
-using BattleScene.UseCases.View.MessageView.OutputBoundary;
-using BattleScene.UseCases.View.PlayerImageView.OutputBoundary;
 using BattleScene.UseCases.View.SelectActionView.OutputBoundary;
 using UnityEngine;
 using static BattleScene.UseCases.OldEvent.Runner.EventCode;
@@ -23,9 +20,6 @@ namespace BattleScene.UseCases.OldEvent
         private readonly AttackCounterService _attackCounter;
         private readonly CharactersDomainService _characters;
         private readonly IInfoViewPresenter _infoView;
-        private readonly IMessageViewPresenter _messageView;
-        private readonly SelectActionEventOutputDataFactory _outputDataFactory;
-        private readonly IPlayerImageViewPresenter _playerImageView;
         private readonly ISelectActionViewPresenter _selectActionView;
         private readonly ISelectorRepository _selectorRepository;
         private readonly SkillCreatorService _skillCreator;
@@ -35,9 +29,6 @@ namespace BattleScene.UseCases.OldEvent
             AttackCounterService attackCounter,
             CharactersDomainService characters,
             IInfoViewPresenter infoView,
-            IMessageViewPresenter messageView,
-            SelectActionEventOutputDataFactory outputDataFactory,
-            IPlayerImageViewPresenter playerImageView,
             ISelectActionViewPresenter selectActionView,
             ISelectorRepository selectorRepository,
             SkillCreatorService skillCreator,
@@ -46,9 +37,6 @@ namespace BattleScene.UseCases.OldEvent
             _attackCounter = attackCounter;
             _characters = characters;
             _infoView = infoView;
-            _messageView = messageView;
-            _outputDataFactory = outputDataFactory;
-            _playerImageView = playerImageView;
             _selectActionView = selectActionView;
             _selectorRepository = selectorRepository;
             _skillCreator = skillCreator;
@@ -109,9 +97,9 @@ namespace BattleScene.UseCases.OldEvent
 
         private void StartView()
         {
-            _selectActionView.Start(_outputDataFactory.CreateSelectActionOutputData());
-            _messageView.Start(_outputDataFactory.CreateMessageOutputDataFactory());
-            _playerImageView.Start(_outputDataFactory.CreatePlayerImageOutputData());
+            // _selectActionView.Start(_outputDataFactory.CreateSelectActionOutputData());
+            // _messageView.Start(_outputDataFactory.CreateMessageOutputDataFactory());
+            // _playerImageView.Start(_outputDataFactory.CreatePlayerImageOutputData());
         }
     }
 }
