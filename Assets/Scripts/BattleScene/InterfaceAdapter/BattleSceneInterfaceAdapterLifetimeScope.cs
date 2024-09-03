@@ -134,7 +134,7 @@ namespace BattleScene.InterfaceAdapter
                 .Register<IRepository<TechnicalPointAggregate, CharacterId>,
                     Repository<TechnicalPointAggregate, CharacterId>>(Lifetime.Singleton);
             builder.Register<IRepository<TurnEntity, TurnId>, Repository<TurnEntity, TurnId>>(Lifetime.Singleton);
-            builder.Register<IFactory<SkillValueObject, SkillCode>, SkillFactory>(Lifetime.Singleton);
+            // builder.Register<IFactory<SkillValueObject, SkillCode>, SkillFactory>(Lifetime.Singleton);
             builder.Register<IFactory<SkillViewInfoValueObject, SkillCode>, SkillViewInfoListScriptableObjectFactory>
                 (Lifetime.Singleton);
 
@@ -147,7 +147,7 @@ namespace BattleScene.InterfaceAdapter
             builder.RegisterComponentInHierarchy<IFactory<EnemyViewInfoDto, CharacterTypeCode>>();
             builder.RegisterComponentInHierarchy<IFactory<MessageDto, MessageCode>>();
             builder.RegisterComponentInHierarchy<IFactory<PlayerViewInfoDto, CharacterTypeCode>>();
-            builder.Register<IPlayerPropertyFactory, PlayerPropertyFactory>(Lifetime.Singleton);
+            // builder.Register<IFactory<PlayerPropertyDto, CharacterTypeCode>, PlayerPropertyFactory>(Lifetime.Singleton);
             builder.Register<IPropertyFactory, PropertyFactory>(Lifetime.Singleton);
             builder.Register<ISlipDamageFactory, SlipDamageFactory>(Lifetime.Singleton);
 

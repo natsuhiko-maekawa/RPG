@@ -7,17 +7,20 @@ namespace BattleScene.InterfaceAdapter.State.Skill
     {
         private readonly BattleLoggerService _battleLogger;
         private readonly RestoreGeneratorService _restoreGenerator;
+        private readonly SkillEndState _skillEndState;
         private readonly SkillCommonValueObject _skillCommon;
         private readonly RestoreParameterValueObject _restoreParameter;
 
         public RestoreState(
             SkillCommonValueObject skillCommon,
             RestoreParameterValueObject restoreParameter,
+            SkillEndState skillEndState,
             BattleLoggerService battleLogger,
             RestoreGeneratorService restoreGenerator)
         {
             _skillCommon = skillCommon;
             _restoreParameter = restoreParameter;
+            _skillEndState = skillEndState;
             _battleLogger = battleLogger;
             _restoreGenerator = restoreGenerator;
         }
@@ -28,6 +31,7 @@ namespace BattleScene.InterfaceAdapter.State.Skill
                 skillCommon: _skillCommon,
                 restoreParameter: _restoreParameter);
             _battleLogger.Log(restore);
+            SkillContext.TransitionTo(_skillEndState);
         }
     }
 }

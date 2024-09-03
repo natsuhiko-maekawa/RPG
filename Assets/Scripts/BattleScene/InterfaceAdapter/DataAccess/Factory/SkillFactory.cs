@@ -12,7 +12,7 @@ using static BattleScene.Domain.Code.SkillCode;
 
 namespace BattleScene.InterfaceAdapter.DataAccess.Factory
 {
-    public class SkillFactory : IFactory<SkillValueObject, SkillCode>
+    public class SkillFactory //: IFactory<SkillValueObject, SkillCode>
     {
         private readonly IObjectResolver _container;
 

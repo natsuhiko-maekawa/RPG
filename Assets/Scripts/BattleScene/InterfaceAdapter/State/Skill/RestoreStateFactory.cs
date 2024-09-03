@@ -7,6 +7,7 @@ namespace BattleScene.InterfaceAdapter.State.Skill
     {
         private readonly BattleLoggerService _battleLogger;
         private readonly RestoreGeneratorService _restoreGenerator;
+        private readonly SkillEndState _skillEndState;
 
         public RestoreStateFactory(
             BattleLoggerService battleLogger,
@@ -22,6 +23,7 @@ namespace BattleScene.InterfaceAdapter.State.Skill
             skillCommon: skillCommon,
             restoreParameter: restoreParameter,
             battleLogger: _battleLogger,
-            restoreGenerator: _restoreGenerator);
+            restoreGenerator: _restoreGenerator,
+            skillEndState: _skillEndState);
     }
 }

@@ -12,20 +12,25 @@ namespace BattleScene.Domain.DomainService
     public class PlayerDomainService
     {
         private readonly IPropertyFactory _propertyFactory;
+        // private readonly IFactory<PlayerPropertyDto, CharacterTypeCode> _playerPropertyFactory;
         private readonly IRepository<ActionTimeEntity, CharacterId> _actionTimeRepository;
         private readonly IRepository<CharacterAggregate, CharacterId> _characterRepository;
         private readonly IRepository<HitPointAggregate, CharacterId> _hitPointRepository;
+        private readonly IRepository<TechnicalPointAggregate, CharacterId> _technicalPointRepository;
 
         public PlayerDomainService(
             IPropertyFactory propertyFactory, 
             IRepository<ActionTimeEntity, CharacterId> actionTimeRepository,
             IRepository<CharacterAggregate, CharacterId> characterRepository,
-            IRepository<HitPointAggregate, CharacterId> hitPointRepository)
+            IRepository<HitPointAggregate, CharacterId> hitPointRepository,
+            IRepository<TechnicalPointAggregate, CharacterId> technicalPointRepository
+            )
         {
             _propertyFactory = propertyFactory;
             _actionTimeRepository = actionTimeRepository;
             _characterRepository = characterRepository;
             _hitPointRepository = hitPointRepository;
+            _technicalPointRepository = technicalPointRepository;
         }
 
         public void Add()
@@ -37,6 +42,8 @@ namespace BattleScene.Domain.DomainService
             
             var hitPoint = new HitPointAggregate(characterId, property.HitPoint);
             _hitPointRepository.Update(hitPoint);
+            
+            // var technicalPoint = new TechnicalPointAggregate(characterId);
 
             var actionTime = new ActionTimeEntity(characterId);
             _actionTimeRepository.Update(actionTime);

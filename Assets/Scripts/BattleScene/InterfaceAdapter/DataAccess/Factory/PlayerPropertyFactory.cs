@@ -1,25 +1,16 @@
-﻿using System.Linq;
+﻿using BattleScene.Domain.Code;
 using BattleScene.Domain.IFactory;
 using BattleScene.Domain.ValueObject;
-using BattleScene.InterfaceAdapter.DataAccess.IResource;
+using BattleScene.InterfaceAdapter.DataAccess.Factory.Dto;
+using BattleScene.InterfaceAdapter.DataAccess.Resource;
 
 namespace BattleScene.InterfaceAdapter.DataAccess.Factory
 {
-    public class PlayerPropertyFactory : IPlayerPropertyFactory
+    public class PlayerPropertyFactory : IFactory<PlayerPropertyValueObject, CharacterTypeCode>
     {
-        private readonly IPlayerPropertyResource _playerPropertyResource;
-
-        public PlayerPropertyFactory(
-            IPlayerPropertyResource playerPropertyResource)
+        public PlayerPropertyValueObject Create(CharacterTypeCode id)
         {
-            _playerPropertyResource = playerPropertyResource;
-        }
-
-        public PlayerPropertyValueObject Get()
-        {
-            return _playerPropertyResource.Get()
-                .Select(x => new PlayerPropertyValueObject(x.technicalPoint, x.FatalitySkills))
-                .First();
+            throw new System.NotImplementedException();
         }
     }
 }
