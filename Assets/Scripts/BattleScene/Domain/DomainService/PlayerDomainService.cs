@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using BattleScene.Domain.Aggregate;
 using BattleScene.Domain.Code;
+using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.DataAccess.ObsoleteIFactory;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
@@ -12,14 +13,15 @@ namespace BattleScene.Domain.DomainService
     public class PlayerDomainService
     {
         private readonly IPropertyFactory _propertyFactory;
-        // private readonly IFactory<PlayerPropertyDto, CharacterTypeCode> _playerPropertyFactory;
+        private readonly IFactory<PlayerPropertyValueObject, CharacterTypeCode> _playerPropertyFactory;
         private readonly IRepository<ActionTimeEntity, CharacterId> _actionTimeRepository;
         private readonly IRepository<CharacterAggregate, CharacterId> _characterRepository;
         private readonly IRepository<HitPointAggregate, CharacterId> _hitPointRepository;
         private readonly IRepository<TechnicalPointAggregate, CharacterId> _technicalPointRepository;
 
         public PlayerDomainService(
-            IPropertyFactory propertyFactory, 
+            IPropertyFactory propertyFactory,
+            IFactory<PlayerPropertyValueObject, CharacterTypeCode> playerPropertyFactory,
             IRepository<ActionTimeEntity, CharacterId> actionTimeRepository,
             IRepository<CharacterAggregate, CharacterId> characterRepository,
             IRepository<HitPointAggregate, CharacterId> hitPointRepository,
@@ -27,6 +29,7 @@ namespace BattleScene.Domain.DomainService
             )
         {
             _propertyFactory = propertyFactory;
+            _playerPropertyFactory = playerPropertyFactory;
             _actionTimeRepository = actionTimeRepository;
             _characterRepository = characterRepository;
             _hitPointRepository = hitPointRepository;
@@ -42,8 +45,10 @@ namespace BattleScene.Domain.DomainService
             
             var hitPoint = new HitPointAggregate(characterId, property.HitPoint);
             _hitPointRepository.Update(hitPoint);
-            
-            // var technicalPoint = new TechnicalPointAggregate(characterId);
+
+            var playerProperty = _playerPropertyFactory.Create(CharacterTypeCode.Player);
+            var technicalPoint = new TechnicalPointAggregate(characterId, playerProperty.TechnicalPoint);
+            _technicalPointRepository.Update(technicalPoint);
 
             var actionTime = new ActionTimeEntity(characterId);
             _actionTimeRepository.Update(actionTime);

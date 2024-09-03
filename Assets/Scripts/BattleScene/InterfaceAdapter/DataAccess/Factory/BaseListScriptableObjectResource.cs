@@ -9,7 +9,7 @@ namespace BattleScene.InterfaceAdapter.DataAccess.Factory
     public abstract class BaseListScriptableObjectResource<TListScriptableObject, TItem, TId>
         : MonoBehaviour, IResource<TItem, TId>
         where TListScriptableObject : BaseListScriptableObject<TItem, TId>
-        where TItem : IUniqueItem<TId>
+        where TItem : IUnique<TId>
     {
         [SerializeField] private TListScriptableObject listScriptableObject;
         
@@ -21,7 +21,7 @@ namespace BattleScene.InterfaceAdapter.DataAccess.Factory
         public TItem Get(TId id)
         {
             return listScriptableObject.ItemList
-                .First(x => Equals(x.Id, id));
+                .First(x => Equals(x.Key, id));
         }
     }
 }

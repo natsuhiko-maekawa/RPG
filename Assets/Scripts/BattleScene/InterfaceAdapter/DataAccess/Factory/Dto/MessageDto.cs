@@ -6,11 +6,11 @@ using UnityEngine;
 namespace BattleScene.InterfaceAdapter.DataAccess.Factory.Dto
 {
     [Serializable]
-    public class MessageDto : IUniqueItem<MessageCode>, ISerializationCallbackReceiver
+    public class MessageDto : IUnique<MessageCode>, ISerializationCallbackReceiver
     {
         [SerializeField] private string key;
         [SerializeField] private string message;
-        public MessageCode Id { get; private set; }
+        public MessageCode Key { get; private set; }
         public string Message { get; private set; }
         
         public void OnBeforeSerialize()
@@ -19,7 +19,7 @@ namespace BattleScene.InterfaceAdapter.DataAccess.Factory.Dto
 
         public void OnAfterDeserialize()
         {
-            Id = Enum.Parse<MessageCode>(key);
+            Key = Enum.Parse<MessageCode>(key);
             Message = message;
         }
     }

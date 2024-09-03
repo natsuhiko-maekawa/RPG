@@ -6,10 +6,10 @@ using UnityEngine;
 namespace BattleScene.Domain.ValueObject
 {
     [Serializable]
-    public class PlayerImageValueObject : IUniqueItem<PlayerImageCode>, ISerializationCallbackReceiver
+    public class PlayerImageValueObject : IUnique<PlayerImageCode>, ISerializationCallbackReceiver
     {
         [SerializeField] private string playerImageCode;
-        public PlayerImageCode Id { get; private set; }
+        public PlayerImageCode Key { get; private set; }
         public string PlayerImagePath { get; private set; }
         
         public void OnBeforeSerialize()
@@ -18,7 +18,7 @@ namespace BattleScene.Domain.ValueObject
 
         public void OnAfterDeserialize()
         {
-            Id = Enum.Parse<PlayerImageCode>(playerImageCode);
+            Key = Enum.Parse<PlayerImageCode>(playerImageCode);
             PlayerImagePath = $"{playerImageCode}[{playerImageCode}]";
         }
     }

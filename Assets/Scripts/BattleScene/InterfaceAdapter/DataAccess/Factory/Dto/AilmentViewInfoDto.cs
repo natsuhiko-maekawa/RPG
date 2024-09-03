@@ -6,13 +6,13 @@ using UnityEngine;
 namespace BattleScene.InterfaceAdapter.DataAccess.Factory.Dto
 {
     [Serializable]
-    public class AilmentViewInfoDto : IUniqueItem<AilmentCode>, ISerializationCallbackReceiver
+    public class AilmentViewInfoDto : IUnique<AilmentCode>, ISerializationCallbackReceiver
     {
         [SerializeField] private string ailmentCode;
         [SerializeField] private string ailmentName;
         [SerializeField] private string messageCode;
         [SerializeField] private string playerImageCode;
-        public AilmentCode Id { get; private set; }
+        public AilmentCode Key { get; private set; }
         public string AilmentName { get; set; }
         public MessageCode MessageCode { get; private set; }
         public PlayerImageCode PlayerImageCode { get; private set; }
@@ -23,7 +23,7 @@ namespace BattleScene.InterfaceAdapter.DataAccess.Factory.Dto
 
         public void OnAfterDeserialize()
         {
-            Id = Enum.Parse<AilmentCode>(ailmentCode);
+            Key = Enum.Parse<AilmentCode>(ailmentCode);
             AilmentName = ailmentName;
             MessageCode = Enum.Parse<MessageCode>(messageCode);
             PlayerImageCode = Enum.Parse<PlayerImageCode>(playerImageCode);

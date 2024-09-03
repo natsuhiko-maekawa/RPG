@@ -6,13 +6,13 @@ using UnityEngine;
 namespace BattleScene.Domain.ValueObject
 {
     [Serializable]
-    public class SkillViewInfoValueObject : IUniqueItem<SkillCode>, ISerializationCallbackReceiver
+    public class SkillViewInfoValueObject : IUnique<SkillCode>, ISerializationCallbackReceiver
     {
         [SerializeField] private string id;
         [SerializeField] private string skillName;
         [SerializeField] private string playerImageCode;
         [SerializeField] private string description;
-        public SkillCode Id { get; private set; }
+        public SkillCode Key { get; private set; }
         public string SkillName { get; private set; }
         public PlayerImageCode PlayerImageCode { get; private set; }
         public MessageCode Description { get; private set; }
@@ -23,7 +23,7 @@ namespace BattleScene.Domain.ValueObject
 
         public void OnAfterDeserialize()
         {
-            Id = Enum.Parse<SkillCode>(id);
+            Key = Enum.Parse<SkillCode>(id);
             SkillName = skillName;
             PlayerImageCode = playerImageCode.Length == 0
                 ? PlayerImageCode.NoImage

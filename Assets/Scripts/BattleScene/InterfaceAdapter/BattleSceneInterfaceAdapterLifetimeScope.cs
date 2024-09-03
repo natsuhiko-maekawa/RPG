@@ -140,6 +140,9 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<IResource<SkillViewInfoValueObject, SkillCode>, SkillViewInfoListScriptableObjectResource>
                 (Lifetime.Singleton);
 
+            builder.Register<IFactory<PlayerPropertyValueObject, CharacterTypeCode>, PlayerPropertyFactory>
+                (Lifetime.Singleton);
+            
             builder.Register<IAilmentFactory, AilmentFactory>(Lifetime.Singleton);
             builder.Register<IAilmentViewInfoFactory, AilmentViewInfoFactory>(Lifetime.Singleton);
             builder.Register<IResource<AilmentViewInfoDto, AilmentCode>, AilmentViewInfoListScriptableObjectResource>(

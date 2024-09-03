@@ -19,7 +19,7 @@ namespace BattleScene.InterfaceAdapter.DataAccess.Factory
         public AilmentViewInfoValueObject Create(AilmentCode ailmentCode)
         {
             var ailmentViewInfoDto = _ailmentViewInfoResource.Get()
-                .First(x => x.Id == ailmentCode);
+                .First(x => x.Key == ailmentCode);
             return new AilmentViewInfoValueObject(
                 ailmentCode,
                 ailmentViewInfoDto.AilmentName,

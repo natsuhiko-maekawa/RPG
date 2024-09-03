@@ -6,11 +6,11 @@ using UnityEngine;
 namespace BattleScene.InterfaceAdapter.DataAccess.Factory.Dto
 {
     [Serializable]
-    public class EnemyViewInfoDto : IUniqueItem<CharacterTypeCode>, ISerializationCallbackReceiver
+    public class EnemyViewInfoDto : IUnique<CharacterTypeCode>, ISerializationCallbackReceiver
     {
         [SerializeField] private string id;
         [SerializeField] private string enemyName;
-        public CharacterTypeCode Id { get; private set; }
+        public CharacterTypeCode Key { get; private set; }
         public string EnemyName { get; private set; }
         public string EnemyImagePath { get; private set; }
         
@@ -20,7 +20,7 @@ namespace BattleScene.InterfaceAdapter.DataAccess.Factory.Dto
 
         public void OnAfterDeserialize()
         {
-            Id = Enum.Parse<CharacterTypeCode>(id);
+            Key = Enum.Parse<CharacterTypeCode>(id);
             EnemyName = enemyName;
             EnemyImagePath = $"{id}[{id}]";
         }

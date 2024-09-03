@@ -22,16 +22,16 @@ namespace BattleScene.InterfaceAdapter.DataAccess.Factory
             _container = container;
         }
 
-        public SkillValueObject Create(SkillCode skillCode)
+        public SkillValueObject Create(SkillCode key)
         {
-            var skill = Resolve(skillCode);
+            var skill = Resolve(key);
             // TODO: 命名をやり直す
             var ailmentList = CreateAilmentValueObject(skill.AilmentList);
             var damageList = CreateDamageValueObject(skill.DamageList);
             var buffParameterList = CreateBuffParameterList(skill.BuffList);
             var restoreParameterList = CreateRestoreParameterList(skill.RestoreList);
             return new SkillValueObject(
-                skillCode: skillCode,
+                skillCode: key,
                 range: skill.Range,
                 messageCode: skill.AttackMessageCode,
                 ailmentList: ailmentList,

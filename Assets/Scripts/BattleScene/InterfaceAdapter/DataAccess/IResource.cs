@@ -1,7 +1,9 @@
-﻿namespace BattleScene.InterfaceAdapter.DataAccess
+﻿using System.Collections.Immutable;
+
+namespace BattleScene.InterfaceAdapter.DataAccess
 {
-    public interface IResource<out TItem, in TId>
+    public interface IResource<out TItem, in TKey>
     {
-        public TItem Get(TId id);
+        public TItem Get(TKey key);
     }
 }
