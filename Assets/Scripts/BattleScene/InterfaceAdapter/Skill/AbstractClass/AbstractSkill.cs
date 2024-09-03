@@ -26,8 +26,6 @@ namespace BattleScene.InterfaceAdapter.Skill.AbstractClass
         public virtual ImmutableList<AbstractBuff> BuffList { get; } = ImmutableList<AbstractBuff>.Empty;
         public virtual ImmutableList<AbstractCure> CureList { get; } = ImmutableList<AbstractCure>.Empty;
         public virtual ImmutableList<AbstractReset> ResetList { get; } = ImmutableList<AbstractReset>.Empty;
-
-        public virtual ImmutableList<AbstractRestoreTechnicalPoint> RestoreTechnicalPointList { get; } =
-            ImmutableList<AbstractRestoreTechnicalPoint>.Empty;
+        public virtual ImmutableList<AbstractRestore> RestoreList { get; } = ImmutableList<AbstractRestore>.Empty;
     }
 }

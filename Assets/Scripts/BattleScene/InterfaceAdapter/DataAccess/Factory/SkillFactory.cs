@@ -25,9 +25,11 @@ namespace BattleScene.InterfaceAdapter.DataAccess.Factory
         public SkillValueObject Create(SkillCode skillCode)
         {
             var skill = Resolve(skillCode);
+            // TODO: 命名をやり直す
             var ailmentList = CreateAilmentValueObject(skill.AilmentList);
             var damageList = CreateDamageValueObject(skill.DamageList);
             var buffParameterList = CreateBuffParameterList(skill.BuffList);
+            var restoreParameterList = CreateRestoreParameterList(skill.RestoreList);
             return new SkillValueObject(
                 skillCode: skillCode,
                 range: skill.Range,
@@ -112,6 +114,15 @@ namespace BattleScene.InterfaceAdapter.DataAccess.Factory
                     DamageExpressionCode: x.DamageExpressionCode,
                     HitEvaluationCode: x.HitEvaluationCode,
                     AttacksWeakPointEvaluationCode: x.AttacksWeakPointEvaluationCode))
+                .ToImmutableList();
+        }
+
+        private ImmutableList<RestoreParameterValueObject> CreateRestoreParameterList(
+            IList<AbstractRestore> restoreList)
+        {
+            return restoreList
+                .Select(x => new RestoreParameterValueObject(
+                    TechnicalPoint: x.TechnicalPoint))
                 .ToImmutableList();
         }
     }

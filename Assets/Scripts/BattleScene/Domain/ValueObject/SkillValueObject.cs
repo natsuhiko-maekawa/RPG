@@ -1,18 +1,23 @@
-﻿using System.Collections.Immutable;
+﻿using System;
+using System.Collections.Immutable;
 using BattleScene.Domain.Code;
+using Range = BattleScene.Domain.Code.Range;
 
 namespace BattleScene.Domain.ValueObject
 {
     public class SkillValueObject
     {
+        [Obsolete]
         public SkillCode SkillCode { get; }
         public int TechnicalPoint { get; }
         public ImmutableList<BodyPartCode> DependencyList { get; }
         public Range Range { get; }
         public SkillCommonValueObject SkillCommon { get; }
+        // TODO: 命名をやり直す
         public ImmutableList<AilmentValueObject> AilmentList { get; }
         public ImmutableList<BuffParameterValueObject> BuffList { get; }
         public ImmutableList<DamageParameterValueObject> DamageList { get; }
+        public ImmutableList<RestoreParameterValueObject> RestoreParameterList { get; }
 
         public SkillValueObject(
             SkillCode skillCode,
@@ -22,7 +27,8 @@ namespace BattleScene.Domain.ValueObject
             ImmutableList<BodyPartCode> dependencyList = null,
             ImmutableList<AilmentValueObject> ailmentList = null,
             ImmutableList<BuffParameterValueObject> buffList = null,
-            ImmutableList<DamageParameterValueObject> damageList = null)
+            ImmutableList<DamageParameterValueObject> damageList = null,
+            ImmutableList<RestoreParameterValueObject> restoreParameterList = null)
         {
             SkillCode = skillCode;
             Range = range;
@@ -37,6 +43,7 @@ namespace BattleScene.Domain.ValueObject
             AilmentList = ailmentList ?? ImmutableList<AilmentValueObject>.Empty;
             BuffList = buffList ?? ImmutableList<BuffParameterValueObject>.Empty;
             DamageList = damageList ?? ImmutableList<DamageParameterValueObject>.Empty;
+            RestoreParameterList = restoreParameterList ?? ImmutableList<RestoreParameterValueObject>.Empty;
         }
     }
 }

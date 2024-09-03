@@ -17,7 +17,8 @@ namespace BattleScene.InterfaceAdapter.Skill
 
         public override ImmutableList<AbstractBuff> BuffList { get; }
             = ImmutableList.Create<AbstractBuff>(new Defence());
-        // TODO: TPを回復するスキルをAddする
 
+        public override ImmutableList<AbstractRestore> RestoreList { get; }
+            = ImmutableList.Create<AbstractRestore>(new BasicRestore());
     }
 }
