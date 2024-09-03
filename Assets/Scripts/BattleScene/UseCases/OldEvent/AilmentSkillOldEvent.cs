@@ -66,8 +66,8 @@ namespace BattleScene.UseCases.OldEvent
 
             // ダメージを与えるスキルで状態異常に失敗したとき、失敗のメッセージを表示せず次のイベントに移る
             // 失敗のメッセージを表示しているとゲームのテンポが悪くなるため
-            if (_result.TryGetLast<DamageValueObject>(out _)
-                && !ailmentSkillResult.Success()) return EventCode.SwitchSkillEvent;
+            // if (_result.TryGetLast<DamageValueObject>(out _)
+            //     && !ailmentSkillResult.Success()) return EventCode.SwitchSkillEvent;
 
             // 状態異常に失敗したとき、失敗のメッセージを表示する
             if (!ailmentSkillResult.Success()) return EventCode.AilmentFailureViewEvent;

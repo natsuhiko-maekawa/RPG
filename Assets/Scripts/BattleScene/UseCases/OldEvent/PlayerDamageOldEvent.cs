@@ -2,8 +2,6 @@ using BattleScene.Domain.Code;
 using BattleScene.Domain.DataAccess.ObsoleteIFactory;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.IRepository;
-using BattleScene.Domain.ValueObject;
-using BattleScene.UseCases.OldEvent.Interface;
 using BattleScene.UseCases.OldEvent.Runner;
 using BattleScene.UseCases.Service;
 using BattleScene.UseCases.View.AttackCountView.OutputBoundary;
@@ -22,7 +20,7 @@ using static BattleScene.UseCases.OldEvent.Runner.EventCode;
 
 namespace BattleScene.UseCases.OldEvent
 {
-    internal class PlayerDamageOldEvent : IOldEvent, IWait
+    internal class PlayerDamageOldEvent
     {
         private readonly AttackCountOutputDataFactory _attackCountOutputDataFactory;
         private readonly IAttackCountViewPresenter _attackCountViewPresenter;
@@ -39,7 +37,6 @@ namespace BattleScene.UseCases.OldEvent
         private readonly IMessageViewPresenter _messageViewPresenter;
         private readonly OrderedItemsDomainService _orderedItems;
         private readonly IPlayerImageViewPresenter _playerImageView;
-        private readonly ResultDomainService _result;
         private readonly IResultRepository _resultRepository;
         private readonly ISkillRepository _skillRepository;
         private readonly ISkillViewInfoFactory _skillViewInfoFactory;
@@ -60,7 +57,6 @@ namespace BattleScene.UseCases.OldEvent
             IMessageViewPresenter messageViewPresenter,
             OrderedItemsDomainService orderedItems,
             IPlayerImageViewPresenter playerImageView,
-            ResultDomainService result,
             IResultRepository resultRepository,
             ISkillRepository skillRepository,
             ISkillViewInfoFactory skillViewInfoFactory)
@@ -80,7 +76,6 @@ namespace BattleScene.UseCases.OldEvent
             _messageViewPresenter = messageViewPresenter;
             _orderedItems = orderedItems;
             _playerImageView = playerImageView;
-            _result = result;
             _resultRepository = resultRepository;
             _skillRepository = skillRepository;
             _skillViewInfoFactory = skillViewInfoFactory;
@@ -93,7 +88,8 @@ namespace BattleScene.UseCases.OldEvent
             var result = _damageGenerator.Execute(skill);
             _resultRepository.Update(result);
 
-            var isAvoid = !_result.Last<DamageValueObject>().Success();
+            // var isAvoid = !_result.Last<DamageValueObject>().Success();
+            var isAvoid = true;
             if (!_characterRepository.Select(characterId).IsPlayer())
                 _playerImageView.Start(new PlayerImageOutputData(
                     isAvoid
@@ -119,12 +115,12 @@ namespace BattleScene.UseCases.OldEvent
             return WaitEvent;
         }
 
-        public EventCode NextEvent()
-        {
-            return _result.Last<DamageValueObject>().Success()
-                ? GetIndex()
-                : GetIndexWhenAvoid();
-        }
+        // public EventCode NextEvent()
+        // {
+        //     return _result.Last<DamageValueObject>().Success()
+        //         ? GetIndex()
+        //         : GetIndexWhenAvoid();
+        // }
 
         private EventCode GetIndex()
         {

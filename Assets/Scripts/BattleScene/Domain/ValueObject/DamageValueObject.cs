@@ -2,11 +2,10 @@
 using System.Linq;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.Id;
-using BattleScene.Domain.Interface;
 
 namespace BattleScene.Domain.ValueObject
 {
-    public class DamageValueObject : ISkillResult, IDamageResult
+    public class DamageValueObject
     {
         public DamageValueObject(
             CharacterId actorId,
