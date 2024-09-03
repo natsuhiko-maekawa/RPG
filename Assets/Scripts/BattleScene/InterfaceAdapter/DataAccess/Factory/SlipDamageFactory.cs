@@ -7,7 +7,7 @@ using BattleScene.Domain.ValueObject;
 
 namespace BattleScene.InterfaceAdapter.DataAccess.Factory
 {
-    public class SlipDamageFactory : ISlipDamageFactory
+    public class SlipDamageFactory// : ISlipDamageFactory
     {
         private readonly ICharacterRepository _characterRepository;
         private readonly ISlipDamageScriptableObject _slipDamageScriptableObject;

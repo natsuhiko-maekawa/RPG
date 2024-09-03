@@ -154,7 +154,7 @@ namespace BattleScene.InterfaceAdapter
             builder.RegisterComponentInHierarchy<IResource<PlayerViewInfoDto, CharacterTypeCode>>();
             // builder.Register<IFactory<PlayerPropertyDto, CharacterTypeCode>, PlayerPropertyFactory>(Lifetime.Singleton);
             builder.Register<IPropertyFactory, PropertyFactory>(Lifetime.Singleton);
-            builder.Register<ISlipDamageFactory, SlipDamageFactory>(Lifetime.Singleton);
+            // builder.Register<ISlipDamageFactory, SlipDamageFactory>(Lifetime.Singleton);
 
             builder.RegisterComponentInHierarchy<IResource<PlayerPropertyDto, CharacterTypeCode>>();
 
