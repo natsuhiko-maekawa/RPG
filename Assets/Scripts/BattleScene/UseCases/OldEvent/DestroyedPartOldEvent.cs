@@ -3,17 +3,13 @@ using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
-using BattleScene.Domain.ValueObject;
 using BattleScene.UseCases.OldEvent.Interface;
 using BattleScene.UseCases.OldEvent.Runner;
 using BattleScene.UseCases.Service;
 using BattleScene.UseCases.View.DestroyedPartView.OutputBoundary;
 using BattleScene.UseCases.View.DestroyedPartView.OutputDataFactory;
 using BattleScene.UseCases.View.MessageView.OutputBoundary;
-using BattleScene.UseCases.View.MessageView.OutputData;
 using BattleScene.UseCases.View.MessageView.OutputDataFactory;
-using static BattleScene.UseCases.OldEvent.Runner.EventCode;
-using static BattleScene.Domain.Code.MessageCode;
 
 namespace BattleScene.UseCases.OldEvent
 {

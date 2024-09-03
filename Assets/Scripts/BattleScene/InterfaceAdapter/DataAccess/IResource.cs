@@ -1,6 +1,4 @@
-﻿using System.Collections.Immutable;
-
-namespace BattleScene.InterfaceAdapter.DataAccess
+﻿namespace BattleScene.InterfaceAdapter.DataAccess
 {
     public interface IResource<out TItem, in TKey>
     {

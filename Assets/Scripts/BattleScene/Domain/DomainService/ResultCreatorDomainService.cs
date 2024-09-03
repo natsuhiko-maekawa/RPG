@@ -1,6 +1,5 @@
 ﻿using System;
 using BattleScene.Domain.Entity;
-using BattleScene.Domain.Interface;
 using BattleScene.Domain.ValueObject;
 
 namespace BattleScene.Domain.DomainService
