@@ -1,8 +1,7 @@
-﻿using BattleScene.Domain.Entity;
-using BattleScene.Domain.Id;
+﻿using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
 
-namespace BattleScene.Domain.Aggregate
+namespace BattleScene.Domain.Entity
 {
     public class TechnicalPointEntity : BaseEntity<TechnicalPointEntity, CharacterId>
     {
