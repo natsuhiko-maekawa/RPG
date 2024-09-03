@@ -1,6 +1,6 @@
 using BattleScene.Domain.Code;
+using BattleScene.Domain.DataAccess.ObsoleteIFactory;
 using BattleScene.Domain.DomainService;
-using BattleScene.Domain.IFactory;
 using BattleScene.Domain.IRepository;
 using BattleScene.Domain.ValueObject;
 using BattleScene.UseCases.OldEvent.Interface;

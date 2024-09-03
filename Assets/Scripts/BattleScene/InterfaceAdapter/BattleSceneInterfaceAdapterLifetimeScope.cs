@@ -1,11 +1,13 @@
 ﻿using BattleScene.Domain.Aggregate;
 using BattleScene.Domain.Code;
+using BattleScene.Domain.DataAccess;
+using BattleScene.Domain.DataAccess.ObsoleteIFactory;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
-using BattleScene.Domain.IFactory;
 using BattleScene.Domain.IRepository;
 using BattleScene.Domain.ValueObject;
+using BattleScene.InterfaceAdapter.DataAccess;
 using BattleScene.InterfaceAdapter.DataAccess.Factory;
 using BattleScene.InterfaceAdapter.DataAccess.Factory.Dto;
 using BattleScene.InterfaceAdapter.DataAccess.IResource;
@@ -75,7 +77,7 @@ namespace BattleScene.InterfaceAdapter
             builder.RegisterComponentInHierarchy<IPlayerStatusView>();
             builder.RegisterComponentInHierarchy<ISelectActionView>();
             builder.RegisterComponentInHierarchy<ISelectSkillView>();
-            builder.RegisterComponentInHierarchy<IPlayerPropertyResource>();
+            // builder.RegisterComponentInHierarchy<IPlayerPropertyResource>();
             builder.RegisterComponentInHierarchy<IPropertyResource>();
             // builder.RegisterComponentInHierarchy<IGameLoop>();
             
@@ -134,19 +136,19 @@ namespace BattleScene.InterfaceAdapter
                 .Register<IRepository<TechnicalPointAggregate, CharacterId>,
                     Repository<TechnicalPointAggregate, CharacterId>>(Lifetime.Singleton);
             builder.Register<IRepository<TurnEntity, TurnId>, Repository<TurnEntity, TurnId>>(Lifetime.Singleton);
-            // builder.Register<IFactory<SkillValueObject, SkillCode>, SkillFactory>(Lifetime.Singleton);
-            builder.Register<IFactory<SkillViewInfoValueObject, SkillCode>, SkillViewInfoListScriptableObjectFactory>
+            builder.Register<IFactory<SkillValueObject, SkillCode>, SkillFactory>(Lifetime.Singleton);
+            builder.Register<IResource<SkillViewInfoValueObject, SkillCode>, SkillViewInfoListScriptableObjectResource>
                 (Lifetime.Singleton);
 
             builder.Register<IAilmentFactory, AilmentFactory>(Lifetime.Singleton);
             builder.Register<IAilmentViewInfoFactory, AilmentViewInfoFactory>(Lifetime.Singleton);
-            builder.Register<IFactory<AilmentViewInfoDto, AilmentCode>, AilmentViewInfoListScriptableObjectFactory>(
+            builder.Register<IResource<AilmentViewInfoDto, AilmentCode>, AilmentViewInfoListScriptableObjectResource>(
                 Lifetime.Singleton);
             builder.Register<IBodyPartFactory, BodyPartFactory>(Lifetime.Singleton);
-            builder.Register<IFactory<BodyPartViewInfoDto, BodyPartCode>, BodyPartViewInfoFactory>(Lifetime.Singleton);
-            builder.RegisterComponentInHierarchy<IFactory<EnemyViewInfoDto, CharacterTypeCode>>();
-            builder.RegisterComponentInHierarchy<IFactory<MessageDto, MessageCode>>();
-            builder.RegisterComponentInHierarchy<IFactory<PlayerViewInfoDto, CharacterTypeCode>>();
+            builder.Register<IResource<BodyPartViewInfoDto, BodyPartCode>, BodyPartViewInfoResource>(Lifetime.Singleton);
+            builder.RegisterComponentInHierarchy<IResource<EnemyViewInfoDto, CharacterTypeCode>>();
+            builder.RegisterComponentInHierarchy<IResource<MessageDto, MessageCode>>();
+            builder.RegisterComponentInHierarchy<IResource<PlayerViewInfoDto, CharacterTypeCode>>();
             // builder.Register<IFactory<PlayerPropertyDto, CharacterTypeCode>, PlayerPropertyFactory>(Lifetime.Singleton);
             builder.Register<IPropertyFactory, PropertyFactory>(Lifetime.Singleton);
             builder.Register<ISlipDamageFactory, SlipDamageFactory>(Lifetime.Singleton);

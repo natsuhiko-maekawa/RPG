@@ -1,7 +1,7 @@
 ﻿using System.Collections.Immutable;
 using System.Linq;
 using BattleScene.Domain.Code;
-using BattleScene.Domain.IFactory;
+using BattleScene.InterfaceAdapter.DataAccess;
 using BattleScene.InterfaceAdapter.DataAccess.Factory.Dto;
 using BattleScene.InterfaceAdapter.IView;
 using BattleScene.InterfaceAdapter.Service;
@@ -12,16 +12,16 @@ namespace BattleScene.InterfaceAdapter.Presenter.GridView
 {
     public class GridViewPresenter : IViewPresenter<GridViewOutputData>
     {
-        private readonly IFactory<MessageDto, MessageCode> _messageFactory;
+        private readonly IResource<MessageDto, MessageCode> _messageResource;
         private readonly MessageCodeConverterService _messageCodeConverter;
         private readonly IGridView _gridView;
 
         public GridViewPresenter(
-            IFactory<MessageDto, MessageCode> messageFactory,
+            IResource<MessageDto, MessageCode> messageResource,
             MessageCodeConverterService messageCodeConverter,
             IGridView gridView)
         {
-            _messageFactory = messageFactory;
+            _messageResource = messageResource;
             _messageCodeConverter = messageCodeConverter;
             _gridView = gridView;
         }
@@ -62,7 +62,7 @@ namespace BattleScene.InterfaceAdapter.Presenter.GridView
                 _ => MessageCode.NoMessage
             };
 
-            var message = _messageFactory.Create(messageCode).Message;
+            var message = _messageResource.Get(messageCode).Message;
             message = _messageCodeConverter.Replace(message);
             return message;
         }

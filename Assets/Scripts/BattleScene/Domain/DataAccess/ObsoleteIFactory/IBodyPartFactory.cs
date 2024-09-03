@@ -2,7 +2,7 @@
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 
-namespace BattleScene.Domain.IFactory
+namespace BattleScene.Domain.DataAccess.ObsoleteIFactory
 {
     public interface IBodyPartFactory
     {

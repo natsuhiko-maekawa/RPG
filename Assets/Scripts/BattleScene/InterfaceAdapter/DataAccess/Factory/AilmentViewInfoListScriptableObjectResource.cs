@@ -4,8 +4,8 @@ using BattleScene.InterfaceAdapter.DataAccess.Resource;
 
 namespace BattleScene.InterfaceAdapter.DataAccess.Factory
 {
-    public class EnemyViewInfoFactory 
-        : BaseListScriptableObjectFactory<EnemyViewInfoScriptableObject, EnemyViewInfoDto, CharacterTypeCode>
+    public class AilmentViewInfoListScriptableObjectResource
+        : BaseListScriptableObjectResource<AilmentViewInfoScriptableObject, AilmentViewInfoDto, AilmentCode>
     {
     }
 }

@@ -1,9 +1,9 @@
 ﻿using System.Linq;
 using BattleScene.Domain.Aggregate;
 using BattleScene.Domain.Code;
+using BattleScene.Domain.DataAccess.ObsoleteIFactory;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
-using BattleScene.Domain.IFactory;
 using BattleScene.Domain.IRepository;
 using BattleScene.Domain.ValueObject;
 

@@ -1,5 +1,5 @@
+using BattleScene.Domain.DataAccess.ObsoleteIFactory;
 using BattleScene.Domain.DomainService;
-using BattleScene.Domain.IFactory;
 using BattleScene.UseCases.View.MessageView.OutputData;
 
 namespace BattleScene.UseCases.View.MessageView.OutputDataFactory

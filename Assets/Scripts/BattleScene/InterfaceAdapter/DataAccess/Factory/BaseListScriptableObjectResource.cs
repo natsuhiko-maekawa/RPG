@@ -1,14 +1,13 @@
 ﻿using System.Collections.Immutable;
 using System.Linq;
-using BattleScene.Domain.IFactory;
 using BattleScene.Domain.Interface;
 using BattleScene.InterfaceAdapter.DataAccess.Resource;
 using UnityEngine;
 
 namespace BattleScene.InterfaceAdapter.DataAccess.Factory
 {
-    public abstract class BaseListScriptableObjectFactory<TListScriptableObject, TItem, TId>
-        : MonoBehaviour, IFactory<TItem, TId>
+    public abstract class BaseListScriptableObjectResource<TListScriptableObject, TItem, TId>
+        : MonoBehaviour, IResource<TItem, TId>
         where TListScriptableObject : BaseListScriptableObject<TItem, TId>
         where TItem : IUniqueItem<TId>
     {
@@ -19,7 +18,7 @@ namespace BattleScene.InterfaceAdapter.DataAccess.Factory
             return listScriptableObject.ItemList;
         }
 
-        public TItem Create(TId id)
+        public TItem Get(TId id)
         {
             return listScriptableObject.ItemList
                 .First(x => Equals(x.Id, id));

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 using BattleScene.Domain.Code;
-using BattleScene.Domain.IFactory;
+using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.ValueObject;
 using BattleScene.InterfaceAdapter.Skill;
 using BattleScene.InterfaceAdapter.Skill.AbstractClass;
@@ -12,7 +12,7 @@ using static BattleScene.Domain.Code.SkillCode;
 
 namespace BattleScene.InterfaceAdapter.DataAccess.Factory
 {
-    public class SkillFactory //: IFactory<SkillValueObject, SkillCode>
+    public class SkillFactory : IFactory<SkillValueObject, SkillCode>
     {
         private readonly IObjectResolver _container;
 

@@ -6,8 +6,8 @@ using BattleScene.Domain.Aggregate;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
-using BattleScene.Domain.IFactory;
 using BattleScene.Domain.IRepository;
+using BattleScene.InterfaceAdapter.DataAccess;
 using BattleScene.InterfaceAdapter.DataAccess.Factory.Dto;
 using BattleScene.InterfaceAdapter.IView;
 using BattleScene.InterfaceAdapter.Service;
@@ -17,18 +17,18 @@ namespace BattleScene.InterfaceAdapter.Presenter.OrderView
 {
     internal class OrderViewPresenter : IOrderViewPresenter
     {
-        private readonly IFactory<EnemyViewInfoDto, CharacterTypeCode> _enemyViewInfoFactory;
+        private readonly IResource<EnemyViewInfoDto, CharacterTypeCode> _enemyViewInfoResource;
         private readonly IOrderView _orderView;
         private readonly IRepository<CharacterAggregate, CharacterId> _characterRepository;
         private readonly ToAilmentNumberService _toAilmentNumber;
 
         public OrderViewPresenter(
-            IFactory<EnemyViewInfoDto, CharacterTypeCode> enemyViewInfoFactory,
+            IResource<EnemyViewInfoDto, CharacterTypeCode> enemyViewInfoResource,
             IOrderView orderView,
             IRepository<CharacterAggregate, CharacterId> characterRepository,
             ToAilmentNumberService toAilmentNumber)
         {
-            _enemyViewInfoFactory = enemyViewInfoFactory;
+            _enemyViewInfoResource = enemyViewInfoResource;
             _orderView = orderView;
             _characterRepository = characterRepository;
             _toAilmentNumber = toAilmentNumber;
@@ -68,7 +68,7 @@ namespace BattleScene.InterfaceAdapter.Presenter.OrderView
         private OrderViewDto CreateEnemyViewDto(CharacterId characterId)
         {
             var characterTypeId = _characterRepository.Select(characterId).Property.CharacterTypeCode;
-            var enemyImagePath = _enemyViewInfoFactory.Create(characterTypeId).EnemyImagePath;
+            var enemyImagePath = _enemyViewInfoResource.Get(characterTypeId).EnemyImagePath;
             return new OrderViewDto(ItemType.Enemy, EnemyImagePath: enemyImagePath);
         }
     }

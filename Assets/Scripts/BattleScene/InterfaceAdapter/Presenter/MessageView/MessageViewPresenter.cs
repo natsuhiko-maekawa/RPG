@@ -1,5 +1,5 @@
 ﻿using BattleScene.Domain.Code;
-using BattleScene.Domain.IFactory;
+using BattleScene.InterfaceAdapter.DataAccess;
 using BattleScene.InterfaceAdapter.DataAccess.Factory.Dto;
 using BattleScene.InterfaceAdapter.IView;
 using BattleScene.InterfaceAdapter.Service;
@@ -10,16 +10,16 @@ namespace BattleScene.InterfaceAdapter.Presenter.MessageView
 {
     public class MessageViewPresenter : IMessageViewPresenter
     {
-        private readonly IFactory<MessageDto, MessageCode> _messageFactory;
+        private readonly IResource<MessageDto, MessageCode> _messageResource;
         private readonly MessageCodeConverterService _messageCodeConverter;
         private readonly IMessageView _messageView;
 
         public MessageViewPresenter(
-            IFactory<MessageDto, MessageCode> messageFactory,
+            IResource<MessageDto, MessageCode> messageResource,
             MessageCodeConverterService messageCodeConverter,
             IMessageView messageView)
         {
-            _messageFactory = messageFactory;
+            _messageResource = messageResource;
             _messageCodeConverter = messageCodeConverter;
             _messageView = messageView;
         }
@@ -31,7 +31,7 @@ namespace BattleScene.InterfaceAdapter.Presenter.MessageView
         public void Start(MessageCode messageCode, bool noWait = false)
         {
             _messageView.StopAnimation();
-            var message = _messageFactory.Create(messageCode);
+            var message = _messageResource.Get(messageCode);
             var replacedMessage = _messageCodeConverter.Replace(message.Message);
             _messageView.StartAnimation(new MessageViewDto(replacedMessage, noWait));
         }

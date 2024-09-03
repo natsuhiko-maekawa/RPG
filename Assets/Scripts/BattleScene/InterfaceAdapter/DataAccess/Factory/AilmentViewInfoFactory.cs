@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using BattleScene.Domain.Code;
-using BattleScene.Domain.IFactory;
+using BattleScene.Domain.DataAccess.ObsoleteIFactory;
 using BattleScene.Domain.ValueObject;
 using BattleScene.InterfaceAdapter.DataAccess.IResource;
 

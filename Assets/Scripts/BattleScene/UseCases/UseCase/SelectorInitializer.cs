@@ -1,8 +1,8 @@
 using System;
 using BattleScene.Domain.Aggregate;
+using BattleScene.Domain.DataAccess.ObsoleteIFactory;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Id;
-using BattleScene.Domain.IFactory;
 using BattleScene.Domain.IRepository;
 using BattleScene.UseCases.OldEvent.Runner;
 

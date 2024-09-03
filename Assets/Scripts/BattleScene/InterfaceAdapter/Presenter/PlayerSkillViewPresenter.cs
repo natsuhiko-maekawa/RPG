@@ -1,12 +1,13 @@
 ﻿using System.Linq;
 using BattleScene.Domain.Aggregate;
 using BattleScene.Domain.Code;
+using BattleScene.Domain.DataAccess.ObsoleteIFactory;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
-using BattleScene.Domain.IFactory;
 using BattleScene.Domain.IRepository;
 using BattleScene.Domain.ValueObject;
+using BattleScene.InterfaceAdapter.DataAccess;
 using BattleScene.InterfaceAdapter.IView;
 using BattleScene.InterfaceAdapter.Presenter.MessageView;
 using BattleScene.InterfaceAdapter.Presenter.PlayerView;
@@ -24,7 +25,7 @@ namespace BattleScene.InterfaceAdapter.Presenter
     {
         private readonly CharactersDomainService _characters;
         private readonly MessageCodeConverterService _messageCodeConverter;
-        private readonly IFactory<PlayerImageValueObject, PlayerImageCode> _playerViewInfoFactory;
+        private readonly IResource<PlayerImageValueObject, PlayerImageCode> _playerViewInfoResource;
         private readonly ISkillViewInfoFactory _skillViewInfoFactory;
         private readonly IRepository<TechnicalPointAggregate, CharacterId> _technicalPointRepository;
         private readonly IMessageView _messageView;
@@ -33,7 +34,7 @@ namespace BattleScene.InterfaceAdapter.Presenter
         public void Out(SkillEntity skill)
         {
             var playerImageCode = _skillViewInfoFactory.Create(skill.SkillCode).PlayerImageCode;
-            var playerImagePath = _playerViewInfoFactory.Create(playerImageCode).PlayerImagePath;
+            var playerImagePath = _playerViewInfoResource.Get(playerImageCode).PlayerImagePath;
             var playerViewDto = new PlayerViewDto(playerImagePath);
             _playerView.StartAnimation(playerViewDto);
 

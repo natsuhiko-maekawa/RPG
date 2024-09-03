@@ -1,7 +1,7 @@
 ﻿using BattleScene.Domain.Code;
+using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
-using BattleScene.Domain.IFactory;
 using BattleScene.Domain.IRepository;
 using BattleScene.Domain.ValueObject;
 using BattleScene.UseCases.View.MessageView.OutputBoundary;

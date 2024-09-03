@@ -1,4 +1,4 @@
-﻿namespace BattleScene.Domain.IFactory
+﻿namespace BattleScene.Domain.DataAccess.ObsoleteIFactory
 {
     public interface IEnemyViewInfoFactory
     {

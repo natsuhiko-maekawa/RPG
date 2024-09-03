@@ -1,4 +1,4 @@
-﻿namespace BattleScene.Domain.IFactory
+﻿namespace BattleScene.Domain.DataAccess
 {
     public interface IFactory<out TItem, in TId>
     {

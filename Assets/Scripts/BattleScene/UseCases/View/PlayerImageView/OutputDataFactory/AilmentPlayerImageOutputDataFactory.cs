@@ -1,4 +1,4 @@
-using BattleScene.Domain.IFactory;
+using BattleScene.Domain.DataAccess.ObsoleteIFactory;
 using BattleScene.Domain.ValueObject;
 using BattleScene.UseCases.View.PlayerImageView.OutputData;
 

@@ -4,9 +4,9 @@ using BattleScene.Domain.Aggregate;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Id;
-using BattleScene.Domain.IFactory;
 using BattleScene.Domain.IRepository;
 using BattleScene.Domain.ValueObject;
+using BattleScene.InterfaceAdapter.DataAccess;
 using BattleScene.InterfaceAdapter.DataAccess.Factory.Dto;
 
 namespace BattleScene.InterfaceAdapter.Service
@@ -20,41 +20,41 @@ namespace BattleScene.InterfaceAdapter.Service
         private const string Part = "[part]";
         private const string Skill = "[skill]";
         private const string Target = "[target]";
-        private readonly IFactory<AilmentViewInfoDto, AilmentCode> _ailmentViewInfoFactory;
-        private readonly IFactory<BodyPartViewInfoDto, BodyPartCode> _bodyPartViewInfoFactory;
+        private readonly IResource<AilmentViewInfoDto, AilmentCode> _ailmentViewInfoResource;
+        private readonly IResource<BodyPartViewInfoDto, BodyPartCode> _bodyPartViewInfoResource;
         private readonly IRepository<CharacterAggregate, CharacterId> _characterRepository;
-        private readonly IFactory<EnemyViewInfoDto, CharacterTypeCode> _enemyViewInfoFactory;
-        private readonly IFactory<MessageDto, MessageCode> _messageFactory;
+        private readonly IResource<EnemyViewInfoDto, CharacterTypeCode> _enemyViewInfoResource;
+        private readonly IResource<MessageDto, MessageCode> _messageResource;
         private readonly OrderedItemsDomainService _orderedItems;
-        private readonly IFactory<PlayerViewInfoDto, CharacterTypeCode> _playerViewInfoFactory;
+        private readonly IResource<PlayerViewInfoDto, CharacterTypeCode> _playerViewInfoResource;
         private readonly ResultDomainService _result;
         private readonly ISkillRepository _skillRepository;
-        private readonly IFactory<SkillViewInfoValueObject, SkillCode> _skillViewInfoFactory;
+        private readonly IResource<SkillViewInfoValueObject, SkillCode> _skillViewInfoResource;
         private readonly ITargetRepository _targetRepository;
 
         public MessageCodeConverterService(
-            IFactory<AilmentViewInfoDto, AilmentCode> ailmentViewInfoFactory,
-            IFactory<BodyPartViewInfoDto, BodyPartCode> bodyPartViewInfoFactory,
+            IResource<AilmentViewInfoDto, AilmentCode> ailmentViewInfoResource,
+            IResource<BodyPartViewInfoDto, BodyPartCode> bodyPartViewInfoResource,
             IRepository<CharacterAggregate, CharacterId> characterRepository,
-            IFactory<EnemyViewInfoDto, CharacterTypeCode> enemyViewInfoFactory,
-            IFactory<MessageDto, MessageCode> messageFactory,
+            IResource<EnemyViewInfoDto, CharacterTypeCode> enemyViewInfoResource,
+            IResource<MessageDto, MessageCode> messageResource,
             OrderedItemsDomainService orderedItems,
-            IFactory<PlayerViewInfoDto, CharacterTypeCode> playerViewInfoFactory,
+            IResource<PlayerViewInfoDto, CharacterTypeCode> playerViewInfoResource,
             ResultDomainService result,
             ISkillRepository skillRepository,
-            IFactory<SkillViewInfoValueObject, SkillCode> skillViewInfoFactory,
+            IResource<SkillViewInfoValueObject, SkillCode> skillViewInfoResource,
             ITargetRepository targetRepository)
         {
-            _ailmentViewInfoFactory = ailmentViewInfoFactory;
-            _bodyPartViewInfoFactory = bodyPartViewInfoFactory;
+            _ailmentViewInfoResource = ailmentViewInfoResource;
+            _bodyPartViewInfoResource = bodyPartViewInfoResource;
             _characterRepository = characterRepository;
-            _enemyViewInfoFactory = enemyViewInfoFactory;
-            _messageFactory = messageFactory;
+            _enemyViewInfoResource = enemyViewInfoResource;
+            _messageResource = messageResource;
             _orderedItems = orderedItems;
-            _playerViewInfoFactory = playerViewInfoFactory;
+            _playerViewInfoResource = playerViewInfoResource;
             _result = result;
             _skillRepository = skillRepository;
-            _skillViewInfoFactory = skillViewInfoFactory;
+            _skillViewInfoResource = skillViewInfoResource;
             _targetRepository = targetRepository;
         }
 
@@ -74,7 +74,7 @@ namespace BattleScene.InterfaceAdapter.Service
         [Obsolete]
         public string ToMessage(MessageCode messageCode)
         {
-            var message = _messageFactory.Create(messageCode).Message;
+            var message = _messageResource.Get(messageCode).Message;
             message = ReplaceActor(message);
             message = ReplaceAilments(message);
             message = ReplaceBuff(message);
@@ -92,8 +92,8 @@ namespace BattleScene.InterfaceAdapter.Service
             if (!_orderedItems.First().TryGetCharacterId(out var characterId))
                 throw new InvalidOperationException();
             var actorName = _characterRepository.Select(characterId).IsPlayer()
-                ? _playerViewInfoFactory.Create(CharacterTypeCode.Player).PlayerName
-                : _enemyViewInfoFactory.Create(_characterRepository.Select(characterId).Property.CharacterTypeCode)
+                ? _playerViewInfoResource.Get(CharacterTypeCode.Player).PlayerName
+                : _enemyViewInfoResource.Get(_characterRepository.Select(characterId).Property.CharacterTypeCode)
                     .EnemyName;
             return message.Replace(Actor, actorName);
         }
@@ -102,7 +102,7 @@ namespace BattleScene.InterfaceAdapter.Service
         {
             if (!message.Contains(Ailment)) return message;
             var ailmentCode = _result.Last<AilmentResultValueObject>().AilmentCode;
-            var ailmentName = _ailmentViewInfoFactory.Create(ailmentCode).AilmentName;
+            var ailmentName = _ailmentViewInfoResource.Get(ailmentCode).AilmentName;
             return message.Replace(Ailment, ailmentName);
         }
 
@@ -128,7 +128,7 @@ namespace BattleScene.InterfaceAdapter.Service
         {
             if (!message.Contains(Part)) return message;
             var bodyPartCode = _result.Last<DestroyedPartSkillResultValueObject>().BodyPartCode;
-            var bodyPartName = _bodyPartViewInfoFactory.Create(bodyPartCode).BodyPartName;
+            var bodyPartName = _bodyPartViewInfoResource.Get(bodyPartCode).BodyPartName;
             return message.Replace(Part, bodyPartName);
         }
 
@@ -138,7 +138,7 @@ namespace BattleScene.InterfaceAdapter.Service
             if (!_orderedItems.First().TryGetCharacterId(out var characterId))
                 throw new InvalidOperationException();
             var skillCode = _skillRepository.Select(characterId).SkillCode;
-            var skillName = _skillViewInfoFactory.Create(skillCode).SkillName;
+            var skillName = _skillViewInfoResource.Get(skillCode).SkillName;
             return message.Replace(Skill, skillName);
         }
 
@@ -149,8 +149,8 @@ namespace BattleScene.InterfaceAdapter.Service
                 throw new InvalidOperationException();
             var targetNameList = _targetRepository.Select(characterId).TargetIdList
                 .Select(x => _characterRepository.Select(x).IsPlayer()
-                    ? _playerViewInfoFactory.Create(CharacterTypeCode.Player).PlayerName
-                    : _enemyViewInfoFactory.Create(_characterRepository.Select(x).Property.CharacterTypeCode).EnemyName)
+                    ? _playerViewInfoResource.Get(CharacterTypeCode.Player).PlayerName
+                    : _enemyViewInfoResource.Get(_characterRepository.Select(x).Property.CharacterTypeCode).EnemyName)
                 .ToList();
             var totalSuffix = targetNameList.Count == 1 ? "" : "たち";
             return message.Replace(Target, targetNameList.First() + totalSuffix);

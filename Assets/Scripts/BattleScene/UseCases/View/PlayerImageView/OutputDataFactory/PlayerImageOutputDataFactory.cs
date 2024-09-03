@@ -1,5 +1,5 @@
 using BattleScene.Domain.Code;
-using BattleScene.Domain.IFactory;
+using BattleScene.Domain.DataAccess.ObsoleteIFactory;
 using BattleScene.UseCases.View.PlayerImageView.OutputData;
 
 namespace BattleScene.UseCases.View.PlayerImageView.OutputDataFactory

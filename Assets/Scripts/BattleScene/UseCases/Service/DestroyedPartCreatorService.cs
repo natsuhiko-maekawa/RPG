@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
+using BattleScene.Domain.DataAccess.ObsoleteIFactory;
 using BattleScene.Domain.Entity;
-using BattleScene.Domain.IFactory;
 using BattleScene.Domain.ValueObject;
 
 namespace BattleScene.UseCases.Service

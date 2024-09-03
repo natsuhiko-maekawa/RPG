@@ -1,5 +1,5 @@
 ﻿using BattleScene.Domain.Code;
-using BattleScene.Domain.IFactory;
+using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.ValueObject;
 using BattleScene.InterfaceAdapter.State.Skill;
 using VContainer;

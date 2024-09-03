@@ -1,8 +1,8 @@
 using System.Collections.Immutable;
 using System.Linq;
+using BattleScene.Domain.DataAccess.ObsoleteIFactory;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Id;
-using BattleScene.Domain.IFactory;
 using BattleScene.Domain.IRepository;
 using BattleScene.UseCases.OldEvent.Runner;
 using BattleScene.UseCases.Service;
