@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.Id;
-using BattleScene.Domain.Interface;
 
 namespace BattleScene.Domain.ValueObject
 {
-    public class BuffValueObject : ISkillResult
+    public class BuffValueObject
     {
         public BuffValueObject(
             CharacterId actorId,
