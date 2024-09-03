@@ -5,7 +5,7 @@ using BattleScene.Domain.Interface;
 
 namespace BattleScene.Domain.ValueObject
 {
-    public class SlipDamageResultValueObject : IDamageResult
+    public class SlipDamageResultValueObject
     {
         public SlipDamageResultValueObject(
             SlipDamageCode slipDamageCode,
