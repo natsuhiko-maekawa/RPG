@@ -2,7 +2,6 @@
 using System.Linq;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.Id;
-using BattleScene.Domain.Interface;
 
 namespace BattleScene.Domain.ValueObject
 {
