@@ -25,11 +25,10 @@ namespace BattleScene.InterfaceAdapter.DataAccess.Factory
         public SkillValueObject Create(SkillCode key)
         {
             var skill = Resolve(key);
-            // TODO: 命名をやり直す
-            var ailmentList = CreateAilmentValueObject(skill.AilmentList);
+            var ailmentList = CreateAilmentParameterList(skill.AilmentList);
             var buffParameterList = CreateBuffParameterList(skill.BuffList);
-            var damageList = CreateDamageValueObject(skill.DamageList);
-            var destroyPartList = CreateDestroyPartParameterList(skill.DestroyPartList);
+            var damageList = CreateDamageParameterList(skill.DamageList);
+            var destroyPartList = CreateDestroyParameterList(skill.DestroyPartList);
             var restoreParameterList = CreateRestoreParameterList(skill.RestoreList);
             return new SkillValueObject(
                 skillCode: key,
@@ -84,7 +83,8 @@ namespace BattleScene.InterfaceAdapter.DataAccess.Factory
             };
         }
 
-        private ImmutableList<AilmentParameterValueObject> CreateAilmentValueObject(IList<AbstractAilment> ailmentList)
+        private ImmutableList<AilmentParameterValueObject> CreateAilmentParameterList(
+            IList<AbstractAilment> ailmentList)
         {
             if (ailmentList == null) return ImmutableList<AilmentParameterValueObject>.Empty;
             return ailmentList
@@ -105,7 +105,7 @@ namespace BattleScene.InterfaceAdapter.DataAccess.Factory
                 .ToImmutableList();
         }
 
-        private ImmutableList<DamageParameterValueObject> CreateDamageValueObject(IList<AbstractDamage> damageList)
+        private ImmutableList<DamageParameterValueObject> CreateDamageParameterList(IList<AbstractDamage> damageList)
         {
             if (damageList == null) return ImmutableList<DamageParameterValueObject>.Empty;
             return damageList
@@ -120,7 +120,7 @@ namespace BattleScene.InterfaceAdapter.DataAccess.Factory
                 .ToImmutableList();
         }
 
-        private ImmutableList<DestroyedParameterValueObject> CreateDestroyPartParameterList(
+        private ImmutableList<DestroyedParameterValueObject> CreateDestroyParameterList(
             IList<AbstractDestroyPart> destroyPartList)
         {
             return destroyPartList
