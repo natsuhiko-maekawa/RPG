@@ -1,4 +1,5 @@
-﻿using BattleScene.Domain.Code;
+﻿using System;
+using BattleScene.Domain.Code;
 using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
@@ -8,6 +9,7 @@ using BattleScene.UseCases.View.MessageView.OutputBoundary;
 
 namespace BattleScene.InterfaceAdapter.State.Skill
 {
+    [Obsolete]
     public class SkillMessageStateFactory
     {
         private readonly IFactory<SkillValueObject, SkillCode> _skillFactory;

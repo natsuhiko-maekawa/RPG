@@ -2,6 +2,7 @@
 using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.ValueObject;
 using BattleScene.InterfaceAdapter.State.Skill;
+using BattleScene.UseCases.View.MessageView.OutputBoundary;
 using VContainer;
 
 namespace BattleScene.InterfaceAdapter.State.Battle
@@ -13,19 +14,22 @@ namespace BattleScene.InterfaceAdapter.State.Battle
         private readonly BuffStateFactory _buffStateFactory;
         private readonly DamageStateFactory _damageStateFactory;
         private readonly RestoreStateFactory _restoreStateFactory;
+        private readonly IMessageViewPresenter _messageView;
         
         public SkillStateFactory(
             IObjectResolver container,
             IFactory<SkillValueObject, SkillCode> skillFactory,
             BuffStateFactory buffStateFactory,
             DamageStateFactory damageStateFactory,
-            RestoreStateFactory restoreStateFactory)
+            RestoreStateFactory restoreStateFactory,
+            IMessageViewPresenter messageView)
         {
             _container = container;
             _skillFactory = skillFactory;
             _buffStateFactory = buffStateFactory;
             _damageStateFactory = damageStateFactory;
             _restoreStateFactory = restoreStateFactory;
+            _messageView = messageView;
         }
 
         public SkillState Create(SkillCode skillCode) => new SkillState(
@@ -34,6 +38,7 @@ namespace BattleScene.InterfaceAdapter.State.Battle
             skillFactory: _skillFactory,
             buffStateFactory: _buffStateFactory,
             damageStateFactory: _damageStateFactory,
-            restoreStateFactory: _restoreStateFactory);
+            restoreStateFactory: _restoreStateFactory,
+            messageView: _messageView);
     }
 }

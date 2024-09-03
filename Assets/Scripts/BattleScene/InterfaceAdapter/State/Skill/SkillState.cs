@@ -4,6 +4,7 @@ using BattleScene.Domain.Code;
 using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.ValueObject;
 using BattleScene.InterfaceAdapter.State.Battle;
+using BattleScene.UseCases.View.MessageView.OutputBoundary;
 using VContainer;
 
 namespace BattleScene.InterfaceAdapter.State.Skill
@@ -15,6 +16,7 @@ namespace BattleScene.InterfaceAdapter.State.Skill
         private readonly BuffStateFactory _buffStateFactory;
         private readonly DamageStateFactory _damageStateFactory;
         private readonly RestoreStateFactory _restoreStateFactory;
+        private readonly IMessageViewPresenter _messageView;
         private readonly SkillCode _skillCode;
         private Queue<SkillContext> _skillContextQueue;
 
@@ -24,7 +26,8 @@ namespace BattleScene.InterfaceAdapter.State.Skill
             IFactory<SkillValueObject, SkillCode> skillFactory,
             BuffStateFactory buffStateFactory,
             DamageStateFactory damageStateFactory,
-            RestoreStateFactory restoreStateFactory)
+            RestoreStateFactory restoreStateFactory,
+            IMessageViewPresenter messageView)
         {
             _skillCode = skillCode;
             _container = container;
@@ -32,11 +35,14 @@ namespace BattleScene.InterfaceAdapter.State.Skill
             _buffStateFactory = buffStateFactory;
             _damageStateFactory = damageStateFactory;
             _restoreStateFactory = restoreStateFactory;
+            _messageView = messageView;
         }
 
         public override void Start()
         {
             SetSkillContextQueue();
+            var skill = _skillFactory.Create(_skillCode);
+            _messageView.Start(skill.SkillCommon.MessageCode);
         }
 
         public override void Select()
