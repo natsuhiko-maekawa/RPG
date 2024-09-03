@@ -9,18 +9,18 @@ namespace BattleScene.InterfaceAdapter.State.Skill
         private readonly BattleLoggerService _battleLogger;
         private readonly BuffDomainService _buff;
         private readonly BuffGeneratorService _buffGenerator;
-        private readonly SkillMessageStateFactory _skillMessageStateFactory;
+        private readonly BuffMessageState _buffMessageState;
 
         public BuffStateFactory(
             BattleLoggerService battleLogger,
             BuffDomainService buff,
             BuffGeneratorService buffGenerator,
-            SkillMessageStateFactory skillMessageStateFactory)
+            BuffMessageState buffMessageState)
         {
             _battleLogger = battleLogger;
             _buff = buff;
             _buffGenerator = buffGenerator;
-            _skillMessageStateFactory = skillMessageStateFactory;
+            _buffMessageState = buffMessageState;
         }
 
         public BuffState Create(
@@ -29,7 +29,7 @@ namespace BattleScene.InterfaceAdapter.State.Skill
             battleLogger: _battleLogger,
             buff: _buff,
             buffGenerator: _buffGenerator,
-            skillMessageStateFactory: _skillMessageStateFactory,
+            buffMessageState: _buffMessageState,
             skillCommon: skillCommon,
             buffParameter: buffParameter);
     }

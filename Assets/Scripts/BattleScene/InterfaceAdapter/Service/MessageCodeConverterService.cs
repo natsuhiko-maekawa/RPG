@@ -16,13 +16,14 @@ namespace BattleScene.InterfaceAdapter.Service
     {
         private const string Actor = "[actor]";
         private const string Ailment = "[ailment]";
-        // private const string Buff = "[buff]";
+        private const string Buff = "[buff]";
         private const string Damage = "[damage]";
         private const string Part = "[part]";
         private const string Skill = "[skill]";
         private const string Target = "[target]";
         private readonly IResource<AilmentViewInfoDto, AilmentCode> _ailmentViewInfoResource;
         private readonly IResource<BodyPartViewInfoDto, BodyPartCode> _bodyPartViewInfoResource;
+        private readonly IResource<BuffViewInfoDto, BuffCode> _buffViewInfoResource;
         private readonly IRepository<CharacterAggregate, CharacterId> _characterRepository;
         private readonly IResource<EnemyViewInfoDto, CharacterTypeCode> _enemyViewInfoResource;
         private readonly IResource<MessageDto, MessageCode> _messageResource;
@@ -112,7 +113,9 @@ namespace BattleScene.InterfaceAdapter.Service
 
         private string ReplaceBuff(string message)
         {
-            throw new NotImplementedException();
+            var buffCode = _battleLogRepository.Select().Max().BuffCode;
+            var buffName = _buffViewInfoResource.Get(buffCode).BuffName;
+            return message.Replace(Buff, buffName);
         }
 
         private string ReplaceDamage(string message)

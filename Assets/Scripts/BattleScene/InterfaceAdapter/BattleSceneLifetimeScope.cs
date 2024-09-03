@@ -141,6 +141,7 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<IAilmentFactory, AilmentFactory>(Lifetime.Singleton);
             builder.Register<IAilmentViewInfoFactory, AilmentViewInfoFactory>(Lifetime.Singleton);
             builder.RegisterComponentInHierarchy<IResource<AilmentViewInfoDto, AilmentCode>>();
+            builder.RegisterComponentInHierarchy<IResource<BuffViewInfoDto, BuffCode>>();
             builder.Register<IBodyPartFactory, BodyPartFactory>(Lifetime.Singleton);
             builder.Register<IResource<BodyPartViewInfoDto, BodyPartCode>, BodyPartViewInfoResource>(Lifetime.Singleton);
             builder.RegisterComponentInHierarchy<IResource<EnemyViewInfoDto, CharacterTypeCode>>();
@@ -227,6 +228,7 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<EnemySelectSkillState>(Lifetime.Singleton);
             builder.Register<SkillStateFactory>(Lifetime.Singleton);
             builder.Register<BuffStateFactory>(Lifetime.Singleton);
+            builder.Register<BuffMessageState>(Lifetime.Singleton);
             builder.Register<DamageStateFactory>(Lifetime.Singleton);
             builder.Register<RestoreStateFactory>(Lifetime.Singleton);
             builder.Register<SkillMessageStateFactory>(Lifetime.Singleton);
