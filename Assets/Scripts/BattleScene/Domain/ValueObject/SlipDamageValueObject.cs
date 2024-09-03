@@ -1,13 +1,12 @@
 ﻿using System.Collections.Immutable;
 using System.Linq;
 using BattleScene.Domain.Code;
-using BattleScene.Domain.Interface;
 
 namespace BattleScene.Domain.ValueObject
 {
-    public class SlipDamageResultValueObject
+    public class SlipDamageValueObject
     {
-        public SlipDamageResultValueObject(
+        public SlipDamageValueObject(
             SlipDamageCode slipDamageCode,
             ImmutableList<AttackValueObject> damageList)
         {

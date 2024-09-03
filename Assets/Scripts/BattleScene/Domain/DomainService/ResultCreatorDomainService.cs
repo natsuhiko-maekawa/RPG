@@ -7,7 +7,7 @@ namespace BattleScene.Domain.DomainService
     [Obsolete]
     public class ResultCreatorDomainService
     {
-        public ResultEntity Create(SlipDamageResultValueObject result)
+        public ResultEntity Create(SlipDamageValueObject result)
         {
             throw new NotImplementedException();
         }

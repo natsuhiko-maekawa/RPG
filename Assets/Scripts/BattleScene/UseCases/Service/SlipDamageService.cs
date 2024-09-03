@@ -31,7 +31,7 @@ namespace BattleScene.UseCases.Service
             var damage = new AttackValueObject(
                 slipDamageAmount,
                 _characters.GetPlayerId());
-            var slipDamageResult = new SlipDamageResultValueObject(
+            var slipDamageResult = new SlipDamageValueObject(
                 slipDamageCode,
                 ImmutableList.Create(damage));
             return _resultCreator.Create(slipDamageResult);
