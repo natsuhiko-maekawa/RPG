@@ -14,9 +14,9 @@ namespace BattleScene.UseCases.View.PlayerImageView.OutputDataFactory
             _ailmentViewInfoFactory = ailmentViewInfoFactory;
         }
 
-        public PlayerImageOutputData Create(AilmentResultValueObject ailmentResult)
+        public PlayerImageOutputData Create(AilmentValueObject ailment)
         {
-            var ailmentCode = ailmentResult.AilmentCode;
+            var ailmentCode = ailment.AilmentCode;
             var playerImageCode = _ailmentViewInfoFactory.Create(ailmentCode).PlayerImageCode;
             return new PlayerImageOutputData(playerImageCode);
         }
