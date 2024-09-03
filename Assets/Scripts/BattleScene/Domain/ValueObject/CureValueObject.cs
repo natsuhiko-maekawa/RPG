@@ -6,9 +6,9 @@ using BattleScene.Domain.Interface;
 
 namespace BattleScene.Domain.ValueObject
 {
-    public class CureSkillResultValueObject
+    public class CureValueObject
     {
-        public CureSkillResultValueObject(
+        public CureValueObject(
             CharacterId actorId,
             SkillCode skillCode,
             ImmutableList<RecoveryValueObject> cureList)
