@@ -27,8 +27,9 @@ namespace BattleScene.InterfaceAdapter.DataAccess.Factory
             var skill = Resolve(key);
             // TODO: 命名をやり直す
             var ailmentList = CreateAilmentValueObject(skill.AilmentList);
-            var damageList = CreateDamageValueObject(skill.DamageList);
             var buffParameterList = CreateBuffParameterList(skill.BuffList);
+            var damageList = CreateDamageValueObject(skill.DamageList);
+            var destroyPartList = CreateDestroyPartParameterList(skill.DestroyPartList);
             var restoreParameterList = CreateRestoreParameterList(skill.RestoreList);
             return new SkillValueObject(
                 skillCode: key,
@@ -37,6 +38,7 @@ namespace BattleScene.InterfaceAdapter.DataAccess.Factory
                 ailmentList: ailmentList,
                 buffList: buffParameterList,
                 damageList: damageList,
+                destroyedPartList: destroyPartList,
                 restoreParameterList: restoreParameterList);
         }
 
@@ -115,6 +117,17 @@ namespace BattleScene.InterfaceAdapter.DataAccess.Factory
                     DamageExpressionCode: x.DamageExpressionCode,
                     HitEvaluationCode: x.HitEvaluationCode,
                     AttacksWeakPointEvaluationCode: x.AttacksWeakPointEvaluationCode))
+                .ToImmutableList();
+        }
+
+        private ImmutableList<DestroyedPartParameterValueObject> CreateDestroyPartParameterList(
+            IList<AbstractDestroyPart> destroyPartList)
+        {
+            return destroyPartList
+                .Select(x => new DestroyedPartParameterValueObject(
+                    BodyPartCode: x.BodyPartCode,
+                    LuckRate: x.LuckRate,
+                    Count: x.Count))
                 .ToImmutableList();
         }
 

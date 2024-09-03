@@ -254,7 +254,7 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<CharacterOutputDataCreatorService>(Lifetime.Singleton);
             builder.Register<CureSkillService>(Lifetime.Singleton);
             builder.Register<DamageGeneratorService>(Lifetime.Singleton);
-            builder.Register<DestroyedPartCreatorService>(Lifetime.Singleton);
+            builder.Register<DestroyedPartGeneratorService>(Lifetime.Singleton);
             builder.Register<HitPointCreatorService>(Lifetime.Singleton);
             builder.Register<OrderedItemCreatorService>(Lifetime.Singleton);
             builder.Register<ResetSkillService>(Lifetime.Singleton);

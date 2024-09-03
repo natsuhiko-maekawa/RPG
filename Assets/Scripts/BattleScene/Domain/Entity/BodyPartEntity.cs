@@ -35,6 +35,7 @@ namespace BattleScene.Domain.Entity
         public override BodyPartId Id { get; }
         public CharacterId CharacterId { get; }
         public BodyPartCode BodyPartCode { get; }
+        public int DestroyedCount { get; }
 
         public void Destroyed()
         {

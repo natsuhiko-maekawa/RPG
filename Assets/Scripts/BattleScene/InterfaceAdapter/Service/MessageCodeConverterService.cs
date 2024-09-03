@@ -3,6 +3,7 @@ using System.Linq;
 using BattleScene.Domain.Aggregate;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DomainService;
+using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
 using BattleScene.Domain.ValueObject;
@@ -31,6 +32,7 @@ namespace BattleScene.InterfaceAdapter.Service
         private readonly ISkillRepository _skillRepository;
         private readonly IResource<SkillViewInfoValueObject, SkillCode> _skillViewInfoResource;
         private readonly ITargetRepository _targetRepository;
+        private readonly IRepository<BattleLogEntity, BattleLogId> _battleLogRepository;
 
         public MessageCodeConverterService(
             IResource<AilmentViewInfoDto, AilmentCode> ailmentViewInfoResource,
@@ -43,7 +45,8 @@ namespace BattleScene.InterfaceAdapter.Service
             ResultDomainService result,
             ISkillRepository skillRepository,
             IResource<SkillViewInfoValueObject, SkillCode> skillViewInfoResource,
-            ITargetRepository targetRepository)
+            ITargetRepository targetRepository,
+            IRepository<BattleLogEntity, BattleLogId> battleLogRepository)
         {
             _ailmentViewInfoResource = ailmentViewInfoResource;
             _bodyPartViewInfoResource = bodyPartViewInfoResource;
@@ -56,6 +59,7 @@ namespace BattleScene.InterfaceAdapter.Service
             _skillRepository = skillRepository;
             _skillViewInfoResource = skillViewInfoResource;
             _targetRepository = targetRepository;
+            _battleLogRepository = battleLogRepository;
         }
 
         public string Replace(string message)
@@ -127,7 +131,7 @@ namespace BattleScene.InterfaceAdapter.Service
         private string ReplaceBodyPart(string message)
         {
             if (!message.Contains(Part)) return message;
-            var bodyPartCode = _result.Last<DestroyedPartSkillResultValueObject>().BodyPartCode;
+            var bodyPartCode = _battleLogRepository.Select().Max().DestroyedPart;
             var bodyPartName = _bodyPartViewInfoResource.Get(bodyPartCode).BodyPartName;
             return message.Replace(Part, bodyPartName);
         }

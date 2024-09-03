@@ -5,6 +5,8 @@ namespace BattleScene.InterfaceAdapter.Skill.SkillElement
 {
     public class destroyLeg : AbstractDestroyPart
     {
+        public override BodyPartCode BodyPartCode { get; } = BodyPartCode.Leg;
+        
         public override BodyPartCode GetDestroyPart()
         {
             return BodyPartCode.Leg;
