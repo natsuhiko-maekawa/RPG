@@ -14,6 +14,7 @@ namespace BattleScene.InterfaceAdapter.State.Skill
         private readonly IFactory<SkillValueObject, SkillCode> _skillFactory;
         private readonly BuffStateFactory _buffStateFactory;
         private readonly DamageStateFactory _damageStateFactory;
+        private readonly RestoreStateFactory _restoreStateFactory;
         private readonly SkillCode _skillCode;
         private Queue<SkillContext> _skillContextQueue;
 
@@ -22,13 +23,15 @@ namespace BattleScene.InterfaceAdapter.State.Skill
             IObjectResolver container,
             IFactory<SkillValueObject, SkillCode> skillFactory,
             BuffStateFactory buffStateFactory,
-            DamageStateFactory damageStateFactory)
+            DamageStateFactory damageStateFactory,
+            RestoreStateFactory restoreStateFactory)
         {
             _skillCode = skillCode;
             _container = container;
             _skillFactory = skillFactory;
             _buffStateFactory = buffStateFactory;
             _damageStateFactory = damageStateFactory;
+            _restoreStateFactory = restoreStateFactory;
         }
 
         public override void Start()
@@ -55,7 +58,8 @@ namespace BattleScene.InterfaceAdapter.State.Skill
             var skillStates = Enumerable.Empty<AbstractSkillState>()
                 .Concat(skill.AilmentList.Select(x => new AilmentState(x)))
                 .Concat(skill.DamageList.Select(x => _damageStateFactory.Create(skill.SkillCommon, x)))
-                .Concat(skill.BuffList.Select(x => _buffStateFactory.Create(skill.SkillCommon, x)));
+                .Concat(skill.BuffList.Select(x => _buffStateFactory.Create(skill.SkillCommon, x)))
+                .Concat(skill.RestoreParameterList.Select(x => _restoreStateFactory.Create(skill.SkillCommon, x)));
             var skillContexts = skillStates
                 .Select(x => new SkillContext(x));
             _skillContextQueue = new Queue<SkillContext>(skillContexts);

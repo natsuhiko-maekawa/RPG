@@ -36,7 +36,8 @@ namespace BattleScene.InterfaceAdapter.DataAccess.Factory
                 messageCode: skill.AttackMessageCode,
                 ailmentList: ailmentList,
                 buffList: buffParameterList,
-                damageList: damageList);
+                damageList: damageList,
+                restoreParameterList: restoreParameterList);
         }
 
         private AbstractSkill Resolve(SkillCode skillCode)
