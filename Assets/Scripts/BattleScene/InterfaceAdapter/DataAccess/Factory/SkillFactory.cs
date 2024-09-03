@@ -84,11 +84,11 @@ namespace BattleScene.InterfaceAdapter.DataAccess.Factory
             };
         }
 
-        private ImmutableList<AilmentValueObject> CreateAilmentValueObject(IList<AbstractAilment> ailmentList)
+        private ImmutableList<AilmentParameterValueObject> CreateAilmentValueObject(IList<AbstractAilment> ailmentList)
         {
-            if (ailmentList == null) return ImmutableList<AilmentValueObject>.Empty;
+            if (ailmentList == null) return ImmutableList<AilmentParameterValueObject>.Empty;
             return ailmentList
-                .Select(x => new AilmentValueObject(
+                .Select(x => new AilmentParameterValueObject(
                     AilmentCode: x.AilmentCode,
                     LuckRate: x.LuckRate))
                 .ToImmutableList();
@@ -120,11 +120,11 @@ namespace BattleScene.InterfaceAdapter.DataAccess.Factory
                 .ToImmutableList();
         }
 
-        private ImmutableList<DestroyedPartParameterValueObject> CreateDestroyPartParameterList(
+        private ImmutableList<DestroyedParameterValueObject> CreateDestroyPartParameterList(
             IList<AbstractDestroyPart> destroyPartList)
         {
             return destroyPartList
-                .Select(x => new DestroyedPartParameterValueObject(
+                .Select(x => new DestroyedParameterValueObject(
                     BodyPartCode: x.BodyPartCode,
                     LuckRate: x.LuckRate,
                     Count: x.Count))

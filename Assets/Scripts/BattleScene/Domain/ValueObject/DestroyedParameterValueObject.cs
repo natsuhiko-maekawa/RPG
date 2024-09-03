@@ -2,7 +2,7 @@
 
 namespace BattleScene.Domain.ValueObject
 {
-    public record DestroyedPartParameterValueObject(
+    public record DestroyedParameterValueObject(
         BodyPartCode BodyPartCode,
         float LuckRate,
         int Count);

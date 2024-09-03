@@ -20,13 +20,13 @@ namespace BattleScene.UseCases.Service
 
         public DestroyedPartValueObject Generate(
             SkillCommonValueObject skillCommon,
-            DestroyedPartParameterValueObject destroyedPartParameter)
+            DestroyedParameterValueObject destroyedParameter)
         {
             _orderedItems.First().TryGetCharacterId(out var actorId);
             var targetIdList = _target.Get(actorId, skillCommon.Range)
-                .Where(_ => _randomEx.Probability(destroyedPartParameter.LuckRate))
+                .Where(_ => _randomEx.Probability(destroyedParameter.LuckRate))
                 .Where(x => _bodyPartRepository.Select()
-                    .First(y => Equals(y.CharacterId, x) && y.BodyPartCode == destroyedPartParameter.BodyPartCode)
+                    .First(y => Equals(y.CharacterId, x) && y.BodyPartCode == destroyedParameter.BodyPartCode)
                     .IsAvailable())
                 .ToImmutableList();
 
@@ -34,8 +34,8 @@ namespace BattleScene.UseCases.Service
                 actorId: actorId,
                 targetIdList: targetIdList,
                 skillCode: skillCommon.SkillCode,
-                bodyPartCode: destroyedPartParameter.BodyPartCode,
-                destroyCount: destroyedPartParameter.Count);
+                bodyPartCode: destroyedParameter.BodyPartCode,
+                destroyCount: destroyedParameter.Count);
         }
 
         public BodyPartEntity Create(

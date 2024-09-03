@@ -33,11 +33,11 @@ namespace BattleScene.UseCases.Service
             _target = target;
         }
         
-        public void Execute(SkillValueObject skill, AilmentValueObject ailment)
+        public void Execute(SkillValueObject skill, AilmentParameterValueObject ailmentParameter)
         {
             _orderedItems.First().TryGetCharacterId(out var actorId);
             var targetIdList = _target.Get(actorId, skill.Range)
-                .Where(x => IsTarget(x, ailment.LuckRate))
+                .Where(x => IsTarget(x, ailmentParameter.LuckRate))
                 .ToImmutableList();
 
             var resultId = new ResultId();
@@ -54,7 +54,7 @@ namespace BattleScene.UseCases.Service
                 turn: currentTurn,
                 sequence: nextSequence,
                 targetIdList: targetIdList,
-                ailmentCode: ailment.AilmentCode);
+                ailmentCode: ailmentParameter.AilmentCode);
             _resultRepository.Update(result);
         }
 

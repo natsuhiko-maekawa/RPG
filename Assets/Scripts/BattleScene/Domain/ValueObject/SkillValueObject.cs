@@ -14,10 +14,10 @@ namespace BattleScene.Domain.ValueObject
         public Range Range { get; }
         public SkillCommonValueObject SkillCommon { get; }
         // TODO: 命名をやり直す
-        public ImmutableList<AilmentValueObject> AilmentList { get; }
+        public ImmutableList<AilmentParameterValueObject> AilmentList { get; }
         public ImmutableList<BuffParameterValueObject> BuffList { get; }
         public ImmutableList<DamageParameterValueObject> DamageList { get; }
-        public ImmutableList<DestroyedPartParameterValueObject> DestroyedPartParameterList { get; }
+        public ImmutableList<DestroyedParameterValueObject> DestroyedPartParameterList { get; }
         public ImmutableList<RestoreParameterValueObject> RestoreParameterList { get; }
 
         public SkillValueObject(
@@ -26,10 +26,10 @@ namespace BattleScene.Domain.ValueObject
             MessageCode messageCode,
             int technicalPoint = 0,
             ImmutableList<BodyPartCode> dependencyList = null,
-            ImmutableList<AilmentValueObject> ailmentList = null,
+            ImmutableList<AilmentParameterValueObject> ailmentList = null,
             ImmutableList<BuffParameterValueObject> buffList = null,
             ImmutableList<DamageParameterValueObject> damageList = null,
-            ImmutableList<DestroyedPartParameterValueObject> destroyedPartList = null,
+            ImmutableList<DestroyedParameterValueObject> destroyedPartList = null,
             ImmutableList<RestoreParameterValueObject> restoreParameterList = null)
         {
             SkillCode = skillCode;
@@ -42,10 +42,10 @@ namespace BattleScene.Domain.ValueObject
                 dependencyList: dependencyList,
                 range: range,
                 messageCode: messageCode);
-            AilmentList = ailmentList ?? ImmutableList<AilmentValueObject>.Empty;
+            AilmentList = ailmentList ?? ImmutableList<AilmentParameterValueObject>.Empty;
             BuffList = buffList ?? ImmutableList<BuffParameterValueObject>.Empty;
             DamageList = damageList ?? ImmutableList<DamageParameterValueObject>.Empty;
-            DestroyedPartParameterList = destroyedPartList ?? ImmutableList<DestroyedPartParameterValueObject>.Empty;
+            DestroyedPartParameterList = destroyedPartList ?? ImmutableList<DestroyedParameterValueObject>.Empty;
             RestoreParameterList = restoreParameterList ?? ImmutableList<RestoreParameterValueObject>.Empty;
         }
     }
