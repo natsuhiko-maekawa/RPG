@@ -14,9 +14,9 @@ namespace BattleScene.UseCases.Service
         private readonly IRepository<HitPointAggregate, CharacterId> _hitPointRepository;
         private readonly IRandomEx _randomEx;
         
-        public int Evaluate(CharacterId actorId, CureValueObject cure)
+        public int Evaluate(CharacterId actorId, CureParameterValueObject cureParameter)
         {
-            return cure.CureExpressionCode switch
+            return cureParameter.CureExpressionCode switch
             {
                 CureExpressionCode.Basic => BasicEvaluate(actorId),
                 _ => throw new ArgumentOutOfRangeException()
