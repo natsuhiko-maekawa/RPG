@@ -10,6 +10,12 @@ namespace BattleScene.InterfaceAdapter.DataAccess.Factory
     {
         private readonly IResource<PlayerPropertyDto, CharacterTypeCode> _resource;
 
+        public PlayerPropertyFactory(
+            IResource<PlayerPropertyDto, CharacterTypeCode> resource)
+        {
+            _resource = resource;
+        }
+
         public PlayerPropertyValueObject Create(CharacterTypeCode key)
         {
             var dto = _resource.Get(key);

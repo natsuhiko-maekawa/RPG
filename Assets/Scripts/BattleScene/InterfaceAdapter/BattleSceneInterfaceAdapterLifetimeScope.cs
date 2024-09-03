@@ -156,6 +156,8 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<IPropertyFactory, PropertyFactory>(Lifetime.Singleton);
             builder.Register<ISlipDamageFactory, SlipDamageFactory>(Lifetime.Singleton);
 
+            builder.RegisterComponentInHierarchy<IResource<PlayerPropertyDto, CharacterTypeCode>>();
+
             builder.Register<ToAilmentNumberService>(Lifetime.Singleton);
             builder.Register<MessageCodeConverterService>(Lifetime.Singleton);
             
