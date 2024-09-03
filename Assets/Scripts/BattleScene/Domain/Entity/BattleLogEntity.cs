@@ -15,6 +15,7 @@ namespace BattleScene.Domain.Entity
         public CharacterId ActorId { get; }
         public SkillCode SkillCode { get; }
         public ImmutableList<CharacterId> TargetIdList { get; }
+        public AilmentCode AilmentCode { get; }
         public BodyPartCode DestroyedPart { get; }
         public int DestroyCount { get; }
         public BuffCode BuffCode { get; } = BuffCode.NoBuff;

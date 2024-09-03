@@ -6,7 +6,7 @@ using BattleScene.Domain.Interface;
 
 namespace BattleScene.Domain.ValueObject
 {
-    public class AilmentResultValueObject : ISkillResult
+    public class AilmentResultValueObject
     {
         public AilmentResultValueObject(
             CharacterId actorId,
