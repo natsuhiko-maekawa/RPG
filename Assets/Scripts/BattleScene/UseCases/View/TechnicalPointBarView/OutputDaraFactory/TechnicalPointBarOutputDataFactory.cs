@@ -9,11 +9,11 @@ namespace BattleScene.UseCases.View.TechnicalPointBarView.OutputDaraFactory
     public class TechnicalPointBarOutputDataFactory
     {
         private readonly CharactersDomainService _characters;
-        private readonly IRepository<TechnicalPointAggregate, CharacterId> _technicalPointRepository;
+        private readonly IRepository<TechnicalPointEntity, CharacterId> _technicalPointRepository;
 
         public TechnicalPointBarOutputDataFactory(
             CharactersDomainService characters,
-            IRepository<TechnicalPointAggregate, CharacterId> technicalPointRepository)
+            IRepository<TechnicalPointEntity, CharacterId> technicalPointRepository)
         {
             _characters = characters;
             _technicalPointRepository = technicalPointRepository;

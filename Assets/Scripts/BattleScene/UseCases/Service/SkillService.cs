@@ -13,14 +13,14 @@ namespace BattleScene.UseCases.Service
         private readonly CharactersDomainService _characters;
         private readonly ICharacterRepository _characterRepository;
         private readonly SkillCreatorService _skillCreatorService;
-        private readonly IRepository<TechnicalPointAggregate, CharacterId> _technicalPointRepository;
+        private readonly IRepository<TechnicalPointEntity, CharacterId> _technicalPointRepository;
 
         public SkillService(
             BodyPartDomainService bodyPart,
             CharactersDomainService characters,
             ICharacterRepository characterRepository,
             SkillCreatorService skillCreatorService,
-            IRepository<TechnicalPointAggregate, CharacterId> technicalPointRepository)
+            IRepository<TechnicalPointEntity, CharacterId> technicalPointRepository)
         {
             _bodyPart = bodyPart;
             _characters = characters;

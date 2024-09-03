@@ -27,7 +27,7 @@ namespace BattleScene.InterfaceAdapter.Presenter
         private readonly MessageCodeConverterService _messageCodeConverter;
         private readonly IResource<PlayerImageValueObject, PlayerImageCode> _playerViewInfoResource;
         private readonly ISkillViewInfoFactory _skillViewInfoFactory;
-        private readonly IRepository<TechnicalPointAggregate, CharacterId> _technicalPointRepository;
+        private readonly IRepository<TechnicalPointEntity, CharacterId> _technicalPointRepository;
         private readonly IMessageView _messageView;
         private readonly IPlayerView _playerView;
         

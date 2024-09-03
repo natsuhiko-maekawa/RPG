@@ -4,12 +4,11 @@ using BattleScene.Domain.ValueObject;
 
 namespace BattleScene.Domain.Aggregate
 {
-    //TODO: 名前をTechnicalPointEntityに修正
-    public class TechnicalPointAggregate : BaseEntity<TechnicalPointAggregate, CharacterId>
+    public class TechnicalPointEntity : BaseEntity<TechnicalPointEntity, CharacterId>
     {
         private PointValueObject _pointValueObject;
 
-        public TechnicalPointAggregate(
+        public TechnicalPointEntity(
             CharacterId id,
             int defaultTechnicalPoint)
         {

@@ -11,7 +11,7 @@ namespace BattleScene.UseCases.UseCase
         private readonly ICharacterRepository _characterRepository;
         private readonly OrderedItemsDomainService _orderedItems;
         private readonly ISkillRepository _skillRepository;
-        private readonly IRepository<TechnicalPointAggregate, CharacterId> _technicalPointRepository;
+        private readonly IRepository<TechnicalPointEntity, CharacterId> _technicalPointRepository;
         
         // TODO: コンストラクタを記述すること
         

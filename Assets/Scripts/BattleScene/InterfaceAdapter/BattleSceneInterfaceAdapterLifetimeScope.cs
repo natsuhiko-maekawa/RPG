@@ -133,8 +133,8 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<IRepository<SlipDamageEntity, SlipDamageId>, Repository<SlipDamageEntity, SlipDamageId>>(
                 Lifetime.Singleton);
             builder
-                .Register<IRepository<TechnicalPointAggregate, CharacterId>,
-                    Repository<TechnicalPointAggregate, CharacterId>>(Lifetime.Singleton);
+                .Register<IRepository<TechnicalPointEntity, CharacterId>,
+                    Repository<TechnicalPointEntity, CharacterId>>(Lifetime.Singleton);
             builder.Register<IRepository<TurnEntity, TurnId>, Repository<TurnEntity, TurnId>>(Lifetime.Singleton);
             builder.Register<IFactory<SkillValueObject, SkillCode>, SkillFactory>(Lifetime.Singleton);
             builder.Register<IResource<SkillViewInfoValueObject, SkillCode>, SkillViewInfoListScriptableObjectResource>

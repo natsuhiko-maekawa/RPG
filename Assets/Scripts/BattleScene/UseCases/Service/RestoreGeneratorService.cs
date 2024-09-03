@@ -10,11 +10,11 @@ namespace BattleScene.UseCases.Service
     public class RestoreGeneratorService
     {
         private readonly PlayerDomainService _playerDomainService;
-        private readonly IRepository<TechnicalPointAggregate, CharacterId> _technicalPointRepository;
+        private readonly IRepository<TechnicalPointEntity, CharacterId> _technicalPointRepository;
 
         public RestoreGeneratorService(
             PlayerDomainService playerDomainService,
-            IRepository<TechnicalPointAggregate, CharacterId> technicalPointRepository)
+            IRepository<TechnicalPointEntity, CharacterId> technicalPointRepository)
         {
             _playerDomainService = playerDomainService;
             _technicalPointRepository = technicalPointRepository;
