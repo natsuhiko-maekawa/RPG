@@ -1,5 +1,8 @@
 ﻿using System.Collections.Immutable;
+using BattleScene.Domain.Aggregate;
 using BattleScene.Domain.DomainService;
+using BattleScene.Domain.Id;
+using BattleScene.Domain.IRepository;
 using BattleScene.Domain.ValueObject;
 
 namespace BattleScene.UseCases.Service
@@ -7,11 +10,14 @@ namespace BattleScene.UseCases.Service
     public class RestoreGeneratorService
     {
         private readonly PlayerDomainService _playerDomainService;
+        private readonly IRepository<TechnicalPointAggregate, CharacterId> _technicalPointRepository;
 
         public RestoreGeneratorService(
-            PlayerDomainService playerDomainService)
+            PlayerDomainService playerDomainService,
+            IRepository<TechnicalPointAggregate, CharacterId> technicalPointRepository)
         {
             _playerDomainService = playerDomainService;
+            _technicalPointRepository = technicalPointRepository;
         }
 
         public RestoreValueObject Generate(
@@ -20,11 +26,13 @@ namespace BattleScene.UseCases.Service
         {
             var playerId = _playerDomainService.GetId();
             var targetIdList = ImmutableList.Create(playerId);
+            var technicalPoint = _technicalPointRepository.Select(playerId)
+                .GetRestore(restoreParameter.TechnicalPoint);
             return new RestoreValueObject(
                 actorId: playerId,
                 skillCode: skillCommon.SkillCode,
                 targetIdList: targetIdList,
-                technicalPoint: restoreParameter.TechnicalPoint);
+                technicalPoint: technicalPoint);
         }
     }
 }
