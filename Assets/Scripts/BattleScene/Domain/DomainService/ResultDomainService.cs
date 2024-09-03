@@ -11,20 +11,5 @@ namespace BattleScene.Domain.DomainService
         {
             throw new NotImplementedException();
         }
-
-        public SkillCode LastSkillCode()
-        {
-            throw new NotImplementedException();
-        }
-
-        public T Last<T>() where T : IResult
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool TryGetLast<T>(out T result) where T : IResult
-        {
-            throw new NotImplementedException();
-        }
     }
 }
