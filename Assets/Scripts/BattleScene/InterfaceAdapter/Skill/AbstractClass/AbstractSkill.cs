@@ -19,7 +19,7 @@ namespace BattleScene.InterfaceAdapter.Skill.AbstractClass
         public virtual ImmutableList<AbstractSlipDamage> SlipDamageList { get; } =
             ImmutableList<AbstractSlipDamage>.Empty;
 
-        public virtual ImmutableList<AbstractDestroyPart> DestroyPartList { get; } =
+        public virtual ImmutableList<AbstractDestroyPart> DestroyList { get; } =
             ImmutableList<AbstractDestroyPart>.Empty;
 
         public virtual ImmutableList<AbstractDamage> DamageList { get; } = ImmutableList<AbstractDamage>.Empty;

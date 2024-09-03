@@ -34,7 +34,7 @@ namespace BattleScene.InterfaceAdapter.Skill
         public override ImmutableList<AbstractSlipDamage> SlipDamageList { get; } =
             ImmutableList.Create<AbstractSlipDamage>(new BleedingSkill());
 
-        public override ImmutableList<AbstractDestroyPart> DestroyPartList => GetDestroyPartList();
+        public override ImmutableList<AbstractDestroyPart> DestroyList => GetDestroyPartList();
 
         private MessageCode GetAttackMessageCode()
         {

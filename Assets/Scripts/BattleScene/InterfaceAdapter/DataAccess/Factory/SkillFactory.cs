@@ -28,7 +28,7 @@ namespace BattleScene.InterfaceAdapter.DataAccess.Factory
             var ailmentList = CreateAilmentParameterList(skill.AilmentList);
             var buffParameterList = CreateBuffParameterList(skill.BuffList);
             var damageList = CreateDamageParameterList(skill.DamageList);
-            var destroyPartList = CreateDestroyParameterList(skill.DestroyPartList);
+            var destroyPartList = CreateDestroyParameterList(skill.DestroyList);
             var restoreParameterList = CreateRestoreParameterList(skill.RestoreList);
             return new SkillValueObject(
                 skillCode: key,
