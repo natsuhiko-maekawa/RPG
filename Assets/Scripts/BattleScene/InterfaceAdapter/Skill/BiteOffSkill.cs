@@ -34,7 +34,7 @@ namespace BattleScene.InterfaceAdapter.Skill
         public override ImmutableList<AbstractSlipDamage> SlipDamageList { get; } =
             ImmutableList.Create<AbstractSlipDamage>(new BleedingSkill());
 
-        public override ImmutableList<AbstractDestroyPart> DestroyList => GetDestroyPartList();
+        public override ImmutableList<AbstractDestroy> DestroyList => GetDestroyPartList();
 
         private MessageCode GetAttackMessageCode()
         {
@@ -48,9 +48,9 @@ namespace BattleScene.InterfaceAdapter.Skill
             return _randomEx.Choice(attackMessageList, _seed);
         }
 
-        private ImmutableList<AbstractDestroyPart> GetDestroyPartList()
+        private ImmutableList<AbstractDestroy> GetDestroyPartList()
         {
-            var destroyList = new List<AbstractDestroyPart>()
+            var destroyList = new List<AbstractDestroy>()
                 { new DestroyArm(), new destroyLeg(), new DestroyStomach() };
             return ImmutableList.Create(_randomEx.Choice(destroyList, _seed));
         }

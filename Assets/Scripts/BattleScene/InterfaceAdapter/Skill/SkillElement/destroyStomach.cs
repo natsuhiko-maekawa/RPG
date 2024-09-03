@@ -3,7 +3,7 @@ using BattleScene.InterfaceAdapter.Skill.AbstractClass;
 
 namespace BattleScene.InterfaceAdapter.Skill.SkillElement
 {
-    public class DestroyStomach : AbstractDestroyPart
+    public class DestroyStomach : AbstractDestroy
     {
         public override BodyPartCode BodyPartCode { get; } = BodyPartCode.Stomach;
 

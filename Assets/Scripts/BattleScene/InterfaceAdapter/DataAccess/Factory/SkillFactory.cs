@@ -121,7 +121,7 @@ namespace BattleScene.InterfaceAdapter.DataAccess.Factory
         }
 
         private ImmutableList<DestroyedParameterValueObject> CreateDestroyParameterList(
-            IList<AbstractDestroyPart> destroyPartList)
+            IList<AbstractDestroy> destroyPartList)
         {
             return destroyPartList
                 .Select(x => new DestroyedParameterValueObject(
