@@ -11,10 +11,12 @@ namespace BattleScene.InterfaceAdapter.State.Skill
 
         public RestoreStateFactory(
             BattleLoggerService battleLogger,
-            RestoreGeneratorService restoreGenerator)
+            RestoreGeneratorService restoreGenerator,
+            SkillEndState skillEndState)
         {
             _battleLogger = battleLogger;
             _restoreGenerator = restoreGenerator;
+            _skillEndState = skillEndState;
         }
 
         public RestoreState Create(
