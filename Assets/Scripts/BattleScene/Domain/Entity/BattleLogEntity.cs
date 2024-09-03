@@ -47,11 +47,10 @@ namespace BattleScene.Domain.Entity
             Sequence = sequence;
             Turn = turn;
             ActionCode = ActionCode.Skill;
-            // TODO: 並べ替える
-            AttackList = damage.AttackList;
             ActorId = damage.ActorId;
-            SkillCode = damage.SkillCode;
             TargetIdList = damage.TargetIdList;
+            SkillCode = damage.SkillCode;
+            AttackList = damage.AttackList;
         }
 
         public BattleLogEntity(
