@@ -17,6 +17,7 @@ namespace BattleScene.Domain.Entity
         public SkillCode SkillCode { get; }
         public ImmutableList<CharacterId> TargetIdList { get; }
         public BuffCode BuffCode { get; } = BuffCode.NoBuff;
+        public int TechnicalPoint { get; }
 
         public BattleLogEntity(
             BattleLogId battleLogId,
@@ -44,10 +45,27 @@ namespace BattleScene.Domain.Entity
             Sequence = sequence;
             Turn = turn;
             ActionCode = ActionCode.Skill;
+            // TODO: 並べ替える
             AttackList = damage.AttackList;
             ActorId = damage.ActorId;
             SkillCode = damage.SkillCode;
             TargetIdList = damage.TargetIdList;
+        }
+
+        public BattleLogEntity(
+            BattleLogId battleLogId,
+            int sequence,
+            int turn,
+            RestoreValueObject restore)
+        {
+            Id = battleLogId;
+            Sequence = sequence;
+            Turn = turn;
+            ActionCode = ActionCode.Skill;
+            ActorId = restore.ActorId;
+            TargetIdList = restore.TargetIdList;
+            SkillCode = restore.SkillCode;
+            TechnicalPoint = restore.TechnicalPoint;
         }
 
         public int CompareTo(BattleLogEntity other)

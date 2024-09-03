@@ -54,5 +54,29 @@ namespace BattleScene.UseCases.Service
                 damage: damage);
             _battleLogRepository.Update(battleLog);
         }
+
+        public void Log(RestoreValueObject restore)
+        {
+            var (battleLogId, sequence, turn) = GetBattleLogCommonArguments();
+            var battleLog = new BattleLogEntity(
+                battleLogId: battleLogId,
+                sequence: sequence,
+                turn: turn,
+                restore: restore);
+            _battleLogRepository.Update(battleLog);
+        }
+
+        private (BattleLogId battleLogId, int nextSequence, int turn) GetBattleLogCommonArguments()
+        {
+            var battleLogId = new BattleLogId();
+            var sequence = _battleLogRepository.Select()
+                .Max()
+                ?.Sequence ?? 0;
+            var nextSequence = sequence + 1;
+            var turn = _turnRepository.Select()
+                .First()
+                .Turn;
+            return (battleLogId, nextSequence, turn);
+        }
     }
 }
