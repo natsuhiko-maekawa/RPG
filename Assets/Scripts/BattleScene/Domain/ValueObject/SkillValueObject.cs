@@ -13,11 +13,10 @@ namespace BattleScene.Domain.ValueObject
         public ImmutableList<BodyPartCode> DependencyList { get; }
         public Range Range { get; }
         public SkillCommonValueObject SkillCommon { get; }
-        // TODO: 命名をやり直す
-        public ImmutableList<AilmentParameterValueObject> AilmentList { get; }
-        public ImmutableList<BuffParameterValueObject> BuffList { get; }
-        public ImmutableList<DamageParameterValueObject> DamageList { get; }
-        public ImmutableList<DestroyedParameterValueObject> DestroyedPartParameterList { get; }
+        public ImmutableList<AilmentParameterValueObject> AilmentParameterList { get; }
+        public ImmutableList<BuffParameterValueObject> BuffParameterList { get; }
+        public ImmutableList<DamageParameterValueObject> DamageParameterList { get; }
+        public ImmutableList<DestroyedParameterValueObject> DestroyedParameterList { get; }
         public ImmutableList<RestoreParameterValueObject> RestoreParameterList { get; }
 
         public SkillValueObject(
@@ -42,10 +41,10 @@ namespace BattleScene.Domain.ValueObject
                 dependencyList: dependencyList,
                 range: range,
                 messageCode: messageCode);
-            AilmentList = ailmentList ?? ImmutableList<AilmentParameterValueObject>.Empty;
-            BuffList = buffList ?? ImmutableList<BuffParameterValueObject>.Empty;
-            DamageList = damageList ?? ImmutableList<DamageParameterValueObject>.Empty;
-            DestroyedPartParameterList = destroyedPartList ?? ImmutableList<DestroyedParameterValueObject>.Empty;
+            AilmentParameterList = ailmentList ?? ImmutableList<AilmentParameterValueObject>.Empty;
+            BuffParameterList = buffList ?? ImmutableList<BuffParameterValueObject>.Empty;
+            DamageParameterList = damageList ?? ImmutableList<DamageParameterValueObject>.Empty;
+            DestroyedParameterList = destroyedPartList ?? ImmutableList<DestroyedParameterValueObject>.Empty;
             RestoreParameterList = restoreParameterList ?? ImmutableList<RestoreParameterValueObject>.Empty;
         }
     }

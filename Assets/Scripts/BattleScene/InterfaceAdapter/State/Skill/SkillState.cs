@@ -56,9 +56,9 @@ namespace BattleScene.InterfaceAdapter.State.Skill
         {
             var skill = _skillFactory.Create(_skillCode);
             var skillStates = Enumerable.Empty<AbstractSkillState>()
-                .Concat(skill.AilmentList.Select(x => new AilmentState(x)))
-                .Concat(skill.DamageList.Select(x => _damageStateFactory.Create(skill.SkillCommon, x)))
-                .Concat(skill.BuffList.Select(x => _buffStateFactory.Create(skill.SkillCommon, x)))
+                .Concat(skill.AilmentParameterList.Select(x => new AilmentState(x)))
+                .Concat(skill.DamageParameterList.Select(x => _damageStateFactory.Create(skill.SkillCommon, x)))
+                .Concat(skill.BuffParameterList.Select(x => _buffStateFactory.Create(skill.SkillCommon, x)))
                 .Concat(skill.RestoreParameterList.Select(x => _restoreStateFactory.Create(skill.SkillCommon, x)));
             var skillContexts = skillStates
                 .Select(x => new SkillContext(x));
