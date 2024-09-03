@@ -137,16 +137,14 @@ namespace BattleScene.InterfaceAdapter
                     Repository<TechnicalPointEntity, CharacterId>>(Lifetime.Singleton);
             builder.Register<IRepository<TurnEntity, TurnId>, Repository<TurnEntity, TurnId>>(Lifetime.Singleton);
             builder.Register<IFactory<SkillValueObject, SkillCode>, SkillFactory>(Lifetime.Singleton);
-            builder.Register<IResource<SkillViewInfoValueObject, SkillCode>, SkillViewInfoListScriptableObjectResource>
-                (Lifetime.Singleton);
+            builder.RegisterComponentInHierarchy<IResource<SkillViewInfoValueObject, SkillCode>>();
 
             builder.Register<IFactory<PlayerPropertyValueObject, CharacterTypeCode>, PlayerPropertyFactory>
                 (Lifetime.Singleton);
             
             builder.Register<IAilmentFactory, AilmentFactory>(Lifetime.Singleton);
             builder.Register<IAilmentViewInfoFactory, AilmentViewInfoFactory>(Lifetime.Singleton);
-            builder.Register<IResource<AilmentViewInfoDto, AilmentCode>, AilmentViewInfoListScriptableObjectResource>(
-                Lifetime.Singleton);
+            builder.RegisterComponentInHierarchy<IResource<AilmentViewInfoDto, AilmentCode>>();
             builder.Register<IBodyPartFactory, BodyPartFactory>(Lifetime.Singleton);
             builder.Register<IResource<BodyPartViewInfoDto, BodyPartCode>, BodyPartViewInfoResource>(Lifetime.Singleton);
             builder.RegisterComponentInHierarchy<IResource<EnemyViewInfoDto, CharacterTypeCode>>();
