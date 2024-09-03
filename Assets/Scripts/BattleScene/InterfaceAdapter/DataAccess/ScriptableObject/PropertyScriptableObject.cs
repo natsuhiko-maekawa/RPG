@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
-using BattleScene.InterfaceAdapter.DataAccess.Factory.Dto;
+using BattleScene.InterfaceAdapter.DataAccess.Dto;
 using UnityEngine;
 
-namespace BattleScene.InterfaceAdapter.DataAccess.Resource
+namespace BattleScene.InterfaceAdapter.DataAccess.ScriptableObject
 {
     [CreateAssetMenu(menuName = "ScriptableObjects/Property")]
-    public class PropertyScriptableObject : ScriptableObject
+    public class PropertyScriptableObject : UnityEngine.ScriptableObject
     {
         public List<PropertyDto> propertyList = new();
     }

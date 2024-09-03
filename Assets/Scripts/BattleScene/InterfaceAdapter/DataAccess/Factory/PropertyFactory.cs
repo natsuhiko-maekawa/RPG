@@ -4,7 +4,7 @@ using System.Linq;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DataAccess.ObsoleteIFactory;
 using BattleScene.Domain.ValueObject;
-using BattleScene.InterfaceAdapter.DataAccess.IResource;
+using BattleScene.InterfaceAdapter.DataAccess.Resource;
 
 namespace BattleScene.InterfaceAdapter.DataAccess.Factory
 {

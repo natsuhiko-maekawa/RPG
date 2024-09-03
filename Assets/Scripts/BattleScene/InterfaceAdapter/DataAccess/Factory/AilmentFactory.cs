@@ -3,7 +3,6 @@ using BattleScene.Domain.DataAccess.ObsoleteIFactory;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
-using BattleScene.InterfaceAdapter.DataAccess.IResource;
 
 namespace BattleScene.InterfaceAdapter.DataAccess.Factory
 {

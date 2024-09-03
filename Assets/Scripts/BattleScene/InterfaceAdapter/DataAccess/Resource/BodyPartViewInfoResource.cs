@@ -1,7 +1,7 @@
 ﻿using BattleScene.Domain.Code;
-using BattleScene.InterfaceAdapter.DataAccess.Factory.Dto;
+using BattleScene.InterfaceAdapter.DataAccess.Dto;
 
-namespace BattleScene.InterfaceAdapter.DataAccess.Factory
+namespace BattleScene.InterfaceAdapter.DataAccess.Resource
 {
     public class BodyPartViewInfoResource : IResource<BodyPartViewInfoDto, BodyPartCode>
     {

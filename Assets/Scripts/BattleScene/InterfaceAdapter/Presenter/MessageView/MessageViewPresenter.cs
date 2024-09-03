@@ -1,6 +1,6 @@
 ﻿using BattleScene.Domain.Code;
 using BattleScene.InterfaceAdapter.DataAccess;
-using BattleScene.InterfaceAdapter.DataAccess.Factory.Dto;
+using BattleScene.InterfaceAdapter.DataAccess.Dto;
 using BattleScene.InterfaceAdapter.IView;
 using BattleScene.InterfaceAdapter.Service;
 using BattleScene.UseCases.View.MessageView.OutputBoundary;

@@ -1,6 +1,6 @@
 using System.Collections.Generic;
-using BattleScene.InterfaceAdapter.DataAccess.Factory.Dto;
-using BattleScene.InterfaceAdapter.DataAccess.IResource;
+using BattleScene.InterfaceAdapter.DataAccess.Dto;
+using BattleScene.InterfaceAdapter.DataAccess.ScriptableObject;
 using UnityEngine;
 
 namespace BattleScene.InterfaceAdapter.DataAccess.Resource

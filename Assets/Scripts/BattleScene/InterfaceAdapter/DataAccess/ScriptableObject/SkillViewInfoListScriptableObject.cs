@@ -2,7 +2,7 @@
 using BattleScene.Domain.ValueObject;
 using UnityEngine;
 
-namespace BattleScene.InterfaceAdapter.DataAccess.Resource
+namespace BattleScene.InterfaceAdapter.DataAccess.ScriptableObject
 {
     [CreateAssetMenu(menuName = "ScriptableObjects/SkillViewInfo")]
     public class SkillViewInfoListScriptableObject : BaseListScriptableObject<SkillViewInfoValueObject, SkillCode>

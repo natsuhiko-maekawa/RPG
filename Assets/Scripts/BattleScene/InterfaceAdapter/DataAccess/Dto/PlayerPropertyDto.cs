@@ -4,7 +4,7 @@ using BattleScene.Domain.Code;
 using BattleScene.Domain.Interface;
 using UnityEngine;
 
-namespace BattleScene.InterfaceAdapter.DataAccess.Factory.Dto
+namespace BattleScene.InterfaceAdapter.DataAccess.Dto
 {
     [Serializable]
     public class PlayerPropertyDto : IUnique<CharacterTypeCode>, ISerializationCallbackReceiver

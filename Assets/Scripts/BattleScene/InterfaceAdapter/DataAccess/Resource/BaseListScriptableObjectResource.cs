@@ -1,10 +1,10 @@
 ﻿using System.Collections.Immutable;
 using System.Linq;
 using BattleScene.Domain.Interface;
-using BattleScene.InterfaceAdapter.DataAccess.Resource;
+using BattleScene.InterfaceAdapter.DataAccess.ScriptableObject;
 using UnityEngine;
 
-namespace BattleScene.InterfaceAdapter.DataAccess.Factory
+namespace BattleScene.InterfaceAdapter.DataAccess.Resource
 {
     public abstract class BaseListScriptableObjectResource<TListScriptableObject, TItem, TId>
         : MonoBehaviour, IResource<TItem, TId>

@@ -1,8 +1,8 @@
 ﻿using BattleScene.Domain.Code;
-using BattleScene.InterfaceAdapter.DataAccess.Factory.Dto;
-using BattleScene.InterfaceAdapter.DataAccess.Resource;
+using BattleScene.InterfaceAdapter.DataAccess.Dto;
+using BattleScene.InterfaceAdapter.DataAccess.ScriptableObject;
 
-namespace BattleScene.InterfaceAdapter.DataAccess.Factory
+namespace BattleScene.InterfaceAdapter.DataAccess.Resource
 {
     public class AilmentViewInfoListScriptableObjectResource
         : BaseListScriptableObjectResource<AilmentViewInfoScriptableObject, AilmentViewInfoDto, AilmentCode>

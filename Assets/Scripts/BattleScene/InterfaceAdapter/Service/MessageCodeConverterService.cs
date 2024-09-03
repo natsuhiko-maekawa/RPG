@@ -7,7 +7,7 @@ using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
 using BattleScene.Domain.ValueObject;
 using BattleScene.InterfaceAdapter.DataAccess;
-using BattleScene.InterfaceAdapter.DataAccess.Factory.Dto;
+using BattleScene.InterfaceAdapter.DataAccess.Dto;
 
 namespace BattleScene.InterfaceAdapter.Service
 {
