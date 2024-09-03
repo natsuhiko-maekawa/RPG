@@ -6,7 +6,7 @@ using BattleScene.Domain.Interface;
 
 namespace BattleScene.Domain.ValueObject
 {
-    public class ResetSkillResultValueObject : ISkillResult
+    public class ResetSkillResultValueObject
     {
         public ResetSkillResultValueObject(
             CharacterId actorId,
