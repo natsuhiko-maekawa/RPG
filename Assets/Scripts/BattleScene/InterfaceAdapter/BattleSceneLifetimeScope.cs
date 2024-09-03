@@ -62,7 +62,7 @@ using VContainer.Unity;
 
 namespace BattleScene.InterfaceAdapter
 {
-    public class BattleSceneInterfaceAdapterLifetimeScope : LifetimeScope
+    public class BattleSceneLifetimeScope : LifetimeScope
     {
         protected override void Configure(IContainerBuilder builder)
         {
@@ -77,9 +77,7 @@ namespace BattleScene.InterfaceAdapter
             builder.RegisterComponentInHierarchy<IPlayerStatusView>();
             builder.RegisterComponentInHierarchy<ISelectActionView>();
             builder.RegisterComponentInHierarchy<ISelectSkillView>();
-            // builder.RegisterComponentInHierarchy<IPlayerPropertyResource>();
             builder.RegisterComponentInHierarchy<IPropertyResource>();
-            // builder.RegisterComponentInHierarchy<IGameLoop>();
             
             builder.Register<IAilmentViewPresenter, AilmentViewPresenter>(Lifetime.Singleton);
             builder.Register<IBuffViewPresenter, BuffViewPresenter>(Lifetime.Singleton);
@@ -98,7 +96,6 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<ISelectSkillViewPresenter, SelectSkillViewPresenter>(Lifetime.Singleton);
             builder.Register<ITechnicalPointBarViewPresenter, TechnicalPointBarViewPresenter>(Lifetime.Singleton);
             builder.Register<ICharacterVibesViewPresenter, CharacterVibesViewPresenter>(Lifetime.Singleton);
-            // builder.Register<IBattleSceneController, BattleSceneController>(Lifetime.Singleton);
             builder.Register<IViewPresenter<GridViewOutputData>, GridViewPresenter>(Lifetime.Singleton);
             
             builder.Register<IAilmentRepository, AilmentRepository>(Lifetime.Singleton);
@@ -136,12 +133,11 @@ namespace BattleScene.InterfaceAdapter
                 .Register<IRepository<TechnicalPointEntity, CharacterId>,
                     Repository<TechnicalPointEntity, CharacterId>>(Lifetime.Singleton);
             builder.Register<IRepository<TurnEntity, TurnId>, Repository<TurnEntity, TurnId>>(Lifetime.Singleton);
+            
             builder.Register<IFactory<SkillValueObject, SkillCode>, SkillFactory>(Lifetime.Singleton);
             builder.RegisterComponentInHierarchy<IResource<SkillViewInfoValueObject, SkillCode>>();
-
             builder.Register<IFactory<PlayerPropertyValueObject, CharacterTypeCode>, PlayerPropertyFactory>
                 (Lifetime.Singleton);
-            
             builder.Register<IAilmentFactory, AilmentFactory>(Lifetime.Singleton);
             builder.Register<IAilmentViewInfoFactory, AilmentViewInfoFactory>(Lifetime.Singleton);
             builder.RegisterComponentInHierarchy<IResource<AilmentViewInfoDto, AilmentCode>>();
@@ -150,10 +146,7 @@ namespace BattleScene.InterfaceAdapter
             builder.RegisterComponentInHierarchy<IResource<EnemyViewInfoDto, CharacterTypeCode>>();
             builder.RegisterComponentInHierarchy<IResource<MessageDto, MessageCode>>();
             builder.RegisterComponentInHierarchy<IResource<PlayerViewInfoDto, CharacterTypeCode>>();
-            // builder.Register<IFactory<PlayerPropertyDto, CharacterTypeCode>, PlayerPropertyFactory>(Lifetime.Singleton);
             builder.Register<IPropertyFactory, PropertyFactory>(Lifetime.Singleton);
-            // builder.Register<ISlipDamageFactory, SlipDamageFactory>(Lifetime.Singleton);
-
             builder.RegisterComponentInHierarchy<IResource<PlayerPropertyDto, CharacterTypeCode>>();
 
             builder.Register<ToAilmentNumberService>(Lifetime.Singleton);
@@ -224,10 +217,7 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<SuffocationSkill>(Lifetime.Singleton);
             builder.Register<Utsusemi>(Lifetime.Singleton);
             builder.Register<Wabisuke>(Lifetime.Singleton);
-
-            // builder.RegisterComponentInHierarchy<IGameLoop>();
             
-            // TODO: DomainのServiceを登録している
             builder.Register<InitializeBattleState>(Lifetime.Singleton);
             builder.Register<InitializePlayerState>(Lifetime.Singleton);
             builder.Register<InitializeEnemyState>(Lifetime.Singleton);
@@ -287,7 +277,7 @@ namespace BattleScene.InterfaceAdapter
             builder.RegisterEntryPoint<StateMachine>();
 
             builder.Register<OrderDecision>(Lifetime.Singleton);
-            // builder.RegisterEntryPoint<Controller.Controller>();
+
             builder.Register<EnemySkillSelector>(Lifetime.Singleton);
         }
     }
