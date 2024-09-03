@@ -23,9 +23,7 @@ namespace BattleScene.UseCases.OldEvent
         private readonly IDestroyedPartViewPresenter _destroyedPartView;
         private readonly MessageOutputDataFactory _messageOutputDataFactory;
         private readonly IMessageViewPresenter _messageView;
-        private readonly OrderedItemsDomainService _orderedItems;
         private readonly ResultDomainService _result;
-        private readonly ISkillRepository _skillRepository;
 
         public DestroyedPartOldEvent(
             IBodyPartRepository bodyPartRepository,
@@ -34,9 +32,7 @@ namespace BattleScene.UseCases.OldEvent
             IDestroyedPartViewPresenter destroyedPartView,
             MessageOutputDataFactory messageOutputDataFactory,
             IMessageViewPresenter messageView,
-            OrderedItemsDomainService orderedItems,
-            ResultDomainService result,
-            ISkillRepository skillRepository)
+            ResultDomainService result)
         {
             _bodyPartRepository = bodyPartRepository;
             _destroyedPartCreator = destroyedPartCreator;
@@ -44,9 +40,7 @@ namespace BattleScene.UseCases.OldEvent
             _destroyedPartView = destroyedPartView;
             _messageOutputDataFactory = messageOutputDataFactory;
             _messageView = messageView;
-            _orderedItems = orderedItems;
             _result = result;
-            _skillRepository = skillRepository;
         }
 
         public EventCode Run()

@@ -1,7 +1,6 @@
 using System.Linq;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DataAccess;
-using BattleScene.Domain.DataAccess.ObsoleteIFactory;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.IRepository;
 using BattleScene.Domain.ValueObject;
@@ -29,7 +28,6 @@ namespace BattleScene.UseCases.UseCase
         private readonly PlayerAttackPlayerImageOutputDataFactory _playerAttackPlayerImageOutputDataFactory;
         private readonly IPlayerImageViewPresenter _playerImageView;
         private readonly ISkillRepository _skillRepository;
-        private readonly ISkillViewInfoFactory _skillViewInfoFactory;
         private readonly TargetFrameOutputDataFactory _targetFrameOutputDataFactory;
         private readonly TechnicalPointBarOutputDataFactory _technicalPointBarOutputDataFactory;
         private readonly ITechnicalPointBarViewPresenter _technicalPointBarView;
@@ -44,7 +42,6 @@ namespace BattleScene.UseCases.UseCase
             PlayerAttackPlayerImageOutputDataFactory playerAttackPlayerImageOutputDataFactory,
             IPlayerImageViewPresenter playerImageView,
             ISkillRepository skillRepository,
-            ISkillViewInfoFactory skillViewInfoFactory,
             TargetFrameOutputDataFactory targetFrameOutputDataFactory,
             TechnicalPointBarOutputDataFactory technicalPointBarOutputDataFactory,
             ITechnicalPointBarViewPresenter technicalPointBarView,
@@ -58,7 +55,6 @@ namespace BattleScene.UseCases.UseCase
             _playerAttackPlayerImageOutputDataFactory = playerAttackPlayerImageOutputDataFactory;
             _playerImageView = playerImageView;
             _skillRepository = skillRepository;
-            _skillViewInfoFactory = skillViewInfoFactory;
             _targetFrameOutputDataFactory = targetFrameOutputDataFactory;
             _technicalPointBarOutputDataFactory = technicalPointBarOutputDataFactory;
             _technicalPointBarView = technicalPointBarView;

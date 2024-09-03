@@ -1,25 +1,10 @@
 using System;
-using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Entity;
 
 namespace BattleScene.UseCases.Service
 {
     public class CureSkillService
     {
-        private readonly OrderedItemsDomainService _orderedItems;
-        private readonly ResultCreatorDomainService _resultCreator;
-        private readonly TargetDomainService _target;
-
-        public CureSkillService(
-            OrderedItemsDomainService orderedItems,
-            ResultCreatorDomainService resultCreator,
-            TargetDomainService target)
-        {
-            _orderedItems = orderedItems;
-            _resultCreator = resultCreator;
-            _target = target;
-        }
-
         public ResultEntity Execute(SkillEntity skill)
         {
             // var actorId = _orderedItems.FirstCharacterId();

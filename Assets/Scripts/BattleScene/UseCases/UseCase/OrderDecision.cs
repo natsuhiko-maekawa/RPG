@@ -13,20 +13,17 @@ namespace BattleScene.UseCases.UseCase
         private readonly IRepository<ActionTimeEntity, CharacterId> _actionTimeRepository;
         private readonly CharactersDomainService _characters;
         private readonly OrderedItemCreatorService _orderedItemCreator;
-        private readonly IRepository<OrderedItemEntity, OrderNumber> _orderedItemRepository;
 
         public OrderDecision(
             ActionTimeCreatorService actionTimeCreator,
             IRepository<ActionTimeEntity, CharacterId> actionTimeRepository,
             CharactersDomainService characters,
-            OrderedItemCreatorService orderedItemCreator,
-            IRepository<OrderedItemEntity, OrderNumber> orderedItemRepository)
+            OrderedItemCreatorService orderedItemCreator)
         {
             _actionTimeCreator = actionTimeCreator;
             _actionTimeRepository = actionTimeRepository;
             _characters = characters;
             _orderedItemCreator = orderedItemCreator;
-            _orderedItemRepository = orderedItemRepository;
         }
 
         public void Execute()

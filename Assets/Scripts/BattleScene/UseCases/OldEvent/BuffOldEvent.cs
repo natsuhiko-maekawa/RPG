@@ -1,6 +1,5 @@
 using BattleScene.Domain.DataAccess.ObsoleteIFactory;
 using BattleScene.Domain.DomainService;
-using BattleScene.Domain.IRepository;
 using BattleScene.Domain.ValueObject;
 using BattleScene.UseCases.OldEvent.Interface;
 using BattleScene.UseCases.OldEvent.Runner;
@@ -19,9 +18,7 @@ namespace BattleScene.UseCases.OldEvent
         private readonly IBuffViewInfoFactory _buffViewInfoFactory;
         private readonly MessageOutputDataFactory _messageOutputDataFactory;
         private readonly IMessageViewPresenter _messageView;
-        private readonly OrderedItemsDomainService _orderedItems;
         private readonly ResultDomainService _result;
-        private readonly ISkillRepository _skillRepository;
 
         public BuffOldEvent(
             BuffOutputDataFactory buffOutputDataFactory,
@@ -29,18 +26,14 @@ namespace BattleScene.UseCases.OldEvent
             IBuffViewInfoFactory buffViewInfoFactory,
             MessageOutputDataFactory messageOutputDataFactory,
             IMessageViewPresenter messageView,
-            OrderedItemsDomainService orderedItems,
-            ResultDomainService result,
-            ISkillRepository skillRepository)
+            ResultDomainService result)
         {
             _buffOutputDataFactory = buffOutputDataFactory;
             _buffView = buffView;
             _buffViewInfoFactory = buffViewInfoFactory;
             _messageOutputDataFactory = messageOutputDataFactory;
             _messageView = messageView;
-            _orderedItems = orderedItems;
             _result = result;
-            _skillRepository = skillRepository;
         }
 
         public EventCode Run()

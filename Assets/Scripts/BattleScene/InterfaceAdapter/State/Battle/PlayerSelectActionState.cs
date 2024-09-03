@@ -4,7 +4,6 @@ using BattleScene.Domain.Code;
 using BattleScene.UseCases.Service;
 using BattleScene.UseCases.View;
 using BattleScene.UseCases.View.GridView;
-using VContainer;
 
 namespace BattleScene.InterfaceAdapter.State.Battle
 {
@@ -14,20 +13,17 @@ namespace BattleScene.InterfaceAdapter.State.Battle
         private readonly SelectTargetStateFactory _selectTargetStateFactory;
         private readonly SkillStateFactory _skillStateFactory;
         private readonly IViewPresenter<GridViewOutputData> _gridView;
-        private readonly IObjectResolver _container;
 
         public PlayerSelectActionState(
             AttackCounterService attackCounter,
             SelectTargetStateFactory selectTargetStateFactory,
             SkillStateFactory skillStateFactory,
-            IViewPresenter<GridViewOutputData> gridView,
-            IObjectResolver container)
+            IViewPresenter<GridViewOutputData> gridView)
         {
             _attackCounter = attackCounter;
             _selectTargetStateFactory = selectTargetStateFactory;
             _skillStateFactory = skillStateFactory;
             _gridView = gridView;
-            _container = container;
         }
 
         public override void Start()
