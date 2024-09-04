@@ -47,9 +47,9 @@ namespace BattleScene.Domain.DomainService
                     _hitPointRepository.Select(characterId).IsSurvive()
                         ? ImmutableList.Create(characterId)
                         : ImmutableList<CharacterId>.Empty,
-                Range.Solo when !_characterRepository.Select(characterId).IsPlayer() =>
+                Range.Solo when !Equals(characterId, _player.GetId()) =>
                     ImmutableList.Create(_player.GetId()),
-                Range.Solo when _characterRepository.Select(characterId).IsPlayer() =>
+                Range.Solo when Equals(characterId, _player.GetId()) =>
                     ImmutableList.Create(GetEnemySolo()),
                 _ => throw new NotImplementedException()
             };
