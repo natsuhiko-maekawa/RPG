@@ -10,7 +10,6 @@ using BattleScene.Domain.IRepository;
 using BattleScene.Domain.ValueObject;
 using BattleScene.InterfaceAdapter.DataAccess;
 using BattleScene.InterfaceAdapter.DataAccess.Dto;
-using UnityEngine;
 
 namespace BattleScene.InterfaceAdapter.Service
 {
@@ -32,7 +31,6 @@ namespace BattleScene.InterfaceAdapter.Service
         private readonly IResource<MessageDto, MessageCode> _messageResource;
         private readonly OrderedItemsDomainService _orderedItems;
         private readonly IResource<PlayerViewInfoDto, CharacterTypeCode> _playerViewInfoResource;
-        private readonly ResultDomainService _result;
         private readonly ISkillRepository _skillRepository;
         private readonly IResource<SkillViewInfoValueObject, SkillCode> _skillViewInfoResource;
         private readonly IRepository<BattleLogEntity, BattleLogId> _battleLogRepository;
@@ -47,7 +45,6 @@ namespace BattleScene.InterfaceAdapter.Service
             IResource<MessageDto, MessageCode> messageResource,
             OrderedItemsDomainService orderedItems,
             IResource<PlayerViewInfoDto, CharacterTypeCode> playerViewInfoResource,
-            ResultDomainService result,
             ISkillRepository skillRepository,
             IResource<SkillViewInfoValueObject, SkillCode> skillViewInfoResource,
             IRepository<BattleLogEntity, BattleLogId> battleLogRepository,
@@ -61,7 +58,6 @@ namespace BattleScene.InterfaceAdapter.Service
             _messageResource = messageResource;
             _orderedItems = orderedItems;
             _playerViewInfoResource = playerViewInfoResource;
-            _result = result;
             _skillRepository = skillRepository;
             _skillViewInfoResource = skillViewInfoResource;
             _battleLogRepository = battleLogRepository;
