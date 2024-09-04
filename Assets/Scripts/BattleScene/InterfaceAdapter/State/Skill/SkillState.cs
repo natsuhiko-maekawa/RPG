@@ -63,12 +63,6 @@ namespace BattleScene.InterfaceAdapter.State.Skill
             if (_skillContext.HasEndState() && _skillStateQueue.Count == 0)
             {
                 Context.TransitionTo(_container.Resolve<TurnEndState>());
-                return;
-            }
-
-            if (_skillContext.HasEndState())
-            {
-                _skillStateQueue.Dequeue();
             }
         }
 
