@@ -33,11 +33,5 @@ namespace BattleScene.Domain.ValueObject
         public float Rate { get; }
         public int Turn { get; }
         public LifetimeCode LifetimeCode { get; }
-
-        [Obsolete]
-        public bool Success()
-        {
-            return !TargetIdList.IsEmpty;
-        }
     }
 }

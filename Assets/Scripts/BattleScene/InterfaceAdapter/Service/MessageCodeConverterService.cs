@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Immutable;
 using System.Linq;
 using BattleScene.Domain.Aggregate;
 using BattleScene.Domain.Code;
@@ -34,10 +35,12 @@ namespace BattleScene.InterfaceAdapter.Service
         private readonly IResource<SkillViewInfoValueObject, SkillCode> _skillViewInfoResource;
         private readonly ITargetRepository _targetRepository;
         private readonly IRepository<BattleLogEntity, BattleLogId> _battleLogRepository;
+        private readonly PlayerDomainService _player;
 
         public MessageCodeConverterService(
             IResource<AilmentViewInfoDto, AilmentCode> ailmentViewInfoResource,
             IResource<BodyPartViewInfoDto, BodyPartCode> bodyPartViewInfoResource,
+            IResource<BuffViewInfoDto, BuffCode> buffViewInfoResource,
             IRepository<CharacterAggregate, CharacterId> characterRepository,
             IResource<EnemyViewInfoDto, CharacterTypeCode> enemyViewInfoResource,
             IResource<MessageDto, MessageCode> messageResource,
@@ -47,10 +50,12 @@ namespace BattleScene.InterfaceAdapter.Service
             ISkillRepository skillRepository,
             IResource<SkillViewInfoValueObject, SkillCode> skillViewInfoResource,
             ITargetRepository targetRepository,
-            IRepository<BattleLogEntity, BattleLogId> battleLogRepository)
+            IRepository<BattleLogEntity, BattleLogId> battleLogRepository,
+            PlayerDomainService player)
         {
             _ailmentViewInfoResource = ailmentViewInfoResource;
             _bodyPartViewInfoResource = bodyPartViewInfoResource;
+            _buffViewInfoResource = buffViewInfoResource;
             _characterRepository = characterRepository;
             _enemyViewInfoResource = enemyViewInfoResource;
             _messageResource = messageResource;
@@ -61,13 +66,14 @@ namespace BattleScene.InterfaceAdapter.Service
             _skillViewInfoResource = skillViewInfoResource;
             _targetRepository = targetRepository;
             _battleLogRepository = battleLogRepository;
+            _player = player;
         }
 
         public string Replace(string message)
         {
             message = ReplaceActor(message);
             message = ReplaceAilments(message);
-            // message = ReplaceBuff(message);
+            message = ReplaceBuff(message);
             message = ReplaceDamage(message);
             // message = ReplaceCure(message);
             message = ReplaceBodyPart(message);
@@ -113,7 +119,8 @@ namespace BattleScene.InterfaceAdapter.Service
 
         private string ReplaceBuff(string message)
         {
-            var buffCode = _battleLogRepository.Select().Max().BuffCode;
+            var buffCode = _battleLogRepository.Select().Max()?.BuffCode ?? BuffCode.NoBuff;
+            if (buffCode == BuffCode.NoBuff) return message;
             var buffName = _buffViewInfoResource.Get(buffCode).BuffName;
             return message.Replace(Buff, buffName);
         }
@@ -154,11 +161,12 @@ namespace BattleScene.InterfaceAdapter.Service
             if (!message.Contains(Target)) return message;
             if (!_orderedItems.First().TryGetCharacterId(out var characterId))
                 throw new InvalidOperationException();
-            var targetNameList = _targetRepository.Select(characterId).TargetIdList
-                .Select(x => _characterRepository.Select(x).IsPlayer()
+            var targetNameList = _battleLogRepository.Select()
+                .Max().TargetIdList
+                .Select(x => Equals(x, _player.GetId())
                     ? _playerViewInfoResource.Get(CharacterTypeCode.Player).PlayerName
                     : _enemyViewInfoResource.Get(_characterRepository.Select(x).Property.CharacterTypeCode).EnemyName)
-                .ToList();
+                .ToImmutableList();
             var totalSuffix = targetNameList.Count == 1 ? "" : "たち";
             return message.Replace(Target, targetNameList.First() + totalSuffix);
         }

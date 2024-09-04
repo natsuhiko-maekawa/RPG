@@ -35,8 +35,8 @@ namespace BattleScene.Domain.DomainService
                 Range.Random => GetRandom(characterId),
                 Range.Oneself =>
                     _hitPointRepository.Select(characterId).IsSurvive()
-                        ? ImmutableList<CharacterId>.Empty
-                        : ImmutableList.Create(characterId),
+                        ? ImmutableList.Create(characterId)
+                        : ImmutableList<CharacterId>.Empty,
                 Range.Solo when !_characterRepository.Select(characterId).IsPlayer() =>
                     ImmutableList.Create(_characters.GetPlayer().Id),
                 Range.Solo when _characterRepository.Select(characterId).IsPlayer() =>
