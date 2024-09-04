@@ -33,7 +33,6 @@ namespace BattleScene.InterfaceAdapter.Service
         private readonly ResultDomainService _result;
         private readonly ISkillRepository _skillRepository;
         private readonly IResource<SkillViewInfoValueObject, SkillCode> _skillViewInfoResource;
-        private readonly ITargetRepository _targetRepository;
         private readonly IRepository<BattleLogEntity, BattleLogId> _battleLogRepository;
         private readonly PlayerDomainService _player;
 
@@ -49,7 +48,6 @@ namespace BattleScene.InterfaceAdapter.Service
             ResultDomainService result,
             ISkillRepository skillRepository,
             IResource<SkillViewInfoValueObject, SkillCode> skillViewInfoResource,
-            ITargetRepository targetRepository,
             IRepository<BattleLogEntity, BattleLogId> battleLogRepository,
             PlayerDomainService player)
         {
@@ -64,7 +62,6 @@ namespace BattleScene.InterfaceAdapter.Service
             _result = result;
             _skillRepository = skillRepository;
             _skillViewInfoResource = skillViewInfoResource;
-            _targetRepository = targetRepository;
             _battleLogRepository = battleLogRepository;
             _player = player;
         }
@@ -159,8 +156,6 @@ namespace BattleScene.InterfaceAdapter.Service
         private string ReplaceTarget(string message)
         {
             if (!message.Contains(Target)) return message;
-            if (!_orderedItems.First().TryGetCharacterId(out var characterId))
-                throw new InvalidOperationException();
             var targetNameList = _battleLogRepository.Select()
                 .Max().TargetIdList
                 .Select(x => Equals(x, _player.GetId())
