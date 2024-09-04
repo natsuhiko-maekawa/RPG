@@ -56,7 +56,7 @@ namespace BattleScene.Framework.View
             return Task.CompletedTask;
         }
 
-        public Task StartFrameView(EnemyFrameViewDto dto)
+        public Task StartFrameView(FrameViewDto dto)
         {
             _frameView.StartAnimation(dto.Color);
             return Task.CompletedTask;

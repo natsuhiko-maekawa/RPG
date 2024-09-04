@@ -42,7 +42,7 @@ namespace BattleScene.InterfaceAdapter.State.Battle
         {
             AbstractState nextState = actionCode switch
             {
-                ActionCode.Attack => _selectTargetStateFactory.Create(actionCode),
+                ActionCode.Attack => _selectTargetStateFactory.Create(SkillCode.Attack),
                 ActionCode.Defence => _skillStateFactory.Create(SkillCode.Defence),
                 _ => throw new ArgumentOutOfRangeException()
             };

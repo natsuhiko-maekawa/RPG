@@ -1,9 +1,10 @@
-﻿using BattleScene.Domain.Entity;
+﻿using System.Collections.Generic;
+using BattleScene.Domain.Id;
 
 namespace BattleScene.UseCases.IPresenter
 {
     public interface ITargetViewPresenter
     {
-        public void Out(TargetEntity target);
+        public void Start(IList<CharacterId> targetIdList);
     }
 }

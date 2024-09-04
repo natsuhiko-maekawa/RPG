@@ -1,33 +1,40 @@
-﻿using BattleScene.Domain.Entity;
+﻿using System.Collections.Generic;
+using System.Collections.Immutable;
+using System.Linq;
+using BattleScene.Domain.DomainService;
+using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
 using BattleScene.InterfaceAdapter.IView;
-using BattleScene.InterfaceAdapter.Presenter.FrameView;
 using BattleScene.UseCases.IPresenter;
-using UnityEngine;
 
 namespace BattleScene.InterfaceAdapter.Presenter
 {
     public class TargetViewPresenter : ITargetViewPresenter
     {
-        private readonly ICharacterRepository _characterRepository;
-        private readonly IEnemiesView _enemiesView;
-        private readonly IPlayerView _playerView;
-        
-        public void Out(TargetEntity target)
+        private readonly PlayerDomainService _player;
+        private readonly IRepository<EnemyEntity, CharacterId> _enemyRepository;
+        private readonly ITargetView _targetView;
+
+        public TargetViewPresenter(
+            PlayerDomainService player, 
+            IRepository<EnemyEntity, CharacterId> enemyRepository, 
+            ITargetView targetView)
         {
-            foreach (var targetId in target.TargetIdList)
-            {
-                var character = _characterRepository.Select(targetId);
-                if (character.IsPlayer())
-                    OutPlayer(targetId);
-            }
+            _player = player;
+            _enemyRepository = enemyRepository;
+            _targetView = targetView;
         }
 
-        private void OutPlayer(CharacterId characterId)
+        public void Start(IList<CharacterId> targetIdList)
         {
-            var dto = new FrameViewDto(Color.white);
-            _playerView.StartFrameView(dto);
+            var characterDtoList = targetIdList
+                .Select(x => Equals(x, _player.GetId())
+                    ? CharacterDto.CreatePlayer()
+                    : new CharacterDto(_enemyRepository.Select(x).EnemyNumber))
+                .ToImmutableList();
+            var targetViewDto = new TargetViewDto(characterDtoList);
+            _targetView.StartAnimation(targetViewDto);
         }
     }
 }

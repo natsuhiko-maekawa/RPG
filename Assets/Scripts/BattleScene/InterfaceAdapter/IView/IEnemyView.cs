@@ -11,7 +11,7 @@ namespace BattleScene.InterfaceAdapter.IView
     {
         public Task StartAilmentView(EnemyAilmentsViewDto dto);
         public Task StartDigitView(EnemyDigitViewDto dto);
-        public Task StartFrameView(EnemyFrameViewDto dto);
+        public Task StartFrameView(FrameViewDto dto);
         public void StopFrameView();
         public Task StartHitPointBarView(EnemyHpBarViewDto dto);
         public Task StartVibesView(EnemyVibesViewDto dto);
