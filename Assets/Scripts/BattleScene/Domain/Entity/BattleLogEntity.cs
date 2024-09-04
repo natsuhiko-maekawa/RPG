@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Immutable;
+using System.Linq;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
@@ -87,6 +88,14 @@ namespace BattleScene.Domain.Entity
             TechnicalPoint = restore.TechnicalPoint;
         }
 
+        public int GetTotalDamageAmount()
+        {
+            return AttackList
+                .Where(x => x.IsHit)
+                .Select(x => x.Amount)
+                .Sum();
+        }
+        
         public int CompareTo(BattleLogEntity other)
         {
             return Sequence - other.Sequence;

@@ -7,16 +7,16 @@ namespace BattleScene.InterfaceAdapter.State.Skill
     {
         private readonly BattleLoggerService _battleLogger;
         private readonly DamageGeneratorService _damageGenerator;
-        private readonly SkillMessageStateFactory _skillMessageStateFactory;
+        private readonly DamageMessageState _damageMessageState;
 
         public DamageStateFactory(
             BattleLoggerService battleLogger,
             DamageGeneratorService damageGenerator,
-            SkillMessageStateFactory skillMessageStateFactory)
+            DamageMessageState damageMessageState)
         {
             _battleLogger = battleLogger;
             _damageGenerator = damageGenerator;
-            _skillMessageStateFactory = skillMessageStateFactory;
+            _damageMessageState = damageMessageState;
         }
 
         public DamageState Create(
@@ -24,7 +24,7 @@ namespace BattleScene.InterfaceAdapter.State.Skill
             DamageParameterValueObject damageParameter) => new DamageState(
             battleLogger: _battleLogger,
             damageGenerator: _damageGenerator,
-            skillMessageStateFactory: _skillMessageStateFactory,
+            damageMessageState: _damageMessageState,
             skillCommon: skillCommon,
             damageParameter: damageParameter);
     }
