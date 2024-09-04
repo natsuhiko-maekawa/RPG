@@ -28,11 +28,15 @@ namespace BattleScene.InterfaceAdapter.State.Skill
             _skillEndState = skillEndState;
         }
 
-        public override void Select()
+        public override void Start()
         {
             var buffCode = _battleLogRepository.Select().Max().BuffCode;
             var messageCode = _buffViewInfoResource.Get(buffCode).MessageCode;
             _messageView.Start(messageCode);
+        }
+
+        public override void Select()
+        {
             SkillContext.TransitionTo(_skillEndState);
         }
     }

@@ -27,6 +27,7 @@
         RecoverDestroyedPartMessage, // 共通(損傷部位回復)
         RemoveAilmentsMessage, // 共通(状態異常解除)
         RestoreHitPointMessage, // 共通(HP回復)
+        RestoreTechnicalPointMessage, // 共通(TP回復)
         SelectTargetMessage, // 共通(敵選択)
         SkillMessage, // 共通(スキル)
         SlipDamageMessage, // 共通(スリップダメ)
@@ -73,6 +74,6 @@
         StarShellDescription, // 説明文(照明弾)
         TaserGunDescription, // 説明文(テイザーガン)
         UtsusemiDescription, // 説明文(空蝉)
-        WabisukeDescription // 説明文(侘助)
+        WabisukeDescription, // 説明文(侘助)
     }
 }

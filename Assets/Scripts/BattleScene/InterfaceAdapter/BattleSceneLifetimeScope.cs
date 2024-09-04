@@ -231,6 +231,7 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<BuffMessageState>(Lifetime.Singleton);
             builder.Register<DamageStateFactory>(Lifetime.Singleton);
             builder.Register<RestoreStateFactory>(Lifetime.Singleton);
+            builder.Register<RestoreMessageState>(Lifetime.Singleton);
             builder.Register<SkillMessageStateFactory>(Lifetime.Singleton);
             builder.Register<SkillEndState>(Lifetime.Singleton);
             builder.Register<TurnEndState>(Lifetime.Singleton);

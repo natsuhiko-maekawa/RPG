@@ -10,7 +10,7 @@
             _orderState = orderState;
         }
 
-        public override void Start()
+        public override void Select()
         {
             Context.TransitionTo(_orderState);
         }
