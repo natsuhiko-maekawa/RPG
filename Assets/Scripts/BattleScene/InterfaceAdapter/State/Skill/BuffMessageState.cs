@@ -14,22 +14,26 @@ namespace BattleScene.InterfaceAdapter.State.Skill
         private readonly IRepository<BattleLogEntity, BattleLogId> _battleLogRepository;
         private readonly IResource<BuffViewInfoDto, BuffCode> _buffViewInfoResource;
         private readonly IMessageViewPresenter _messageView;
+        private readonly SkillEndState _skillEndState;
 
         public BuffMessageState(
             IRepository<BattleLogEntity, BattleLogId> battleLogRepository,
             IResource<BuffViewInfoDto, BuffCode> buffViewInfoResource,
-            IMessageViewPresenter messageView)
+            IMessageViewPresenter messageView,
+            SkillEndState skillEndState)
         {
             _battleLogRepository = battleLogRepository;
             _buffViewInfoResource = buffViewInfoResource;
             _messageView = messageView;
+            _skillEndState = skillEndState;
         }
 
-        public override void Start()
+        public override void Select()
         {
             var buffCode = _battleLogRepository.Select().Max().BuffCode;
             var messageCode = _buffViewInfoResource.Get(buffCode).MessageCode;
             _messageView.Start(messageCode);
+            SkillContext.TransitionTo(_skillEndState);
         }
     }
 }

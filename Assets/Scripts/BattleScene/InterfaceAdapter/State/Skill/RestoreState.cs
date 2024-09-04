@@ -25,7 +25,7 @@ namespace BattleScene.InterfaceAdapter.State.Skill
             _restoreGenerator = restoreGenerator;
         }
 
-        public override void Start()
+        public override void Select()
         {
             var restore = _restoreGenerator.Generate(
                 skillCommon: _skillCommon,

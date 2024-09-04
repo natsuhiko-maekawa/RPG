@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.ValueObject;
 using BattleScene.InterfaceAdapter.State.Battle;
 using BattleScene.UseCases.View.MessageView.OutputBoundary;
+using UnityEngine;
 using VContainer;
 
 namespace BattleScene.InterfaceAdapter.State.Skill
@@ -18,7 +20,8 @@ namespace BattleScene.InterfaceAdapter.State.Skill
         private readonly RestoreStateFactory _restoreStateFactory;
         private readonly IMessageViewPresenter _messageView;
         private readonly SkillCode _skillCode;
-        private Queue<SkillContext> _skillContextQueue;
+        private Queue<AbstractSkillState> _skillStateQueue;
+        private SkillContext _skillContext;
 
         public SkillState(
             SkillCode skillCode,
@@ -47,15 +50,26 @@ namespace BattleScene.InterfaceAdapter.State.Skill
 
         public override void Select()
         {
-            var skillContext = _skillContextQueue.Peek();
-            skillContext.Select();
-            if (skillContext.HasEndState() && _skillContextQueue.Count <= 1)
+            Debug.Assert(_skillStateQueue.Count > 0);
+            
+            if (_skillContext == null || _skillContext.HasEndState())
+            {
+                var skillState = _skillStateQueue.Dequeue();
+                _skillContext = new SkillContext(skillState);
+            }
+
+            _skillContext.Select();
+            
+            if (_skillContext.HasEndState() && _skillStateQueue.Count == 0)
             {
                 Context.TransitionTo(_container.Resolve<TurnEndState>());
                 return;
             }
 
-            _skillContextQueue.Dequeue();
+            if (_skillContext.HasEndState())
+            {
+                _skillStateQueue.Dequeue();
+            }
         }
 
         private void SetSkillContextQueue()
@@ -66,9 +80,7 @@ namespace BattleScene.InterfaceAdapter.State.Skill
                 .Concat(skill.DamageParameterList.Select(x => _damageStateFactory.Create(skill.SkillCommon, x)))
                 .Concat(skill.BuffParameterList.Select(x => _buffStateFactory.Create(skill.SkillCommon, x)))
                 .Concat(skill.RestoreParameterList.Select(x => _restoreStateFactory.Create(skill.SkillCommon, x)));
-            var skillContexts = skillStates
-                .Select(x => new SkillContext(x));
-            _skillContextQueue = new Queue<SkillContext>(skillContexts);
+            _skillStateQueue = new Queue<AbstractSkillState>(skillStates);
         }
     }
 }
