@@ -115,9 +115,9 @@ namespace BattleScene.UseCases.Service
             if (_buffRepository.Select()
                     .Count(x => Equals(x.CharacterId, characterId)) != 0)
             {
-                var buffId = new BuffId(characterId, BuffCode.Speed);
-                speed *= _buffRepository.Select(buffId)
-                    .Rate;
+                speed *= _buffRepository.Select()
+                    .FirstOrDefault(x => Equals(x.CharacterId, characterId) && x.BuffCode == BuffCode.Speed)
+                    ?.Rate ?? 1.0f;
             }
             
             return (int)Math.Ceiling(speed);
