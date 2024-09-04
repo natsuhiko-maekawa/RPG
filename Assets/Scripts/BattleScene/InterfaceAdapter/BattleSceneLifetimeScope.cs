@@ -77,7 +77,6 @@ namespace BattleScene.InterfaceAdapter
             builder.RegisterComponentInHierarchy<IPlayerStatusView>();
             builder.RegisterComponentInHierarchy<ISelectActionView>();
             builder.RegisterComponentInHierarchy<ISelectSkillView>();
-            builder.RegisterComponentInHierarchy<IPropertyResource>();
             
             builder.Register<IAilmentViewPresenter, AilmentViewPresenter>(Lifetime.Singleton);
             builder.Register<IBuffViewPresenter, BuffViewPresenter>(Lifetime.Singleton);
@@ -138,6 +137,7 @@ namespace BattleScene.InterfaceAdapter
             builder.RegisterComponentInHierarchy<IResource<SkillViewInfoValueObject, SkillCode>>();
             builder.Register<IFactory<PlayerPropertyValueObject, CharacterTypeCode>, PlayerPropertyFactory>
                 (Lifetime.Singleton);
+            builder.Register<IFactory<PropertyValueObject, CharacterTypeCode>, PropertyFactory>(Lifetime.Singleton);
             builder.Register<IAilmentFactory, AilmentFactory>(Lifetime.Singleton);
             builder.Register<IAilmentViewInfoFactory, AilmentViewInfoFactory>(Lifetime.Singleton);
             builder.RegisterComponentInHierarchy<IResource<AilmentViewInfoDto, AilmentCode>>();
@@ -147,7 +147,7 @@ namespace BattleScene.InterfaceAdapter
             builder.RegisterComponentInHierarchy<IResource<EnemyViewInfoDto, CharacterTypeCode>>();
             builder.RegisterComponentInHierarchy<IResource<MessageDto, MessageCode>>();
             builder.RegisterComponentInHierarchy<IResource<PlayerViewInfoDto, CharacterTypeCode>>();
-            builder.Register<IPropertyFactory, PropertyFactory>(Lifetime.Singleton);
+            builder.RegisterComponentInHierarchy<IResource<PropertyDto, CharacterTypeCode>>();
             builder.RegisterComponentInHierarchy<IResource<PlayerPropertyDto, CharacterTypeCode>>();
 
             builder.Register<ToAilmentNumberService>(Lifetime.Singleton);
@@ -240,7 +240,7 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<AilmentSkillService>(Lifetime.Singleton);
             builder.Register<AttackCounterService>(Lifetime.Singleton);
             builder.Register<BuffGeneratorService>(Lifetime.Singleton);
-            builder.Register<CharacterCreatorService>(Lifetime.Singleton);
+            // builder.Register<CharacterCreatorService>(Lifetime.Singleton);
             builder.Register<CharacterOutputDataCreatorService>(Lifetime.Singleton);
             builder.Register<CureSkillService>(Lifetime.Singleton);
             builder.Register<DamageGeneratorService>(Lifetime.Singleton);

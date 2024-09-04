@@ -1,12 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using BattleScene.Domain.Code;
 using BattleScene.InterfaceAdapter.DataAccess.Dto;
 using UnityEngine;
 
 namespace BattleScene.InterfaceAdapter.DataAccess.ScriptableObject
 {
     [CreateAssetMenu(menuName = "ScriptableObjects/Property")]
-    public class PropertyScriptableObject : UnityEngine.ScriptableObject
+    public class PropertyScriptableObject : BaseListScriptableObject<PropertyDto, CharacterTypeCode>
     {
-        public List<PropertyDto> propertyList = new();
     }
 }

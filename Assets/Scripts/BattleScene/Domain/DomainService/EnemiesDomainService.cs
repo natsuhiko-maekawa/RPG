@@ -3,7 +3,7 @@ using System.Collections.Immutable;
 using System.Linq;
 using BattleScene.Domain.Aggregate;
 using BattleScene.Domain.Code;
-using BattleScene.Domain.DataAccess.ObsoleteIFactory;
+using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
@@ -15,7 +15,7 @@ namespace BattleScene.Domain.DomainService
 {
     public class EnemiesDomainService
     {
-        private readonly IPropertyFactory _propertyFactory;
+        private readonly IFactory<PropertyValueObject, CharacterTypeCode> _propertyFactory;
         private readonly IRandomEx _randomEx;
         private readonly IRepository<ActionTimeEntity, CharacterId> _actionTimeRepository;
         private readonly IRepository<CharacterAggregate, CharacterId> _characterRepository;
@@ -23,7 +23,7 @@ namespace BattleScene.Domain.DomainService
         private readonly IRepository<HitPointAggregate, CharacterId> _hitPointRepository;
 
         public EnemiesDomainService(
-            IPropertyFactory propertyFactory,
+            IFactory<PropertyValueObject, CharacterTypeCode> propertyFactory,
             IRandomEx randomEx, 
             IRepository<ActionTimeEntity, CharacterId> actionTimeRepository,
             IRepository<CharacterAggregate, CharacterId> characterRepository,
@@ -40,12 +40,17 @@ namespace BattleScene.Domain.DomainService
 
         public void Add(IList<CharacterTypeCode> characterTypeIdList)
         {
-            var options = _propertyFactory.Get(characterTypeIdList)
-                .Select(x => (Id: x.CharacterTypeCode, Parameter: x.SumParameter()))
+            var options = characterTypeIdList
+                .Select(x =>
+                {
+                    var property = _propertyFactory.Create(x);
+                    return (Id: property.CharacterTypeCode, Parameter: property.SumParameter());
+                })
                 .Combination(1, 4)
                 .Where(x =>
                 {
-                    var diff = _propertyFactory.Get(CharacterTypeCode.Player).SumParameter() - x.Sum(y => y.Parameter);
+                    var diff 
+                        = _propertyFactory.Create(CharacterTypeCode.Player).SumParameter() - x.Sum(y => y.Parameter);
                     return diff is >= 0 and <= 5;
                 })
                 .Select(x => x
@@ -56,7 +61,7 @@ namespace BattleScene.Domain.DomainService
             var characterList = _randomEx.Choice(options)
                 .Select(x =>
                 {
-                    PropertyValueObject property = _propertyFactory.Get(x);
+                    PropertyValueObject property = _propertyFactory.Create(x);
                     var characterId = new CharacterId();
                     return new CharacterAggregate(characterId, property);
                 })

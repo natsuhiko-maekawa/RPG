@@ -15,20 +15,24 @@ namespace BattleScene.Domain.Aggregate
         {
             Id = id;
             Property = property;
+            CharacterTypeCode = property.CharacterTypeCode;
         }
 
         public CharacterAggregate(
             CharacterId id,
+            CharacterTypeCode characterTypeCode,
             PointValueObject hitPoint,
             PointValueObject technicalPoint,
             int actionTime)
         {
             Id = id;
+            CharacterTypeCode = characterTypeCode;
             HitPoint = hitPoint;
             TechnicalPoint = technicalPoint;
             ActionTime = actionTime;
         }
         
+        public CharacterTypeCode CharacterTypeCode { get; }
         public PointValueObject HitPoint { get; }
         public PointValueObject TechnicalPoint { get; }
         public int ActionTime { get; }

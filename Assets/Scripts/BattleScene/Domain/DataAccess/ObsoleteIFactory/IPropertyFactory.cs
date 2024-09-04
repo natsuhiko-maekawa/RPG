@@ -5,10 +5,10 @@ using BattleScene.Domain.ValueObject;
 
 namespace BattleScene.Domain.DataAccess.ObsoleteIFactory
 {
-    public interface IPropertyFactory
-    {
-        public PropertyValueObject Get(CharacterTypeCode characterTypeCode);
-        public ImmutableList<PropertyValueObject> Get(IList<CharacterTypeCode> characterTypeIdList);
-        public ImmutableList<PropertyValueObject> Get();
-    }
+    // public interface IPropertyFactory
+    // {
+    //     public PropertyValueObject Get(CharacterTypeCode characterTypeCode);
+    //     public ImmutableList<PropertyValueObject> Get(IList<CharacterTypeCode> characterTypeIdList);
+    //     public ImmutableList<PropertyValueObject> Get();
+    // }
 }

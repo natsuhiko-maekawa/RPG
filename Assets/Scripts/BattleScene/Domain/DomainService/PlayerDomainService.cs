@@ -12,7 +12,7 @@ namespace BattleScene.Domain.DomainService
 {
     public class PlayerDomainService
     {
-        private readonly IPropertyFactory _propertyFactory;
+        private readonly IFactory<PropertyValueObject, CharacterTypeCode> _propertyFactory;
         private readonly IFactory<PlayerPropertyValueObject, CharacterTypeCode> _playerPropertyFactory;
         private readonly IRepository<ActionTimeEntity, CharacterId> _actionTimeRepository;
         private readonly IRepository<CharacterAggregate, CharacterId> _characterRepository;
@@ -20,7 +20,7 @@ namespace BattleScene.Domain.DomainService
         private readonly IRepository<TechnicalPointEntity, CharacterId> _technicalPointRepository;
 
         public PlayerDomainService(
-            IPropertyFactory propertyFactory,
+            IFactory<PropertyValueObject, CharacterTypeCode> propertyFactory,
             IFactory<PlayerPropertyValueObject, CharacterTypeCode> playerPropertyFactory,
             IRepository<ActionTimeEntity, CharacterId> actionTimeRepository,
             IRepository<CharacterAggregate, CharacterId> characterRepository,
@@ -38,7 +38,7 @@ namespace BattleScene.Domain.DomainService
 
         public void Add()
         {
-            PropertyValueObject property = _propertyFactory.Get(CharacterTypeCode.Player);
+            PropertyValueObject property = _propertyFactory.Create(CharacterTypeCode.Player);
             var characterId = new CharacterId();
             var player = new CharacterAggregate(characterId, property);
             _characterRepository.Update(player);
