@@ -10,6 +10,7 @@ using BattleScene.Domain.IRepository;
 using BattleScene.Domain.ValueObject;
 using BattleScene.InterfaceAdapter.DataAccess;
 using BattleScene.InterfaceAdapter.DataAccess.Dto;
+using UnityEngine;
 
 namespace BattleScene.InterfaceAdapter.Service
 {
@@ -22,6 +23,7 @@ namespace BattleScene.InterfaceAdapter.Service
         private const string Part = "[part]";
         private const string Skill = "[skill]";
         private const string Target = "[target]";
+        private const string TechnicalPoint = "[technicalPoint]";
         private readonly IResource<AilmentViewInfoDto, AilmentCode> _ailmentViewInfoResource;
         private readonly IResource<BodyPartViewInfoDto, BodyPartCode> _bodyPartViewInfoResource;
         private readonly IResource<BuffViewInfoDto, BuffCode> _buffViewInfoResource;
@@ -76,6 +78,7 @@ namespace BattleScene.InterfaceAdapter.Service
             message = ReplaceBodyPart(message);
             message = ReplaceSkill(message);
             message = ReplaceTarget(message);
+            message = ReplaceTechnicalPoint(message);
             return message;
         }
         
@@ -164,6 +167,15 @@ namespace BattleScene.InterfaceAdapter.Service
                 .ToImmutableList();
             var totalSuffix = targetNameList.Count == 1 ? "" : "たち";
             return message.Replace(Target, targetNameList.First() + totalSuffix);
+        }
+
+        private string ReplaceTechnicalPoint(string message)
+        {
+            if (!message.Contains(TechnicalPoint)) return message;
+            var technicalPoint = _battleLogRepository.Select()
+                .Max().TechnicalPoint
+                .ToString();
+            return message.Replace(TechnicalPoint, technicalPoint);
         }
     }
 }
