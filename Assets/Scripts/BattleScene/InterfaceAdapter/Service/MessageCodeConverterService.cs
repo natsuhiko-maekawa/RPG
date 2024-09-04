@@ -104,7 +104,7 @@ namespace BattleScene.InterfaceAdapter.Service
                 throw new InvalidOperationException();
             var actorName = _characterRepository.Select(characterId).IsPlayer()
                 ? _playerViewInfoResource.Get(CharacterTypeCode.Player).PlayerName
-                : _enemyViewInfoResource.Get(_characterRepository.Select(characterId).Property.CharacterTypeCode)
+                : _enemyViewInfoResource.Get(_characterRepository.Select(characterId).CharacterTypeCode)
                     .EnemyName;
             return message.Replace(Actor, actorName);
         }
@@ -165,7 +165,7 @@ namespace BattleScene.InterfaceAdapter.Service
                 .Max().TargetIdList
                 .Select(x => Equals(x, _player.GetId())
                     ? _playerViewInfoResource.Get(CharacterTypeCode.Player).PlayerName
-                    : _enemyViewInfoResource.Get(_characterRepository.Select(x).Property.CharacterTypeCode).EnemyName)
+                    : _enemyViewInfoResource.Get(_characterRepository.Select(x).CharacterTypeCode).EnemyName)
                 .ToImmutableList();
             var totalSuffix = targetNameList.Count == 1 ? "" : "たち";
             return message.Replace(Target, targetNameList.First() + totalSuffix);

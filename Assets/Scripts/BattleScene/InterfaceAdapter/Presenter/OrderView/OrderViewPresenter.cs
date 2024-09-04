@@ -67,7 +67,7 @@ namespace BattleScene.InterfaceAdapter.Presenter.OrderView
 
         private OrderViewDto CreateEnemyViewDto(CharacterId characterId)
         {
-            var characterTypeId = _characterRepository.Select(characterId).Property.CharacterTypeCode;
+            var characterTypeId = _characterRepository.Select(characterId).CharacterTypeCode;
             var enemyImagePath = _enemyViewInfoResource.Get(characterTypeId).EnemyImagePath;
             return new OrderViewDto(ItemType.Enemy, EnemyImagePath: enemyImagePath);
         }

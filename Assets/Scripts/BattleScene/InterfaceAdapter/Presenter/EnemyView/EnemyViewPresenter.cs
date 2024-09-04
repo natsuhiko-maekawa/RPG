@@ -37,7 +37,7 @@ namespace BattleScene.InterfaceAdapter.Presenter.EnemyView
             var enemyDto = enemyOutputData.EnemyCharacterIdList
                 .Select(x =>
                 {
-                    var characterTypeId = _characterRepository.Select(x).Property.CharacterTypeCode;
+                    var characterTypeId = _characterRepository.Select(x).CharacterTypeCode;
                     return new EnemyDto(
                         EnemyNumber: _enemyRepository.Select(x).EnemyNumber,
                         EnemyImagePath: _enemyViewInfoResource.Get(characterTypeId).EnemyImagePath);

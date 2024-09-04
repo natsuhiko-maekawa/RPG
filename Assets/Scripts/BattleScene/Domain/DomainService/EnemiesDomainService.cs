@@ -74,7 +74,7 @@ namespace BattleScene.Domain.DomainService
             _hitPointRepository.Update(hitPointList);
             
             var enemyList = characterList
-                .OrderBy(x => x.Property.CharacterTypeCode)
+                .OrderBy(x => x.CharacterTypeCode)
                 .Select((x, i) => new EnemyEntity(x.Id, i))
                 .ToImmutableList();
             _enemyRepository.Update(enemyList);
