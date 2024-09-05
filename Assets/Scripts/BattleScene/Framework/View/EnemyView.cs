@@ -6,70 +6,62 @@ using BattleScene.InterfaceAdapter.Presenter.DigitView;
 using BattleScene.InterfaceAdapter.Presenter.FrameView;
 using BattleScene.InterfaceAdapter.Presenter.StatusBarView;
 using UnityEngine;
-using UnityEngine.UI;
-// ReSharper disable Unity.PerformanceCriticalCodeInvocation
 
 namespace BattleScene.Framework.View
 {
-    public class EnemyView : IEnemyView
+    public class EnemyView : MonoBehaviour, IEnemyView
     {
-        private readonly EnemyAilmentsView _ailmentsView;
-        private readonly DigitView _dmgView;
-        private readonly FrameView _frameView;
-        private readonly StatusBarView _hpBarView;
-        private readonly Image _image;
-        private readonly EnemyVibesView _vibesView;
-        
-        public EnemyView(
-            GameObject instance,
-            Sprite sprite,
-            Vector3 vector3,
-            Transform transform)
+        private EnemyAilmentsView _enemyAilmentView;
+        private DigitView _digitView;
+        private FrameView _frameView;
+        private StatusBarView _hitPointBarView;
+        private EnemyVibesView _enemyVibesView;
+
+        private void Awake()
         {
-            instance.transform.SetParent(transform, false);
-            instance.transform.localPosition += vector3;
-            _vibesView = instance.GetComponentInChildren<EnemyVibesView>(); 
-            _image = instance.GetComponentInChildren<Image>();
-            _image.sprite = sprite;
-            _ailmentsView = instance.GetComponentInChildren<EnemyAilmentsView>(); 
-            _dmgView = instance.GetComponentInChildren<DigitView>(); 
-            var enemyHpBarViewInstance = instance.GetComponentInChildren<StatusBarView>();
-            enemyHpBarViewInstance.transform.localPosition += new Vector3(0, 40);
-            _hpBarView = enemyHpBarViewInstance;
-            _frameView = instance.GetComponentInChildren<FrameView>(); 
+            _enemyAilmentView = GetComponentInChildren<EnemyAilmentsView>();
+            _digitView = GetComponentInChildren<DigitView>();
+            _frameView = GetComponentInChildren<FrameView>();
+            _hitPointBarView = GetComponentInChildren<StatusBarView>();
+            _enemyVibesView = GetComponentInChildren<EnemyVibesView>();
+        }
+
+        public void SetActive(bool value)
+        {
+            gameObject.SetActive(value);
         }
         
-        public Task StartAilmentView(EnemyAilmentsViewDto dto)
+        public Task StartAilmentAnimationAsync(EnemyAilmentsViewDto dto)
         {
-            _ailmentsView.StartAnimation(dto);
+            _enemyAilmentView.StartAnimation(dto);
             return Task.CompletedTask;
         }
 
-        public async Task StartDigitView(EnemyDigitViewDto dto)
+        public async Task StartDigitAnimationAsync(EnemyDigitViewDto dto)
         {
-            await _dmgView.StartAnimation(dto.DigitDtoList);
+            await _digitView.StartAnimation(dto.DigitDtoList);
         }
 
-        public Task StartHitPointBarView(EnemyHpBarViewDto dto)
+        public Task StartHitPointBarAnimationAsync(EnemyHpBarViewDto dto)
         {
-            _hpBarView.StartAnimation(dto.StatusBarViewDto);
+            _hitPointBarView.StartAnimation(dto.StatusBarViewDto);
             return Task.CompletedTask;
         }
 
-        public Task StartFrameView(FrameViewDto dto)
+        public Task StartFrameAnimationAsync(FrameViewDto dto)
         {
             _frameView.StartAnimation(dto.Color);
             return Task.CompletedTask;
         }
 
-        public void StopFrameView()
+        public void StopFrameAnimation()
         {
             _frameView.StopAnimation();
         }
 
-        public async Task StartVibesView(EnemyVibesViewDto dto)
+        public async Task StartVibesAnimationAsync(EnemyVibesViewDto dto)
         {
-            await _vibesView.StartAnimation();
+            await _enemyVibesView.StartAnimation();
         }
     }
 }

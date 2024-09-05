@@ -9,11 +9,12 @@ namespace BattleScene.InterfaceAdapter.IView
 {
     public interface IEnemyView
     {
-        public Task StartAilmentView(EnemyAilmentsViewDto dto);
-        public Task StartDigitView(EnemyDigitViewDto dto);
-        public Task StartFrameView(FrameViewDto dto);
-        public void StopFrameView();
-        public Task StartHitPointBarView(EnemyHpBarViewDto dto);
-        public Task StartVibesView(EnemyVibesViewDto dto);
+        public void SetActive(bool value);
+        public Task StartAilmentAnimationAsync(EnemyAilmentsViewDto dto);
+        public Task StartDigitAnimationAsync(EnemyDigitViewDto dto);
+        public Task StartFrameAnimationAsync(FrameViewDto dto);
+        public void StopFrameAnimation();
+        public Task StartHitPointBarAnimationAsync(EnemyHpBarViewDto dto);
+        public Task StartVibesAnimationAsync(EnemyVibesViewDto dto);
     }
 }
