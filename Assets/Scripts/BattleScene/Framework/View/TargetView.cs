@@ -50,7 +50,7 @@ namespace BattleScene.Framework.View
                     .ToImmutableList();
                 var position = dto.CharacterDtoList.First().EnemyIndex;
                 _id = _enemyIndexList.FindIndex(x => x == position);
-                Debug.Assert(_id == -1);
+                Debug.Assert(_id != -1);
             }
             
             return Task.CompletedTask;
