@@ -30,6 +30,9 @@ namespace BattleScene.Framework.View
 
         public Task StartAnimation(TargetViewDto dto)
         {
+            moveAction?.Enable();
+            selectAction?.Enable();
+            
             _dto = dto;
             var frameViewDto = new FrameViewDto(Color.red);
 
@@ -53,6 +56,17 @@ namespace BattleScene.Framework.View
             }
             
             return Task.CompletedTask;
+        }
+
+        public void StopAnimation()
+        {
+            moveAction?.Disable();
+            selectAction?.Disable();
+            _playerView.StopPlayerFrameView();
+            foreach (var enemyView in _enemiesView)
+            {
+                enemyView.StopFrameAnimation();
+            }
         }
 
         private bool IsEnemySolo(IList<CharacterDto> characterDtoList)
@@ -86,13 +100,11 @@ namespace BattleScene.Framework.View
         private void SetMoveAction(Func<Vector2, Task> func)
         {
             moveAction.performed += x => func.Invoke(x.ReadValue<Vector2>());
-            moveAction?.Enable();
         }
         
         public void SetSelectAction(Action<ImmutableList<CharacterDto>> action)
         {
             selectAction.performed += _ => action.Invoke(GetTargetDtoList());
-            selectAction?.Enable();
         }
 
         private ImmutableList<CharacterDto> GetTargetDtoList()

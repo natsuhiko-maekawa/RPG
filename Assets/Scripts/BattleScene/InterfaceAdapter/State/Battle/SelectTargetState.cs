@@ -42,7 +42,7 @@ namespace BattleScene.InterfaceAdapter.State.Battle
 
         public override void Select(IList<CharacterId> targetIdList)
         {
-            
+            _targetView.Stop();
         }
     }
 }

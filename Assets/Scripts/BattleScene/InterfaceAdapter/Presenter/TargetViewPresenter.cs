@@ -36,5 +36,10 @@ namespace BattleScene.InterfaceAdapter.Presenter
             var targetViewDto = new TargetViewDto(characterDtoList);
             _targetView.StartAnimation(targetViewDto);
         }
+
+        public void Stop()
+        {
+            _targetView.StopAnimation();
+        }
     }
 }

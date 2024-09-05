@@ -6,5 +6,6 @@ namespace BattleScene.UseCases.IPresenter
     public interface ITargetViewPresenter
     {
         public void Start(IList<CharacterId> targetIdList);
+        public void Stop();
     }
 }
