@@ -69,7 +69,7 @@ namespace BattleScene.Framework.View
 
             _enemiesView[_index].StopFrameAnimation();
             _index = vector2.x > 0 
-                ? Math.Min(_index + 1, _enemyPositionList.Count) 
+                ? Math.Min(_index + 1, _enemyPositionList.Count - 1) 
                 : Math.Max(_index - 1, 0);
             
             await StartAnimation(_dto);
