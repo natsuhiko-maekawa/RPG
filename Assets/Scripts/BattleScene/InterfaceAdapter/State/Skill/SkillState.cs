@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DataAccess;
+using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
 using BattleScene.InterfaceAdapter.State.Battle;
 using BattleScene.UseCases.View.MessageView.OutputBoundary;
@@ -19,11 +21,13 @@ namespace BattleScene.InterfaceAdapter.State.Skill
         private readonly RestoreStateFactory _restoreStateFactory;
         private readonly IMessageViewPresenter _messageView;
         private readonly SkillCode _skillCode;
+        private readonly ImmutableList<CharacterId> _targetIdList;
         private Queue<AbstractSkillState> _skillStateQueue;
         private SkillContext _skillContext;
 
         public SkillState(
             SkillCode skillCode,
+            IList<CharacterId> targetIdList,
             IObjectResolver container,
             IFactory<SkillValueObject, SkillCode> skillFactory,
             BuffStateFactory buffStateFactory,
@@ -32,6 +36,7 @@ namespace BattleScene.InterfaceAdapter.State.Skill
             IMessageViewPresenter messageView)
         {
             _skillCode = skillCode;
+            _targetIdList = targetIdList.ToImmutableList();
             _container = container;
             _skillFactory = skillFactory;
             _buffStateFactory = buffStateFactory;
@@ -70,7 +75,11 @@ namespace BattleScene.InterfaceAdapter.State.Skill
             var skill = _skillFactory.Create(_skillCode);
             var skillStates = Enumerable.Empty<AbstractSkillState>()
                 .Concat(skill.AilmentParameterList.Select(x => new AilmentState(x)))
-                .Concat(skill.DamageParameterList.Select(x => _damageStateFactory.Create(skill.SkillCommon, x)))
+                .Concat(skill.DamageParameterList
+                    .Select(x => _damageStateFactory.Create(
+                            skillCommon: skill.SkillCommon,
+                            damageParameter: x,
+                            targetIdList: _targetIdList)))
                 .Concat(skill.BuffParameterList.Select(x => _buffStateFactory.Create(skill.SkillCommon, x)))
                 .Concat(skill.RestoreParameterList.Select(x => _restoreStateFactory.Create(skill.SkillCommon, x)));
             _skillStateQueue = new Queue<AbstractSkillState>(skillStates);

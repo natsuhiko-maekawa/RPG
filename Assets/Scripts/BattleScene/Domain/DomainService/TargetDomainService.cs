@@ -42,15 +42,18 @@ namespace BattleScene.Domain.DomainService
         {
             var targetList = range switch
             {
-                Range.Random => GetRandom(characterId),
                 Range.Oneself =>
                     _hitPointRepository.Select(characterId).IsSurvive()
                         ? ImmutableList.Create(characterId)
                         : ImmutableList<CharacterId>.Empty,
-                Range.Solo when !Equals(characterId, _player.GetId()) =>
-                    ImmutableList.Create(_player.GetId()),
-                Range.Solo when Equals(characterId, _player.GetId()) =>
-                    ImmutableList.Create(GetEnemySolo()),
+                Range.Solo =>
+                    Equals(characterId, _player.GetId())
+                        ? ImmutableList.Create(GetEnemySolo())
+                        : ImmutableList.Create(_player.GetId()),
+                Range.Line or Range.Random =>
+                    Equals(characterId, _player.GetId())
+                        ? _enemies.GetIdSurvive()
+                        : ImmutableList.Create(_player.GetId()),
                 _ => throw new NotImplementedException()
             };
 

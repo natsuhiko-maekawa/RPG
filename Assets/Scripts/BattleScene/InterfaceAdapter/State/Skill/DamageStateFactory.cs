@@ -1,4 +1,6 @@
-﻿using BattleScene.Domain.ValueObject;
+﻿using System.Collections.Generic;
+using BattleScene.Domain.Id;
+using BattleScene.Domain.ValueObject;
 using BattleScene.UseCases.Service;
 
 namespace BattleScene.InterfaceAdapter.State.Skill
@@ -21,11 +23,13 @@ namespace BattleScene.InterfaceAdapter.State.Skill
 
         public DamageState Create(
             SkillCommonValueObject skillCommon,
-            DamageParameterValueObject damageParameter) => new DamageState(
+            DamageParameterValueObject damageParameter,
+            IList<CharacterId> targetIdList) => new(
             battleLogger: _battleLogger,
             damageGenerator: _damageGenerator,
             damageMessageState: _damageMessageState,
             skillCommon: skillCommon,
-            damageParameter: damageParameter);
+            damageParameter: damageParameter,
+            targetIdList: targetIdList);
     }
 }

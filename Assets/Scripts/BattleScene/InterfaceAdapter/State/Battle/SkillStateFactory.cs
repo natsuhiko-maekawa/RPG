@@ -1,5 +1,7 @@
-﻿using BattleScene.Domain.Code;
+﻿using System.Collections.Generic;
+using BattleScene.Domain.Code;
 using BattleScene.Domain.DataAccess;
+using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
 using BattleScene.InterfaceAdapter.State.Skill;
 using BattleScene.UseCases.View.MessageView.OutputBoundary;
@@ -32,8 +34,9 @@ namespace BattleScene.InterfaceAdapter.State.Battle
             _messageView = messageView;
         }
 
-        public SkillState Create(SkillCode skillCode) => new SkillState(
+        public SkillState Create(SkillCode skillCode, IList<CharacterId> targetIdList) => new(
             skillCode: skillCode,
+            targetIdList: targetIdList,
             container: _container, 
             skillFactory: _skillFactory,
             buffStateFactory: _buffStateFactory,

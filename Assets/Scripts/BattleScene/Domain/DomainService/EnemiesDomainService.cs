@@ -91,6 +91,15 @@ namespace BattleScene.Domain.DomainService
                 .Where(x => !x.IsPlayer())
                 .ToImmutableList();
         }
+        
+        public ImmutableList<CharacterId> GetIdSurvive()
+        {
+            return _characterRepository.Select()
+                .Where(x => !x.IsPlayer())
+                .Where(x => _hitPointRepository.Select(x.Id).IsSurvive())
+                .Select(x => x.Id)
+                .ToImmutableList();
+        }
 
         public CharacterId GetIdByPosition(int position)
         {
