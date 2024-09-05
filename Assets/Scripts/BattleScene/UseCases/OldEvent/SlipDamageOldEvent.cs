@@ -33,7 +33,6 @@ namespace BattleScene.UseCases.OldEvent
         private readonly ResultDomainService _result;
         private readonly IResultRepository _resultRepository;
         private readonly SlipDamageService _slipDamage;
-        private readonly ITargetRepository _targetRepository;
 
         public SlipDamageOldEvent(
             CharactersDomainService characters,
@@ -48,8 +47,7 @@ namespace BattleScene.UseCases.OldEvent
             IMessageViewPresenter messageView,
             ResultDomainService result,
             IResultRepository resultRepository,
-            SlipDamageService slipDamage,
-            ITargetRepository targetRepository)
+            SlipDamageService slipDamage)
         {
             _characters = characters;
             _characterVibesOutputDataFactory = characterVibesOutputDataFactory;
@@ -64,7 +62,6 @@ namespace BattleScene.UseCases.OldEvent
             _result = result;
             _resultRepository = resultRepository;
             _slipDamage = slipDamage;
-            _targetRepository = targetRepository;
         }
 
         public EventCode Run()
@@ -77,9 +74,9 @@ namespace BattleScene.UseCases.OldEvent
             hitPoint.Reduce(_result.LastDamage().GetTotal());
             _hitPointRepository.Update(hitPoint);
 
-            var target = _targetRepository.Select(playerId);
-            target.Set(playerId);
-            _targetRepository.Update(target);
+            // var target = _targetRepository.Select(playerId);
+            // target.Set(playerId);
+            // _targetRepository.Update(target);
 
             StartView();
 
