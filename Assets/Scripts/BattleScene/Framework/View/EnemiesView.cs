@@ -23,7 +23,7 @@ namespace BattleScene.Framework.View
         [SerializeField] private float enemyIntervalPx = 200;
         private readonly List<EnemyView> _enemyViewList = new();
         private ISpriteFlyweight _spriteFlyweight;
-        private int _position;
+        private int _position = -1;
 
         private void Awake()
         {
