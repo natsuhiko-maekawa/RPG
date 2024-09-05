@@ -12,6 +12,7 @@ namespace BattleScene.InterfaceAdapter.State.Battle
     {
         private readonly IFactory<SkillValueObject, SkillCode> _skillFactory;
         private readonly OrderedItemsDomainService _orderedItems;
+        private readonly SkillStateFactory _skillStateFactory;
         private readonly TargetDomainService _target;
         private readonly ITargetViewPresenter _targetView;
         private readonly SkillCode _skillCode;
@@ -19,12 +20,14 @@ namespace BattleScene.InterfaceAdapter.State.Battle
         public SelectTargetState(
             IFactory<SkillValueObject, SkillCode> skillFactory,
             OrderedItemsDomainService orderedItems,
+            SkillStateFactory skillStateFactory,
             TargetDomainService target,
             ITargetViewPresenter targetView,
             SkillCode skillCode)
         {
             _skillFactory = skillFactory;
             _orderedItems = orderedItems;
+            _skillStateFactory = skillStateFactory;
             _target = target;
             _targetView = targetView;
             _skillCode = skillCode;
@@ -43,6 +46,9 @@ namespace BattleScene.InterfaceAdapter.State.Battle
         public override void Select(IList<CharacterId> targetIdList)
         {
             _targetView.Stop();
+            Context.TransitionTo(_skillStateFactory.Create(
+                skillCode: _skillCode,
+                targetIdList: targetIdList));
         }
     }
 }
