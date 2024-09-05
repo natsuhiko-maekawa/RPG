@@ -17,8 +17,8 @@ namespace BattleScene.Framework.View
         private EnemiesView _enemiesView;
         private PlayerView _playerView;
         private TargetViewDto _dto;
-        private int _id = -1;
-        private ImmutableList<int> _enemyIndexList;
+        private int _index = -1;
+        private ImmutableList<int> _enemyPositionList;
 
         private void Start()
         {
@@ -34,18 +34,18 @@ namespace BattleScene.Framework.View
 
             if (dto.CharacterDtoList.Count == 1 && !dto.CharacterDtoList.First().IsPlayer)
             {
-                if (_id == -1)
+                if (_index == -1)
                 {
-                    _enemyIndexList = _enemiesView
+                    _enemyPositionList = _enemiesView
                         .Where(x => x.enabled)
                         .Select((_, i) => i)
                         .ToImmutableList();
                     var position = dto.CharacterDtoList.First().EnemyIndex;
-                    _id = _enemyIndexList.FindIndex(x => x == position);
-                    Debug.Assert(_id != -1);
+                    _index = _enemyPositionList.FindIndex(x => x == position);
+                    Debug.Assert(_index != -1);
                 }
 
-                _enemiesView[_id].StartFrameAnimationAsync(frameViewDto);
+                _enemiesView[_index].StartFrameAnimationAsync(frameViewDto);
                 return Task.CompletedTask;
             }
             
@@ -67,11 +67,10 @@ namespace BattleScene.Framework.View
         {
             if (vector2.x == 0) return;
 
-            _enemiesView[_id].StopFrameAnimation();
-            if (vector2.x > 0)
-                _id = Math.Min(_id + 1, _enemyIndexList.Count);
-            else
-                _id = Math.Max(_id - 1, 0);
+            _enemiesView[_index].StopFrameAnimation();
+            _index = vector2.x > 0 
+                ? Math.Min(_index + 1, _enemyPositionList.Count) 
+                : Math.Max(_index - 1, 0);
             
             await StartAnimation(_dto);
         }
@@ -84,7 +83,7 @@ namespace BattleScene.Framework.View
         
         public void SetSelectAction(Action<int> action)
         {
-            selectAction.performed += _ => action.Invoke(_id);
+            selectAction.performed += _ => action.Invoke(_index);
             selectAction?.Enable();
         }
     }
