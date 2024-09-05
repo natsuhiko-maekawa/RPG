@@ -34,7 +34,7 @@ namespace BattleScene.InterfaceAdapter.State.Battle
         {
         }
 
-        public virtual void Select(IList<CharacterId> characterIdList)
+        public virtual void Select(IList<CharacterId> targetIdList)
         {
         }
     }

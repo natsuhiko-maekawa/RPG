@@ -91,5 +91,12 @@ namespace BattleScene.Domain.DomainService
                 .Where(x => !x.IsPlayer())
                 .ToImmutableList();
         }
+
+        public CharacterId GetIdByPosition(int position)
+        {
+            return _enemyRepository.Select()
+                .First(x => x.EnemyNumber == position)
+                .Id;
+        }
     }
 }

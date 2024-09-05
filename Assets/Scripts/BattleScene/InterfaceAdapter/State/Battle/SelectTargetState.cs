@@ -1,6 +1,8 @@
-﻿using BattleScene.Domain.Code;
+﻿using System.Collections.Generic;
+using BattleScene.Domain.Code;
 using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.DomainService;
+using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
 using BattleScene.UseCases.IPresenter;
 
@@ -36,6 +38,11 @@ namespace BattleScene.InterfaceAdapter.State.Battle
                 characterId: characterId,
                 range: skill.SkillCommon.Range);
             _targetView.Start(target);
+        }
+
+        public override void Select(IList<CharacterId> targetIdList)
+        {
+            
         }
     }
 }

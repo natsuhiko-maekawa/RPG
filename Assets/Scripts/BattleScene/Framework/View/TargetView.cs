@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 using System.Threading.Tasks;
@@ -32,7 +33,7 @@ namespace BattleScene.Framework.View
             _dto = dto;
             var frameViewDto = new FrameViewDto(Color.red);
 
-            if (dto.CharacterDtoList.Count == 1 && !dto.CharacterDtoList.First().IsPlayer)
+            if (IsEnemySolo(dto.CharacterDtoList))
             {
                 if (_index == -1) SetIndex(dto);
                 
@@ -54,6 +55,11 @@ namespace BattleScene.Framework.View
             return Task.CompletedTask;
         }
 
+        private bool IsEnemySolo(IList<CharacterDto> characterDtoList)
+        {
+            return characterDtoList.Count == 1 && !characterDtoList.First().IsPlayer;
+        }
+        
         private void SetIndex(TargetViewDto dto)
         {
             _enemyPositionList = _enemiesView
@@ -83,10 +89,18 @@ namespace BattleScene.Framework.View
             moveAction?.Enable();
         }
         
-        public void SetSelectAction(Action<int> action)
+        public void SetSelectAction(Action<ImmutableList<CharacterDto>> action)
         {
-            selectAction.performed += _ => action.Invoke(_index);
+            selectAction.performed += _ => action.Invoke(GetTargetDtoList());
             selectAction?.Enable();
+        }
+
+        private ImmutableList<CharacterDto> GetTargetDtoList()
+        {
+            if (_dto == null) return ImmutableList<CharacterDto>.Empty;
+            return IsEnemySolo(_dto.CharacterDtoList)
+                ? ImmutableList.Create(new CharacterDto(_enemyPositionList[_index]))
+                : _dto.CharacterDtoList;
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿using BattleScene.Domain.Code;
+﻿using System.Collections.Immutable;
+using BattleScene.Domain.Code;
+using BattleScene.Domain.Id;
 using UnityEngine;
 
 namespace BattleScene.InterfaceAdapter.State.Battle
@@ -22,5 +24,6 @@ namespace BattleScene.InterfaceAdapter.State.Battle
 
         public void Select() => _state.Select();
         public void Select(ActionCode actionCode) => _state.Select(actionCode);
+        public void Select(ImmutableList<CharacterId> targetIdList) => _state.Select(targetIdList);
     }
 }
