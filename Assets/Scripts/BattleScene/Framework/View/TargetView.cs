@@ -45,7 +45,7 @@ namespace BattleScene.Framework.View
                     Debug.Assert(_index != -1);
                 }
 
-                _enemiesView[_index].StartFrameAnimationAsync(frameViewDto);
+                _enemiesView[_enemyPositionList[_index]].StartFrameAnimationAsync(frameViewDto);
                 return Task.CompletedTask;
             }
             
