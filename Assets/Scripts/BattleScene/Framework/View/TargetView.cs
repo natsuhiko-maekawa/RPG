@@ -31,6 +31,24 @@ namespace BattleScene.Framework.View
         {
             _dto = dto;
             var frameViewDto = new FrameViewDto(Color.red);
+
+            if (dto.CharacterDtoList.Count == 1 && !dto.CharacterDtoList.First().IsPlayer)
+            {
+                if (_id == -1)
+                {
+                    _enemyIndexList = _enemiesView
+                        .Where(x => x.enabled)
+                        .Select((_, i) => i)
+                        .ToImmutableList();
+                    var position = dto.CharacterDtoList.First().EnemyIndex;
+                    _id = _enemyIndexList.FindIndex(x => x == position);
+                    Debug.Assert(_id != -1);
+                }
+
+                _enemiesView[_id].StartFrameAnimationAsync(frameViewDto);
+                return Task.CompletedTask;
+            }
+            
             foreach (var character in dto.CharacterDtoList)
             {
                 if (character.IsPlayer)
@@ -41,26 +59,16 @@ namespace BattleScene.Framework.View
                 
                 _enemiesView[character.EnemyIndex].StartFrameAnimationAsync(frameViewDto);
             }
-
-            if (_id == -1 && dto.CharacterDtoList.Count == 1 && !dto.CharacterDtoList.First().IsPlayer)
-            {
-                _enemyIndexList = _enemiesView
-                    .Where(x => x.enabled)
-                    .Select((_, i) => i)
-                    .ToImmutableList();
-                var position = dto.CharacterDtoList.First().EnemyIndex;
-                _id = _enemyIndexList.FindIndex(x => x == position);
-                Debug.Assert(_id != -1);
-            }
             
             return Task.CompletedTask;
         }
         
         private async Task MoveFrame(Vector2 vector2)
         {
-            if (vector2.y == 0) return;
+            if (vector2.x == 0) return;
 
-            if (vector2.y > 0)
+            _enemiesView[_id].StopFrameAnimation();
+            if (vector2.x > 0)
                 _id = Math.Min(_id + 1, _enemyIndexList.Count);
             else
                 _id = Math.Max(_id - 1, 0);
