@@ -5,7 +5,6 @@ using BattleScene.Domain.DomainService;
 using BattleScene.Domain.IRepository;
 using BattleScene.Domain.ValueObject;
 using BattleScene.UseCases.OldEvent.Runner;
-using BattleScene.UseCases.UseCase.Interface;
 using BattleScene.UseCases.View.FrameView.OutputBoundary;
 using BattleScene.UseCases.View.FrameView.OutputDataFactory;
 using BattleScene.UseCases.View.MessageView.OutputBoundary;
@@ -18,7 +17,7 @@ using static BattleScene.Domain.Code.MessageCode;
 
 namespace BattleScene.UseCases.UseCase
 {
-    internal class Attack : IUseCase
+    internal class Attack
     {
         private readonly ICharacterRepository _characterRepository;
         private readonly IFrameViewPresenter _frameView;

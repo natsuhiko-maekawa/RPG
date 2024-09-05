@@ -3,11 +3,10 @@ using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
 using BattleScene.UseCases.Service;
-using BattleScene.UseCases.UseCase.Interface;
 
 namespace BattleScene.UseCases.UseCase
 {
-    public class OrderDecision : IUseCase
+    public class OrderDecision
     {
         private readonly ActionTimeCreatorService _actionTimeCreator;
         private readonly IRepository<ActionTimeEntity, CharacterId> _actionTimeRepository;
