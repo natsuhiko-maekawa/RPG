@@ -3,7 +3,6 @@ using BattleScene.Domain.DataAccess.ObsoleteIFactory;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.IRepository;
 using BattleScene.UseCases.OldEvent.Runner;
-using BattleScene.UseCases.Service;
 using BattleScene.UseCases.View.AttackCountView.OutputBoundary;
 using BattleScene.UseCases.View.AttackCountView.OutputDataFactory;
 using BattleScene.UseCases.View.CharacterVibesView.OutputBoundary;
@@ -29,7 +28,6 @@ namespace BattleScene.UseCases.OldEvent
         private readonly ICharacterVibesViewPresenter _characterVibesView;
         private readonly DamageDigitOutputDataFactory _damageDigitOutputDataFactory;
         private readonly DamageMessageOutputDataFactory _damageMessageOutputDataFactory;
-        private readonly DamageGeneratorService _damageGenerator;
         private readonly IDigitViewPresenter _digitView;
         private readonly HitPointDomainService _hitPoint;
         private readonly HitPointBarOutputDataFactory _hitPointBarOutputDataFactory;
@@ -37,7 +35,6 @@ namespace BattleScene.UseCases.OldEvent
         private readonly IMessageViewPresenter _messageViewPresenter;
         private readonly OrderedItemsDomainService _orderedItems;
         private readonly IPlayerImageViewPresenter _playerImageView;
-        private readonly IResultRepository _resultRepository;
         private readonly ISkillRepository _skillRepository;
         private readonly ISkillViewInfoFactory _skillViewInfoFactory;
 
@@ -49,7 +46,6 @@ namespace BattleScene.UseCases.OldEvent
             ICharacterVibesViewPresenter characterVibesView,
             DamageDigitOutputDataFactory damageDigitOutputDataFactory,
             DamageMessageOutputDataFactory damageMessageOutputDataFactory,
-            DamageGeneratorService damageGenerator,
             IDigitViewPresenter digitView,
             HitPointDomainService hitPoint,
             HitPointBarOutputDataFactory hitPointBarOutputDataFactory,
@@ -57,7 +53,6 @@ namespace BattleScene.UseCases.OldEvent
             IMessageViewPresenter messageViewPresenter,
             OrderedItemsDomainService orderedItems,
             IPlayerImageViewPresenter playerImageView,
-            IResultRepository resultRepository,
             ISkillRepository skillRepository,
             ISkillViewInfoFactory skillViewInfoFactory)
         {
@@ -68,7 +63,6 @@ namespace BattleScene.UseCases.OldEvent
             _characterVibesView = characterVibesView;
             _damageDigitOutputDataFactory = damageDigitOutputDataFactory;
             _damageMessageOutputDataFactory = damageMessageOutputDataFactory;
-            _damageGenerator = damageGenerator;
             _digitView = digitView;
             _hitPoint = hitPoint;
             _hitPointBarOutputDataFactory = hitPointBarOutputDataFactory;
@@ -76,7 +70,6 @@ namespace BattleScene.UseCases.OldEvent
             _messageViewPresenter = messageViewPresenter;
             _orderedItems = orderedItems;
             _playerImageView = playerImageView;
-            _resultRepository = resultRepository;
             _skillRepository = skillRepository;
             _skillViewInfoFactory = skillViewInfoFactory;
         }
@@ -84,9 +77,6 @@ namespace BattleScene.UseCases.OldEvent
         public EventCode Run()
         {
             var characterId = _orderedItems.FirstCharacterId();
-            var skill = _skillRepository.Select(characterId);
-            var result = _damageGenerator.Execute(skill);
-            _resultRepository.Update(result);
 
             // var isAvoid = !_result.Last<DamageValueObject>().Success();
             var isAvoid = true;
