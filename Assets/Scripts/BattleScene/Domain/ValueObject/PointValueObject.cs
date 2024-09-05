@@ -22,6 +22,7 @@ namespace BattleScene.Domain.ValueObject
         public int MaxPoint { get; }
         public int CurrentPoint { get; }
 
+        [Obsolete]
         public int Get()
         {
             return CurrentPoint;
