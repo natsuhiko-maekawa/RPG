@@ -34,17 +34,8 @@ namespace BattleScene.Framework.View
 
             if (dto.CharacterDtoList.Count == 1 && !dto.CharacterDtoList.First().IsPlayer)
             {
-                if (_index == -1)
-                {
-                    _enemyPositionList = _enemiesView
-                        .Where(x => x.enabled)
-                        .Select((_, i) => i)
-                        .ToImmutableList();
-                    var position = dto.CharacterDtoList.First().EnemyIndex;
-                    _index = _enemyPositionList.FindIndex(x => x == position);
-                    Debug.Assert(_index != -1);
-                }
-
+                if (_index == -1) SetIndex(dto);
+                
                 _enemiesView[_enemyPositionList[_index]].StartFrameAnimationAsync(frameViewDto);
                 return Task.CompletedTask;
             }
@@ -62,7 +53,18 @@ namespace BattleScene.Framework.View
             
             return Task.CompletedTask;
         }
-        
+
+        private void SetIndex(TargetViewDto dto)
+        {
+            _enemyPositionList = _enemiesView
+                .Where(x => x.enabled)
+                .Select((_, i) => i)
+                .ToImmutableList();
+            var position = dto.CharacterDtoList.First().EnemyIndex;
+            _index = _enemyPositionList.FindIndex(x => x == position);
+            Debug.Assert(_index != -1);
+        }
+
         private async Task MoveFrame(Vector2 vector2)
         {
             if (vector2.x == 0) return;
