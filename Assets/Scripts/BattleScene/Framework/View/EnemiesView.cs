@@ -16,14 +16,13 @@ using Image = UnityEngine.UI.Image;
 
 namespace BattleScene.Framework.View
 {
-    public class EnemiesView : MonoBehaviour, IEnemiesView, IEnumerator<EnemyView>, IEnumerable<EnemyView>
+    public class EnemiesView : MonoBehaviour, IEnemiesView, IEnumerable<EnemyView>
     {
         [SerializeField] private GameObject enemyView;
         [SerializeField] private int maxCacheSize = 4;
         [SerializeField] private float enemyIntervalPx = 200;
         private readonly List<EnemyView> _enemyViewList = new();
         private ISpriteFlyweight _spriteFlyweight;
-        private int _position = -1;
 
         private void Awake()
         {
@@ -102,41 +101,9 @@ namespace BattleScene.Framework.View
             _spriteFlyweight = spriteFlyweight;
         }
 
-        public bool MoveNext()
-        {
-            _position++;
-            return _position < _enemyViewList.Count;
-        }
-
-        public void Reset()
-        {
-            _position = -1;
-        }
-
-        public EnemyView Current
-        {
-            get
-            {
-                try
-                {
-                    return _enemyViewList[_position];
-                }
-                catch (IndexOutOfRangeException)
-                {
-                    throw new InvalidOperationException();
-                }
-            }
-        }
-
-        object IEnumerator.Current => Current;
-
-        public void Dispose()
-        {
-        }
-
         public IEnumerator<EnemyView> GetEnumerator()
         {
-            return this;
+            return _enemyViewList.GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
