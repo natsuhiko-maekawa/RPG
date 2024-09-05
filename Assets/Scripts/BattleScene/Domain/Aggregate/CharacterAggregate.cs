@@ -21,23 +21,25 @@ namespace BattleScene.Domain.Aggregate
         public CharacterAggregate(
             CharacterId id,
             CharacterTypeCode characterTypeCode,
-            PointValueObject hitPoint,
-            PointValueObject technicalPoint,
+            int currentHitPoint,
+            int currentTechnicalPoint,
             int actionTime)
         {
             Id = id;
             CharacterTypeCode = characterTypeCode;
-            HitPoint = hitPoint;
-            TechnicalPoint = technicalPoint;
+            CurrentHitPoint = currentHitPoint;
+            CurrentTechnicalPoint = currentTechnicalPoint;
             ActionTime = actionTime;
         }
         
-        public CharacterTypeCode CharacterTypeCode { get; }
-        public PointValueObject HitPoint { get; }
-        public PointValueObject TechnicalPoint { get; }
-        public int ActionTime { get; }
-
         public override CharacterId Id { get; }
+        public CharacterTypeCode CharacterTypeCode { get; }
+        // TODO: 仮の値を設定
+        public int CurrentHitPoint { get; } = 1;
+        public int CurrentTechnicalPoint { get; }
+        public int ActionTime { get; }
+        public bool IsSurvive => 0 < CurrentHitPoint;
+
         [Obsolete]
         public PropertyValueObject Property { get; }
 
