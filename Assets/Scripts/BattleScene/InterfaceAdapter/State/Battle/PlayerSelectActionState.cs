@@ -5,7 +5,6 @@ using BattleScene.Domain.DomainService;
 using BattleScene.UseCases.Interface;
 using BattleScene.UseCases.OutputData;
 using BattleScene.UseCases.Service;
-using BattleScene.UseCases.View;
 
 namespace BattleScene.InterfaceAdapter.State.Battle
 {

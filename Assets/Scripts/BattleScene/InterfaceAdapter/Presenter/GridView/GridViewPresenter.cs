@@ -7,7 +7,6 @@ using BattleScene.InterfaceAdapter.IView;
 using BattleScene.InterfaceAdapter.Service;
 using BattleScene.UseCases.Interface;
 using BattleScene.UseCases.OutputData;
-using BattleScene.UseCases.View;
 
 namespace BattleScene.InterfaceAdapter.Presenter.GridView
 {

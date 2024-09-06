@@ -4,7 +4,6 @@ using System.Linq;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Id;
-using BattleScene.Domain.IRepository;
 using BattleScene.InterfaceAdapter.IInput;
 using BattleScene.InterfaceAdapter.IView;
 using BattleScene.InterfaceAdapter.Presenter;
