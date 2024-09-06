@@ -1,4 +1,4 @@
-﻿namespace BattleScene.UseCases.View
+﻿namespace BattleScene.UseCases.Interface
 {
     public interface IViewPresenter<TOutputData> where TOutputData : IOutputData 
     {

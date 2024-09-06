@@ -2,9 +2,10 @@
 using System.Collections.Immutable;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DomainService;
+using BattleScene.UseCases.Interface;
+using BattleScene.UseCases.OutputData;
 using BattleScene.UseCases.Service;
 using BattleScene.UseCases.View;
-using BattleScene.UseCases.View.GridView;
 
 namespace BattleScene.InterfaceAdapter.State.Battle
 {

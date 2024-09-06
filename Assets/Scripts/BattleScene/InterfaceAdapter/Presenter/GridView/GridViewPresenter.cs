@@ -5,8 +5,9 @@ using BattleScene.InterfaceAdapter.DataAccess;
 using BattleScene.InterfaceAdapter.DataAccess.Dto;
 using BattleScene.InterfaceAdapter.IView;
 using BattleScene.InterfaceAdapter.Service;
+using BattleScene.UseCases.Interface;
+using BattleScene.UseCases.OutputData;
 using BattleScene.UseCases.View;
-using BattleScene.UseCases.View.GridView;
 
 namespace BattleScene.InterfaceAdapter.Presenter.GridView
 {
