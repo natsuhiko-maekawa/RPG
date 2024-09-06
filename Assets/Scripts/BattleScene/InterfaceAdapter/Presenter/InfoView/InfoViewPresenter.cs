@@ -1,4 +1,4 @@
-﻿using BattleScene.InterfaceAdapter.IView;
+﻿using BattleScene.InterfaceAdapter.Interface;
 using BattleScene.UseCases.View.InfoView.OutputBoundary;
 
 namespace BattleScene.InterfaceAdapter.Presenter.InfoView

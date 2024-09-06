@@ -1,5 +1,5 @@
 ﻿using System;
-using BattleScene.InterfaceAdapter.IInput;
+using BattleScene.InterfaceAdapter.Interface;
 using UnityEngine;
 using UnityEngine.InputSystem;
 

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BattleScene.InterfaceAdapter.IInput
+namespace BattleScene.InterfaceAdapter.Interface
 {
     public interface IBattleSceneInput
     {

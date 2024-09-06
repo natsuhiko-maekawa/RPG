@@ -5,7 +5,7 @@ using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
-using BattleScene.InterfaceAdapter.IView;
+using BattleScene.InterfaceAdapter.Interface;
 using BattleScene.InterfaceAdapter.Presenter.Dto;
 using BattleScene.UseCases.IPresenter;
 

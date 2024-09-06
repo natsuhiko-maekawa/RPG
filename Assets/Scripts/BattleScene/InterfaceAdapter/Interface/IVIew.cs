@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace BattleScene.InterfaceAdapter.IView
+namespace BattleScene.InterfaceAdapter.Interface
 {
     public interface IVIew<TDto>
     {

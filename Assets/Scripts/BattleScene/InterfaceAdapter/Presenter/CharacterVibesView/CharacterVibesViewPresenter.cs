@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using BattleScene.InterfaceAdapter.IView;
+using BattleScene.InterfaceAdapter.Interface;
 using BattleScene.UseCases.View.CharacterVibesView.OutputBoundary;
 using BattleScene.UseCases.View.CharacterVibesView.OutputData;
 

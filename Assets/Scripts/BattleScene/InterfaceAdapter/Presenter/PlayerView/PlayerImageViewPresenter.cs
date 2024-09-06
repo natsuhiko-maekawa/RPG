@@ -1,5 +1,5 @@
 ﻿using System;
-using BattleScene.InterfaceAdapter.IView;
+using BattleScene.InterfaceAdapter.Interface;
 using BattleScene.UseCases.View.PlayerImageView.OutputBoundary;
 using BattleScene.UseCases.View.PlayerImageView.OutputData;
 

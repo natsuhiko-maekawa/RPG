@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using BattleScene.InterfaceAdapter.IView;
+using BattleScene.InterfaceAdapter.Interface;
 using BattleScene.UseCases.View.SelectSkillView.OutputBoundary;
 using BattleScene.UseCases.View.SelectSkillView.OutputData;
 

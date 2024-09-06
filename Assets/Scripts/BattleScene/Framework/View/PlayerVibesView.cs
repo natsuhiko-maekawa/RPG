@@ -1,5 +1,5 @@
 using System.Threading.Tasks;
-using BattleScene.InterfaceAdapter.IView;
+using BattleScene.InterfaceAdapter.Interface;
 using UnityEngine;
 using UnityEngine.UI;
 using static BattleScene.Framework.Constant;

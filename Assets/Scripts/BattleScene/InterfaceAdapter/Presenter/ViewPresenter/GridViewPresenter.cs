@@ -3,7 +3,7 @@ using System.Linq;
 using BattleScene.Domain.Code;
 using BattleScene.InterfaceAdapter.DataAccess;
 using BattleScene.InterfaceAdapter.DataAccess.Dto;
-using BattleScene.InterfaceAdapter.IView;
+using BattleScene.InterfaceAdapter.Interface;
 using BattleScene.InterfaceAdapter.Presenter.Dto;
 using BattleScene.InterfaceAdapter.Service;
 using BattleScene.UseCases.Interface;

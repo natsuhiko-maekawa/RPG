@@ -1,5 +1,5 @@
 using System.Threading.Tasks;
-using BattleScene.InterfaceAdapter.IView;
+using BattleScene.InterfaceAdapter.Interface;
 using BattleScene.InterfaceAdapter.Presenter.DigitView;
 using BattleScene.InterfaceAdapter.Presenter.FrameView;
 using BattleScene.InterfaceAdapter.Presenter.PlayerView;

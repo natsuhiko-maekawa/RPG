@@ -3,7 +3,7 @@ using BattleScene.InterfaceAdapter.Presenter.AilmentsView;
 using BattleScene.InterfaceAdapter.Presenter.BuffView;
 using BattleScene.InterfaceAdapter.Presenter.DestroyedPartView;
 
-namespace BattleScene.InterfaceAdapter.IView
+namespace BattleScene.InterfaceAdapter.Interface
 {
     public interface IPlayerStatusView
     {

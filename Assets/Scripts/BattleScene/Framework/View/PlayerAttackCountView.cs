@@ -1,5 +1,5 @@
 using System.Threading.Tasks;
-using BattleScene.InterfaceAdapter.IView;
+using BattleScene.InterfaceAdapter.Interface;
 using BattleScene.InterfaceAdapter.Presenter.PlayerAttackCountView;
 using UnityEngine;
 using UnityEngine.UI;

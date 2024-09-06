@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using BattleScene.InterfaceAdapter.Presenter.SelectSkillView;
 
-namespace BattleScene.InterfaceAdapter.IView
+namespace BattleScene.InterfaceAdapter.Interface
 {
     public interface ISelectSkillView
     {

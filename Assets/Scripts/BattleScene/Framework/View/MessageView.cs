@@ -1,6 +1,6 @@
 using System.Threading;
 using System.Threading.Tasks;
-using BattleScene.InterfaceAdapter.IView;
+using BattleScene.InterfaceAdapter.Interface;
 using BattleScene.InterfaceAdapter.Presenter.MessageView;
 using UnityEngine;
 using UnityEngine.UI;

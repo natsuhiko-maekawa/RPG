@@ -5,7 +5,7 @@ using BattleScene.InterfaceAdapter.Presenter.DigitView;
 using BattleScene.InterfaceAdapter.Presenter.FrameView;
 using BattleScene.InterfaceAdapter.Presenter.StatusBarView;
 
-namespace BattleScene.InterfaceAdapter.IView
+namespace BattleScene.InterfaceAdapter.Interface
 {
     public interface IEnemyView
     {

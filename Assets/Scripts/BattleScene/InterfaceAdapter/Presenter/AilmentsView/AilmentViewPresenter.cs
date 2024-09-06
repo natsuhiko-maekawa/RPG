@@ -2,7 +2,7 @@
 using System.Collections.Immutable;
 using System.Linq;
 using BattleScene.Domain.IRepository;
-using BattleScene.InterfaceAdapter.IView;
+using BattleScene.InterfaceAdapter.Interface;
 using BattleScene.InterfaceAdapter.Service;
 using BattleScene.UseCases.View.AilmentView.OutputBoundary;
 using BattleScene.UseCases.View.AilmentView.OutputData;

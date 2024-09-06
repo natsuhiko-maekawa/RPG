@@ -1,4 +1,4 @@
-﻿using BattleScene.InterfaceAdapter.IView;
+﻿using BattleScene.InterfaceAdapter.Interface;
 using BattleScene.UseCases.View.AttackCountView.OutputBoundary;
 using BattleScene.UseCases.View.AttackCountView.OutputData;
 

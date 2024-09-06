@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using BattleScene.InterfaceAdapter.Presenter.OrderView;
 
-namespace BattleScene.InterfaceAdapter.IView
+namespace BattleScene.InterfaceAdapter.Interface
 {
     public interface IOrderView
     {
