@@ -1,4 +1,7 @@
-﻿namespace BattleScene.InterfaceAdapter.Presenter.Dto
+﻿using System.Collections.Immutable;
+
+namespace BattleScene.InterfaceAdapter.Presenter.Dto
 {
-    public record SkillViewDto();
+    public record SkillViewDto(
+        ImmutableList<SkillRowDto> SkillRowDtoList);
 }

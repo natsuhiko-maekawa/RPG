@@ -39,6 +39,7 @@ using BattleScene.UseCases.Output;
 using BattleScene.UseCases.OutputData;
 using BattleScene.UseCases.Service;
 using BattleScene.UseCases.UseCase;
+using BattleScene.UseCases.View;
 using BattleScene.UseCases.View.AilmentView.OutputBoundary;
 using BattleScene.UseCases.View.AttackCountView.OutputBoundary;
 using BattleScene.UseCases.View.BuffView.OutputBoundary;
@@ -275,6 +276,8 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<OrderDecision>(Lifetime.Singleton);
 
             builder.Register<EnemySkillSelector>(Lifetime.Singleton);
+
+            builder.Register<SkillView>(Lifetime.Singleton);
         }
     }
 }
