@@ -1,11 +1,10 @@
 ﻿using System;
-using BattleScene.InterfaceAdapter.Presenter.Dto.Interface;
 using UnityEngine;
 
 namespace BattleScene.InterfaceAdapter.Presenter.FrameView
 {
     public record FrameViewDto(
-        Color Color) : IDto;
+        Color Color);
     
     [Obsolete]
     public record PlayerFrameViewDto(
