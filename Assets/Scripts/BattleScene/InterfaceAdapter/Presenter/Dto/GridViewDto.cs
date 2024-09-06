@@ -1,6 +1,6 @@
 ﻿using System.Collections.Immutable;
 
-namespace BattleScene.InterfaceAdapter.Presenter.GridView
+namespace BattleScene.InterfaceAdapter.Presenter.Dto
 {
     public record GridViewDto(
         ImmutableList<RowDto> RowList);

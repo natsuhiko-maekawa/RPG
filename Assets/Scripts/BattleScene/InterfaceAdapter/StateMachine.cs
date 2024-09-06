@@ -7,6 +7,7 @@ using BattleScene.Domain.Id;
 using BattleScene.InterfaceAdapter.IInput;
 using BattleScene.InterfaceAdapter.IView;
 using BattleScene.InterfaceAdapter.Presenter;
+using BattleScene.InterfaceAdapter.Presenter.Dto;
 using BattleScene.InterfaceAdapter.State.Battle;
 using VContainer;
 using VContainer.Unity;

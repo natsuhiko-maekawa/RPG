@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BattleScene.InterfaceAdapter.IView;
-using BattleScene.InterfaceAdapter.Presenter.GridView;
+using BattleScene.InterfaceAdapter.Presenter.Dto;
 using BattleScene.InterfaceAdapter.Presenter.MessageView;
 using UnityEngine;
 using UnityEngine.InputSystem;

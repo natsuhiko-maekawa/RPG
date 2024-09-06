@@ -4,11 +4,12 @@ using BattleScene.Domain.Code;
 using BattleScene.InterfaceAdapter.DataAccess;
 using BattleScene.InterfaceAdapter.DataAccess.Dto;
 using BattleScene.InterfaceAdapter.IView;
+using BattleScene.InterfaceAdapter.Presenter.Dto;
 using BattleScene.InterfaceAdapter.Service;
 using BattleScene.UseCases.Interface;
 using BattleScene.UseCases.OutputData;
 
-namespace BattleScene.InterfaceAdapter.Presenter.GridView
+namespace BattleScene.InterfaceAdapter.Presenter.ViewPresenter
 {
     public class GridViewPresenter : IViewPresenter<GridViewOutputData>
     {

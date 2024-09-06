@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using BattleScene.InterfaceAdapter.IView;
 using BattleScene.InterfaceAdapter.Presenter;
+using BattleScene.InterfaceAdapter.Presenter.Dto;
 using BattleScene.InterfaceAdapter.Presenter.FrameView;
 using UnityEngine;
 using UnityEngine.InputSystem;

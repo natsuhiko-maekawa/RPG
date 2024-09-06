@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using BattleScene.InterfaceAdapter.Presenter.GridView;
+using BattleScene.InterfaceAdapter.Presenter.Dto;
 
 namespace BattleScene.InterfaceAdapter.IView
 {

@@ -1,4 +1,4 @@
-﻿namespace BattleScene.InterfaceAdapter.Presenter
+﻿namespace BattleScene.InterfaceAdapter.Presenter.Dto
 {
     public class CharacterDto
     {

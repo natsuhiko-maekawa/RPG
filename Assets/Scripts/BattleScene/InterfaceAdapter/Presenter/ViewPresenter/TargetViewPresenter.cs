@@ -6,9 +6,10 @@ using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
 using BattleScene.InterfaceAdapter.IView;
+using BattleScene.InterfaceAdapter.Presenter.Dto;
 using BattleScene.UseCases.IPresenter;
 
-namespace BattleScene.InterfaceAdapter.Presenter
+namespace BattleScene.InterfaceAdapter.Presenter.ViewPresenter
 {
     public class TargetViewPresenter : ITargetViewPresenter
     {
