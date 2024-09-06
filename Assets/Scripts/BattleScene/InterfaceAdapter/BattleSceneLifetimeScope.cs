@@ -18,6 +18,7 @@ using BattleScene.InterfaceAdapter.Presenter.BuffView;
 using BattleScene.InterfaceAdapter.Presenter.CharacterVibesView;
 using BattleScene.InterfaceAdapter.Presenter.DestroyedPartView;
 using BattleScene.InterfaceAdapter.Presenter.DigitView;
+using BattleScene.InterfaceAdapter.Presenter.Dto;
 using BattleScene.InterfaceAdapter.Presenter.EnemyView;
 using BattleScene.InterfaceAdapter.Presenter.FrameView;
 using BattleScene.InterfaceAdapter.Presenter.InfoView;
@@ -74,6 +75,7 @@ namespace BattleScene.InterfaceAdapter
             builder.RegisterComponentInHierarchy<IPlayerStatusView>();
             builder.RegisterComponentInHierarchy<ISelectSkillView>();
             builder.RegisterComponentInHierarchy<ITargetView>();
+            builder.RegisterComponentInHierarchy<IVIew<SkillViewDto>>();
             
             builder.Register<IAilmentViewPresenter, AilmentViewPresenter>(Lifetime.Singleton);
             builder.Register<IBuffViewPresenter, BuffViewPresenter>(Lifetime.Singleton);
@@ -91,6 +93,7 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<ITechnicalPointBarViewPresenter, TechnicalPointBarViewPresenter>(Lifetime.Singleton);
             builder.Register<ICharacterVibesViewPresenter, CharacterVibesViewPresenter>(Lifetime.Singleton);
             builder.Register<IViewPresenter<GridViewOutputData>, GridViewPresenter>(Lifetime.Singleton);
+            builder.Register<IViewPresenter<SkillViewOutputData>, SkillViewPresenter>(Lifetime.Singleton);
             builder.Register<ITargetViewPresenter, TargetViewPresenter>(Lifetime.Singleton);
             
             builder.Register<IAilmentRepository, AilmentRepository>(Lifetime.Singleton);
@@ -218,6 +221,7 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<InitializeEnemyState>(Lifetime.Singleton);
             builder.Register<OrderState>(Lifetime.Singleton);
             builder.Register<PlayerSelectActionState>(Lifetime.Singleton);
+            builder.Register<PlayerSelectSkillState>(Lifetime.Singleton);
             builder.Register<SelectTargetStateFactory>(Lifetime.Singleton);
             builder.Register<EnemySelectSkillState>(Lifetime.Singleton);
             builder.Register<SkillStateFactory>(Lifetime.Singleton);

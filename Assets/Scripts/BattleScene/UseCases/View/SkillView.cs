@@ -12,9 +12,21 @@ namespace BattleScene.UseCases.View
     public class SkillView
     {
         private readonly IFactory<PropertyValueObject, CharacterTypeCode> _characterPropertyFactory;
-        private readonly IFactory<SkillValueObject, SkillCode> _skillFactory;
         private readonly PlayerDomainService _player;
+        private readonly IFactory<SkillValueObject, SkillCode> _skillFactory;
         private readonly IViewPresenter<SkillViewOutputData> _skillView;
+
+        public SkillView(
+            IFactory<PropertyValueObject, CharacterTypeCode> characterPropertyFactory,
+            IFactory<SkillValueObject, SkillCode> skillFactory,
+            PlayerDomainService player,
+            IViewPresenter<SkillViewOutputData> skillView)
+        {
+            _characterPropertyFactory = characterPropertyFactory;
+            _skillFactory = skillFactory;
+            _player = player;
+            _skillView = skillView;
+        }
 
         public void Start()
         {
@@ -25,9 +37,9 @@ namespace BattleScene.UseCases.View
                     var technicalPoint = _skillFactory.Create(x).TechnicalPoint;
                     var enabled = technicalPoint < _player.Get().CurrentTechnicalPoint;
                     return new SkillRow(
-                        SkillCode: x,
-                        TechnicalPoint: technicalPoint,
-                        Enabled: enabled);
+                        x,
+                        technicalPoint,
+                        enabled);
                 })
                 .ToImmutableList();
             var skillViewOutputData = new SkillViewOutputData(skillRowList);

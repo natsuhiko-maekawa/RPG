@@ -1,9 +1,12 @@
-﻿using TMPro;
+﻿using System.Threading.Tasks;
+using BattleScene.InterfaceAdapter.Interface;
+using BattleScene.InterfaceAdapter.Presenter.Dto;
+using TMPro;
 using UnityEngine;
 
 namespace BattleScene.Framework.View
 {
-    public class SkillView : MonoBehaviour
+    public class SkillView : MonoBehaviour, IVIew<SkillViewDto>
     {
         [SerializeField] private TextMeshProUGUI technicalPoint;
         [SerializeField] private Color gray = new(0.5215687f, 0.5215687f, 0.5215687f);
@@ -16,6 +19,16 @@ namespace BattleScene.Framework.View
         private void Awake()
         {
             _gridView = GetComponent<GridView>();
+        }
+
+        public Task StartAnimationAsync(SkillViewDto dto)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void StopAnimation()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

@@ -581,7 +581,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e20d707aa07b401d92d4b2616090a39f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  listScriptableObject: {fileID: 0}
+  listScriptableObject: {fileID: 11400000, guid: e3c0c149b84d06d42a1491b87e9a04c3, type: 2}
 --- !u!114 &231664269
 MonoBehaviour:
   m_ObjectHideFlags: 0

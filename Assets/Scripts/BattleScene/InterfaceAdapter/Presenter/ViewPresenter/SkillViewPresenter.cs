@@ -17,7 +17,19 @@ namespace BattleScene.InterfaceAdapter.Presenter.ViewPresenter
         private readonly IResource<SkillViewInfoValueObject, SkillCode> _skillPropertyFactory;
         private readonly IGridView _gridView;
         private readonly IVIew<SkillViewDto> _skillView;
-        
+
+        public SkillViewPresenter(
+            IResource<MessageDto, MessageCode> messageResource,
+            IResource<SkillViewInfoValueObject, SkillCode> skillPropertyFactory,
+            IGridView gridView,
+            IVIew<SkillViewDto> skillView)
+        {
+            _messageResource = messageResource;
+            _skillPropertyFactory = skillPropertyFactory;
+            _gridView = gridView;
+            _skillView = skillView;
+        }
+
         public void Start(SkillViewOutputData outputData)
         {
             var rowDtoList = outputData.Row
