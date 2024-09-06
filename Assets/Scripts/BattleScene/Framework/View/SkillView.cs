@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace BattleScene.Framework.View
 {
-    public class SkillInfoView : MonoBehaviour
+    public class SkillView : MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI technicalPoint;
         [SerializeField] private Color gray = new(0.5215687f, 0.5215687f, 0.5215687f);
