@@ -66,7 +66,7 @@
         MusterStrengthDescription, // 説明文(力溜め)
         NadegiriDescription, // 説明文(撫斬)
         RaikiriDescription, // 説明文(雷切)
-        RandomShotDescription, // 説明文(ランダムショット)
+        RandomShotsDescription, // 説明文(ランダムショット)
         ShichishitouDescription, // 説明文(七支刀)
         SilverBulletDescription, // 説明文(シルバーバレット)
         SkillDescription, // 説明文(SKILL)

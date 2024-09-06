@@ -8,7 +8,7 @@ namespace BattleScene.Domain.ValueObject
     [Serializable]
     public class SkillViewInfoValueObject : IUnique<SkillCode>, ISerializationCallbackReceiver
     {
-        [SerializeField] private string id;
+        [SerializeField] private string key;
         [SerializeField] private string skillName;
         [SerializeField] private string playerImageCode;
         [SerializeField] private string description;
@@ -23,7 +23,7 @@ namespace BattleScene.Domain.ValueObject
 
         public void OnAfterDeserialize()
         {
-            Key = Enum.Parse<SkillCode>(id);
+            Key = Enum.Parse<SkillCode>(key);
             SkillName = skillName;
             PlayerImageCode = playerImageCode.Length == 0
                 ? PlayerImageCode.NoImage

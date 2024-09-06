@@ -6,6 +6,7 @@ namespace BattleScene.Domain.Code
     {
         NoImage,
         [Obsolete] ArmInjured,
+        Attack, // TODO: 立ち絵を描く
         Avoidance,
         Bleeding,
         Confusion,
