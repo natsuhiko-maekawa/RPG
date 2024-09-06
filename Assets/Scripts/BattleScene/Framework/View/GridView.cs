@@ -19,23 +19,34 @@ namespace BattleScene.Framework.View
         [SerializeField] private int maxGridSize = 4;
         [SerializeField] private Text text;
         [SerializeField] private Image rightArrow;
+        [SerializeField] private Image upArrow;
+        [SerializeField] private Image downArrow;
         [SerializeField] private Image window;
         [SerializeField] private MessageView messageView;
         [SerializeField] private InputAction moveAction;
         [SerializeField] private InputAction selectAction;
         private readonly List<Text> _textList = new();
         private Image _rightArrow;
+        private Image _upArrow;
+        private Image _downArrow;
         private Image _window;
         private GridViewDto _dto;
         private GridState _gridState;
         private int _id;
+        public int SlotHeight => slotHeight;
+        public int Id => _id;
         
         private void Awake()
         {
+            // TODO: PrefabをアタッチしてGetComponentに置き換える
             _window = Instantiate(window, transform);
             _window.enabled = false;
             _rightArrow = Instantiate(rightArrow, transform);
             _rightArrow.enabled = false;
+            _upArrow = Instantiate(upArrow, transform);
+            _upArrow.enabled = false;
+            _downArrow = Instantiate(downArrow, transform);
+            _downArrow.enabled = false;
             SetMoveAction(MoveArrow);
         }
 
@@ -51,6 +62,9 @@ namespace BattleScene.Framework.View
             
             _rightArrow.rectTransform.localPosition 
                 = new Vector3(rightArrowX, -_gridState.SelectedRow * slotHeight + rightArrowY, 0);
+            _upArrow.enabled = _gridState.IsHiddenUpper;
+            _downArrow.enabled = _gridState.IsHiddenLower;
+            
             SetText(dto.RowList.Count);
             foreach (var (row, index) in dto.RowList.Select((x, i) => (x, i)))
             {

@@ -1334,6 +1334,7 @@ GameObject:
   m_Component:
   - component: {fileID: 532393381}
   - component: {fileID: 532393382}
+  - component: {fileID: 532393383}
   m_Layer: 0
   m_Name: GridView
   m_TagString: Untagged
@@ -1374,6 +1375,8 @@ MonoBehaviour:
   maxGridSize: 4
   text: {fileID: 9174667490277282050, guid: 7e3c42b2049f89f48acac7d56173deeb, type: 3}
   rightArrow: {fileID: 2625844333402814109, guid: d089d47bce62c314390533e724b4f44d, type: 3}
+  upArrow: {fileID: 2625844333402814109, guid: 8ab1a00526ba5a348aec0b4d2d2ab6b5, type: 3}
+  downArrow: {fileID: 3054134277619234365, guid: 3e447baa4400e1a42afa57be6ef2e030, type: 3}
   window: {fileID: 23258171635463122, guid: 7c390dad3c1735a4d8a0315d1966d228, type: 3}
   messageView: {fileID: 1554560971}
   moveAction:
@@ -1490,6 +1493,24 @@ MonoBehaviour:
       m_Action: Ok
       m_Flags: 0
     m_Flags: 0
+--- !u!114 &532393383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 532393380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e613e96351b64f7c9729edd668b0481f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  technicalPoint: {fileID: 3917397266782240165, guid: bcce3cfe800b82146ae0aa2d0aa0bdad, type: 3}
+  gray: {r: 0.5215687, g: 0.5215687, b: 0.5215687, a: 1}
+  blue: {r: 0.5215687, g: 0.5215687, b: 0.9803922, a: 1}
+  lightBlue: {r: 0.5215687, g: 0.5215687, b: 0.9803922, a: 1}
+  red: {r: 0.9803922, g: 0.5215687, b: 0.5215687, a: 1}
+  lightRed: {r: 0.9803922, g: 0.5215687, b: 0.5215687, a: 1}
 --- !u!1 &533048980
 GameObject:
   m_ObjectHideFlags: 0

@@ -17,6 +17,9 @@ namespace BattleScene.Framework
         public int SelectedRow { get; private set; }
         public int TopItemIndex { get; private set; }
 
+        public bool IsHiddenUpper => TopItemIndex > 0;
+        public bool IsHiddenLower => TopItemIndex < MaxIndex;
+        
         public void Reset()
         {
             SelectedRow = 0;
