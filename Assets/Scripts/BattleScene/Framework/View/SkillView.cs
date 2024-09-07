@@ -23,12 +23,11 @@ namespace BattleScene.Framework.View
 
         public Task StartAnimationAsync(SkillViewDto dto)
         {
-            throw new System.NotImplementedException();
+            return Task.CompletedTask;
         }
 
         public void StopAnimation()
         {
-            throw new System.NotImplementedException();
         }
     }
 }

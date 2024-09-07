@@ -43,7 +43,9 @@ namespace BattleScene.InterfaceAdapter.Presenter.ViewPresenter
                         Enabled: enabled);
                 })
                 .ToImmutableList();
-            var dto = new GridViewDto(rowList);
+            var dto = new GridViewDto(
+                ActionCode: Code.ActionCode.Action,
+                rowList);
             _gridView.StartAnimationAsync(dto);
         }
 

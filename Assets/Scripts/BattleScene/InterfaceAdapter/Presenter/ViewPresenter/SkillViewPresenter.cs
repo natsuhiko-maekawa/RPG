@@ -8,6 +8,7 @@ using BattleScene.InterfaceAdapter.Interface;
 using BattleScene.InterfaceAdapter.Presenter.Dto;
 using BattleScene.UseCases.Interface;
 using BattleScene.UseCases.OutputData;
+using ActionCode = BattleScene.InterfaceAdapter.Code.ActionCode;
 
 namespace BattleScene.InterfaceAdapter.Presenter.ViewPresenter
 {
@@ -47,7 +48,9 @@ namespace BattleScene.InterfaceAdapter.Presenter.ViewPresenter
                         Enabled: x.Enabled);
                 })
                 .ToImmutableList();
-            var gridViewDto = new GridViewDto(rowDtoList);
+            var gridViewDto = new GridViewDto(
+                ActionCode: ActionCode.Skill,
+                rowDtoList);
             _gridView.StartAnimationAsync(gridViewDto);
             
             var skillRowList = outputData.Row

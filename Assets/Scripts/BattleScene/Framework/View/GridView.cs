@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BattleScene.InterfaceAdapter.Code;
 using BattleScene.InterfaceAdapter.Interface;
 using BattleScene.InterfaceAdapter.Presenter.Dto;
 using BattleScene.InterfaceAdapter.Presenter.MessageView;
@@ -31,8 +32,8 @@ namespace BattleScene.Framework.View
         private Image _downArrow;
         private Image _window;
         private GridViewDto _dto;
-        private GridState _gridState;
         private int _id;
+        private readonly Dictionary<ActionCode, GridState> _gridStateDictionary = new();
         public int SlotHeight => slotHeight;
         public int Id => _id;
         
@@ -56,21 +57,25 @@ namespace BattleScene.Framework.View
             _rightArrow.enabled = true;
 
             _dto = dto;
-            _gridState ??= new GridState(
-                maxGridSize: maxGridSize,
-                itemCount: dto.RowList.Count);
+            if (!_gridStateDictionary.TryGetValue(dto.ActionCode, out var gridState))
+            {
+                gridState = new GridState(
+                    maxGridSize: maxGridSize,
+                    itemCount: dto.RowDtoList.Count);
+                _gridStateDictionary.Add(dto.ActionCode, gridState);
+            }
             
             _rightArrow.rectTransform.localPosition 
-                = new Vector3(rightArrowX, -_gridState.SelectedRow * slotHeight + rightArrowY, 0);
-            _upArrow.enabled = _gridState.IsHiddenUpper;
-            _downArrow.enabled = _gridState.IsHiddenLower;
+                = new Vector3(rightArrowX, -gridState.SelectedRow * slotHeight + rightArrowY, 0);
+            _upArrow.enabled = gridState.IsHiddenUpper;
+            _downArrow.enabled = gridState.IsHiddenLower;
             
-            SetText(dto.RowList.Count);
-            foreach (var (row, index) in dto.RowList.Select((x, i) => (x, i)))
+            SetText(Math.Min(dto.RowDtoList.Count, maxGridSize));
+            foreach (var index in Enumerable.Range(0, maxGridSize))
             {
-                _textList[index].text = row.RowName;
+                _textList[index].text = dto.RowDtoList[index + gridState.TopItemIndex].RowName;
                 Color color;
-                if (!row.Enabled)
+                if (!dto.RowDtoList[index + gridState.TopItemIndex].Enabled)
                     color = Color.gray;
                 else
                     color = Color.white;
@@ -78,7 +83,7 @@ namespace BattleScene.Framework.View
                 _textList[index].enabled = true;
             }
 
-            var message = dto.RowList[_gridState.SelectedRow].RowDescription;
+            var message = dto.RowDtoList[gridState.SelectedIndex].RowDescription;
             var messageViewDto = new MessageViewDto(message, NoWait:true);
             await messageView.StartAnimation(messageViewDto);
         }
@@ -129,11 +134,11 @@ namespace BattleScene.Framework.View
             if (vector2.y == 0) return;
             
             if (vector2.y > 0)
-                _gridState.Up();
+                _gridStateDictionary[_dto.ActionCode].Up();
             else
-                _gridState.Down();
-            var selectedRow = _gridState?.SelectedRow ?? 0;
-            _id = _dto?.RowList[selectedRow].RowId ?? 0;
+                _gridStateDictionary[_dto.ActionCode].Down();
+            var selectedRow = _gridStateDictionary[_dto.ActionCode].SelectedIndex;
+            _id = _dto?.RowDtoList[selectedRow].RowId ?? 0;
             await StartAnimationAsync(_dto);
         }
         
