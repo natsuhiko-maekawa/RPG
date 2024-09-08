@@ -20,6 +20,8 @@ namespace BattleScene.Framework.View
         private Window _window;
         private Grid _grid;
         private ArrowRight _arrowRight;
+        private ArrowUp _arrowUp;
+        private ArrowDown _arrowDown;
         private GridViewDto _dto;
         private int _id;
         private readonly Dictionary<ActionCode, GridState> _gridStateDictionary = new();
@@ -29,6 +31,8 @@ namespace BattleScene.Framework.View
             _window = GetComponentInChildren<Window>();
             _grid = GetComponentInChildren<Grid>();
             _arrowRight = GetComponentInChildren<ArrowRight>();
+            _arrowUp = GetComponentInChildren<ArrowUp>();
+            _arrowDown = GetComponentInChildren<ArrowDown>();
             SetMoveAction(MoveArrow);
         }
 
@@ -42,8 +46,6 @@ namespace BattleScene.Framework.View
                 row.ShowName();
             }
             
-            _arrowRight.Move(_id);
-            
             _dto = dto;
             if (!_gridStateDictionary.TryGetValue(dto.ActionCode, out var gridState))
             {
@@ -52,6 +54,10 @@ namespace BattleScene.Framework.View
                     itemCount: dto.RowDtoList.Count);
                 _gridStateDictionary.Add(dto.ActionCode, gridState);
             }
+            
+            _arrowRight.Move(_id);
+            _arrowUp.Show(gridState.IsHiddenLower);
+            _arrowDown.Show(gridState.IsHiddenLower);
             
             return Task.CompletedTask;
         }
