@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BattleScene.Framework.GameObjects;
+using BattleScene.InterfaceAdapter.Code;
 using BattleScene.InterfaceAdapter.Interface;
 using BattleScene.InterfaceAdapter.Presenter.Dto;
 using UnityEngine;
@@ -12,14 +14,22 @@ namespace BattleScene.Framework.View
 {
     public class GridView : MonoBehaviour, IGridView
     {
+        [SerializeField] private int maxGridSize;
+        [SerializeField] private InputAction moveAction;
         [SerializeField] private InputAction selectAction;
         private Window _window;
         private Grid _grid;
+        private ArrowRight _arrowRight;
+        private GridViewDto _dto;
+        private int _id;
+        private readonly Dictionary<ActionCode, GridState> _gridStateDictionary = new();
 
         private void Awake()
         {
             _window = GetComponentInChildren<Window>();
             _grid = GetComponentInChildren<Grid>();
+            _arrowRight = GetComponentInChildren<ArrowRight>();
+            SetMoveAction(MoveArrow);
         }
 
         public Task StartAnimationAsync(GridViewDto dto)
@@ -32,12 +42,42 @@ namespace BattleScene.Framework.View
                 row.ShowName();
             }
             
+            _arrowRight.Move(_id);
+            
+            _dto = dto;
+            if (!_gridStateDictionary.TryGetValue(dto.ActionCode, out var gridState))
+            {
+                gridState = new GridState(
+                    maxGridSize: maxGridSize,
+                    itemCount: dto.RowDtoList.Count);
+                _gridStateDictionary.Add(dto.ActionCode, gridState);
+            }
+            
             return Task.CompletedTask;
         }
 
         public void StopAnimation()
         {
             throw new NotImplementedException();
+        }
+        
+        private async Task MoveArrow(Vector2 vector2)
+        {
+            if (vector2.y == 0) return;
+            
+            if (vector2.y > 0)
+                _gridStateDictionary[_dto.ActionCode].Up();
+            else
+                _gridStateDictionary[_dto.ActionCode].Down();
+            var selectedRow = _gridStateDictionary[_dto.ActionCode].SelectedIndex;
+            _id = _dto?.RowDtoList[selectedRow].RowId ?? 0;
+            await StartAnimationAsync(_dto);
+        }
+        
+        private void SetMoveAction(Func<Vector2, Task> func)
+        {
+            moveAction.performed += x => func.Invoke(x.ReadValue<Vector2>());
+            moveAction?.Enable();
         }
 
         public void SetSelectAction(Action<int> action)
