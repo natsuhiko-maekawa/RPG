@@ -77,6 +77,8 @@ namespace BattleScene.Framework.View
                 Color color;
                 if (!dto.RowDtoList[index + gridState.TopItemIndex].Enabled)
                     color = Color.gray;
+                else if (index == gridState.SelectedRow)
+                    color = Color.red;
                 else
                     color = Color.white;
                 _textList[index].color = color;
