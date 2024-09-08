@@ -64,7 +64,6 @@ namespace BattleScene.Framework.View
 
         public void StopAnimation()
         {
-            throw new NotImplementedException();
         }
         
         private async Task MoveArrow(Vector2 vector2)
