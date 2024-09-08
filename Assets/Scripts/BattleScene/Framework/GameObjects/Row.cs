@@ -1,7 +1,26 @@
-﻿namespace BattleScene.Framework.GameObjects
+﻿using UnityEngine;
+
+namespace BattleScene.Framework.GameObjects
 {
-    public class Row
+    public class Row : MonoBehaviour
     {
-        
+        private RowName _rowName;
+        private TechnicalPoint _technicalPoint;
+
+        public void Awake()
+        {
+            _rowName = GetComponentInChildren<RowName>();
+            _technicalPoint = GetComponentInChildren<TechnicalPoint>();
+        }
+
+        public void SetName(string rowName) => _rowName.Set(rowName);
+        public void ShowName() => _rowName.Show();
+        public void ShowTechnicalPoint() => _technicalPoint.Show();
+
+        public void Hide()
+        {
+            _rowName.Hide();
+            _technicalPoint.Hide();
+        }
     }
 }

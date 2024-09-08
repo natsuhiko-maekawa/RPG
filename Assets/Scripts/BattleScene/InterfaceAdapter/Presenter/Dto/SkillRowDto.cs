@@ -2,5 +2,6 @@
 {
     public record SkillRowDto(
         int RowId,
-        int TechnicalPoint);
+        int TechnicalPoint,
+        bool Enabled);
 }

@@ -56,7 +56,8 @@ namespace BattleScene.InterfaceAdapter.Presenter.ViewPresenter
             var skillRowList = outputData.Row
                 .Select((x, i) => new SkillRowDto(
                     RowId: i,
-                    TechnicalPoint: x.TechnicalPoint))
+                    TechnicalPoint: x.TechnicalPoint,
+                    Enabled: x.Enabled))
                 .ToImmutableList();
             var skillDto = new SkillViewDto(skillRowList);
             _skillView.StartAnimationAsync(skillDto);

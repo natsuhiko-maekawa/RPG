@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3565654489132307338}
   - component: {fileID: 2552426024865770746}
+  - component: {fileID: 6413948328185007955}
   - component: {fileID: 3917397266782240165}
   m_Layer: 0
   m_Name: TechnicalPoint
@@ -45,6 +46,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8784403467613686343}
   m_CullTransparentMesh: 1
+--- !u!114 &6413948328185007955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8784403467613686343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 681fb679613e427bb5e4f62130c29c2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &3917397266782240165
 MonoBehaviour:
   m_ObjectHideFlags: 0
