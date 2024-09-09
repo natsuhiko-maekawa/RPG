@@ -34,6 +34,8 @@ namespace BattleScene.InterfaceAdapter.DataAccess.Factory
                 skillCode: key,
                 range: skill.Range,
                 messageCode: skill.AttackMessageCode,
+                technicalPoint: skill.TechnicalPoint,
+                dependencyList: skill.DependencyList,
                 ailmentList: ailmentList,
                 buffList: buffParameterList,
                 damageList: damageList,
