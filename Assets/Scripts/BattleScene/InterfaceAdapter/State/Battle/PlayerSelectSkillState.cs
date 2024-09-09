@@ -1,13 +1,13 @@
-﻿using BattleScene.UseCases.View;
+﻿using BattleScene.UseCases.IPresenter;
 
 namespace BattleScene.InterfaceAdapter.State.Battle
 {
     public class PlayerSelectSkillState : AbstractState
     {
-        private readonly SkillView _skillView;
+        private readonly ISkillViewPresenter _skillView;
 
         public PlayerSelectSkillState(
-            SkillView skillView)
+            ISkillViewPresenter skillView)
         {
             _skillView = skillView;
         }

@@ -64,6 +64,8 @@ namespace BattleScene.Framework.View
 
         public void StopAnimation()
         {
+            _window.Hide();
+            _grid.Reset();
         }
         
         private async Task MoveArrow(Vector2 vector2)
@@ -87,7 +89,7 @@ namespace BattleScene.Framework.View
 
         public void SetSelectAction(Action<int> action)
         {
-            selectAction.performed += _ => action.Invoke(0);
+            selectAction.performed += _ => action.Invoke(_id);
             selectAction?.Enable();
         }
     }

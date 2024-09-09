@@ -5,5 +5,6 @@
         string RowName,
         string RowDescription,
         string PlayerImagePath,
-        bool Enabled);
+        bool Enabled,
+        int TechnicalPoint = 0);
 }

@@ -30,6 +30,11 @@ namespace BattleScene.Framework.GameObjects
                 RemoveText(_rowList.Count - rowCount);
         }
 
+        public void Reset()
+        {
+            RemoveText(_rowList.Count);
+        }
+
         private void AddText(int rowCount)
         {
             for (var i = 0; i < rowCount; ++i)

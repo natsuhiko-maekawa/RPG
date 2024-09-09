@@ -13,6 +13,7 @@ using BattleScene.InterfaceAdapter.DataAccess.Factory;
 using BattleScene.InterfaceAdapter.DataAccess.Repository;
 using BattleScene.InterfaceAdapter.DataAccess.Resource;
 using BattleScene.InterfaceAdapter.Interface;
+using BattleScene.InterfaceAdapter.Presenter;
 using BattleScene.InterfaceAdapter.Presenter.AilmentsView;
 using BattleScene.InterfaceAdapter.Presenter.BuffView;
 using BattleScene.InterfaceAdapter.Presenter.CharacterVibesView;
@@ -93,8 +94,8 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<ITechnicalPointBarViewPresenter, TechnicalPointBarViewPresenter>(Lifetime.Singleton);
             builder.Register<ICharacterVibesViewPresenter, CharacterVibesViewPresenter>(Lifetime.Singleton);
             builder.Register<IViewPresenter<GridViewOutputData>, GridViewPresenter>(Lifetime.Singleton);
-            builder.Register<IViewPresenter<SkillViewOutputData>, SkillViewPresenter>(Lifetime.Singleton);
             builder.Register<ITargetViewPresenter, TargetViewPresenter>(Lifetime.Singleton);
+            builder.Register<ISkillViewPresenter, SkillViewPresenter>(Lifetime.Singleton);
             
             builder.Register<IAilmentRepository, AilmentRepository>(Lifetime.Singleton);
             builder.Register<IBodyPartRepository, BodyPartRepository>(Lifetime.Singleton);

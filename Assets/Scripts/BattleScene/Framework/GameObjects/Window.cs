@@ -18,5 +18,10 @@ namespace BattleScene.Framework.GameObjects
             enabled = true;
             _animator.SetTrigger(ShowTrigger);
         }
+
+        public void Hide()
+        {
+            enabled = false;
+        }
     }
 }
