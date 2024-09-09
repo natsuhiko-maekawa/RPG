@@ -13,6 +13,7 @@ namespace BattleScene.Framework.GameObjects
             Hide();
         }
 
+        public void Set(int technicalPoint) => _technicalPoint.text = technicalPoint.ToString();
         public void Show() => _technicalPoint.enabled = true;
         public void Hide() => _technicalPoint.enabled = false;
     }

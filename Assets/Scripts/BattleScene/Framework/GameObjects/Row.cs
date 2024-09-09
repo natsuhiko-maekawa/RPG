@@ -15,6 +15,7 @@ namespace BattleScene.Framework.GameObjects
 
         public void SetName(string rowName) => _rowName.Set(rowName);
         public void ShowName() => _rowName.Show();
+        public void SetTechnicalPoint(int technicalPoint) => _technicalPoint.Set(technicalPoint);
         public void ShowTechnicalPoint() => _technicalPoint.Show();
 
         public void Hide()

@@ -60,11 +60,12 @@ namespace BattleScene.InterfaceAdapter.Presenter
                     var description = _messageCodeConverter.Replace(message);
                     var enabled = skill.TechnicalPoint <= _player.Get().CurrentTechnicalPoint;
                     return new RowDto(
-                        0,
-                        skillProperty.SkillName,
-                        description,
-                        "",
-                        enabled);
+                        RowId: 0,
+                        RowName: skillProperty.SkillName,
+                        RowDescription: description,
+                        PlayerImagePath: "",
+                        Enabled: enabled,
+                        TechnicalPoint: skill.TechnicalPoint);
                 })
                 .ToImmutableList();
             var dto = new GridViewDto(

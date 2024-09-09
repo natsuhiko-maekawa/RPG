@@ -54,6 +54,10 @@ namespace BattleScene.Framework.View
             {
                 row.SetName(rowDto.RowName);
                 row.ShowName();
+                
+                if (dto.ActionCode != ActionCode.Skill) continue;
+                row.SetTechnicalPoint(rowDto.TechnicalPoint);
+                row.ShowTechnicalPoint();
             }
             
             _arrowRight.Move(gridState.SelectedRow);
