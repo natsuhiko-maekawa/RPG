@@ -39,12 +39,6 @@ namespace BattleScene.Framework.View
         public Task StartAnimationAsync(GridViewDto dto)
         {
             _window.Show();
-            _grid.SetRow(dto.RowDtoList.Count);
-            foreach (var (row, rowDto) in _grid.Zip(dto.RowDtoList, (row, rowDto) => (row, rowDto)))
-            {
-                row.SetName(rowDto.RowName);
-                row.ShowName();
-            }
             
             _dto = dto;
             if (!_gridStateDictionary.TryGetValue(dto.ActionCode, out var gridState))
@@ -55,8 +49,15 @@ namespace BattleScene.Framework.View
                 _gridStateDictionary.Add(dto.ActionCode, gridState);
             }
             
-            _arrowRight.Move(_id);
-            _arrowUp.Show(gridState.IsHiddenLower);
+            _grid.SetRow(Math.Min(dto.RowDtoList.Count, maxGridSize));
+            foreach (var (row, rowDto) in _grid.Zip(dto.RowDtoList.Skip(gridState.TopItemIndex), (row, rowDto) => (row, rowDto)))
+            {
+                row.SetName(rowDto.RowName);
+                row.ShowName();
+            }
+            
+            _arrowRight.Move(gridState.SelectedRow);
+            _arrowUp.Show(gridState.IsHiddenUpper);
             _arrowDown.Show(gridState.IsHiddenLower);
             
             return Task.CompletedTask;
@@ -76,8 +77,7 @@ namespace BattleScene.Framework.View
                 _gridStateDictionary[_dto.ActionCode].Up();
             else
                 _gridStateDictionary[_dto.ActionCode].Down();
-            var selectedRow = _gridStateDictionary[_dto.ActionCode].SelectedIndex;
-            _id = _dto?.RowDtoList[selectedRow].RowId ?? 0;
+            _id = _gridStateDictionary[_dto.ActionCode].SelectedRow;
             await StartAnimationAsync(_dto);
         }
         
