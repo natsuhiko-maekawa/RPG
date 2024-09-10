@@ -2,6 +2,7 @@
 using System.Collections.Immutable;
 using System.Linq;
 using BattleScene.Domain.Aggregate;
+using BattleScene.Domain.Entity;
 
 namespace BattleScene.UseCases.Service
 {

@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Immutable;
 using BattleScene.Domain.Code;
-using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
 
-namespace BattleScene.Domain.Aggregate
+namespace BattleScene.Domain.Entity
 {
     public class CharacterEntity : BaseEntity<CharacterEntity, CharacterId>
     {
