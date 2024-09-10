@@ -103,7 +103,6 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<IEnemyRepository, EnemyRepository>(Lifetime.Singleton);
             builder.Register<IResultRepository, ResultRepository>(Lifetime.Singleton);
             builder.Register<ISkillRepository, SkillRepository>(Lifetime.Singleton);
-            builder.Register<ISkillSelectorRepository, SkillSelectorRepository>(Lifetime.Singleton);
             builder.Register<IRepository<ActionTimeEntity, CharacterId>, Repository<ActionTimeEntity, CharacterId>>(
                 Lifetime.Singleton);
             builder.Register<IRepository<AilmentEntity, AilmentId>, Repository<AilmentEntity, AilmentId>>(
@@ -247,7 +246,6 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<OrderedItemCreatorService>(Lifetime.Singleton);
             builder.Register<ResetSkillService>(Lifetime.Singleton);
             builder.Register<RestoreGeneratorService>(Lifetime.Singleton);
-            builder.Register<SelectSkillService>(Lifetime.Singleton);
             builder.Register<SkillCreatorService>(Lifetime.Singleton);
             builder.Register<SkillService>(Lifetime.Singleton);
             builder.Register<SlipDamageService>(Lifetime.Singleton);
