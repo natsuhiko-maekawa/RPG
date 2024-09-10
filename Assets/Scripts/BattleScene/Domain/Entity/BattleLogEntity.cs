@@ -95,6 +95,11 @@ namespace BattleScene.Domain.Entity
                 .Select(x => x.Amount)
                 .Sum();
         }
+
+        public bool IsAvoid()
+        {
+            return AttackList.All(x => !x.IsHit);
+        }
         
         public int CompareTo(BattleLogEntity other)
         {
