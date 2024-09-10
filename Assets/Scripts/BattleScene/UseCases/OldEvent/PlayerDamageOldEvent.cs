@@ -1,11 +1,8 @@
-using BattleScene.Domain.DomainService;
 using BattleScene.UseCases.OldEvent.Runner;
 using BattleScene.UseCases.View.AttackCountView.OutputBoundary;
 using BattleScene.UseCases.View.AttackCountView.OutputDataFactory;
 using BattleScene.UseCases.View.DigitView.OutputBoundary;
 using BattleScene.UseCases.View.DigitView.OutputDataFactory;
-using BattleScene.UseCases.View.HitPointBarView.OutputBoundary;
-using BattleScene.UseCases.View.HitPointBarView.OutputDataFactory;
 using BattleScene.UseCases.View.MessageView.OutputBoundary;
 using BattleScene.UseCases.View.MessageView.OutputDataFactory;
 using static BattleScene.UseCases.OldEvent.Runner.EventCode;
@@ -19,9 +16,6 @@ namespace BattleScene.UseCases.OldEvent
         private readonly DamageDigitOutputDataFactory _damageDigitOutputDataFactory;
         private readonly DamageMessageOutputDataFactory _damageMessageOutputDataFactory;
         private readonly IDigitViewPresenter _digitView;
-        private readonly HitPointDomainService _hitPoint;
-        private readonly HitPointBarOutputDataFactory _hitPointBarOutputDataFactory;
-        private readonly IHitPointBarViewPresenter _hitPointBarView;
         private readonly IMessageViewPresenter _messageViewPresenter;
 
         public PlayerDamageOldEvent(
@@ -30,9 +24,6 @@ namespace BattleScene.UseCases.OldEvent
             DamageDigitOutputDataFactory damageDigitOutputDataFactory,
             DamageMessageOutputDataFactory damageMessageOutputDataFactory,
             IDigitViewPresenter digitView,
-            HitPointDomainService hitPoint,
-            HitPointBarOutputDataFactory hitPointBarOutputDataFactory,
-            IHitPointBarViewPresenter hitPointBarView,
             IMessageViewPresenter messageViewPresenter)
         {
             _attackCountOutputDataFactory = attackCountOutputDataFactory;
@@ -40,9 +31,6 @@ namespace BattleScene.UseCases.OldEvent
             _damageDigitOutputDataFactory = damageDigitOutputDataFactory;
             _damageMessageOutputDataFactory = damageMessageOutputDataFactory;
             _digitView = digitView;
-            _hitPoint = hitPoint;
-            _hitPointBarOutputDataFactory = hitPointBarOutputDataFactory;
-            _hitPointBarView = hitPointBarView;
             _messageViewPresenter = messageViewPresenter;
         }
 
@@ -69,8 +57,9 @@ namespace BattleScene.UseCases.OldEvent
 
             var digitOutputData = _damageDigitOutputDataFactory.Create();
             _digitView.Start(digitOutputData);
-            var hitPointBarOutputData = _hitPointBarOutputDataFactory.Create();
-            _hitPointBarView.Start(hitPointBarOutputData);
+            // HPバーを表示する
+            // var hitPointBarOutputData = _hitPointBarOutputDataFactory.Create();
+            // _hitPointBarView.Start(hitPointBarOutputData);
             var messageOutputData = _damageMessageOutputDataFactory.Create();
             _messageViewPresenter.Start(messageOutputData);
             var attackCountOutputData = _attackCountOutputDataFactory.Create();
@@ -88,13 +77,15 @@ namespace BattleScene.UseCases.OldEvent
 
         private EventCode GetIndex()
         {
-            if (_hitPoint.AnyIsDead()) return EventCode.PlayerBeatEnemyEvent;
+            // 敵を倒した場合、別ルートに遷移
+            // if (_hitPoint.AnyIsDead()) return EventCode.PlayerBeatEnemyEvent;
             return EventCode.SwitchSkillEvent;
         }
 
         private EventCode GetIndexWhenAvoid()
         {
-            if (_hitPoint.AnyIsDead()) return EventCode.PlayerBeatEnemyEvent;
+            // 敵を倒した場合、別ルートに遷移
+            // if (_hitPoint.AnyIsDead()) return EventCode.PlayerBeatEnemyEvent;
             return EventCode.SwitchSkillEvent;
         }
     }

@@ -115,8 +115,6 @@ namespace BattleScene.InterfaceAdapter
                 Lifetime.Singleton);
             builder.Register<IRepository<EnemyEntity, CharacterId>, Repository<EnemyEntity, CharacterId>>(
                 Lifetime.Singleton);
-            builder.Register<IRepository<HitPointAggregate, CharacterId>, Repository<HitPointAggregate, CharacterId>>(
-                Lifetime.Singleton);
             builder.Register<IRepository<OrderedItemEntity, OrderNumber>, Repository<OrderedItemEntity, OrderNumber>>(
                 Lifetime.Singleton);
             builder.Register<IRepository<SlipDamageEntity, SlipDamageId>, Repository<SlipDamageEntity, SlipDamageId>>(
@@ -250,7 +248,6 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<BuffDomainService>(Lifetime.Singleton);
             builder.Register<CharactersDomainService>(Lifetime.Singleton);
             builder.Register<EnemiesDomainService>(Lifetime.Singleton);
-            builder.Register<HitPointDomainService>(Lifetime.Singleton);
             builder.Register<OrderedItemsDomainService>(Lifetime.Singleton);
             builder.Register<PlayerDomainService>(Lifetime.Singleton);
             builder.Register<ResultCreatorDomainService>(Lifetime.Singleton);

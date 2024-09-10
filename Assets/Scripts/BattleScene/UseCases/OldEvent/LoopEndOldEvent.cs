@@ -1,7 +1,4 @@
-using BattleScene.Domain.Aggregate;
 using BattleScene.Domain.DomainService;
-using BattleScene.Domain.Id;
-using BattleScene.Domain.IRepository;
 using BattleScene.UseCases.OldEvent.Interface;
 using BattleScene.UseCases.OldEvent.Runner;
 using BattleScene.UseCases.View.AilmentView.OutputBoundary;
@@ -22,7 +19,6 @@ namespace BattleScene.UseCases.OldEvent
         private readonly IBuffViewPresenter _buffView;
         private readonly CharactersDomainService _characters;
         private readonly IFrameViewPresenter _frameView;
-        private readonly IRepository<HitPointAggregate, CharacterId> _hitPointRepository;
         private readonly OrderedItemsDomainService _orderedItems;
 
         public LoopEndOldEvent(
@@ -34,7 +30,6 @@ namespace BattleScene.UseCases.OldEvent
             IBuffViewPresenter buffView,
             CharactersDomainService characters,
             IFrameViewPresenter frameView,
-            IRepository<HitPointAggregate, CharacterId> hitPointRepository,
             OrderedItemsDomainService orderedItems)
         {
             _ailment = ailment;
@@ -45,7 +40,6 @@ namespace BattleScene.UseCases.OldEvent
             _buffView = buffView;
             _characters = characters;
             _frameView = frameView;
-            _hitPointRepository = hitPointRepository;
             _orderedItems = orderedItems;
         }
 
@@ -54,7 +48,7 @@ namespace BattleScene.UseCases.OldEvent
             _frameView.Stop();
 
             // プレイヤーが死亡した場合、プレイヤーの敗北
-            if (!_hitPointRepository.Select(_characters.GetPlayerId()).IsSurvive()) return EventCode.PlayerDeadEvent;
+            // if (!_hitPointRepository.Select(_characters.GetPlayerId()).IsSurvive()) return EventCode.PlayerDeadEvent;
 
             // 先頭が状態異常だった場合、以下の処理は実行しないためreturnする
             if (!_orderedItems.First().TryGetCharacterId(out _)) return EventCode.OrderDecisionEvent;
