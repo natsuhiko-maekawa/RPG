@@ -32,7 +32,7 @@ namespace BattleScene.InterfaceAdapter.Service
         private readonly OrderedItemsDomainService _orderedItems;
         private readonly IResource<PlayerViewInfoDto, CharacterTypeCode> _playerViewInfoResource;
         private readonly ISkillRepository _skillRepository;
-        private readonly IResource<SkillViewInfoValueObject, SkillCode> _skillViewInfoResource;
+        private readonly IResource<SkillPropertyDto, SkillCode> _skillViewInfoResource;
         private readonly IRepository<BattleLogEntity, BattleLogId> _battleLogRepository;
         private readonly PlayerDomainService _player;
 
@@ -46,7 +46,7 @@ namespace BattleScene.InterfaceAdapter.Service
             OrderedItemsDomainService orderedItems,
             IResource<PlayerViewInfoDto, CharacterTypeCode> playerViewInfoResource,
             ISkillRepository skillRepository,
-            IResource<SkillViewInfoValueObject, SkillCode> skillViewInfoResource,
+            IResource<SkillPropertyDto, SkillCode> skillViewInfoResource,
             IRepository<BattleLogEntity, BattleLogId> battleLogRepository,
             PlayerDomainService player)
         {

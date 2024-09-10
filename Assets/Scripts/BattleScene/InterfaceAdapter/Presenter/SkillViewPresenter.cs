@@ -23,13 +23,13 @@ namespace BattleScene.InterfaceAdapter.Presenter
         private readonly PlayerDomainService _player;
         private readonly IFactory<PropertyValueObject, CharacterTypeCode> _propertyFactory;
         private readonly IFactory<SkillValueObject, SkillCode> _skillFactory;
-        private readonly IResource<SkillViewInfoValueObject, SkillCode> _skillPropertyFactory;
+        private readonly IResource<SkillPropertyDto, SkillCode> _skillPropertyFactory;
 
         public SkillViewPresenter(
             PlayerDomainService player,
             IFactory<PropertyValueObject, CharacterTypeCode> propertyFactory,
             IFactory<SkillValueObject, SkillCode> skillFactory,
-            IResource<SkillViewInfoValueObject, SkillCode> skillPropertyFactory,
+            IResource<SkillPropertyDto, SkillCode> skillPropertyFactory,
             IResource<MessageDto, MessageCode> messageResource,
             IResource<PlayerImagePathDto, PlayerImageCode> playerPropertyResource,
             MessageCodeConverterService messageCodeConverter,

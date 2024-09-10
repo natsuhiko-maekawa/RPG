@@ -133,7 +133,7 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<IRepository<TurnEntity, TurnId>, Repository<TurnEntity, TurnId>>(Lifetime.Singleton);
             
             builder.Register<IFactory<SkillValueObject, SkillCode>, SkillFactory>(Lifetime.Singleton);
-            builder.RegisterComponentInHierarchy<IResource<SkillViewInfoValueObject, SkillCode>>();
+            builder.RegisterComponentInHierarchy<IResource<SkillPropertyDto, SkillCode>>();
             builder.Register<IFactory<PlayerPropertyValueObject, CharacterTypeCode>, PlayerPropertyFactory>
                 (Lifetime.Singleton);
             builder.Register<IFactory<PropertyValueObject, CharacterTypeCode>, PropertyFactory>(Lifetime.Singleton);

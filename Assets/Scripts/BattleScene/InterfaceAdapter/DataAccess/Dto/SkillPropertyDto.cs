@@ -6,7 +6,7 @@ using UnityEngine;
 namespace BattleScene.Domain.ValueObject
 {
     [Serializable]
-    public class SkillViewInfoValueObject : IUnique<SkillCode>, ISerializationCallbackReceiver
+    public class SkillPropertyDto : IUnique<SkillCode>, ISerializationCallbackReceiver
     {
         [SerializeField] private string key;
         [SerializeField] private string skillName;
