@@ -38,7 +38,7 @@ namespace BattleScene.UseCases.UseCase
             var characterId = _orderedItems.FirstCharacterId();
             // var skill = _skillRepository.Select(characterId);
 
-            if (_characterRepository.Select(characterId).IsPlayer())
+            if (_characterRepository.Select(characterId).IsPlayer)
             {
                 // TODO: FatalitySkillかどうか判定し、リミットゲージの表示更新を可否を決定する
 

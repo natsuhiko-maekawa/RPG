@@ -37,7 +37,7 @@ namespace BattleScene.UseCases.View.HitPointBarView.OutputDataFactory
                     .Select(y => (targetId: y.TargetId, digit: y.Amount))
                     .Aggregate((y, z) => (y.targetId, y.digit + z.digit)))
                 .Select(x => new HitPointBarOutputData(
-                    _characterRepository.Select(x.targetId).IsPlayer()
+                    _characterRepository.Select(x.targetId).IsPlayer
                         ? CharacterOutputData.SetPlayer()
                         : CharacterOutputData.SetEnemy(_enemyRepository.Select(x.targetId).EnemyNumber),
                     _hitPointRepository.Select(x.targetId).GetMax(),

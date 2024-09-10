@@ -34,7 +34,7 @@ namespace BattleScene.UseCases.Service
         private int Count()
         {
             var battleLogList = _battleLogRepository.Select();
-            var player = _characterRepository.Select().First(x => x.IsPlayer());
+            var player = _characterRepository.Select().First(x => x.IsPlayer);
             var playerId = player.Id;
             return battleLogList
                 .OrderByDescending(x => x)

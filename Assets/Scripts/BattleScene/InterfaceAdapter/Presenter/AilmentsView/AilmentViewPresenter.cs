@@ -35,7 +35,7 @@ namespace BattleScene.InterfaceAdapter.Presenter.AilmentsView
         {
             var ailmentNumberList = ToAilmentNumberList(ailmentOutputData);
             var character = _characterRepository.Select(ailmentOutputData.CharacterId);
-            if (character.IsPlayer())
+            if (character.IsPlayer)
             {
                 var playerAilmentsViewDtoList = new PlayerAilmentsViewDto(ailmentNumberList);
                 _playerStatusView.StartPlayerAilmentsView(playerAilmentsViewDtoList);

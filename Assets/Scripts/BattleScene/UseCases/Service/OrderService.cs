@@ -55,7 +55,7 @@ namespace BattleScene.UseCases.Service
 
             var ailments = _ailmentRepository.Select()
                 .Where(x => Equals(x.CharacterId, _characterRepository.Select()
-                    .First(y => y.IsPlayer())
+                    .First(y => y.IsPlayer)
                     .Id))
                 .ToImmutableList();
             var slipDamages = _slipDamageRepository.Select();

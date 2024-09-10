@@ -97,7 +97,7 @@ namespace BattleScene.InterfaceAdapter.Service
             if (!message.Contains(Actor)) return message;
             if (!_orderedItems.First().TryGetCharacterId(out var characterId))
                 throw new InvalidOperationException();
-            var actorName = _characterRepository.Select(characterId).IsPlayer()
+            var actorName = _characterRepository.Select(characterId).IsPlayer
                 ? _playerViewInfoResource.Get(CharacterTypeCode.Player).PlayerName
                 : _enemyViewInfoResource.Get(_characterRepository.Select(characterId).CharacterTypeCode)
                     .EnemyName;

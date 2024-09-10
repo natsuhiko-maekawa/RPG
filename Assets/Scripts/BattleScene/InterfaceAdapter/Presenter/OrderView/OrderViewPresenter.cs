@@ -41,7 +41,7 @@ namespace BattleScene.InterfaceAdapter.Presenter.OrderView
                 {
                     if (x.TryGetCharacterId(out var characterId))
                     {
-                        return _characterRepository.Select(characterId).IsPlayer()
+                        return _characterRepository.Select(characterId).IsPlayer
                             ? new OrderViewDto(ItemType.Player)
                             : CreateEnemyViewDto(characterId);
                     }

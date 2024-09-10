@@ -28,26 +28,26 @@ namespace BattleScene.Domain.DomainService
         [Obsolete]
         public CharacterEntity GetPlayer()
         {
-            return _characterRepository.Select().First(x => x.IsPlayer());
+            return _characterRepository.Select().First(x => x.IsPlayer);
         }
 
         [Obsolete]
         public CharacterId GetPlayerId()
         {
-            return _characterRepository.Select().First(x => x.IsPlayer()).Id;
+            return _characterRepository.Select().First(x => x.IsPlayer).Id;
         }
 
         public ImmutableList<CharacterEntity> GetEnemies()
         {
             return _characterRepository.Select()
-                .Where(x => !x.IsPlayer())
+                .Where(x => !x.IsPlayer)
                 .ToImmutableList();
         }
 
         public ImmutableList<CharacterId> GetEnemiesId()
         {
             return _characterRepository.Select()
-                .Where(x => !x.IsPlayer())
+                .Where(x => !x.IsPlayer)
                 .Select(x => x.Id)
                 .ToImmutableList();
         }

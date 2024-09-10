@@ -25,7 +25,6 @@ namespace BattleScene.Domain.Entity
         public int CurrentTechnicalPoint { get; }
         public int ActionTime { get; set; }
         public bool IsSurvive => 0 < CurrentHitPoint;
-        
-        public bool IsPlayer() => CharacterTypeCode == CharacterTypeCode.Player;
+        public bool IsPlayer => CharacterTypeCode == CharacterTypeCode.Player;
     }
 }

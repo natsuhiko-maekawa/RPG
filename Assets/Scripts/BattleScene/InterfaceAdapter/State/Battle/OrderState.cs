@@ -96,7 +96,7 @@ namespace BattleScene.InterfaceAdapter.State.Battle
         private bool IsPlayer()
         {
             if (!_orderedItems.First().TryGetCharacterId(out var characterId)) return false;
-            return _characterRepository.Select(characterId).IsPlayer();
+            return _characterRepository.Select(characterId).IsPlayer;
         }
     }
 }

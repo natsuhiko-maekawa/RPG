@@ -19,7 +19,7 @@ namespace BattleScene.UseCases.Service
         public CharacterOutputData Create(CharacterId characterId)
         {
             var character = _characterRepository.Select(characterId);
-            return character.IsPlayer()
+            return character.IsPlayer
                 ? CharacterOutputData.SetPlayer()
                 : CharacterOutputData.SetEnemy(_enemyRepository.Select(characterId).EnemyNumber);
         }
