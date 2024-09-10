@@ -14,5 +14,6 @@ namespace BattleScene.Framework.GameObjects
         }
 
         public void Show(bool value) => _downArrow.enabled = value;
+        public void Hide() => _downArrow.enabled = false;
     }
 }

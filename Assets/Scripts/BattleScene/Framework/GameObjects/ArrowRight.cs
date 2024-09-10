@@ -13,14 +13,19 @@ namespace BattleScene.Framework.GameObjects
         {
             _rightArrow = GetComponent<Image>();
             _defaultPosition = _rightArrow.rectTransform.localPosition;
-            enabled = false;
+            _rightArrow.enabled = false;
         }
 
         public void Move(int row)
         {
-            enabled = true;
+            _rightArrow.enabled = true;
             var newPosition = _defaultPosition + new Vector3(0, -rowHeight * row);
             _rightArrow.rectTransform.localPosition = newPosition;
+        }
+
+        public void Hide()
+        {
+            _rightArrow.enabled = false;
         }
     }
 }

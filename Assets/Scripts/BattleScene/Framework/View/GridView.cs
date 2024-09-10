@@ -72,6 +72,9 @@ namespace BattleScene.Framework.View
         {
             _window.Hide();
             _grid.ResetRow();
+            _arrowRight.Hide();
+            _arrowUp.Hide();
+            _arrowDown.Hide();
             selectAction.Disable();
         }
         
