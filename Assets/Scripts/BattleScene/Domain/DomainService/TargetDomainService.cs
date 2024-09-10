@@ -5,7 +5,6 @@ using BattleScene.Domain.Aggregate;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
-using Utility.Interface;
 using Range = BattleScene.Domain.Code.Range;
 
 namespace BattleScene.Domain.DomainService
@@ -13,29 +12,23 @@ namespace BattleScene.Domain.DomainService
     public class TargetDomainService
     {
         private readonly IRepository<BattleLogEntity, BattleLogId> _battleLogRepository;
-        private readonly IRepository<CharacterAggregate, CharacterId> _characterRepository;
         private readonly EnemiesDomainService _enemies;
         private readonly IRepository<EnemyEntity, CharacterId> _enemyRepository;
         private readonly IRepository<HitPointAggregate, CharacterId> _hitPointRepository;
         private readonly PlayerDomainService _player;
-        private readonly IRandomEx _randomEx;
 
         public TargetDomainService(
             EnemiesDomainService enemies,
             PlayerDomainService player,
             IRepository<BattleLogEntity, BattleLogId> battleLogRepository,
-            IRepository<CharacterAggregate, CharacterId> characterRepository,
             IRepository<EnemyEntity, CharacterId> enemyRepository,
-            IRepository<HitPointAggregate, CharacterId> hitPointRepository,
-            IRandomEx randomEx)
+            IRepository<HitPointAggregate, CharacterId> hitPointRepository)
         {
             _enemies = enemies;
             _player = player;
             _battleLogRepository = battleLogRepository;
-            _characterRepository = characterRepository;
             _enemyRepository = enemyRepository;
             _hitPointRepository = hitPointRepository;
-            _randomEx = randomEx;
         }
 
         public ImmutableList<CharacterId> Get(CharacterId characterId, Range range)
@@ -58,16 +51,6 @@ namespace BattleScene.Domain.DomainService
             };
 
             return targetList;
-        }
-
-        private ImmutableList<CharacterId> GetRandom(CharacterId characterId)
-        {
-            var targetList = _characterRepository.Select()
-                .Select(x => x.Id)
-                .Where(x => !Equals(x, characterId) && _hitPointRepository.Select(x).IsSurvive())
-                .ToList();
-            if (targetList.Count == 0) return ImmutableList<CharacterId>.Empty;
-            return ImmutableList.Create(_randomEx.Choice(targetList));
         }
 
         private CharacterId GetEnemySolo()
