@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
-using BattleScene.Domain.Code;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Id;
 using BattleScene.InterfaceAdapter.Interface;
@@ -42,7 +41,7 @@ namespace BattleScene.InterfaceAdapter
         {
             _context = new Context(_container.Resolve<InitializeBattleState>());
             _battleSceneInput.SetSelectAction(_context.Select);
-            _gridView.SetSelectAction(x => _context.Select((ActionCode)x));
+            _gridView.SetSelectAction(x => _context.Select(x));
             _targetView.SetSelectAction(x => _context.Select(ToCharacterIdList(x)));
         }
 
@@ -53,21 +52,6 @@ namespace BattleScene.InterfaceAdapter
                     ? _player.GetId()
                     : _enemies.GetIdByPosition(x.EnemyIndex))
                 .ToImmutableList();
-        }
-        
-        public void Start()
-        {
-            _context = new Context(_container.Resolve<InitializeBattleState>());
-        }
-        
-        public void Select()
-        {
-            _context.Select();
-        }
-        
-        public void SelectAction(int actionCode)
-        {
-            _context.Select((ActionCode)actionCode);
         }
     }
 }

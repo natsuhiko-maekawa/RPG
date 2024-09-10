@@ -6705,7 +6705,23 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -2009765371056587735, guid: 1924e037f42b5e943a7131f12aab3cfd, type: 3}
+      propertyPath: selectSkillAction.m_Id
+      value: c4ba95c9-4bef-4c7a-9484-c14977364fd9
+      objectReference: {fileID: 0}
+    - target: {fileID: -2009765371056587735, guid: 1924e037f42b5e943a7131f12aab3cfd, type: 3}
+      propertyPath: selectSkillAction.m_Name
+      value: Ok
+      objectReference: {fileID: 0}
+    - target: {fileID: -2009765371056587735, guid: 1924e037f42b5e943a7131f12aab3cfd, type: 3}
+      propertyPath: selectSkillAction.m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -2009765371056587735, guid: 1924e037f42b5e943a7131f12aab3cfd, type: 3}
       propertyPath: selectAction.m_ExpectedControlType
+      value: Button
+      objectReference: {fileID: 0}
+    - target: {fileID: -2009765371056587735, guid: 1924e037f42b5e943a7131f12aab3cfd, type: 3}
+      propertyPath: selectSkillAction.m_ExpectedControlType
       value: Button
       objectReference: {fileID: 0}
     - target: {fileID: -2009765371056587735, guid: 1924e037f42b5e943a7131f12aab3cfd, type: 3}
@@ -6714,6 +6730,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -2009765371056587735, guid: 1924e037f42b5e943a7131f12aab3cfd, type: 3}
       propertyPath: selectAction.m_SingletonActionBindings.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -2009765371056587735, guid: 1924e037f42b5e943a7131f12aab3cfd, type: 3}
+      propertyPath: selectSkillAction.m_SingletonActionBindings.Array.size
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -2009765371056587735, guid: 1924e037f42b5e943a7131f12aab3cfd, type: 3}
@@ -6941,8 +6961,32 @@ PrefabInstance:
       value: Ok
       objectReference: {fileID: 0}
     - target: {fileID: -2009765371056587735, guid: 1924e037f42b5e943a7131f12aab3cfd, type: 3}
+      propertyPath: selectSkillAction.m_SingletonActionBindings.Array.data[0].m_Id
+      value: 435861d1-d661-4ee4-841a-17999c300bfa
+      objectReference: {fileID: 0}
+    - target: {fileID: -2009765371056587735, guid: 1924e037f42b5e943a7131f12aab3cfd, type: 3}
+      propertyPath: selectSkillAction.m_SingletonActionBindings.Array.data[1].m_Id
+      value: 8fc6d066-1e23-4584-baaa-00bec567c45d
+      objectReference: {fileID: 0}
+    - target: {fileID: -2009765371056587735, guid: 1924e037f42b5e943a7131f12aab3cfd, type: 3}
+      propertyPath: selectSkillAction.m_SingletonActionBindings.Array.data[0].m_Path
+      value: <SwitchProControllerHID>/buttonEast
+      objectReference: {fileID: 0}
+    - target: {fileID: -2009765371056587735, guid: 1924e037f42b5e943a7131f12aab3cfd, type: 3}
+      propertyPath: selectSkillAction.m_SingletonActionBindings.Array.data[1].m_Path
+      value: <Keyboard>/space
+      objectReference: {fileID: 0}
+    - target: {fileID: -2009765371056587735, guid: 1924e037f42b5e943a7131f12aab3cfd, type: 3}
       propertyPath: moveAction.m_SingletonActionBindings.Array.data[0].m_Interactions
       value: Press
+      objectReference: {fileID: 0}
+    - target: {fileID: -2009765371056587735, guid: 1924e037f42b5e943a7131f12aab3cfd, type: 3}
+      propertyPath: selectSkillAction.m_SingletonActionBindings.Array.data[0].m_Action
+      value: Ok
+      objectReference: {fileID: 0}
+    - target: {fileID: -2009765371056587735, guid: 1924e037f42b5e943a7131f12aab3cfd, type: 3}
+      propertyPath: selectSkillAction.m_SingletonActionBindings.Array.data[1].m_Action
+      value: Ok
       objectReference: {fileID: 0}
     - target: {fileID: -2009765371056587735, guid: 1924e037f42b5e943a7131f12aab3cfd, type: 3}
       propertyPath: selectAction.m_SingletonActionBindings.Array.data[0].m_Interactions
@@ -6950,7 +6994,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -2009765371056587735, guid: 1924e037f42b5e943a7131f12aab3cfd, type: 3}
       propertyPath: selectAction.m_SingletonActionBindings.Array.data[1].m_Interactions
+      value: Press(behavior=1)
+      objectReference: {fileID: 0}
+    - target: {fileID: -2009765371056587735, guid: 1924e037f42b5e943a7131f12aab3cfd, type: 3}
+      propertyPath: selectSkillAction.m_SingletonActionBindings.Array.data[0].m_Interactions
       value: Press
+      objectReference: {fileID: 0}
+    - target: {fileID: -2009765371056587735, guid: 1924e037f42b5e943a7131f12aab3cfd, type: 3}
+      propertyPath: selectSkillAction.m_SingletonActionBindings.Array.data[1].m_Interactions
+      value: Press(behavior=1)
       objectReference: {fileID: 0}
     - target: {fileID: 1306083801413134467, guid: 1924e037f42b5e943a7131f12aab3cfd, type: 3}
       propertyPath: m_AnchorMax.y
@@ -7064,7 +7116,8 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -54
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3010010739903814501, guid: 1924e037f42b5e943a7131f12aab3cfd, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

@@ -18,18 +18,18 @@ namespace BattleScene.Framework.View
         [SerializeField] private InputAction moveAction;
         [SerializeField] private InputAction selectAction;
         private Window _window;
-        private Grid _grid;
+        public Grid Grid { get; private set; }
         private ArrowRight _arrowRight;
         private ArrowUp _arrowUp;
         private ArrowDown _arrowDown;
-        private GridViewDto _dto;
+        public GridViewDto Dto { get; private set; }
         private int _id;
         private readonly Dictionary<ActionCode, GridState> _gridStateDictionary = new();
 
         private void Awake()
         {
             _window = GetComponentInChildren<Window>();
-            _grid = GetComponentInChildren<Grid>();
+            Grid = GetComponentInChildren<Grid>();
             _arrowRight = GetComponentInChildren<ArrowRight>();
             _arrowUp = GetComponentInChildren<ArrowUp>();
             _arrowDown = GetComponentInChildren<ArrowDown>();
@@ -39,8 +39,9 @@ namespace BattleScene.Framework.View
         public Task StartAnimationAsync(GridViewDto dto)
         {
             _window.Show();
+            selectAction.Enable();
             
-            _dto = dto;
+            Dto = dto;
             if (!_gridStateDictionary.TryGetValue(dto.ActionCode, out var gridState))
             {
                 gridState = new GridState(
@@ -49,8 +50,8 @@ namespace BattleScene.Framework.View
                 _gridStateDictionary.Add(dto.ActionCode, gridState);
             }
             
-            _grid.SetRow(Math.Min(dto.RowDtoList.Count, maxGridSize));
-            foreach (var (row, rowDto) in _grid.Zip(dto.RowDtoList.Skip(gridState.TopItemIndex), (row, rowDto) => (row, rowDto)))
+            Grid.SetRow(Math.Min(dto.RowDtoList.Count, maxGridSize));
+            foreach (var (row, rowDto) in Grid.Zip(dto.RowDtoList.Skip(gridState.TopItemIndex), (row, rowDto) => (row, rowDto)))
             {
                 row.SetName(rowDto.RowName);
                 row.ShowName();
@@ -70,7 +71,8 @@ namespace BattleScene.Framework.View
         public void StopAnimation()
         {
             _window.Hide();
-            _grid.Reset();
+            Grid.Reset();
+            selectAction.Disable();
         }
         
         private async Task MoveArrow(Vector2 vector2)
@@ -78,11 +80,11 @@ namespace BattleScene.Framework.View
             if (vector2.y == 0) return;
             
             if (vector2.y > 0)
-                _gridStateDictionary[_dto.ActionCode].Up();
+                _gridStateDictionary[Dto.ActionCode].Up();
             else
-                _gridStateDictionary[_dto.ActionCode].Down();
-            _id = _gridStateDictionary[_dto.ActionCode].SelectedRow;
-            await StartAnimationAsync(_dto);
+                _gridStateDictionary[Dto.ActionCode].Down();
+            _id = _gridStateDictionary[Dto.ActionCode].SelectedRow;
+            await StartAnimationAsync(Dto);
         }
         
         private void SetMoveAction(Func<Vector2, Task> func)
