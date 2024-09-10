@@ -1,18 +1,18 @@
 ﻿using System.Collections.Immutable;
 using BattleScene.Domain.DomainService;
-using BattleScene.UseCases.UseCase;
+using BattleScene.UseCases.Service;
 using VContainer;
 
 namespace BattleScene.InterfaceAdapter.State.Battle
 {
     internal class EnemySelectSkillState : AbstractState
     {
-        private readonly EnemySkillSelector _enemySkillSelector;
+        private readonly EnemySkillSelectorService _enemySkillSelector;
         private readonly PlayerDomainService _player;
         private readonly IObjectResolver _container;
 
         public EnemySelectSkillState(
-            EnemySkillSelector enemySkillSelector,
+            EnemySkillSelectorService enemySkillSelector,
             PlayerDomainService player,
             IObjectResolver container)
         {

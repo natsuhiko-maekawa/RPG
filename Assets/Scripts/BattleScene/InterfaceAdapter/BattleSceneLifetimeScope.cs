@@ -279,7 +279,7 @@ namespace BattleScene.InterfaceAdapter
 
             builder.Register<OrderDecision>(Lifetime.Singleton);
 
-            builder.Register<EnemySkillSelector>(Lifetime.Singleton);
+            builder.Register<EnemySkillSelectorService>(Lifetime.Singleton);
 
             builder.Register<SkillView>(Lifetime.Singleton);
 

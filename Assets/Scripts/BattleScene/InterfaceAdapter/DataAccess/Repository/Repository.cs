@@ -2,7 +2,6 @@
 using System.Collections.Immutable;
 using System.Linq;
 using BattleScene.Domain.Entity;
-using BattleScene.Domain.Interface;
 using BattleScene.Domain.IRepository;
 using Utility;
 
