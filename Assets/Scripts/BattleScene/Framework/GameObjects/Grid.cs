@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace BattleScene.Framework.GameObjects
@@ -14,12 +16,10 @@ namespace BattleScene.Framework.GameObjects
         {
             _row = GetComponentInChildren<Row>();
             _rowList.Add(_row);
-            enabled = false;
         }
         
         public void SetRow(int rowCount)
         {
-            enabled = true;
             if (rowCount > _rowList.Count)
             {
                 AddText(rowCount - _rowList.Count);
@@ -48,10 +48,11 @@ namespace BattleScene.Framework.GameObjects
 
         private void RemoveText(int rowCount)
         {
-            for (var i = _rowList.Count - 1; i > rowCount; --i)
+            var max = Math.Min(rowCount, _rowList.Count);
+            for (var i = 0; i < max; ++i)
             {
-                Destroy(_rowList[i]);
-                _rowList.RemoveAt(i);
+                Destroy(_rowList.Last().gameObject);
+                _rowList.RemoveAt(_rowList.Count - 1);
             }
         }
 
