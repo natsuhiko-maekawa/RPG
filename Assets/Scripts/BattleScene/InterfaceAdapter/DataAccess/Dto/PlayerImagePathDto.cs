@@ -6,7 +6,7 @@ using UnityEngine;
 namespace BattleScene.Domain.ValueObject
 {
     [Serializable]
-    public class PlayerImageValueObject : IUnique<PlayerImageCode>, ISerializationCallbackReceiver
+    public class PlayerImagePathDto : IUnique<PlayerImageCode>, ISerializationCallbackReceiver
     {
         [SerializeField] private string playerImageCode;
         public PlayerImageCode Key { get; private set; }

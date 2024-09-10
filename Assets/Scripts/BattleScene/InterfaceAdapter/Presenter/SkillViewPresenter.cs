@@ -19,7 +19,7 @@ namespace BattleScene.InterfaceAdapter.Presenter
         private readonly IGridView _gridView;
         private readonly MessageCodeConverterService _messageCodeConverter;
         private readonly IResource<MessageDto, MessageCode> _messageResource;
-        private readonly IResource<PlayerImageValueObject, PlayerImageCode> _playerPropertyResource;
+        private readonly IResource<PlayerImagePathDto, PlayerImageCode> _playerPropertyResource;
         private readonly PlayerDomainService _player;
         private readonly IFactory<PropertyValueObject, CharacterTypeCode> _propertyFactory;
         private readonly IFactory<SkillValueObject, SkillCode> _skillFactory;
@@ -31,7 +31,7 @@ namespace BattleScene.InterfaceAdapter.Presenter
             IFactory<SkillValueObject, SkillCode> skillFactory,
             IResource<SkillViewInfoValueObject, SkillCode> skillPropertyFactory,
             IResource<MessageDto, MessageCode> messageResource,
-            IResource<PlayerImageValueObject, PlayerImageCode> playerPropertyResource,
+            IResource<PlayerImagePathDto, PlayerImageCode> playerPropertyResource,
             MessageCodeConverterService messageCodeConverter,
             IGridView gridView)
         {

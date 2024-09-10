@@ -15,13 +15,13 @@ namespace BattleScene.InterfaceAdapter.Presenter.ViewPresenter
     public class GridViewPresenter : IViewPresenter<GridViewOutputData>
     {
         private readonly IResource<MessageDto, MessageCode> _messageResource;
-        private readonly IResource<PlayerImageValueObject, PlayerImageCode> _playerImagePathResource;
+        private readonly IResource<PlayerImagePathDto, PlayerImageCode> _playerImagePathResource;
         private readonly MessageCodeConverterService _messageCodeConverter;
         private readonly IGridView _gridView;
 
         public GridViewPresenter(
             IResource<MessageDto, MessageCode> messageResource,
-            IResource<PlayerImageValueObject, PlayerImageCode> playerImagePathResource,
+            IResource<PlayerImagePathDto, PlayerImageCode> playerImagePathResource,
             MessageCodeConverterService messageCodeConverter,
             IGridView gridView)
         {
