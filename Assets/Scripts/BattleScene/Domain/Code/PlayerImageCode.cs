@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace BattleScene.Domain.Code
+﻿namespace BattleScene.Domain.Code
 {
     public enum PlayerImageCode
     {
