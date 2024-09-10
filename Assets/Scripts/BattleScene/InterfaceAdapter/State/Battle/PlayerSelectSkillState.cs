@@ -23,6 +23,7 @@ namespace BattleScene.InterfaceAdapter.State.Battle
 
         public override void Select(SkillCode skillCode)
         {
+            _skillView.Stop();
             var selectTargetState = _selectTargetStateFactory.Create(skillCode);
             Context.TransitionTo(selectTargetState);
         }

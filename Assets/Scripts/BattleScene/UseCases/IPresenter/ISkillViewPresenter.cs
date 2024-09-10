@@ -3,5 +3,6 @@
     public interface ISkillViewPresenter
     {
         public void Start();
+        public void Stop();
     }
 }

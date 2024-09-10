@@ -73,5 +73,10 @@ namespace BattleScene.InterfaceAdapter.Presenter
                 rowDtoList);
             _gridView.StartAnimationAsync(dto);
         }
+
+        public void Stop()
+        {
+            _gridView.StopAnimation();
+        }
     }
 }
