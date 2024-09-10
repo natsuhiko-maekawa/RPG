@@ -287,6 +287,7 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<SkillView>(Lifetime.Singleton);
 
             builder.Register<DamageDigitOutputDataFactory>(Lifetime.Singleton);
+            builder.Register<ActionDescriptionMessageOutput>(Lifetime.Singleton);
         }
     }
 }

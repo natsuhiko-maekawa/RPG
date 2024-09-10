@@ -1,9 +1,10 @@
-﻿using BattleScene.Domain.Code;
+﻿using System;
+using BattleScene.Domain.Code;
 
 namespace BattleScene.UseCases.View.MessageView.OutputData
 {
     public record MessageOutputData(
-        string Message,
+        string Message = "",
         MessageCode MessageCode = MessageCode.NoMessage,
         bool NoWait = false);
 }
