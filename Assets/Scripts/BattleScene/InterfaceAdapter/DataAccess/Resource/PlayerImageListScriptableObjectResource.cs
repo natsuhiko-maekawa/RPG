@@ -1,5 +1,4 @@
 ﻿using BattleScene.Domain.Code;
-using BattleScene.Domain.ValueObject;
 using BattleScene.InterfaceAdapter.DataAccess.Dto;
 using BattleScene.InterfaceAdapter.DataAccess.ScriptableObject;
 

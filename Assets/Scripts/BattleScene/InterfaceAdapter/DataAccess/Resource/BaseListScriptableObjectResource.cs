@@ -1,6 +1,5 @@
 ﻿using System.Collections.Immutable;
 using System.Linq;
-using BattleScene.Domain.Interface;
 using BattleScene.InterfaceAdapter.DataAccess.ScriptableObject;
 using UnityEngine;
 

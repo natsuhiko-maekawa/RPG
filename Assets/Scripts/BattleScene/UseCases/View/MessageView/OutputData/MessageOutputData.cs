@@ -1,5 +1,4 @@
-﻿using System;
-using BattleScene.Domain.Code;
+﻿using BattleScene.Domain.Code;
 
 namespace BattleScene.UseCases.View.MessageView.OutputData
 {

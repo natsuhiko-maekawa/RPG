@@ -6,7 +6,6 @@ using BattleScene.InterfaceAdapter.Interface;
 using BattleScene.InterfaceAdapter.Presenter.Dto;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace BattleScene.Framework.View
 {
