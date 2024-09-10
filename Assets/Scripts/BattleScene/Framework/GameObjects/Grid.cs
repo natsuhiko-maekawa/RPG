@@ -30,7 +30,7 @@ namespace BattleScene.Framework.GameObjects
                 RemoveText(_rowList.Count - rowCount);
         }
 
-        public void Reset()
+        public void ResetRow()
         {
             RemoveText(_rowList.Count);
         }
