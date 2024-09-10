@@ -230,7 +230,6 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<TurnEndState>(Lifetime.Singleton);
             
             builder.Register<ActionTimeService>(Lifetime.Singleton);
-            builder.Register<AgilityToSpeedService>(Lifetime.Singleton);
             builder.Register<AilmentSkillService>(Lifetime.Singleton);
             builder.Register<AttackCounterService>(Lifetime.Singleton);
             builder.Register<BuffGeneratorService>(Lifetime.Singleton);
@@ -238,7 +237,6 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<CharacterPropertyFactoryService>(Lifetime.Singleton);
             builder.Register<DamageGeneratorService>(Lifetime.Singleton);
             builder.Register<DestroyedPartGeneratorService>(Lifetime.Singleton);
-            builder.Register<HitPointCreatorService>(Lifetime.Singleton);
             builder.Register<OrderService>(Lifetime.Singleton);
             builder.Register<RestoreGeneratorService>(Lifetime.Singleton);
             builder.Register<SlipDamageService>(Lifetime.Singleton);

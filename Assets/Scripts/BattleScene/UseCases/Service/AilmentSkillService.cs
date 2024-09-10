@@ -1,6 +1,5 @@
 using System.Collections.Immutable;
 using System.Linq;
-using BattleScene.Domain.Aggregate;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
@@ -13,7 +12,7 @@ namespace BattleScene.UseCases.Service
     public class AilmentSkillService
     {
         private const float Threshold = 40.0f; // 大きいほど命中しやすくなる
-        private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
+        private readonly CharacterPropertyFactoryService _characterPropertyFactory;
         private readonly IRepository<ResultEntity, ResultId> _resultRepository;
         private readonly IRepository<TurnEntity, TurnId> _turnRepository;
         private readonly OrderedItemsDomainService _orderedItems;
@@ -22,12 +21,12 @@ namespace BattleScene.UseCases.Service
         private readonly TargetDomainService _target;
 
         public AilmentSkillService(
-            IRepository<CharacterEntity, CharacterId> characterRepository,
+            CharacterPropertyFactoryService characterPropertyFactory,
             OrderedItemsDomainService orderedItems,
             IRandomEx randomEx,
             TargetDomainService target)
         {
-            _characterRepository = characterRepository;
+            _characterPropertyFactory = characterPropertyFactory;
             _orderedItems = orderedItems;
             _randomEx = randomEx;
             _target = target;
@@ -61,8 +60,8 @@ namespace BattleScene.UseCases.Service
         private bool IsTarget(CharacterId target, float luckRate)
         {
             _orderedItems.First().TryGetCharacterId(out var characterId);
-            var actorLuck = _characterRepository.Select(characterId).Property.Luck;
-            var targetLuck = _characterRepository.Select(target).Property.Luck;
+            var actorLuck = _characterPropertyFactory.Crate(characterId).Luck;
+            var targetLuck = _characterPropertyFactory.Crate(target).Luck;
             var rate = luckRate * (1.0f + (actorLuck - targetLuck) / Threshold);
             return _randomEx.Probability(rate);
         }

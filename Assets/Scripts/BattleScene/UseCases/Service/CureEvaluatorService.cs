@@ -11,8 +11,8 @@ namespace BattleScene.UseCases.Service
 {
     public class CureEvaluatorService
     {
+        private readonly CharacterPropertyFactoryService _characterPropertyFactory;
         private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
-        private readonly IRepository<HitPointAggregate, CharacterId> _hitPointRepository;
         private readonly IRandomEx _randomEx;
         
         public int Evaluate(CharacterId actorId, CureParameterValueObject cureParameter)
@@ -26,9 +26,12 @@ namespace BattleScene.UseCases.Service
         
         private int BasicEvaluate(CharacterId actorId)
         {
-            var actor = _characterRepository.Select(actorId);
-            var restore = actor.Property.Wisdom * 8 + _randomEx.Range(0, 2);
-            return _hitPointRepository.Select(actorId).GetRestore(restore);
+            var wisdom = _characterPropertyFactory.Crate(actorId).Wisdom;
+            var restore = wisdom * 8 + _randomEx.Range(0, 2);
+            var currentHitPoint = _characterRepository.Select(actorId).CurrentHitPoint;
+            var maxHitPoint = _characterPropertyFactory.Crate(actorId).HitPoint;
+            var actualRestore = Math.Min(restore, maxHitPoint - currentHitPoint);
+            return actualRestore;
         }
     }
 }
