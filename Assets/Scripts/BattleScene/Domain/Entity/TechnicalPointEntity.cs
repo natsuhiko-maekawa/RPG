@@ -1,8 +1,10 @@
-﻿using BattleScene.Domain.Id;
+﻿using System;
+using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
 
 namespace BattleScene.Domain.Entity
 {
+    [Obsolete]
     public class TechnicalPointEntity : BaseEntity<TechnicalPointEntity, CharacterId>
     {
         private PointValueObject _pointValueObject;

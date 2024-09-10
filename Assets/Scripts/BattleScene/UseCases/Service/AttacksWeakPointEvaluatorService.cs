@@ -1,22 +1,19 @@
 ﻿using System;
 using System.Linq;
-using BattleScene.Domain.Aggregate;
 using BattleScene.Domain.Code;
-using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
-using BattleScene.Domain.IRepository;
 using BattleScene.Domain.ValueObject;
 
 namespace BattleScene.UseCases.Service
 {
     public class AttacksWeakPointEvaluatorService
     {
-        private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
+        private readonly CharacterPropertyFactoryService _characterPropertyFactory;
 
         public AttacksWeakPointEvaluatorService(
-            IRepository<CharacterEntity, CharacterId> characterRepository)
+            CharacterPropertyFactoryService characterPropertyFactoryFactory)
         {
-            _characterRepository = characterRepository;
+            _characterPropertyFactory = characterPropertyFactoryFactory;
         }
 
         public bool Evaluate(CharacterId actorId, CharacterId targetId, DamageParameterValueObject damageParameter)
@@ -30,7 +27,7 @@ namespace BattleScene.UseCases.Service
 
         private bool BasicEvaluate(CharacterId targetId, DamageParameterValueObject damageParameter)
         {
-            return _characterRepository.Select(targetId).GetWeakPoints()
+            return _characterPropertyFactory.Crate(targetId).WeakPoints
                 .Intersect(damageParameter.MatAttrCode)
                 .Any();
         }

@@ -1,36 +1,28 @@
 using BattleScene.Domain.DomainService;
-using BattleScene.Domain.Entity;
-using BattleScene.Domain.Id;
-using BattleScene.Domain.IRepository;
 using BattleScene.UseCases.Service;
 
 namespace BattleScene.UseCases.UseCase
 {
     public class OrderDecision
     {
-        private readonly ActionTimeCreatorService _actionTimeCreator;
-        private readonly IRepository<ActionTimeEntity, CharacterId> _actionTimeRepository;
+        private readonly ActionTimeService _actionTime;
         private readonly CharactersDomainService _characters;
-        private readonly OrderedItemCreatorService _orderedItemCreator;
+        private readonly OrderService _order;
 
         public OrderDecision(
-            ActionTimeCreatorService actionTimeCreator,
-            IRepository<ActionTimeEntity, CharacterId> actionTimeRepository,
+            ActionTimeService actionTime,
             CharactersDomainService characters,
-            OrderedItemCreatorService orderedItemCreator)
+            OrderService order)
         {
-            _actionTimeCreator = actionTimeCreator;
-            _actionTimeRepository = actionTimeRepository;
+            _actionTime = actionTime;
             _characters = characters;
-            _orderedItemCreator = orderedItemCreator;
+            _order = order;
         }
 
         public void Execute()
         {
-            _orderedItemCreator.Create(_characters.GetIdList());
-
-            var actionTimeList = _actionTimeCreator.Create(_characters.GetIdList());
-            _actionTimeRepository.Update(actionTimeList);
+            _order.Update(_characters.GetIdList());
+            _actionTime.Update(_characters.GetIdList());
         }
     }
 }

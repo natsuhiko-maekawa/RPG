@@ -1,7 +1,9 @@
-﻿using BattleScene.Domain.Id;
+﻿using System;
+using BattleScene.Domain.Id;
 
 namespace BattleScene.Domain.Entity
 {
+    [Obsolete]
     public class ActionTimeEntity : BaseEntity<ActionTimeEntity, CharacterId>
     {
         public ActionTimeEntity(CharacterId characterId)

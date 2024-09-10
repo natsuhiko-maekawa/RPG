@@ -14,7 +14,7 @@ namespace BattleScene.Domain.DomainService
         private readonly IRepository<BattleLogEntity, BattleLogId> _battleLogRepository;
         private readonly EnemiesDomainService _enemies;
         private readonly IRepository<EnemyEntity, CharacterId> _enemyRepository;
-        private readonly IRepository<HitPointAggregate, CharacterId> _hitPointRepository;
+        private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
         private readonly PlayerDomainService _player;
 
         public TargetDomainService(
@@ -22,13 +22,13 @@ namespace BattleScene.Domain.DomainService
             PlayerDomainService player,
             IRepository<BattleLogEntity, BattleLogId> battleLogRepository,
             IRepository<EnemyEntity, CharacterId> enemyRepository,
-            IRepository<HitPointAggregate, CharacterId> hitPointRepository)
+            IRepository<CharacterEntity, CharacterId> characterRepository)
         {
             _enemies = enemies;
             _player = player;
             _battleLogRepository = battleLogRepository;
             _enemyRepository = enemyRepository;
-            _hitPointRepository = hitPointRepository;
+            _characterRepository = characterRepository;
         }
 
         public ImmutableList<CharacterId> Get(CharacterId characterId, Range range)
@@ -36,7 +36,7 @@ namespace BattleScene.Domain.DomainService
             var targetList = range switch
             {
                 Range.Oneself =>
-                    _hitPointRepository.Select(characterId).IsSurvive()
+                    _characterRepository.Select(characterId).IsSurvive
                         ? ImmutableList.Create(characterId)
                         : ImmutableList<CharacterId>.Empty,
                 Range.Solo =>
@@ -61,11 +61,11 @@ namespace BattleScene.Domain.DomainService
                 .Where(x => x.TargetIdList.Contains(_player.GetId()))
                 .Max()?.TargetIdList
                 .First();
-            targetId = targetId == null || !_hitPointRepository.Select(targetId).IsSurvive()
+            targetId = targetId == null || !_characterRepository.Select(targetId).IsSurvive
                 ? _enemies.Get()
                     .Select(x => x.Id)
                     .OrderBy(x => _enemyRepository.Select(x).EnemyNumber)
-                    .First(x => _hitPointRepository.Select(x).IsSurvive())
+                    .First(x => _characterRepository.Select(x).IsSurvive)
                 : targetId;
             return targetId;
         }

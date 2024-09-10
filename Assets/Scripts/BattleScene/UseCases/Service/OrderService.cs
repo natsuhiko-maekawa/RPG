@@ -2,32 +2,33 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
-using BattleScene.Domain.Aggregate;
 using BattleScene.Domain.Code;
+using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
+using BattleScene.Domain.ValueObject;
 
 namespace BattleScene.UseCases.Service
 {
-    public class OrderedItemCreatorService
+    public class OrderService
     {
-        private readonly IRepository<ActionTimeEntity, CharacterId> _actionTimeRepository;
+        private readonly IFactory<PropertyValueObject, CharacterTypeCode> _characterPropertyFactory;
         private readonly IRepository<AilmentEntity, AilmentId> _ailmentRepository;
         private readonly IRepository<BuffEntity, BuffId> _buffRepository;
         private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
         private readonly IRepository<OrderedItemEntity, OrderNumber> _orderedItemRepository;
         private readonly IRepository<SlipDamageEntity, SlipDamageId> _slipDamageRepository;
 
-        public OrderedItemCreatorService(
-            IRepository<ActionTimeEntity, CharacterId> actionTimeRepository,
+        public OrderService(
+            IFactory<PropertyValueObject, CharacterTypeCode> characterPropertyFactory, 
             IRepository<AilmentEntity, AilmentId> ailmentRepository, 
             IRepository<BuffEntity, BuffId> buffRepository, 
             IRepository<CharacterEntity, CharacterId> characterRepository,
             IRepository<OrderedItemEntity, OrderNumber> orderedItemRepository, 
             IRepository<SlipDamageEntity, SlipDamageId> slipDamageRepository)
         {
-            _actionTimeRepository = actionTimeRepository;
+            _characterPropertyFactory = characterPropertyFactory;
             _ailmentRepository = ailmentRepository;
             _buffRepository = buffRepository;
             _characterRepository = characterRepository;
@@ -35,17 +36,18 @@ namespace BattleScene.UseCases.Service
             _slipDamageRepository = slipDamageRepository;
         }
 
-        public void Create(IList<CharacterId> characterList)
+        public void Update(IList<CharacterId> characterList)
         {
             var orderedItemList = Enumerable
                 .Repeat(characterList, Domain.Constant.MaxOrderNumber)
                 .Select((x, i) => x
                     .Select(y => (character: y,
-                        speed: _actionTimeRepository.Select(y).ActionTime +
+                        speed: _characterRepository.Select(y).ActionTime +
                                Constant.MaxAgility / GetSpeed(y) * i)))
                 .SelectMany(x => x)
                 .OrderBy(x => x.speed)
-                .ThenByDescending(x => _characterRepository.Select(x.character).Property.Agility)
+                .ThenByDescending(x => _characterPropertyFactory
+                    .Create(_characterRepository.Select(x.character).CharacterTypeCode).Agility)
                 .ThenBy(x => _characterRepository.Select(x.character).Id)
                 .Select(x => new OrderedItem(x.character))
                 .ToImmutableList()
@@ -111,7 +113,8 @@ namespace BattleScene.UseCases.Service
         
         private int GetSpeed(CharacterId characterId)
         {
-            var speed = (float)_characterRepository.Select(characterId).Property.Agility;
+            var characterTypeCode = _characterRepository.Select(characterId).CharacterTypeCode;
+            var speed = (float)_characterPropertyFactory.Create(characterTypeCode).Agility;
             if (_buffRepository.Select()
                     .Count(x => Equals(x.CharacterId, characterId)) != 0)
             {

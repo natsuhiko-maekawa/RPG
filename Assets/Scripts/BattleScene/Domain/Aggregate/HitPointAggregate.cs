@@ -1,9 +1,11 @@
-﻿using BattleScene.Domain.Entity;
+﻿using System;
+using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
 
 namespace BattleScene.Domain.Aggregate
 {
+    [Obsolete]
     public class HitPointAggregate : BaseEntity<HitPointAggregate, CharacterId>
     {
         private PointValueObject _pointValueObject;

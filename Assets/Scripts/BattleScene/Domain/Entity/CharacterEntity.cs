@@ -21,8 +21,8 @@ namespace BattleScene.Domain.Entity
             CharacterId id,
             CharacterTypeCode characterTypeCode,
             int currentHitPoint,
-            int currentTechnicalPoint,
-            int actionTime)
+            int currentTechnicalPoint = 0,
+            int actionTime = 0)
         {
             Id = id;
             CharacterTypeCode = characterTypeCode;
@@ -36,16 +36,15 @@ namespace BattleScene.Domain.Entity
         // TODO: 仮の値を設定
         public int CurrentHitPoint { get; } = 1;
         public int CurrentTechnicalPoint { get; }
-        public int ActionTime { get; }
+        public int ActionTime { get; set; }
         public bool IsSurvive => 0 < CurrentHitPoint;
 
         [Obsolete]
         public PropertyValueObject Property { get; }
-
-        [Obsolete]
+        
         public bool IsPlayer()
         {
-            return Property.CharacterTypeCode == CharacterTypeCode.Player;
+            return CharacterTypeCode == CharacterTypeCode.Player;
         }
 
         [Obsolete]

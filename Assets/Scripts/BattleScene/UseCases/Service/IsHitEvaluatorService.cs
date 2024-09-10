@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using BattleScene.Domain.Aggregate;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Entity;
@@ -16,21 +15,21 @@ namespace BattleScene.UseCases.Service
     {
         private readonly IRepository<AilmentEntity, AilmentId> _ailmentRepository;
         private readonly BodyPartDomainService _bodyPartDomainService;
+        private readonly CharacterPropertyFactoryService _characterPropertyFactory;
         private readonly IRepository<BuffEntity, BuffId> _buffRepository;
-        private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
         private readonly IRandomEx _randomEx;
 
         public IsHitEvaluatorService(
             IRepository<AilmentEntity, AilmentId> ailmentRepository,
             BodyPartDomainService bodyPartDomainService,
+            CharacterPropertyFactoryService characterPropertyFactory,
             IRepository<BuffEntity, BuffId> buffRepository,
-            IRepository<CharacterEntity, CharacterId> characterRepository,
             IRandomEx randomEx)
         {
             _ailmentRepository = ailmentRepository;
             _bodyPartDomainService = bodyPartDomainService;
+            _characterPropertyFactory = characterPropertyFactory;
             _buffRepository = buffRepository;
-            _characterRepository = characterRepository;
             _randomEx = randomEx;
         }
 
@@ -57,8 +56,8 @@ namespace BattleScene.UseCases.Service
 
             // 大きいほど命中しやすくなる
             const float threshold = 20.0f;
-            var actorAgility = _characterRepository.Select(actorId).Property.Agility;
-            var targetAgility = _characterRepository.Select(targetId).Property.Agility;
+            var actorAgility = _characterPropertyFactory.Crate(actorId).Agility;
+            var targetAgility = _characterPropertyFactory.Crate(targetId).Agility;
             var isActorBlind = _ailmentRepository.Select()
                 .FirstOrDefault(x => Equals(x.CharacterId, actorId) && x.AilmentCode == AilmentCode.Blind) != null;
             var isTargetDeaf = _ailmentRepository.Select()

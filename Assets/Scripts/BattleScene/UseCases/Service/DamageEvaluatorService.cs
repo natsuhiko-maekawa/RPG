@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using BattleScene.Domain.Aggregate;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Entity;
@@ -15,21 +14,21 @@ namespace BattleScene.UseCases.Service
     {
         private readonly BodyPartDomainService _bodyPartDomainService;
         private readonly BuffDomainService _buffDomainService;
+        private readonly CharacterPropertyFactoryService _characterPropertyFactory;
         private readonly IRepository<BuffEntity, BuffId> _buffRepository;
-        private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
         private readonly IRandomEx _randomEx;
 
         public DamageEvaluatorService(
             BodyPartDomainService bodyPartDomainService,
             BuffDomainService buffDomainService,
+            CharacterPropertyFactoryService characterPropertyFactoryFactory,
             IRepository<BuffEntity, BuffId> buffRepository, 
-            IRepository<CharacterEntity, CharacterId> characterRepository, 
             IRandomEx randomEx)
         {
             _bodyPartDomainService = bodyPartDomainService;
             _buffDomainService = buffDomainService;
+            _characterPropertyFactory = characterPropertyFactoryFactory;
             _buffRepository = buffRepository;
-            _characterRepository = characterRepository;
             _randomEx = randomEx;
         }
 
@@ -45,10 +44,10 @@ namespace BattleScene.UseCases.Service
 
         private int BasicEvaluate(CharacterId actorId, CharacterId targetId, DamageParameterValueObject damageParameter)
         {
-            var actorStrength = _characterRepository.Select(actorId).Property.Strength;
-            var targetVitality = _characterRepository.Select(targetId).Property.Vitality;
+            var actorStrength = _characterPropertyFactory.Crate(actorId).Strength;
+            var targetVitality = _characterPropertyFactory.Crate(targetId).Vitality;
             var actorMatAttr = damageParameter.MatAttrCode;
-            var targetWeekPoint = _characterRepository.Select(targetId).GetWeakPoints();
+            var targetWeekPoint = _characterPropertyFactory.Crate(targetId).WeakPoints;
             var attackBuffId = new BuffId(actorId, BuffCode.Attack);
             var actorBuffRate = _buffRepository.Select(attackBuffId)?.Rate ?? 1;
             var defenceBuffId = new BuffId(targetId, BuffCode.Defence);
@@ -64,7 +63,7 @@ namespace BattleScene.UseCases.Service
         
         private int ConstantEvaluate(CharacterId actorId, DamageParameterValueObject damageParameter)
         {
-            var actorStrength = _characterRepository.Select(actorId).Property.Strength;
+            var actorStrength = _characterPropertyFactory.Crate(actorId).Strength;
             const int targetVitality = 1;
             var actorBuffRate = _buffDomainService.GetRate(actorId, BuffCode.Attack);
             const int targetBuffRate = 1;
