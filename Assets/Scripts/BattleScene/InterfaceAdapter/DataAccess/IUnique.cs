@@ -1,4 +1,4 @@
-﻿namespace BattleScene.Domain.Interface
+﻿namespace BattleScene.InterfaceAdapter.DataAccess
 {
     public interface IUnique<out TId>
     {
