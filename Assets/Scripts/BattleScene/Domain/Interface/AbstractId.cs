@@ -1,6 +1,6 @@
 ﻿namespace BattleScene.Domain.Interface
 {
-    public abstract class AbstractId<TId, T> : IId where TId : AbstractId<TId, T>
+    public abstract class AbstractId<TId, T> where TId : AbstractId<TId, T>
     {
         protected abstract T Id { get; }
         

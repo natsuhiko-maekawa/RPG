@@ -1,13 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Collections.Immutable;
 using BattleScene.Domain.Entity;
-using BattleScene.Domain.Interface;
 
 namespace BattleScene.Domain.IRepository
 {
     public interface IRepository<TEntity, TId> 
         where TEntity : BaseEntity<TEntity, TId>
-        where TId : IId
     {
         public TEntity Select(TId id);
         public ImmutableList<TEntity> Select();

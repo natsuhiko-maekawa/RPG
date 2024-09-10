@@ -1,10 +1,10 @@
 ﻿using BattleScene.Domain.Code;
 
-namespace BattleScene.Domain.ValueObject
+namespace BattleScene.InterfaceAdapter.DataAccess.Dto
 {
-    public class BuffViewInfoValueObject
+    public class BuffPropertyDto
     {
-        public BuffViewInfoValueObject(
+        public BuffPropertyDto(
             BuffCode buffCode,
             MessageCode messageCode)
         {
