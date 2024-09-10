@@ -26,14 +26,14 @@ namespace BattleScene.InterfaceAdapter.Presenter
         private readonly CharactersDomainService _characters;
         private readonly MessageCodeConverterService _messageCodeConverter;
         private readonly IResource<PlayerImagePathDto, PlayerImageCode> _playerViewInfoResource;
-        private readonly ISkillViewInfoFactory _skillViewInfoFactory;
+        private readonly IResource<SkillViewInfoValueObject, SkillCode> _skillViewInfoFactory;
         private readonly IRepository<TechnicalPointEntity, CharacterId> _technicalPointRepository;
         private readonly IMessageView _messageView;
         private readonly IPlayerView _playerView;
         
         public void Out(SkillEntity skill)
         {
-            var playerImageCode = _skillViewInfoFactory.Create(skill.SkillCode).PlayerImageCode;
+            var playerImageCode = _skillViewInfoFactory.Get(skill.SkillCode).PlayerImageCode;
             var playerImagePath = _playerViewInfoResource.Get(playerImageCode).PlayerImagePath;
             var playerViewDto = new PlayerViewDto(playerImagePath);
             _playerView.StartAnimation(playerViewDto);
