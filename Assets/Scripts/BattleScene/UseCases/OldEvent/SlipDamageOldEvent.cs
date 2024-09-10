@@ -4,7 +4,6 @@ using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
 using BattleScene.UseCases.OldEvent.Interface;
 using BattleScene.UseCases.OldEvent.Runner;
-using BattleScene.UseCases.Service;
 using BattleScene.UseCases.View.CharacterVibesView.OutputBoundary;
 using BattleScene.UseCases.View.CharacterVibesView.OutputDataFactory;
 using BattleScene.UseCases.View.DigitView.OutputBoundary;
@@ -31,8 +30,6 @@ namespace BattleScene.UseCases.OldEvent
         private readonly MessageOutputDataFactory _messageOutputDataFactory;
         private readonly IMessageViewPresenter _messageView;
         private readonly ResultDomainService _result;
-        private readonly IResultRepository _resultRepository;
-        private readonly SlipDamageService _slipDamage;
 
         public SlipDamageOldEvent(
             CharactersDomainService characters,
@@ -45,9 +42,7 @@ namespace BattleScene.UseCases.OldEvent
             IRepository<HitPointAggregate, CharacterId> hitPointRepository,
             MessageOutputDataFactory messageOutputDataFactory,
             IMessageViewPresenter messageView,
-            ResultDomainService result,
-            IResultRepository resultRepository,
-            SlipDamageService slipDamage)
+            ResultDomainService result)
         {
             _characters = characters;
             _characterVibesOutputDataFactory = characterVibesOutputDataFactory;
@@ -60,14 +55,12 @@ namespace BattleScene.UseCases.OldEvent
             _messageOutputDataFactory = messageOutputDataFactory;
             _messageView = messageView;
             _result = result;
-            _resultRepository = resultRepository;
-            _slipDamage = slipDamage;
         }
 
         public EventCode Run()
         {
-            var result = _slipDamage.Damage();
-            _resultRepository.Update(result);
+            // var result = _slipDamage.Damage();
+            // _resultRepository.Update(result);
 
             var playerId = _characters.GetPlayerId();
             var hitPoint = _hitPointRepository.Select(playerId);

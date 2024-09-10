@@ -101,7 +101,6 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<IBodyPartRepository, BodyPartRepository>(Lifetime.Singleton);
             builder.Register<ICharacterRepository, CharacterRepository>(Lifetime.Singleton);
             builder.Register<IEnemyRepository, EnemyRepository>(Lifetime.Singleton);
-            builder.Register<IResultRepository, ResultRepository>(Lifetime.Singleton);
             builder.Register<ISkillRepository, SkillRepository>(Lifetime.Singleton);
             builder.Register<IRepository<ActionTimeEntity, CharacterId>, Repository<ActionTimeEntity, CharacterId>>(
                 Lifetime.Singleton);
