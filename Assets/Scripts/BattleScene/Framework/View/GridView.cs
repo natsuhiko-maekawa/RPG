@@ -7,6 +7,7 @@ using BattleScene.InterfaceAdapter.Code;
 using BattleScene.InterfaceAdapter.Interface;
 using BattleScene.InterfaceAdapter.Presenter.Dto;
 using BattleScene.InterfaceAdapter.Presenter.MessageView;
+using BattleScene.InterfaceAdapter.Presenter.PlayerView;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Grid = BattleScene.Framework.GameObjects.Grid;
@@ -24,6 +25,7 @@ namespace BattleScene.Framework.View
         private ArrowUp _arrowUp;
         private ArrowDown _arrowDown;
         private MessageView _messageView;
+        private PlayerView _playerView;
         private GridViewDto _dto;
         private readonly Dictionary<ActionCode, GridState> _gridStateDictionary = new();
 
@@ -35,7 +37,9 @@ namespace BattleScene.Framework.View
             _arrowUp = GetComponentInChildren<ArrowUp>();
             _arrowDown = GetComponentInChildren<ArrowDown>();
             // TODO: もっといいGetComponentの方法があるかも
-            _messageView = transform.parent.GetComponentInChildren<MessageView>();
+            var root = transform.root;
+            _messageView = root.GetComponentInChildren<MessageView>();
+            _playerView = root.GetComponentInChildren<PlayerView>();
             SetMoveAction(MoveArrow);
         }
 
@@ -72,6 +76,10 @@ namespace BattleScene.Framework.View
             await _messageView.StartAnimation(new MessageViewDto(
                 Message: dto.RowDtoList[gridState.SelectedIndex].RowDescription,
                 NoWait: true));
+
+            _playerView.enabled = true;
+            await _playerView.StartAnimation(new PlayerViewDto(
+                PlayerImage: dto.RowDtoList[gridState.SelectedIndex].PlayerImagePath));
         }
 
         public void StopAnimation()

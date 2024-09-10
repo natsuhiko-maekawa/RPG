@@ -58,12 +58,13 @@ namespace BattleScene.InterfaceAdapter.Presenter
                     var skillProperty = _skillPropertyFactory.Get(x);
                     var message = _messageResource.Get(skillProperty.Description).Message;
                     var description = _messageCodeConverter.Replace(message);
+                    var playerImagePath = $"{skillProperty.PlayerImageCode}[{skillProperty.PlayerImageCode}]";
                     var enabled = skill.TechnicalPoint <= _player.Get().CurrentTechnicalPoint;
                     return new RowDto(
                         RowId: 0,
                         RowName: skillProperty.SkillName,
                         RowDescription: description,
-                        PlayerImagePath: "",
+                        PlayerImagePath: playerImagePath,
                         Enabled: enabled,
                         TechnicalPoint: skill.TechnicalPoint);
                 })
