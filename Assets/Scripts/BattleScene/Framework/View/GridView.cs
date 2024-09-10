@@ -25,7 +25,6 @@ namespace BattleScene.Framework.View
         private ArrowDown _arrowDown;
         private MessageView _messageView;
         private GridViewDto _dto;
-        private int _id;
         private readonly Dictionary<ActionCode, GridState> _gridStateDictionary = new();
 
         private void Awake()
@@ -93,7 +92,6 @@ namespace BattleScene.Framework.View
                 _gridStateDictionary[_dto.ActionCode].Up();
             else
                 _gridStateDictionary[_dto.ActionCode].Down();
-            _id = _gridStateDictionary[_dto.ActionCode].SelectedRow;
             await StartAnimationAsync(_dto);
         }
         
