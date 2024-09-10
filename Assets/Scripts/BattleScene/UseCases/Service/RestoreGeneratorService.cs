@@ -1,4 +1,7 @@
-﻿using System.Collections.Immutable;
+﻿using System;
+using System.Collections.Immutable;
+using BattleScene.Domain.Code;
+using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
@@ -9,15 +12,18 @@ namespace BattleScene.UseCases.Service
 {
     public class RestoreGeneratorService
     {
+        private readonly IFactory<PlayerPropertyValueObject, CharacterTypeCode> _playerPropertyFactory;
         private readonly PlayerDomainService _playerDomainService;
-        private readonly IRepository<TechnicalPointEntity, CharacterId> _technicalPointRepository;
+        private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
 
         public RestoreGeneratorService(
+            IFactory<PlayerPropertyValueObject, CharacterTypeCode> playerPropertyFactory,
             PlayerDomainService playerDomainService,
-            IRepository<TechnicalPointEntity, CharacterId> technicalPointRepository)
+            IRepository<CharacterEntity, CharacterId> characterRepository)
         {
+            _playerPropertyFactory = playerPropertyFactory;
             _playerDomainService = playerDomainService;
-            _technicalPointRepository = technicalPointRepository;
+            _characterRepository = characterRepository;
         }
 
         public RestoreValueObject Generate(
@@ -26,8 +32,9 @@ namespace BattleScene.UseCases.Service
         {
             var playerId = _playerDomainService.GetId();
             var targetIdList = ImmutableList.Create(playerId);
-            var technicalPoint = _technicalPointRepository.Select(playerId)
-                .GetRestore(restoreParameter.TechnicalPoint);
+            var currentTechnicalPoint = _characterRepository.Select(playerId).CurrentTechnicalPoint;
+            var maxTechnicalPoint = _playerPropertyFactory.Create(CharacterTypeCode.Player).TechnicalPoint;
+            var technicalPoint = Math.Min(restoreParameter.TechnicalPoint, maxTechnicalPoint - currentTechnicalPoint);
             return new RestoreValueObject(
                 actorId: playerId,
                 skillCode: skillCommon.SkillCode,
