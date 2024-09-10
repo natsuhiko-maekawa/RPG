@@ -5,7 +5,6 @@ namespace BattleScene.Domain.Code
     public enum PlayerImageCode
     {
         NoImage,
-        [Obsolete] ArmInjured,
         Attack, // TODO: 立ち絵を描く
         Avoidance,
         Bleeding,
@@ -15,7 +14,6 @@ namespace BattleScene.Domain.Code
         Gun,
         Katana,
         Poisoning,
-        [Obsolete] StomachPunched,
         Suffocation
     }
 }
