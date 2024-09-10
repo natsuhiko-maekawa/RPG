@@ -14,7 +14,7 @@ namespace BattleScene.Domain.DomainService
         private readonly IFactory<PropertyValueObject, CharacterTypeCode> _propertyFactory;
         private readonly IFactory<PlayerPropertyValueObject, CharacterTypeCode> _playerPropertyFactory;
         private readonly IRepository<ActionTimeEntity, CharacterId> _actionTimeRepository;
-        private readonly IRepository<CharacterAggregate, CharacterId> _characterRepository;
+        private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
         private readonly IRepository<HitPointAggregate, CharacterId> _hitPointRepository;
         private readonly IRepository<TechnicalPointEntity, CharacterId> _technicalPointRepository;
 
@@ -22,7 +22,7 @@ namespace BattleScene.Domain.DomainService
             IFactory<PropertyValueObject, CharacterTypeCode> propertyFactory,
             IFactory<PlayerPropertyValueObject, CharacterTypeCode> playerPropertyFactory,
             IRepository<ActionTimeEntity, CharacterId> actionTimeRepository,
-            IRepository<CharacterAggregate, CharacterId> characterRepository,
+            IRepository<CharacterEntity, CharacterId> characterRepository,
             IRepository<HitPointAggregate, CharacterId> hitPointRepository,
             IRepository<TechnicalPointEntity, CharacterId> technicalPointRepository
             )
@@ -39,7 +39,7 @@ namespace BattleScene.Domain.DomainService
         {
             PropertyValueObject property = _propertyFactory.Create(CharacterTypeCode.Player);
             var characterId = new CharacterId();
-            var player = new CharacterAggregate(characterId, property);
+            var player = new CharacterEntity(characterId, property);
             _characterRepository.Update(player);
             
             var hitPoint = new HitPointAggregate(characterId, property.HitPoint);
@@ -53,7 +53,7 @@ namespace BattleScene.Domain.DomainService
             _actionTimeRepository.Update(actionTime);
         }
         
-        public CharacterAggregate Get()
+        public CharacterEntity Get()
         {
             return _characterRepository.Select().First(x => x.IsPlayer());
         }

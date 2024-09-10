@@ -11,13 +11,13 @@ namespace BattleScene.UseCases.Service
 {
     public class EnemySkillSelectorService
     {
-        private readonly IRepository<CharacterAggregate, CharacterId> _characterRepository;
+        private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
         private readonly IFactory<PropertyValueObject, CharacterTypeCode> _characterPropertyFactory;
         private readonly OrderedItemsDomainService _orderItems;
         private readonly IRandomEx _randomEx;
 
         public EnemySkillSelectorService(
-            IRepository<CharacterAggregate, CharacterId> characterRepository,
+            IRepository<CharacterEntity, CharacterId> characterRepository,
             IFactory<PropertyValueObject, CharacterTypeCode> characterPropertyFactory,
             OrderedItemsDomainService orderItems,
             IRandomEx randomEx)

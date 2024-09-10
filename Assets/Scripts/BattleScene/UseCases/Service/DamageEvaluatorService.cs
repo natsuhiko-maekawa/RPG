@@ -16,14 +16,14 @@ namespace BattleScene.UseCases.Service
         private readonly BodyPartDomainService _bodyPartDomainService;
         private readonly BuffDomainService _buffDomainService;
         private readonly IRepository<BuffEntity, BuffId> _buffRepository;
-        private readonly IRepository<CharacterAggregate, CharacterId> _characterRepository;
+        private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
         private readonly IRandomEx _randomEx;
 
         public DamageEvaluatorService(
             BodyPartDomainService bodyPartDomainService,
             BuffDomainService buffDomainService,
             IRepository<BuffEntity, BuffId> buffRepository, 
-            IRepository<CharacterAggregate, CharacterId> characterRepository, 
+            IRepository<CharacterEntity, CharacterId> characterRepository, 
             IRandomEx randomEx)
         {
             _bodyPartDomainService = bodyPartDomainService;

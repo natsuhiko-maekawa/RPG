@@ -15,7 +15,7 @@ namespace BattleScene.UseCases.Service
         private readonly IRepository<ActionTimeEntity, CharacterId> _actionTimeRepository;
         private readonly IRepository<AilmentEntity, AilmentId> _ailmentRepository;
         private readonly IRepository<BuffEntity, BuffId> _buffRepository;
-        private readonly IRepository<CharacterAggregate, CharacterId> _characterRepository;
+        private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
         private readonly IRepository<OrderedItemEntity, OrderNumber> _orderedItemRepository;
         private readonly IRepository<SlipDamageEntity, SlipDamageId> _slipDamageRepository;
 
@@ -23,7 +23,7 @@ namespace BattleScene.UseCases.Service
             IRepository<ActionTimeEntity, CharacterId> actionTimeRepository,
             IRepository<AilmentEntity, AilmentId> ailmentRepository, 
             IRepository<BuffEntity, BuffId> buffRepository, 
-            IRepository<CharacterAggregate, CharacterId> characterRepository,
+            IRepository<CharacterEntity, CharacterId> characterRepository,
             IRepository<OrderedItemEntity, OrderNumber> orderedItemRepository, 
             IRepository<SlipDamageEntity, SlipDamageId> slipDamageRepository)
         {

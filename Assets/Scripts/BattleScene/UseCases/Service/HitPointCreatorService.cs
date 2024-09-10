@@ -7,14 +7,14 @@ namespace BattleScene.UseCases.Service
 {
     public class HitPointCreatorService
     {
-        public HitPointAggregate Create(CharacterAggregate character)
+        public HitPointAggregate Create(CharacterEntity character)
         {
             var characterId = character.Id;
             var hitPoint = character.Property.HitPoint;
             return new HitPointAggregate(characterId, hitPoint);
         }
 
-        public ImmutableList<HitPointAggregate> Create(IList<CharacterAggregate> characterList)
+        public ImmutableList<HitPointAggregate> Create(IList<CharacterEntity> characterList)
         {
             return characterList
                 .Select(Create)

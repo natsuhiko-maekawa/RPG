@@ -13,7 +13,7 @@ namespace BattleScene.UseCases.Service
     public class AilmentSkillService
     {
         private const float Threshold = 40.0f; // 大きいほど命中しやすくなる
-        private readonly IRepository<CharacterAggregate, CharacterId> _characterRepository;
+        private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
         private readonly IRepository<ResultEntity, ResultId> _resultRepository;
         private readonly IRepository<TurnEntity, TurnId> _turnRepository;
         private readonly OrderedItemsDomainService _orderedItems;
@@ -22,7 +22,7 @@ namespace BattleScene.UseCases.Service
         private readonly TargetDomainService _target;
 
         public AilmentSkillService(
-            IRepository<CharacterAggregate, CharacterId> characterRepository,
+            IRepository<CharacterEntity, CharacterId> characterRepository,
             OrderedItemsDomainService orderedItems,
             IRandomEx randomEx,
             TargetDomainService target)

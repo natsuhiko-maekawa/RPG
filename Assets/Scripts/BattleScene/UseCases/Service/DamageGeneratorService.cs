@@ -17,7 +17,7 @@ namespace BattleScene.UseCases.Service
         private readonly DamageEvaluatorService _damageEvaluator;
         private readonly IsHitEvaluatorService _isHitEvaluator;
         private readonly AttacksWeakPointEvaluatorService _attacksWeakPointEvaluator;
-        private readonly IRepository<CharacterAggregate, CharacterId> _characterRepository;
+        private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
         private readonly IRandomEx _randomEx;
 
         public DamageGeneratorService(
@@ -25,7 +25,7 @@ namespace BattleScene.UseCases.Service
             DamageEvaluatorService damageEvaluator,
             IsHitEvaluatorService isHitEvaluator,
             AttacksWeakPointEvaluatorService attacksWeakPointEvaluator,
-            IRepository<CharacterAggregate, CharacterId> characterRepository,
+            IRepository<CharacterEntity, CharacterId> characterRepository,
             IRandomEx randomEx)
         {
             _orderedItems = orderedItems;

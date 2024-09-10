@@ -11,11 +11,11 @@ namespace BattleScene.UseCases.Service
     public class AgilityToSpeedService
     {
         private readonly IRepository<BuffEntity, BuffId> _buffRepository;
-        private readonly IRepository<CharacterAggregate, CharacterId> _characterRepository;
+        private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
 
         public AgilityToSpeedService(
             IRepository<BuffEntity, BuffId> buffRepository,
-            IRepository<CharacterAggregate, CharacterId> characterRepository)
+            IRepository<CharacterEntity, CharacterId> characterRepository)
         {
             _buffRepository = buffRepository;
             _characterRepository = characterRepository;

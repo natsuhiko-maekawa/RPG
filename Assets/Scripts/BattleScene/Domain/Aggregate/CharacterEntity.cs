@@ -7,9 +7,9 @@ using BattleScene.Domain.ValueObject;
 
 namespace BattleScene.Domain.Aggregate
 {
-    public class CharacterAggregate : BaseEntity<CharacterAggregate, CharacterId>
+    public class CharacterEntity : BaseEntity<CharacterEntity, CharacterId>
     {
-        public CharacterAggregate(
+        public CharacterEntity(
             CharacterId id,
             PropertyValueObject property)
         {
@@ -18,7 +18,7 @@ namespace BattleScene.Domain.Aggregate
             CharacterTypeCode = property.CharacterTypeCode;
         }
 
-        public CharacterAggregate(
+        public CharacterEntity(
             CharacterId id,
             CharacterTypeCode characterTypeCode,
             int currentHitPoint,
@@ -54,25 +54,6 @@ namespace BattleScene.Domain.Aggregate
         {
             return Property.WeakPoints
                 .ToImmutableList();
-        }
-
-        [Obsolete]
-        public ImmutableList<SkillCode> GetSkills()
-        {
-            return Property.Skills
-                .ToImmutableList();
-        }
-
-        public override bool Equals(object obj)
-        {
-            if (obj == null || GetType() != obj.GetType()) return false;
-            var characterAggregate = (CharacterAggregate)obj;
-            return Id == characterAggregate.Id;
-        }
-
-        public override int GetHashCode()
-        {
-            return Id.GetHashCode();
         }
     }
 }

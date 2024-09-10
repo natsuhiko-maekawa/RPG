@@ -17,14 +17,14 @@ namespace BattleScene.UseCases.Service
         private readonly IRepository<AilmentEntity, AilmentId> _ailmentRepository;
         private readonly BodyPartDomainService _bodyPartDomainService;
         private readonly IRepository<BuffEntity, BuffId> _buffRepository;
-        private readonly IRepository<CharacterAggregate, CharacterId> _characterRepository;
+        private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
         private readonly IRandomEx _randomEx;
 
         public IsHitEvaluatorService(
             IRepository<AilmentEntity, AilmentId> ailmentRepository,
             BodyPartDomainService bodyPartDomainService,
             IRepository<BuffEntity, BuffId> buffRepository,
-            IRepository<CharacterAggregate, CharacterId> characterRepository,
+            IRepository<CharacterEntity, CharacterId> characterRepository,
             IRandomEx randomEx)
         {
             _ailmentRepository = ailmentRepository;

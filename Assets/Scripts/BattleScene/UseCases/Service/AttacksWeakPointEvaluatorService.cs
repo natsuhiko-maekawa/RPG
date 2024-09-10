@@ -10,10 +10,10 @@ namespace BattleScene.UseCases.Service
 {
     public class AttacksWeakPointEvaluatorService
     {
-        private readonly IRepository<CharacterAggregate, CharacterId> _characterRepository;
+        private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
 
         public AttacksWeakPointEvaluatorService(
-            IRepository<CharacterAggregate, CharacterId> characterRepository)
+            IRepository<CharacterEntity, CharacterId> characterRepository)
         {
             _characterRepository = characterRepository;
         }

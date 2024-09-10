@@ -18,7 +18,7 @@ namespace BattleScene.Domain.DomainService
         private readonly IFactory<PropertyValueObject, CharacterTypeCode> _propertyFactory;
         private readonly IRandomEx _randomEx;
         private readonly IRepository<ActionTimeEntity, CharacterId> _actionTimeRepository;
-        private readonly IRepository<CharacterAggregate, CharacterId> _characterRepository;
+        private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
         private readonly IRepository<EnemyEntity, CharacterId> _enemyRepository;
         private readonly IRepository<HitPointAggregate, CharacterId> _hitPointRepository;
 
@@ -26,7 +26,7 @@ namespace BattleScene.Domain.DomainService
             IFactory<PropertyValueObject, CharacterTypeCode> propertyFactory,
             IRandomEx randomEx, 
             IRepository<ActionTimeEntity, CharacterId> actionTimeRepository,
-            IRepository<CharacterAggregate, CharacterId> characterRepository,
+            IRepository<CharacterEntity, CharacterId> characterRepository,
             IRepository<EnemyEntity, CharacterId> enemyRepository, 
             IRepository<HitPointAggregate, CharacterId> hitPointRepository)
         {
@@ -63,7 +63,7 @@ namespace BattleScene.Domain.DomainService
                 {
                     PropertyValueObject property = _propertyFactory.Create(x);
                     var characterId = new CharacterId();
-                    return new CharacterAggregate(characterId, property);
+                    return new CharacterEntity(characterId, property);
                 })
                 .ToImmutableList();
             _characterRepository.Update(characterList);
@@ -85,7 +85,7 @@ namespace BattleScene.Domain.DomainService
             _actionTimeRepository.Update(actionTimeList);
         }
 
-        public ImmutableList<CharacterAggregate> Get()
+        public ImmutableList<CharacterEntity> Get()
         {
             return _characterRepository.Select()
                 .Where(x => !x.IsPlayer())

@@ -10,7 +10,7 @@ namespace BattleScene.UseCases.Service
 {
     public class CureEvaluatorService
     {
-        private readonly IRepository<CharacterAggregate, CharacterId> _characterRepository;
+        private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
         private readonly IRepository<HitPointAggregate, CharacterId> _hitPointRepository;
         private readonly IRandomEx _randomEx;
         

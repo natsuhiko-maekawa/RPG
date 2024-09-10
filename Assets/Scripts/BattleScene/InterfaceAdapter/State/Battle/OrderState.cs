@@ -15,7 +15,7 @@ namespace BattleScene.InterfaceAdapter.State.Battle
     {
         private readonly IObjectResolver _container;
         private readonly AilmentDomainService _ailment;
-        private readonly IRepository<CharacterAggregate, CharacterId> _characterRepository;
+        private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
         private readonly IRandomEx _randomEx;
         private readonly OrderedItemsDomainService _orderedItems;
         private readonly OrderDecision _orderDecision;
@@ -24,7 +24,7 @@ namespace BattleScene.InterfaceAdapter.State.Battle
         public OrderState(
             IObjectResolver container,
             AilmentDomainService ailment,
-            IRepository<CharacterAggregate, CharacterId> characterRepository,
+            IRepository<CharacterEntity, CharacterId> characterRepository,
             IRandomEx randomEx,
             OrderedItemsDomainService orderedItems,
             OrderDecision orderDecision,

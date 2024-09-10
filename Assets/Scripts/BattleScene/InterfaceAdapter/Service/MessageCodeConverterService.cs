@@ -25,7 +25,7 @@ namespace BattleScene.InterfaceAdapter.Service
         private readonly IResource<AilmentViewInfoDto, AilmentCode> _ailmentViewInfoResource;
         private readonly IResource<BodyPartViewInfoDto, BodyPartCode> _bodyPartViewInfoResource;
         private readonly IResource<BuffViewInfoDto, BuffCode> _buffViewInfoResource;
-        private readonly IRepository<CharacterAggregate, CharacterId> _characterRepository;
+        private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
         private readonly IResource<EnemyViewInfoDto, CharacterTypeCode> _enemyViewInfoResource;
         private readonly IResource<MessageDto, MessageCode> _messageResource;
         private readonly OrderedItemsDomainService _orderedItems;
@@ -39,7 +39,7 @@ namespace BattleScene.InterfaceAdapter.Service
             IResource<AilmentViewInfoDto, AilmentCode> ailmentViewInfoResource,
             IResource<BodyPartViewInfoDto, BodyPartCode> bodyPartViewInfoResource,
             IResource<BuffViewInfoDto, BuffCode> buffViewInfoResource,
-            IRepository<CharacterAggregate, CharacterId> characterRepository,
+            IRepository<CharacterEntity, CharacterId> characterRepository,
             IResource<EnemyViewInfoDto, CharacterTypeCode> enemyViewInfoResource,
             IResource<MessageDto, MessageCode> messageResource,
             OrderedItemsDomainService orderedItems,

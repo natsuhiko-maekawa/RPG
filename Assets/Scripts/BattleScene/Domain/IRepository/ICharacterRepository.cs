@@ -8,7 +8,7 @@ namespace BattleScene.Domain.IRepository
     [Obsolete]
     public interface ICharacterRepository
     {
-        public CharacterAggregate Select(CharacterId characterId);
-        public ImmutableList<CharacterAggregate> Select();
+        public CharacterEntity Select(CharacterId characterId);
+        public ImmutableList<CharacterEntity> Select();
     }
 }

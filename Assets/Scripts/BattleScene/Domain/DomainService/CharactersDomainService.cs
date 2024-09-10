@@ -9,10 +9,10 @@ namespace BattleScene.Domain.DomainService
 {
     public class CharactersDomainService
     {
-        private readonly IRepository<CharacterAggregate, CharacterId> _characterRepository;
+        private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
 
         public CharactersDomainService(
-            IRepository<CharacterAggregate, CharacterId> characterRepository)
+            IRepository<CharacterEntity, CharacterId> characterRepository)
         {
             _characterRepository = characterRepository;
         }
@@ -25,7 +25,7 @@ namespace BattleScene.Domain.DomainService
         }
 
         [Obsolete]
-        public CharacterAggregate GetPlayer()
+        public CharacterEntity GetPlayer()
         {
             return _characterRepository.Select().First(x => x.IsPlayer());
         }
@@ -36,7 +36,7 @@ namespace BattleScene.Domain.DomainService
             return _characterRepository.Select().First(x => x.IsPlayer()).Id;
         }
 
-        public ImmutableList<CharacterAggregate> GetEnemies()
+        public ImmutableList<CharacterEntity> GetEnemies()
         {
             return _characterRepository.Select()
                 .Where(x => !x.IsPlayer())
