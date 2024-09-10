@@ -1,20 +1,13 @@
-using BattleScene.Domain.Code;
-using BattleScene.Domain.DataAccess.ObsoleteIFactory;
 using BattleScene.Domain.DomainService;
-using BattleScene.Domain.IRepository;
 using BattleScene.UseCases.OldEvent.Runner;
 using BattleScene.UseCases.View.AttackCountView.OutputBoundary;
 using BattleScene.UseCases.View.AttackCountView.OutputDataFactory;
-using BattleScene.UseCases.View.CharacterVibesView.OutputBoundary;
-using BattleScene.UseCases.View.CharacterVibesView.OutputDataFactory;
 using BattleScene.UseCases.View.DigitView.OutputBoundary;
 using BattleScene.UseCases.View.DigitView.OutputDataFactory;
 using BattleScene.UseCases.View.HitPointBarView.OutputBoundary;
 using BattleScene.UseCases.View.HitPointBarView.OutputDataFactory;
 using BattleScene.UseCases.View.MessageView.OutputBoundary;
 using BattleScene.UseCases.View.MessageView.OutputDataFactory;
-using BattleScene.UseCases.View.PlayerImageView.OutputBoundary;
-using BattleScene.UseCases.View.PlayerImageView.OutputData;
 using static BattleScene.UseCases.OldEvent.Runner.EventCode;
 
 namespace BattleScene.UseCases.OldEvent
@@ -23,9 +16,6 @@ namespace BattleScene.UseCases.OldEvent
     {
         private readonly AttackCountOutputDataFactory _attackCountOutputDataFactory;
         private readonly IAttackCountViewPresenter _attackCountViewPresenter;
-        private readonly ICharacterRepository _characterRepository;
-        private readonly CharacterVibesOutputDataFactory _characterVibesOutputDataFactory;
-        private readonly ICharacterVibesViewPresenter _characterVibesView;
         private readonly DamageDigitOutputDataFactory _damageDigitOutputDataFactory;
         private readonly DamageMessageOutputDataFactory _damageMessageOutputDataFactory;
         private readonly IDigitViewPresenter _digitView;
@@ -33,34 +23,20 @@ namespace BattleScene.UseCases.OldEvent
         private readonly HitPointBarOutputDataFactory _hitPointBarOutputDataFactory;
         private readonly IHitPointBarViewPresenter _hitPointBarView;
         private readonly IMessageViewPresenter _messageViewPresenter;
-        private readonly OrderedItemsDomainService _orderedItems;
-        private readonly IPlayerImageViewPresenter _playerImageView;
-        private readonly ISkillRepository _skillRepository;
-        private readonly ISkillViewInfoFactory _skillViewInfoFactory;
 
         public PlayerDamageOldEvent(
             AttackCountOutputDataFactory attackCountOutputDataFactory,
             IAttackCountViewPresenter attackCountViewPresenter,
-            ICharacterRepository characterRepository,
-            CharacterVibesOutputDataFactory characterVibesOutputDataFactory,
-            ICharacterVibesViewPresenter characterVibesView,
             DamageDigitOutputDataFactory damageDigitOutputDataFactory,
             DamageMessageOutputDataFactory damageMessageOutputDataFactory,
             IDigitViewPresenter digitView,
             HitPointDomainService hitPoint,
             HitPointBarOutputDataFactory hitPointBarOutputDataFactory,
             IHitPointBarViewPresenter hitPointBarView,
-            IMessageViewPresenter messageViewPresenter,
-            OrderedItemsDomainService orderedItems,
-            IPlayerImageViewPresenter playerImageView,
-            ISkillRepository skillRepository,
-            ISkillViewInfoFactory skillViewInfoFactory)
+            IMessageViewPresenter messageViewPresenter)
         {
             _attackCountOutputDataFactory = attackCountOutputDataFactory;
             _attackCountViewPresenter = attackCountViewPresenter;
-            _characterRepository = characterRepository;
-            _characterVibesOutputDataFactory = characterVibesOutputDataFactory;
-            _characterVibesView = characterVibesView;
             _damageDigitOutputDataFactory = damageDigitOutputDataFactory;
             _damageMessageOutputDataFactory = damageMessageOutputDataFactory;
             _digitView = digitView;
@@ -68,30 +44,28 @@ namespace BattleScene.UseCases.OldEvent
             _hitPointBarOutputDataFactory = hitPointBarOutputDataFactory;
             _hitPointBarView = hitPointBarView;
             _messageViewPresenter = messageViewPresenter;
-            _orderedItems = orderedItems;
-            _playerImageView = playerImageView;
-            _skillRepository = skillRepository;
-            _skillViewInfoFactory = skillViewInfoFactory;
         }
 
         public EventCode Run()
         {
-            var characterId = _orderedItems.FirstCharacterId();
+            // var characterId = _orderedItems.FirstCharacterId();
 
+            // プレイヤーが回避した場合、回避イラストを表示
+            // プレイヤーが回避していない場合、被ダメージイラストを表示し、振動させる
             // var isAvoid = !_result.Last<DamageValueObject>().Success();
-            var isAvoid = true;
-            if (!_characterRepository.Select(characterId).IsPlayer())
-                _playerImageView.Start(new PlayerImageOutputData(
-                    isAvoid
-                        ? PlayerImageCode.Avoidance
-                        : _skillViewInfoFactory.Create(_skillRepository.Select(characterId).SkillCode)
-                            .PlayerImageCode));
-
-            if (isAvoid)
-            {
-                var characterVibesOutputData = _characterVibesOutputDataFactory.Create();
-                _characterVibesView.Start(characterVibesOutputData);
-            }
+            // var isAvoid = true;
+            // if (!_characterRepository.Select(characterId).IsPlayer())
+            //     _playerImageView.Start(new PlayerImageOutputData(
+            //         isAvoid
+            //             ? PlayerImageCode.Avoidance
+            //             : _skillViewInfoFactory.Create(_skillRepository.Select(characterId).SkillCode)
+            //                 .PlayerImageCode));
+            //
+            // if (isAvoid)
+            // {
+            //     var characterVibesOutputData = _characterVibesOutputDataFactory.Create();
+            //     _characterVibesView.Start(characterVibesOutputData);
+            // }
 
             var digitOutputData = _damageDigitOutputDataFactory.Create();
             _digitView.Start(digitOutputData);

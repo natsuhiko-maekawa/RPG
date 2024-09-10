@@ -1,16 +1,11 @@
 using System.Linq;
-using BattleScene.Domain.Code;
-using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.IRepository;
-using BattleScene.Domain.ValueObject;
 using BattleScene.UseCases.OldEvent.Runner;
 using BattleScene.UseCases.View.FrameView.OutputBoundary;
 using BattleScene.UseCases.View.FrameView.OutputDataFactory;
 using BattleScene.UseCases.View.MessageView.OutputBoundary;
 using BattleScene.UseCases.View.MessageView.OutputDataFactory;
-using BattleScene.UseCases.View.PlayerImageView.OutputBoundary;
-using BattleScene.UseCases.View.PlayerImageView.OutputDataFactory;
 using BattleScene.UseCases.View.TechnicalPointBarView.OutputBoundary;
 using BattleScene.UseCases.View.TechnicalPointBarView.OutputDaraFactory;
 using static BattleScene.Domain.Code.MessageCode;
@@ -24,13 +19,10 @@ namespace BattleScene.UseCases.UseCase
         private readonly MessageOutputDataFactory _messageOutputDataFactory;
         private readonly IMessageViewPresenter _messageView;
         private readonly OrderedItemsDomainService _orderedItems;
-        private readonly PlayerAttackPlayerImageOutputDataFactory _playerAttackPlayerImageOutputDataFactory;
-        private readonly IPlayerImageViewPresenter _playerImageView;
         private readonly ISkillRepository _skillRepository;
         private readonly TargetFrameOutputDataFactory _targetFrameOutputDataFactory;
         private readonly TechnicalPointBarOutputDataFactory _technicalPointBarOutputDataFactory;
         private readonly ITechnicalPointBarViewPresenter _technicalPointBarView;
-        private readonly IFactory<SkillValueObject, SkillCode> _skillFactory;
 
         public Attack(
             ICharacterRepository characterRepository,
@@ -38,26 +30,20 @@ namespace BattleScene.UseCases.UseCase
             MessageOutputDataFactory messageOutputDataFactory,
             IMessageViewPresenter messageView,
             OrderedItemsDomainService orderedItems,
-            PlayerAttackPlayerImageOutputDataFactory playerAttackPlayerImageOutputDataFactory,
-            IPlayerImageViewPresenter playerImageView,
             ISkillRepository skillRepository,
             TargetFrameOutputDataFactory targetFrameOutputDataFactory,
             TechnicalPointBarOutputDataFactory technicalPointBarOutputDataFactory,
-            ITechnicalPointBarViewPresenter technicalPointBarView,
-            IFactory<SkillValueObject, SkillCode> skillFactory)
+            ITechnicalPointBarViewPresenter technicalPointBarView)
         {
             _characterRepository = characterRepository;
             _frameView = frameView;
             _messageOutputDataFactory = messageOutputDataFactory;
             _messageView = messageView;
             _orderedItems = orderedItems;
-            _playerAttackPlayerImageOutputDataFactory = playerAttackPlayerImageOutputDataFactory;
-            _playerImageView = playerImageView;
             _skillRepository = skillRepository;
             _targetFrameOutputDataFactory = targetFrameOutputDataFactory;
             _technicalPointBarOutputDataFactory = technicalPointBarOutputDataFactory;
             _technicalPointBarView = technicalPointBarView;
-            _skillFactory = skillFactory;
         }
 
         public void Execute()
@@ -72,8 +58,9 @@ namespace BattleScene.UseCases.UseCase
                 var targetFrameOutputData = _targetFrameOutputDataFactory.Create();
                 _frameView.Start(targetFrameOutputData);
 
-                var playerImageOutputData = _playerAttackPlayerImageOutputDataFactory.Create();
-                _playerImageView.Start(playerImageOutputData);
+                // プレイヤーの立ち絵を表示
+                // var playerImageOutputData = _playerAttackPlayerImageOutputDataFactory.Create();
+                // _playerImageView.Start(playerImageOutputData);
 
                 var technicalPointBarOutputData = _technicalPointBarOutputDataFactory.Create();
                 _technicalPointBarView.Start(technicalPointBarOutputData);
@@ -86,11 +73,12 @@ namespace BattleScene.UseCases.UseCase
             }
             else
             {
-                var messageCode =
-                    _skillFactory.Create(_skillRepository.Select(_orderedItems.FirstCharacterId()).SkillCode)
-                        .SkillCommon.MessageCode;
-                var messageOutputData = _messageOutputDataFactory.Create(messageCode);
-                _messageView.Start(messageOutputData);
+                // スキルメッセージを表示
+                // var messageCode =
+                //     _skillFactory.Create(_skillRepository.Select(_orderedItems.FirstCharacterId()).SkillCode)
+                //         .SkillCommon.MessageCode;
+                // var messageOutputData = _messageOutputDataFactory.Create(messageCode);
+                // _messageView.Start(messageOutputData);
             }
         }
 
