@@ -3,7 +3,6 @@ using BattleScene.Domain.DomainService;
 using BattleScene.Domain.IRepository;
 using BattleScene.UseCases.OldEvent.Interface;
 using BattleScene.UseCases.OldEvent.Runner;
-using BattleScene.UseCases.Service;
 using BattleScene.UseCases.View.AilmentView.OutputBoundary;
 using BattleScene.UseCases.View.AilmentView.OutputDataFactory;
 using BattleScene.UseCases.View.MessageView.OutputBoundary;
@@ -26,8 +25,6 @@ namespace BattleScene.UseCases.OldEvent
         private readonly IMessageViewPresenter _messageView;
         private readonly OrderedItemsDomainService _orderedItems;
         private readonly IPlayerImageViewPresenter _playerImageView;
-        private readonly SkillCreatorService _skillCreator;
-        private readonly ISkillRepository _skillRepository;
 
         public AilmentsResetOldEvent(
             AilmentOutputDataFactory ailmentOutputDataFactory,
@@ -37,9 +34,7 @@ namespace BattleScene.UseCases.OldEvent
             MessageOutputDataFactory messageOutputDataFactory,
             IMessageViewPresenter messageView,
             OrderedItemsDomainService orderedItems,
-            IPlayerImageViewPresenter playerImageView,
-            SkillCreatorService skillCreator,
-            ISkillRepository skillRepository)
+            IPlayerImageViewPresenter playerImageView)
         {
             _ailmentOutputDataFactory = ailmentOutputDataFactory;
             _ailmentRepository = ailmentRepository;
@@ -49,15 +44,13 @@ namespace BattleScene.UseCases.OldEvent
             _messageView = messageView;
             _orderedItems = orderedItems;
             _playerImageView = playerImageView;
-            _skillCreator = skillCreator;
-            _skillRepository = skillRepository;
         }
 
         public EventCode Run()
         {
             var playerId = _characters.GetPlayerId();
-            if (_orderedItems.FirstAilmentCode() == AilmentCode.Confusion)
-                _skillRepository.Update(_skillCreator.Create(playerId, SkillCode.Attack));
+            if (_orderedItems.FirstAilmentCode() == AilmentCode.Confusion) { }
+                // _skillRepository.Update(_skillCreator.Create(playerId, SkillCode.Attack));
 
             _ailmentRepository.Delete(playerId, _orderedItems.FirstAilmentCode());
             StartView();

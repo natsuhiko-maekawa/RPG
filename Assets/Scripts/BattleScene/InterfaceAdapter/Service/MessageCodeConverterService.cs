@@ -30,9 +30,9 @@ namespace BattleScene.InterfaceAdapter.Service
         private readonly IResource<MessageDto, MessageCode> _messageResource;
         private readonly OrderedItemsDomainService _orderedItems;
         private readonly IResource<PlayerViewInfoDto, CharacterTypeCode> _playerViewInfoResource;
-        private readonly ISkillRepository _skillRepository;
         private readonly IResource<SkillPropertyDto, SkillCode> _skillViewInfoResource;
         private readonly IRepository<BattleLogEntity, BattleLogId> _battleLogRepository;
+        private readonly BattleLogDomainService _battleLog;
         private readonly PlayerDomainService _player;
 
         public MessageCodeConverterService(
@@ -44,9 +44,9 @@ namespace BattleScene.InterfaceAdapter.Service
             IResource<MessageDto, MessageCode> messageResource,
             OrderedItemsDomainService orderedItems,
             IResource<PlayerViewInfoDto, CharacterTypeCode> playerViewInfoResource,
-            ISkillRepository skillRepository,
             IResource<SkillPropertyDto, SkillCode> skillViewInfoResource,
             IRepository<BattleLogEntity, BattleLogId> battleLogRepository,
+            BattleLogDomainService battleLog,
             PlayerDomainService player)
         {
             _ailmentViewInfoResource = ailmentViewInfoResource;
@@ -57,9 +57,9 @@ namespace BattleScene.InterfaceAdapter.Service
             _messageResource = messageResource;
             _orderedItems = orderedItems;
             _playerViewInfoResource = playerViewInfoResource;
-            _skillRepository = skillRepository;
             _skillViewInfoResource = skillViewInfoResource;
             _battleLogRepository = battleLogRepository;
+            _battleLog = battleLog;
             _player = player;
         }
 
@@ -148,7 +148,7 @@ namespace BattleScene.InterfaceAdapter.Service
             if (!message.Contains(Skill)) return message;
             if (!_orderedItems.First().TryGetCharacterId(out var characterId))
                 throw new InvalidOperationException();
-            var skillCode = _skillRepository.Select(characterId).SkillCode;
+            var skillCode = _battleLog.GetLast().SkillCode;
             var skillName = _skillViewInfoResource.Get(skillCode).SkillName;
             return message.Replace(Skill, skillName);
         }
