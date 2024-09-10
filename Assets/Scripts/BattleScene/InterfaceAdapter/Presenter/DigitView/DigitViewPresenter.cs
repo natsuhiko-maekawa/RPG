@@ -84,7 +84,7 @@ namespace BattleScene.InterfaceAdapter.Presenter.DigitView
                          .Where(x => !x.IsPlayer)
                          .GroupBy(x => x.EnemyNumber)
                          .Select(x => new EnemyDigitViewDto(x.Key, x.Select(ConvertDto).ToImmutableList())))
-                _enemiesView.StartEnemyDigitView(enemyDigitViewDto);
+                _enemiesView[enemyDigitViewDto.EnemyInt].StartDigitAnimationAsync(enemyDigitViewDto);
         }
 
         private DigitDto ConvertDto(DigitOutputData digitOutputData)

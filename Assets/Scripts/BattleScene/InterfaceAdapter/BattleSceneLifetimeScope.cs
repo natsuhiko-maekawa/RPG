@@ -48,6 +48,7 @@ using BattleScene.UseCases.View.BuffView.OutputBoundary;
 using BattleScene.UseCases.View.CharacterVibesView.OutputBoundary;
 using BattleScene.UseCases.View.DestroyedPartView.OutputBoundary;
 using BattleScene.UseCases.View.DigitView.OutputBoundary;
+using BattleScene.UseCases.View.DigitView.OutputDataFactory;
 using BattleScene.UseCases.View.EnemyView.OutputBoundary;
 using BattleScene.UseCases.View.FrameView.OutputBoundary;
 using BattleScene.UseCases.View.HitPointBarView.OutputBoundary;
@@ -257,6 +258,7 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<ToBuffNumberService>(Lifetime.Singleton);
 
             builder.Register<AilmentDomainService>(Lifetime.Singleton);
+            builder.Register<BattleLogDomainService>(Lifetime.Singleton);
             builder.Register<BattleLoggerService>(Lifetime.Singleton);
             builder.Register<BodyPartDomainService>(Lifetime.Singleton);
             builder.Register<BuffDomainService>(Lifetime.Singleton);
@@ -283,6 +285,8 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<EnemySkillSelector>(Lifetime.Singleton);
 
             builder.Register<SkillView>(Lifetime.Singleton);
+
+            builder.Register<DamageDigitOutputDataFactory>(Lifetime.Singleton);
         }
     }
 }
