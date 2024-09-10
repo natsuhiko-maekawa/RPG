@@ -148,6 +148,7 @@ namespace BattleScene.InterfaceAdapter
             builder.RegisterComponentInHierarchy<IResource<PlayerViewInfoDto, CharacterTypeCode>>();
             builder.RegisterComponentInHierarchy<IResource<PropertyDto, CharacterTypeCode>>();
             builder.RegisterComponentInHierarchy<IResource<PlayerPropertyDto, CharacterTypeCode>>();
+            builder.RegisterComponentInHierarchy<IResource<PlayerImageValueObject, PlayerImageCode>>();
 
             builder.Register<ToAilmentNumberService>(Lifetime.Singleton);
             builder.Register<MessageCodeConverterService>(Lifetime.Singleton);

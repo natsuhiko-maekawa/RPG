@@ -1,11 +1,8 @@
 ﻿using System.Collections.Immutable;
 using System.Linq;
-using BattleScene.Domain.Aggregate;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.DomainService;
-using BattleScene.Domain.Id;
-using BattleScene.Domain.IRepository;
 using BattleScene.Domain.ValueObject;
 using BattleScene.InterfaceAdapter.DataAccess;
 using BattleScene.InterfaceAdapter.DataAccess.Dto;
@@ -19,10 +16,10 @@ namespace BattleScene.InterfaceAdapter.Presenter
 {
     public class SkillViewPresenter : ISkillViewPresenter
     {
-        private readonly IRepository<CharacterAggregate, CharacterId> _characterRepository;
         private readonly IGridView _gridView;
         private readonly MessageCodeConverterService _messageCodeConverter;
         private readonly IResource<MessageDto, MessageCode> _messageResource;
+        private readonly IResource<PlayerImageValueObject, PlayerImageCode> _playerPropertyResource;
         private readonly PlayerDomainService _player;
         private readonly IFactory<PropertyValueObject, CharacterTypeCode> _propertyFactory;
         private readonly IFactory<SkillValueObject, SkillCode> _skillFactory;
@@ -33,8 +30,8 @@ namespace BattleScene.InterfaceAdapter.Presenter
             IFactory<PropertyValueObject, CharacterTypeCode> propertyFactory,
             IFactory<SkillValueObject, SkillCode> skillFactory,
             IResource<SkillViewInfoValueObject, SkillCode> skillPropertyFactory,
-            IRepository<CharacterAggregate, CharacterId> characterRepository,
             IResource<MessageDto, MessageCode> messageResource,
+            IResource<PlayerImageValueObject, PlayerImageCode> playerPropertyResource,
             MessageCodeConverterService messageCodeConverter,
             IGridView gridView)
         {
@@ -42,9 +39,9 @@ namespace BattleScene.InterfaceAdapter.Presenter
             _propertyFactory = propertyFactory;
             _skillFactory = skillFactory;
             _skillPropertyFactory = skillPropertyFactory;
-            _characterRepository = characterRepository;
             _messageResource = messageResource;
             _messageCodeConverter = messageCodeConverter;
+            _playerPropertyResource = playerPropertyResource;
             _gridView = gridView;
         }
 
@@ -58,7 +55,7 @@ namespace BattleScene.InterfaceAdapter.Presenter
                     var skillProperty = _skillPropertyFactory.Get(x);
                     var message = _messageResource.Get(skillProperty.Description).Message;
                     var description = _messageCodeConverter.Replace(message);
-                    var playerImagePath = $"{skillProperty.PlayerImageCode}[{skillProperty.PlayerImageCode}]";
+                    var playerImagePath = _playerPropertyResource.Get(skillProperty.PlayerImageCode).PlayerImagePath;
                     var enabled = skill.TechnicalPoint <= _player.Get().CurrentTechnicalPoint;
                     return new RowDto(
                         RowId: 0,

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Immutable;
 using System.Linq;
 using BattleScene.Domain.Code;
+using BattleScene.Domain.ValueObject;
 using BattleScene.InterfaceAdapter.DataAccess;
 using BattleScene.InterfaceAdapter.DataAccess.Dto;
 using BattleScene.InterfaceAdapter.Interface;
@@ -14,15 +15,18 @@ namespace BattleScene.InterfaceAdapter.Presenter.ViewPresenter
     public class GridViewPresenter : IViewPresenter<GridViewOutputData>
     {
         private readonly IResource<MessageDto, MessageCode> _messageResource;
+        private readonly IResource<PlayerImageValueObject, PlayerImageCode> _playerImagePathResource;
         private readonly MessageCodeConverterService _messageCodeConverter;
         private readonly IGridView _gridView;
 
         public GridViewPresenter(
             IResource<MessageDto, MessageCode> messageResource,
+            IResource<PlayerImageValueObject, PlayerImageCode> playerImagePathResource,
             MessageCodeConverterService messageCodeConverter,
             IGridView gridView)
         {
             _messageResource = messageResource;
+            _playerImagePathResource = playerImagePathResource;
             _messageCodeConverter = messageCodeConverter;
             _gridView = gridView;
         }
@@ -39,7 +43,8 @@ namespace BattleScene.InterfaceAdapter.Presenter.ViewPresenter
                         RowId: (int)x.ActionCode,
                         RowName: rowName,
                         RowDescription: rowDescription,
-                        PlayerImagePath: GetPlayerImagePath(x.ActionCode),
+                        // TODO: 仮で刀のイラストを設定している
+                        PlayerImagePath: _playerImagePathResource.Get(PlayerImageCode.Katana).PlayerImagePath,
                         Enabled: enabled);
                 })
                 .ToImmutableList();
@@ -68,11 +73,6 @@ namespace BattleScene.InterfaceAdapter.Presenter.ViewPresenter
             var message = _messageResource.Get(messageCode).Message;
             message = _messageCodeConverter.Replace(message);
             return message;
-        }
-
-        private string GetPlayerImagePath(ActionCode actionCode)
-        {
-            return $"{actionCode}[{actionCode}]";
         }
     }
 }
