@@ -1,6 +1,4 @@
 using BattleScene.Domain.DomainService;
-using BattleScene.Domain.Entity;
-using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
 using BattleScene.UseCases.OldEvent.Interface;
 using BattleScene.UseCases.OldEvent.Runner;
@@ -17,7 +15,6 @@ namespace BattleScene.UseCases.OldEvent
 {
     internal class EnemySuicideOldEvent : IOldEvent, IWait
     {
-        private readonly IRepository<ActionTimeEntity, CharacterId> _actionTimeRepository;
         private readonly AilmentOutputDataFactory _ailmentOutputDataFactory;
         private readonly IAilmentRepository _ailmentRepository;
         private readonly IAilmentViewPresenter _ailmentView;
@@ -28,7 +25,6 @@ namespace BattleScene.UseCases.OldEvent
         private readonly OrderedItemsDomainService _orderedItems;
 
         public EnemySuicideOldEvent(
-            IRepository<ActionTimeEntity, CharacterId> actionTimeRepository,
             AilmentOutputDataFactory ailmentOutputDataFactory,
             IAilmentRepository ailmentRepository,
             IAilmentViewPresenter ailmentView,
@@ -38,7 +34,6 @@ namespace BattleScene.UseCases.OldEvent
             IMessageViewPresenter messageView,
             OrderedItemsDomainService orderedItems)
         {
-            _actionTimeRepository = actionTimeRepository;
             _ailmentOutputDataFactory = ailmentOutputDataFactory;
             _ailmentRepository = ailmentRepository;
             _ailmentView = ailmentView;
@@ -53,7 +48,8 @@ namespace BattleScene.UseCases.OldEvent
         {
             var characterId = _orderedItems.FirstCharacterId();
             _ailmentRepository.Delete(characterId);
-            _actionTimeRepository.Delete(characterId);
+            // 自滅した敵の行動時間を削除
+            // _actionTimeRepository.Delete(characterId);
 
             var ailmentOutputData = _ailmentOutputDataFactory.Create(characterId);
             _ailmentView.Start(ailmentOutputData);
