@@ -56,6 +56,7 @@ namespace BattleScene.InterfaceAdapter.Presenter
                     var message = _messageResource.Get(skillProperty.Description).Message;
                     var description = _messageCodeConverter.Replace(message);
                     var playerImagePath = _playerPropertyResource.Get(skillProperty.PlayerImageCode).PlayerImagePath;
+                    // TODO: スキル使用可否の判断で部位破壊についても考慮する
                     var enabled = skill.TechnicalPoint <= _player.Get().CurrentTechnicalPoint;
                     return new RowDto(
                         RowId: 0,

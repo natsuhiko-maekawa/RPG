@@ -119,8 +119,6 @@ namespace BattleScene.InterfaceAdapter
                 Lifetime.Singleton);
             builder.Register<IRepository<OrderedItemEntity, OrderNumber>, Repository<OrderedItemEntity, OrderNumber>>(
                 Lifetime.Singleton);
-            builder.Register<IRepository<SkillEntity, CharacterId>, Repository<SkillEntity, CharacterId>>(
-                Lifetime.Singleton);
             builder.Register<IRepository<SlipDamageEntity, SlipDamageId>, Repository<SlipDamageEntity, SlipDamageId>>(
                 Lifetime.Singleton);
             builder
@@ -237,15 +235,11 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<AttackCounterService>(Lifetime.Singleton);
             builder.Register<BuffGeneratorService>(Lifetime.Singleton);
             builder.Register<CharacterOutputDataCreatorService>(Lifetime.Singleton);
-            builder.Register<CureSkillService>(Lifetime.Singleton);
             builder.Register<DamageGeneratorService>(Lifetime.Singleton);
             builder.Register<DestroyedPartGeneratorService>(Lifetime.Singleton);
             builder.Register<HitPointCreatorService>(Lifetime.Singleton);
             builder.Register<OrderedItemCreatorService>(Lifetime.Singleton);
-            builder.Register<ResetSkillService>(Lifetime.Singleton);
             builder.Register<RestoreGeneratorService>(Lifetime.Singleton);
-            builder.Register<SkillCreatorService>(Lifetime.Singleton);
-            builder.Register<SkillService>(Lifetime.Singleton);
             builder.Register<SlipDamageService>(Lifetime.Singleton);
             builder.Register<ToBodyPartNumberService>(Lifetime.Singleton);
             builder.Register<ToBuffNumberService>(Lifetime.Singleton);
