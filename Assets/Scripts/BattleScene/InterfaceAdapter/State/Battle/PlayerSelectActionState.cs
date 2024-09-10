@@ -45,8 +45,9 @@ namespace BattleScene.InterfaceAdapter.State.Battle
             _gridView.Start(outputData);
         }
 
-        public override void Select(ActionCode actionCode)
+        public override void Select(int id)
         {
+            var actionCode = (ActionCode)id;
             var oneself = ImmutableList.Create(_player.GetId());
             AbstractState nextState = actionCode switch
             {

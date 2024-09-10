@@ -98,7 +98,7 @@ namespace BattleScene.Framework.View
 
         public void SetSelectAction(Action<int> action)
         {
-            selectAction.performed += _ => action.Invoke(_id);
+            selectAction.performed += _ => action.Invoke(_gridStateDictionary[_dto.ActionCode].SelectedIndex);
             selectAction?.Enable();
         }
     }
