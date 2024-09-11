@@ -52,14 +52,15 @@ namespace BattleScene.Domain.DomainService
                 .ToList();
             
             var characterList = _randomEx.Choice(options)
-                .Select(x =>
+                .Select((x, i) =>
                 {
                     PropertyValueObject property = _propertyFactory.Create(x);
                     var characterId = new CharacterId();
                     return new CharacterEntity(
                         id: characterId,
                         characterTypeCode: property.CharacterTypeCode,
-                        currentHitPoint: property.HitPoint);
+                        currentHitPoint: property.HitPoint,
+                        position: i);
                 })
                 .ToImmutableList();
             _characterRepository.Update(characterList);

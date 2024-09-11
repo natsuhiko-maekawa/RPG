@@ -10,13 +10,15 @@ namespace BattleScene.Domain.Entity
             CharacterTypeCode characterTypeCode,
             int currentHitPoint,
             int currentTechnicalPoint = 0,
-            int actionTime = 0)
+            int actionTime = 0,
+            int position = 0)
         {
             Id = id;
             CharacterTypeCode = characterTypeCode;
             CurrentHitPoint = currentHitPoint;
             CurrentTechnicalPoint = currentTechnicalPoint;
             ActionTime = actionTime;
+            Position = position;
         }
         
         public override CharacterId Id { get; }
@@ -24,6 +26,7 @@ namespace BattleScene.Domain.Entity
         public int CurrentHitPoint { get; }
         public int CurrentTechnicalPoint { get; }
         public int ActionTime { get; set; }
+        public int Position { get; }
         public bool IsSurvive => 0 < CurrentHitPoint;
         public bool IsPlayer => CharacterTypeCode == CharacterTypeCode.Player;
     }

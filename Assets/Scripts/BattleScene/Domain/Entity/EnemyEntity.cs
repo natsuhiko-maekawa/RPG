@@ -1,7 +1,9 @@
-﻿using BattleScene.Domain.Id;
+﻿using System;
+using BattleScene.Domain.Id;
 
 namespace BattleScene.Domain.Entity
 {
+    [Obsolete]
     public class EnemyEntity : BaseEntity<EnemyEntity, CharacterId>
     {
         public EnemyEntity(
