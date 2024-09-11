@@ -35,6 +35,7 @@ using BattleScene.InterfaceAdapter.State.Battle;
 using BattleScene.InterfaceAdapter.State.Skill;
 using BattleScene.UseCases.Interface;
 using BattleScene.UseCases.IPresenter;
+using BattleScene.UseCases.IService;
 using BattleScene.UseCases.Output;
 using BattleScene.UseCases.OutputData;
 using BattleScene.UseCases.Service;
@@ -230,6 +231,7 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<CharacterPropertyFactoryService>(Lifetime.Singleton);
             builder.Register<DamageGeneratorService>(Lifetime.Singleton);
             builder.Register<DestroyedPartGeneratorService>(Lifetime.Singleton);
+            builder.Register<IEnemiesRegistererService, EnemiesRegistererService>(Lifetime.Singleton);
             builder.Register<OrderService>(Lifetime.Singleton);
             builder.Register<RestoreGeneratorService>(Lifetime.Singleton);
             builder.Register<SlipDamageGeneratorService>(Lifetime.Singleton);

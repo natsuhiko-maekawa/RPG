@@ -3,6 +3,7 @@ using System.Collections.Immutable;
 using System.Linq;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DomainService;
+using BattleScene.UseCases.IService;
 using BattleScene.UseCases.View.EnemyView.OutputBoundary;
 using BattleScene.UseCases.View.EnemyView.OutputData;
 using VContainer;
@@ -13,15 +14,18 @@ namespace BattleScene.InterfaceAdapter.State.Battle
     internal class InitializeEnemyState : AbstractState
     {
         private readonly EnemiesDomainService _enemies;
+        private readonly IEnemiesRegistererService _enemiesRegisterer;
         private readonly IEnemyViewPresenter _enemyView;
         private readonly IObjectResolver _container;
 
         public InitializeEnemyState(
             EnemiesDomainService enemies,
+            IEnemiesRegistererService enemiesRegisterer,
             IEnemyViewPresenter enemyView,
             IObjectResolver container)
         {
             _enemies = enemies;
+            _enemiesRegisterer = enemiesRegisterer;
             _enemyView = enemyView;
             _container = container;
         }
@@ -36,7 +40,7 @@ namespace BattleScene.InterfaceAdapter.State.Battle
         private void SetEnemies()
         {
             var enemyTypeIdList = new List<CharacterTypeCode> { Bee, Dragon, Mantis, Shuten, Slime };
-            _enemies.Add(enemyTypeIdList);
+            _enemiesRegisterer.Register(enemyTypeIdList);
         }
         
         private void StartEnemyView()
