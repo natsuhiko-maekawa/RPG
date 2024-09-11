@@ -222,7 +222,7 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<TurnEndState>(Lifetime.Singleton);
             
             builder.Register<ActionTimeService>(Lifetime.Singleton);
-            builder.Register<AilmentSkillService>(Lifetime.Singleton);
+            builder.Register<AilmentGeneratorService>(Lifetime.Singleton);
             builder.Register<AttackCounterService>(Lifetime.Singleton);
             builder.Register<BuffGeneratorService>(Lifetime.Singleton);
             builder.Register<CharacterOutputDataCreatorService>(Lifetime.Singleton);
