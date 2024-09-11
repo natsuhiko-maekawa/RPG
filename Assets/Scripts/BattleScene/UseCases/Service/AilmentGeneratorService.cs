@@ -31,7 +31,7 @@ namespace BattleScene.UseCases.Service
             AilmentParameterValueObject ailmentParameter,
             IList<CharacterId> targetIdList)
         {
-            if (_orderedItems.First().TryGetCharacterId(out var actorId)) throw new InvalidOperationException();
+            if (!_orderedItems.First().TryGetCharacterId(out var actorId)) throw new InvalidOperationException();
 
             var actualTargetList = GetActualTargetList(
                 targetIdList: targetIdList,
