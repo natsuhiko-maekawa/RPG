@@ -2626,6 +2626,7 @@ MonoBehaviour:
     TypeName: Utility.UtilityLifetimeScope
   autoRun: 1
   autoInjectGameObjects: []
+  debugMode: 1
 --- !u!114 &809505089
 MonoBehaviour:
   m_ObjectHideFlags: 0
