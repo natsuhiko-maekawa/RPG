@@ -1,5 +1,6 @@
 ﻿using System.Collections.Immutable;
 using BattleScene.Domain.DomainService;
+using BattleScene.UseCases.IService;
 using BattleScene.UseCases.Service;
 using VContainer;
 
@@ -7,12 +8,12 @@ namespace BattleScene.InterfaceAdapter.State.Battle
 {
     internal class EnemySelectSkillState : AbstractState
     {
-        private readonly EnemySkillSelectorService _enemySkillSelector;
+        private readonly IEnemySkillSelectorService _enemySkillSelector;
         private readonly PlayerDomainService _player;
         private readonly IObjectResolver _container;
 
         public EnemySelectSkillState(
-            EnemySkillSelectorService enemySkillSelector,
+            IEnemySkillSelectorService enemySkillSelector,
             PlayerDomainService player,
             IObjectResolver container)
         {

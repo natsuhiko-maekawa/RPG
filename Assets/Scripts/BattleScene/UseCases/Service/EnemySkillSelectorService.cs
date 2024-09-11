@@ -5,11 +5,12 @@ using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
 using BattleScene.Domain.ValueObject;
+using BattleScene.UseCases.IService;
 using Utility.Interface;
 
 namespace BattleScene.UseCases.Service
 {
-    public class EnemySkillSelectorService
+    public class EnemySkillSelectorService : IEnemySkillSelectorService
     {
         private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
         private readonly IFactory<PropertyValueObject, CharacterTypeCode> _characterPropertyFactory;

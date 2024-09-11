@@ -237,6 +237,7 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<SlipDamageGeneratorService>(Lifetime.Singleton);
             builder.Register<ToBodyPartNumberService>(Lifetime.Singleton);
             builder.Register<ToBuffNumberService>(Lifetime.Singleton);
+            builder.Register<IEnemySkillSelectorService, EnemySkillSelectorService>(Lifetime.Singleton);
 
             builder.Register<AilmentDomainService>(Lifetime.Singleton);
             builder.Register<BattleLogDomainService>(Lifetime.Singleton);
@@ -258,9 +259,7 @@ namespace BattleScene.InterfaceAdapter
             builder.RegisterEntryPoint<StateMachine>();
 
             builder.Register<OrderDecision>(Lifetime.Singleton);
-
-            builder.Register<EnemySkillSelectorService>(Lifetime.Singleton);
-
+            
             builder.Register<SkillView>(Lifetime.Singleton);
 
             builder.Register<DamageDigitOutputDataFactory>(Lifetime.Singleton);
