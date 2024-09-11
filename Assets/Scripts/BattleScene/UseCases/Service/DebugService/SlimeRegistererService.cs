@@ -11,13 +11,13 @@ using BattleScene.UseCases.IService;
 
 namespace BattleScene.UseCases.Service.DebugService
 {
-    public class BeeRegistererService : IEnemiesRegistererService
+    public class SlimeRegistererService : IEnemiesRegistererService
     {
         private readonly IFactory<PropertyValueObject, CharacterTypeCode> _propertyFactory;
         private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
         private readonly IRepository<EnemyEntity, CharacterId> _enemyRepository;
 
-        public BeeRegistererService(
+        public SlimeRegistererService(
             IFactory<PropertyValueObject, CharacterTypeCode> propertyFactory,
             IRepository<CharacterEntity, CharacterId> characterRepository,
             IRepository<EnemyEntity, CharacterId> enemyRepository)
@@ -29,7 +29,7 @@ namespace BattleScene.UseCases.Service.DebugService
 
         public void Register(IList<CharacterTypeCode> characterTypeIdList)
         {
-            var characterList = Enumerable.Repeat(CharacterTypeCode.Bee, 4)
+            var characterList = Enumerable.Repeat(CharacterTypeCode.Slime, 4)
                 .Select((x, i) =>
                 {
                     PropertyValueObject property = _propertyFactory.Create(x);
