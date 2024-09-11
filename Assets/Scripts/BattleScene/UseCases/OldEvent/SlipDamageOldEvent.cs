@@ -1,7 +1,5 @@
 using BattleScene.UseCases.OldEvent.Interface;
 using BattleScene.UseCases.OldEvent.Runner;
-using BattleScene.UseCases.View.CharacterVibesView.OutputBoundary;
-using BattleScene.UseCases.View.CharacterVibesView.OutputDataFactory;
 using BattleScene.UseCases.View.DigitView.OutputBoundary;
 using BattleScene.UseCases.View.DigitView.OutputDataFactory;
 using BattleScene.UseCases.View.MessageView.OutputBoundary;
@@ -13,23 +11,17 @@ namespace BattleScene.UseCases.OldEvent
 {
     internal class SlipDamageOldEvent : IOldEvent, IWait
     {
-        private readonly CharacterVibesOutputDataFactory _characterVibesOutputDataFactory;
-        private readonly ICharacterVibesViewPresenter _characterVibesView;
         private readonly DamageDigitOutputDataFactory _damageDigitOutputDataFactory;
         private readonly IDigitViewPresenter _digitView;
         private readonly MessageOutputDataFactory _messageOutputDataFactory;
         private readonly IMessageViewPresenter _messageView;
 
         public SlipDamageOldEvent(
-            CharacterVibesOutputDataFactory characterVibesOutputDataFactory,
-            ICharacterVibesViewPresenter characterVibesView,
             DamageDigitOutputDataFactory damageDigitOutputDataFactory,
             IDigitViewPresenter digitView,
             MessageOutputDataFactory messageOutputDataFactory,
             IMessageViewPresenter messageView)
         {
-            _characterVibesOutputDataFactory = characterVibesOutputDataFactory;
-            _characterVibesView = characterVibesView;
             _damageDigitOutputDataFactory = damageDigitOutputDataFactory;
             _digitView = digitView;
             _messageOutputDataFactory = messageOutputDataFactory;
@@ -69,7 +61,8 @@ namespace BattleScene.UseCases.OldEvent
             // _hitPointBarView.Start(_hitPointBarOutputDataFactory.Create());
             var messageOutputData = _messageOutputDataFactory.Create(SlipDamageMessage);
             _messageView.Start(messageOutputData);
-            _characterVibesView.Start(_characterVibesOutputDataFactory.Create());
+            // プレイヤーの画像を振動させる
+            // _characterVibesView.Start(_characterVibesOutputDataFactory.Create());
         }
     }
 }

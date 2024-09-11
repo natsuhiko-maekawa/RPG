@@ -3,8 +3,6 @@ using BattleScene.UseCases.View.AttackCountView.OutputBoundary;
 using BattleScene.UseCases.View.AttackCountView.OutputDataFactory;
 using BattleScene.UseCases.View.DigitView.OutputBoundary;
 using BattleScene.UseCases.View.DigitView.OutputDataFactory;
-using BattleScene.UseCases.View.MessageView.OutputBoundary;
-using BattleScene.UseCases.View.MessageView.OutputDataFactory;
 using static BattleScene.UseCases.OldEvent.Runner.EventCode;
 
 namespace BattleScene.UseCases.OldEvent
@@ -14,24 +12,18 @@ namespace BattleScene.UseCases.OldEvent
         private readonly AttackCountOutputDataFactory _attackCountOutputDataFactory;
         private readonly IAttackCountViewPresenter _attackCountViewPresenter;
         private readonly DamageDigitOutputDataFactory _damageDigitOutputDataFactory;
-        private readonly DamageMessageOutputDataFactory _damageMessageOutputDataFactory;
         private readonly IDigitViewPresenter _digitView;
-        private readonly IMessageViewPresenter _messageViewPresenter;
 
         public PlayerDamageOldEvent(
             AttackCountOutputDataFactory attackCountOutputDataFactory,
             IAttackCountViewPresenter attackCountViewPresenter,
             DamageDigitOutputDataFactory damageDigitOutputDataFactory,
-            DamageMessageOutputDataFactory damageMessageOutputDataFactory,
-            IDigitViewPresenter digitView,
-            IMessageViewPresenter messageViewPresenter)
+            IDigitViewPresenter digitView)
         {
             _attackCountOutputDataFactory = attackCountOutputDataFactory;
             _attackCountViewPresenter = attackCountViewPresenter;
             _damageDigitOutputDataFactory = damageDigitOutputDataFactory;
-            _damageMessageOutputDataFactory = damageMessageOutputDataFactory;
             _digitView = digitView;
-            _messageViewPresenter = messageViewPresenter;
         }
 
         public EventCode Run()
@@ -60,8 +52,9 @@ namespace BattleScene.UseCases.OldEvent
             // HPバーを表示する
             // var hitPointBarOutputData = _hitPointBarOutputDataFactory.Create();
             // _hitPointBarView.Start(hitPointBarOutputData);
-            var messageOutputData = _damageMessageOutputDataFactory.Create();
-            _messageViewPresenter.Start(messageOutputData);
+            // メッセージを表示する
+            // var messageOutputData = _damageMessageOutputDataFactory.Create();
+            // _messageViewPresenter.Start(messageOutputData);
             var attackCountOutputData = _attackCountOutputDataFactory.Create();
             _attackCountViewPresenter.Start(attackCountOutputData);
 
