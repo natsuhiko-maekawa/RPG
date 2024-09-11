@@ -8,10 +8,10 @@ namespace BattleScene.Domain.DomainService
 {
     public class AilmentDomainService
     {
-        private readonly IAilmentRepository _ailmentRepository;
+        private readonly IRepository<AilmentEntity, AilmentId> _ailmentRepository;
 
         public AilmentDomainService(
-            IAilmentRepository ailmentRepository)
+            IRepository<AilmentEntity, AilmentId> ailmentRepository)
         {
             _ailmentRepository = ailmentRepository;
         }
@@ -22,7 +22,8 @@ namespace BattleScene.Domain.DomainService
         /// <returns>状態異常エンティティのリスト</returns>
         public ImmutableList<AilmentEntity> GetOrdered(CharacterId characterId)
         {
-            return _ailmentRepository.Select(characterId)
+            return _ailmentRepository.Select()
+                .Where(x => Equals(x.CharacterId, characterId))
                 .Where(x => x.GetTurn() != null)
                 .OrderBy(x => x.GetTurn())
                 .ThenBy(x => x)
@@ -34,11 +35,14 @@ namespace BattleScene.Domain.DomainService
         /// </summary>
         public void AdvanceAllTurn(CharacterId characterId)
         {
-            foreach (var ailmentEntity in _ailmentRepository.Select(characterId))
+            foreach (var ailmentEntity in _ailmentRepository.Select()
+                         .Where(x => Equals(x.CharacterId, characterId)))
                 ailmentEntity.AdvanceTurn();
 
-            var recoverAilmentsList = _ailmentRepository.Select(characterId)
+            var recoverAilmentsList = _ailmentRepository.Select()
+                .Where(x => Equals(x.CharacterId, characterId))
                 .Where(x => x.TurnIsEnd())
+                .Select(x => x.Id)
                 .ToImmutableList();
 
             _ailmentRepository.Delete(recoverAilmentsList);
@@ -50,7 +54,8 @@ namespace BattleScene.Domain.DomainService
         /// <returns>状態異常エンティティ</returns>
         public AilmentEntity GetHighPriority(CharacterId characterId)
         {
-            return _ailmentRepository.Select(characterId)
+            return _ailmentRepository.Select()
+                .Where(x => Equals(x.CharacterId, characterId))
                 .OrderByDescending(x => x.Priority)
                 .FirstOrDefault();
         }
