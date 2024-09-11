@@ -244,7 +244,6 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<EnemiesDomainService>(Lifetime.Singleton);
             builder.Register<OrderedItemsDomainService>(Lifetime.Singleton);
             builder.Register<PlayerDomainService>(Lifetime.Singleton);
-            builder.Register<ResultDomainService>(Lifetime.Singleton);
             builder.Register<TargetDomainService>(Lifetime.Singleton);
             
             builder.Register<DamageEvaluatorService>(Lifetime.Singleton);

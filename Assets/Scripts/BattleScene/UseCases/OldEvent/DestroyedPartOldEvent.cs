@@ -1,50 +1,11 @@
 using System;
-using BattleScene.Domain.DomainService;
-using BattleScene.Domain.Entity;
-using BattleScene.Domain.Id;
-using BattleScene.Domain.IRepository;
 using BattleScene.UseCases.OldEvent.Interface;
 using BattleScene.UseCases.OldEvent.Runner;
-using BattleScene.UseCases.Service;
-using BattleScene.UseCases.View.DestroyedPartView.OutputBoundary;
-using BattleScene.UseCases.View.DestroyedPartView.OutputDataFactory;
-using BattleScene.UseCases.View.MessageView.OutputBoundary;
-using BattleScene.UseCases.View.MessageView.OutputDataFactory;
 
 namespace BattleScene.UseCases.OldEvent
 {
     internal class DestroyedPartOldEvent : IOldEvent, IWait
     {
-        private readonly IBodyPartRepository _bodyPartRepository;
-        private readonly DestroyedPartGeneratorService _destroyedPartGenerator;
-        private readonly DestroyedPartOutputDataFactory _destroyedPartOutputDataFactory;
-        private readonly IDestroyedPartViewPresenter _destroyedPartView;
-        private readonly MessageOutputDataFactory _messageOutputDataFactory;
-        private readonly IMessageViewPresenter _messageView;
-        private readonly ResultDomainService _result;
-        private readonly IRepository<BattleLogEntity, BattleLogId> _battleLogRepository;
-        
-
-        public DestroyedPartOldEvent(
-            IBodyPartRepository bodyPartRepository,
-            DestroyedPartGeneratorService destroyedPartGenerator,
-            DestroyedPartOutputDataFactory destroyedPartOutputDataFactory,
-            IDestroyedPartViewPresenter destroyedPartView,
-            MessageOutputDataFactory messageOutputDataFactory,
-            IMessageViewPresenter messageView,
-            ResultDomainService result,
-            IRepository<BattleLogEntity, BattleLogId> battleLogRepository)
-        {
-            _bodyPartRepository = bodyPartRepository;
-            _destroyedPartGenerator = destroyedPartGenerator;
-            _destroyedPartOutputDataFactory = destroyedPartOutputDataFactory;
-            _destroyedPartView = destroyedPartView;
-            _messageOutputDataFactory = messageOutputDataFactory;
-            _messageView = messageView;
-            _result = result;
-            _bodyPartRepository = bodyPartRepository;
-        }
-
         public EventCode Run()
         {
             // if (_skillRepository.Select(_orderedItems.FirstCharacterId())
