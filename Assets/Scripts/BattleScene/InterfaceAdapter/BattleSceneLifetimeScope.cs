@@ -213,6 +213,8 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<EnemySelectSkillState>(Lifetime.Singleton);
             builder.Register<SkillStateFactory>(Lifetime.Singleton);
             builder.Register<AilmentStateFactory>(Lifetime.Singleton);
+            builder.Register<AilmentMessageState>(Lifetime.Singleton);
+            builder.Register<AilmentFailureState>(Lifetime.Singleton);
             builder.Register<BuffStateFactory>(Lifetime.Singleton);
             builder.Register<BuffMessageState>(Lifetime.Singleton);
             builder.Register<DamageStateFactory>(Lifetime.Singleton);
@@ -221,6 +223,7 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<RestoreMessageState>(Lifetime.Singleton);
             builder.Register<SkillMessageStateFactory>(Lifetime.Singleton);
             builder.Register<SkillEndState>(Lifetime.Singleton);
+            builder.Register<SkillQuitState>(Lifetime.Singleton);
             builder.Register<TurnEndState>(Lifetime.Singleton);
             
             builder.Register<ActionTimeService>(Lifetime.Singleton);

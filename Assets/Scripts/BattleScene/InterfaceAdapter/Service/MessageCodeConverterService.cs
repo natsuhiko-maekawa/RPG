@@ -161,6 +161,7 @@ namespace BattleScene.InterfaceAdapter.Service
                     ? _playerViewInfoResource.Get(CharacterTypeCode.Player).PlayerName
                     : _enemyViewInfoResource.Get(_characterRepository.Select(x).CharacterTypeCode).EnemyName)
                 .ToImmutableList();
+            if (targetNameList.IsEmpty) return message;
             var totalSuffix = targetNameList.Count == 1 ? "" : "たち";
             return message.Replace(Target, targetNameList.First() + totalSuffix);
         }
