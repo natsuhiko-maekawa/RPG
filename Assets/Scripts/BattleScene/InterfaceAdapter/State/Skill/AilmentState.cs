@@ -45,7 +45,7 @@ namespace BattleScene.InterfaceAdapter.State.Skill
                 ailmentParameter: _ailmentParameter,
                 targetIdList: _targetIdList);
             _battleLoggerService.Log(ailment);
-            AbstractSkillState nextState = _battleLog.GetLast().TargetIdList.IsEmpty
+            AbstractSkillState nextState = _battleLog.GetLast().ActualTargetIdList.IsEmpty
                 ? _ailmentFailureState 
                 : _ailmentMessageState;
             SkillContext.TransitionTo(nextState);

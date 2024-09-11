@@ -33,7 +33,7 @@ namespace BattleScene.UseCases.Service
         {
             if (!_orderedItems.First().TryGetCharacterId(out var actorId)) throw new InvalidOperationException();
 
-            var actualTargetList = GetActualTargetList(
+            var actualTargetIdList = GetActualTargetIdList(
                 targetIdList: targetIdList,
                 ailmentParameter: ailmentParameter);
             
@@ -41,12 +41,13 @@ namespace BattleScene.UseCases.Service
                 actorId: actorId,
                 skillCode: skillCommon.SkillCode,
                 ailmentCode: ailmentParameter.AilmentCode,
-                targetIdList: actualTargetList);
+                targetIdList: targetIdList,
+                actualTargetIdList: actualTargetIdList);
 
             return ailment;
         }
 
-        private ImmutableList<CharacterId> GetActualTargetList(
+        private ImmutableList<CharacterId> GetActualTargetIdList(
             IList<CharacterId> targetIdList,
             AilmentParameterValueObject ailmentParameter)
         {

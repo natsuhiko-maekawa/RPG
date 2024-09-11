@@ -16,6 +16,7 @@ namespace BattleScene.Domain.Entity
         public CharacterId ActorId { get; }
         public SkillCode SkillCode { get; }
         public ImmutableList<CharacterId> TargetIdList { get; }
+        public ImmutableList<CharacterId> ActualTargetIdList { get; }
         public AilmentCode AilmentCode { get; }
         public BodyPartCode DestroyedPart { get; }
         public int DestroyCount { get; }
@@ -35,6 +36,7 @@ namespace BattleScene.Domain.Entity
             ActionCode = ActionCode.Skill;
             ActorId = ailment.ActorId;
             TargetIdList = ailment.TargetIdList;
+            ActualTargetIdList = ailment.ActualTargetIdList;
             SkillCode = ailment.SkillCode;
             AilmentCode = ailment.AilmentCode;
         }

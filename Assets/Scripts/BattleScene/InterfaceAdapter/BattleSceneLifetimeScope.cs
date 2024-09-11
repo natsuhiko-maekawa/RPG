@@ -39,6 +39,7 @@ using BattleScene.UseCases.IService;
 using BattleScene.UseCases.Output;
 using BattleScene.UseCases.OutputData;
 using BattleScene.UseCases.Service;
+using BattleScene.UseCases.Service.DebugService;
 using BattleScene.UseCases.UseCase;
 using BattleScene.UseCases.View;
 using BattleScene.UseCases.View.AilmentView.OutputBoundary;
@@ -234,13 +235,13 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<CharacterPropertyFactoryService>(Lifetime.Singleton);
             builder.Register<DamageGeneratorService>(Lifetime.Singleton);
             builder.Register<DestroyedPartGeneratorService>(Lifetime.Singleton);
-            builder.Register<IEnemiesRegistererService, EnemiesRegistererService>(Lifetime.Singleton);
+            builder.Register<IEnemiesRegistererService, SlimeRegistererService>(Lifetime.Singleton);
             builder.Register<OrderService>(Lifetime.Singleton);
             builder.Register<RestoreGeneratorService>(Lifetime.Singleton);
             builder.Register<SlipDamageGeneratorService>(Lifetime.Singleton);
             builder.Register<ToBodyPartNumberService>(Lifetime.Singleton);
             builder.Register<ToBuffNumberService>(Lifetime.Singleton);
-            builder.Register<IEnemySkillSelectorService, EnemySkillSelectorService>(Lifetime.Singleton);
+            builder.Register<IEnemySkillSelectorService, EnemyAilmentSelectorService>(Lifetime.Singleton);
 
             builder.Register<AilmentDomainService>(Lifetime.Singleton);
             builder.Register<BattleLogDomainService>(Lifetime.Singleton);
