@@ -2,6 +2,7 @@
 {
     public enum SkillCode
     {
+        NoSkill,
         Afterimage,
         Attack,
         Bite,
