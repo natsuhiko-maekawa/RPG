@@ -27,6 +27,22 @@ namespace BattleScene.Domain.Entity
             BattleLogId battleLogId,
             int sequence,
             int turn,
+            AilmentValueObject ailment)
+        {
+            Id = battleLogId;
+            Sequence = sequence;
+            Turn = turn;
+            ActionCode = ActionCode.Skill;
+            ActorId = ailment.ActorId;
+            TargetIdList = ailment.TargetIdList;
+            SkillCode = ailment.SkillCode;
+            AilmentCode = ailment.AilmentCode;
+        }
+        
+        public BattleLogEntity(
+            BattleLogId battleLogId,
+            int sequence,
+            int turn,
             BuffValueObject buff)
         {
             Id = battleLogId;

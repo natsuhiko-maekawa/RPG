@@ -19,6 +19,17 @@ namespace BattleScene.UseCases.Service
             _turnRepository = turnRepository;
         }
 
+        public void Log(AilmentValueObject ailment)
+        {
+            var (battleLogId, sequence, turn) = GetBattleLogCommonArguments();
+            var battleLog = new BattleLogEntity(
+                battleLogId: battleLogId,
+                sequence: sequence,
+                turn: turn,
+                ailment: ailment);
+            _battleLogRepository.Update(battleLog);
+        }
+        
         public void Log(BuffValueObject buff)
         {
             var battleLogId = new BattleLogId();

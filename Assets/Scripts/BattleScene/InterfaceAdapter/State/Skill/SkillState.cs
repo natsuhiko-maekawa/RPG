@@ -16,6 +16,7 @@ namespace BattleScene.InterfaceAdapter.State.Skill
     {
         private readonly IObjectResolver _container;
         private readonly IFactory<SkillValueObject, SkillCode> _skillFactory;
+        private readonly AilmentStateFactory _ailmentStateFactory;
         private readonly BuffStateFactory _buffStateFactory;
         private readonly DamageStateFactory _damageStateFactory;
         private readonly RestoreStateFactory _restoreStateFactory;
@@ -30,6 +31,7 @@ namespace BattleScene.InterfaceAdapter.State.Skill
             IList<CharacterId> targetIdList,
             IObjectResolver container,
             IFactory<SkillValueObject, SkillCode> skillFactory,
+            AilmentStateFactory ailmentStateFactory,
             BuffStateFactory buffStateFactory,
             DamageStateFactory damageStateFactory,
             RestoreStateFactory restoreStateFactory,
@@ -39,6 +41,7 @@ namespace BattleScene.InterfaceAdapter.State.Skill
             _targetIdList = targetIdList.ToImmutableList();
             _container = container;
             _skillFactory = skillFactory;
+            _ailmentStateFactory = ailmentStateFactory;
             _buffStateFactory = buffStateFactory;
             _damageStateFactory = damageStateFactory;
             _restoreStateFactory = restoreStateFactory;
@@ -55,7 +58,7 @@ namespace BattleScene.InterfaceAdapter.State.Skill
         public override void Select()
         {
             Debug.Assert(_skillStateQueue.Count > 0);
-            
+
             if (_skillContext == null || _skillContext.HasEndState())
             {
                 var skillState = _skillStateQueue.Dequeue();
@@ -63,7 +66,7 @@ namespace BattleScene.InterfaceAdapter.State.Skill
             }
 
             _skillContext.Select();
-            
+
             if (_skillContext.HasEndState() && _skillStateQueue.Count == 0)
             {
                 Context.TransitionTo(_container.Resolve<TurnEndState>());
@@ -74,12 +77,16 @@ namespace BattleScene.InterfaceAdapter.State.Skill
         {
             var skill = _skillFactory.Create(_skillCode);
             var skillStates = Enumerable.Empty<AbstractSkillState>()
-                .Concat(skill.AilmentParameterList.Select(x => new AilmentState(x)))
+                .Concat(skill.AilmentParameterList
+                    .Select(x => _ailmentStateFactory.Create(
+                        skillCommon: skill.SkillCommon,
+                        ailmentParameter: x,
+                        targetIdList: _targetIdList)))
                 .Concat(skill.DamageParameterList
                     .Select(x => _damageStateFactory.Create(
-                            skillCommon: skill.SkillCommon,
-                            damageParameter: x,
-                            targetIdList: _targetIdList)))
+                        skillCommon: skill.SkillCommon,
+                        damageParameter: x,
+                        targetIdList: _targetIdList)))
                 .Concat(skill.BuffParameterList.Select(x => _buffStateFactory.Create(skill.SkillCommon, x)))
                 .Concat(skill.RestoreParameterList.Select(x => _restoreStateFactory.Create(skill.SkillCommon, x)));
             _skillStateQueue = new Queue<AbstractSkillState>(skillStates);
