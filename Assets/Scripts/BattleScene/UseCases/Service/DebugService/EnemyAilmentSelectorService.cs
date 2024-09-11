@@ -6,10 +6,11 @@ using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
 using BattleScene.Domain.ValueObject;
+using BattleScene.UseCases.IService;
 
 namespace BattleScene.UseCases.Service.DebugService
 {
-    public class EnemyAilmentSelectorService
+    public class EnemyAilmentSelectorService : IEnemySkillSelectorService
     {
         private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
         private readonly IFactory<PropertyValueObject, CharacterTypeCode> _characterPropertyFactory;
