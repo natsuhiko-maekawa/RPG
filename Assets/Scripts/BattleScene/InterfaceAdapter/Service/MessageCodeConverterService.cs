@@ -106,7 +106,7 @@ namespace BattleScene.InterfaceAdapter.Service
         private string ReplaceAilments(string message)
         {
             if (!message.Contains(Ailment)) return message;
-            var ailmentCode = _battleLogRepository.Select().Max().AilmentCode;
+            var ailmentCode = _battleLog.GetLast().AilmentCode;
             var ailmentName = _ailmentViewInfoResource.Get(ailmentCode).AilmentName;
             return message.Replace(Ailment, ailmentName);
         }

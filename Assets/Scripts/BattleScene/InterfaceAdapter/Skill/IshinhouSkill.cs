@@ -15,7 +15,7 @@ namespace BattleScene.InterfaceAdapter.Skill
         public override Range Range { get; } = Range.Oneself;
         public override PlayerImageCode PlayerImageCode { get; } = PlayerImageCode.Katana;
         public override MessageCode Description { get; } = MessageCode.IshinhouDescription;
-        public override MessageCode AttackMessageCode { get; } = MessageCode.RemoveAilmentsMessage;
+        public override MessageCode AttackMessageCode { get; } = MessageCode.RemoveAilmentMessage;
 
         public override ImmutableList<AbstractReset> ResetList { get; }
             = ImmutableList.Create<AbstractReset>(new Ishinhou());

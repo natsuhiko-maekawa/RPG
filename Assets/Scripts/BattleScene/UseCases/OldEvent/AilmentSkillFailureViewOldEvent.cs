@@ -21,7 +21,7 @@ namespace BattleScene.UseCases.OldEvent
 
         public EventCode Run()
         {
-            var failAilmentsMessageOutputData = _messageOutputDataFactory.Create(MessageCode.FailAilmentsMessage);
+            var failAilmentsMessageOutputData = _messageOutputDataFactory.Create(MessageCode.FailAilmentMessage);
             _messageView.Start(failAilmentsMessageOutputData);
             return EventCode.WaitEvent;
         }

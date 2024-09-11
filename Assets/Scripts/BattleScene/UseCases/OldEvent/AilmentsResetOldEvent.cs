@@ -67,7 +67,7 @@ namespace BattleScene.UseCases.OldEvent
         {
             var ailmentOutputData = _ailmentOutputDataFactory.Create(_characters.GetPlayerId());
             _ailmentView.Start(ailmentOutputData);
-            var messageOutputData = _messageOutputDataFactory.Create(RecoverAilmentsMessage);
+            var messageOutputData = _messageOutputDataFactory.Create(RecoverAilmentMessage);
             _messageView.Start(messageOutputData);
             _playerImageView.Start(new PlayerImageOutputData(DefaultImage));
         }
