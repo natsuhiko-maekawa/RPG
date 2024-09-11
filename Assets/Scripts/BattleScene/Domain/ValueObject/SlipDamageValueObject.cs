@@ -1,26 +1,25 @@
-﻿using System.Collections.Immutable;
-using System.Linq;
+﻿using System.Collections.Generic;
+using System.Collections.Immutable;
 using BattleScene.Domain.Code;
+using BattleScene.Domain.Id;
 
 namespace BattleScene.Domain.ValueObject
 {
     public class SlipDamageValueObject
     {
         public SlipDamageValueObject(
+            IList<CharacterId> targetIdList,
             SlipDamageCode slipDamageCode,
-            ImmutableList<AttackValueObject> damageList)
+            ImmutableList<AttackValueObject> attackList)
         {
+            TargetIdList = targetIdList.ToImmutableList();
             SlipDamageCode = slipDamageCode;
-            AttackList = damageList;
+            AttackList = attackList;
         }
 
+        public CharacterId ActorId { get; } = null;
+        public ImmutableList<CharacterId> TargetIdList { get; }
         public SlipDamageCode SlipDamageCode { get; }
         public ImmutableList<AttackValueObject> AttackList { get; }
-
-        public int GetTotal()
-        {
-            return AttackList
-                .Sum(x => x.Amount);
-        }
     }
 }

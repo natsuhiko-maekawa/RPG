@@ -231,7 +231,7 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<DestroyedPartGeneratorService>(Lifetime.Singleton);
             builder.Register<OrderService>(Lifetime.Singleton);
             builder.Register<RestoreGeneratorService>(Lifetime.Singleton);
-            builder.Register<SlipDamageService>(Lifetime.Singleton);
+            builder.Register<SlipDamageGeneratorService>(Lifetime.Singleton);
             builder.Register<ToBodyPartNumberService>(Lifetime.Singleton);
             builder.Register<ToBuffNumberService>(Lifetime.Singleton);
 
