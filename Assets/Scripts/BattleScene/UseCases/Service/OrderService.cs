@@ -14,7 +14,7 @@ namespace BattleScene.UseCases.Service
     public class OrderService
     {
         private readonly IFactory<PropertyValueObject, CharacterTypeCode> _characterPropertyFactory;
-        private readonly IRepository<AilmentEntity, AilmentId> _ailmentRepository;
+        private readonly IRepository<AilmentEntity, (CharacterId, AilmentCode)> _ailmentRepository;
         private readonly IRepository<BuffEntity, BuffId> _buffRepository;
         private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
         private readonly IRepository<OrderedItemEntity, OrderNumber> _orderedItemRepository;
@@ -22,7 +22,7 @@ namespace BattleScene.UseCases.Service
 
         public OrderService(
             IFactory<PropertyValueObject, CharacterTypeCode> characterPropertyFactory, 
-            IRepository<AilmentEntity, AilmentId> ailmentRepository, 
+            IRepository<AilmentEntity, (CharacterId, AilmentCode)> ailmentRepository, 
             IRepository<BuffEntity, BuffId> buffRepository, 
             IRepository<CharacterEntity, CharacterId> characterRepository,
             IRepository<OrderedItemEntity, OrderNumber> orderedItemRepository, 
@@ -75,9 +75,9 @@ namespace BattleScene.UseCases.Service
         {
             var newOrder = order.ToImmutableList();
 
-            foreach (var ailmentEntity in ailmentEntityList.Where(x => x.GetTurn() != null))
+            foreach (var ailmentEntity in ailmentEntityList.Where(x => x.IsSelfRecovery))
             {
-                var index = ailmentEntity.GetTurn().GetValueOrDefault();
+                var index = ailmentEntity.Turn;
                 var orderedAilmentEntity = new OrderedItem(ailmentEntity.AilmentCode);
                 newOrder = newOrder
                     .Insert(index, orderedAilmentEntity)

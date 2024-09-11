@@ -10,6 +10,7 @@ namespace BattleScene.InterfaceAdapter.State.Skill
     public class AilmentState : AbstractSkillState
     {
         private readonly AilmentGeneratorService _ailmentGenerator;
+        private readonly AilmentRegistererService _ailmentRegisterer;
         private readonly BattleLogDomainService _battleLog;
         private readonly BattleLoggerService _battleLoggerService;
         private readonly SkillCommonValueObject _skillCommon;
@@ -20,6 +21,7 @@ namespace BattleScene.InterfaceAdapter.State.Skill
 
         public AilmentState(
             AilmentGeneratorService ailmentGenerator, 
+            AilmentRegistererService ailmentRegisterer,
             BattleLoggerService battleLoggerService,
             BattleLogDomainService battleLog,
             SkillCommonValueObject skillCommon,
@@ -29,6 +31,7 @@ namespace BattleScene.InterfaceAdapter.State.Skill
             AilmentFailureState ailmentFailureState)
         {
             _ailmentGenerator = ailmentGenerator;
+            _ailmentRegisterer = ailmentRegisterer;
             _battleLoggerService = battleLoggerService;
             _battleLog = battleLog;
             _skillCommon = skillCommon;
@@ -44,6 +47,7 @@ namespace BattleScene.InterfaceAdapter.State.Skill
                 skillCommon: _skillCommon,
                 ailmentParameter: _ailmentParameter,
                 targetIdList: _targetIdList);
+            _ailmentRegisterer.Register(ailment);
             _battleLoggerService.Log(ailment);
             AbstractSkillState nextState = _battleLog.GetLast().ActualTargetIdList.IsEmpty
                 ? _ailmentFailureState 

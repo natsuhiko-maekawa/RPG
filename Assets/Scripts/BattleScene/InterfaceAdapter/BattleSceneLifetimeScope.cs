@@ -128,6 +128,7 @@ namespace BattleScene.InterfaceAdapter
             #endregion
 
             #region RegisterScriptableObject
+            builder.RegisterComponentInHierarchy<IResource<AilmentPropertyDto, AilmentCode>>();
             builder.RegisterComponentInHierarchy<IResource<AilmentViewInfoDto, AilmentCode>>();
             builder.Register<IResource<BodyPartViewInfoDto, BodyPartCode>, BodyPartViewInfoResource>(Lifetime.Singleton);
             builder.RegisterComponentInHierarchy<IResource<BuffViewInfoDto, BuffCode>>();
@@ -211,6 +212,8 @@ namespace BattleScene.InterfaceAdapter
             #endregion
             
             #region RegisterFactory
+            builder.Register<IFactory<AilmentPropertyValueObject, AilmentCode>, AilmentPropertyFactory>(
+                Lifetime.Singleton);
             builder.Register<IFactory<PropertyValueObject, CharacterTypeCode>, PropertyFactory>(Lifetime.Singleton);
             builder.Register<IFactory<PlayerPropertyValueObject, CharacterTypeCode>, PlayerPropertyFactory>
                 (Lifetime.Singleton);
@@ -222,7 +225,7 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<IBodyPartRepository, BodyPartRepository>(Lifetime.Singleton);
             builder.Register<ICharacterRepository, CharacterRepository>(Lifetime.Singleton);
             builder.Register<IEnemyRepository, EnemyRepository>(Lifetime.Singleton);
-            builder.Register<IRepository<AilmentEntity, AilmentId>, Repository<AilmentEntity, AilmentId>>(
+            builder.Register<IRepository<AilmentEntity, (CharacterId, AilmentCode)>, Repository<AilmentEntity, (CharacterId, AilmentCode)>>(
                 Lifetime.Singleton);
             builder.Register<IRepository<BattleLogEntity, BattleLogId>, Repository<BattleLogEntity, BattleLogId>>(
                 Lifetime.Singleton);
@@ -274,6 +277,7 @@ namespace BattleScene.InterfaceAdapter
             #region RegisterService
             builder.Register<ActionTimeService>(Lifetime.Singleton);
             builder.Register<AilmentGeneratorService>(Lifetime.Singleton);
+            builder.Register<AilmentRegistererService>(Lifetime.Singleton);
             builder.Register<AttackCounterService>(Lifetime.Singleton);
             builder.Register<AttacksWeakPointEvaluatorService>(Lifetime.Singleton);
             builder.Register<BuffGeneratorService>(Lifetime.Singleton);

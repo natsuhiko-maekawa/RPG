@@ -1,5 +1,6 @@
 ﻿using System.Collections.Immutable;
 using System.Linq;
+using BattleScene.Domain.Code;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
@@ -8,10 +9,10 @@ namespace BattleScene.Domain.DomainService
 {
     public class AilmentDomainService
     {
-        private readonly IRepository<AilmentEntity, AilmentId> _ailmentRepository;
+        private readonly IRepository<AilmentEntity, (CharacterId, AilmentCode)> _ailmentRepository;
 
         public AilmentDomainService(
-            IRepository<AilmentEntity, AilmentId> ailmentRepository)
+            IRepository<AilmentEntity, (CharacterId, AilmentCode)> ailmentRepository)
         {
             _ailmentRepository = ailmentRepository;
         }
@@ -24,8 +25,8 @@ namespace BattleScene.Domain.DomainService
         {
             return _ailmentRepository.Select()
                 .Where(x => Equals(x.CharacterId, characterId))
-                .Where(x => x.GetTurn() != null)
-                .OrderBy(x => x.GetTurn())
+                .Where(x => x.IsSelfRecovery)
+                .OrderBy(x => x.Turn)
                 .ThenBy(x => x)
                 .ToImmutableList();
         }
@@ -56,7 +57,7 @@ namespace BattleScene.Domain.DomainService
         {
             return _ailmentRepository.Select()
                 .Where(x => Equals(x.CharacterId, characterId))
-                .OrderByDescending(x => x.Priority)
+                // .OrderByDescending(x => x.Priority)
                 .FirstOrDefault();
         }
     }

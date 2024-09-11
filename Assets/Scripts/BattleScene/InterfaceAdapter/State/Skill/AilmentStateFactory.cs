@@ -9,6 +9,7 @@ namespace BattleScene.InterfaceAdapter.State.Skill
     public class AilmentStateFactory
     {
         private readonly AilmentGeneratorService _ailmentGenerator;
+        private readonly AilmentRegistererService _ailmentRegisterer;
         private readonly BattleLoggerService _battleLoggerService;
         private readonly BattleLogDomainService _battleLog;
         private readonly AilmentMessageState _ailmentMessageState;
@@ -16,12 +17,14 @@ namespace BattleScene.InterfaceAdapter.State.Skill
 
         public AilmentStateFactory(
             AilmentGeneratorService ailmentGenerator,
+            AilmentRegistererService ailmentRegisterer,
             BattleLoggerService battleLoggerService,
             BattleLogDomainService battleLog,
             AilmentMessageState ailmentMessageState,
             AilmentFailureState ailmentFailureState)
         {
             _ailmentGenerator = ailmentGenerator;
+            _ailmentRegisterer = ailmentRegisterer;
             _battleLoggerService = battleLoggerService;
             _battleLog = battleLog;
             _ailmentMessageState = ailmentMessageState;
@@ -33,6 +36,7 @@ namespace BattleScene.InterfaceAdapter.State.Skill
             AilmentParameterValueObject ailmentParameter,
             IList<CharacterId> targetIdList) => new AilmentState(
             ailmentGenerator: _ailmentGenerator,
+            ailmentRegisterer: _ailmentRegisterer,
             battleLoggerService: _battleLoggerService,
             battleLog: _battleLog,
             skillCommon: skillCommon,

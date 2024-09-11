@@ -4,31 +4,27 @@ using BattleScene.Domain.ValueObject;
 
 namespace BattleScene.Domain.Entity
 {
-    public class AilmentEntity : BaseEntity<AilmentEntity, AilmentId>
+    public class AilmentEntity : BaseEntity<AilmentEntity, (CharacterId, AilmentCode)>
     {
         private TurnValueObject _turn;
-
+        
         public AilmentEntity(
             CharacterId characterId,
             AilmentCode ailmentCode,
-            Priority priority,
-            TurnValueObject turn)
+            int turn,
+            bool isSelfRecovery)
         {
             CharacterId = characterId;
             AilmentCode = ailmentCode;
-            Priority = priority;
-            _turn = turn;
+            Turn = turn;
+            IsSelfRecovery = isSelfRecovery;
         }
 
-        public override AilmentId Id => new(CharacterId, AilmentCode);
+        public override (CharacterId, AilmentCode) Id => (CharacterId, AilmentCode);
         public CharacterId CharacterId { get; }
         public AilmentCode AilmentCode { get; }
-        public Priority Priority { get; }
-
-        public int? GetTurn()
-        {
-            return _turn.Get();
-        }
+        public int Turn { get; }
+        public bool IsSelfRecovery { get; }
 
         public void AdvanceTurn()
         {
@@ -38,17 +34,6 @@ namespace BattleScene.Domain.Entity
         public bool TurnIsEnd()
         {
             return _turn.IsEnd();
-        }
-
-        public override bool Equals(object obj)
-        {
-            if (obj is not AilmentEntity ailmentEntity) return false;
-            return CharacterId == ailmentEntity.CharacterId && AilmentCode == ailmentEntity.AilmentCode;
-        }
-
-        public override int GetHashCode()
-        {
-            return (CharacterId, AilmentCode).GetHashCode();
         }
     }
 }
