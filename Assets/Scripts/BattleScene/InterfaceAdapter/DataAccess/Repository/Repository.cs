@@ -1,13 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
+using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.IRepository;
 using Utility;
 
 namespace BattleScene.InterfaceAdapter.DataAccess.Repository
 {
-    public class Repository<TEntity, TId> : IRepository<TEntity, TId> 
+    public class Repository<TEntity, TId> : IRepository<TEntity, TId>, IReadOnlyRepository<TEntity, TId>, ISerializable
         where TEntity : BaseEntity<TEntity, TId>
     {
         private readonly HashSet<TEntity> _entitySet = new();
