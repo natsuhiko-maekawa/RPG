@@ -68,18 +68,18 @@ namespace BattleScene.UseCases.OldEvent
         //         : GetIndexWhenAvoid();
         // }
 
-        private EventCode GetIndex()
-        {
-            // 敵を倒した場合、別ルートに遷移
-            // if (_hitPoint.AnyIsDead()) return EventCode.PlayerBeatEnemyEvent;
-            return EventCode.SwitchSkillEvent;
-        }
+        // private EventCode GetIndex()
+        // {
+        //     敵を倒した場合、別ルートに遷移
+        //     if (_hitPoint.AnyIsDead()) return EventCode.PlayerBeatEnemyEvent;
+        //     return EventCode.SwitchSkillEvent;
+        // }
 
-        private EventCode GetIndexWhenAvoid()
-        {
-            // 敵を倒した場合、別ルートに遷移
-            // if (_hitPoint.AnyIsDead()) return EventCode.PlayerBeatEnemyEvent;
-            return EventCode.SwitchSkillEvent;
-        }
+        // private EventCode GetIndexWhenAvoid()
+        // {
+        //     敵を倒した場合、別ルートに遷移
+        //     if (_hitPoint.AnyIsDead()) return EventCode.PlayerBeatEnemyEvent;
+        //     return EventCode.SwitchSkillEvent;
+        // }
     }
 }
