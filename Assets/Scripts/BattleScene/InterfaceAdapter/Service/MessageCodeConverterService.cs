@@ -8,6 +8,7 @@ using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
 using BattleScene.InterfaceAdapter.DataAccess;
 using BattleScene.InterfaceAdapter.DataAccess.Dto;
+using UnityEngine;
 
 namespace BattleScene.InterfaceAdapter.Service
 {
@@ -122,7 +123,6 @@ namespace BattleScene.InterfaceAdapter.Service
         private string ReplaceDamage(string message)
         {
             if (!message.Contains(Damage)) return message;
-            // TODO: ArgumentNullException
             var totalPrefix = _battleLogRepository.Select()
                 .Max().AttackList.Count(x => x.IsHit) == 1 ? "" : "計";
             var damage = _battleLogRepository.Select()
@@ -146,8 +146,8 @@ namespace BattleScene.InterfaceAdapter.Service
         private string ReplaceSkill(string message)
         {
             if (!message.Contains(Skill)) return message;
-            if (!_orderedItems.First().TryGetCharacterId(out var characterId))
-                throw new InvalidOperationException();
+            _orderedItems.First().TryGetCharacterId(out var characterId);
+            Debug.Assert(characterId != null);
             var skillCode = _battleLog.GetLast().SkillCode;
             var skillName = _skillViewInfoResource.Get(skillCode).SkillName;
             return message.Replace(Skill, skillName);
