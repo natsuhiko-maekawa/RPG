@@ -1,7 +1,6 @@
 ﻿using System;
 using BattleScene.Domain.Code;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace BattleScene.InterfaceAdapter.DataAccess.Dto
 {
