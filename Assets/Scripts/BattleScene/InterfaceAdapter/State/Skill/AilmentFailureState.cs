@@ -23,6 +23,8 @@ namespace BattleScene.InterfaceAdapter.State.Skill
         
         public override void Select()
         {
+            // TODO: 要修正
+            // TODO: 本当はダメージスキルだけをスキップしたい
             SkillContext.TransitionTo(_skillQuitState);
         }
     }
