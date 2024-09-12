@@ -22,7 +22,7 @@ namespace BattleScene.InterfaceAdapter.Service
         private const string Skill = "[skill]";
         private const string Target = "[target]";
         private const string TechnicalPoint = "[technicalPoint]";
-        private readonly IResource<AilmentViewInfoDto, AilmentCode> _ailmentViewInfoResource;
+        private readonly IAilmentViewInfoResource _ailmentViewInfoResource;
         private readonly IResource<BodyPartViewInfoDto, BodyPartCode> _bodyPartViewInfoResource;
         private readonly IResource<BuffViewInfoDto, BuffCode> _buffViewInfoResource;
         private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
@@ -36,7 +36,7 @@ namespace BattleScene.InterfaceAdapter.Service
         private readonly PlayerDomainService _player;
 
         public MessageCodeConverterService(
-            IResource<AilmentViewInfoDto, AilmentCode> ailmentViewInfoResource,
+            IAilmentViewInfoResource ailmentViewInfoResource,
             IResource<BodyPartViewInfoDto, BodyPartCode> bodyPartViewInfoResource,
             IResource<BuffViewInfoDto, BuffCode> buffViewInfoResource,
             IRepository<CharacterEntity, CharacterId> characterRepository,
@@ -107,9 +107,19 @@ namespace BattleScene.InterfaceAdapter.Service
         private string ReplaceAilments(string message)
         {
             if (!message.Contains(Ailment)) return message;
-            var ailmentCode = _battleLog.GetLast().AilmentCode;
-            var ailmentName = _ailmentViewInfoResource.Get(ailmentCode).AilmentName;
+            var ailmentName = GetAilmentName();
             return message.Replace(Ailment, ailmentName);
+        }
+
+        private string GetAilmentName()
+        {
+            var battleLog = _battleLog.GetLast();
+            if (battleLog.AilmentCode != AilmentCode.NoAilment)
+                return _ailmentViewInfoResource.Get(battleLog.AilmentCode).Name;
+            if (battleLog.SlipDamageCode != SlipDamageCode.NoSlipDamage)
+                return _ailmentViewInfoResource.Get(battleLog.SlipDamageCode).Name;
+            Debug.Assert(false);
+            return "";
         }
 
         private string ReplaceBuff(string message)
