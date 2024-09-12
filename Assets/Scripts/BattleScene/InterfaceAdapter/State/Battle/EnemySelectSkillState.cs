@@ -1,7 +1,6 @@
 ﻿using System.Collections.Immutable;
 using BattleScene.Domain.DomainService;
 using BattleScene.UseCases.IService;
-using BattleScene.UseCases.Service;
 using VContainer;
 
 namespace BattleScene.InterfaceAdapter.State.Battle
