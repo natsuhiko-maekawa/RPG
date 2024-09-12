@@ -1,12 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Collections.Immutable;
-using System.Linq;
 using UnityEngine;
 
 namespace BattleScene.InterfaceAdapter.DataAccess.ScriptableObject
 {
-    public abstract class BaseListScriptableObject<TItem, TKey>
-        : UnityEngine.ScriptableObject, ISerializationCallbackReceiver, IResource<TItem, TKey>
+    public abstract class BaseScriptableObject<TItem, TKey>
+        : UnityEngine.ScriptableObject, ISerializationCallbackReceiver
         where TItem : IUnique<TKey>
     {
         [SerializeField] private List<TItem> itemList = new();
@@ -19,11 +18,6 @@ namespace BattleScene.InterfaceAdapter.DataAccess.ScriptableObject
         public void OnAfterDeserialize()
         {
             ItemList = itemList.ToImmutableList();
-        }
-
-        public TItem Get(TKey key)
-        {
-            return ItemList.First(x => Equals(x.Key, key));
         }
     }
 }

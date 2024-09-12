@@ -5,7 +5,7 @@ using BattleScene.InterfaceAdapter.DataAccess.ScriptableObject;
 namespace BattleScene.InterfaceAdapter.DataAccess.Resource
 {
     public class SkillViewInfoListScriptableObjectResource
-        : BaseListScriptableObjectResource<SkillViewInfoListScriptableObject, SkillPropertyDto, SkillCode>
+        : BaseListScriptableObjectResource<SkillViewInfoScriptableObject, SkillPropertyDto, SkillCode>
     {
     }
 }

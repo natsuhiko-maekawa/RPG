@@ -5,7 +5,7 @@ using UnityEngine;
 namespace BattleScene.InterfaceAdapter.DataAccess.ScriptableObject
 {
     [CreateAssetMenu(menuName = "ScriptableObjects/EnemyViewInfo")]
-    public class EnemyViewInfoScriptableObject : BaseListScriptableObject<EnemyViewInfoDto, CharacterTypeCode>
+    public class EnemyViewInfoScriptableObject : BaseScriptableObject<EnemyViewInfoDto, CharacterTypeCode>
     {
     }
 }

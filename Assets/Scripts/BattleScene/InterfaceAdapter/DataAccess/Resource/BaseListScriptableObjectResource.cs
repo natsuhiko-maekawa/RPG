@@ -7,7 +7,7 @@ namespace BattleScene.InterfaceAdapter.DataAccess.Resource
 {
     public abstract class BaseListScriptableObjectResource<TListScriptableObject, TItem, TId>
         : MonoBehaviour, IResource<TItem, TId>
-        where TListScriptableObject : BaseListScriptableObject<TItem, TId>
+        where TListScriptableObject : BaseScriptableObject<TItem, TId>
         where TItem : IUnique<TId>
     {
         [SerializeField] private TListScriptableObject listScriptableObject;

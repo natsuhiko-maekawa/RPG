@@ -5,7 +5,7 @@ using UnityEngine;
 namespace BattleScene.InterfaceAdapter.DataAccess.ScriptableObject
 {
     [CreateAssetMenu(menuName = "ScriptableObjects/Message")]
-    public class MessageScriptableObject : BaseListScriptableObject<MessageDto, MessageCode>
+    public class MessageScriptableObject : BaseScriptableObject<MessageDto, MessageCode>
     {
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 namespace BattleScene.InterfaceAdapter.DataAccess.ScriptableObject
 {
     [CreateAssetMenu(menuName = "ScriptableObjects/BuffViewInfo")]
-    public class BuffViewInfoScriptableObject : BaseListScriptableObject<BuffViewInfoDto, BuffCode>
+    public class BuffViewInfoScriptableObject : BaseScriptableObject<BuffViewInfoDto, BuffCode>
     {
     }
 }

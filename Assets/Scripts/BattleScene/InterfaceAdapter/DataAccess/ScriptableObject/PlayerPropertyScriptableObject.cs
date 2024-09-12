@@ -5,7 +5,7 @@ using UnityEngine;
 namespace BattleScene.InterfaceAdapter.DataAccess.ScriptableObject
 {
     [CreateAssetMenu(menuName = "ScriptableObjects/PlayerProperty")]
-    public class PlayerPropertyScriptableObject : BaseListScriptableObject<PlayerPropertyDto, CharacterTypeCode>
+    public class PlayerPropertyScriptableObject : BaseScriptableObject<PlayerPropertyDto, CharacterTypeCode>
     {
     }
 }

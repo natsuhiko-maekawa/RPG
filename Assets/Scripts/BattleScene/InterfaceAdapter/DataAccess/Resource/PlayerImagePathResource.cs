@@ -5,7 +5,7 @@ using BattleScene.InterfaceAdapter.DataAccess.ScriptableObject;
 namespace BattleScene.InterfaceAdapter.DataAccess.Resource
 {
     public class PlayerImagePathResource
-        : BaseListScriptableObjectResource<PlayerImageListScriptableObject, PlayerImagePathDto, PlayerImageCode>
+        : BaseListScriptableObjectResource<PlayerImageScriptableObject, PlayerImagePathDto, PlayerImageCode>
     {
     }
 }
