@@ -5,7 +5,7 @@ using UnityEngine;
 namespace BattleScene.InterfaceAdapter.DataAccess.ScriptableObject
 {
     [CreateAssetMenu(menuName = "ScriptableObjects/AilmentViewInfo")]
-    public class AilmentViewInfoScriptableObject : BaseListScriptableObject<AilmentViewInfoDto, AilmentCode>
+    public class AilmentViewInfoScriptableObject : BaseListScriptableObject<AilmentViewInfoDto, (AilmentCode, SlipDamageCode)>
     {
     }
 }

@@ -1,18 +1,21 @@
 ﻿using System;
 using BattleScene.Domain.Code;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace BattleScene.InterfaceAdapter.DataAccess.Dto
 {
     [Serializable]
-    public class AilmentViewInfoDto : IUnique<AilmentCode>, ISerializationCallbackReceiver
+    public class AilmentViewInfoDto : IUnique<(AilmentCode, SlipDamageCode)>, ISerializationCallbackReceiver
     {
-        [SerializeField] private string ailmentCode;
-        [SerializeField] private string ailmentName;
+        [SerializeField] private string code;
+        [SerializeField] private string name;
         [SerializeField] private string messageCode;
         [SerializeField] private string playerImageCode;
-        public AilmentCode Key { get; private set; }
-        public string AilmentName { get; set; }
+        public (AilmentCode, SlipDamageCode) Key { get; private set; }
+        public AilmentCode AilmentCode { get; private set; }
+        public SlipDamageCode SlipDamageCode { get; private set; }
+        public string Name { get; set; }
         public MessageCode MessageCode { get; private set; }
         public PlayerImageCode PlayerImageCode { get; private set; }
         
@@ -22,10 +25,30 @@ namespace BattleScene.InterfaceAdapter.DataAccess.Dto
 
         public void OnAfterDeserialize()
         {
-            Key = Enum.Parse<AilmentCode>(ailmentCode);
-            AilmentName = ailmentName;
+            SetCode();
+            Key = (AilmentCode, SlipDamageCode);
+            Name = name;
             MessageCode = Enum.Parse<MessageCode>(messageCode);
             PlayerImageCode = Enum.Parse<PlayerImageCode>(playerImageCode);
+        }
+
+        private void SetCode()
+        {
+            if (Enum.TryParse<AilmentCode>(code, out var ailmentCode))
+            {
+                AilmentCode = ailmentCode;
+                SlipDamageCode = SlipDamageCode.NoSlipDamage;
+                return;
+            }
+
+            if (Enum.TryParse<SlipDamageCode>(code, out var slipDamageCode))
+            {
+                AilmentCode = AilmentCode.NoAilment;
+                SlipDamageCode = slipDamageCode;
+                return;
+            }
+
+            throw new ArgumentException();
         }
     }
 }
