@@ -2,10 +2,9 @@
 using System.Collections.Immutable;
 using UnityEngine;
 
-namespace BattleScene.InterfaceAdapter.DataAccess.ScriptableObject
+namespace BattleScene.InterfaceAdapter.DataAccess.ScriptableObjects
 {
-    public abstract class BaseScriptableObject<TItem, TKey>
-        : UnityEngine.ScriptableObject, ISerializationCallbackReceiver
+    public abstract class BaseScriptableObject<TItem, TKey> : ScriptableObject, ISerializationCallbackReceiver
         where TItem : IUnique<TKey>
     {
         [SerializeField] private List<TItem> itemList = new();

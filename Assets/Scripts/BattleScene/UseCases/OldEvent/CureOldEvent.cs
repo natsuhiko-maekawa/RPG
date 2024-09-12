@@ -29,7 +29,7 @@ namespace BattleScene.UseCases.OldEvent
 
         public EventCode NextEvent()
         {
-            return EventCode.SwitchSkillEvent;
+            return SwitchSkillEvent;
         }
     }
 }

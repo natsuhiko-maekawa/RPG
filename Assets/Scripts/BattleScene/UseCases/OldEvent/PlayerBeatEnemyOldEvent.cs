@@ -64,7 +64,7 @@ namespace BattleScene.UseCases.OldEvent
             // if (deadEnemyList == targetList)
             //     return EventCode.LoopEndEvent;
 
-            return EventCode.SwitchSkillEvent;
+            return SwitchSkillEvent;
         }
     }
 }

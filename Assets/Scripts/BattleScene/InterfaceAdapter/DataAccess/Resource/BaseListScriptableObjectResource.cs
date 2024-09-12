@@ -1,6 +1,6 @@
 ﻿using System.Collections.Immutable;
 using System.Linq;
-using BattleScene.InterfaceAdapter.DataAccess.ScriptableObject;
+using BattleScene.InterfaceAdapter.DataAccess.ScriptableObjects;
 using UnityEngine;
 
 namespace BattleScene.InterfaceAdapter.DataAccess.Resource
