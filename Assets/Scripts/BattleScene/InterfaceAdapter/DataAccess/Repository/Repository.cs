@@ -38,6 +38,11 @@ namespace BattleScene.InterfaceAdapter.DataAccess.Repository
             }
         }
 
+        public void Delete()
+        {
+            _entitySet.Clear();
+        }
+        
         public void Delete(TId id)
         {
             _entitySet.RemoveWhere(x => Equals(x.Id, id));

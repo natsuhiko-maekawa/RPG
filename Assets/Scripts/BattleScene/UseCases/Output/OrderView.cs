@@ -1,4 +1,6 @@
-﻿using BattleScene.Domain.Entity;
+﻿using System.Collections.Immutable;
+using System.Linq;
+using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
 using BattleScene.UseCases.IPresenter;
@@ -7,11 +9,11 @@ namespace BattleScene.UseCases.Output
 {
     public class OrderView
     {
-        private readonly IRepository<OrderedItemEntity, OrderNumber> _orderedItemRepository;
+        private readonly IRepository<OrderedItemEntity, OrderId> _orderedItemRepository;
         private readonly IOrderViewPresenter _orderView;
 
         public OrderView(
-            IRepository<OrderedItemEntity, OrderNumber> orderedItemRepository,
+            IRepository<OrderedItemEntity, OrderId> orderedItemRepository,
             IOrderViewPresenter orderView)
         {
             _orderedItemRepository = orderedItemRepository;
@@ -20,7 +22,9 @@ namespace BattleScene.UseCases.Output
 
         public void Out()
         {
-            var order = _orderedItemRepository.Select();
+            var order = _orderedItemRepository.Select()
+                .OrderBy(x => x.OrderNumber)
+                .ToImmutableList();
             _orderView.Start(order);
         }
     }

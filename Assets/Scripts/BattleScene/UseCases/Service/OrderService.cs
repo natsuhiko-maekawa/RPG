@@ -18,7 +18,7 @@ namespace BattleScene.UseCases.Service
         private readonly IRepository<AilmentEntity, (CharacterId, AilmentCode)> _ailmentRepository;
         private readonly BuffDomainService _buff;
         private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
-        private readonly IRepository<OrderedItemEntity, OrderNumber> _orderedItemRepository;
+        private readonly IRepository<OrderedItemEntity, OrderId> _orderedItemRepository;
         private readonly IRepository<SlipDamageEntity, SlipDamageCode> _slipDamageRepository;
 
         public OrderService(
@@ -26,7 +26,7 @@ namespace BattleScene.UseCases.Service
             IRepository<AilmentEntity, (CharacterId, AilmentCode)> ailmentRepository, 
             BuffDomainService buff, 
             IRepository<CharacterEntity, CharacterId> characterRepository,
-            IRepository<OrderedItemEntity, OrderNumber> orderedItemRepository, 
+            IRepository<OrderedItemEntity, OrderId> orderedItemRepository, 
             IRepository<SlipDamageEntity, SlipDamageCode> slipDamageRepository)
         {
             _characterPropertyFactory = characterPropertyFactory;
@@ -64,9 +64,13 @@ namespace BattleScene.UseCases.Service
             orderedItemList = InsertSlipDamage(slipDamages, orderedItemList);
             
             var orderedItemEntityList = orderedItemList
-                .Select((x, i) => new OrderedItemEntity(new OrderNumber(i), x))
+                .Select((x, i) => new OrderedItemEntity(
+                    orderId: new OrderId(),
+                    orderNumber: i,
+                    orderedItem: x))
                 .ToImmutableList();
             
+            _orderedItemRepository.Delete();
             _orderedItemRepository.Update(orderedItemEntityList);
         }
 

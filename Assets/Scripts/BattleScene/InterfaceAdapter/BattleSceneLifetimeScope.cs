@@ -239,7 +239,7 @@ namespace BattleScene.InterfaceAdapter
                 Lifetime.Singleton);
             builder.Register<IRepository<EnemyEntity, CharacterId>, Repository<EnemyEntity, CharacterId>>(
                 Lifetime.Singleton);
-            builder.Register<IRepository<OrderedItemEntity, OrderNumber>, Repository<OrderedItemEntity, OrderNumber>>(
+            builder.Register<IRepository<OrderedItemEntity, OrderId>, Repository<OrderedItemEntity, OrderId>>(
                 Lifetime.Singleton);
             builder.Register<IRepository<SlipDamageEntity, SlipDamageCode>, Repository<SlipDamageEntity, SlipDamageCode>>(
                 Lifetime.Singleton);

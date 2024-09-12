@@ -9,10 +9,10 @@ namespace BattleScene.Domain.DomainService
 {
     public class OrderedItemsDomainService
     {
-        private readonly IRepository<OrderedItemEntity, OrderNumber> _orderedItemRepository;
+        private readonly IRepository<OrderedItemEntity, OrderId> _orderedItemRepository;
 
         public OrderedItemsDomainService(
-            IRepository<OrderedItemEntity, OrderNumber> orderedItemRepository)
+            IRepository<OrderedItemEntity, OrderId> orderedItemRepository)
         {
             _orderedItemRepository = orderedItemRepository;
         }
@@ -20,6 +20,7 @@ namespace BattleScene.Domain.DomainService
         public OrderedItemEntity First()
         {
             return _orderedItemRepository.Select()
+                .OrderBy(x => x.OrderNumber)
                 .First();
         }
 
@@ -31,12 +32,6 @@ namespace BattleScene.Domain.DomainService
 
         [Obsolete]
         public AilmentCode FirstAilmentCode()
-        {
-            throw new NotImplementedException();
-        }
-
-        [Obsolete]
-        public SlipDamageCode FirstSlipDamageCode()
         {
             throw new NotImplementedException();
         }

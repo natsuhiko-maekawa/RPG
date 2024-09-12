@@ -1,48 +1,29 @@
-﻿using System;
-using BattleScene.Domain.Code;
+﻿using BattleScene.Domain.Code;
 using BattleScene.Domain.Id;
 using JetBrains.Annotations;
 
 namespace BattleScene.Domain.Entity
 {
-    public class OrderedItemEntity : BaseEntity<OrderedItemEntity, OrderNumber>
+    public class OrderedItemEntity : BaseEntity<OrderedItemEntity, OrderId>
     {
         public OrderedItemEntity(
-            OrderNumber orderNumber,
+            OrderId orderId,
+            int orderNumber,
             OrderedItem orderedItem)
         {
-            Id = orderNumber;
+            Id = orderId;
+            OrderNumber = orderNumber;
             CharacterId = orderedItem.CharacterId;
             AilmentCode = orderedItem.AilmentCode;
             SlipDamageCode = orderedItem.SlipDamageCode;
         }
 
-        public override OrderNumber Id { get; }
+        public override OrderId Id { get; }
+        public int OrderNumber { get; }
         [CanBeNull] private CharacterId CharacterId { get; }
         private AilmentCode AilmentCode { get; }
         private SlipDamageCode SlipDamageCode { get; }
         
-        public CharacterId GetCharacterId()
-        {
-            if (CharacterId == null)
-                throw new InvalidOperationException();
-            return CharacterId;
-        }
-
-        public AilmentCode GetAilmentCode()
-        {
-            if (AilmentCode == AilmentCode.NoAilment)
-                throw new InvalidOperationException();
-            return AilmentCode;
-        }
-
-        public SlipDamageCode GetSlipDamageCode()
-        {
-            if (SlipDamageCode == SlipDamageCode.NoSlipDamage)
-                throw new InvalidOperationException();
-            return SlipDamageCode;
-        }
-
         public bool TryGetCharacterId(out CharacterId characterId)
         {
             characterId = CharacterId;
