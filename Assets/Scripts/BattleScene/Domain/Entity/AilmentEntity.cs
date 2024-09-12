@@ -23,17 +23,23 @@ namespace BattleScene.Domain.Entity
         public override (CharacterId, AilmentCode) Id => (CharacterId, AilmentCode);
         public CharacterId CharacterId { get; }
         public AilmentCode AilmentCode { get; }
-        public int Turn { get; }
+        public int Turn { get; private set; }
         public bool IsSelfRecovery { get; }
 
         public void AdvanceTurn()
         {
-            _turn = _turn.Advance();
+            if (!IsSelfRecovery) return;
+            if (Turn <= 0) return;
+            Turn--;
         }
 
-        public bool TurnIsEnd()
+        public bool TurnIsEnd
         {
-            return _turn.IsEnd();
+            get
+            {
+                if (!IsSelfRecovery) return false;
+                return Turn < 0;
+            }
         }
     }
 }

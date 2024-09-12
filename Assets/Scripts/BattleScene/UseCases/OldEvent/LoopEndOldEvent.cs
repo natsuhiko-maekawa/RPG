@@ -11,7 +11,6 @@ namespace BattleScene.UseCases.OldEvent
 {
     internal class LoopEndOldEvent : IOldEvent
     {
-        private readonly AilmentDomainService _ailment;
         private readonly AilmentOutputDataFactory _ailmentOutputDataFactory;
         private readonly IAilmentViewPresenter _ailmentView;
         private readonly BuffDomainService _buff;
@@ -22,7 +21,6 @@ namespace BattleScene.UseCases.OldEvent
         private readonly OrderedItemsDomainService _orderedItems;
 
         public LoopEndOldEvent(
-            AilmentDomainService ailment,
             AilmentOutputDataFactory ailmentOutputDataFactory,
             IAilmentViewPresenter ailmentView,
             BuffDomainService buff,
@@ -32,7 +30,6 @@ namespace BattleScene.UseCases.OldEvent
             IFrameViewPresenter frameView,
             OrderedItemsDomainService orderedItems)
         {
-            _ailment = ailment;
             _ailmentOutputDataFactory = ailmentOutputDataFactory;
             _ailmentView = ailmentView;
             _buff = buff;
@@ -59,7 +56,8 @@ namespace BattleScene.UseCases.OldEvent
             // 上記以外の場合戦闘を続行
             foreach (var characterId in _characters.GetIdList())
             {
-                _ailment.AdvanceAllTurn(characterId);
+                // 全員の状態異常のターンを進める
+                // _ailment.AdvanceAllTurn(characterId);
                 _buff.AdvanceAllTurn(characterId);
             }
 

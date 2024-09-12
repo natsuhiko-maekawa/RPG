@@ -80,7 +80,7 @@ namespace BattleScene.InterfaceAdapter
             if (debugMode)
             {
                 // デバッグモード時に注入するインスタンスを登録する
-                builder.Register<IEnemiesRegistererService, SlimeRegistererService>(Lifetime.Singleton);
+                builder.Register<IEnemiesRegistererService, SameEnemiesRegistererService>(Lifetime.Singleton);
                 builder.Register<IEnemySkillSelectorService, EnemyAilmentSelectorService>(Lifetime.Singleton);
             }
             else

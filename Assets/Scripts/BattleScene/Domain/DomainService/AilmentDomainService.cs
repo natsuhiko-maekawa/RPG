@@ -1,4 +1,5 @@
-﻿using System.Collections.Immutable;
+﻿using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.Entity;
@@ -34,18 +35,21 @@ namespace BattleScene.Domain.DomainService
         /// <summary>
         ///     すべての状態異常のターンを1ターン進め、無効になった状態異常を削除する。
         /// </summary>
-        public void AdvanceAllTurn(CharacterId characterId)
+        public void AdvanceTurn()
         {
-            foreach (var ailmentEntity in _ailmentRepository.Select()
-                         .Where(x => Equals(x.CharacterId, characterId)))
-                ailmentEntity.AdvanceTurn();
+            var ailments = _ailmentRepository.Select()
+                .Select(x =>
+                {
+                    x.AdvanceTurn();
+                    return x;
+                })
+            .ToImmutableList();
+            _ailmentRepository.Update(ailments);
 
             var recoverAilmentsList = _ailmentRepository.Select()
-                .Where(x => Equals(x.CharacterId, characterId))
-                .Where(x => x.TurnIsEnd())
+                .Where(x => x.TurnIsEnd)
                 .Select(x => x.Id)
                 .ToImmutableList();
-
             _ailmentRepository.Delete(recoverAilmentsList);
         }
 
