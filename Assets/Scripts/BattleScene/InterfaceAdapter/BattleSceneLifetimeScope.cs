@@ -128,7 +128,7 @@ namespace BattleScene.InterfaceAdapter
 
             #region RegisterScriptableObject
             builder.RegisterComponentInHierarchy<IResource<AilmentPropertyDto, AilmentCode>>();
-            builder.RegisterComponentInHierarchy<IResource<AilmentViewInfoDto, AilmentCode>>();
+            builder.RegisterComponentInHierarchy<IAilmentViewInfoResource>();
             builder.Register<IResource<BodyPartViewInfoDto, BodyPartCode>, BodyPartViewInfoResource>(Lifetime.Singleton);
             builder.RegisterComponentInHierarchy<IResource<BuffViewInfoDto, BuffCode>>();
             builder.RegisterComponentInHierarchy<IResource<PropertyDto, CharacterTypeCode>>();
