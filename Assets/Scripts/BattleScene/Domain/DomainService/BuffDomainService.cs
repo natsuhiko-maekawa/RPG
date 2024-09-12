@@ -10,10 +10,10 @@ namespace BattleScene.Domain.DomainService
 {
     public class BuffDomainService
     {
-        private readonly IRepository<BuffEntity, BuffId> _buffRepository;
+        private readonly IRepository<BuffEntity, (CharacterId, BuffCode)> _buffRepository;
 
         public BuffDomainService(
-            IRepository<BuffEntity, BuffId> buffRepository)
+            IRepository<BuffEntity, (CharacterId, BuffCode)> buffRepository)
         {
             _buffRepository = buffRepository;
         }
@@ -33,8 +33,7 @@ namespace BattleScene.Domain.DomainService
         
         public float GetRate(CharacterId characterId, BuffCode buffCode)
         {
-            var buffId = new BuffId(characterId, buffCode);
-            var buffEntity = _buffRepository.Select(buffId);
+            var buffEntity = _buffRepository.Select((characterId, buffCode));
             return buffEntity?.Rate ?? 1.0f;
         }
 

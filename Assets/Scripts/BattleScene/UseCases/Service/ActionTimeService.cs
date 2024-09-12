@@ -12,19 +12,19 @@ namespace BattleScene.UseCases.Service
 {
     public class ActionTimeService
     {
+        private readonly BuffDomainService _buff;
         private readonly CharacterPropertyFactoryService _characterPropertyFactory;
-        private readonly IRepository<BuffEntity, BuffId> _buffRepository;
         private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
         private readonly OrderedItemsDomainService _orderedItems;
 
         public ActionTimeService(
+            BuffDomainService buff,
             CharacterPropertyFactoryService characterPropertyFactory,
-            IRepository<BuffEntity, BuffId> buffRepository,
             IRepository<CharacterEntity, CharacterId> characterRepository,
             OrderedItemsDomainService orderedItems)
         {
+            _buff = buff;
             _characterPropertyFactory = characterPropertyFactory;
-            _buffRepository = buffRepository;
             _characterRepository = characterRepository;
             _orderedItems = orderedItems;
         }
@@ -67,16 +67,11 @@ namespace BattleScene.UseCases.Service
         
         private int GetSpeed(CharacterId characterId)
         {
-            var speed = (float)_characterPropertyFactory.Crate(characterId).Agility;
-            if (_buffRepository.Select()
-                    .Count(x => Equals(x.CharacterId, characterId)) != 0)
-            {
-                var buffId = new BuffId(characterId, BuffCode.Speed);
-                speed *= _buffRepository.Select(buffId)
-                    .Rate;
-            }
+            var agility = (float)_characterPropertyFactory.Crate(characterId).Agility;
+            var speedRate = _buff.GetRate(characterId, BuffCode.Speed);
+            var speed = (int)Math.Ceiling(agility * speedRate);
             
-            return (int)Math.Ceiling(speed);
+            return speed;
         }
     }
 }

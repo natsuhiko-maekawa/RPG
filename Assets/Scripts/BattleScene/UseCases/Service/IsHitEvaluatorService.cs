@@ -16,14 +16,14 @@ namespace BattleScene.UseCases.Service
         private readonly IRepository<AilmentEntity, (CharacterId, AilmentCode)> _ailmentRepository;
         private readonly BodyPartDomainService _bodyPartDomainService;
         private readonly CharacterPropertyFactoryService _characterPropertyFactory;
-        private readonly IRepository<BuffEntity, BuffId> _buffRepository;
+        private readonly IRepository<BuffEntity, (CharacterId, BuffCode)> _buffRepository;
         private readonly IRandomEx _randomEx;
 
         public IsHitEvaluatorService(
             IRepository<AilmentEntity, (CharacterId, AilmentCode)> ailmentRepository,
             BodyPartDomainService bodyPartDomainService,
             CharacterPropertyFactoryService characterPropertyFactory,
-            IRepository<BuffEntity, BuffId> buffRepository,
+            IRepository<BuffEntity, (CharacterId, BuffCode)> buffRepository,
             IRandomEx randomEx)
         {
             _ailmentRepository = ailmentRepository;
@@ -50,9 +50,8 @@ namespace BattleScene.UseCases.Service
         {
             // 両脚損傷時、必ず命中する
             if (!_bodyPartDomainService.IsAvailable(targetId, BodyPartCode.Leg)) return true;
-
-            var utsusemiSkillBuffId = new BuffId(targetId, BuffCode.UtsusemiSkill);
-            if (_buffRepository.Select(utsusemiSkillBuffId) != null) return false;
+            
+            if (_buffRepository.Select((targetId, BuffCode.UtsusemiSkill)) != null) return false;
 
             // 大きいほど命中しやすくなる
             const float threshold = 20.0f;

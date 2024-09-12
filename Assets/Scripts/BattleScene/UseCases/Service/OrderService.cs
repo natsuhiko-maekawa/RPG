@@ -4,6 +4,7 @@ using System.Collections.Immutable;
 using System.Linq;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DataAccess;
+using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
@@ -15,7 +16,7 @@ namespace BattleScene.UseCases.Service
     {
         private readonly IFactory<PropertyValueObject, CharacterTypeCode> _characterPropertyFactory;
         private readonly IRepository<AilmentEntity, (CharacterId, AilmentCode)> _ailmentRepository;
-        private readonly IRepository<BuffEntity, BuffId> _buffRepository;
+        private readonly BuffDomainService _buff;
         private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
         private readonly IRepository<OrderedItemEntity, OrderNumber> _orderedItemRepository;
         private readonly IRepository<SlipDamageEntity, SlipDamageId> _slipDamageRepository;
@@ -23,14 +24,14 @@ namespace BattleScene.UseCases.Service
         public OrderService(
             IFactory<PropertyValueObject, CharacterTypeCode> characterPropertyFactory, 
             IRepository<AilmentEntity, (CharacterId, AilmentCode)> ailmentRepository, 
-            IRepository<BuffEntity, BuffId> buffRepository, 
+            BuffDomainService buff, 
             IRepository<CharacterEntity, CharacterId> characterRepository,
             IRepository<OrderedItemEntity, OrderNumber> orderedItemRepository, 
             IRepository<SlipDamageEntity, SlipDamageId> slipDamageRepository)
         {
             _characterPropertyFactory = characterPropertyFactory;
             _ailmentRepository = ailmentRepository;
-            _buffRepository = buffRepository;
+            _buff = buff;
             _characterRepository = characterRepository;
             _orderedItemRepository = orderedItemRepository;
             _slipDamageRepository = slipDamageRepository;
@@ -111,19 +112,16 @@ namespace BattleScene.UseCases.Service
             return newOrder;
         }
         
+        // TODO: ActionTimeServiceにも同様のメソッドあり
+        // TODO: 共通化する
         private int GetSpeed(CharacterId characterId)
         {
             var characterTypeCode = _characterRepository.Select(characterId).CharacterTypeCode;
-            var speed = (float)_characterPropertyFactory.Create(characterTypeCode).Agility;
-            if (_buffRepository.Select()
-                    .Count(x => Equals(x.CharacterId, characterId)) != 0)
-            {
-                speed *= _buffRepository.Select()
-                    .FirstOrDefault(x => Equals(x.CharacterId, characterId) && x.BuffCode == BuffCode.Speed)
-                    ?.Rate ?? 1.0f;
-            }
+            var agility = (float)_characterPropertyFactory.Create(characterTypeCode).Agility;
+            var speedRate = _buff.GetRate(characterId, BuffCode.Speed);
+            var speed = (int)Math.Ceiling(agility * speedRate);
             
-            return (int)Math.Ceiling(speed);
+            return speed;
         }
     }
 }
