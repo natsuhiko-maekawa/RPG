@@ -33,7 +33,6 @@ namespace BattleScene.InterfaceAdapter.State.Skill
             skillFactory: _skillFactory,
             battleLogRepository: _battleLogRepository,
             messageView: _messageView,
-            skillEndState: _skillEndState,
-            skillTypeCode: skillTypeCode);
+            skillEndState: _skillEndState);
     }
 }
