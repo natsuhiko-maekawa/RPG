@@ -2,14 +2,14 @@
 
 namespace BattleScene.Domain.Id
 {
-    public abstract class AutoGenerationId : IComparable<AutoGenerationId>
+    public abstract class BaseId : IComparable<BaseId>
     {
-        private Guid Id { get; } = Guid.NewGuid();
+        public string Id { get; } = Guid.NewGuid().ToString("N");
 
         public override bool Equals(object obj)
         {
             if (obj == null || GetType() != obj.GetType()) return false;
-            var idObject = (AutoGenerationId)obj;
+            var idObject = (BaseId)obj;
             return Equals(Id, idObject.Id);
         }
 
@@ -18,14 +18,14 @@ namespace BattleScene.Domain.Id
             return Id.GetHashCode();
         }
         
-        public int CompareTo(AutoGenerationId other)
+        public int CompareTo(BaseId other)
         {
             return GetHashCode() - other.GetHashCode();
         }
 
         public override string ToString()
         {
-            return Id.ToString("N");
+            return Id;
         }
     }
 }

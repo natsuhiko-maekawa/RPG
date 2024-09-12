@@ -1,6 +1,6 @@
 ﻿namespace BattleScene.Domain.Id
 {
-    public class CharacterId : AutoGenerationId
+    public class CharacterId : BaseId
     {
     }
 }
