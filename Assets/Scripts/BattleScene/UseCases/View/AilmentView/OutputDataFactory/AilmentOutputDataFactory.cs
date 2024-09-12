@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
+using BattleScene.Domain.Code;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
@@ -12,12 +13,12 @@ namespace BattleScene.UseCases.View.AilmentView.OutputDataFactory
     {
         private readonly IAilmentRepository _ailmentRepository;
         private readonly ICharacterRepository _characterRepository;
-        private readonly IRepository<SlipDamageEntity, SlipDamageId> _slipDamageRepository;
+        private readonly IRepository<SlipDamageEntity, SlipDamageCode> _slipDamageRepository;
 
         public AilmentOutputDataFactory(
             IAilmentRepository ailmentRepository,
             ICharacterRepository characterRepository,
-            IRepository<SlipDamageEntity, SlipDamageId> slipDamageRepository)
+            IRepository<SlipDamageEntity, SlipDamageCode> slipDamageRepository)
         {
             _ailmentRepository = ailmentRepository;
             _characterRepository = characterRepository;
@@ -44,7 +45,7 @@ namespace BattleScene.UseCases.View.AilmentView.OutputDataFactory
             return new AilmentOutputData(
                 CharacterId: characterId,
                 AilmentCodeList: _ailmentRepository.Select(characterId).Select(x => x.AilmentCode).ToImmutableList(),
-                SlipDamageCodeList: _slipDamageRepository.Select().Select(x => x.SlipDamageCode).ToImmutableList());
+                SlipDamageCodeList: _slipDamageRepository.Select().Select(x => x.Id).ToImmutableList());
         }
     }
 }

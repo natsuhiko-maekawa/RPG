@@ -1,7 +1,6 @@
 using System.Collections.Immutable;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.Entity;
-using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
 using BattleScene.InterfaceAdapter.Skill.AbstractClass;
 using BattleScene.InterfaceAdapter.Skill.SkillElement;
@@ -13,10 +12,10 @@ namespace BattleScene.InterfaceAdapter.Skill
     /// </summary>
     internal class MurasameSkill : AbstractSkill
     {
-        private readonly IRepository<SlipDamageEntity, SlipDamageId> _slipDamageRepository;
+        private readonly IRepository<SlipDamageEntity, SlipDamageCode> _slipDamageRepository;
 
         public MurasameSkill(
-            IRepository<SlipDamageEntity, SlipDamageId> slipDamageRepository)
+            IRepository<SlipDamageEntity, SlipDamageCode> slipDamageRepository)
         {
             _slipDamageRepository = slipDamageRepository;
         }
@@ -35,8 +34,7 @@ namespace BattleScene.InterfaceAdapter.Skill
 
         private ImmutableList<AbstractReset> GetResetList()
         {
-            var slipDamageId = new SlipDamageId(SlipDamageCode.Burning);
-            return _slipDamageRepository.Select(slipDamageId) == null
+            return _slipDamageRepository.Select(SlipDamageCode.Burning) == null
                 ? ImmutableList<AbstractReset>.Empty
                 : ImmutableList.Create<AbstractReset>(new BurningReset());
         }

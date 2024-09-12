@@ -4,7 +4,6 @@ using System.Linq;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Entity;
-using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
 using BattleScene.Domain.ValueObject;
 using Utility.Interface;
@@ -15,13 +14,13 @@ namespace BattleScene.UseCases.Service
     {
         private readonly OrderedItemsDomainService _orderedItems;
         private readonly PlayerDomainService _player;
-        private readonly IRepository<SlipDamageEntity, SlipDamageId> _slipDamageRepository;
+        private readonly IRepository<SlipDamageEntity, SlipDamageCode> _slipDamageRepository;
         private readonly IRandomEx _randomEx;
 
         public SlipDamageGeneratorService(
             OrderedItemsDomainService orderedItems,
             PlayerDomainService player,
-            IRepository<SlipDamageEntity, SlipDamageId> slipDamageRepository,
+            IRepository<SlipDamageEntity, SlipDamageCode> slipDamageRepository,
             IRandomEx randomEx)
         {
             _orderedItems = orderedItems;
@@ -53,7 +52,7 @@ namespace BattleScene.UseCases.Service
         private int GetDamageAmount(SlipDamageCode slipDamageCode)
         {
             var slipDamage = _slipDamageRepository.Select()
-                .First(x => x.SlipDamageCode == slipDamageCode);
+                .First(x => x.Id == slipDamageCode);
             var enemyIntelligence = slipDamage.EnemyIntelligence;
             var playerIntelligence = slipDamage.PlayerIntelligence;
             var damageRate = slipDamage.DamageRate;

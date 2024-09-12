@@ -1,21 +1,20 @@
 ﻿using System;
 using BattleScene.Domain.Code;
-using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
 
 namespace BattleScene.Domain.Entity
 {
-    public class SlipDamageEntity : BaseEntity<SlipDamageEntity, SlipDamageId>
+    public class SlipDamageEntity : BaseEntity<SlipDamageEntity, SlipDamageCode>
     {
         private readonly int _defaultTurn;
         private TurnValueObject _turn;
 
         public SlipDamageEntity(
-            SlipDamageCode slipDamageCode,
+            SlipDamageCode id,
             SlipDamageEntityDto dto,
             TurnValueObject turn)
         {
-            SlipDamageCode = slipDamageCode;
+            Id = id;
             DamageRate = dto.DamageRate;
             EnemyIntelligence = dto.EnemyIntelligence;
             PlayerIntelligence = dto.PlayerIntelligence;
@@ -23,9 +22,8 @@ namespace BattleScene.Domain.Entity
             if (_turn.Get() == null) throw new NullReferenceException();
             _defaultTurn = _turn.Get().GetValueOrDefault();
         }
-
-        public override SlipDamageId Id => new(SlipDamageCode);
-        public SlipDamageCode SlipDamageCode { get; }
+        
+        public override SlipDamageCode Id { get; }
         public float DamageRate { get; }
         public int EnemyIntelligence { get; }
         public int PlayerIntelligence { get; }

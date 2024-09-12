@@ -19,7 +19,7 @@ namespace BattleScene.UseCases.Service
         private readonly BuffDomainService _buff;
         private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
         private readonly IRepository<OrderedItemEntity, OrderNumber> _orderedItemRepository;
-        private readonly IRepository<SlipDamageEntity, SlipDamageId> _slipDamageRepository;
+        private readonly IRepository<SlipDamageEntity, SlipDamageCode> _slipDamageRepository;
 
         public OrderService(
             IFactory<PropertyValueObject, CharacterTypeCode> characterPropertyFactory, 
@@ -27,7 +27,7 @@ namespace BattleScene.UseCases.Service
             BuffDomainService buff, 
             IRepository<CharacterEntity, CharacterId> characterRepository,
             IRepository<OrderedItemEntity, OrderNumber> orderedItemRepository, 
-            IRepository<SlipDamageEntity, SlipDamageId> slipDamageRepository)
+            IRepository<SlipDamageEntity, SlipDamageCode> slipDamageRepository)
         {
             _characterPropertyFactory = characterPropertyFactory;
             _ailmentRepository = ailmentRepository;
@@ -103,7 +103,7 @@ namespace BattleScene.UseCases.Service
                         .Count(x => x.CharacterId != null);
                     if (slipDamageEntity.GetTurn() != characterTypeCount % slipDamageEntity.GetTurn()) continue;
                     var orderedSlipDamageEntity
-                        = new OrderedItem(slipDamageEntity.SlipDamageCode);
+                        = new OrderedItem(slipDamageEntity.Id);
                     newOrder = newOrder.Insert(index, orderedSlipDamageEntity)
                         .RemoveAt(order.Count - 1);
                     ++index;
