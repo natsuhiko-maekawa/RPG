@@ -4,21 +4,8 @@ namespace BattleScene.Domain.Entity
 {
     public class TurnEntity : BaseEntity<TurnEntity, TurnId>
     {
-        private int _turn;
-
-        public void Increment()
-        {
-            ++_turn;
-        }
-
-        public TurnNumber Get()
-        {
-            return new TurnNumber(_turn);
-        }
-
         public override TurnId Id { get; }
-        
-        public int Turn { get; }
+        public int Turn { get; private set; }
 
         public TurnEntity(
             TurnId id,
@@ -26,6 +13,11 @@ namespace BattleScene.Domain.Entity
         {
             Id = id;
             Turn = turn;
+        }
+        
+        public void Increment()
+        {
+            Turn++;
         }
     }
 }
