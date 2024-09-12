@@ -1,12 +1,23 @@
 ﻿using System;
-using BattleScene.Domain.Interface;
 
 namespace BattleScene.Domain.Id
 {
-    public abstract class AutoGenerationId : AbstractId<AutoGenerationId, Guid>, IComparable<AutoGenerationId>
+    public abstract class AutoGenerationId : IComparable<AutoGenerationId>
     {
-        protected override Guid Id { get; } = Guid.NewGuid();
+        private Guid Id { get; } = Guid.NewGuid();
 
+        public override bool Equals(object obj)
+        {
+            if (obj == null || GetType() != obj.GetType()) return false;
+            var idObject = (AutoGenerationId)obj;
+            return Equals(Id, idObject.Id);
+        }
+
+        public override int GetHashCode()
+        {
+            return Id.GetHashCode();
+        }
+        
         public int CompareTo(AutoGenerationId other)
         {
             return GetHashCode() - other.GetHashCode();
