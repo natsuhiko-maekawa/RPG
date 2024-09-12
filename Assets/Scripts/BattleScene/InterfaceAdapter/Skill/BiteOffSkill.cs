@@ -51,7 +51,7 @@ namespace BattleScene.InterfaceAdapter.Skill
         private ImmutableList<AbstractDestroy> GetDestroyPartList()
         {
             var destroyList = new List<AbstractDestroy>()
-                { new DestroyArm(), new destroyLeg(), new DestroyStomach() };
+                { new DestroyArm(), new DestroyLeg(), new DestroyStomach() };
             return ImmutableList.Create(_randomEx.Choice(destroyList, _seed));
         }
     }

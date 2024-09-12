@@ -190,7 +190,7 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<ConstantDamage>(Lifetime.Singleton);
             builder.Register<Defence>(Lifetime.Singleton);
             builder.Register<DestroyArm>(Lifetime.Singleton);
-            builder.Register<destroyLeg>(Lifetime.Singleton);
+            builder.Register<DestroyLeg>(Lifetime.Singleton);
             builder.Register<DestroyStomach>(Lifetime.Singleton);
             builder.Register<EnemyParalysis>(Lifetime.Singleton);
             builder.Register<FirstAid>(Lifetime.Singleton);
