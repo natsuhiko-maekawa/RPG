@@ -4,11 +4,8 @@ namespace BattleScene.InterfaceAdapter.Skill.AbstractClass
 {
     public abstract class AbstractSlipDamage
     {
-        public virtual float GetLuckRate()
-        {
-            return 0.5f;
-        }
-
-        public abstract SlipDamageCode GetSlipDamageCode();
+        public abstract SlipDamageCode SlipDamageCode { get; }
+        public virtual float DamageRate { get; } = 1.2f;
+        public virtual float LuckRate { get; } = 0.5f;
     }
 }

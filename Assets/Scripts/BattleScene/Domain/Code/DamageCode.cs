@@ -3,7 +3,8 @@
     public enum DamageExpressionCode
     {
         Basic,
-        Constant
+        Constant,
+        Slip
     }
 
     public enum HitEvaluationCode

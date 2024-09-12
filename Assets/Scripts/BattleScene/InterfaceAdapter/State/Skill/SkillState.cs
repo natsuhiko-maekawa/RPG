@@ -20,6 +20,7 @@ namespace BattleScene.InterfaceAdapter.State.Skill
         private readonly BuffStateFactory _buffStateFactory;
         private readonly DamageStateFactory _damageStateFactory;
         private readonly RestoreStateFactory _restoreStateFactory;
+        private readonly SlipStateFactory _slipStateFactory;
         private readonly IMessageViewPresenter _messageView;
         private readonly SkillCode _skillCode;
         private readonly ImmutableList<CharacterId> _targetIdList;
@@ -35,6 +36,7 @@ namespace BattleScene.InterfaceAdapter.State.Skill
             BuffStateFactory buffStateFactory,
             DamageStateFactory damageStateFactory,
             RestoreStateFactory restoreStateFactory,
+            SlipStateFactory slipStateFactory,
             IMessageViewPresenter messageView)
         {
             _skillCode = skillCode;
@@ -45,6 +47,7 @@ namespace BattleScene.InterfaceAdapter.State.Skill
             _buffStateFactory = buffStateFactory;
             _damageStateFactory = damageStateFactory;
             _restoreStateFactory = restoreStateFactory;
+            _slipStateFactory = slipStateFactory;
             _messageView = messageView;
         }
 
@@ -96,7 +99,11 @@ namespace BattleScene.InterfaceAdapter.State.Skill
                         damageParameter: x,
                         targetIdList: _targetIdList)))
                 .Concat(skill.BuffParameterList.Select(x => _buffStateFactory.Create(skill.SkillCommon, x)))
-                .Concat(skill.RestoreParameterList.Select(x => _restoreStateFactory.Create(skill.SkillCommon, x)));
+                .Concat(skill.RestoreParameterList.Select(x => _restoreStateFactory.Create(skill.SkillCommon, x)))
+                .Concat(skill.SlipParameterList.Select(x => _slipStateFactory.Create(
+                    skillCommon: skill.SkillCommon,
+                    slipParameter: x,
+                    targetIdList: _targetIdList)));
             _skillStateQueue = new Queue<AbstractSkillState>(skillStates);
         }
     }

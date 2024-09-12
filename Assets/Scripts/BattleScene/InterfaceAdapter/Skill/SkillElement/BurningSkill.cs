@@ -5,9 +5,6 @@ namespace BattleScene.InterfaceAdapter.Skill.SkillElement
 {
     public class BurningSkill : AbstractSlipDamage
     {
-        public override SlipDamageCode GetSlipDamageCode()
-        {
-            return SlipDamageCode.Burning;
-        }
+        public override SlipDamageCode SlipDamageCode { get; } = SlipDamageCode.Burning;
     }
 }

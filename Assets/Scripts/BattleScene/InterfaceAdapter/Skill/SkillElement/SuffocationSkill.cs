@@ -5,9 +5,6 @@ namespace BattleScene.InterfaceAdapter.Skill.SkillElement
 {
     public class SuffocationSkill : AbstractSlipDamage
     {
-        public override SlipDamageCode GetSlipDamageCode()
-        {
-            return SlipDamageCode.Suffocation;
-        }
+        public override SlipDamageCode SlipDamageCode { get; } = SlipDamageCode.Suffocation;
     }
 }

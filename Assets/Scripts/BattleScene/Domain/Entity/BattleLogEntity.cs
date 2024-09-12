@@ -21,8 +21,9 @@ namespace BattleScene.Domain.Entity
         public BodyPartCode DestroyedPart { get; }
         public int DestroyCount { get; }
         public BuffCode BuffCode { get; } = BuffCode.NoBuff;
-        public ImmutableList<AttackValueObject> AttackList { get; }
+        public ImmutableList<AttackValueObject> AttackList { get; } = ImmutableList<AttackValueObject>.Empty;
         public int TechnicalPoint { get; }
+        public SlipDamageCode SlipDamageCode { get; }
 
         public BattleLogEntity(
             BattleLogId battleLogId,
@@ -104,6 +105,23 @@ namespace BattleScene.Domain.Entity
             TargetIdList = restore.TargetIdList;
             SkillCode = restore.SkillCode;
             TechnicalPoint = restore.TechnicalPoint;
+        }
+
+        public BattleLogEntity(
+            BattleLogId battleLogId,
+            int sequence,
+            int turn,
+            SlipValueObject slip)
+        {
+            Id = battleLogId;
+            Sequence = sequence;
+            Turn = turn;
+            ActionCode = ActionCode.Skill;
+            ActorId = slip.ActorId;
+            TargetIdList = slip.TargetIdList;
+            ActualTargetIdList = slip.ActualTargetIdList;
+            SkillCode = slip.SkillCode;
+            SlipDamageCode = slip.SlipDamageCode;
         }
 
         public int GetTotalDamageAmount()

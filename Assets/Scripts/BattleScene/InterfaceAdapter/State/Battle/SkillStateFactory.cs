@@ -17,6 +17,7 @@ namespace BattleScene.InterfaceAdapter.State.Battle
         private readonly BuffStateFactory _buffStateFactory;
         private readonly DamageStateFactory _damageStateFactory;
         private readonly RestoreStateFactory _restoreStateFactory;
+        private readonly SlipStateFactory _slipStateFactory;
         private readonly IMessageViewPresenter _messageView;
         
         public SkillStateFactory(
@@ -26,6 +27,7 @@ namespace BattleScene.InterfaceAdapter.State.Battle
             BuffStateFactory buffStateFactory,
             DamageStateFactory damageStateFactory,
             RestoreStateFactory restoreStateFactory,
+            SlipStateFactory slipStateFactory,
             IMessageViewPresenter messageView)
         {
             _container = container;
@@ -34,6 +36,7 @@ namespace BattleScene.InterfaceAdapter.State.Battle
             _buffStateFactory = buffStateFactory;
             _damageStateFactory = damageStateFactory;
             _restoreStateFactory = restoreStateFactory;
+            _slipStateFactory = slipStateFactory;
             _messageView = messageView;
         }
 
@@ -46,6 +49,7 @@ namespace BattleScene.InterfaceAdapter.State.Battle
             buffStateFactory: _buffStateFactory,
             damageStateFactory: _damageStateFactory,
             restoreStateFactory: _restoreStateFactory,
+            slipStateFactory: _slipStateFactory,
             messageView: _messageView);
     }
 }

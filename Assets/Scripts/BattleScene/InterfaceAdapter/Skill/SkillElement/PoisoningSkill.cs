@@ -5,9 +5,6 @@ namespace BattleScene.InterfaceAdapter.Skill.SkillElement
 {
     public class PoisoningSkill : AbstractSlipDamage
     {
-        public override SlipDamageCode GetSlipDamageCode()
-        {
-            return SlipDamageCode.Poisoning;
-        }
+        public override SlipDamageCode SlipDamageCode { get; } = SlipDamageCode.Poisoning;
     }
 }

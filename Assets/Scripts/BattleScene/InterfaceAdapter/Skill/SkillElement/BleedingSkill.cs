@@ -5,9 +5,6 @@ namespace BattleScene.InterfaceAdapter.Skill.SkillElement
 {
     public class BleedingSkill : AbstractSlipDamage
     {
-        public override SlipDamageCode GetSlipDamageCode()
-        {
-            return SlipDamageCode.Bleeding;
-        }
+        public override SlipDamageCode SlipDamageCode { get; } = SlipDamageCode.Bleeding;
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.Immutable;
 using BattleScene.Domain.Code;
 using Range = BattleScene.Domain.Code.Range;
@@ -18,6 +19,7 @@ namespace BattleScene.Domain.ValueObject
         public ImmutableList<DamageParameterValueObject> DamageParameterList { get; }
         public ImmutableList<DestroyedParameterValueObject> DestroyedParameterList { get; }
         public ImmutableList<RestoreParameterValueObject> RestoreParameterList { get; }
+        public ImmutableList<SlipParameterValueObject> SlipParameterList { get; }
 
         public SkillValueObject(
             SkillCode skillCode,
@@ -29,7 +31,8 @@ namespace BattleScene.Domain.ValueObject
             ImmutableList<BuffParameterValueObject> buffList = null,
             ImmutableList<DamageParameterValueObject> damageList = null,
             ImmutableList<DestroyedParameterValueObject> destroyedPartList = null,
-            ImmutableList<RestoreParameterValueObject> restoreParameterList = null)
+            ImmutableList<RestoreParameterValueObject> restoreParameterList = null,
+            IList<SlipParameterValueObject> slipParameterList = null)
         {
             SkillCode = skillCode;
             Range = range;
@@ -46,6 +49,7 @@ namespace BattleScene.Domain.ValueObject
             DamageParameterList = damageList ?? ImmutableList<DamageParameterValueObject>.Empty;
             DestroyedParameterList = destroyedPartList ?? ImmutableList<DestroyedParameterValueObject>.Empty;
             RestoreParameterList = restoreParameterList ?? ImmutableList<RestoreParameterValueObject>.Empty;
+            SlipParameterList = slipParameterList?.ToImmutableList() ?? ImmutableList<SlipParameterValueObject>.Empty;
         }
     }
 }

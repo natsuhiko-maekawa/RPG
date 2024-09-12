@@ -81,7 +81,7 @@ namespace BattleScene.InterfaceAdapter
             {
                 // デバッグモード時に注入するインスタンスを登録する
                 builder.Register<IEnemiesRegistererService, SameEnemiesRegistererService>(Lifetime.Singleton);
-                builder.Register<IEnemySkillSelectorService, EnemyAilmentSelectorService>(Lifetime.Singleton);
+                builder.Register<IEnemySkillSelectorService, EnemySlipSelectorService>(Lifetime.Singleton);
             }
             else
             {
@@ -268,6 +268,9 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<DamageMessageState>(Lifetime.Singleton);
             builder.Register<RestoreStateFactory>(Lifetime.Singleton);
             builder.Register<RestoreMessageState>(Lifetime.Singleton);
+            builder.Register<SlipStateFactory>(Lifetime.Singleton);
+            builder.Register<SlipMessageState>(Lifetime.Singleton);
+            builder.Register<SlipFailureState>(Lifetime.Singleton);
             builder.Register<SkillMessageStateFactory>(Lifetime.Singleton);
             builder.Register<SkillEndState>(Lifetime.Singleton);
             builder.Register<SkillQuitState>(Lifetime.Singleton);
@@ -276,6 +279,7 @@ namespace BattleScene.InterfaceAdapter
 
             #region RegisterService
             builder.Register<ActionTimeService>(Lifetime.Singleton);
+            builder.Register<ActualTargetIdPickerService>(Lifetime.Singleton);
             builder.Register<AilmentGeneratorService>(Lifetime.Singleton);
             builder.Register<AilmentRegistererService>(Lifetime.Singleton);
             builder.Register<AttackCounterService>(Lifetime.Singleton);
@@ -290,6 +294,7 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<OrderService>(Lifetime.Singleton);
             builder.Register<RestoreGeneratorService>(Lifetime.Singleton);
             builder.Register<SlipDamageGeneratorService>(Lifetime.Singleton);
+            builder.Register<SlipGeneratorService>(Lifetime.Singleton);
             builder.Register<ToBodyPartNumberService>(Lifetime.Singleton);
             builder.Register<ToBuffNumberService>(Lifetime.Singleton);
             #endregion

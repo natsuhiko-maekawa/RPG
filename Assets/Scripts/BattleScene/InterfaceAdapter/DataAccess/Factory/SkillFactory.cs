@@ -30,6 +30,7 @@ namespace BattleScene.InterfaceAdapter.DataAccess.Factory
             var damageList = CreateDamageParameterList(skill.DamageList);
             var destroyPartList = CreateDestroyParameterList(skill.DestroyList);
             var restoreParameterList = CreateRestoreParameterList(skill.RestoreList);
+            var slipParameterList = CreateSlipParameterList(skill.SlipDamageList);
             return new SkillValueObject(
                 skillCode: key,
                 range: skill.Range,
@@ -40,7 +41,8 @@ namespace BattleScene.InterfaceAdapter.DataAccess.Factory
                 buffList: buffParameterList,
                 damageList: damageList,
                 destroyedPartList: destroyPartList,
-                restoreParameterList: restoreParameterList);
+                restoreParameterList: restoreParameterList,
+                slipParameterList: slipParameterList);
         }
 
         private AbstractSkill Resolve(SkillCode skillCode)
@@ -139,6 +141,17 @@ namespace BattleScene.InterfaceAdapter.DataAccess.Factory
             return restoreList
                 .Select(x => new RestoreParameterValueObject(
                     TechnicalPoint: x.TechnicalPoint))
+                .ToImmutableList();
+        }
+
+        private ImmutableList<SlipParameterValueObject> CreateSlipParameterList(IList<AbstractSlipDamage> slipList)
+        {
+            return slipList
+                .Select(x => new SlipParameterValueObject(
+                    SlipDamageCode: x.SlipDamageCode,
+                    DamageRate: x.DamageRate,
+                    DamageExpressionCode: DamageExpressionCode.Slip,
+                    LuckRate: x.LuckRate))
                 .ToImmutableList();
         }
     }

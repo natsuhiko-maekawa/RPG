@@ -77,6 +77,17 @@ namespace BattleScene.UseCases.Service
             _battleLogRepository.Update(battleLog);
         }
 
+        public void Log(SlipValueObject slip)
+        {
+            var (battleLogId, sequence, turn) = GetBattleLogCommonArguments();
+            var battleLog = new BattleLogEntity(
+                battleLogId: battleLogId,
+                sequence: sequence,
+                turn: turn,
+                slip: slip);
+            _battleLogRepository.Update(battleLog);
+        }
+
         private (BattleLogId battleLogId, int nextSequence, int turn) GetBattleLogCommonArguments()
         {
             var battleLogId = new BattleLogId();
