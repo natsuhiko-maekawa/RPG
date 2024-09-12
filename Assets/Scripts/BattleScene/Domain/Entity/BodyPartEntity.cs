@@ -3,7 +3,7 @@ using BattleScene.Domain.Id;
 
 namespace BattleScene.Domain.Entity
 {
-    public class BodyPartEntity : BaseEntity<BodyPartEntity, BodyPartId>
+    public class BodyPartEntity : BaseEntity<BodyPartEntity, (CharacterId, BodyPartCode)>
     {
         private readonly int _bodyPartNumber;
         private int _destroyedPartNum;
@@ -15,24 +15,12 @@ namespace BattleScene.Domain.Entity
         {
             CharacterId = characterId;
             BodyPartCode = bodyPartCode;
+            Id = (CharacterId, BodyPartCode);
             _bodyPartNumber = bodyPartNumber;
             Destroyed();
         }
 
-        public BodyPartEntity(
-            BodyPartId id,
-            CharacterId characterId,
-            BodyPartCode bodyPartCode,
-            int bodyPartNumber)
-        {
-            Id = id;
-            CharacterId = characterId;
-            BodyPartCode = bodyPartCode;
-            _bodyPartNumber = bodyPartNumber;
-            Destroyed();
-        }
-        
-        public override BodyPartId Id { get; }
+        public override (CharacterId, BodyPartCode) Id { get; }
         public CharacterId CharacterId { get; }
         public BodyPartCode BodyPartCode { get; }
         public int DestroyedCount { get; }

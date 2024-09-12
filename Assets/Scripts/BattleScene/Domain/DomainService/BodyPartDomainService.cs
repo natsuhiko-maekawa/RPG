@@ -9,10 +9,10 @@ namespace BattleScene.Domain.DomainService
 {
     public class BodyPartDomainService
     {
-        private readonly IRepository<BodyPartEntity, BodyPartId> _bodyPartRepository;
+        private readonly IRepository<BodyPartEntity, (CharacterId, BodyPartCode)> _bodyPartRepository;
 
         public BodyPartDomainService(
-            IRepository<BodyPartEntity, BodyPartId> bodyPartRepository)
+            IRepository<BodyPartEntity, (CharacterId, BodyPartCode)> bodyPartRepository)
         {
             _bodyPartRepository = bodyPartRepository;
         }

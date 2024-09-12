@@ -231,7 +231,7 @@ namespace BattleScene.InterfaceAdapter
                 Lifetime.Singleton);
             builder.Register<IRepository<BattleLogEntity, BattleLogId>, Repository<BattleLogEntity, BattleLogId>>(
                 Lifetime.Singleton);
-            builder.Register<IRepository<BodyPartEntity, BodyPartId>, Repository<BodyPartEntity, BodyPartId>>(
+            builder.Register<IRepository<BodyPartEntity, (CharacterId, BodyPartCode)>, Repository<BodyPartEntity, (CharacterId, BodyPartCode)>>(
                 Lifetime.Singleton);
             builder.Register<IRepository<BuffEntity, (CharacterId, BuffCode)>, Repository<BuffEntity, (CharacterId, BuffCode)>>(
                 Lifetime.Singleton);

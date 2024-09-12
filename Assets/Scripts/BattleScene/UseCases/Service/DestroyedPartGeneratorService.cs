@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
+using BattleScene.Domain.Code;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
@@ -14,7 +15,7 @@ namespace BattleScene.UseCases.Service
     public class DestroyedPartGeneratorService
     {
         private readonly OrderedItemsDomainService _orderedItems;
-        private readonly IRepository<BodyPartEntity, BodyPartId> _bodyPartRepository;
+        private readonly IRepository<BodyPartEntity, (CharacterId, BodyPartCode)> _bodyPartRepository;
         private readonly IRandomEx _randomEx;
         private readonly TargetDomainService _target;
 
