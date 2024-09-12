@@ -31,6 +31,7 @@ namespace BattleScene.Framework.View
                 var enemyViewInstance = Instantiate(enemyView, transform);
                 var enemyViewScript = enemyViewInstance.GetComponentInChildren<EnemyView>();
                 Debug.Assert(enemyViewScript != null);
+                enemyViewScript.SetActive(false);
                 _enemyViewList.Add(enemyViewScript);
             }
         }
@@ -78,6 +79,7 @@ namespace BattleScene.Framework.View
             {
                 if (!dto.EnemyDtoList.Select(x => x.EnemyNumber).Contains(index)) continue;
                 
+                enemyViewInstance.SetActive(true);
                 var enemyImagePath = dto.EnemyDtoList.First(y => y.EnemyNumber == index).EnemyImagePath;
                 var sprite = await _spriteFlyweight.Get(enemyImagePath);
                 enemyViewInstance.GetComponent<Image>().sprite = sprite;
