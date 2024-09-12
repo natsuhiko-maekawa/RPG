@@ -4,8 +4,8 @@ using UnityEngine;
 
 namespace BattleScene.InterfaceAdapter.DataAccess.ScriptableObjects
 {
-    [CreateAssetMenu(menuName = "ScriptableObjects/BuffViewInfo")]
-    public class BuffViewInfoScriptableObject : BaseScriptableObject<BuffViewInfoDto, BuffCode>
+    [CreateAssetMenu(menuName = "ScriptableObjects/SkillView")]
+    public class SkillViewScriptableObject : BaseScriptableObject<SkillPropertyDto, SkillCode>
     {
     }
 }

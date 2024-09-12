@@ -16,13 +16,13 @@ namespace BattleScene.InterfaceAdapter.Presenter.OrderView
 {
     internal class OrderViewPresenter : IOrderViewPresenter
     {
-        private readonly IResource<EnemyViewInfoDto, CharacterTypeCode> _enemyViewInfoResource;
+        private readonly IResource<EnemyViewDto, CharacterTypeCode> _enemyViewInfoResource;
         private readonly IOrderView _orderView;
         private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
         private readonly ToAilmentNumberService _toAilmentNumber;
 
         public OrderViewPresenter(
-            IResource<EnemyViewInfoDto, CharacterTypeCode> enemyViewInfoResource,
+            IResource<EnemyViewDto, CharacterTypeCode> enemyViewInfoResource,
             IOrderView orderView,
             IRepository<CharacterEntity, CharacterId> characterRepository,
             ToAilmentNumberService toAilmentNumber)

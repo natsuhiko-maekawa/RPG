@@ -58,6 +58,9 @@ using BattleScene.UseCases.View.TechnicalPointBarView.OutputBoundary;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
+using BuffViewDto = BattleScene.InterfaceAdapter.DataAccess.Dto.BuffViewDto;
+using EnemyViewDto = BattleScene.InterfaceAdapter.DataAccess.Dto.EnemyViewDto;
+using PlayerViewDto = BattleScene.InterfaceAdapter.DataAccess.Dto.PlayerViewDto;
 
 #if UNITY_EDITOR
 using BattleScene.UseCases.Service.DebugService;
@@ -128,13 +131,13 @@ namespace BattleScene.InterfaceAdapter
 
             #region RegisterScriptableObject
             builder.RegisterComponentInHierarchy<IResource<AilmentPropertyDto, AilmentCode>>();
-            builder.RegisterComponentInHierarchy<IAilmentViewInfoResource>();
-            builder.Register<IResource<BodyPartViewInfoDto, BodyPartCode>, BodyPartViewInfoResource>(Lifetime.Singleton);
-            builder.RegisterComponentInHierarchy<IResource<BuffViewInfoDto, BuffCode>>();
-            builder.RegisterComponentInHierarchy<IResource<PropertyDto, CharacterTypeCode>>();
-            builder.RegisterComponentInHierarchy<IResource<EnemyViewInfoDto, CharacterTypeCode>>();
+            builder.RegisterComponentInHierarchy<IAilmentViewResource>();
+            builder.Register<IResource<BodyPartViewDto, BodyPartCode>, BodyPartViewResource>(Lifetime.Singleton);
+            builder.RegisterComponentInHierarchy<IResource<BuffViewDto, BuffCode>>();
+            builder.RegisterComponentInHierarchy<IResource<CharacterPropertyDto, CharacterTypeCode>>();
+            builder.RegisterComponentInHierarchy<IResource<EnemyViewDto, CharacterTypeCode>>();
             builder.RegisterComponentInHierarchy<IResource<MessageDto, MessageCode>>();
-            builder.RegisterComponentInHierarchy<IResource<PlayerViewInfoDto, CharacterTypeCode>>();
+            builder.RegisterComponentInHierarchy<IResource<PlayerViewDto, CharacterTypeCode>>();
             builder.RegisterComponentInHierarchy<IResource<PlayerPropertyDto, CharacterTypeCode>>();
             builder.RegisterComponentInHierarchy<IResource<PlayerImagePathDto, PlayerImageCode>>();
             builder.RegisterComponentInHierarchy<IResource<SkillPropertyDto, SkillCode>>();

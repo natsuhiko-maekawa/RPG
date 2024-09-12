@@ -5,7 +5,7 @@ using UnityEngine;
 namespace BattleScene.InterfaceAdapter.DataAccess.Dto
 {
     [Serializable]
-    public class EnemyViewInfoDto : IUnique<CharacterTypeCode>, ISerializationCallbackReceiver
+    public class EnemyViewDto : IUnique<CharacterTypeCode>, ISerializationCallbackReceiver
     {
         [SerializeField] private string id;
         [SerializeField] private string enemyName;

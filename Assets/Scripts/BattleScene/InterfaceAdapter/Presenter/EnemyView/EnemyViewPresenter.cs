@@ -16,13 +16,13 @@ namespace BattleScene.InterfaceAdapter.Presenter.EnemyView
     {
         private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
         private readonly IRepository<EnemyEntity, CharacterId> _enemyRepository;
-        private readonly IResource<EnemyViewInfoDto, CharacterTypeCode> _enemyViewInfoResource;
+        private readonly IResource<DataAccess.Dto.EnemyViewDto, CharacterTypeCode> _enemyViewInfoResource;
         private readonly IEnemiesView _enemiesView;
 
         public EnemyViewPresenter(
             IRepository<CharacterEntity, CharacterId> characterRepository,
             IRepository<EnemyEntity, CharacterId> enemyRepository,
-            IResource<EnemyViewInfoDto, CharacterTypeCode> enemyViewInfoResource,
+            IResource<DataAccess.Dto.EnemyViewDto, CharacterTypeCode> enemyViewInfoResource,
             IEnemiesView enemiesView)
         {
             _characterRepository = characterRepository;

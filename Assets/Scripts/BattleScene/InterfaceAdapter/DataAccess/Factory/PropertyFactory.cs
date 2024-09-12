@@ -7,10 +7,10 @@ namespace BattleScene.InterfaceAdapter.DataAccess.Factory
 {
     public class PropertyFactory : IFactory<PropertyValueObject, CharacterTypeCode>
     {
-        private readonly IResource<PropertyDto, CharacterTypeCode> _propertyResource;
+        private readonly IResource<CharacterPropertyDto, CharacterTypeCode> _propertyResource;
 
         public PropertyFactory(
-            IResource<PropertyDto, CharacterTypeCode> propertyResource)
+            IResource<CharacterPropertyDto, CharacterTypeCode> propertyResource)
         {
             _propertyResource = propertyResource;
         }

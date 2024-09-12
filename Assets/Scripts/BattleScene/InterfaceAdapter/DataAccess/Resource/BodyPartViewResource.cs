@@ -3,9 +3,9 @@ using BattleScene.InterfaceAdapter.DataAccess.Dto;
 
 namespace BattleScene.InterfaceAdapter.DataAccess.Resource
 {
-    public class BodyPartViewInfoResource : IResource<BodyPartViewInfoDto, BodyPartCode>
+    public class BodyPartViewResource : IResource<BodyPartViewDto, BodyPartCode>
     {
-        public BodyPartViewInfoDto Get(BodyPartCode bodyPartCode)
+        public BodyPartViewDto Get(BodyPartCode bodyPartCode)
         {
             throw new System.NotImplementedException();
         }

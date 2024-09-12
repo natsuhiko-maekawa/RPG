@@ -12,13 +12,13 @@ namespace BattleScene.InterfaceAdapter.State.Skill
     public class BuffMessageState : AbstractSkillState
     {
         private readonly IRepository<BattleLogEntity, BattleLogId> _battleLogRepository;
-        private readonly IResource<BuffViewInfoDto, BuffCode> _buffViewInfoResource;
+        private readonly IResource<BuffViewDto, BuffCode> _buffViewInfoResource;
         private readonly IMessageViewPresenter _messageView;
         private readonly SkillEndState _skillEndState;
 
         public BuffMessageState(
             IRepository<BattleLogEntity, BattleLogId> battleLogRepository,
-            IResource<BuffViewInfoDto, BuffCode> buffViewInfoResource,
+            IResource<BuffViewDto, BuffCode> buffViewInfoResource,
             IMessageViewPresenter messageView,
             SkillEndState skillEndState)
         {

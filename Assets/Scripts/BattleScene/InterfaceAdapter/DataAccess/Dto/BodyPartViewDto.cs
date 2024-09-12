@@ -1,6 +1,6 @@
 ﻿namespace BattleScene.InterfaceAdapter.DataAccess.Dto
 {
-    public class BodyPartViewInfoDto
+    public class BodyPartViewDto
     {
         public string BodyPartName { get; }
     }

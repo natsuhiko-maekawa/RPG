@@ -4,8 +4,8 @@ using BattleScene.InterfaceAdapter.DataAccess.ScriptableObjects;
 
 namespace BattleScene.InterfaceAdapter.DataAccess.Resource
 {
-    public class PlayerViewInfoResource
-        : BaseScriptableObjectResource<PlayerViewInfoScriptableObject, PlayerViewInfoDto, CharacterTypeCode>
+    public class PlayerViewResource
+        : BaseScriptableObjectResource<PlayerViewScriptableObject, PlayerViewDto, CharacterTypeCode>
     {
     }
 }

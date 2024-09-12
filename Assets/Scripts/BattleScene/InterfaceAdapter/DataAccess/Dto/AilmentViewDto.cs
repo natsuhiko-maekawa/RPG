@@ -5,7 +5,7 @@ using UnityEngine;
 namespace BattleScene.InterfaceAdapter.DataAccess.Dto
 {
     [Serializable]
-    public class AilmentViewInfoDto : IUnique<(AilmentCode, SlipDamageCode)>, ISerializationCallbackReceiver
+    public class AilmentViewDto : IUnique<(AilmentCode, SlipDamageCode)>, ISerializationCallbackReceiver
     {
         [SerializeField] private string code;
         [SerializeField] private string name;

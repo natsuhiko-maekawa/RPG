@@ -4,8 +4,8 @@ using UnityEngine;
 
 namespace BattleScene.InterfaceAdapter.DataAccess.ScriptableObjects
 {
-    [CreateAssetMenu(menuName = "ScriptableObjects/SkillViewInfo")]
-    public class SkillViewInfoScriptableObject : BaseScriptableObject<SkillPropertyDto, SkillCode>
+    [CreateAssetMenu(menuName = "ScriptableObjects/PlayerImagePath")]
+    public class PlayerImagePathScriptableObject : BaseScriptableObject<PlayerImagePathDto, PlayerImageCode>
     {
     }
 }

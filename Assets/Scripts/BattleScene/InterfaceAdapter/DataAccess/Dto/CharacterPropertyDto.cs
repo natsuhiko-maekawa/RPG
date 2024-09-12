@@ -6,7 +6,7 @@ using UnityEngine;
 namespace BattleScene.InterfaceAdapter.DataAccess.Dto
 {
     [Serializable]
-    public class PropertyDto : IUnique<CharacterTypeCode>, ISerializationCallbackReceiver
+    public class CharacterPropertyDto : IUnique<CharacterTypeCode>, ISerializationCallbackReceiver
     {
         [SerializeField] private string characterTypeCode;
         [SerializeField] private int hitPoint;

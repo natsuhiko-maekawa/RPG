@@ -4,8 +4,8 @@ using BattleScene.InterfaceAdapter.DataAccess.ScriptableObjects;
 
 namespace BattleScene.InterfaceAdapter.DataAccess.Resource
 {
-    public class SkillViewInfoScriptableObjectResource
-        : BaseScriptableObjectResource<SkillViewInfoScriptableObject, SkillPropertyDto, SkillCode>
+    public class BuffViewResource 
+        : BaseScriptableObjectResource<BuffViewScriptableObject, BuffViewDto, BuffCode>
     {
     }
 }

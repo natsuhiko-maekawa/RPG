@@ -6,7 +6,7 @@ namespace BattleScene.InterfaceAdapter.DataAccess.Dto
 {
 
     [Serializable]
-    public class PlayerViewInfoDto : IUnique<CharacterTypeCode>, ISerializationCallbackReceiver
+    public class PlayerViewDto : IUnique<CharacterTypeCode>, ISerializationCallbackReceiver
     {
         [SerializeField] private string characterTypeCode;
         [SerializeField] private string playerName;

@@ -5,7 +5,7 @@ using UnityEngine;
 namespace BattleScene.InterfaceAdapter.DataAccess.Dto
 {
     [Serializable]
-    public class BuffViewInfoDto: IUnique<BuffCode>, ISerializationCallbackReceiver
+    public class BuffViewDto: IUnique<BuffCode>, ISerializationCallbackReceiver
     {
         [SerializeField] private string key;
         [SerializeField] private string buffName;

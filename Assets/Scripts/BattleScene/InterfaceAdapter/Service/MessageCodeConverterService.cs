@@ -22,34 +22,34 @@ namespace BattleScene.InterfaceAdapter.Service
         private const string Skill = "[skill]";
         private const string Target = "[target]";
         private const string TechnicalPoint = "[technicalPoint]";
-        private readonly IAilmentViewInfoResource _ailmentViewInfoResource;
-        private readonly IResource<BodyPartViewInfoDto, BodyPartCode> _bodyPartViewInfoResource;
-        private readonly IResource<BuffViewInfoDto, BuffCode> _buffViewInfoResource;
+        private readonly IAilmentViewResource _ailmentViewResource;
+        private readonly IResource<BodyPartViewDto, BodyPartCode> _bodyPartViewInfoResource;
+        private readonly IResource<BuffViewDto, BuffCode> _buffViewInfoResource;
         private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
-        private readonly IResource<EnemyViewInfoDto, CharacterTypeCode> _enemyViewInfoResource;
+        private readonly IResource<EnemyViewDto, CharacterTypeCode> _enemyViewInfoResource;
         private readonly IResource<MessageDto, MessageCode> _messageResource;
         private readonly OrderedItemsDomainService _orderedItems;
-        private readonly IResource<PlayerViewInfoDto, CharacterTypeCode> _playerViewInfoResource;
+        private readonly IResource<PlayerViewDto, CharacterTypeCode> _playerViewInfoResource;
         private readonly IResource<SkillPropertyDto, SkillCode> _skillViewInfoResource;
         private readonly IRepository<BattleLogEntity, BattleLogId> _battleLogRepository;
         private readonly BattleLogDomainService _battleLog;
         private readonly PlayerDomainService _player;
 
         public MessageCodeConverterService(
-            IAilmentViewInfoResource ailmentViewInfoResource,
-            IResource<BodyPartViewInfoDto, BodyPartCode> bodyPartViewInfoResource,
-            IResource<BuffViewInfoDto, BuffCode> buffViewInfoResource,
+            IAilmentViewResource ailmentViewResource,
+            IResource<BodyPartViewDto, BodyPartCode> bodyPartViewInfoResource,
+            IResource<BuffViewDto, BuffCode> buffViewInfoResource,
             IRepository<CharacterEntity, CharacterId> characterRepository,
-            IResource<EnemyViewInfoDto, CharacterTypeCode> enemyViewInfoResource,
+            IResource<EnemyViewDto, CharacterTypeCode> enemyViewInfoResource,
             IResource<MessageDto, MessageCode> messageResource,
             OrderedItemsDomainService orderedItems,
-            IResource<PlayerViewInfoDto, CharacterTypeCode> playerViewInfoResource,
+            IResource<PlayerViewDto, CharacterTypeCode> playerViewInfoResource,
             IResource<SkillPropertyDto, SkillCode> skillViewInfoResource,
             IRepository<BattleLogEntity, BattleLogId> battleLogRepository,
             BattleLogDomainService battleLog,
             PlayerDomainService player)
         {
-            _ailmentViewInfoResource = ailmentViewInfoResource;
+            _ailmentViewResource = ailmentViewResource;
             _bodyPartViewInfoResource = bodyPartViewInfoResource;
             _buffViewInfoResource = buffViewInfoResource;
             _characterRepository = characterRepository;
@@ -115,9 +115,9 @@ namespace BattleScene.InterfaceAdapter.Service
         {
             var battleLog = _battleLog.GetLast();
             if (battleLog.AilmentCode != AilmentCode.NoAilment)
-                return _ailmentViewInfoResource.Get(battleLog.AilmentCode).Name;
+                return _ailmentViewResource.Get(battleLog.AilmentCode).Name;
             if (battleLog.SlipDamageCode != SlipDamageCode.NoSlipDamage)
-                return _ailmentViewInfoResource.Get(battleLog.SlipDamageCode).Name;
+                return _ailmentViewResource.Get(battleLog.SlipDamageCode).Name;
             Debug.Assert(false);
             return "";
         }

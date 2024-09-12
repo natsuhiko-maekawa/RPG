@@ -7,12 +7,12 @@ namespace BattleScene.InterfaceAdapter.State.Battle
 {
     public class PlayerSelectSkillState : AbstractState
     {
-        private readonly IResource<PropertyDto, CharacterTypeCode> _propertyResource;
+        private readonly IResource<CharacterPropertyDto, CharacterTypeCode> _propertyResource;
         private readonly SelectTargetStateFactory _selectTargetStateFactory;
         private readonly ISkillViewPresenter _skillView;
 
         public PlayerSelectSkillState(
-            IResource<PropertyDto, CharacterTypeCode> propertyResource,
+            IResource<CharacterPropertyDto, CharacterTypeCode> propertyResource,
             SelectTargetStateFactory selectTargetStateFactory,
             ISkillViewPresenter skillView)
         {
