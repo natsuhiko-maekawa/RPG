@@ -4,8 +4,8 @@ using BattleScene.InterfaceAdapter.DataAccess.ScriptableObjects;
 
 namespace BattleScene.InterfaceAdapter.DataAccess.Resource
 {
-    public class SkillViewInfoListScriptableObjectResource
-        : BaseListScriptableObjectResource<SkillViewInfoScriptableObject, SkillPropertyDto, SkillCode>
+    public class PlayerImageScriptableObjectResource
+        : BaseScriptableObjectResource<PlayerImageScriptableObject, PlayerImagePathDto, PlayerImageCode>
     {
     }
 }

@@ -5,7 +5,7 @@ using BattleScene.InterfaceAdapter.DataAccess.ScriptableObjects;
 namespace BattleScene.InterfaceAdapter.DataAccess.Resource
 {
     public class PlayerPropertyResource
-        : BaseListScriptableObjectResource<PlayerPropertyScriptableObject, PlayerPropertyDto, CharacterTypeCode>
+        : BaseScriptableObjectResource<PlayerPropertyScriptableObject, PlayerPropertyDto, CharacterTypeCode>
     {
     }
 }

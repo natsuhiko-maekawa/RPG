@@ -4,8 +4,8 @@ using BattleScene.InterfaceAdapter.DataAccess.ScriptableObjects;
 
 namespace BattleScene.InterfaceAdapter.DataAccess.Resource
 {
-    public class AilmentViewInfoListScriptableObjectResource
-        : BaseListScriptableObjectResource<AilmentViewInfoScriptableObject, AilmentViewInfoDto, (AilmentCode,
+    public class AilmentViewInfoScriptableObjectResource
+        : BaseScriptableObjectResource<AilmentViewInfoScriptableObject, AilmentViewInfoDto, (AilmentCode,
             SlipDamageCode)>, IAilmentViewInfoResource
     {
         public AilmentViewInfoDto Get(AilmentCode key) => Get((key, SlipDamageCode.NoSlipDamage));
