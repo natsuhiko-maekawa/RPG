@@ -14,6 +14,7 @@ namespace BattleScene.UseCases.Service
 {
     public class OrderService
     {
+        private readonly IFactory<BattlePropertyValueObject> _battlePropertyFactory;
         private readonly IFactory<PropertyValueObject, CharacterTypeCode> _characterPropertyFactory;
         private readonly IRepository<AilmentEntity, (CharacterId, AilmentCode)> _ailmentRepository;
         private readonly BuffDomainService _buff;
@@ -22,6 +23,7 @@ namespace BattleScene.UseCases.Service
         private readonly IRepository<SlipDamageEntity, SlipDamageCode> _slipDamageRepository;
 
         public OrderService(
+            IFactory<BattlePropertyValueObject> battlePropertyFactory,
             IFactory<PropertyValueObject, CharacterTypeCode> characterPropertyFactory, 
             IRepository<AilmentEntity, (CharacterId, AilmentCode)> ailmentRepository, 
             BuffDomainService buff, 
@@ -29,6 +31,7 @@ namespace BattleScene.UseCases.Service
             IRepository<OrderedItemEntity, OrderId> orderedItemRepository, 
             IRepository<SlipDamageEntity, SlipDamageCode> slipDamageRepository)
         {
+            _battlePropertyFactory = battlePropertyFactory;
             _characterPropertyFactory = characterPropertyFactory;
             _ailmentRepository = ailmentRepository;
             _buff = buff;
@@ -97,18 +100,20 @@ namespace BattleScene.UseCases.Service
             ImmutableList<OrderedItem> order)
         {
             var newOrder = order.ToImmutableList();
+            var slipDefaultTurn = _battlePropertyFactory.Create().SlipDefaultTurn;
 
             foreach (var slipDamageEntity in slipDamageEntityList)
                 for (var index = 0; index < newOrder.Count; ++index)
                 {
                     var copiedIndex = index;
                     var characterTypeCount = newOrder
+                            // TODO: Take()を使って書き換える
                         .Where((_, i) => i <= copiedIndex)
-                        .Count(x => x.CharacterId != null);
-                    if (slipDamageEntity.GetTurn() != characterTypeCount % slipDamageEntity.GetTurn()) continue;
+                        .Count(x => x.CharacterId != null) - 1;
+                    if (slipDamageEntity.Turn != characterTypeCount % slipDefaultTurn) continue;
                     var orderedSlipDamageEntity
                         = new OrderedItem(slipDamageEntity.Id);
-                    newOrder = newOrder.Insert(index, orderedSlipDamageEntity)
+                    newOrder = newOrder.Insert(index + 1, orderedSlipDamageEntity)
                         .RemoveAt(order.Count - 1);
                     ++index;
                 }

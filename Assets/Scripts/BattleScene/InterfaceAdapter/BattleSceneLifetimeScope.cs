@@ -299,6 +299,7 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<RestoreGeneratorService>(Lifetime.Singleton);
             builder.Register<SlipDamageGeneratorService>(Lifetime.Singleton);
             builder.Register<SlipGeneratorService>(Lifetime.Singleton);
+            builder.Register<SlipRegistererService>(Lifetime.Singleton);
             builder.Register<ToBodyPartNumberService>(Lifetime.Singleton);
             builder.Register<ToBuffNumberService>(Lifetime.Singleton);
             #endregion
@@ -313,6 +314,7 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<EnemiesDomainService>(Lifetime.Singleton);
             builder.Register<OrderedItemsDomainService>(Lifetime.Singleton);
             builder.Register<PlayerDomainService>(Lifetime.Singleton);
+            builder.Register<SlipDomainService>(Lifetime.Singleton);
             builder.Register<TargetDomainService>(Lifetime.Singleton);
             #endregion
 

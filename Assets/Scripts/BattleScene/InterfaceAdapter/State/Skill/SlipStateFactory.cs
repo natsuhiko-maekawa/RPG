@@ -11,6 +11,7 @@ namespace BattleScene.InterfaceAdapter.State.Skill
         private readonly BattleLogDomainService _battleLog;
         private readonly BattleLoggerService _battleLogger;
         private readonly SlipGeneratorService _slipGenerator;
+        private readonly SlipRegistererService _slipRegisterer;
         private readonly SlipFailureState _slipFailureState;
         private readonly SlipMessageState _slipMessageState;
 
@@ -18,12 +19,14 @@ namespace BattleScene.InterfaceAdapter.State.Skill
             BattleLogDomainService battleLog,
             BattleLoggerService battleLogger,
             SlipGeneratorService slipGenerator,
+            SlipRegistererService slipRegisterer,
             SlipFailureState slipFailureState,
             SlipMessageState slipMessageState)
         {
             _battleLog = battleLog;
             _battleLogger = battleLogger;
             _slipGenerator = slipGenerator;
+            _slipRegisterer = slipRegisterer;
             _slipFailureState = slipFailureState;
             _slipMessageState = slipMessageState;
         }
@@ -34,7 +37,8 @@ namespace BattleScene.InterfaceAdapter.State.Skill
             IList<CharacterId> targetIdList) => new(
             battleLog: _battleLog,
             battleLogger: _battleLogger,
-            slipDamageGenerator: _slipGenerator,
+            slipGenerator: _slipGenerator,
+            slipRegisterer: _slipRegisterer,
             slipFailureState: _slipFailureState,
             slipMessageState: _slipMessageState,
             skillCommon: skillCommon,

@@ -11,7 +11,8 @@ namespace BattleScene.InterfaceAdapter.State.Skill
     {
         private readonly BattleLogDomainService _battleLog;
         private readonly BattleLoggerService _battleLogger;
-        private readonly SlipGeneratorService _slipDamageGenerator;
+        private readonly SlipGeneratorService _slipGenerator;
+        private readonly SlipRegistererService _slipRegisterer;
         private readonly SlipFailureState _slipFailureState;
         private readonly SlipMessageState _slipMessageState;
         private readonly SkillCommonValueObject _skillCommon;
@@ -21,7 +22,8 @@ namespace BattleScene.InterfaceAdapter.State.Skill
         public SlipState(
             BattleLogDomainService battleLog,
             BattleLoggerService battleLogger,
-            SlipGeneratorService slipDamageGenerator,
+            SlipGeneratorService slipGenerator,
+            SlipRegistererService slipRegisterer,
             SlipFailureState slipFailureState,
             SlipMessageState slipMessageState,
             SkillCommonValueObject skillCommon,
@@ -30,7 +32,8 @@ namespace BattleScene.InterfaceAdapter.State.Skill
         {
             _battleLog = battleLog;
             _battleLogger = battleLogger;
-            _slipDamageGenerator = slipDamageGenerator;
+            _slipGenerator = slipGenerator;
+            _slipRegisterer = slipRegisterer;
             _slipFailureState = slipFailureState;
             _slipMessageState = slipMessageState;
             _skillCommon = skillCommon;
@@ -40,10 +43,11 @@ namespace BattleScene.InterfaceAdapter.State.Skill
         
         public override void Start()
         {
-            var slip = _slipDamageGenerator.Generate(
+            var slip = _slipGenerator.Generate(
                 skillCommon: _skillCommon,
                 slipParameter: _slipParameter,
                 targetIdList: _targetIdList);
+            _slipRegisterer.Register(slip);
             _battleLogger.Log(slip);
             AbstractSkillState nextState = _battleLog.GetLast().ActualTargetIdList.IsEmpty
                 ? _slipFailureState 
