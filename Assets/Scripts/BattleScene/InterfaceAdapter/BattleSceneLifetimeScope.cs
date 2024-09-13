@@ -50,6 +50,7 @@ using BattleScene.UseCases.View.DigitView.OutputDataFactory;
 using BattleScene.UseCases.View.EnemyView.OutputBoundary;
 using BattleScene.UseCases.View.FrameView.OutputBoundary;
 using BattleScene.UseCases.View.HitPointBarView.OutputBoundary;
+using BattleScene.UseCases.View.HitPointBarView.OutputDataFactory;
 using BattleScene.UseCases.View.InfoView.OutputBoundary;
 using BattleScene.UseCases.View.MessageView.OutputBoundary;
 using BattleScene.UseCases.View.PlayerImageView.OutputBoundary;
@@ -293,6 +294,7 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<CharacterPropertyFactoryService>(Lifetime.Singleton);
             builder.Register<DamageEvaluatorService>(Lifetime.Singleton);
             builder.Register<DamageGeneratorService>(Lifetime.Singleton);
+            builder.Register<DamageRegistererService>(Lifetime.Singleton);
             builder.Register<DestroyedPartGeneratorService>(Lifetime.Singleton);
             builder.Register<IsHitEvaluatorService>(Lifetime.Singleton);
             builder.Register<OrderService>(Lifetime.Singleton);
@@ -326,6 +328,7 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<OrderView>(Lifetime.Singleton);
 
             builder.Register<DamageDigitOutputDataFactory>(Lifetime.Singleton);
+            builder.Register<HitPointBarOutputDataFactory>(Lifetime.Singleton);
             builder.Register<ActionDescriptionMessageOutput>(Lifetime.Singleton);
         }
     }

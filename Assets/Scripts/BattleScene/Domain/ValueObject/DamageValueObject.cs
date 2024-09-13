@@ -7,6 +7,11 @@ namespace BattleScene.Domain.ValueObject
 {
     public class DamageValueObject
     {
+        public CharacterId ActorId { get; }
+        public SkillCode SkillCode { get; }
+        public ImmutableList<CharacterId> TargetIdList { get; }
+        public ImmutableList<AttackValueObject> AttackList { get; }
+        
         public DamageValueObject(
             CharacterId actorId,
             SkillCode skillCode,
@@ -20,27 +25,16 @@ namespace BattleScene.Domain.ValueObject
             AttackList = attackList;
         }
 
-        public ImmutableList<AttackValueObject> AttackList { get; }
-
-        public int GetTotal()
+        public ImmutableDictionary<CharacterId, int> GetDamageDictionary()
         {
-            return AttackList
-                .Sum(x => x.IsHit ? x.Amount : 0);
-        }
-
-        public CharacterId ActorId { get; }
-        public SkillCode SkillCode { get; }
-        public ImmutableList<CharacterId> TargetIdList { get; }
-
-        public bool Success()
-        {
-            return AttackList.All(x => !x.IsHit);
-        }
-
-        public int HitCount()
-        {
-            return AttackList
-                .Count(x => x.IsHit);
+            var damageDictionary = AttackList
+                .Where(x => x.IsHit)
+                .GroupBy(x => x.TargetId)
+                .Select(x => x
+                    .Select(y => (targetId: y.TargetId, amount: y.Amount))
+                    .Aggregate((y, z) => (y.targetId, y.amount + z.amount)))
+                .ToImmutableDictionary(x => x.targetId, x => x.amount);
+            return damageDictionary;
         }
     }
 }

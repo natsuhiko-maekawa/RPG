@@ -9,6 +9,7 @@ namespace BattleScene.InterfaceAdapter.State.Skill
     public class DamageState : AbstractSkillState
     {
         private readonly DamageGeneratorService _damageGenerator;
+        private readonly DamageRegistererService _damageRegisterer;
         private readonly BattleLoggerService _battleLogger;
         private readonly DamageMessageState _damageMessageState;
         private readonly SkillCommonValueObject _skillCommon;
@@ -19,6 +20,7 @@ namespace BattleScene.InterfaceAdapter.State.Skill
             BattleLoggerService battleLogger,
             DamageGeneratorService damageGenerator,
             DamageMessageState damageMessageState,
+            DamageRegistererService damageRegisterer,
             SkillCommonValueObject skillCommon,
             DamageParameterValueObject damageParameter,
             IList<CharacterId> targetIdList)
@@ -26,6 +28,7 @@ namespace BattleScene.InterfaceAdapter.State.Skill
             _battleLogger = battleLogger;
             _damageGenerator = damageGenerator;
             _damageMessageState = damageMessageState;
+            _damageRegisterer = damageRegisterer;
             _skillCommon = skillCommon;
             _damageParameter = damageParameter;
             _targetIdList = targetIdList.ToImmutableList();
@@ -37,6 +40,7 @@ namespace BattleScene.InterfaceAdapter.State.Skill
                 skillCommon: _skillCommon,
                 damageParameter: _damageParameter,
                 targetIdList: _targetIdList);
+            _damageRegisterer.Register(damage);
             _battleLogger.Log(damage);
             SkillContext.TransitionTo(_damageMessageState);
         }

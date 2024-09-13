@@ -32,7 +32,7 @@ namespace BattleScene.InterfaceAdapter.Presenter.StatusBarView
                 var enemyNumber = outputData.CharacterOutputData.EnemyNumber;
                 var maxHitPoint = outputData.MaxHitPoint;
                 var currentHitPoint = outputData.CurrentHitPoint;
-                _enemiesView.StartEnemyHpBarView(new EnemyHpBarViewDto(enemyNumber,
+                _enemiesView[enemyNumber].StartHitPointBarAnimationAsync(new EnemyHpBarViewDto(enemyNumber,
                     new StatusBarViewDto(maxHitPoint, currentHitPoint)));
             }
         }

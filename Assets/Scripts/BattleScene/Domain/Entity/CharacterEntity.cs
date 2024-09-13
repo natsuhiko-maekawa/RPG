@@ -1,5 +1,6 @@
 ﻿using BattleScene.Domain.Code;
 using BattleScene.Domain.Id;
+using UnityEngine;
 
 namespace BattleScene.Domain.Entity
 {
@@ -20,10 +21,17 @@ namespace BattleScene.Domain.Entity
             ActionTime = actionTime;
             Position = position;
         }
+
+        private int _currentHitPoint;
         
         public override CharacterId Id { get; }
         public CharacterTypeCode CharacterTypeCode { get; }
-        public int CurrentHitPoint { get; }
+        public int CurrentHitPoint
+        {
+            get => _currentHitPoint;
+            set => _currentHitPoint = Mathf.Max(value, 0);
+        }
+        
         public int CurrentTechnicalPoint { get; }
         public int ActionTime { get; set; }
         public int Position { get; }
