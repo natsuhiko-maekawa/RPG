@@ -129,9 +129,10 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<ISkillViewPresenter, SkillViewPresenter>(Lifetime.Singleton);
             #endregion
 
-            #region RegisterScriptableObject
+            #region RegisterResource
             builder.RegisterComponentInHierarchy<IResource<AilmentPropertyDto, AilmentCode>>();
             builder.RegisterComponentInHierarchy<IAilmentViewResource>();
+            builder.RegisterComponentInHierarchy<IResource<BattlePropertyDto>>();
             builder.Register<IResource<BodyPartViewDto, BodyPartCode>, BodyPartViewResource>(Lifetime.Singleton);
             builder.RegisterComponentInHierarchy<IResource<BuffViewDto, BuffCode>>();
             builder.RegisterComponentInHierarchy<IResource<CharacterPropertyDto, CharacterTypeCode>>();
@@ -216,6 +217,7 @@ namespace BattleScene.InterfaceAdapter
             #region RegisterFactory
             builder.Register<IFactory<AilmentPropertyValueObject, AilmentCode>, AilmentPropertyFactory>(
                 Lifetime.Singleton);
+            builder.Register<IFactory<BattlePropertyValueObject>, BattlePropertyFactory>(Lifetime.Singleton);
             builder.Register<IFactory<PropertyValueObject, CharacterTypeCode>, PropertyFactory>(Lifetime.Singleton);
             builder.Register<IFactory<PlayerPropertyValueObject, CharacterTypeCode>, PlayerPropertyFactory>
                 (Lifetime.Singleton);
