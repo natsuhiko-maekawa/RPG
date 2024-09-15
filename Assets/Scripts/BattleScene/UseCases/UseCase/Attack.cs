@@ -1,4 +1,6 @@
 using BattleScene.Domain.DomainService;
+using BattleScene.Domain.Entity;
+using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
 using BattleScene.UseCases.OldEvent.Runner;
 using BattleScene.UseCases.View.FrameView.OutputBoundary;
@@ -10,7 +12,7 @@ namespace BattleScene.UseCases.UseCase
 {
     internal class Attack
     {
-        private readonly ICharacterRepository _characterRepository;
+        private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
         private readonly IFrameViewPresenter _frameView;
         private readonly OrderedItemsDomainService _orderedItems;
         private readonly TargetFrameOutputDataFactory _targetFrameOutputDataFactory;
@@ -18,7 +20,7 @@ namespace BattleScene.UseCases.UseCase
         private readonly ITechnicalPointBarViewPresenter _technicalPointBarView;
 
         public Attack(
-            ICharacterRepository characterRepository,
+            IRepository<CharacterEntity, CharacterId> characterRepository,
             IFrameViewPresenter frameView,
             OrderedItemsDomainService orderedItems,
             TargetFrameOutputDataFactory targetFrameOutputDataFactory,

@@ -12,12 +12,12 @@ namespace BattleScene.UseCases.View.AilmentView.OutputDataFactory
     internal class AilmentOutputDataFactory
     {
         private readonly IRepository<AilmentEntity, (CharacterId, AilmentCode)> _ailmentRepository;
-        private readonly ICharacterRepository _characterRepository;
+        private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
         private readonly IRepository<SlipDamageEntity, SlipDamageCode> _slipDamageRepository;
 
         public AilmentOutputDataFactory(
             IRepository<AilmentEntity, (CharacterId, AilmentCode)> ailmentRepository,
-            ICharacterRepository characterRepository,
+            IRepository<CharacterEntity, CharacterId> characterRepository,
             IRepository<SlipDamageEntity, SlipDamageCode> slipDamageRepository)
         {
             _ailmentRepository = ailmentRepository;

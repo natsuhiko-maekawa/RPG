@@ -226,7 +226,6 @@ namespace BattleScene.InterfaceAdapter
             #endregion
             
             #region RegisterRepository
-            builder.Register<ICharacterRepository, CharacterRepository>(Lifetime.Singleton);
             builder.Register<IRepository<AilmentEntity, (CharacterId, AilmentCode)>, Repository<AilmentEntity, (CharacterId, AilmentCode)>>(
                 Lifetime.Singleton);
             builder.Register<IRepository<BattleLogEntity, BattleLogId>, Repository<BattleLogEntity, BattleLogId>>(
