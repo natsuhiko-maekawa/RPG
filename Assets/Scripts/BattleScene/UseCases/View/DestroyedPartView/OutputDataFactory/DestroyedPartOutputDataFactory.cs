@@ -32,7 +32,7 @@ namespace BattleScene.UseCases.View.DestroyedPartView.OutputDataFactory
             var destroyedPartNumberList = Enum.GetValues(typeof(BodyPartCode))
                 .Cast<BodyPartCode>()
                 .OrderBy(x => _toBodyPartNumber.BodyPart(x))
-                .Select(x => _bodyPartRepository.Select((characterId, x))?.DestroyedPartCount() ?? 0)
+                .Select(x => _bodyPartRepository.Select((characterId, x))?.DestroyedCount ?? 0)
                 .ToImmutableList();
             return new DestroyedPartOutputData(character, destroyedPartNumberList);
         }
