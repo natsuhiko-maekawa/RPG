@@ -174,9 +174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f45ca3c1caff14c4e85158453b20cfad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyView: {fileID: 221765933986333883, guid: e5b23f012c6997f47aaa6f525c29fa55, type: 3}
   maxCacheSize: 4
-  enemyIntervalPx: 200
 --- !u!114 &27718033
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1065,7 +1063,7 @@ GameObject:
   - component: {fileID: 354671338}
   - component: {fileID: 354671339}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
