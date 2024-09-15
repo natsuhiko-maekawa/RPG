@@ -11,23 +11,23 @@ namespace BattleScene.UseCases.View.TechnicalPointBarView.OutputDaraFactory
 {
     public class TechnicalPointBarOutputDataFactory
     {
-        private readonly CharactersDomainService _characters;
+        private readonly PlayerDomainService _player;
         private readonly IFactory<PlayerPropertyValueObject, CharacterTypeCode> _playerPropertyFactory;
         private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
 
         public TechnicalPointBarOutputDataFactory(
-            CharactersDomainService characters,
+            PlayerDomainService player,
             IFactory<PlayerPropertyValueObject, CharacterTypeCode> playerPropertyFactory,
             IRepository<CharacterEntity, CharacterId> characterRepository)
         {
-            _characters = characters;
+            _player = player;
             _playerPropertyFactory = playerPropertyFactory;
             _characterRepository = characterRepository;
         }
 
         public TechnicalPointBarOutputData Create()
         {
-            var playerId = _characters.GetPlayerId();
+            var playerId = _player.GetId();
             var technicalPointBarOutputData = new TechnicalPointBarOutputData(
                 _playerPropertyFactory.Create(CharacterTypeCode.Player).TechnicalPoint,
                 _characterRepository.Select(playerId).CurrentTechnicalPoint);
