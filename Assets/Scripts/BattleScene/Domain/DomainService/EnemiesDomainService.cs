@@ -82,6 +82,7 @@ namespace BattleScene.Domain.DomainService
         public CharacterId GetIdByPosition(int position)
         {
             return _characterRepository.Select()
+                .Where(x => x.CharacterTypeCode != CharacterTypeCode.Player)
                 .First(x => x.Position == position)
                 .Id;
         }
