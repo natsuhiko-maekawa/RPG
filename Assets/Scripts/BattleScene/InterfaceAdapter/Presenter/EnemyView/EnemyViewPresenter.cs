@@ -1,11 +1,11 @@
-﻿using System.Collections.Immutable;
+﻿using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
 using BattleScene.InterfaceAdapter.DataAccess;
-using BattleScene.InterfaceAdapter.DataAccess.Dto;
 using BattleScene.InterfaceAdapter.Interface;
 using BattleScene.UseCases.View.EnemyView.OutputBoundary;
 using BattleScene.UseCases.View.EnemyView.OutputData;
@@ -33,20 +33,26 @@ namespace BattleScene.InterfaceAdapter.Presenter.EnemyView
 
         public void Start(EnemyOutputData enemyOutputData)
         {
-            var enemyDto = enemyOutputData.EnemyCharacterIdList
-                .Select(x =>
-                {
-                    var characterTypeId = _characterRepository.Select(x).CharacterTypeCode;
-                    return new EnemyDto(
-                        EnemyNumber: _enemyRepository.Select(x).EnemyNumber,
-                        EnemyImagePath: _enemyViewInfoResource.Get(characterTypeId).EnemyImagePath);
-                })
-                .ToImmutableList();
-            var enemyViewDto = new EnemyViewDto(
-                EnemyCount: enemyOutputData.EnemyCharacterIdList.Count,
-                EnemyDtoList: enemyDto);
-            
-            _enemiesView.StartEnemyView(enemyViewDto);
+            enemyOutputData.EnemyCharacterIdList
+                .Select(GetImagePath)
+                .ToImmutableList()
+                .ForEach(StartEnemyView);
+        }
+
+        private KeyValuePair<int, string> GetImagePath(CharacterId characterId)
+        {
+            var characterTypeId = _characterRepository.Select(characterId).CharacterTypeCode; 
+            var enemyNumber = _enemyRepository.Select(characterId).EnemyNumber;
+            var enemyImagePath = _enemyViewInfoResource.Get(characterTypeId).EnemyImagePath;
+            var indexImagePathPair = new KeyValuePair<int, string>(enemyNumber, enemyImagePath);
+            return indexImagePathPair;
+        }
+
+        private void StartEnemyView(KeyValuePair<int, string> indexImagePathPair)
+        {
+            var dto = new EnemyViewDto(
+                EnemyImagePath: indexImagePathPair.Value);
+            _enemiesView[indexImagePathPair.Key].SetImage(dto);
         }
     }
 }

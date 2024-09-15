@@ -7,7 +7,6 @@ using BattleScene.InterfaceAdapter.Presenter.OrderView;
 using UnityEngine;
 using UnityEngine.UI;
 using Utility;
-using VContainer;
 using static BattleScene.Framework.Constant;
 
 namespace BattleScene.Framework.View
@@ -24,7 +23,7 @@ namespace BattleScene.Framework.View
         private readonly List<Image> _imageList = new();
         private Sprite[] _ailmentsIconArray;
         private float _defaultX;
-        private ISpriteFlyweight _spriteFlyweight;
+        private SpriteFlyweight _spriteFlyweight;
 
         private void Awake()
         {
@@ -39,6 +38,7 @@ namespace BattleScene.Framework.View
 
             _defaultX = _imageList.First().transform.localPosition.x;
             _ailmentsIconArray = SpriteEx.CreateByGrid(ailmentsIconTexture, 4, 4);
+            _spriteFlyweight = SpriteFlyweight.Instance;
         }
 
         public async Task StartAnimation(IList<OrderViewDto> dtoList)
@@ -79,13 +79,6 @@ namespace BattleScene.Framework.View
 
                 _imageList[i].enabled = true;
             }
-        }
-
-        [Inject]
-        public void Construct(
-            ISpriteFlyweight spriteFlyweight)
-        {
-            _spriteFlyweight = spriteFlyweight;
         }
     }
 }

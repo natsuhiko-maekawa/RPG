@@ -6,7 +6,6 @@ using BattleScene.InterfaceAdapter.Presenter.PlayerView;
 using BattleScene.InterfaceAdapter.Presenter.StatusBarView;
 using UnityEngine;
 using UnityEngine.UI;
-using VContainer;
 using static BattleScene.Framework.Constant;
 
 namespace BattleScene.Framework.View
@@ -21,7 +20,7 @@ namespace BattleScene.Framework.View
         private StatusBarView _playerHpBarView;
         private StatusBarView _playerTpBarView;
         private PlayerVibesView _playerVibesView;
-        private ISpriteFlyweight _spriteFlyweight;
+        private SpriteFlyweight _spriteFlyweight;
 
         private void Awake()
         {
@@ -33,6 +32,7 @@ namespace BattleScene.Framework.View
             var playerTpBarView = GameObject.Find("PlayerTpBarView").transform;
             _playerTpBarView = playerTpBarView.GetComponent<StatusBarView>();
             _playerVibesView = GetComponentInChildren<PlayerVibesView>();
+            _spriteFlyweight = SpriteFlyweight.Instance;
         }
 
         public async Task StartAnimation(PlayerViewDto dto)
@@ -91,13 +91,6 @@ namespace BattleScene.Framework.View
         public async Task StartPlayerVibesView()
         {
             await _playerVibesView.StartAnimation();
-        }
-
-        [Inject]
-        public void Construct(
-            ISpriteFlyweight spriteFlyweight)
-        {
-            _spriteFlyweight = spriteFlyweight;
         }
     }
 }

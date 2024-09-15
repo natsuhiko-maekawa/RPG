@@ -2,10 +2,11 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using Utility;
 
 namespace BattleScene.Framework
 {
-    public class SpriteFlyweight : ISpriteFlyweight
+    public class SpriteFlyweight : Singleton<SpriteFlyweight>
     {
         private readonly Dictionary<string, ValueTask<Sprite>> _spriteCache = new();
 

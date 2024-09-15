@@ -10,7 +10,6 @@ using BattleScene.InterfaceAdapter.Presenter.MessageView;
 using BattleScene.InterfaceAdapter.Presenter.PlayerView;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using Grid = BattleScene.Framework.GameObjects.Grid;
 
 namespace BattleScene.Framework.View
 {
@@ -20,7 +19,7 @@ namespace BattleScene.Framework.View
         [SerializeField] private InputAction moveAction;
         [SerializeField] private InputAction selectAction;
         private Window _window;
-        private Grid _grid;
+        private Table _grid;
         private ArrowRight _arrowRight;
         private ArrowUp _arrowUp;
         private ArrowDown _arrowDown;
@@ -32,7 +31,7 @@ namespace BattleScene.Framework.View
         private void Awake()
         {
             _window = GetComponentInChildren<Window>();
-            _grid = GetComponentInChildren<Grid>();
+            _grid = GetComponentInChildren<Table>();
             _arrowRight = GetComponentInChildren<ArrowRight>();
             _arrowUp = GetComponentInChildren<ArrowUp>();
             _arrowDown = GetComponentInChildren<ArrowDown>();
@@ -57,7 +56,7 @@ namespace BattleScene.Framework.View
                 _gridStateDictionary.Add(dto.ActionCode, gridState);
             }
             
-            _grid.SetRow(Math.Min(dto.RowDtoList.Count, maxGridSize));
+            _grid.SetItem(Math.Min(dto.RowDtoList.Count, maxGridSize));
             foreach (var (row, rowDto) in _grid.Zip(dto.RowDtoList.Skip(gridState.TopItemIndex), (row, rowDto) => (row, rowDto)))
             {
                 row.SetName(rowDto.RowName);
@@ -85,7 +84,7 @@ namespace BattleScene.Framework.View
         public void StopAnimation()
         {
             _window.Hide();
-            _grid.ResetRow();
+            _grid.ResetItem();
             _arrowRight.Hide();
             _arrowUp.Hide();
             _arrowDown.Hide();

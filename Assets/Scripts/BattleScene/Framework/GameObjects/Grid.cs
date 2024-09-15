@@ -6,59 +6,58 @@ using UnityEngine;
 
 namespace BattleScene.Framework.GameObjects
 {
-    public class Grid : MonoBehaviour, IEnumerable<Row>
+    public class Grid<TGameObject> : MonoBehaviour, IEnumerable<TGameObject> where TGameObject : MonoBehaviour
     {
-        private Row _row;
-        private readonly List<Row> _rowList = new();
-        public Row this[int index] => _rowList[index];
+        private TGameObject _gameObject;
+        private readonly List<TGameObject> _gameObjectList = new();
+        public TGameObject this[int index] => _gameObjectList[index];
 
-        private void Awake()
+        public void Initialize()
         {
-            _row = GetComponentInChildren<Row>();
-            _rowList.Add(_row);
+            _gameObject = GetComponentInChildren<TGameObject>();
+            _gameObjectList.Add(_gameObject);
         }
         
-        public void SetRow(int rowCount)
+        public void SetItem(int itemCount)
         {
-            if (rowCount > _rowList.Count)
+            if (itemCount > _gameObjectList.Count)
             {
-                AddText(rowCount - _rowList.Count);
+                AddItem(itemCount - _gameObjectList.Count);
                 return;
             }
 
-            if (rowCount < _rowList.Count) 
-                RemoveText(_rowList.Count - rowCount);
+            if (itemCount < _gameObjectList.Count) 
+                RemoveItem(_gameObjectList.Count - itemCount);
         }
 
-        public void ResetRow()
+        public void ResetItem()
         {
-            RemoveText(_rowList.Count);
+            RemoveItem(_gameObjectList.Count);
         }
 
-        private void AddText(int rowCount)
+        private void AddItem(int itemCount)
         {
-            for (var i = 0; i < rowCount; ++i)
+            for (var i = 0; i < itemCount; ++i)
             {
-                var row = Instantiate(_row, transform);
-                row.name = _row.name;
-                _rowList.Add(row);
-                _rowList[i].Hide();
+                var row = Instantiate(_gameObject, transform);
+                row.name = _gameObject.name;
+                _gameObjectList.Add(row);
             }
         }
 
-        private void RemoveText(int rowCount)
+        private void RemoveItem(int itemCount)
         {
-            var max = Math.Min(rowCount, _rowList.Count);
+            var max = Math.Min(itemCount, _gameObjectList.Count);
             for (var i = 0; i < max; ++i)
             {
-                Destroy(_rowList.Last().gameObject);
-                _rowList.RemoveAt(_rowList.Count - 1);
+                Destroy(_gameObjectList.Last().gameObject);
+                _gameObjectList.RemoveAt(_gameObjectList.Count - 1);
             }
         }
 
-        public IEnumerator<Row> GetEnumerator()
+        public IEnumerator<TGameObject> GetEnumerator()
         {
-            return _rowList.GetEnumerator();
+            return _gameObjectList.GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()

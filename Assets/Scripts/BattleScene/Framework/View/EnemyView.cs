@@ -3,34 +3,47 @@ using BattleScene.InterfaceAdapter.Interface;
 using BattleScene.InterfaceAdapter.Presenter.AilmentsView;
 using BattleScene.InterfaceAdapter.Presenter.CharacterVibesView;
 using BattleScene.InterfaceAdapter.Presenter.DigitView;
+using BattleScene.InterfaceAdapter.Presenter.EnemyView;
 using BattleScene.InterfaceAdapter.Presenter.FrameView;
 using BattleScene.InterfaceAdapter.Presenter.StatusBarView;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace BattleScene.Framework.View
 {
     public class EnemyView : MonoBehaviour, IEnemyView
     {
+        public Image Image { get;  set; }
         private EnemyAilmentsView _enemyAilmentView;
         private DigitView _digitView;
         private FrameView _frameView;
         private StatusBarView _hitPointBarView;
         private EnemyVibesView _enemyVibesView;
+        private SpriteFlyweight _spriteFlyweight;
 
         private void Awake()
         {
+            Image = GetComponent<Image>();
             _enemyAilmentView = GetComponentInChildren<EnemyAilmentsView>();
             _digitView = GetComponentInChildren<DigitView>();
             _frameView = GetComponentInChildren<FrameView>();
             _hitPointBarView = GetComponentInChildren<StatusBarView>();
             _enemyVibesView = GetComponentInChildren<EnemyVibesView>();
+            _spriteFlyweight = SpriteFlyweight.Instance;
         }
 
         public void SetActive(bool value)
         {
             gameObject.SetActive(value);
         }
-        
+
+        public async Task SetImage(EnemyViewDto dto)
+        {
+            var enemyImagePath = dto.EnemyImagePath;
+            var sprite = await _spriteFlyweight.Get(enemyImagePath);
+            Image.sprite = sprite;
+        }
+
         public Task StartAilmentAnimationAsync(EnemyAilmentsViewDto dto)
         {
             _enemyAilmentView.StartAnimation(dto);

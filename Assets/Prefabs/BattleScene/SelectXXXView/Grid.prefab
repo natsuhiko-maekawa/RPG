@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7809779197013094324}
-  - component: {fileID: 5268095859895056300}
+  - component: {fileID: 3181567850435580125}
   - component: {fileID: 7587693681132051996}
   m_Layer: 0
   m_Name: Grid
@@ -38,7 +38,7 @@ RectTransform:
   m_AnchoredPosition: {x: 50, y: -54}
   m_SizeDelta: {x: 318, y: 204}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &5268095859895056300
+--- !u!114 &3181567850435580125
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -47,7 +47,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7275742312940139884}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb9dd8562522403ca1eaac6af26a53c6, type: 3}
+  m_Script: {fileID: 11500000, guid: 96dc315032434cc79f5ffe3cf83f6be1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &7587693681132051996
