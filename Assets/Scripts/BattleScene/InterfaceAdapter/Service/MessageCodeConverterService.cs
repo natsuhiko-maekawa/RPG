@@ -151,13 +151,20 @@ namespace BattleScene.InterfaceAdapter.Service
             if (!message.Contains(Target)) return message;
             var targetNameList = _battleLogRepository.Select()
                 .Max().TargetIdList
-                .Select(x => Equals(x, _player.GetId())
-                    ? _playerViewInfoResource.Get(CharacterTypeCode.Player).PlayerName
-                    : _enemyViewInfoResource.Get(_characterRepository.Select(x).CharacterTypeCode).EnemyName)
+                .Distinct()
+                .Select(GetCharacterName)
                 .ToImmutableList();
             if (targetNameList.IsEmpty) return message;
             var totalSuffix = targetNameList.Count == 1 ? "" : "たち";
             return message.Replace(Target, targetNameList.First() + totalSuffix);
+        }
+
+        private string GetCharacterName(CharacterId characterId)
+        {
+            var characterName = Equals(characterId, _player.GetId())
+                ? _playerViewInfoResource.Get(CharacterTypeCode.Player).PlayerName
+                : _enemyViewInfoResource.Get(_characterRepository.Select(characterId).CharacterTypeCode).EnemyName;
+            return characterName;
         }
 
         private string ReplaceTechnicalPoint(string message)
