@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.Immutable;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.Id;
@@ -15,7 +14,6 @@ namespace BattleScene.Domain.ValueObject
             BodyPartCode bodyPartCode,
             int destroyCount)
         {
-            CharacterId = actorId;
             ActorId = actorId;
             TargetIdList = targetIdList.ToImmutableList();
             SkillCode = skillCode;
@@ -28,13 +26,5 @@ namespace BattleScene.Domain.ValueObject
         public SkillCode SkillCode { get; }
         public BodyPartCode BodyPartCode { get; }
         public int DestroyCount { get; }
-        
-        [Obsolete]
-        public CharacterId CharacterId { get; }
-
-        public bool Success()
-        {
-            return !TargetIdList.IsEmpty;
-        }
     }
 }
