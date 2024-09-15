@@ -42,7 +42,7 @@ namespace BattleScene.UseCases.OldEvent
 
         public EventCode Run()
         {
-            var characterId = _orderedItems.FirstCharacterId();
+            _orderedItems.First().TryGetCharacterId(out var characterId);
             // 自滅した敵の状態異常を削除
             // _ailmentRepository.Delete(characterId);
             // 自滅した敵の行動時間を削除

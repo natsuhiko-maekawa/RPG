@@ -37,7 +37,7 @@ namespace BattleScene.UseCases.UseCase
 
         public void Execute()
         {
-            var characterId = _orderedItems.FirstCharacterId();
+            _orderedItems.First().TryGetCharacterId(out var characterId);
             // var skill = _skillRepository.Select(characterId);
 
             if (_characterRepository.Select(characterId).IsPlayer)

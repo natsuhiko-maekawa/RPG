@@ -21,7 +21,8 @@ namespace BattleScene.UseCases.OldEvent
 
         public EventCode Run()
         {
-            var ailment = _ailment.GetHighPriority(_orderedItems.FirstCharacterId());
+            _orderedItems.First().TryGetCharacterId(out var characterId);
+            var ailment = _ailment.GetHighPriority(characterId);
             if (ailment == null) throw new InvalidOperationException();
 
             // 状態異常のメッセージを表示

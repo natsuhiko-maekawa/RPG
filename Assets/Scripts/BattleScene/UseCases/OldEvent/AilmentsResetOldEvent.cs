@@ -22,8 +22,8 @@ namespace BattleScene.UseCases.OldEvent
         private readonly AilmentOutputDataFactory _ailmentOutputDataFactory;
         private readonly IRepository<AilmentEntity, (CharacterId, AilmentCode)> _ailmentRepository;
         private readonly IAilmentViewPresenter _ailmentView;
-        private readonly CharactersDomainService _characters;
         private readonly MessageOutputDataFactory _messageOutputDataFactory;
+        private readonly PlayerDomainService _player;
         private readonly IMessageViewPresenter _messageView;
         private readonly OrderedItemsDomainService _orderedItems;
         private readonly IPlayerImageViewPresenter _playerImageView;
@@ -32,7 +32,6 @@ namespace BattleScene.UseCases.OldEvent
             AilmentOutputDataFactory ailmentOutputDataFactory,
             IRepository<AilmentEntity, (CharacterId, AilmentCode)> ailmentRepository,
             IAilmentViewPresenter ailmentView,
-            CharactersDomainService characters,
             MessageOutputDataFactory messageOutputDataFactory,
             IMessageViewPresenter messageView,
             OrderedItemsDomainService orderedItems,
@@ -41,7 +40,6 @@ namespace BattleScene.UseCases.OldEvent
             _ailmentOutputDataFactory = ailmentOutputDataFactory;
             _ailmentRepository = ailmentRepository;
             _ailmentView = ailmentView;
-            _characters = characters;
             _messageOutputDataFactory = messageOutputDataFactory;
             _messageView = messageView;
             _orderedItems = orderedItems;
@@ -50,11 +48,11 @@ namespace BattleScene.UseCases.OldEvent
 
         public EventCode Run()
         {
-            var playerId = _characters.GetPlayerId();
-            if (_orderedItems.FirstAilmentCode() == AilmentCode.Confusion) { }
+            var playerId = _player.GetId();
+            if (_orderedItems.First().TryGetAilmentCode(out var ailmentCode) && ailmentCode == AilmentCode.Confusion) { }
                 // _skillRepository.Update(_skillCreator.Create(playerId, SkillCode.Attack));
 
-            _ailmentRepository.Delete((playerId, _orderedItems.FirstAilmentCode()));
+            _ailmentRepository.Delete((playerId, ailmentCode));
             StartView();
 
             return WaitEvent;
@@ -67,7 +65,7 @@ namespace BattleScene.UseCases.OldEvent
 
         private void StartView()
         {
-            var ailmentOutputData = _ailmentOutputDataFactory.Create(_characters.GetPlayerId());
+            var ailmentOutputData = _ailmentOutputDataFactory.Create(_player.GetId());
             _ailmentView.Start(ailmentOutputData);
             var messageOutputData = _messageOutputDataFactory.Create(RecoverAilmentMessage);
             _messageView.Start(messageOutputData);
