@@ -140,6 +140,7 @@ namespace BattleScene.InterfaceAdapter.Service
             return message.Replace(Damage, totalPrefix + damage);
         }
 
+        // ReSharper disable once UnusedParameter.Local
         private string ReplaceCure(string message)
         {
             throw new NotImplementedException();
