@@ -31,15 +31,16 @@ namespace BattleScene.InterfaceAdapter.Presenter.MessageView
         public void Start(MessageCode messageCode, bool noWait = false)
         {
             _messageView.StopAnimation();
-            var message = _messageResource.Get(messageCode);
-            var replacedMessage = _messageCodeConverter.Replace(message.Message);
-            _messageView.StartAnimation(new MessageViewDto(replacedMessage, noWait));
+            var message = _messageResource.Get(messageCode).Message;
+            message = _messageCodeConverter.Replace(message);
+            _messageView.StartAnimation(new MessageViewDto(message, noWait));
         }
         
         public void Start(MessageOutputData outputData)
         {
             _messageView.StopAnimation();
-            var message = _messageCodeConverter.ToMessage(outputData.MessageCode);
+            var message = _messageResource.Get(outputData.MessageCode).Message;
+            message = _messageCodeConverter.Replace(message);
             _messageView.StartAnimation(new MessageViewDto(message, outputData.NoWait));
         }
     }

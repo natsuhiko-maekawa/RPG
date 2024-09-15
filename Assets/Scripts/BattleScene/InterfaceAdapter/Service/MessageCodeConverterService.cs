@@ -27,7 +27,6 @@ namespace BattleScene.InterfaceAdapter.Service
         private readonly IResource<BuffViewDto, BuffCode> _buffViewInfoResource;
         private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
         private readonly IResource<EnemyViewDto, CharacterTypeCode> _enemyViewInfoResource;
-        private readonly IResource<MessageDto, MessageCode> _messageResource;
         private readonly OrderedItemsDomainService _orderedItems;
         private readonly IResource<PlayerViewDto, CharacterTypeCode> _playerViewInfoResource;
         private readonly IResource<SkillPropertyDto, SkillCode> _skillViewInfoResource;
@@ -41,7 +40,6 @@ namespace BattleScene.InterfaceAdapter.Service
             IResource<BuffViewDto, BuffCode> buffViewInfoResource,
             IRepository<CharacterEntity, CharacterId> characterRepository,
             IResource<EnemyViewDto, CharacterTypeCode> enemyViewInfoResource,
-            IResource<MessageDto, MessageCode> messageResource,
             OrderedItemsDomainService orderedItems,
             IResource<PlayerViewDto, CharacterTypeCode> playerViewInfoResource,
             IResource<SkillPropertyDto, SkillCode> skillViewInfoResource,
@@ -54,7 +52,6 @@ namespace BattleScene.InterfaceAdapter.Service
             _buffViewInfoResource = buffViewInfoResource;
             _characterRepository = characterRepository;
             _enemyViewInfoResource = enemyViewInfoResource;
-            _messageResource = messageResource;
             _orderedItems = orderedItems;
             _playerViewInfoResource = playerViewInfoResource;
             _skillViewInfoResource = skillViewInfoResource;
@@ -74,21 +71,6 @@ namespace BattleScene.InterfaceAdapter.Service
             message = ReplaceSkill(message);
             message = ReplaceTarget(message);
             message = ReplaceTechnicalPoint(message);
-            return message;
-        }
-        
-        [Obsolete]
-        public string ToMessage(MessageCode messageCode)
-        {
-            var message = _messageResource.Get(messageCode).Message;
-            message = ReplaceActor(message);
-            message = ReplaceAilments(message);
-            message = ReplaceBuff(message);
-            message = ReplaceDamage(message);
-            message = ReplaceCure(message);
-            message = ReplaceBodyPart(message);
-            message = ReplaceSkill(message);
-            message = ReplaceTarget(message);
             return message;
         }
 
