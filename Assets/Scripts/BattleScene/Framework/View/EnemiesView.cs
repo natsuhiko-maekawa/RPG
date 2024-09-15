@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using BattleScene.Framework.GameObjects;
 using BattleScene.InterfaceAdapter.Interface;
-using BattleScene.InterfaceAdapter.Presenter.AilmentsView;
 using BattleScene.InterfaceAdapter.Presenter.CharacterVibesView;
 using BattleScene.InterfaceAdapter.Presenter.FrameView;
 using UnityEngine;
@@ -22,12 +21,6 @@ namespace BattleScene.Framework.View
             _enemyViewGrid = GetComponent<EnemyGrid>();
             _enemyViewGrid.Initialize();
             _enemyViewGrid.SetItem(maxCacheSize);
-        }
-
-        [Obsolete]
-        public Task StartEnemyAilmentsView(EnemyAilmentsViewDto dto)
-        {
-            return Task.CompletedTask;
         }
 
         [Obsolete]
