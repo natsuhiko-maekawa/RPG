@@ -11,8 +11,6 @@ namespace BattleScene.InterfaceAdapter.Interface
     {
         public Task StartAnimation(PlayerViewDto dto);
         public Task StartPlayerDigitView(PlayerDigitViewDto dto);
-        [Obsolete]
-        public Task StartPlayerFrameView(PlayerFrameViewDto dto);
         public Task StartFrameView(FrameViewDto dto);
         public void StopPlayerFrameView();
         public Task StartPlayerHpBarView(PlayerHpBarViewDto dto);

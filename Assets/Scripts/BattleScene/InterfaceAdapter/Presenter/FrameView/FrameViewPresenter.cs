@@ -15,16 +15,20 @@ namespace BattleScene.InterfaceAdapter.Presenter.FrameView
         public void Start(IList<FrameOutputData> outputDataList)
         {
             foreach (var outputData in outputDataList)
+            {
+                var color = ToColor(outputData.FrameType);
+                var dto = new FrameViewDto(color);
+                
                 if (outputData.IsPlayer)
                 {
-                    var dto = new PlayerFrameViewDto(ToColor(outputData.FrameType));
-                    _playerView.StartPlayerFrameView(dto);
+                    _playerView.StartFrameView(dto);
                 }
                 else
                 {
-                    var dto = new EnemyFrameViewDto(outputData.EnemyNumber, ToColor(outputData.FrameType));
-                    _enemiesView.StartEnemyFrameView(dto);
+                    var enemyPosition = outputData.EnemyNumber;
+                    _enemiesView[enemyPosition].StartFrameAnimationAsync(dto);
                 }
+            }
         }
 
         public void Stop()

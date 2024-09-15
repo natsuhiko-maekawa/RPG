@@ -53,12 +53,6 @@ namespace BattleScene.Framework.View
             await _playerDigitView.StartAnimation(dto.DigitDtoList);
         }
 
-        public Task StartPlayerFrameView(PlayerFrameViewDto dto)
-        {
-            _playerFrameView.StartAnimation(dto.Color);
-            return Task.CompletedTask;
-        }
-
         public Task StartFrameView(FrameViewDto dto)
         {
             _playerFrameView.StartAnimation(dto);

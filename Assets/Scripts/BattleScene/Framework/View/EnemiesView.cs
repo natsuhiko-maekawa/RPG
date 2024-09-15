@@ -1,11 +1,7 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using BattleScene.Framework.GameObjects;
 using BattleScene.InterfaceAdapter.Interface;
-using BattleScene.InterfaceAdapter.Presenter.CharacterVibesView;
-using BattleScene.InterfaceAdapter.Presenter.FrameView;
 using UnityEngine;
 
 namespace BattleScene.Framework.View
@@ -22,16 +18,10 @@ namespace BattleScene.Framework.View
             _enemyViewGrid.Initialize();
             _enemyViewGrid.SetItem(maxCacheSize);
         }
-
-        [Obsolete]
-        public Task StartEnemyFrameView(EnemyFrameViewDto dto)
-        {
-            return Task.CompletedTask;
-        }
-
-        [Obsolete]
+        
         public void StopEnemyFrameView()
         {
+            foreach (var enemyView in _enemyViewGrid) enemyView.StopFrameAnimation();
         }
 
         public IEnemyView this[int i] => _enemyViewGrid[i];
