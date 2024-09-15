@@ -270,7 +270,6 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<SlipStateFactory>(Lifetime.Singleton);
             builder.Register<SlipMessageState>(Lifetime.Singleton);
             builder.Register<SlipFailureState>(Lifetime.Singleton);
-            builder.Register<SkillMessageStateFactory>(Lifetime.Singleton);
             builder.Register<SkillEndState>(Lifetime.Singleton);
             builder.Register<SkillQuitState>(Lifetime.Singleton);
             builder.Register<TurnEndState>(Lifetime.Singleton);
