@@ -1,3 +1,4 @@
+using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
 
@@ -5,15 +6,12 @@ namespace BattleScene.UseCases.Service
 {
     public class CharacterOutputDataCreatorService
     {
-        private readonly ICharacterRepository _characterRepository;
-        private readonly IEnemyRepository _enemyRepository;
+        private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
 
         public CharacterOutputDataCreatorService(
-            ICharacterRepository characterRepository,
-            IEnemyRepository enemyRepository)
+            IRepository<CharacterEntity, CharacterId> characterRepository)
         {
             _characterRepository = characterRepository;
-            _enemyRepository = enemyRepository;
         }
 
         public CharacterOutputData Create(CharacterId characterId)
@@ -21,7 +19,7 @@ namespace BattleScene.UseCases.Service
             var character = _characterRepository.Select(characterId);
             return character.IsPlayer
                 ? CharacterOutputData.SetPlayer()
-                : CharacterOutputData.SetEnemy(_enemyRepository.Select(characterId).EnemyNumber);
+                : CharacterOutputData.SetEnemy(_characterRepository.Select(characterId).Position);
         }
     }
 

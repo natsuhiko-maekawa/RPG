@@ -229,7 +229,6 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<IAilmentRepository, AilmentRepository>(Lifetime.Singleton);
             builder.Register<IBodyPartRepository, BodyPartRepository>(Lifetime.Singleton);
             builder.Register<ICharacterRepository, CharacterRepository>(Lifetime.Singleton);
-            builder.Register<IEnemyRepository, EnemyRepository>(Lifetime.Singleton);
             builder.Register<IRepository<AilmentEntity, (CharacterId, AilmentCode)>, Repository<AilmentEntity, (CharacterId, AilmentCode)>>(
                 Lifetime.Singleton);
             builder.Register<IRepository<BattleLogEntity, BattleLogId>, Repository<BattleLogEntity, BattleLogId>>(
@@ -239,8 +238,6 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<IRepository<BuffEntity, (CharacterId, BuffCode)>, Repository<BuffEntity, (CharacterId, BuffCode)>>(
                 Lifetime.Singleton);
             builder.Register<IRepository<CharacterEntity, CharacterId>, Repository<CharacterEntity, CharacterId>>(
-                Lifetime.Singleton);
-            builder.Register<IRepository<EnemyEntity, CharacterId>, Repository<EnemyEntity, CharacterId>>(
                 Lifetime.Singleton);
             builder.Register<IRepository<OrderedItemEntity, OrderId>, Repository<OrderedItemEntity, OrderId>>(
                 Lifetime.Singleton);

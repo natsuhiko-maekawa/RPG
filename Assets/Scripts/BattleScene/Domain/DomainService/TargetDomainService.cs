@@ -12,7 +12,6 @@ namespace BattleScene.Domain.DomainService
     {
         private readonly IRepository<BattleLogEntity, BattleLogId> _battleLogRepository;
         private readonly EnemiesDomainService _enemies;
-        private readonly IRepository<EnemyEntity, CharacterId> _enemyRepository;
         private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
         private readonly PlayerDomainService _player;
 
@@ -20,13 +19,11 @@ namespace BattleScene.Domain.DomainService
             EnemiesDomainService enemies,
             PlayerDomainService player,
             IRepository<BattleLogEntity, BattleLogId> battleLogRepository,
-            IRepository<EnemyEntity, CharacterId> enemyRepository,
             IRepository<CharacterEntity, CharacterId> characterRepository)
         {
             _enemies = enemies;
             _player = player;
             _battleLogRepository = battleLogRepository;
-            _enemyRepository = enemyRepository;
             _characterRepository = characterRepository;
         }
 
@@ -63,7 +60,7 @@ namespace BattleScene.Domain.DomainService
             targetId = targetId == null || !_characterRepository.Select(targetId).IsSurvive
                 ? _enemies.Get()
                     .Select(x => x.Id)
-                    .OrderBy(x => _enemyRepository.Select(x).EnemyNumber)
+                    .OrderBy(x => _characterRepository.Select(x).Position)
                     .First(x => _characterRepository.Select(x).IsSurvive)
                 : targetId;
             return targetId;

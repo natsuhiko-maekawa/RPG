@@ -17,18 +17,15 @@ namespace BattleScene.Domain.DomainService
         private readonly IFactory<PropertyValueObject, CharacterTypeCode> _propertyFactory;
         private readonly IRandomEx _randomEx;
         private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
-        private readonly IRepository<EnemyEntity, CharacterId> _enemyRepository;
 
         public EnemiesDomainService(
             IFactory<PropertyValueObject, CharacterTypeCode> propertyFactory,
             IRandomEx randomEx, 
-            IRepository<CharacterEntity, CharacterId> characterRepository,
-            IRepository<EnemyEntity, CharacterId> enemyRepository)
+            IRepository<CharacterEntity, CharacterId> characterRepository)
         {
             _propertyFactory = propertyFactory;
             _randomEx = randomEx;
             _characterRepository = characterRepository;
-            _enemyRepository = enemyRepository;
         }
 
         public void Add(IList<CharacterTypeCode> characterTypeIdList)
@@ -64,12 +61,6 @@ namespace BattleScene.Domain.DomainService
                 })
                 .ToImmutableList();
             _characterRepository.Update(characterList);
-            
-            var enemyList = characterList
-                .OrderBy(x => x.CharacterTypeCode)
-                .Select((x, i) => new EnemyEntity(x.Id, i))
-                .ToImmutableList();
-            _enemyRepository.Update(enemyList);
         }
 
         public ImmutableList<CharacterEntity> Get()
@@ -90,8 +81,8 @@ namespace BattleScene.Domain.DomainService
 
         public CharacterId GetIdByPosition(int position)
         {
-            return _enemyRepository.Select()
-                .First(x => x.EnemyNumber == position)
+            return _characterRepository.Select()
+                .First(x => x.Position == position)
                 .Id;
         }
     }

@@ -10,16 +10,16 @@ namespace BattleScene.UseCases.View.DigitView.OutputDataFactory
 {
     public class DamageDigitOutputDataFactory
     {
-        private readonly IRepository<EnemyEntity, CharacterId> _enemyRepository;
+        private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
         private readonly BattleLogDomainService _battleLog;
         private readonly PlayerDomainService _player;
 
         public DamageDigitOutputDataFactory(
-            IRepository<EnemyEntity, CharacterId> enemyRepository, 
+            IRepository<CharacterEntity, CharacterId> characterRepository, 
             BattleLogDomainService battleLog, 
             PlayerDomainService player)
         {
-            _enemyRepository = enemyRepository;
+            _characterRepository = characterRepository;
             _battleLog = battleLog;
             _player = player;
         }
@@ -35,7 +35,7 @@ namespace BattleScene.UseCases.View.DigitView.OutputDataFactory
                     Equals(x.TargetId, _player.GetId()),
                     Equals(x.TargetId, _player.GetId())
                         ? default
-                        : _enemyRepository.Select(x.TargetId).EnemyNumber))
+                        : _characterRepository.Select(x.TargetId).Position))
                 .ToImmutableList();
         }
     }

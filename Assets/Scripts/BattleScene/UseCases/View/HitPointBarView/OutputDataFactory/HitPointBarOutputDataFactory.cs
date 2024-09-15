@@ -14,18 +14,15 @@ namespace BattleScene.UseCases.View.HitPointBarView.OutputDataFactory
         private readonly BattleLogDomainService _battleLog;
         private readonly CharacterPropertyFactoryService _characterPropertyFactory;
         private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
-        private readonly IRepository<EnemyEntity, CharacterId> _enemyRepository;
         
         public HitPointBarOutputDataFactory(
             BattleLogDomainService battleLog,
             CharacterPropertyFactoryService characterPropertyFactory,
-            IRepository<CharacterEntity, CharacterId> characterRepository,
-            IRepository<EnemyEntity, CharacterId> enemyRepository)
+            IRepository<CharacterEntity, CharacterId> characterRepository)
         {
             _battleLog = battleLog;
             _characterPropertyFactory = characterPropertyFactory;
             _characterRepository = characterRepository;
-            _enemyRepository = enemyRepository;
         }
         
         public ImmutableList<HitPointBarOutputData> Create()
@@ -39,7 +36,7 @@ namespace BattleScene.UseCases.View.HitPointBarView.OutputDataFactory
                 .Select(x => new HitPointBarOutputData(
                     _characterRepository.Select(x.targetId).IsPlayer
                         ? CharacterOutputData.SetPlayer()
-                        : CharacterOutputData.SetEnemy(_enemyRepository.Select(x.targetId).EnemyNumber),
+                        : CharacterOutputData.SetEnemy(_characterRepository.Select(x.targetId).Position),
                     _characterPropertyFactory.Crate(x.targetId).HitPoint,
                     _characterRepository.Select(x.targetId).CurrentHitPoint))
                 .ToImmutableList();

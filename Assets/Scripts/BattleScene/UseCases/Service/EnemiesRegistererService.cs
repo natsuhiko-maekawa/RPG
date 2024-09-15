@@ -18,18 +18,15 @@ namespace BattleScene.UseCases.Service
         private readonly IFactory<PropertyValueObject, CharacterTypeCode> _propertyFactory;
         private readonly IRandomEx _randomEx;
         private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
-        private readonly IRepository<EnemyEntity, CharacterId> _enemyRepository;
 
         public EnemiesRegistererService(
             IFactory<PropertyValueObject, CharacterTypeCode> propertyFactory,
             IRandomEx randomEx, 
-            IRepository<CharacterEntity, CharacterId> characterRepository,
-            IRepository<EnemyEntity, CharacterId> enemyRepository)
+            IRepository<CharacterEntity, CharacterId> characterRepository)
         {
             _propertyFactory = propertyFactory;
             _randomEx = randomEx;
             _characterRepository = characterRepository;
-            _enemyRepository = enemyRepository;
         }
 
         public void Register(IList<CharacterTypeCode> characterTypeIdList)
@@ -65,12 +62,6 @@ namespace BattleScene.UseCases.Service
                 })
                 .ToImmutableList();
             _characterRepository.Update(characterList);
-            
-            var enemyList = characterList
-                .OrderBy(x => x.CharacterTypeCode)
-                .Select((x, i) => new EnemyEntity(x.Id, i))
-                .ToImmutableList();
-            _enemyRepository.Update(enemyList);
         }
     }
 }

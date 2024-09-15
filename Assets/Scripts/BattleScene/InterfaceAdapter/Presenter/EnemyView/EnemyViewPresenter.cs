@@ -15,18 +15,15 @@ namespace BattleScene.InterfaceAdapter.Presenter.EnemyView
     internal class EnemyViewPresenter : IEnemyViewPresenter
     {
         private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
-        private readonly IRepository<EnemyEntity, CharacterId> _enemyRepository;
         private readonly IResource<DataAccess.Dto.EnemyViewDto, CharacterTypeCode> _enemyViewInfoResource;
         private readonly IEnemiesView _enemiesView;
 
         public EnemyViewPresenter(
             IRepository<CharacterEntity, CharacterId> characterRepository,
-            IRepository<EnemyEntity, CharacterId> enemyRepository,
             IResource<DataAccess.Dto.EnemyViewDto, CharacterTypeCode> enemyViewInfoResource,
             IEnemiesView enemiesView)
         {
             _characterRepository = characterRepository;
-            _enemyRepository = enemyRepository;
             _enemyViewInfoResource = enemyViewInfoResource;
             _enemiesView = enemiesView;
         }
@@ -42,7 +39,7 @@ namespace BattleScene.InterfaceAdapter.Presenter.EnemyView
         private KeyValuePair<int, string> GetImagePath(CharacterId characterId)
         {
             var characterTypeId = _characterRepository.Select(characterId).CharacterTypeCode; 
-            var enemyNumber = _enemyRepository.Select(characterId).EnemyNumber;
+            var enemyNumber = _characterRepository.Select(characterId).Position;
             var enemyImagePath = _enemyViewInfoResource.Get(characterTypeId).EnemyImagePath;
             var indexImagePathPair = new KeyValuePair<int, string>(enemyNumber, enemyImagePath);
             return indexImagePathPair;
