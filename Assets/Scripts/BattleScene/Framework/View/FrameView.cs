@@ -1,4 +1,3 @@
-using System;
 using System.Threading.Tasks;
 using BattleScene.InterfaceAdapter.Presenter.FrameView;
 using UnityEngine;
@@ -15,14 +14,6 @@ namespace BattleScene.Framework.View
         {
             _frame = Instantiate(frame, transform);
             _frame.enabled = false;
-        }
-
-        [Obsolete]
-        public Task StartAnimation(Color color)
-        {
-            _frame.color = color;
-            _frame.enabled = true;
-            return Task.CompletedTask;
         }
 
         public override Task StartAnimation(FrameViewDto dto)
