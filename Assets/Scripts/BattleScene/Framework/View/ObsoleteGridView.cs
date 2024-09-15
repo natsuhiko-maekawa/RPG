@@ -11,7 +11,8 @@ using UnityEngine.UI;
 
 namespace BattleScene.Framework.View
 {
-    public class ObsoleteGridView : MonoBehaviour//, IGridView
+    [Obsolete]
+    public class ObsoleteGridView : MonoBehaviour
     {
         [SerializeField] private int slotHeight = 46;
         [SerializeField] private int rightArrowX = -147;
@@ -35,21 +36,18 @@ namespace BattleScene.Framework.View
         private readonly Dictionary<ActionCode, GridState> _gridStateDictionary = new();
         public int MaxGridSize => maxGridSize;
         public IReadOnlyDictionary<ActionCode, GridState> GridStateDictionary => _gridStateDictionary;
-        public int SlotHeight => slotHeight;
-        public int Id => _id;
-        
+
         private void Awake()
         {
-            // TODO: PrefabをアタッチしてGetComponentに置き換える
-            // _window = Instantiate(window, transform);
-            // _window.enabled = false;
-            // _rightArrow = Instantiate(rightArrow, transform);
-            // _rightArrow.enabled = false;
-            // _upArrow = Instantiate(upArrow, transform);
-            // _upArrow.enabled = false;
-            // _downArrow = Instantiate(downArrow, transform);
-            // _downArrow.enabled = false;
-            // SetMoveAction(MoveArrow);
+            _window = Instantiate(window, transform);
+            _window.enabled = false;
+            _rightArrow = Instantiate(rightArrow, transform);
+            _rightArrow.enabled = false;
+            _upArrow = Instantiate(upArrow, transform);
+            _upArrow.enabled = false;
+            _downArrow = Instantiate(downArrow, transform);
+            _downArrow.enabled = false;
+            SetMoveAction(MoveArrow);
         }
 
         public async Task StartAnimationAsync(GridViewDto dto)
