@@ -27,10 +27,9 @@ namespace BattleScene.Framework.View
             _image = GetComponentInChildren<Image>();
             _playerDigitView = GetComponentInChildren<DigitView>();
             _playerFrameView = GetComponentInChildren<FrameView>();
-            var playerHpBarView = GameObject.Find("PlayerHpBarView").transform;
-            _playerHpBarView = playerHpBarView.GetComponent<StatusBarView>();
-            var playerTpBarView = GameObject.Find("PlayerTpBarView").transform;
-            _playerTpBarView = playerTpBarView.GetComponent<StatusBarView>();
+            var statusBarViews = GetComponentsInChildren<StatusBarView>();
+            _playerHpBarView = statusBarViews[0];
+            _playerTpBarView = statusBarViews[1];
             _playerVibesView = GetComponentInChildren<PlayerVibesView>();
             _spriteFlyweight = SpriteFlyweight.Instance;
         }
