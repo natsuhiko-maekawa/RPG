@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using BattleScene.InterfaceAdapter.Presenter.DigitView;
 using BattleScene.InterfaceAdapter.Presenter.FrameView;
 using BattleScene.InterfaceAdapter.Presenter.PlayerView;
@@ -14,7 +13,6 @@ namespace BattleScene.InterfaceAdapter.Interface
         public Task StartFrameView(FrameViewDto dto);
         public void StopPlayerFrameView();
         public Task StartPlayerHpBarView(PlayerHpBarViewDto dto);
-        [Obsolete]
         public Task StartPlayerTpBarView(PlayerTpBarViewDto dto);
         public Task StartTechnicalPointBarView(TechnicalPointBarViewDto dto);
         public Task StartPlayerVibesView();

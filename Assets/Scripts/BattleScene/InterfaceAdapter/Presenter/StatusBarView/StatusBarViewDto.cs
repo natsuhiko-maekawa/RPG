@@ -1,11 +1,8 @@
-﻿using System;
-
-namespace BattleScene.InterfaceAdapter.Presenter.StatusBarView
+﻿namespace BattleScene.InterfaceAdapter.Presenter.StatusBarView
 {
     public record PlayerHpBarViewDto(
         StatusBarViewDto StatusBarViewDto);
-
-    [Obsolete]
+    
     public record PlayerTpBarViewDto(
         StatusBarViewDto StatusBarViewDto);
 
