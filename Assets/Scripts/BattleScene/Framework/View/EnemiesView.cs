@@ -34,12 +34,6 @@ namespace BattleScene.Framework.View
         {
         }
 
-        [Obsolete]
-        public Task StartEnemyVibesView(EnemyVibesViewDto dto)
-        {
-            return Task.CompletedTask;
-        }
-
         public IEnemyView this[int i] => _enemyViewGrid[i];
 
         public IEnumerator<EnemyView> GetEnumerator()
