@@ -23,7 +23,11 @@ namespace BattleScene.InterfaceAdapter.Presenter.CharacterVibesView
             if (outputData.CharacterOutputData.IsPlayer)
                 _playerView.StartPlayerVibesView();
             else
-                _enemiesView.StartEnemyVibesView(new EnemyVibesViewDto(outputData.CharacterOutputData.EnemyNumber));
+            {
+                var enemyPosition = outputData.CharacterOutputData.EnemyNumber;
+                _enemiesView[enemyPosition]
+                    .StartVibesAnimationAsync(new EnemyVibesViewDto(outputData.CharacterOutputData.EnemyNumber));
+            }
         }
 
         public void Start(IList<CharacterVibesOutputData> outputDataList)
