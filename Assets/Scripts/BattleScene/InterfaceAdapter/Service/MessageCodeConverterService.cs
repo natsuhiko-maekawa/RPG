@@ -66,7 +66,7 @@ namespace BattleScene.InterfaceAdapter.Service
             message = ReplaceAilments(message);
             message = ReplaceBuff(message);
             message = ReplaceDamage(message);
-            // message = ReplaceCure(message);
+            message = ReplaceCure(message);
             message = ReplaceBodyPart(message);
             message = ReplaceSkill(message);
             message = ReplaceTarget(message);
@@ -121,11 +121,10 @@ namespace BattleScene.InterfaceAdapter.Service
                 .Max().GetTotalDamageAmount().ToString();
             return message.Replace(Damage, totalPrefix + damage);
         }
-
-        // ReSharper disable once UnusedParameter.Local
+        
         private string ReplaceCure(string message)
         {
-            throw new NotImplementedException();
+            return message;
         }
 
         private string ReplaceBodyPart(string message)
