@@ -11,12 +11,12 @@ namespace BattleScene.UseCases.View.AilmentView.OutputDataFactory
 {
     internal class AilmentOutputDataFactory
     {
-        private readonly IAilmentRepository _ailmentRepository;
+        private readonly IRepository<AilmentEntity, (CharacterId, AilmentCode)> _ailmentRepository;
         private readonly ICharacterRepository _characterRepository;
         private readonly IRepository<SlipDamageEntity, SlipDamageCode> _slipDamageRepository;
 
         public AilmentOutputDataFactory(
-            IAilmentRepository ailmentRepository,
+            IRepository<AilmentEntity, (CharacterId, AilmentCode)> ailmentRepository,
             ICharacterRepository characterRepository,
             IRepository<SlipDamageEntity, SlipDamageCode> slipDamageRepository)
         {
@@ -44,7 +44,9 @@ namespace BattleScene.UseCases.View.AilmentView.OutputDataFactory
         {
             return new AilmentOutputData(
                 CharacterId: characterId,
-                AilmentCodeList: _ailmentRepository.Select(characterId).Select(x => x.AilmentCode).ToImmutableList(),
+                AilmentCodeList: _ailmentRepository.Select()
+                    .Where(x => Equals(x.CharacterId, characterId))
+                    .Select(x => x.AilmentCode).ToImmutableList(),
                 SlipDamageCodeList: _slipDamageRepository.Select().Select(x => x.Id).ToImmutableList());
         }
     }
