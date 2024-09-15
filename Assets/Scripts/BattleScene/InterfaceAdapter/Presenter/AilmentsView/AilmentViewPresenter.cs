@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
+using BattleScene.Domain.Entity;
+using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
 using BattleScene.InterfaceAdapter.Interface;
 using BattleScene.InterfaceAdapter.Service;
@@ -11,22 +13,19 @@ namespace BattleScene.InterfaceAdapter.Presenter.AilmentsView
 {
     internal class AilmentViewPresenter : IAilmentViewPresenter
     {
-        private readonly ICharacterRepository _characterRepository;
+        private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
         private readonly IEnemiesView _enemiesView;
-        private readonly IEnemyRepository _enemyRepository;
         private readonly IPlayerStatusView _playerStatusView;
         private readonly ToAilmentNumberService _toAilmentNumber;
 
         public AilmentViewPresenter(
-            ICharacterRepository characterRepository,
+            IRepository<CharacterEntity, CharacterId> characterRepository,
             IEnemiesView enemiesView,
-            IEnemyRepository enemyRepository,
             IPlayerStatusView playerStatusView,
             ToAilmentNumberService toAilmentNumber)
         {
             _characterRepository = characterRepository;
             _enemiesView = enemiesView;
-            _enemyRepository = enemyRepository;
             _playerStatusView = playerStatusView;
             _toAilmentNumber = toAilmentNumber;
         }
@@ -42,9 +41,9 @@ namespace BattleScene.InterfaceAdapter.Presenter.AilmentsView
             }
             else
             {
-                var enemyNumber = _enemyRepository.Select(ailmentOutputData.CharacterId).EnemyNumber;
-                var enemyAilmentsViewDto = new EnemyAilmentsViewDto(enemyNumber, ailmentNumberList);
-                _enemiesView.StartEnemyAilmentsView(enemyAilmentsViewDto);
+                var enemyPosition = _characterRepository.Select(ailmentOutputData.CharacterId).Position;
+                var enemyAilmentsViewDto = new EnemyAilmentsViewDto(enemyPosition, ailmentNumberList);
+                _enemiesView[enemyPosition].StartAilmentAnimationAsync(enemyAilmentsViewDto);
             }
         }
 
