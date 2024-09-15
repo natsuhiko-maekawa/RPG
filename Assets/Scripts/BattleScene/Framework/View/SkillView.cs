@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BattleScene.InterfaceAdapter.Code;
@@ -9,15 +10,17 @@ using UnityEngine;
 
 namespace BattleScene.Framework.View
 {
+    [Obsolete]
     public class SkillView : MonoBehaviour, IVIew<SkillViewDto>
     {
-        [SerializeField] private TextMeshProUGUI technicalPoint;
+        // [SerializeField] private TextMeshProUGUI technicalPoint;
         [SerializeField] private Color white = new(0.9803922f, 0.9803922f, 0.9803922f);
         [SerializeField] private Color gray = new(0.5215687f, 0.5215687f, 0.5215687f);
         [SerializeField] private Color blue = new(0.5215687f, 0.5215687f, 0.9803922f);
         [SerializeField] private Color lightBlue = new(0.5215687f, 0.9215686f, 0.9803922f);
         [SerializeField] private Color red = new(0.9803922f, 0.5215687f, 0.5215687f);
         [SerializeField] private Color lightRed = new(0.9803922f, 0.9215686f, 0.5215687f);
+        // ReSharper disable once CollectionNeverUpdated.Local
         private readonly List<TextMeshProUGUI> _technicalPointList = new();
         private ObsoleteGridView _obsoleteGridView;
 
