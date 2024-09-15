@@ -16,9 +16,6 @@ namespace BattleScene.Domain.Entity
         public override SlipDamageCode Id { get; }
         public int Turn { get; private set; }
         private int DefaultTurn { get; }
-        public float DamageRate { get; }
-        public int EnemyIntelligence { get; }
-        public int PlayerIntelligence { get; }
 
         public void AdvanceTurn()
         {

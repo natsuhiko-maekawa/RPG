@@ -17,13 +17,13 @@ namespace BattleScene.Domain.Entity
         public SkillCode SkillCode { get; }
         public ImmutableList<CharacterId> TargetIdList { get; }
         public ImmutableList<CharacterId> ActualTargetIdList { get; }
-        public AilmentCode AilmentCode { get; }
+        public AilmentCode AilmentCode { get; } = AilmentCode.NoAilment;
         public BodyPartCode DestroyedPart { get; }
         public int DestroyCount { get; }
         public BuffCode BuffCode { get; } = BuffCode.NoBuff;
         public ImmutableList<AttackValueObject> AttackList { get; } = ImmutableList<AttackValueObject>.Empty;
         public int TechnicalPoint { get; }
-        public SlipDamageCode SlipDamageCode { get; }
+        public SlipDamageCode SlipDamageCode { get; } = SlipDamageCode.NoSlipDamage;
 
         public BattleLogEntity(
             BattleLogId battleLogId,

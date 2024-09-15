@@ -3,11 +3,14 @@
     public class BattlePropertyValueObject
     {
         public int SlipDefaultTurn { get; }
+        public float SlipDefalutDamageRate { get; }
 
         public BattlePropertyValueObject(
-            int slipDefaultTurn)
+            int slipDefaultTurn,
+            float slipDefaultDamageRate)
         {
             SlipDefaultTurn = slipDefaultTurn;
+            SlipDefalutDamageRate = slipDefaultDamageRate;
         }
     }
 }
