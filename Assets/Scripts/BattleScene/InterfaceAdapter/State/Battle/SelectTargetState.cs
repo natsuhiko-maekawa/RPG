@@ -1,51 +1,34 @@
 ﻿using System.Collections.Generic;
 using BattleScene.Domain.Code;
-using BattleScene.Domain.DataAccess;
-using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Id;
-using BattleScene.Domain.ValueObject;
-using BattleScene.UseCases.IPresenter;
+using BattleScene.InterfaceAdapter.Presenter;
 
 namespace BattleScene.InterfaceAdapter.State.Battle
 {
     public class SelectTargetState : AbstractState
     {
-        private readonly IFactory<SkillValueObject, SkillCode> _skillFactory;
-        private readonly OrderedItemsDomainService _orderedItems;
         private readonly SkillStateFactory _skillStateFactory;
-        private readonly TargetDomainService _target;
-        private readonly ITargetViewPresenter _targetView;
+        private readonly TargetViewPresenter _targetView;
         private readonly SkillCode _skillCode;
 
         public SelectTargetState(
-            IFactory<SkillValueObject, SkillCode> skillFactory,
-            OrderedItemsDomainService orderedItems,
             SkillStateFactory skillStateFactory,
-            TargetDomainService target,
-            ITargetViewPresenter targetView,
+            TargetViewPresenter targetView,
             SkillCode skillCode)
         {
-            _skillFactory = skillFactory;
-            _orderedItems = orderedItems;
             _skillStateFactory = skillStateFactory;
-            _target = target;
             _targetView = targetView;
             _skillCode = skillCode;
         }
 
         public override void Start()
         {
-            _orderedItems.First().TryGetCharacterId(out var characterId);
-            var skill = _skillFactory.Create(_skillCode);
-            var target = _target.Get(
-                characterId: characterId,
-                range: skill.SkillCommon.Range);
-            _targetView.Start(target);
+            _targetView.StartAnimation(_skillCode);
         }
 
         public override void Select(IList<CharacterId> targetIdList)
         {
-            _targetView.Stop();
+            _targetView.StopAnimation();
             Context.TransitionTo(_skillStateFactory.Create(
                 skillCode: _skillCode,
                 targetIdList: targetIdList));

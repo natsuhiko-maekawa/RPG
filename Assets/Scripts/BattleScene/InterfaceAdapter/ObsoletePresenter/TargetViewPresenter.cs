@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 using BattleScene.Domain.DomainService;
@@ -11,6 +12,7 @@ using BattleScene.UseCases.IPresenter;
 
 namespace BattleScene.InterfaceAdapter.ObsoletePresenter
 {
+    [Obsolete]
     public class TargetViewPresenter : ITargetViewPresenter
     {
         private readonly PlayerDomainService _player;
