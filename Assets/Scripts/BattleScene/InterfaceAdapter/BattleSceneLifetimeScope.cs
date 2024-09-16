@@ -33,7 +33,6 @@ using BattleScene.UseCases.View.CharacterVibesView.OutputBoundary;
 using BattleScene.UseCases.View.DestroyedPartView.OutputBoundary;
 using BattleScene.UseCases.View.DigitView.OutputBoundary;
 using BattleScene.UseCases.View.DigitView.OutputDataFactory;
-using BattleScene.UseCases.View.EnemyView.OutputBoundary;
 using BattleScene.UseCases.View.FrameView.OutputBoundary;
 using BattleScene.UseCases.View.HitPointBarView.OutputBoundary;
 using BattleScene.UseCases.View.HitPointBarView.OutputDataFactory;
