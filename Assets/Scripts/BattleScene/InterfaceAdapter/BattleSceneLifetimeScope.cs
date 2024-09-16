@@ -46,6 +46,7 @@ using VContainer;
 using VContainer.Unity;
 using BuffViewDto = BattleScene.InterfaceAdapter.DataAccess.Dto.BuffViewDto;
 using EnemyViewDto = BattleScene.InterfaceAdapter.DataAccess.Dto.EnemyViewDto;
+using GridViewPresenter = BattleScene.InterfaceAdapter.Presenter.GridViewPresenter;
 using OrderView = BattleScene.UseCases.Output.OrderView;
 using OrderViewPresenter = BattleScene.InterfaceAdapter.Presenter.OrderViewPresenter;
 using PlayerViewDto = BattleScene.InterfaceAdapter.DataAccess.Dto.PlayerViewDto;
@@ -97,6 +98,7 @@ namespace BattleScene.InterfaceAdapter
 
             #region RegisterPresenter
             builder.Register<EnemyImagePresenter>(Lifetime.Singleton);
+            builder.Register<GridViewPresenter>(Lifetime.Singleton);
             builder.Register<OrderViewPresenter>(Lifetime.Singleton);
             #endregion
             
@@ -114,7 +116,6 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<ISelectSkillViewPresenter, SelectSkillViewPresenter>(Lifetime.Singleton);
             builder.Register<ITechnicalPointBarViewPresenter, TechnicalPointBarViewPresenter>(Lifetime.Singleton);
             builder.Register<ICharacterVibesViewPresenter, CharacterVibesViewPresenter>(Lifetime.Singleton);
-            builder.Register<IViewPresenter<GridViewOutputData>, GridViewPresenter>(Lifetime.Singleton);
             builder.Register<ITargetViewPresenter, TargetViewPresenter>(Lifetime.Singleton);
             builder.Register<ISkillViewPresenter, SkillViewPresenter>(Lifetime.Singleton);
             #endregion
