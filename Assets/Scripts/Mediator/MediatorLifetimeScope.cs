@@ -10,7 +10,7 @@ namespace Mediator
         {
             base.Configure(builder);
 
-            builder.Register<ILoadingImage, LoadingImage>(Lifetime.Singleton);
+            // builder.Register<ILoadingImage, LoadingImage>(Lifetime.Singleton);
         }
     }
 }
