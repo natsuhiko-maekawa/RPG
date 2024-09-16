@@ -1,25 +1,24 @@
 ﻿using BattleScene.Domain.DomainService;
-using VContainer;
 
 namespace BattleScene.InterfaceAdapter.State.Battle
 {
     internal class InitializePlayerState : AbstractState
     {
         private readonly PlayerDomainService _player;
-        private readonly IObjectResolver _container;
+        private readonly InitializeEnemyState _initializeEnemyState;
 
         public InitializePlayerState(
             PlayerDomainService player,
-            IObjectResolver container)
+            InitializeEnemyState initializeEnemyState)
         {
             _player = player;
-            _container = container;
+            _initializeEnemyState = initializeEnemyState;
         }
 
         public override void Start()
         {
             _player.Add();
-            Context.TransitionTo(_container.Resolve<InitializeEnemyState>());
+            Context.TransitionTo(_initializeEnemyState);
         }
     }
 }
