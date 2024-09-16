@@ -40,8 +40,9 @@ namespace BattleScene.UseCases.Service
             _slipDamageRepository = slipDamageRepository;
         }
 
-        public void Update(IList<CharacterId> characterList)
+        public void Update()
         {
+            var characterList = _characterRepository.Select().Select(x => x.Id);
             var orderedItemList = Enumerable
                 .Repeat(characterList, Domain.Constant.MaxOrderNumber)
                 .Select((x, i) => x

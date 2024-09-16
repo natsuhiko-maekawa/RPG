@@ -5,7 +5,7 @@ using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
 using BattleScene.InterfaceAdapter.Presenter;
-using BattleScene.UseCases.UseCase;
+using BattleScene.UseCases.Service;
 using Utility.Interface;
 using VContainer;
 
@@ -14,34 +14,38 @@ namespace BattleScene.InterfaceAdapter.State.Battle
     internal class OrderState : AbstractState
     {
         private readonly IObjectResolver _container;
+        private readonly ActionTimeService _actionTime;
         private readonly AilmentDomainService _ailment;
+        private readonly OrderService _order;
         private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
         private readonly IRandomEx _randomEx;
         private readonly OrderedItemsDomainService _orderedItems;
-        private readonly OrderDecision _orderDecision;
         private readonly OrderViewPresenter _orderView;
 
         public OrderState(
             IObjectResolver container,
+            ActionTimeService actionTime,
             AilmentDomainService ailment,
+            OrderService order,
             IRepository<CharacterEntity, CharacterId> characterRepository,
             IRandomEx randomEx,
             OrderedItemsDomainService orderedItems,
-            OrderDecision orderDecision,
             OrderViewPresenter orderView)
         {
             _container = container;
+            _actionTime = actionTime;
             _ailment = ailment;
+            _order = order;
             _characterRepository = characterRepository;
             _randomEx = randomEx;
             _orderedItems = orderedItems;
-            _orderDecision = orderDecision;
             _orderView = orderView;
         }
 
         public override void Start()
         {
-            _orderDecision.Execute();
+            _order.Update();
+            _actionTime.Update();
             _orderView.StartAnimationAsync();
             var nextState = GetNextState();
             Context.TransitionTo(nextState);

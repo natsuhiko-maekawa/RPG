@@ -29,11 +29,12 @@ namespace BattleScene.UseCases.Service
             _orderedItems = orderedItems;
         }
 
-        public void Update(IList<CharacterId> characterIdList)
+        public void Update()
         {
             if (!_orderedItems.First().TryGetCharacterId(out var actorId))
                 return;
 
+            var characterIdList = _characterRepository.Select().Select(x => x.Id).ToImmutableList();
             var characterList = characterIdList
                 .Select(x =>
                 {
