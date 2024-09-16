@@ -1,34 +1,24 @@
-﻿using BattleScene.Domain.Entity;
-using BattleScene.Domain.Id;
-using BattleScene.Domain.IRepository;
-using VContainer;
+﻿using BattleScene.UseCases.Service;
 
 namespace BattleScene.InterfaceAdapter.State.Battle
 {
-    public class InitializeBattleState : AbstractState
+    internal class InitializeBattleState : AbstractState
     {
-        private readonly IObjectResolver _container;
-        private readonly IRepository<TurnEntity, TurnId> _turnRepository;
+        private readonly InitializePlayerState _initializePlayerState;
+        private readonly TurnInitializerService _turnInitializer;
 
         public InitializeBattleState(
-            IObjectResolver container,
-            IRepository<TurnEntity, TurnId> turnRepository)
+            InitializePlayerState initializePlayerState,
+            TurnInitializerService turnInitializer)
         {
-            _container = container;
-            _turnRepository = turnRepository;
+            _initializePlayerState = initializePlayerState;
+            _turnInitializer = turnInitializer;
         }
 
         public override void Start()
         {
-            SetTurn();
-            Context.TransitionTo(_container.Resolve<InitializePlayerState>());
-        }
-
-        private void SetTurn()
-        {
-            var turnId = new TurnId();
-            var turn = new TurnEntity(turnId, 0);
-            _turnRepository.Update(turn);
+            _turnInitializer.Initialize();
+            Context.TransitionTo(_initializePlayerState);
         }
     }
 }

@@ -282,6 +282,7 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<SlipRegistererService>(Lifetime.Singleton);
             builder.Register<ToBodyPartNumberService>(Lifetime.Singleton);
             builder.Register<ToBuffNumberService>(Lifetime.Singleton);
+            builder.Register<TurnInitializerService>(Lifetime.Singleton);
             #endregion
 
             #region RegisterDomainService
