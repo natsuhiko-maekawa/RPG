@@ -18,6 +18,7 @@ using BattleScene.InterfaceAdapter.Skill;
 using BattleScene.InterfaceAdapter.Skill.SkillElement;
 using BattleScene.InterfaceAdapter.State.Battle;
 using BattleScene.InterfaceAdapter.State.Skill;
+using BattleScene.InterfaceAdapter.ViewModelService;
 using BattleScene.UseCases.Interface;
 using BattleScene.UseCases.IPresenter;
 using BattleScene.UseCases.IService;
@@ -274,6 +275,7 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<DamageGeneratorService>(Lifetime.Singleton);
             builder.Register<DamageRegistererService>(Lifetime.Singleton);
             builder.Register<DestroyedPartGeneratorService>(Lifetime.Singleton);
+            builder.Register<EnemyImagePresenter>(Lifetime.Singleton);
             builder.Register<IsHitEvaluatorService>(Lifetime.Singleton);
             builder.Register<OrderService>(Lifetime.Singleton);
             builder.Register<RestoreGeneratorService>(Lifetime.Singleton);

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 using BattleScene.Domain.Code;
@@ -13,6 +14,7 @@ using BattleScene.UseCases.View.EnemyView.OutputData;
 
 namespace BattleScene.InterfaceAdapter.Presenter
 {
+    [Obsolete]
     internal class EnemyViewPresenter : IEnemyViewPresenter
     {
         private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;

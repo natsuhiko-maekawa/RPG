@@ -69,6 +69,15 @@ namespace BattleScene.Domain.DomainService
                 .Where(x => x.CharacterTypeCode != CharacterTypeCode.Player)
                 .ToImmutableList();
         }
+
+        public ImmutableList<CharacterEntity> GetSurvive()
+        {
+            var surviveEnemyList = _characterRepository.Select()
+                .Where(x => x.CharacterTypeCode != CharacterTypeCode.Player)
+                .Where(x => x.IsSurvive)
+                .ToImmutableList();
+            return surviveEnemyList;
+        }
         
         public ImmutableList<CharacterId> GetIdSurvive()
         {
