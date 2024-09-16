@@ -1,7 +1,5 @@
 using BattleScene.UseCases.OldEvent.Interface;
 using BattleScene.UseCases.OldEvent.Runner;
-using BattleScene.UseCases.View.EnemyView.OutputBoundary;
-using BattleScene.UseCases.View.EnemyView.OutputDataFactory;
 using BattleScene.UseCases.View.MessageView.OutputBoundary;
 using BattleScene.UseCases.View.MessageView.OutputDataFactory;
 using static BattleScene.UseCases.OldEvent.Runner.EventCode;
@@ -11,19 +9,13 @@ namespace BattleScene.UseCases.OldEvent
 {
     internal class PlayerBeatEnemyOldEvent : IOldEvent, IWait
     {
-        private readonly EnemyOutputDataFactory _enemyOutputDataFactory;
-        private readonly IEnemyViewPresenter _enemyViewPresenter;
         private readonly MessageOutputDataFactory _messageOutputDataFactory;
         private readonly IMessageViewPresenter _messageViewPresenter;
 
         public PlayerBeatEnemyOldEvent(
-            EnemyOutputDataFactory enemyOutputDataFactory,
-            IEnemyViewPresenter enemyViewPresenter,
             MessageOutputDataFactory messageOutputDataFactory,
             IMessageViewPresenter messageViewPresenter)
         {
-            _enemyOutputDataFactory = enemyOutputDataFactory;
-            _enemyViewPresenter = enemyViewPresenter;
             _messageOutputDataFactory = messageOutputDataFactory;
             _messageViewPresenter = messageViewPresenter;
         }
@@ -42,8 +34,9 @@ namespace BattleScene.UseCases.OldEvent
             // 状態異常の表示を更新する
             // var ailmentOutputData = _ailmentOutputDataFactory.Create(deadEnemyList);
             // _ailmentViewPresenter.Start(ailmentOutputData);
-            var enemyOutputData = _enemyOutputDataFactory.Create();
-            _enemyViewPresenter.Start(enemyOutputData);
+            // 敵の画像の表示を更新
+            // var enemyOutputData = _enemyOutputDataFactory.Create();
+            // _enemyViewPresenter.Start(enemyOutputData);
             var messageOutputData = _messageOutputDataFactory.Create(BeatEnemyMessage);
             _messageViewPresenter.Start(messageOutputData);
 
