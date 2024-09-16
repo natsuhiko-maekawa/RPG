@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using BattleScene.Domain.Code;
-using BattleScene.InterfaceAdapter.ViewModelService;
+using BattleScene.InterfaceAdapter.Presenter;
 using BattleScene.UseCases.IService;
 using static BattleScene.Domain.Code.CharacterTypeCode;
 

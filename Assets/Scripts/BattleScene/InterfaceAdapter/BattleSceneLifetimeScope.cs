@@ -13,12 +13,12 @@ using BattleScene.InterfaceAdapter.DataAccess.Factory;
 using BattleScene.InterfaceAdapter.DataAccess.Repository;
 using BattleScene.InterfaceAdapter.DataAccess.Resource;
 using BattleScene.InterfaceAdapter.ObsoletePresenter;
+using BattleScene.InterfaceAdapter.Presenter;
 using BattleScene.InterfaceAdapter.Service;
 using BattleScene.InterfaceAdapter.Skill;
 using BattleScene.InterfaceAdapter.Skill.SkillElement;
 using BattleScene.InterfaceAdapter.State.Battle;
 using BattleScene.InterfaceAdapter.State.Skill;
-using BattleScene.InterfaceAdapter.ViewModelService;
 using BattleScene.UseCases.Interface;
 using BattleScene.UseCases.IPresenter;
 using BattleScene.UseCases.IService;
@@ -47,7 +47,7 @@ using VContainer.Unity;
 using BuffViewDto = BattleScene.InterfaceAdapter.DataAccess.Dto.BuffViewDto;
 using EnemyViewDto = BattleScene.InterfaceAdapter.DataAccess.Dto.EnemyViewDto;
 using OrderView = BattleScene.UseCases.Output.OrderView;
-using OrderViewPresenter = BattleScene.InterfaceAdapter.ViewModelService.OrderViewPresenter;
+using OrderViewPresenter = BattleScene.InterfaceAdapter.Presenter.OrderViewPresenter;
 using PlayerViewDto = BattleScene.InterfaceAdapter.DataAccess.Dto.PlayerViewDto;
 
 #if UNITY_EDITOR

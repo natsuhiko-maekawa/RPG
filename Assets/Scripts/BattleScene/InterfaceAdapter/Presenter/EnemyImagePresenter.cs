@@ -9,7 +9,7 @@ using BattleScene.Framework.View;
 using BattleScene.Framework.ViewModel;
 using BattleScene.InterfaceAdapter.DataAccess;
 
-namespace BattleScene.InterfaceAdapter.ViewModelService
+namespace BattleScene.InterfaceAdapter.Presenter
 {
     public class EnemyImagePresenter
     {

@@ -12,7 +12,7 @@ using EnemyViewDto = BattleScene.InterfaceAdapter.DataAccess.Dto.EnemyViewDto;
 using static BattleScene.Domain.Code.SlipDamageCode;
 using static BattleScene.Domain.Code.AilmentCode;
 
-namespace BattleScene.InterfaceAdapter.ViewModelService
+namespace BattleScene.InterfaceAdapter.Presenter
 {
     internal class OrderViewPresenter
     {
