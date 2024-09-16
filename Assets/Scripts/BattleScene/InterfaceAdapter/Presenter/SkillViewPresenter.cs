@@ -4,9 +4,9 @@ using BattleScene.Domain.Code;
 using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.ValueObject;
+using BattleScene.Framework.View;
 using BattleScene.InterfaceAdapter.DataAccess;
 using BattleScene.InterfaceAdapter.DataAccess.Dto;
-using BattleScene.InterfaceAdapter.Interface;
 using BattleScene.InterfaceAdapter.Presenter.Dto;
 using BattleScene.InterfaceAdapter.Service;
 using BattleScene.UseCases.IPresenter;
@@ -16,7 +16,7 @@ namespace BattleScene.InterfaceAdapter.Presenter
 {
     public class SkillViewPresenter : ISkillViewPresenter
     {
-        private readonly IGridView _gridView;
+        private readonly GridView _gridView;
         private readonly MessageCodeConverterService _messageCodeConverter;
         private readonly IResource<MessageDto, MessageCode> _messageResource;
         private readonly IResource<PlayerImagePathDto, PlayerImageCode> _playerPropertyResource;
@@ -33,7 +33,7 @@ namespace BattleScene.InterfaceAdapter.Presenter
             IResource<MessageDto, MessageCode> messageResource,
             IResource<PlayerImagePathDto, PlayerImageCode> playerPropertyResource,
             MessageCodeConverterService messageCodeConverter,
-            IGridView gridView)
+            GridView gridView)
         {
             _player = player;
             _propertyFactory = propertyFactory;

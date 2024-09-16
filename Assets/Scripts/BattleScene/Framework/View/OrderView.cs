@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using BattleScene.InterfaceAdapter.Interface;
 using BattleScene.InterfaceAdapter.Presenter.OrderView;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,7 +10,7 @@ using static BattleScene.Framework.Constant;
 
 namespace BattleScene.Framework.View
 {
-    public class OrderView : MonoBehaviour, IOrderView
+    public class OrderView : MonoBehaviour
     {
         private const int MaxOrderNumber = 14;
         private const int IconWidth = 50;

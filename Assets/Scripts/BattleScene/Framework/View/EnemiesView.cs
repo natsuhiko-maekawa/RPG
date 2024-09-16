@@ -1,12 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using BattleScene.Framework.GameObjects;
-using BattleScene.InterfaceAdapter.Interface;
 using UnityEngine;
 
 namespace BattleScene.Framework.View
 {
-    public class EnemiesView : MonoBehaviour, IEnemiesView, IEnumerable<EnemyView>
+    public class EnemiesView : MonoBehaviour, IEnumerable<EnemyView>
     {
         [SerializeField] private int maxCacheSize = 4;
         private EnemyView _enemyView;
@@ -24,7 +23,7 @@ namespace BattleScene.Framework.View
             foreach (var enemyView in _enemyViewGrid) enemyView.StopFrameAnimation();
         }
 
-        public IEnemyView this[int i] => _enemyViewGrid[i];
+        public EnemyView this[int i] => _enemyViewGrid[i];
 
         public IEnumerator<EnemyView> GetEnumerator()
         {

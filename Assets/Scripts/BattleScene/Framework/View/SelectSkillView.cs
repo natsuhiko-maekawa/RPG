@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using BattleScene.InterfaceAdapter.Interface;
 using BattleScene.InterfaceAdapter.Presenter.SelectSkillView;
 using TMPro;
 using UnityEngine;
@@ -9,7 +8,7 @@ using UnityEngine.UI;
 
 namespace BattleScene.Framework.View
 {
-    public class SelectSkillView : MonoBehaviour, ISelectSkillView
+    public class SelectSkillView : MonoBehaviour
     {
         private const int SlotHeight = 46;
         [SerializeField] private Text text;

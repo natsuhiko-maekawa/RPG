@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using BattleScene.InterfaceAdapter.Interface;
 using BattleScene.InterfaceAdapter.Presenter.DigitView;
 using TMPro;
 using UnityEngine;
@@ -10,7 +9,7 @@ using Random = UnityEngine.Random;
 
 namespace BattleScene.Framework.View
 {
-    public class DigitView : MonoBehaviour, IDigitView
+    public class DigitView : MonoBehaviour
     {
         private const int Frame = 20;
         private const float MoveRange = 20.0f;

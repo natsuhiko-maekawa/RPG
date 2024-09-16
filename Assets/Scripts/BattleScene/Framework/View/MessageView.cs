@@ -1,6 +1,5 @@
 using System.Threading;
 using System.Threading.Tasks;
-using BattleScene.InterfaceAdapter.Interface;
 using BattleScene.InterfaceAdapter.Presenter.MessageView;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,7 +7,7 @@ using static BattleScene.Framework.Constant;
 
 namespace BattleScene.Framework.View
 {
-    public class MessageView : MonoBehaviour, IMessageView
+    public class MessageView : MonoBehaviour
     {
         [SerializeField] private Text messageBoxText;
         [SerializeField] private Image window;

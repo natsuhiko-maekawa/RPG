@@ -1,5 +1,4 @@
 ﻿using System.Threading.Tasks;
-using BattleScene.InterfaceAdapter.Interface;
 using BattleScene.InterfaceAdapter.Presenter.AilmentsView;
 using BattleScene.InterfaceAdapter.Presenter.CharacterVibesView;
 using BattleScene.InterfaceAdapter.Presenter.DigitView;
@@ -11,7 +10,7 @@ using UnityEngine.UI;
 
 namespace BattleScene.Framework.View
 {
-    public class EnemyView : MonoBehaviour, IEnemyView
+    public class EnemyView : MonoBehaviour
     {
         public Image Image { get;  set; }
         private EnemyAilmentsView _enemyAilmentView;

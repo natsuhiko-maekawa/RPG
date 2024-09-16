@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using BattleScene.InterfaceAdapter.Interface;
 using BattleScene.InterfaceAdapter.Presenter.AilmentsView;
 using BattleScene.InterfaceAdapter.Presenter.BuffView;
 using BattleScene.InterfaceAdapter.Presenter.DestroyedPartView;
@@ -9,7 +8,7 @@ using UnityEngine.UI;
 
 namespace BattleScene.Framework.View
 {
-    public class PlayerStatusView : MonoBehaviour, IPlayerStatusView
+    public class PlayerStatusView : MonoBehaviour
     {
         private Image[] _iconGroup;
         private PlayerAilmentsView _playerAilmentsView;

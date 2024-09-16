@@ -1,11 +1,10 @@
 ﻿using System;
-using BattleScene.InterfaceAdapter.Interface;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace BattleScene.Framework.Input
 {
-    public class BattleSceneInput : MonoBehaviour, IBattleSceneInput
+    public class BattleSceneInput : MonoBehaviour
     {
         [SerializeField] private InputAction selectAction;
         [SerializeField] private InputAction cancelAction;

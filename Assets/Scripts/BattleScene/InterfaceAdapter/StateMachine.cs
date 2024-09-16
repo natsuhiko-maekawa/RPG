@@ -3,7 +3,8 @@ using System.Collections.Immutable;
 using System.Linq;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Id;
-using BattleScene.InterfaceAdapter.Interface;
+using BattleScene.Framework.Input;
+using BattleScene.Framework.View;
 using BattleScene.InterfaceAdapter.Presenter.Dto;
 using BattleScene.InterfaceAdapter.State.Battle;
 using VContainer;
@@ -16,17 +17,17 @@ namespace BattleScene.InterfaceAdapter
         private Context _context;
         private readonly EnemiesDomainService _enemies;
         private readonly PlayerDomainService _player;
-        private readonly IBattleSceneInput _battleSceneInput;
-        private readonly IGridView _gridView;
-        private readonly ITargetView _targetView;
+        private readonly BattleSceneInput _battleSceneInput;
+        private readonly GridView _gridView;
+        private readonly TargetView _targetView;
         private readonly IObjectResolver _container;
 
         public StateMachine(
             EnemiesDomainService enemies,
             PlayerDomainService player,
-            IBattleSceneInput battleSceneInput,
-            IGridView gridView,
-            ITargetView targetView,
+            BattleSceneInput battleSceneInput,
+            GridView gridView,
+            TargetView targetView,
             IObjectResolver container)
         {
             _enemies = enemies;

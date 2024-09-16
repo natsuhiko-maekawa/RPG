@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using BattleScene.Framework.GameObjects;
 using BattleScene.InterfaceAdapter.Code;
-using BattleScene.InterfaceAdapter.Interface;
 using BattleScene.InterfaceAdapter.Presenter.Dto;
 using BattleScene.InterfaceAdapter.Presenter.MessageView;
 using BattleScene.InterfaceAdapter.Presenter.PlayerView;
@@ -13,7 +12,7 @@ using UnityEngine.InputSystem;
 
 namespace BattleScene.Framework.View
 {
-    public class GridView : MonoBehaviour, IGridView
+    public class GridView : MonoBehaviour
     {
         [SerializeField] private int maxGridSize;
         [SerializeField] private InputAction moveAction;

@@ -1,12 +1,11 @@
 using System.Threading.Tasks;
-using BattleScene.InterfaceAdapter.Interface;
 using BattleScene.InterfaceAdapter.Presenter.PlayerAttackCountView;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace BattleScene.Framework.View
 {
-    public class PlayerAttackCountView : MonoBehaviour, IPlayerAttackCountView
+    public class PlayerAttackCountView : MonoBehaviour
     {
         [SerializeField] private Image barFrontImage;
         private Image _image;

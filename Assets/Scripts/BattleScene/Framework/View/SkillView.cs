@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BattleScene.InterfaceAdapter.Code;
-using BattleScene.InterfaceAdapter.Interface;
 using BattleScene.InterfaceAdapter.Presenter.Dto;
 using TMPro;
 using UnityEngine;
@@ -11,7 +10,7 @@ using UnityEngine;
 namespace BattleScene.Framework.View
 {
     [Obsolete]
-    public class SkillView : MonoBehaviour, IVIew<SkillViewDto>
+    public class SkillView : MonoBehaviour
     {
         // [SerializeField] private TextMeshProUGUI technicalPoint;
         [SerializeField] private Color white = new(0.9803922f, 0.9803922f, 0.9803922f);

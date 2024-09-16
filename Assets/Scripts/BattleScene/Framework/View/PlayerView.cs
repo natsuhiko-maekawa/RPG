@@ -1,5 +1,4 @@
 using System.Threading.Tasks;
-using BattleScene.InterfaceAdapter.Interface;
 using BattleScene.InterfaceAdapter.Presenter.DigitView;
 using BattleScene.InterfaceAdapter.Presenter.FrameView;
 using BattleScene.InterfaceAdapter.Presenter.PlayerView;
@@ -10,7 +9,7 @@ using static BattleScene.Framework.Constant;
 
 namespace BattleScene.Framework.View
 {
-    public class PlayerView : MonoBehaviour, IPlayerView
+    public class PlayerView : MonoBehaviour
     {
         private const int Frame = 10;
         private const float MoveRange = -20.0f;

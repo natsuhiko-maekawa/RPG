@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 using System.Threading.Tasks;
-using BattleScene.InterfaceAdapter.Interface;
 using BattleScene.InterfaceAdapter.Presenter.Dto;
 using BattleScene.InterfaceAdapter.Presenter.FrameView;
 using UnityEngine;
@@ -11,7 +10,7 @@ using UnityEngine.InputSystem;
 
 namespace BattleScene.Framework.View
 {
-    public class TargetView : MonoBehaviour, ITargetView
+    public class TargetView : MonoBehaviour
     {
         [SerializeField] private InputAction moveAction;
         [SerializeField] private InputAction selectAction;

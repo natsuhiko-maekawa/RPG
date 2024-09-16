@@ -1,5 +1,4 @@
 using System.Threading.Tasks;
-using BattleScene.InterfaceAdapter.Interface;
 using UnityEngine;
 using UnityEngine.UI;
 using static BattleScene.Framework.Constant;
@@ -7,7 +6,7 @@ using Random = UnityEngine.Random;
 
 namespace BattleScene.Framework.View
 {
-    public class PlayerVibesView : MonoBehaviour, IPlayerVibesView
+    public class PlayerVibesView : MonoBehaviour
     {
         private const int Frame = 10;
         private const float VibesRange = 5;

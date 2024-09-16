@@ -1,12 +1,11 @@
 using System.Threading.Tasks;
-using BattleScene.InterfaceAdapter.Interface;
 using BattleScene.InterfaceAdapter.Presenter.InfoView;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace BattleScene.Framework.View
 {
-    public class InfoView : MonoBehaviour, IInfoView
+    public class InfoView : MonoBehaviour
     {
         [SerializeField] private Text infoText;
         private Text _text;
