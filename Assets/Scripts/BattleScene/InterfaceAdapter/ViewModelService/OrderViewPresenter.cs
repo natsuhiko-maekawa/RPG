@@ -17,7 +17,7 @@ namespace BattleScene.InterfaceAdapter.ViewModelService
     internal class OrderViewPresenter
     {
         private readonly IResource<EnemyViewDto, CharacterTypeCode> _enemyViewInfoResource;
-        private readonly Framework.View.OrderView _orderView;
+        private readonly OrderView _orderView;
         private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
         private readonly IRepository<OrderedItemEntity, OrderId> _orderedItemRepository;
 
