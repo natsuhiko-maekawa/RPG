@@ -6,11 +6,12 @@ using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
 using BattleScene.Framework.View;
+using BattleScene.Framework.ViewModel;
 using BattleScene.InterfaceAdapter.DataAccess;
 using BattleScene.UseCases.View.EnemyView.OutputBoundary;
 using BattleScene.UseCases.View.EnemyView.OutputData;
 
-namespace BattleScene.InterfaceAdapter.Presenter.EnemyView
+namespace BattleScene.InterfaceAdapter.Presenter
 {
     internal class EnemyViewPresenter : IEnemyViewPresenter
     {

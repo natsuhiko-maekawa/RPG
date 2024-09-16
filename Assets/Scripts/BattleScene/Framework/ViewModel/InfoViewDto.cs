@@ -1,4 +1,4 @@
-﻿namespace BattleScene.InterfaceAdapter.Presenter.InfoView
+﻿namespace BattleScene.Framework.ViewModel
 {
     public record InfoViewDto(
         string Info);

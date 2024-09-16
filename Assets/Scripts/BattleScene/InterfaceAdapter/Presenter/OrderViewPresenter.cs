@@ -6,12 +6,13 @@ using BattleScene.Domain.Code;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
+using BattleScene.Framework.ViewModel;
 using BattleScene.InterfaceAdapter.DataAccess;
-using BattleScene.InterfaceAdapter.DataAccess.Dto;
 using BattleScene.InterfaceAdapter.Service;
 using BattleScene.UseCases.IPresenter;
+using EnemyViewDto = BattleScene.InterfaceAdapter.DataAccess.Dto.EnemyViewDto;
 
-namespace BattleScene.InterfaceAdapter.Presenter.OrderView
+namespace BattleScene.InterfaceAdapter.Presenter
 {
     internal class OrderViewPresenter : IOrderViewPresenter
     {

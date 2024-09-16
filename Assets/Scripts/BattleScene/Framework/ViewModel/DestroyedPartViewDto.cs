@@ -1,4 +1,4 @@
-﻿namespace BattleScene.InterfaceAdapter.Presenter.DestroyedPartView
+﻿namespace BattleScene.Framework.ViewModel
 {
     public record PlayerDestroyedPartViewDto(
         int DestroyedPartCount);

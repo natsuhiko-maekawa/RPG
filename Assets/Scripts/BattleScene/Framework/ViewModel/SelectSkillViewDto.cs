@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace BattleScene.InterfaceAdapter.Presenter.SelectSkillView
+namespace BattleScene.Framework.ViewModel
 {
     public record SelectSkillViewDto(
         IList<SkillDto> SkillDtoList,

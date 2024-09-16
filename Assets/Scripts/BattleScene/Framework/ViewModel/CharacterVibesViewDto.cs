@@ -1,4 +1,4 @@
-﻿namespace BattleScene.InterfaceAdapter.Presenter.CharacterVibesView
+﻿namespace BattleScene.Framework.ViewModel
 {
     public record EnemyVibesViewDto(
         int EnemyInt);

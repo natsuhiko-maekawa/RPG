@@ -1,7 +1,8 @@
-﻿using BattleScene.UseCases.View.TechnicalPointBarView.OutputBoundary;
+﻿using BattleScene.Framework.ViewModel;
+using BattleScene.UseCases.View.TechnicalPointBarView.OutputBoundary;
 using BattleScene.UseCases.View.TechnicalPointBarView.OutputData;
 
-namespace BattleScene.InterfaceAdapter.Presenter.StatusBarView
+namespace BattleScene.InterfaceAdapter.Presenter
 {
     public class TechnicalPointBarViewPresenter : ITechnicalPointBarViewPresenter
     {

@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using BattleScene.Framework.View;
+using BattleScene.Framework.ViewModel;
 using BattleScene.UseCases.View.FrameView.OutputBoundary;
 using BattleScene.UseCases.View.FrameView.OutputData;
 using UnityEngine;
 
-namespace BattleScene.InterfaceAdapter.Presenter.FrameView
+namespace BattleScene.InterfaceAdapter.Presenter
 {
     internal class FrameViewPresenter : IFrameViewPresenter
     {
         private readonly EnemiesView _enemiesView;
-        private readonly Framework.View.PlayerView _playerView;
+        private readonly PlayerView _playerView;
         
         public void Start(IList<FrameOutputData> outputDataList)
         {

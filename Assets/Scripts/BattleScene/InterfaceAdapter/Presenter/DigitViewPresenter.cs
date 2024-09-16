@@ -3,19 +3,20 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 using BattleScene.Framework.View;
+using BattleScene.Framework.ViewModel;
 using BattleScene.UseCases.View.DigitView.OutputBoundary;
 using BattleScene.UseCases.View.DigitView.OutputData;
 
-namespace BattleScene.InterfaceAdapter.Presenter.DigitView
+namespace BattleScene.InterfaceAdapter.Presenter
 {
     internal class DigitViewPresenter : IDigitViewPresenter
     {
         private readonly EnemiesView _enemiesView;
-        private readonly Framework.View.PlayerView _playerView;
+        private readonly PlayerView _playerView;
 
         public DigitViewPresenter(
             EnemiesView enemiesView,
-            Framework.View.PlayerView playerView)
+            PlayerView playerView)
         {
             _enemiesView = enemiesView;
             _playerView = playerView;

@@ -1,10 +1,11 @@
 ﻿using System.Collections.Immutable;
 using System.Linq;
 using BattleScene.Framework.View;
+using BattleScene.Framework.ViewModel;
 using BattleScene.UseCases.View.DestroyedPartView.OutputBoundary;
 using BattleScene.UseCases.View.DestroyedPartView.OutputData;
 
-namespace BattleScene.InterfaceAdapter.Presenter.DestroyedPartView
+namespace BattleScene.InterfaceAdapter.Presenter
 {
     public class DestroyedPartViewPresenter : IDestroyedPartViewPresenter
     {

@@ -5,7 +5,7 @@ using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Id;
 using BattleScene.Framework.Input;
 using BattleScene.Framework.View;
-using BattleScene.InterfaceAdapter.Presenter.Dto;
+using BattleScene.Framework.ViewModel;
 using BattleScene.InterfaceAdapter.State.Battle;
 using VContainer;
 using VContainer.Unity;

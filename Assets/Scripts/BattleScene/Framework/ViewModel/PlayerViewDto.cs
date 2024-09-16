@@ -1,4 +1,4 @@
-﻿namespace BattleScene.InterfaceAdapter.Presenter.PlayerView
+﻿namespace BattleScene.Framework.ViewModel
 {
     public record PlayerViewDto(
         string PlayerImage);

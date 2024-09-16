@@ -2,7 +2,7 @@
 using BattleScene.UseCases.View.PlayerImageView.OutputBoundary;
 using BattleScene.UseCases.View.PlayerImageView.OutputData;
 
-namespace BattleScene.InterfaceAdapter.Presenter.PlayerView
+namespace BattleScene.InterfaceAdapter.Presenter
 {
     public class PlayerImageViewPresenter : IPlayerImageViewPresenter
     {

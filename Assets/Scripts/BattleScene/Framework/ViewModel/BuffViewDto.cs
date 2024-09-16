@@ -1,4 +1,4 @@
-﻿namespace BattleScene.InterfaceAdapter.Presenter.BuffView
+﻿namespace BattleScene.Framework.ViewModel
 {
     public record BuffViewDto(
         int State);

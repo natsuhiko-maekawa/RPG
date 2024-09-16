@@ -13,21 +13,6 @@ using BattleScene.InterfaceAdapter.DataAccess.Factory;
 using BattleScene.InterfaceAdapter.DataAccess.Repository;
 using BattleScene.InterfaceAdapter.DataAccess.Resource;
 using BattleScene.InterfaceAdapter.Presenter;
-using BattleScene.InterfaceAdapter.Presenter.AilmentsView;
-using BattleScene.InterfaceAdapter.Presenter.BuffView;
-using BattleScene.InterfaceAdapter.Presenter.CharacterVibesView;
-using BattleScene.InterfaceAdapter.Presenter.DestroyedPartView;
-using BattleScene.InterfaceAdapter.Presenter.DigitView;
-using BattleScene.InterfaceAdapter.Presenter.EnemyView;
-using BattleScene.InterfaceAdapter.Presenter.FrameView;
-using BattleScene.InterfaceAdapter.Presenter.InfoView;
-using BattleScene.InterfaceAdapter.Presenter.MessageView;
-using BattleScene.InterfaceAdapter.Presenter.OrderView;
-using BattleScene.InterfaceAdapter.Presenter.PlayerAttackCountView;
-using BattleScene.InterfaceAdapter.Presenter.PlayerView;
-using BattleScene.InterfaceAdapter.Presenter.SelectSkillView;
-using BattleScene.InterfaceAdapter.Presenter.StatusBarView;
-using BattleScene.InterfaceAdapter.Presenter.ViewPresenter;
 using BattleScene.InterfaceAdapter.Service;
 using BattleScene.InterfaceAdapter.Skill;
 using BattleScene.InterfaceAdapter.Skill.SkillElement;
@@ -96,17 +81,17 @@ namespace BattleScene.InterfaceAdapter
             }
             
             #region RegisterView
-            builder.RegisterComponentInHierarchy<Framework.View.EnemiesView>();
-            builder.RegisterComponentInHierarchy<Framework.View.InfoView>();
+            builder.RegisterComponentInHierarchy<EnemiesView>();
+            builder.RegisterComponentInHierarchy<InfoView>();
             builder.RegisterComponentInHierarchy<BattleSceneInput>();
-            builder.RegisterComponentInHierarchy<Framework.View.GridView>();
-            builder.RegisterComponentInHierarchy<Framework.View.MessageView>();
+            builder.RegisterComponentInHierarchy<GridView>();
+            builder.RegisterComponentInHierarchy<MessageView>();
             builder.RegisterComponentInHierarchy<Framework.View.OrderView>();
-            builder.RegisterComponentInHierarchy<Framework.View.PlayerAttackCountView>();
-            builder.RegisterComponentInHierarchy<Framework.View.PlayerView>();
-            builder.RegisterComponentInHierarchy<Framework.View.PlayerStatusView>();
-            builder.RegisterComponentInHierarchy<Framework.View.SelectSkillView>();
-            builder.RegisterComponentInHierarchy<Framework.View.TargetView>();
+            builder.RegisterComponentInHierarchy<PlayerAttackCountView>();
+            builder.RegisterComponentInHierarchy<PlayerView>();
+            builder.RegisterComponentInHierarchy<PlayerStatusView>();
+            builder.RegisterComponentInHierarchy<SelectSkillView>();
+            builder.RegisterComponentInHierarchy<TargetView>();
             #endregion
 
             #region RegisterPresenter

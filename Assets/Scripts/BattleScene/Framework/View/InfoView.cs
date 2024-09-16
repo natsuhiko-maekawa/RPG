@@ -1,5 +1,5 @@
 using System.Threading.Tasks;
-using BattleScene.InterfaceAdapter.Presenter.InfoView;
+using BattleScene.Framework.ViewModel;
 using UnityEngine;
 using UnityEngine.UI;
 

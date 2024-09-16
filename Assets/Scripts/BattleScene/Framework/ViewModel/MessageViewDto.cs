@@ -1,4 +1,4 @@
-﻿namespace BattleScene.InterfaceAdapter.Presenter.MessageView
+﻿namespace BattleScene.Framework.ViewModel
 {
     public record MessageViewDto(
         string Message,

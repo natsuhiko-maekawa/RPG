@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace BattleScene.InterfaceAdapter.Presenter.FrameView
+namespace BattleScene.Framework.ViewModel
 {
     public record FrameViewDto(
         Color Color);

@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 using BattleScene.Framework.View;
+using BattleScene.Framework.ViewModel;
 using BattleScene.UseCases.View.BuffView.OutputBoundary;
 using BattleScene.UseCases.View.BuffView.OutputData;
 
-namespace BattleScene.InterfaceAdapter.Presenter.BuffView
+namespace BattleScene.InterfaceAdapter.Presenter
 {
     public class BuffViewPresenter : IBuffViewPresenter
     {

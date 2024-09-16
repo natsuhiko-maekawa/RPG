@@ -1,7 +1,8 @@
-﻿using BattleScene.UseCases.View.AttackCountView.OutputBoundary;
+﻿using BattleScene.Framework.ViewModel;
+using BattleScene.UseCases.View.AttackCountView.OutputBoundary;
 using BattleScene.UseCases.View.AttackCountView.OutputData;
 
-namespace BattleScene.InterfaceAdapter.Presenter.PlayerAttackCountView
+namespace BattleScene.InterfaceAdapter.Presenter
 {
     public class AttackCountViewPresenter : IAttackCountViewPresenter
     {

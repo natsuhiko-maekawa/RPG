@@ -1,18 +1,19 @@
 ﻿using System.Collections.Generic;
 using BattleScene.Framework.View;
+using BattleScene.Framework.ViewModel;
 using BattleScene.UseCases.View.HitPointBarView.OutputBoundary;
 using BattleScene.UseCases.View.HitPointBarView.OutputData;
 
-namespace BattleScene.InterfaceAdapter.Presenter.StatusBarView
+namespace BattleScene.InterfaceAdapter.Presenter
 {
     internal class HitPointBarViewPresenter : IHitPointBarViewPresenter
     {
         private readonly EnemiesView _enemiesView;
-        private readonly Framework.View.PlayerView _playerView;
+        private readonly PlayerView _playerView;
 
         public HitPointBarViewPresenter(
             EnemiesView enemiesView,
-            Framework.View.PlayerView playerView)
+            PlayerView playerView)
         {
             _enemiesView = enemiesView;
             _playerView = playerView;

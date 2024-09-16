@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using BattleScene.InterfaceAdapter.Code;
-using BattleScene.InterfaceAdapter.Presenter.Dto;
+using BattleScene.Framework.Code;
+using BattleScene.Framework.ViewModel;
 using TMPro;
 using UnityEngine;
 

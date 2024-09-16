@@ -1,4 +1,4 @@
-﻿namespace BattleScene.InterfaceAdapter.Presenter.EnemyView
+﻿namespace BattleScene.Framework.ViewModel
 {
     public record EnemyViewDto(
         string EnemyImagePath);

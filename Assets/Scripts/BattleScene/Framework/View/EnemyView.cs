@@ -1,10 +1,5 @@
 ﻿using System.Threading.Tasks;
-using BattleScene.InterfaceAdapter.Presenter.AilmentsView;
-using BattleScene.InterfaceAdapter.Presenter.CharacterVibesView;
-using BattleScene.InterfaceAdapter.Presenter.DigitView;
-using BattleScene.InterfaceAdapter.Presenter.EnemyView;
-using BattleScene.InterfaceAdapter.Presenter.FrameView;
-using BattleScene.InterfaceAdapter.Presenter.StatusBarView;
+using BattleScene.Framework.ViewModel;
 using UnityEngine;
 using UnityEngine.UI;
 

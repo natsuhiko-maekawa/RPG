@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BattleScene.Framework.Code;
 using BattleScene.Framework.GameObjects;
-using BattleScene.InterfaceAdapter.Code;
-using BattleScene.InterfaceAdapter.Presenter.Dto;
-using BattleScene.InterfaceAdapter.Presenter.MessageView;
-using BattleScene.InterfaceAdapter.Presenter.PlayerView;
+using BattleScene.Framework.ViewModel;
 using UnityEngine;
 using UnityEngine.InputSystem;
 

@@ -1,6 +1,6 @@
 using System.Threading;
 using System.Threading.Tasks;
-using BattleScene.InterfaceAdapter.Presenter.MessageView;
+using BattleScene.Framework.ViewModel;
 using UnityEngine;
 using UnityEngine.UI;
 using static BattleScene.Framework.Constant;

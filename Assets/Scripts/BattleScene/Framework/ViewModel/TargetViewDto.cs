@@ -1,6 +1,6 @@
 ﻿using System.Collections.Immutable;
 
-namespace BattleScene.InterfaceAdapter.Presenter.Dto
+namespace BattleScene.Framework.ViewModel
 {
     public record TargetViewDto(
         ImmutableList<CharacterDto> CharacterDtoList);

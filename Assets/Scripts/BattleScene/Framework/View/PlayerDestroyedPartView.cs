@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using BattleScene.InterfaceAdapter.Presenter.DestroyedPartView;
+using BattleScene.Framework.ViewModel;
 using UnityEngine;
 
 namespace BattleScene.Framework.View

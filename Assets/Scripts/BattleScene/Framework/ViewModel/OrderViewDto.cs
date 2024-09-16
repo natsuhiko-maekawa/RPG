@@ -1,4 +1,4 @@
-﻿namespace BattleScene.InterfaceAdapter.Presenter.OrderView
+﻿namespace BattleScene.Framework.ViewModel
 {
     public record OrderViewDto(
         ItemType ItemType,

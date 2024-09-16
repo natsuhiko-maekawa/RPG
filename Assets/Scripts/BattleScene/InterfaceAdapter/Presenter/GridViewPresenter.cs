@@ -2,14 +2,14 @@
 using System.Linq;
 using BattleScene.Domain.Code;
 using BattleScene.Framework.View;
+using BattleScene.Framework.ViewModel;
 using BattleScene.InterfaceAdapter.DataAccess;
 using BattleScene.InterfaceAdapter.DataAccess.Dto;
-using BattleScene.InterfaceAdapter.Presenter.Dto;
 using BattleScene.InterfaceAdapter.Service;
 using BattleScene.UseCases.Interface;
 using BattleScene.UseCases.OutputData;
 
-namespace BattleScene.InterfaceAdapter.Presenter.ViewPresenter
+namespace BattleScene.InterfaceAdapter.Presenter
 {
     public class GridViewPresenter : IViewPresenter<GridViewOutputData>
     {
@@ -48,7 +48,7 @@ namespace BattleScene.InterfaceAdapter.Presenter.ViewPresenter
                 })
                 .ToImmutableList();
             var dto = new GridViewDto(
-                ActionCode: Code.ActionCode.Action,
+                ActionCode: Framework.Code.ActionCode.Action,
                 rowList);
             _gridView.StartAnimationAsync(dto);
         }

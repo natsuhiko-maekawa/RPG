@@ -5,11 +5,12 @@ using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
 using BattleScene.Framework.View;
+using BattleScene.Framework.ViewModel;
 using BattleScene.InterfaceAdapter.Service;
 using BattleScene.UseCases.View.AilmentView.OutputBoundary;
 using BattleScene.UseCases.View.AilmentView.OutputData;
 
-namespace BattleScene.InterfaceAdapter.Presenter.AilmentsView
+namespace BattleScene.InterfaceAdapter.Presenter
 {
     internal class AilmentViewPresenter : IAilmentViewPresenter
     {

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace BattleScene.InterfaceAdapter.Presenter.DigitView
+namespace BattleScene.Framework.ViewModel
 {
     public record PlayerDigitViewDto(
         IList<DigitDto> DigitDtoList);

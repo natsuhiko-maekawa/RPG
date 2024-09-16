@@ -1,4 +1,4 @@
-﻿namespace BattleScene.InterfaceAdapter.Code
+﻿namespace BattleScene.Framework.Code
 {
     public enum ActionCode
     {

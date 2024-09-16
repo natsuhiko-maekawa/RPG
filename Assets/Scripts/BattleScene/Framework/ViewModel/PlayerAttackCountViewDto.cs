@@ -1,4 +1,4 @@
-﻿namespace BattleScene.InterfaceAdapter.Presenter.PlayerAttackCountView
+﻿namespace BattleScene.Framework.ViewModel
 {
     public record PlayerAttackCountViewDto(
         float Rate);

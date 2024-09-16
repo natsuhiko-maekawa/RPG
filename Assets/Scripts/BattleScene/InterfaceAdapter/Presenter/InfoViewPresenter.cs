@@ -1,6 +1,7 @@
-﻿using BattleScene.UseCases.View.InfoView.OutputBoundary;
+﻿using BattleScene.Framework.ViewModel;
+using BattleScene.UseCases.View.InfoView.OutputBoundary;
 
-namespace BattleScene.InterfaceAdapter.Presenter.InfoView
+namespace BattleScene.InterfaceAdapter.Presenter
 {
     public class InfoViewPresenter : IInfoViewPresenter
     {

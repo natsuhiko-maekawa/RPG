@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using BattleScene.InterfaceAdapter.Presenter.DigitView;
+using BattleScene.Framework.ViewModel;
 using TMPro;
 using UnityEngine;
 using static BattleScene.Framework.Constant;

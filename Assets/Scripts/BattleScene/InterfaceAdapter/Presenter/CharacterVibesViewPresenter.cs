@@ -1,18 +1,19 @@
 ﻿using System.Collections.Generic;
 using BattleScene.Framework.View;
+using BattleScene.Framework.ViewModel;
 using BattleScene.UseCases.View.CharacterVibesView.OutputBoundary;
 using BattleScene.UseCases.View.CharacterVibesView.OutputData;
 
-namespace BattleScene.InterfaceAdapter.Presenter.CharacterVibesView
+namespace BattleScene.InterfaceAdapter.Presenter
 {
     internal class CharacterVibesViewPresenter : ICharacterVibesViewPresenter
     {
         private readonly EnemiesView _enemiesView;
-        private readonly Framework.View.PlayerView _playerView;
+        private readonly PlayerView _playerView;
 
         public CharacterVibesViewPresenter(
             EnemiesView enemiesView,
-            Framework.View.PlayerView playerView)
+            PlayerView playerView)
         {
             _enemiesView = enemiesView;
             _playerView = playerView;

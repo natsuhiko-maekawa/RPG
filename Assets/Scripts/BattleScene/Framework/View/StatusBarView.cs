@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 using BattleScene.Framework.GameObjects;
-using BattleScene.InterfaceAdapter.Presenter.StatusBarView;
+using BattleScene.Framework.ViewModel;
 using UnityEngine;
 using UnityEngine.UI;
 

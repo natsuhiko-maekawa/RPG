@@ -1,7 +1,7 @@
 ﻿using System.Collections.Immutable;
-using BattleScene.InterfaceAdapter.Code;
+using BattleScene.Framework.Code;
 
-namespace BattleScene.InterfaceAdapter.Presenter.Dto
+namespace BattleScene.Framework.ViewModel
 {
     public record GridViewDto(
         ActionCode ActionCode,

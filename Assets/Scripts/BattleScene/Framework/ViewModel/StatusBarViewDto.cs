@@ -1,4 +1,4 @@
-﻿namespace BattleScene.InterfaceAdapter.Presenter.StatusBarView
+﻿namespace BattleScene.Framework.ViewModel
 {
     public record PlayerHpBarViewDto(
         StatusBarViewDto StatusBarViewDto);

@@ -1,11 +1,12 @@
 ﻿using BattleScene.Domain.Code;
+using BattleScene.Framework.ViewModel;
 using BattleScene.InterfaceAdapter.DataAccess;
 using BattleScene.InterfaceAdapter.DataAccess.Dto;
 using BattleScene.InterfaceAdapter.Service;
 using BattleScene.UseCases.View.MessageView.OutputBoundary;
 using BattleScene.UseCases.View.MessageView.OutputData;
 
-namespace BattleScene.InterfaceAdapter.Presenter.MessageView
+namespace BattleScene.InterfaceAdapter.Presenter
 {
     public class MessageViewPresenter : IMessageViewPresenter
     {

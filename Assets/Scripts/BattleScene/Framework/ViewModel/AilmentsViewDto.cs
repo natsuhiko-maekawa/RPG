@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Immutable;
 
-namespace BattleScene.InterfaceAdapter.Presenter.AilmentsView
+namespace BattleScene.Framework.ViewModel
 {
     public record PlayerAilmentsViewDto(
         ImmutableList<int> AilmentNumberList);
