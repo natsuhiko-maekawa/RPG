@@ -7,7 +7,7 @@ using BattleScene.Framework.ViewModel;
 using BattleScene.UseCases.View.DigitView.OutputBoundary;
 using BattleScene.UseCases.View.DigitView.OutputData;
 
-namespace BattleScene.InterfaceAdapter.Presenter
+namespace BattleScene.InterfaceAdapter.ObsoletePresenter
 {
     internal class DigitViewPresenter : IDigitViewPresenter
     {

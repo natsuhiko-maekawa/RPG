@@ -5,7 +5,7 @@ using BattleScene.Framework.ViewModel;
 using BattleScene.UseCases.View.DestroyedPartView.OutputBoundary;
 using BattleScene.UseCases.View.DestroyedPartView.OutputData;
 
-namespace BattleScene.InterfaceAdapter.Presenter
+namespace BattleScene.InterfaceAdapter.ObsoletePresenter
 {
     public class DestroyedPartViewPresenter : IDestroyedPartViewPresenter
     {

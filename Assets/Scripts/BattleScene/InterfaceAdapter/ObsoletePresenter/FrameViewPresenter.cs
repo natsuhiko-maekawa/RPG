@@ -6,7 +6,7 @@ using BattleScene.UseCases.View.FrameView.OutputBoundary;
 using BattleScene.UseCases.View.FrameView.OutputData;
 using UnityEngine;
 
-namespace BattleScene.InterfaceAdapter.Presenter
+namespace BattleScene.InterfaceAdapter.ObsoletePresenter
 {
     internal class FrameViewPresenter : IFrameViewPresenter
     {

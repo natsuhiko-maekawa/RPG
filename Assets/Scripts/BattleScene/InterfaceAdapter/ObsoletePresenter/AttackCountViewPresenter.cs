@@ -2,7 +2,7 @@
 using BattleScene.UseCases.View.AttackCountView.OutputBoundary;
 using BattleScene.UseCases.View.AttackCountView.OutputData;
 
-namespace BattleScene.InterfaceAdapter.Presenter
+namespace BattleScene.InterfaceAdapter.ObsoletePresenter
 {
     public class AttackCountViewPresenter : IAttackCountViewPresenter
     {

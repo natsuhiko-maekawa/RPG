@@ -12,7 +12,7 @@ using BattleScene.InterfaceAdapter.DataAccess.Dto;
 using BattleScene.InterfaceAdapter.DataAccess.Factory;
 using BattleScene.InterfaceAdapter.DataAccess.Repository;
 using BattleScene.InterfaceAdapter.DataAccess.Resource;
-using BattleScene.InterfaceAdapter.Presenter;
+using BattleScene.InterfaceAdapter.ObsoletePresenter;
 using BattleScene.InterfaceAdapter.Service;
 using BattleScene.InterfaceAdapter.Skill;
 using BattleScene.InterfaceAdapter.Skill.SkillElement;

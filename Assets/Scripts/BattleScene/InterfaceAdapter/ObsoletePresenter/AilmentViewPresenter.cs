@@ -10,7 +10,7 @@ using BattleScene.InterfaceAdapter.Service;
 using BattleScene.UseCases.View.AilmentView.OutputBoundary;
 using BattleScene.UseCases.View.AilmentView.OutputData;
 
-namespace BattleScene.InterfaceAdapter.Presenter
+namespace BattleScene.InterfaceAdapter.ObsoletePresenter
 {
     internal class AilmentViewPresenter : IAilmentViewPresenter
     {

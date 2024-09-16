@@ -1,4 +1,4 @@
-﻿namespace BattleScene.InterfaceAdapter.Presenter
+﻿namespace BattleScene.InterfaceAdapter.ObsoletePresenter
 {
     public class SkillMessageViewPresenter
     {

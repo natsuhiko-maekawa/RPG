@@ -9,7 +9,7 @@ using BattleScene.InterfaceAdapter.Service;
 using BattleScene.UseCases.Interface;
 using BattleScene.UseCases.OutputData;
 
-namespace BattleScene.InterfaceAdapter.Presenter
+namespace BattleScene.InterfaceAdapter.ObsoletePresenter
 {
     public class GridViewPresenter : IViewPresenter<GridViewOutputData>
     {

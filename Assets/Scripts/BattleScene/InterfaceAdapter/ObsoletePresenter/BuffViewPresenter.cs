@@ -7,7 +7,7 @@ using BattleScene.Framework.ViewModel;
 using BattleScene.UseCases.View.BuffView.OutputBoundary;
 using BattleScene.UseCases.View.BuffView.OutputData;
 
-namespace BattleScene.InterfaceAdapter.Presenter
+namespace BattleScene.InterfaceAdapter.ObsoletePresenter
 {
     public class BuffViewPresenter : IBuffViewPresenter
     {

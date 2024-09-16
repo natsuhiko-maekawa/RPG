@@ -12,7 +12,7 @@ using BattleScene.InterfaceAdapter.DataAccess;
 using BattleScene.UseCases.View.EnemyView.OutputBoundary;
 using BattleScene.UseCases.View.EnemyView.OutputData;
 
-namespace BattleScene.InterfaceAdapter.Presenter
+namespace BattleScene.InterfaceAdapter.ObsoletePresenter
 {
     [Obsolete]
     internal class EnemyViewPresenter : IEnemyViewPresenter

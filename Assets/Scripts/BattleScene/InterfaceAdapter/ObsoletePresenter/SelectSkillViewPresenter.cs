@@ -3,7 +3,7 @@ using BattleScene.Framework.ViewModel;
 using BattleScene.UseCases.View.SelectSkillView.OutputBoundary;
 using BattleScene.UseCases.View.SelectSkillView.OutputData;
 
-namespace BattleScene.InterfaceAdapter.Presenter
+namespace BattleScene.InterfaceAdapter.ObsoletePresenter
 {
     public class SelectSkillViewPresenter : ISelectSkillViewPresenter
     {

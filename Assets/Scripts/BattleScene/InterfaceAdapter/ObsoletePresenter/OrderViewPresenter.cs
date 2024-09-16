@@ -12,7 +12,7 @@ using BattleScene.InterfaceAdapter.Service;
 using BattleScene.UseCases.IPresenter;
 using EnemyViewDto = BattleScene.InterfaceAdapter.DataAccess.Dto.EnemyViewDto;
 
-namespace BattleScene.InterfaceAdapter.Presenter
+namespace BattleScene.InterfaceAdapter.ObsoletePresenter
 {
     [Obsolete]
     internal class OrderViewPresenter : IOrderViewPresenter

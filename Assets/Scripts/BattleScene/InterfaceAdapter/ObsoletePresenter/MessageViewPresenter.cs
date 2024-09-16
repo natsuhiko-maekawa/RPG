@@ -6,7 +6,7 @@ using BattleScene.InterfaceAdapter.Service;
 using BattleScene.UseCases.View.MessageView.OutputBoundary;
 using BattleScene.UseCases.View.MessageView.OutputData;
 
-namespace BattleScene.InterfaceAdapter.Presenter
+namespace BattleScene.InterfaceAdapter.ObsoletePresenter
 {
     public class MessageViewPresenter : IMessageViewPresenter
     {

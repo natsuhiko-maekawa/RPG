@@ -2,7 +2,7 @@
 using BattleScene.UseCases.View.TechnicalPointBarView.OutputBoundary;
 using BattleScene.UseCases.View.TechnicalPointBarView.OutputData;
 
-namespace BattleScene.InterfaceAdapter.Presenter
+namespace BattleScene.InterfaceAdapter.ObsoletePresenter
 {
     public class TechnicalPointBarViewPresenter : ITechnicalPointBarViewPresenter
     {

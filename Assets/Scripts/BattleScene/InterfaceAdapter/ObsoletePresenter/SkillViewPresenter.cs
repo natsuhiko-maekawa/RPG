@@ -12,7 +12,7 @@ using BattleScene.InterfaceAdapter.Service;
 using BattleScene.UseCases.IPresenter;
 using ActionCode = BattleScene.Framework.Code.ActionCode;
 
-namespace BattleScene.InterfaceAdapter.Presenter
+namespace BattleScene.InterfaceAdapter.ObsoletePresenter
 {
     public class SkillViewPresenter : ISkillViewPresenter
     {

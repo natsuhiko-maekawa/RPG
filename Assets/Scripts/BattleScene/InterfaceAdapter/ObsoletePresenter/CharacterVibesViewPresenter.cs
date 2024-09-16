@@ -4,7 +4,7 @@ using BattleScene.Framework.ViewModel;
 using BattleScene.UseCases.View.CharacterVibesView.OutputBoundary;
 using BattleScene.UseCases.View.CharacterVibesView.OutputData;
 
-namespace BattleScene.InterfaceAdapter.Presenter
+namespace BattleScene.InterfaceAdapter.ObsoletePresenter
 {
     internal class CharacterVibesViewPresenter : ICharacterVibesViewPresenter
     {

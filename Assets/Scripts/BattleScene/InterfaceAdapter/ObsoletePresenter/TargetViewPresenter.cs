@@ -9,7 +9,7 @@ using BattleScene.Framework.View;
 using BattleScene.Framework.ViewModel;
 using BattleScene.UseCases.IPresenter;
 
-namespace BattleScene.InterfaceAdapter.Presenter
+namespace BattleScene.InterfaceAdapter.ObsoletePresenter
 {
     public class TargetViewPresenter : ITargetViewPresenter
     {

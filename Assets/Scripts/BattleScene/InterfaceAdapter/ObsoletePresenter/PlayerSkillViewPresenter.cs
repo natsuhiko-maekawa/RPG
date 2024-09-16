@@ -1,4 +1,4 @@
-﻿namespace BattleScene.InterfaceAdapter.Presenter
+﻿namespace BattleScene.InterfaceAdapter.ObsoletePresenter
 {
     /// <summary>
     /// プレイヤーがスキルを発動したときに画面に出力する情報を変換してViewに渡す。<br/>
