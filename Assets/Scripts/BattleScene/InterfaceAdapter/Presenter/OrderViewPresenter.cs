@@ -14,6 +14,7 @@ using EnemyViewDto = BattleScene.InterfaceAdapter.DataAccess.Dto.EnemyViewDto;
 
 namespace BattleScene.InterfaceAdapter.Presenter
 {
+    [Obsolete]
     internal class OrderViewPresenter : IOrderViewPresenter
     {
         private readonly IResource<EnemyViewDto, CharacterTypeCode> _enemyViewInfoResource;
@@ -61,7 +62,7 @@ namespace BattleScene.InterfaceAdapter.Presenter
                 })
                 .ToImmutableList();
 
-            _orderView.StartAnimation(orderViewDtoList);
+            _orderView.StartAnimationAsync(orderViewDtoList);
         }
 
         private OrderViewDto CreateEnemyViewDto(CharacterId characterId)

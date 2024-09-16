@@ -40,7 +40,7 @@ namespace BattleScene.Framework.View
             _spriteFlyweight = SpriteFlyweight.Instance;
         }
 
-        public async Task StartAnimation(IList<OrderViewDto> dtoList)
+        public async Task StartAnimationAsync(IList<OrderViewDto> dtoList)
         {
             float diff = 0;
 

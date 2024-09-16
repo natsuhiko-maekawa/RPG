@@ -48,6 +48,7 @@ using VContainer.Unity;
 using BuffViewDto = BattleScene.InterfaceAdapter.DataAccess.Dto.BuffViewDto;
 using EnemyViewDto = BattleScene.InterfaceAdapter.DataAccess.Dto.EnemyViewDto;
 using OrderView = BattleScene.UseCases.Output.OrderView;
+using OrderViewPresenter = BattleScene.InterfaceAdapter.ViewModelService.OrderViewPresenter;
 using PlayerViewDto = BattleScene.InterfaceAdapter.DataAccess.Dto.PlayerViewDto;
 
 #if UNITY_EDITOR
@@ -96,16 +97,19 @@ namespace BattleScene.InterfaceAdapter
             #endregion
 
             #region RegisterPresenter
+            builder.Register<EnemyImagePresenter>(Lifetime.Singleton);
+            builder.Register<OrderViewPresenter>(Lifetime.Singleton);
+            #endregion
+            
+            #region RegisterObsoletePresenter
             builder.Register<IAilmentViewPresenter, AilmentViewPresenter>(Lifetime.Singleton);
             builder.Register<IBuffViewPresenter, BuffViewPresenter>(Lifetime.Singleton);
             builder.Register<IDestroyedPartViewPresenter, DestroyedPartViewPresenter>(Lifetime.Singleton);
             builder.Register<IDigitViewPresenter, DigitViewPresenter>(Lifetime.Singleton);
-            builder.Register<IEnemyViewPresenter, EnemyViewPresenter>(Lifetime.Singleton);
             builder.Register<IFrameViewPresenter, FrameViewPresenter>(Lifetime.Singleton);
             builder.Register<IHitPointBarViewPresenter, HitPointBarViewPresenter>(Lifetime.Singleton);
             builder.Register<IInfoViewPresenter, InfoViewPresenter>(Lifetime.Singleton);
             builder.Register<IMessageViewPresenter, MessageViewPresenter>(Lifetime.Singleton);
-            builder.Register<IOrderViewPresenter, OrderViewPresenter>(Lifetime.Singleton);
             builder.Register<IAttackCountViewPresenter, AttackCountViewPresenter>(Lifetime.Singleton);
             builder.Register<IPlayerImageViewPresenter, PlayerImageViewPresenter>(Lifetime.Singleton);
             builder.Register<ISelectSkillViewPresenter, SelectSkillViewPresenter>(Lifetime.Singleton);
@@ -275,7 +279,6 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<DamageGeneratorService>(Lifetime.Singleton);
             builder.Register<DamageRegistererService>(Lifetime.Singleton);
             builder.Register<DestroyedPartGeneratorService>(Lifetime.Singleton);
-            builder.Register<EnemyImagePresenter>(Lifetime.Singleton);
             builder.Register<IsHitEvaluatorService>(Lifetime.Singleton);
             builder.Register<OrderService>(Lifetime.Singleton);
             builder.Register<RestoreGeneratorService>(Lifetime.Singleton);

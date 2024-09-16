@@ -16,6 +16,7 @@ namespace BattleScene.Domain.Entity
             CharacterId = orderedItem.CharacterId;
             AilmentCode = orderedItem.AilmentCode;
             SlipDamageCode = orderedItem.SlipDamageCode;
+            OrderedItemType = orderedItem.OrderedItemType;
         }
 
         public override OrderId Id { get; }
@@ -23,6 +24,7 @@ namespace BattleScene.Domain.Entity
         [CanBeNull] private CharacterId CharacterId { get; }
         private AilmentCode AilmentCode { get; }
         private SlipDamageCode SlipDamageCode { get; }
+        public OrderedItemType OrderedItemType { get; }
         
         public bool TryGetCharacterId(out CharacterId characterId)
         {
@@ -45,6 +47,7 @@ namespace BattleScene.Domain.Entity
     
     public class OrderedItem
     {
+        public OrderedItemType OrderedItemType { get; }
         [CanBeNull] public CharacterId CharacterId { get; }
         public AilmentCode AilmentCode { get; } = AilmentCode.NoAilment;
         public SlipDamageCode SlipDamageCode { get; } = SlipDamageCode.NoSlipDamage;
@@ -52,16 +55,26 @@ namespace BattleScene.Domain.Entity
         public OrderedItem(CharacterId characterId)
         {
             CharacterId = characterId;
+            OrderedItemType = OrderedItemType.Character;
         }
 
         public OrderedItem(AilmentCode ailmentCode)
         {
             AilmentCode = ailmentCode;
+            OrderedItemType = OrderedItemType.Ailment;
         }
 
         public OrderedItem(SlipDamageCode slipDamageCode)
         {
             SlipDamageCode = slipDamageCode;
+            OrderedItemType = OrderedItemType.Slip;
         }
+    }
+
+    public enum OrderedItemType
+    {
+        Character,
+        Ailment,
+        Slip
     }
 }

@@ -4,7 +4,7 @@ using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
-using BattleScene.UseCases.Output;
+using BattleScene.InterfaceAdapter.ViewModelService;
 using BattleScene.UseCases.UseCase;
 using Utility.Interface;
 using VContainer;
@@ -19,7 +19,7 @@ namespace BattleScene.InterfaceAdapter.State.Battle
         private readonly IRandomEx _randomEx;
         private readonly OrderedItemsDomainService _orderedItems;
         private readonly OrderDecision _orderDecision;
-        private readonly OrderView _orderView;
+        private readonly OrderViewPresenter _orderView;
 
         public OrderState(
             IObjectResolver container,
@@ -28,7 +28,7 @@ namespace BattleScene.InterfaceAdapter.State.Battle
             IRandomEx randomEx,
             OrderedItemsDomainService orderedItems,
             OrderDecision orderDecision,
-            OrderView orderView)
+            OrderViewPresenter orderView)
         {
             _container = container;
             _ailment = ailment;
@@ -42,7 +42,7 @@ namespace BattleScene.InterfaceAdapter.State.Battle
         public override void Start()
         {
             _orderDecision.Execute();
-            _orderView.Out();
+            _orderView.StartAnimationAsync();
             var nextState = GetNextState();
             Context.TransitionTo(nextState);
         }

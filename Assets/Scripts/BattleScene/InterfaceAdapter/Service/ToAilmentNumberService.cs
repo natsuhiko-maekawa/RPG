@@ -5,6 +5,7 @@ using static BattleScene.Domain.Code.AilmentCode;
 
 namespace BattleScene.InterfaceAdapter.Service
 {
+    [Obsolete]
     internal class ToAilmentNumberService
     {
         public int Ailment(AilmentCode ailmentCode)

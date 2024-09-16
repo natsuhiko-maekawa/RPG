@@ -1,4 +1,5 @@
-﻿using System.Collections.Immutable;
+﻿using System;
+using System.Collections.Immutable;
 using System.Linq;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
@@ -7,6 +8,7 @@ using BattleScene.UseCases.IPresenter;
 
 namespace BattleScene.UseCases.Output
 {
+    [Obsolete]
     public class OrderView
     {
         private readonly IRepository<OrderedItemEntity, OrderId> _orderedItemRepository;
