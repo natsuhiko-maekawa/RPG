@@ -1,15 +1,16 @@
 ﻿using BattleScene.Domain.Code;
+using BattleScene.InterfaceAdapter.Presenter;
 using BattleScene.UseCases.View.MessageView.OutputBoundary;
 
 namespace BattleScene.InterfaceAdapter.State.Skill
 {
     public class SlipFailureState : AbstractSkillState
     {
-        private readonly IMessageViewPresenter _messageView;
+        private readonly MessageViewPresenter _messageView;
         private readonly SkillEndState _skillEndState;
 
         public SlipFailureState(
-            IMessageViewPresenter messageView,
+            MessageViewPresenter messageView,
             SkillEndState skillEndState)
         {
             _messageView = messageView;

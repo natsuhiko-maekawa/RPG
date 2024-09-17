@@ -4,6 +4,7 @@ using BattleScene.UseCases.View.MessageView.OutputData;
 
 namespace BattleScene.UseCases.View.MessageView.OutputBoundary
 {
+    [Obsolete]
     public interface IMessageViewPresenter
     {
         [Obsolete]

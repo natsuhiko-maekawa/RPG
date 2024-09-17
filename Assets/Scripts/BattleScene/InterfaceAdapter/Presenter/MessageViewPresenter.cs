@@ -1,16 +1,12 @@
-﻿using System;
-using BattleScene.Domain.Code;
+﻿using BattleScene.Domain.Code;
 using BattleScene.Framework.ViewModel;
 using BattleScene.InterfaceAdapter.DataAccess;
 using BattleScene.InterfaceAdapter.DataAccess.Dto;
 using BattleScene.InterfaceAdapter.Service;
-using BattleScene.UseCases.View.MessageView.OutputBoundary;
-using BattleScene.UseCases.View.MessageView.OutputData;
 
-namespace BattleScene.InterfaceAdapter.ObsoletePresenter
+namespace BattleScene.InterfaceAdapter.Presenter
 {
-    [Obsolete]
-    public class MessageViewPresenter : IMessageViewPresenter
+    public class MessageViewPresenter
     {
         private readonly IResource<MessageDto, MessageCode> _messageResource;
         private readonly MessageCodeConverterService _messageCodeConverter;
@@ -26,24 +22,12 @@ namespace BattleScene.InterfaceAdapter.ObsoletePresenter
             _messageView = messageView;
         }
 
-        public void StartMessageView(string message, bool noWait)
-        {
-        }
-
-        public void Start(MessageCode messageCode, bool noWait = false)
+        public async void Start(MessageCode messageCode, bool noWait = false)
         {
             _messageView.StopAnimation();
             var message = _messageResource.Get(messageCode).Message;
             message = _messageCodeConverter.Replace(message);
-            _messageView.StartAnimationAsync(new MessageViewDto(message, noWait));
-        }
-        
-        public void Start(MessageOutputData outputData)
-        {
-            _messageView.StopAnimation();
-            var message = _messageResource.Get(outputData.MessageCode).Message;
-            message = _messageCodeConverter.Replace(message);
-            _messageView.StartAnimationAsync(new MessageViewDto(message, outputData.NoWait));
+            await _messageView.StartAnimationAsync(new MessageViewDto(message, noWait));
         }
     }
 }

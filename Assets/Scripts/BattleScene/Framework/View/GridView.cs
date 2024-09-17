@@ -69,7 +69,7 @@ namespace BattleScene.Framework.View
             _arrowDown.Show(gridState.IsHiddenLower);
 
             _messageView.enabled = true;
-            await _messageView.StartAnimation(new MessageViewDto(
+            await _messageView.StartAnimationAsync(new MessageViewDto(
                 Message: dto.RowDtoList[gridState.SelectedIndex].RowDescription,
                 NoWait: true));
 

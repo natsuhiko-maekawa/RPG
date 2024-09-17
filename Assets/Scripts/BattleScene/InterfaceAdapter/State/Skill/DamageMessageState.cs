@@ -1,4 +1,5 @@
 ﻿using BattleScene.Domain.Code;
+using BattleScene.InterfaceAdapter.Presenter;
 using BattleScene.UseCases.View.DigitView.OutputBoundary;
 using BattleScene.UseCases.View.DigitView.OutputDataFactory;
 using BattleScene.UseCases.View.HitPointBarView.OutputBoundary;
@@ -13,7 +14,7 @@ namespace BattleScene.InterfaceAdapter.State.Skill
         private readonly HitPointBarOutputDataFactory _hitPointBarOutputDataFactory;
         private readonly IDigitViewPresenter _digitView;
         private readonly IHitPointBarViewPresenter _hitPointBarView;
-        private readonly IMessageViewPresenter _messageView;
+        private readonly MessageViewPresenter _messageView;
         private readonly SkillEndState _skillEndState;
 
         public DamageMessageState(
@@ -21,7 +22,7 @@ namespace BattleScene.InterfaceAdapter.State.Skill
             HitPointBarOutputDataFactory hitPointBarOutputDataFactory,
             IDigitViewPresenter digitView, 
             IHitPointBarViewPresenter hitPointBarView,
-            IMessageViewPresenter messageView, 
+            MessageViewPresenter messageView, 
             SkillEndState skillEndState)
         {
             _damageDigitOutputDataFactory = damageDigitOutputDataFactory;

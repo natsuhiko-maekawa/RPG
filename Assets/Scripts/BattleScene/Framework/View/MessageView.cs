@@ -21,7 +21,7 @@ namespace BattleScene.Framework.View
             _text = Instantiate(messageBoxText, transform);
         }
 
-        public async Task StartAnimation(MessageViewDto dto)
+        public async Task StartAnimationAsync(MessageViewDto dto)
         {
             if (string.IsNullOrEmpty(dto.Message)) return;
             _text.enabled = true;

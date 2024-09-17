@@ -1,15 +1,16 @@
 ﻿using BattleScene.Domain.Code;
+using BattleScene.InterfaceAdapter.Presenter;
 using BattleScene.UseCases.View.MessageView.OutputBoundary;
 
 namespace BattleScene.InterfaceAdapter.State.Skill
 {
     public class AilmentFailureState : AbstractSkillState
     {
-        private readonly IMessageViewPresenter _messageView;
+        private readonly MessageViewPresenter _messageView;
         private readonly SkillQuitState _skillQuitState;
 
         public AilmentFailureState(
-            IMessageViewPresenter messageView,
+            MessageViewPresenter messageView,
             SkillQuitState skillQuitState)
         {
             _messageView = messageView;

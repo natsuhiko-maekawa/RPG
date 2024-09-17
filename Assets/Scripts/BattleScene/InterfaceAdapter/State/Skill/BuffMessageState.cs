@@ -5,6 +5,7 @@ using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
 using BattleScene.InterfaceAdapter.DataAccess;
 using BattleScene.InterfaceAdapter.DataAccess.Dto;
+using BattleScene.InterfaceAdapter.Presenter;
 using BattleScene.UseCases.View.MessageView.OutputBoundary;
 
 namespace BattleScene.InterfaceAdapter.State.Skill
@@ -13,13 +14,13 @@ namespace BattleScene.InterfaceAdapter.State.Skill
     {
         private readonly IRepository<BattleLogEntity, BattleLogId> _battleLogRepository;
         private readonly IResource<BuffViewDto, BuffCode> _buffViewInfoResource;
-        private readonly IMessageViewPresenter _messageView;
+        private readonly MessageViewPresenter _messageView;
         private readonly SkillEndState _skillEndState;
 
         public BuffMessageState(
             IRepository<BattleLogEntity, BattleLogId> battleLogRepository,
             IResource<BuffViewDto, BuffCode> buffViewInfoResource,
-            IMessageViewPresenter messageView,
+            MessageViewPresenter messageView,
             SkillEndState skillEndState)
         {
             _battleLogRepository = battleLogRepository;

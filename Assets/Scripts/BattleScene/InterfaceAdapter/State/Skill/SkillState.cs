@@ -5,6 +5,7 @@ using BattleScene.Domain.Code;
 using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
+using BattleScene.InterfaceAdapter.Presenter;
 using BattleScene.InterfaceAdapter.State.Battle;
 using BattleScene.UseCases.View.MessageView.OutputBoundary;
 using UnityEngine;
@@ -21,7 +22,7 @@ namespace BattleScene.InterfaceAdapter.State.Skill
         private readonly DamageStateFactory _damageStateFactory;
         private readonly RestoreStateFactory _restoreStateFactory;
         private readonly SlipStateFactory _slipStateFactory;
-        private readonly IMessageViewPresenter _messageView;
+        private readonly MessageViewPresenter _messageView;
         private readonly SkillCode _skillCode;
         private readonly ImmutableList<CharacterId> _targetIdList;
         private Queue<AbstractSkillState> _skillStateQueue;
@@ -37,7 +38,7 @@ namespace BattleScene.InterfaceAdapter.State.Skill
             DamageStateFactory damageStateFactory,
             RestoreStateFactory restoreStateFactory,
             SlipStateFactory slipStateFactory,
-            IMessageViewPresenter messageView)
+            MessageViewPresenter messageView)
         {
             _skillCode = skillCode;
             _targetIdList = targetIdList.ToImmutableList();

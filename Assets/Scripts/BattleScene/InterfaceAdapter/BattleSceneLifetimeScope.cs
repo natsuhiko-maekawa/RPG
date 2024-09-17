@@ -47,6 +47,7 @@ using VContainer.Unity;
 using BuffViewDto = BattleScene.InterfaceAdapter.DataAccess.Dto.BuffViewDto;
 using EnemyViewDto = BattleScene.InterfaceAdapter.DataAccess.Dto.EnemyViewDto;
 using GridViewPresenter = BattleScene.InterfaceAdapter.Presenter.GridViewPresenter;
+using MessageViewPresenter = BattleScene.InterfaceAdapter.Presenter.MessageViewPresenter;
 using OrderView = BattleScene.UseCases.Output.OrderView;
 using OrderViewPresenter = BattleScene.InterfaceAdapter.Presenter.OrderViewPresenter;
 using PlayerViewDto = BattleScene.InterfaceAdapter.DataAccess.Dto.PlayerViewDto;
@@ -101,6 +102,7 @@ namespace BattleScene.InterfaceAdapter
             #region RegisterPresenter
             builder.Register<EnemyImagePresenter>(Lifetime.Singleton);
             builder.Register<GridViewPresenter>(Lifetime.Singleton);
+            builder.Register<MessageViewPresenter>(Lifetime.Singleton);
             builder.Register<OrderViewPresenter>(Lifetime.Singleton);
             builder.Register<SkillViewPresenter>(Lifetime.Singleton);
             builder.Register<TargetViewPresenter>(Lifetime.Singleton);
@@ -114,7 +116,6 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<IFrameViewPresenter, FrameViewPresenter>(Lifetime.Singleton);
             builder.Register<IHitPointBarViewPresenter, HitPointBarViewPresenter>(Lifetime.Singleton);
             builder.Register<IInfoViewPresenter, InfoViewPresenter>(Lifetime.Singleton);
-            builder.Register<IMessageViewPresenter, MessageViewPresenter>(Lifetime.Singleton);
             builder.Register<IAttackCountViewPresenter, AttackCountViewPresenter>(Lifetime.Singleton);
             builder.Register<IPlayerImageViewPresenter, PlayerImageViewPresenter>(Lifetime.Singleton);
             builder.Register<ISelectSkillViewPresenter, SelectSkillViewPresenter>(Lifetime.Singleton);

@@ -3,8 +3,8 @@ using BattleScene.Domain.Code;
 using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
+using BattleScene.InterfaceAdapter.Presenter;
 using BattleScene.InterfaceAdapter.State.Skill;
-using BattleScene.UseCases.View.MessageView.OutputBoundary;
 using VContainer;
 
 namespace BattleScene.InterfaceAdapter.State.Battle
@@ -18,7 +18,7 @@ namespace BattleScene.InterfaceAdapter.State.Battle
         private readonly DamageStateFactory _damageStateFactory;
         private readonly RestoreStateFactory _restoreStateFactory;
         private readonly SlipStateFactory _slipStateFactory;
-        private readonly IMessageViewPresenter _messageView;
+        private readonly MessageViewPresenter _messageView;
         
         public SkillStateFactory(
             IObjectResolver container,
@@ -28,7 +28,7 @@ namespace BattleScene.InterfaceAdapter.State.Battle
             DamageStateFactory damageStateFactory,
             RestoreStateFactory restoreStateFactory,
             SlipStateFactory slipStateFactory,
-            IMessageViewPresenter messageView)
+            MessageViewPresenter messageView)
         {
             _container = container;
             _skillFactory = skillFactory;
