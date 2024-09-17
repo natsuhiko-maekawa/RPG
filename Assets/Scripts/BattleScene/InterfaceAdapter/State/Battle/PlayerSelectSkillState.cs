@@ -1,7 +1,7 @@
 ﻿using BattleScene.Domain.Code;
 using BattleScene.InterfaceAdapter.DataAccess;
 using BattleScene.InterfaceAdapter.DataAccess.Dto;
-using BattleScene.UseCases.IPresenter;
+using BattleScene.InterfaceAdapter.Presenter;
 
 namespace BattleScene.InterfaceAdapter.State.Battle
 {
@@ -9,12 +9,12 @@ namespace BattleScene.InterfaceAdapter.State.Battle
     {
         private readonly IResource<CharacterPropertyDto, CharacterTypeCode> _propertyResource;
         private readonly SelectTargetStateFactory _selectTargetStateFactory;
-        private readonly ISkillViewPresenter _skillView;
+        private readonly SkillViewPresenter _skillView;
 
         public PlayerSelectSkillState(
             IResource<CharacterPropertyDto, CharacterTypeCode> propertyResource,
             SelectTargetStateFactory selectTargetStateFactory,
-            ISkillViewPresenter skillView)
+            SkillViewPresenter skillView)
         {
             _propertyResource = propertyResource;
             _selectTargetStateFactory = selectTargetStateFactory;
@@ -23,12 +23,12 @@ namespace BattleScene.InterfaceAdapter.State.Battle
 
         public override void Start()
         {
-            _skillView.Start();
+            _skillView.StartAnimationAsync();
         }
 
         public override void Select(int id)
         {
-            _skillView.Stop();
+            _skillView.StopAnimation();
             var skillCode = _propertyResource.Get(CharacterTypeCode.Player).Skills[id];
             var selectTargetState = _selectTargetStateFactory.Create(skillCode);
             Context.TransitionTo(selectTargetState);

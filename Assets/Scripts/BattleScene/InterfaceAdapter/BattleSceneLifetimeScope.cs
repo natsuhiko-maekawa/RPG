@@ -50,6 +50,7 @@ using GridViewPresenter = BattleScene.InterfaceAdapter.Presenter.GridViewPresent
 using OrderView = BattleScene.UseCases.Output.OrderView;
 using OrderViewPresenter = BattleScene.InterfaceAdapter.Presenter.OrderViewPresenter;
 using PlayerViewDto = BattleScene.InterfaceAdapter.DataAccess.Dto.PlayerViewDto;
+using SkillViewPresenter = BattleScene.InterfaceAdapter.Presenter.SkillViewPresenter;
 using TargetViewPresenter = BattleScene.InterfaceAdapter.Presenter.TargetViewPresenter;
 
 #if UNITY_EDITOR
@@ -101,6 +102,7 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<EnemyImagePresenter>(Lifetime.Singleton);
             builder.Register<GridViewPresenter>(Lifetime.Singleton);
             builder.Register<OrderViewPresenter>(Lifetime.Singleton);
+            builder.Register<SkillViewPresenter>(Lifetime.Singleton);
             builder.Register<TargetViewPresenter>(Lifetime.Singleton);
             #endregion
             
@@ -118,7 +120,6 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<ISelectSkillViewPresenter, SelectSkillViewPresenter>(Lifetime.Singleton);
             builder.Register<ITechnicalPointBarViewPresenter, TechnicalPointBarViewPresenter>(Lifetime.Singleton);
             builder.Register<ICharacterVibesViewPresenter, CharacterVibesViewPresenter>(Lifetime.Singleton);
-            builder.Register<ISkillViewPresenter, SkillViewPresenter>(Lifetime.Singleton);
             #endregion
 
             #region RegisterResource
