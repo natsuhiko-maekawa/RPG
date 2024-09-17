@@ -1,7 +1,6 @@
 ﻿using System.Collections.Immutable;
 using BattleScene.Domain.DomainService;
 using BattleScene.UseCases.IService;
-using VContainer;
 
 namespace BattleScene.InterfaceAdapter.State.Battle
 {
@@ -9,23 +8,23 @@ namespace BattleScene.InterfaceAdapter.State.Battle
     {
         private readonly IEnemySkillSelectorService _enemySkillSelector;
         private readonly PlayerDomainService _player;
-        private readonly IObjectResolver _container;
+        private readonly SkillStateFactory _skillStateFactory;
 
         public EnemySelectSkillState(
             IEnemySkillSelectorService enemySkillSelector,
             PlayerDomainService player,
-            IObjectResolver container)
+            SkillStateFactory skillStateFactory)
         {
             _enemySkillSelector = enemySkillSelector;
             _player = player;
-            _container = container;
+            _skillStateFactory = skillStateFactory;
         }
 
         public override void Start()
         {
             var skillCode = _enemySkillSelector.Select();
             var targetIdList = ImmutableList.Create(_player.GetId());
-            var nextState = _container.Resolve<SkillStateFactory>().Create(skillCode, targetIdList);
+            var nextState = _skillStateFactory.Create(skillCode, targetIdList);
             Context.TransitionTo(nextState);
         }
     }
