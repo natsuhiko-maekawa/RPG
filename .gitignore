@@ -90,6 +90,10 @@ crashlytics-build.properties
 # TextMeshProを除外
 /[Aa]ssets/TextMesh Pro
 
+# Packagesを除外
+/[Aa]ssets/Packages
+/[Aa]ssets/Packages.meta
+
 # Riderのキャッシュフォルダを除外
 .idea/
 
