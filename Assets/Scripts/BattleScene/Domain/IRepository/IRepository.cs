@@ -10,9 +10,9 @@ namespace BattleScene.Domain.IRepository
         public TEntity Select(TId id);
         public ImmutableList<TEntity> Select();
         public void Update(TEntity entity);
-        public void Update(IList<TEntity> entityList);
+        public void Update(IReadOnlyList<TEntity> entityList);
         public void Delete();
         public void Delete(TId id);
-        public void Delete(IList<TId> idList);
+        public void Delete(IReadOnlyList<TId> idList);
     }
 }

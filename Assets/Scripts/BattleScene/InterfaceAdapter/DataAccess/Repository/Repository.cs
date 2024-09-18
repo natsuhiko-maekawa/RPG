@@ -31,7 +31,7 @@ namespace BattleScene.InterfaceAdapter.DataAccess.Repository
             _entitySet.Update(entity);
         }
 
-        public void Update(IList<TEntity> entityList)
+        public void Update(IReadOnlyList<TEntity> entityList)
         {
             foreach (var entity in entityList)
             {
@@ -49,7 +49,7 @@ namespace BattleScene.InterfaceAdapter.DataAccess.Repository
             _entitySet.RemoveWhere(x => Equals(x.Id, id));
         }
 
-        public void Delete(IList<TId> idList)
+        public void Delete(IReadOnlyList<TId> idList)
         {
             foreach (var id in idList)
             {
