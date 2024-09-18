@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace BattleScene.Domain.Entity
 {
-    public class BodyPartEntity : BaseEntity<BodyPartEntity, (CharacterId, BodyPartCode)>
+    public class BodyPartEntity : BaseEntity<(CharacterId, BodyPartCode)>
     {
         private readonly int _bodyPartCount;
 

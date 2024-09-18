@@ -1,14 +1,13 @@
 ﻿namespace BattleScene.Domain.Entity
 {
-    public abstract class BaseEntity<TEntity, TId>
-        where TEntity : BaseEntity<TEntity, TId>
+    public abstract class BaseEntity<TId>
     {
         public abstract TId Id { get; }
 
         public override bool Equals(object obj)
         {
             if (obj == null || GetType() != obj.GetType()) return false;
-            var entity = (TEntity)obj;
+            var entity = (BaseEntity<TId>)obj;
             return Equals(Id, entity.Id);
         }
 

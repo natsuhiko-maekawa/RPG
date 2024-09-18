@@ -7,7 +7,7 @@ using BattleScene.Domain.ValueObject;
 
 namespace BattleScene.Domain.Entity
 {
-    public class BattleLogEntity : BaseEntity<BattleLogEntity, BattleLogId>, IComparable<BattleLogEntity>
+    public class BattleLogEntity : BaseEntity<BattleLogId>, IComparable<BattleLogEntity>
     {
         public override BattleLogId Id { get; }
         public int Sequence { get; }

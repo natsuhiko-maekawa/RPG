@@ -3,7 +3,7 @@ using BattleScene.Domain.Id;
 
 namespace BattleScene.Domain.Entity
 {
-    public class AilmentEntity : BaseEntity<AilmentEntity, (CharacterId, AilmentCode)>
+    public class AilmentEntity : BaseEntity<(CharacterId, AilmentCode)>
     {
         public AilmentEntity(
             CharacterId characterId,

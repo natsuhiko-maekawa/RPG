@@ -2,7 +2,7 @@
 
 namespace BattleScene.Domain.Entity
 {
-    public class SlipDamageEntity : BaseEntity<SlipDamageEntity, SlipDamageCode>
+    public class SlipDamageEntity : BaseEntity<SlipDamageCode>
     {
         public SlipDamageEntity(
             SlipDamageCode slipDamageCode,

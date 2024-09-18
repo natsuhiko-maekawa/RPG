@@ -5,7 +5,7 @@ using BattleScene.Domain.Entity;
 namespace BattleScene.Domain.IRepository
 {
     public interface IRepository<TEntity, TId> 
-        where TEntity : BaseEntity<TEntity, TId>
+        where TEntity : BaseEntity<TId>
     {
         public TEntity Select(TId id);
         public ImmutableList<TEntity> Select();

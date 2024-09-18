@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace BattleScene.Domain.Entity
 {
-    public class CharacterEntity : BaseEntity<CharacterEntity, CharacterId>
+    public class CharacterEntity : BaseEntity<CharacterId>
     {
         public CharacterEntity(
             CharacterId id,

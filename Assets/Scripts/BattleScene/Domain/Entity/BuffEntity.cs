@@ -4,7 +4,7 @@ using BattleScene.Domain.ValueObject;
 
 namespace BattleScene.Domain.Entity
 {
-    public class BuffEntity : BaseEntity<BuffEntity, (CharacterId, BuffCode)>
+    public class BuffEntity : BaseEntity<(CharacterId, BuffCode)>
     {
         private readonly TurnValueObject _turn;
 

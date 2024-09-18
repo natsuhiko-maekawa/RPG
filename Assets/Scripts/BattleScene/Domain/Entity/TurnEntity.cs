@@ -2,7 +2,7 @@
 
 namespace BattleScene.Domain.Entity
 {
-    public class TurnEntity : BaseEntity<TurnEntity, TurnId>
+    public class TurnEntity : BaseEntity<TurnId>
     {
         public override TurnId Id { get; }
         public int Turn { get; private set; }

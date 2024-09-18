@@ -4,7 +4,7 @@ using JetBrains.Annotations;
 
 namespace BattleScene.Domain.Entity
 {
-    public class OrderedItemEntity : BaseEntity<OrderedItemEntity, OrderId>
+    public class OrderedItemEntity : BaseEntity<OrderId>
     {
         public OrderedItemEntity(
             OrderId orderId,
