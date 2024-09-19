@@ -29,6 +29,7 @@ namespace BattleScene.UseCases.Service
                 .Select(x => new AilmentEntity(
                     ailmentCode: ailment.AilmentCode,
                     characterId: x,
+                    effects: true,
                     turn: ailmentProperty.Turn,
                     isSelfRecovery: ailmentProperty.IsSelfRecovery))
                 .ToImmutableList();

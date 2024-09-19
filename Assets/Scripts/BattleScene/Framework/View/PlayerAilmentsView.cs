@@ -20,6 +20,15 @@ namespace BattleScene.Framework.View
             }
         }
 
+        public Task StartAnimation(AilmentViewModel viewModel)
+        {
+            var ailmentId = viewModel.AilmentId;
+            var effects = viewModel.Effects;
+            _textAndIconList[ailmentId].text.color = effects ? Color.white : Color.gray;
+            _textAndIconList[ailmentId].icon.enabled = effects;
+            return Task.CompletedTask;
+        }
+
         public Task StartAnimation(PlayerAilmentsViewDto dto)
         {
             foreach (var (textAndIcon, index) in _textAndIconList.Select((x, i) => (x, i)))

@@ -33,8 +33,9 @@ namespace BattleScene.DataAccess.Repository
             return _entitySet.ToImmutableList();
         }
 
-        public virtual void Update(TEntity entity)
+        public void Update(TEntity entity)
         {
+            if (entity == null) return;
             foreach (var observer in _observers)
             {
                 observer.Observe(entity);

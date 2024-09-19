@@ -3,16 +3,18 @@ using BattleScene.Domain.Id;
 
 namespace BattleScene.Domain.Entity
 {
-    public class AilmentEntity : BaseEntity<(CharacterId, AilmentCode)>
+    public partial class AilmentEntity : BaseEntity<(CharacterId, AilmentCode)>
     {
         public AilmentEntity(
             CharacterId characterId,
             AilmentCode ailmentCode,
+            bool effects,
             int turn,
             bool isSelfRecovery)
         {
             CharacterId = characterId;
             AilmentCode = ailmentCode;
+            Effects = effects;
             Turn = turn;
             IsSelfRecovery = isSelfRecovery;
         }
@@ -30,6 +32,16 @@ namespace BattleScene.Domain.Entity
                 return Turn < 0;
             }
         }
+
+        private bool _effects;
+
+        public bool Effects
+        {
+            get => _effects;
+            set { _effects = value; EffectsOnChange(value); }
+        }
+        
+        partial void EffectsOnChange(bool value);
 
         public void AdvanceTurn()
         {

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 using BattleScene.Domain.Entity;
@@ -12,23 +13,21 @@ using BattleScene.UseCases.View.AilmentView.OutputData;
 
 namespace BattleScene.InterfaceAdapter.ObsoletePresenter
 {
+    [Obsolete]
     internal class AilmentViewPresenter : IAilmentViewPresenter
     {
         private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
         private readonly EnemiesView _enemiesView;
         private readonly PlayerStatusView _playerStatusView;
-        private readonly ToAilmentNumberService _toAilmentNumber;
 
         public AilmentViewPresenter(
             IRepository<CharacterEntity, CharacterId> characterRepository,
             EnemiesView enemiesView,
-            PlayerStatusView playerStatusView,
-            ToAilmentNumberService toAilmentNumber)
+            PlayerStatusView playerStatusView)
         {
             _characterRepository = characterRepository;
             _enemiesView = enemiesView;
             _playerStatusView = playerStatusView;
-            _toAilmentNumber = toAilmentNumber;
         }
 
         public void Start(AilmentOutputData ailmentOutputData)
@@ -57,9 +56,9 @@ namespace BattleScene.InterfaceAdapter.ObsoletePresenter
         private ImmutableList<int> ToAilmentNumberList(AilmentOutputData ailmentOutputData)
         {
             return ailmentOutputData.AilmentCodeList
-                .Select(_toAilmentNumber.Ailment)
+                .Select(AilmentIdConverter.Ailment)
                 .Concat(ailmentOutputData.SlipDamageCodeList
-                    .Select(_toAilmentNumber.SlipDamage))
+                    .Select(AilmentIdConverter.SlipDamage))
                 .ToImmutableList();
         }
     }

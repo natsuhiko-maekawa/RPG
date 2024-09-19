@@ -5,10 +5,9 @@ using static BattleScene.Domain.Code.AilmentCode;
 
 namespace BattleScene.InterfaceAdapter.Service
 {
-    [Obsolete]
-    internal class ToAilmentNumberService
+    internal static class AilmentIdConverter
     {
-        public int Ailment(AilmentCode ailmentCode)
+        public static int Ailment(AilmentCode ailmentCode)
         {
             return ailmentCode switch
             {
@@ -28,7 +27,7 @@ namespace BattleScene.InterfaceAdapter.Service
             };
         }
 
-        public int SlipDamage(SlipDamageCode slipDamageCode)
+        public static int SlipDamage(SlipDamageCode slipDamageCode)
         {
             return slipDamageCode switch
             {

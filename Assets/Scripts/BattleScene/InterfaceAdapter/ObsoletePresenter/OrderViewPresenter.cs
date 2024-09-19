@@ -20,18 +20,15 @@ namespace BattleScene.InterfaceAdapter.ObsoletePresenter
         private readonly IResource<EnemyViewDto, CharacterTypeCode> _enemyViewInfoResource;
         private readonly Framework.View.OrderView _orderView;
         private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
-        private readonly ToAilmentNumberService _toAilmentNumber;
 
         public OrderViewPresenter(
             IResource<EnemyViewDto, CharacterTypeCode> enemyViewInfoResource,
             Framework.View.OrderView orderView,
-            IRepository<CharacterEntity, CharacterId> characterRepository,
-            ToAilmentNumberService toAilmentNumber)
+            IRepository<CharacterEntity, CharacterId> characterRepository)
         {
             _enemyViewInfoResource = enemyViewInfoResource;
             _orderView = orderView;
             _characterRepository = characterRepository;
-            _toAilmentNumber = toAilmentNumber;
         }
 
         public void Start(IList<OrderedItemEntity> order)
@@ -48,13 +45,13 @@ namespace BattleScene.InterfaceAdapter.ObsoletePresenter
 
                     if (x.TryGetAilmentCode(out var ailmentCode))
                     {
-                        var ailmentNumber = _toAilmentNumber.Ailment(ailmentCode);
+                        var ailmentNumber = AilmentIdConverter.Ailment(ailmentCode);
                         return new OrderViewDto(ItemType.Ailment, AilmentNumber: ailmentNumber);
                     }
 
                     if (x.TryGetSlipDamageCode(out var slipDamageCode))
                     {
-                        var ailmentNumber = _toAilmentNumber.SlipDamage(slipDamageCode);
+                        var ailmentNumber = AilmentIdConverter.SlipDamage(slipDamageCode);
                         return new OrderViewDto(ItemType.Ailment, AilmentNumber: ailmentNumber);
                     }
 

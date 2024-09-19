@@ -39,6 +39,7 @@ using BattleScene.UseCases.View.TechnicalPointBarView.OutputBoundary;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
+using AilmentViewPresenter = BattleScene.InterfaceAdapter.Presenter.AilmentViewPresenter;
 using BuffViewDto = BattleScene.DataAccess.Dto.BuffViewDto;
 using EnemyViewDto = BattleScene.DataAccess.Dto.EnemyViewDto;
 using GridViewPresenter = BattleScene.InterfaceAdapter.Presenter.GridViewPresenter;
@@ -86,7 +87,8 @@ namespace BattleScene.InterfaceAdapter
             builder.RegisterComponentInHierarchy<BattleSceneInput>();
             builder.RegisterComponentInHierarchy<GridView>();
             builder.RegisterComponentInHierarchy<MessageView>();
-            builder.RegisterComponentInHierarchy<Framework.View.OrderView>();
+            builder.RegisterComponentInHierarchy<OrderView>();
+            builder.RegisterComponentInHierarchy<PlayerAilmentsView>();
             builder.RegisterComponentInHierarchy<PlayerAttackCountView>();
             builder.RegisterComponentInHierarchy<PlayerView>();
             builder.RegisterComponentInHierarchy<PlayerStatusView>();
@@ -103,9 +105,13 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<SkillViewPresenter>(Lifetime.Singleton);
             builder.Register<TargetViewPresenter>(Lifetime.Singleton);
             #endregion
+
+            #region RegisterReactivePresenter
+            builder.Register<IObserver<CharacterEntity>, HitPointBarViewPresenter>(Lifetime.Singleton);
+            builder.Register<IObserver<AilmentEntity>, AilmentViewPresenter>(Lifetime.Singleton);
+            #endregion
             
             #region RegisterObsoletePresenter
-            builder.Register<IAilmentViewPresenter, AilmentViewPresenter>(Lifetime.Singleton);
             builder.Register<IBuffViewPresenter, BuffViewPresenter>(Lifetime.Singleton);
             builder.Register<IDestroyedPartViewPresenter, DestroyedPartViewPresenter>(Lifetime.Singleton);
             builder.Register<IDigitViewPresenter, DigitViewPresenter>(Lifetime.Singleton);
@@ -232,7 +238,6 @@ namespace BattleScene.InterfaceAdapter
             #endregion
 
             #region RegisterInterfaceAdapterService
-            builder.Register<ToAilmentNumberService>(Lifetime.Singleton);
             builder.Register<MessageCodeConverterService>(Lifetime.Singleton);
             #endregion
 
@@ -305,8 +310,6 @@ namespace BattleScene.InterfaceAdapter
             #region RegisterEntryPoint
             builder.RegisterEntryPoint<StateMachine>();
             #endregion
-            
-            builder.Register<IObserver<CharacterEntity>, HitPointBarViewPresenter>(Lifetime.Singleton);
 
             builder.Register<DamageDigitOutputDataFactory>(Lifetime.Singleton);
             builder.Register<HitPointBarOutputDataFactory>(Lifetime.Singleton);
