@@ -67,7 +67,7 @@ namespace BattleScene.InterfaceAdapter
             {
                 // デバッグモード時に注入するインスタンスを登録する
                 builder.Register<IEnemiesRegistererService, SameEnemiesRegistererService>(Lifetime.Singleton);
-                builder.Register<IEnemySkillSelectorService, EnemySlipSelectorService>(Lifetime.Singleton);
+                builder.Register<IEnemySkillSelectorService, EnemySkillSelectorService>(Lifetime.Singleton);
             }
             else
             {
@@ -269,6 +269,7 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<AttackCounterService>(Lifetime.Singleton);
             builder.Register<AttacksWeakPointEvaluatorService>(Lifetime.Singleton);
             builder.Register<BuffGeneratorService>(Lifetime.Singleton);
+            builder.Register<BuffRegisterService>(Lifetime.Singleton);
             builder.Register<CharacterOutputDataCreatorService>(Lifetime.Singleton);
             builder.Register<CharacterPropertyFactoryService>(Lifetime.Singleton);
             builder.Register<DamageEvaluatorService>(Lifetime.Singleton);

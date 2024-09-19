@@ -1,4 +1,4 @@
-﻿using BattleScene.Domain.DomainService;
+﻿using System.Collections.Generic;
 using BattleScene.Domain.ValueObject;
 using BattleScene.UseCases.Service;
 
@@ -6,36 +6,27 @@ namespace BattleScene.InterfaceAdapter.State.Skill
 {
     public class BuffState : AbstractSkillState
     {
+        private readonly IReadOnlyList<BuffValueObject> _buffList;
         private readonly BattleLoggerService _battleLogger;
-        private readonly BuffDomainService _buff;
-        private readonly BuffGeneratorService _buffGenerator;
+        private readonly BuffRegisterService _buffRegister;
         private readonly BuffMessageState _buffMessageState;
-        private readonly SkillCommonValueObject _skillCommon;
-        private readonly BuffParameterValueObject _buffParameter;
 
         public BuffState(
+            IReadOnlyList<BuffValueObject> buffList,
             BattleLoggerService battleLogger,
-            BuffDomainService buff,
-            BuffGeneratorService buffGenerator,
-            BuffMessageState buffMessageState,
-            SkillCommonValueObject skillCommon,
-            BuffParameterValueObject buffParameter)
+            BuffRegisterService buffRegister,
+            BuffMessageState buffMessageState)
         {
+            _buffList = buffList;   
             _battleLogger = battleLogger;
-            _buff = buff;
-            _buffGenerator = buffGenerator;
+            _buffRegister = buffRegister;
             _buffMessageState = buffMessageState;
-            _skillCommon = skillCommon;
-            _buffParameter = buffParameter;
         }
 
         public override void Start()
         {
-            var buff = _buffGenerator.Generate(
-                skillCommon: _skillCommon,
-                buffParameter: _buffParameter);
-            _buff.Add(buff);
-            _battleLogger.Log(buff);
+            _buffRegister.Register(_buffList);
+            _battleLogger.Log(_buffList);
             SkillContext.TransitionTo(_buffMessageState);
         }
     }

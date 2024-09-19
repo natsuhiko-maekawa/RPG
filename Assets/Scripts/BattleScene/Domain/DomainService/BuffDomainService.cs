@@ -20,15 +20,15 @@ namespace BattleScene.Domain.DomainService
 
         public void Add(BuffValueObject buff)
         {
-            var turn = new TurnValueObject(buff.Turn);
-            var buffList = buff.TargetIdList
-                .Select(x => new BuffEntity(
-                    characterId: x,
-                    buffCode: buff.BuffCode,
-                    rate: buff.Rate,
-                    turn: turn))
-                .ToImmutableList();
-            _buffRepository.Update(buffList);
+            // var turn = new TurnValueObject(buff.Turn);
+            // var buffList = buff.TargetIdList
+            //     .Select(x => new BuffEntity(
+            //         characterId: x,
+            //         buffCode: buff.BuffCode,
+            //         rate: buff.Rate,
+            //         turn: turn))
+            //     .ToImmutableList();
+            // _buffRepository.Update(buffList);
         }
         
         public float GetRate(CharacterId characterId, BuffCode buffCode)
@@ -45,7 +45,7 @@ namespace BattleScene.Domain.DomainService
             foreach (var buffEntity in buffEntityList)
                 buffEntity.AdvanceTurn();
             var recoverBuffEntityList = buffEntityList
-                .Where(x => x.TurnIsEnd())
+                .Where(x => x.TurnIsEnd)
                 .Select(x => x.Id)
                 .ToImmutableList();
             _buffRepository.Delete(recoverBuffEntityList);

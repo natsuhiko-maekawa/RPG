@@ -54,6 +54,11 @@ namespace BattleScene.UseCases.Service
             _battleLogRepository.Update(battleLog);
         }
 
+        public void Log(IReadOnlyList<BuffValueObject> buffList)
+        {
+            foreach (var buff in buffList) Log(buff);
+        }
+
         public void Log(DamageValueObject damage)
         {
             var battleLogId = new BattleLogId();

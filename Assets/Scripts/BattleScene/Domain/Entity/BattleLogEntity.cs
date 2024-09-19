@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 using BattleScene.Domain.Code;
@@ -15,7 +16,7 @@ namespace BattleScene.Domain.Entity
         public ActionCode ActionCode { get; }
         public CharacterId ActorId { get; }
         public SkillCode SkillCode { get; }
-        public ImmutableList<CharacterId> TargetIdList { get; }
+        public IReadOnlyList<CharacterId> TargetIdList { get; }
         public ImmutableList<CharacterId> ActualTargetIdList { get; }
         public AilmentCode AilmentCode { get; } = AilmentCode.NoAilment;
         public BodyPartCode DestroyedPart { get; }

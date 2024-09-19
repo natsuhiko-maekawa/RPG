@@ -12,18 +12,18 @@ namespace BattleScene.InterfaceAdapter.State.Skill
     public class BuffMessageState : AbstractSkillState
     {
         private readonly IRepository<BattleLogEntity, BattleLogId> _battleLogRepository;
-        private readonly IResource<BuffViewDto, BuffCode> _buffViewInfoResource;
+        private readonly IResource<BuffViewDto, BuffCode> _buffViewResource;
         private readonly MessageViewPresenter _messageView;
         private readonly SkillEndState _skillEndState;
 
         public BuffMessageState(
             IRepository<BattleLogEntity, BattleLogId> battleLogRepository,
-            IResource<BuffViewDto, BuffCode> buffViewInfoResource,
+            IResource<BuffViewDto, BuffCode> buffViewResource,
             MessageViewPresenter messageView,
             SkillEndState skillEndState)
         {
             _battleLogRepository = battleLogRepository;
-            _buffViewInfoResource = buffViewInfoResource;
+            _buffViewResource = buffViewResource;
             _messageView = messageView;
             _skillEndState = skillEndState;
         }
@@ -31,7 +31,7 @@ namespace BattleScene.InterfaceAdapter.State.Skill
         public override void Start()
         {
             var buffCode = _battleLogRepository.Select().Max().BuffCode;
-            var messageCode = _buffViewInfoResource.Get(buffCode).MessageCode;
+            var messageCode = _buffViewResource.Get(buffCode).MessageCode;
             _messageView.Start(messageCode);
         }
 

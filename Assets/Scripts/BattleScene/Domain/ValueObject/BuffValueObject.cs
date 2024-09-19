@@ -9,7 +9,7 @@ namespace BattleScene.Domain.ValueObject
     {
         public BuffValueObject(
             CharacterId actorId,
-            IList<CharacterId> targetIdList,
+            IReadOnlyList<CharacterId> targetIdList,
             SkillCode skillCode,
             BuffCode buffCode,
             float rate,
@@ -26,7 +26,7 @@ namespace BattleScene.Domain.ValueObject
         }
 
         public CharacterId ActorId { get; }
-        public ImmutableList<CharacterId> TargetIdList { get; }
+        public IReadOnlyList<CharacterId> TargetIdList { get; }
         public SkillCode SkillCode { get; }
         public BuffCode BuffCode { get; }
         public float Rate { get; }

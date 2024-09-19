@@ -80,13 +80,13 @@ namespace BattleScene.InterfaceAdapter.State.Skill
         {
             var skill = _skillFactory.Create(_skillCode);
             var skillStates = Enumerable.Empty<AbstractSkillState>()
-                .Concat(CreateAilmentSkillState(skill))
+                .Concat(CreateAilmentState(skill))
                 .Concat(skill.DamageParameterList
                     .Select(x => _damageStateFactory.Create(
                         skillCommon: skill.SkillCommon,
                         damageParameter: x,
                         targetIdList: _targetIdList)))
-                .Concat(skill.BuffParameterList.Select(x => _buffStateFactory.Create(skill.SkillCommon, x)))
+                .Concat(CreateBuffState(skill))
                 .Concat(skill.RestoreParameterList.Select(x => _restoreStateFactory.Create(skill.SkillCommon, x)))
                 .Concat(skill.SlipParameterList.Select(x => _slipStateFactory.Create(
                     skillCommon: skill.SkillCommon,
@@ -95,7 +95,7 @@ namespace BattleScene.InterfaceAdapter.State.Skill
             _skillStateQueue = new Queue<AbstractSkillState>(skillStates);
         }
 
-        private IEnumerable<AbstractSkillState> CreateAilmentSkillState(SkillValueObject skill)
+        private IEnumerable<AbstractSkillState> CreateAilmentState(SkillValueObject skill)
         {
             var ailmentStates = Enumerable.Empty<AbstractSkillState>();
             if (skill.AilmentParameterList.IsEmpty) return ailmentStates;
@@ -105,6 +105,18 @@ namespace BattleScene.InterfaceAdapter.State.Skill
                 targetIdList: _targetIdList);
             ailmentStates = ailmentStates.Append(ailmentState);
             return ailmentStates;
+        }
+
+        private IEnumerable<AbstractSkillState> CreateBuffState(SkillValueObject skill)
+        {
+            var buffStates = Enumerable.Empty<AbstractSkillState>();
+            if (skill.BuffParameterList.IsEmpty) return buffStates;
+            var buffState = _buffStateFactory.Create(
+                skillCommon: skill.SkillCommon,
+                buffParameterList: skill.BuffParameterList,
+                targetIdList: _targetIdList);
+            buffStates = buffStates.Append(buffState);
+            return buffStates;
         }
     }
 }

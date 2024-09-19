@@ -1,36 +1,43 @@
-﻿using BattleScene.Domain.DomainService;
+﻿using System.Collections.Generic;
+using System.Linq;
+using BattleScene.Domain.DomainService;
+using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
+using UnityEngine;
 
 namespace BattleScene.UseCases.Service
 {
     public class BuffGeneratorService
     {
         private readonly OrderedItemsDomainService _orderedItems;
-        private readonly TargetDomainService _target;
 
         public BuffGeneratorService(
-            OrderedItemsDomainService orderedItems,
-            TargetDomainService target)
+            OrderedItemsDomainService orderedItems)
         {
             _orderedItems = orderedItems;
-            _target = target;
         }
 
-        public BuffValueObject Generate(
+        public IReadOnlyList<BuffValueObject> Generate(
             SkillCommonValueObject skillCommon,
-            BuffParameterValueObject buffParameter)
+            IReadOnlyList<BuffParameterValueObject> buffParameterList,
+            IReadOnlyList<CharacterId> targetIdList)
         {
-            _orderedItems.First().TryGetCharacterId(out var actorId);
-            var targetIdList = _target.Get(actorId, skillCommon.Range);
+            if(_orderedItems.First().TryGetCharacterId(out var actorId)) Debug.Assert(actorId != null);
 
-            return new BuffValueObject(
-                actorId: actorId,
-                targetIdList: targetIdList,
-                skillCode: skillCommon.SkillCode,
-                buffCode: buffParameter.BuffCode,
-                rate: buffParameter.Rate,
-                turn: buffParameter.Turn,
-                lifetimeCode: buffParameter.LifetimeCode);
+            var buffList = buffParameterList.Select(GetBuff).ToList();
+            return buffList;
+            
+            BuffValueObject GetBuff(BuffParameterValueObject buffParameter)
+            {
+                return new BuffValueObject(
+                    actorId: actorId,
+                    targetIdList: targetIdList,
+                    skillCode: skillCommon.SkillCode,
+                    buffCode: buffParameter.BuffCode,
+                    rate: buffParameter.Rate,
+                    turn: buffParameter.Turn,
+                    lifetimeCode: buffParameter.LifetimeCode);
+            }
         }
     }
 }
