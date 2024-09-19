@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
-using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.IRepository;
 using Utility;

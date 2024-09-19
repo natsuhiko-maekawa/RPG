@@ -1,6 +1,5 @@
 ﻿using BattleScene.Domain.Code;
 using BattleScene.Domain.Id;
-using BattleScene.Domain.ValueObject;
 
 namespace BattleScene.Domain.Entity
 {

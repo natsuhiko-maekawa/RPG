@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
 using BattleScene.UseCases.Service;
