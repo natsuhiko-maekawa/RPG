@@ -15,6 +15,7 @@ namespace BattleScene.Framework.View
         private const int MaxIconNum = 8;
         [SerializeField] private Image icon;
         [SerializeField] private Texture2D icons;
+        private readonly SortedSet<int> _ailmentIdSet = new();
         private readonly List<Image> _enemyAilmentsIconList = new();
         private Sprite[] _iconArray;
 
@@ -32,13 +33,17 @@ namespace BattleScene.Framework.View
             _iconArray = SpriteEx.CreateByGrid(icons, 4, 4);
         }
 
-        public Task StartAnimation(EnemyAilmentsViewDto dto)
+        public Task StartAnimation(AilmentViewModel dto)
         {
+            // TODO: 本当はHashSetの末尾に要素を追加したい
+            if (dto.Effects) _ailmentIdSet.Add(dto.AilmentId);
+            else _ailmentIdSet.Remove(dto.AilmentId);
+            
             foreach (var enemyAilmentsIcon in _enemyAilmentsIconList) enemyAilmentsIcon.enabled = false;
 
-            foreach (var (iconNum, index) in dto.AilmentNumberList.Select((x, i) => (Ailments: x, i)))
+            foreach (var (ailmentId, index) in _ailmentIdSet.Select((x, i) => (x, i)))
             {
-                _enemyAilmentsIconList[index].sprite = _iconArray[iconNum];
+                _enemyAilmentsIconList[index].sprite = _iconArray[ailmentId];
                 _enemyAilmentsIconList[index].enabled = true;
             }
 

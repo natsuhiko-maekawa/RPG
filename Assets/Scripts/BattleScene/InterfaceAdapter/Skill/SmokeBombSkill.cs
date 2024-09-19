@@ -19,6 +19,6 @@ namespace BattleScene.InterfaceAdapter.Skill
         public override MessageCode AttackMessageCode { get; } = MessageCode.AttackMessage;
 
         public override ImmutableList<AbstractAilment> AilmentList { get; }
-            = ImmutableList.Create<AbstractAilment>(new Blind());
+            = ImmutableList.Create<AbstractAilment>(new EnemyBlind());
     }
 }

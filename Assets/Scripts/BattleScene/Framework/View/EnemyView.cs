@@ -38,7 +38,7 @@ namespace BattleScene.Framework.View
             Image.sprite = sprite;
         }
 
-        public Task StartAilmentAnimationAsync(EnemyAilmentsViewDto dto)
+        public Task StartAilmentAnimationAsync(AilmentViewModel dto)
         {
             _enemyAilmentView.StartAnimation(dto);
             return Task.CompletedTask;
