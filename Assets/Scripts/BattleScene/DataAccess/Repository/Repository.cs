@@ -11,7 +11,14 @@ namespace BattleScene.DataAccess.Repository
     public class Repository<TEntity, TId> : IRepository<TEntity, TId>, IReadOnlyRepository<TEntity, TId>, ISerializable
         where TEntity : BaseEntity<TId>
     {
+        private readonly IEnumerable<IObserver<TEntity>> _observers;
         private readonly HashSet<TEntity> _entitySet = new();
+        
+        public Repository(
+            IEnumerable<IObserver<TEntity>> observers)
+        {
+            _observers = observers;
+        }
         
         public bool IsEmpty => _entitySet.Count == 0;
 
@@ -28,6 +35,11 @@ namespace BattleScene.DataAccess.Repository
 
         public virtual void Update(TEntity entity)
         {
+            foreach (var observer in _observers)
+            {
+                observer.Observe(entity);
+            }
+            
             _entitySet.Update(entity);
         }
 
