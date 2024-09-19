@@ -8,7 +8,7 @@ using Utility;
 
 namespace BattleScene.DataAccess.Repository
 {
-    public partial class Repository<TEntity, TId> : IRepository<TEntity, TId>, IReadOnlyRepository<TEntity, TId>, ISerializable
+    public partial class Repository<TEntity, TId> : IRepository<TEntity, TId>, ISerializable
         where TEntity : BaseEntity<TId>
     {
         private readonly HashSet<TEntity> _entitySet = new();
