@@ -19,11 +19,8 @@ using BattleScene.InterfaceAdapter.Skill;
 using BattleScene.InterfaceAdapter.Skill.SkillElement;
 using BattleScene.InterfaceAdapter.State.Battle;
 using BattleScene.InterfaceAdapter.State.Skill;
-using BattleScene.UseCases.Interface;
-using BattleScene.UseCases.IPresenter;
 using BattleScene.UseCases.IService;
 using BattleScene.UseCases.Output;
-using BattleScene.UseCases.OutputData;
 using BattleScene.UseCases.Service;
 using BattleScene.UseCases.UseCase;
 using BattleScene.UseCases.View.AilmentView.OutputBoundary;
@@ -34,10 +31,8 @@ using BattleScene.UseCases.View.DestroyedPartView.OutputBoundary;
 using BattleScene.UseCases.View.DigitView.OutputBoundary;
 using BattleScene.UseCases.View.DigitView.OutputDataFactory;
 using BattleScene.UseCases.View.FrameView.OutputBoundary;
-using BattleScene.UseCases.View.HitPointBarView.OutputBoundary;
 using BattleScene.UseCases.View.HitPointBarView.OutputDataFactory;
 using BattleScene.UseCases.View.InfoView.OutputBoundary;
-using BattleScene.UseCases.View.MessageView.OutputBoundary;
 using BattleScene.UseCases.View.PlayerImageView.OutputBoundary;
 using BattleScene.UseCases.View.SelectSkillView.OutputBoundary;
 using BattleScene.UseCases.View.TechnicalPointBarView.OutputBoundary;
@@ -49,7 +44,6 @@ using EnemyViewDto = BattleScene.DataAccess.Dto.EnemyViewDto;
 using GridViewPresenter = BattleScene.InterfaceAdapter.Presenter.GridViewPresenter;
 using HitPointBarViewPresenter = BattleScene.InterfaceAdapter.Presenter.HitPointBarViewPresenter;
 using MessageViewPresenter = BattleScene.InterfaceAdapter.Presenter.MessageViewPresenter;
-using OrderView = BattleScene.UseCases.Output.OrderView;
 using OrderViewPresenter = BattleScene.InterfaceAdapter.Presenter.OrderViewPresenter;
 using PlayerViewDto = BattleScene.DataAccess.Dto.PlayerViewDto;
 using SkillViewPresenter = BattleScene.InterfaceAdapter.Presenter.SkillViewPresenter;
@@ -312,9 +306,6 @@ namespace BattleScene.InterfaceAdapter
             builder.RegisterEntryPoint<StateMachine>();
             #endregion
             
-            builder.Register<OrderDecision>(Lifetime.Singleton);
-            builder.Register<OrderView>(Lifetime.Singleton);
-
             builder.Register<IObserver<CharacterEntity>, HitPointBarViewPresenter>(Lifetime.Singleton);
 
             builder.Register<DamageDigitOutputDataFactory>(Lifetime.Singleton);
