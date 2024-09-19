@@ -37,7 +37,7 @@ namespace BattleScene.InterfaceAdapter.ObsoletePresenter
             if (character.IsPlayer)
             {
                 var playerAilmentsViewDtoList = new PlayerAilmentsViewDto(ailmentNumberList);
-                _playerStatusView.StartPlayerAilmentsView(playerAilmentsViewDtoList);
+                // _playerStatusView.StartPlayerAilmentsView(playerAilmentsViewDtoList);
             }
             else
             {

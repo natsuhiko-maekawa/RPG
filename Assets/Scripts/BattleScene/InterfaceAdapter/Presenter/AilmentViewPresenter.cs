@@ -10,10 +10,10 @@ namespace BattleScene.InterfaceAdapter.Presenter
 {
     public class AilmentViewPresenter : IObserver<AilmentEntity>
     {
-        private readonly PlayerAilmentsView _playerAilmentsView;
+        private readonly PlayerStatusView _playerAilmentsView;
 
         public AilmentViewPresenter(
-            PlayerAilmentsView playerAilmentsView)
+            PlayerStatusView playerAilmentsView)
         {
             _playerAilmentsView = playerAilmentsView;
         }
@@ -27,7 +27,7 @@ namespace BattleScene.InterfaceAdapter.Presenter
         {
             var ailmentId = AilmentIdConverter.Ailment(ailmentCode);
             var dto = new AilmentViewModel(ailmentId, effects);
-            _playerAilmentsView.StartAnimation(dto);
+            _playerAilmentsView.StartPlayerAilmentsView(dto);
         }
     }
 }
