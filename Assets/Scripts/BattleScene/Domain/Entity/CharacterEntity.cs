@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace BattleScene.Domain.Entity
 {
-    public class CharacterEntity : BaseEntity<CharacterId>
+    public partial class CharacterEntity : BaseEntity<CharacterId>
     {
         public CharacterEntity(
             CharacterId id,
@@ -21,16 +21,18 @@ namespace BattleScene.Domain.Entity
             ActionTime = actionTime;
             Position = position;
         }
-
-        private int _currentHitPoint;
         
         public override CharacterId Id { get; }
         public CharacterTypeCode CharacterTypeCode { get; }
+        
+        private int _currentHitPoint;
         public int CurrentHitPoint
         {
             get => _currentHitPoint;
-            set => _currentHitPoint = Mathf.Max(value, 0);
+            set { _currentHitPoint = Mathf.Max(value, 0); CurrentHitPointOnChange(value);}
         }
+
+        partial void CurrentHitPointOnChange(int value);
         
         public int CurrentTechnicalPoint { get; }
         public int ActionTime { get; set; }

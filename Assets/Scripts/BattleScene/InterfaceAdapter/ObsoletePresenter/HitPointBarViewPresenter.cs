@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using BattleScene.Framework.View;
 using BattleScene.Framework.ViewModel;
 using BattleScene.UseCases.View.HitPointBarView.OutputBoundary;
@@ -6,6 +7,7 @@ using BattleScene.UseCases.View.HitPointBarView.OutputData;
 
 namespace BattleScene.InterfaceAdapter.ObsoletePresenter
 {
+    [Obsolete]
     internal class HitPointBarViewPresenter : IHitPointBarViewPresenter
     {
         private readonly EnemiesView _enemiesView;

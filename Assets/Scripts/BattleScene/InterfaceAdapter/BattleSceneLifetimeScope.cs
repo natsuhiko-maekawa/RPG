@@ -47,6 +47,7 @@ using VContainer.Unity;
 using BuffViewDto = BattleScene.InterfaceAdapter.DataAccess.Dto.BuffViewDto;
 using EnemyViewDto = BattleScene.InterfaceAdapter.DataAccess.Dto.EnemyViewDto;
 using GridViewPresenter = BattleScene.InterfaceAdapter.Presenter.GridViewPresenter;
+using HitPointBarViewPresenter = BattleScene.InterfaceAdapter.Presenter.HitPointBarViewPresenter;
 using MessageViewPresenter = BattleScene.InterfaceAdapter.Presenter.MessageViewPresenter;
 using OrderView = BattleScene.UseCases.Output.OrderView;
 using OrderViewPresenter = BattleScene.InterfaceAdapter.Presenter.OrderViewPresenter;
@@ -102,6 +103,7 @@ namespace BattleScene.InterfaceAdapter
             #region RegisterPresenter
             builder.Register<EnemyImagePresenter>(Lifetime.Singleton);
             builder.Register<GridViewPresenter>(Lifetime.Singleton);
+            builder.Register<HitPointBarViewPresenter>(Lifetime.Singleton);
             builder.Register<MessageViewPresenter>(Lifetime.Singleton);
             builder.Register<OrderViewPresenter>(Lifetime.Singleton);
             builder.Register<SkillViewPresenter>(Lifetime.Singleton);
@@ -114,7 +116,7 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<IDestroyedPartViewPresenter, DestroyedPartViewPresenter>(Lifetime.Singleton);
             builder.Register<IDigitViewPresenter, DigitViewPresenter>(Lifetime.Singleton);
             builder.Register<IFrameViewPresenter, FrameViewPresenter>(Lifetime.Singleton);
-            builder.Register<IHitPointBarViewPresenter, HitPointBarViewPresenter>(Lifetime.Singleton);
+            // builder.Register<IHitPointBarViewPresenter, HitPointBarViewPresenter>(Lifetime.Singleton);
             builder.Register<IInfoViewPresenter, InfoViewPresenter>(Lifetime.Singleton);
             builder.Register<IAttackCountViewPresenter, AttackCountViewPresenter>(Lifetime.Singleton);
             builder.Register<IPlayerImageViewPresenter, PlayerImageViewPresenter>(Lifetime.Singleton);
@@ -227,8 +229,7 @@ namespace BattleScene.InterfaceAdapter
                 Lifetime.Singleton);
             builder.Register<IRepository<BuffEntity, (CharacterId, BuffCode)>, Repository<BuffEntity, (CharacterId, BuffCode)>>(
                 Lifetime.Singleton);
-            builder.Register<IRepository<CharacterEntity, CharacterId>, Repository<CharacterEntity, CharacterId>>(
-                Lifetime.Singleton);
+            builder.Register<IRepository<CharacterEntity, CharacterId>, CharacterRepository>(Lifetime.Singleton);
             builder.Register<IRepository<OrderedItemEntity, OrderId>, Repository<OrderedItemEntity, OrderId>>(
                 Lifetime.Singleton);
             builder.Register<IRepository<SlipDamageEntity, SlipDamageCode>, Repository<SlipDamageEntity, SlipDamageCode>>(

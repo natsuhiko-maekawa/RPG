@@ -26,7 +26,7 @@ namespace BattleScene.InterfaceAdapter.DataAccess.Repository
             return _entitySet.ToImmutableList();
         }
 
-        public void Update(TEntity entity)
+        public virtual void Update(TEntity entity)
         {
             _entitySet.Update(entity);
         }
