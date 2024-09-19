@@ -54,6 +54,8 @@ namespace BattleScene.Framework.View
             }
             
             _grid.SetItem(Math.Min(dto.RowDtoList.Count, maxGridSize));
+            _grid.Show();
+            
             foreach (var (row, rowDto) in _grid.Zip(dto.RowDtoList.Skip(gridState.TopItemIndex), (row, rowDto) => (row, rowDto)))
             {
                 row.SetName(rowDto.RowName);
@@ -81,7 +83,7 @@ namespace BattleScene.Framework.View
         public void StopAnimation()
         {
             _window.Hide();
-            _grid.ResetItem();
+            _grid.Hide();
             _arrowRight.Hide();
             _arrowUp.Hide();
             _arrowDown.Hide();

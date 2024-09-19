@@ -32,7 +32,17 @@ namespace BattleScene.Framework.GameObjects
 
         public void ResetItem()
         {
-            RemoveItem(_gameObjectList.Count);
+            RemoveItem(_gameObjectList.Count - 1);
+        }
+
+        public void Show()
+        {
+            gameObject.SetActive(true);
+        }
+        
+        public void Hide()
+        {
+            gameObject.SetActive(false);
         }
 
         private void AddItem(int itemCount)
