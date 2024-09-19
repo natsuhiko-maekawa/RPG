@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Immutable;
 using System.Linq;
+using BattleScene.DataAccess;
+using BattleScene.DataAccess.Dto;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.ValueObject;
 using BattleScene.Framework.View;
 using BattleScene.Framework.ViewModel;
-using BattleScene.InterfaceAdapter.DataAccess;
-using BattleScene.InterfaceAdapter.DataAccess.Dto;
 using BattleScene.InterfaceAdapter.Service;
 using BattleScene.UseCases.IPresenter;
 using ActionCode = BattleScene.Framework.Code.ActionCode;

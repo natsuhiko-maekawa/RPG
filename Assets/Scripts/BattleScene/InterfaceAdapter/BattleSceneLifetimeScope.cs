@@ -1,4 +1,9 @@
-﻿using BattleScene.Domain.Code;
+﻿using BattleScene.DataAccess;
+using BattleScene.DataAccess.Dto;
+using BattleScene.DataAccess.Factory;
+using BattleScene.DataAccess.Repository;
+using BattleScene.DataAccess.Resource;
+using BattleScene.Domain.Code;
 using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Entity;
@@ -7,11 +12,6 @@ using BattleScene.Domain.IRepository;
 using BattleScene.Domain.ValueObject;
 using BattleScene.Framework.Input;
 using BattleScene.Framework.View;
-using BattleScene.InterfaceAdapter.DataAccess;
-using BattleScene.InterfaceAdapter.DataAccess.Dto;
-using BattleScene.InterfaceAdapter.DataAccess.Factory;
-using BattleScene.InterfaceAdapter.DataAccess.Repository;
-using BattleScene.InterfaceAdapter.DataAccess.Resource;
 using BattleScene.InterfaceAdapter.ObsoletePresenter;
 using BattleScene.InterfaceAdapter.Presenter;
 using BattleScene.InterfaceAdapter.Service;
@@ -44,14 +44,14 @@ using BattleScene.UseCases.View.TechnicalPointBarView.OutputBoundary;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
-using BuffViewDto = BattleScene.InterfaceAdapter.DataAccess.Dto.BuffViewDto;
-using EnemyViewDto = BattleScene.InterfaceAdapter.DataAccess.Dto.EnemyViewDto;
+using BuffViewDto = BattleScene.DataAccess.Dto.BuffViewDto;
+using EnemyViewDto = BattleScene.DataAccess.Dto.EnemyViewDto;
 using GridViewPresenter = BattleScene.InterfaceAdapter.Presenter.GridViewPresenter;
 using HitPointBarViewPresenter = BattleScene.InterfaceAdapter.Presenter.HitPointBarViewPresenter;
 using MessageViewPresenter = BattleScene.InterfaceAdapter.Presenter.MessageViewPresenter;
 using OrderView = BattleScene.UseCases.Output.OrderView;
 using OrderViewPresenter = BattleScene.InterfaceAdapter.Presenter.OrderViewPresenter;
-using PlayerViewDto = BattleScene.InterfaceAdapter.DataAccess.Dto.PlayerViewDto;
+using PlayerViewDto = BattleScene.DataAccess.Dto.PlayerViewDto;
 using SkillViewPresenter = BattleScene.InterfaceAdapter.Presenter.SkillViewPresenter;
 using TargetViewPresenter = BattleScene.InterfaceAdapter.Presenter.TargetViewPresenter;
 
@@ -139,7 +139,7 @@ namespace BattleScene.InterfaceAdapter
             builder.RegisterComponentInHierarchy<IResource<PlayerImagePathDto, PlayerImageCode>>();
             builder.RegisterComponentInHierarchy<IResource<SkillPropertyDto, SkillCode>>();
             #endregion
-            
+
             #region RegisterSkill
             builder.Register<AfterimageSkill>(Lifetime.Singleton);
             builder.Register<AttackSkill>(Lifetime.Singleton);
@@ -174,7 +174,7 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<UtsusemiSkill>(Lifetime.Singleton);
             builder.Register<WabisukeSkill>(Lifetime.Singleton);
             #endregion
-
+            
             #region RegisterSkillElement
             builder.Register<AbsoluteConfusion>(Lifetime.Singleton);
             builder.Register<AfterImage>(Lifetime.Singleton);
@@ -314,6 +314,8 @@ namespace BattleScene.InterfaceAdapter
             
             builder.Register<OrderDecision>(Lifetime.Singleton);
             builder.Register<OrderView>(Lifetime.Singleton);
+
+            builder.Register<IObserver<CharacterEntity>, HitPointBarViewPresenter>(Lifetime.Singleton);
 
             builder.Register<DamageDigitOutputDataFactory>(Lifetime.Singleton);
             builder.Register<HitPointBarOutputDataFactory>(Lifetime.Singleton);

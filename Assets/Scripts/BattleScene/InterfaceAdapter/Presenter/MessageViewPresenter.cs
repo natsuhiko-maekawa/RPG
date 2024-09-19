@@ -1,7 +1,7 @@
-﻿using BattleScene.Domain.Code;
+﻿using BattleScene.DataAccess;
+using BattleScene.DataAccess.Dto;
+using BattleScene.Domain.Code;
 using BattleScene.Framework.ViewModel;
-using BattleScene.InterfaceAdapter.DataAccess;
-using BattleScene.InterfaceAdapter.DataAccess.Dto;
 using BattleScene.InterfaceAdapter.Service;
 
 namespace BattleScene.InterfaceAdapter.Presenter

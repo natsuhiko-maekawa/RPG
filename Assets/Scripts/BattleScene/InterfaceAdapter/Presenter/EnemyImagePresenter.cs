@@ -2,12 +2,12 @@
 using System.Collections.Immutable;
 using System.Linq;
 using System.Threading.Tasks;
+using BattleScene.DataAccess;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Entity;
 using BattleScene.Framework.View;
 using BattleScene.Framework.ViewModel;
-using BattleScene.InterfaceAdapter.DataAccess;
 
 namespace BattleScene.InterfaceAdapter.Presenter
 {

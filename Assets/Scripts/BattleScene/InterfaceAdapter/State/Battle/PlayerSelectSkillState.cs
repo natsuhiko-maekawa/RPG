@@ -1,6 +1,6 @@
-﻿using BattleScene.Domain.Code;
-using BattleScene.InterfaceAdapter.DataAccess;
-using BattleScene.InterfaceAdapter.DataAccess.Dto;
+﻿using BattleScene.DataAccess;
+using BattleScene.DataAccess.Dto;
+using BattleScene.Domain.Code;
 using BattleScene.InterfaceAdapter.Presenter;
 
 namespace BattleScene.InterfaceAdapter.State.Battle

@@ -1,10 +1,10 @@
 ﻿using System.Linq;
+using BattleScene.DataAccess;
+using BattleScene.DataAccess.Dto;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
-using BattleScene.InterfaceAdapter.DataAccess;
-using BattleScene.InterfaceAdapter.DataAccess.Dto;
 using BattleScene.InterfaceAdapter.Presenter;
 using BattleScene.UseCases.View.MessageView.OutputBoundary;
 

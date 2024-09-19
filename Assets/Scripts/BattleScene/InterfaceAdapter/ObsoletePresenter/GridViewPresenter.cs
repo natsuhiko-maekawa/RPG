@@ -1,10 +1,10 @@
 ﻿using System.Collections.Immutable;
 using System.Linq;
+using BattleScene.DataAccess;
+using BattleScene.DataAccess.Dto;
 using BattleScene.Domain.Code;
 using BattleScene.Framework.View;
 using BattleScene.Framework.ViewModel;
-using BattleScene.InterfaceAdapter.DataAccess;
-using BattleScene.InterfaceAdapter.DataAccess.Dto;
 using BattleScene.InterfaceAdapter.Service;
 using BattleScene.UseCases.Interface;
 using BattleScene.UseCases.OutputData;

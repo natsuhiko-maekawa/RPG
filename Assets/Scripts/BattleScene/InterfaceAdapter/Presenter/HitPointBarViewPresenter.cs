@@ -1,4 +1,5 @@
-﻿using BattleScene.Domain.Code;
+﻿using BattleScene.DataAccess;
+using BattleScene.Domain.Code;
 using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.ValueObject;
@@ -8,7 +9,7 @@ using R3;
 
 namespace BattleScene.InterfaceAdapter.Presenter
 {
-    public class HitPointBarViewPresenter
+    public class HitPointBarViewPresenter : IObserver<CharacterEntity>
     {
         private readonly IFactory<PropertyValueObject, CharacterTypeCode> _characterPropertyFactory;
         private readonly EnemiesView _enemiesView;
@@ -21,7 +22,7 @@ namespace BattleScene.InterfaceAdapter.Presenter
             _enemiesView = enemiesView;
         }
 
-        public void Subscribe(CharacterEntity character)
+        public void Observe(CharacterEntity character)
         {
             character.ReactiveCurrentHitPoint.Subscribe(x => StartHitPointBarView(character, x));
         }
