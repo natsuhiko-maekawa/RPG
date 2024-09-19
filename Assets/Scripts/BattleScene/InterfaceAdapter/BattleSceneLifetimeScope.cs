@@ -35,16 +35,6 @@ using BattleScene.UseCases.View.TechnicalPointBarView.OutputBoundary;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
-using AilmentViewPresenter = BattleScene.InterfaceAdapter.Presenter.AilmentViewPresenter;
-using BuffViewDto = BattleScene.DataAccess.Dto.BuffViewDto;
-using EnemyViewDto = BattleScene.DataAccess.Dto.EnemyViewDto;
-using GridViewPresenter = BattleScene.InterfaceAdapter.Presenter.GridViewPresenter;
-using HitPointBarViewPresenter = BattleScene.InterfaceAdapter.Presenter.HitPointBarViewPresenter;
-using MessageViewPresenter = BattleScene.InterfaceAdapter.Presenter.MessageViewPresenter;
-using OrderViewPresenter = BattleScene.InterfaceAdapter.Presenter.OrderViewPresenter;
-using PlayerViewDto = BattleScene.DataAccess.Dto.PlayerViewDto;
-using SkillViewPresenter = BattleScene.InterfaceAdapter.Presenter.SkillViewPresenter;
-using TargetViewPresenter = BattleScene.InterfaceAdapter.Presenter.TargetViewPresenter;
 
 #if UNITY_EDITOR
 using BattleScene.UseCases.Service.DebugService;
