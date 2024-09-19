@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Collections.Immutable;
+using System.Linq;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
@@ -9,6 +10,7 @@ namespace BattleScene.InterfaceAdapter.State.Skill
 {
     public class AilmentState : AbstractSkillState
     {
+        private readonly IReadOnlyList<AilmentValueObject> _ailmentList;
         private readonly AilmentGeneratorService _ailmentGenerator;
         private readonly AilmentRegistererService _ailmentRegisterer;
         private readonly BattleLogDomainService _battleLog;
@@ -20,36 +22,30 @@ namespace BattleScene.InterfaceAdapter.State.Skill
         private readonly AilmentFailureState _ailmentFailureState;
 
         public AilmentState(
+            IReadOnlyList<AilmentValueObject> ailmentList,
             AilmentGeneratorService ailmentGenerator, 
             AilmentRegistererService ailmentRegisterer,
             BattleLoggerService battleLoggerService,
             BattleLogDomainService battleLog,
-            SkillCommonValueObject skillCommon,
-            AilmentParameterValueObject ailmentParameter,
-            IList<CharacterId> targetIdList,
             AilmentMessageState ailmentMessageState,
             AilmentFailureState ailmentFailureState)
         {
+            _ailmentList = ailmentList;
             _ailmentGenerator = ailmentGenerator;
             _ailmentRegisterer = ailmentRegisterer;
             _battleLoggerService = battleLoggerService;
             _battleLog = battleLog;
-            _skillCommon = skillCommon;
-            _ailmentParameter = ailmentParameter;
-            _targetIdList = targetIdList.ToImmutableList();
             _ailmentMessageState = ailmentMessageState;
             _ailmentFailureState = ailmentFailureState;
         }
 
         public override void Start()
         {
-            var ailment = _ailmentGenerator.Generate(
-                skillCommon: _skillCommon,
-                ailmentParameter: _ailmentParameter,
-                targetIdList: _targetIdList);
-            _ailmentRegisterer.Register(ailment);
-            _battleLoggerService.Log(ailment);
-            AbstractSkillState nextState = _battleLog.GetLast().ActualTargetIdList.IsEmpty
+            _ailmentRegisterer.Register(_ailmentList);
+            _battleLoggerService.Log(_ailmentList);
+            var failure = _ailmentList
+                .All(x => x.ActualTargetIdList.IsEmpty);
+            AbstractSkillState nextState = failure
                 ? _ailmentFailureState 
                 : _ailmentMessageState;
             SkillContext.TransitionTo(nextState);

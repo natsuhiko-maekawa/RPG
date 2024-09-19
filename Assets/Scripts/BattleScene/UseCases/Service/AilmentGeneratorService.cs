@@ -26,27 +26,34 @@ namespace BattleScene.UseCases.Service
             _randomEx = randomEx;
         }
 
-        public AilmentValueObject Generate(
+        public IReadOnlyList<AilmentValueObject> Generate(
             SkillCommonValueObject skillCommon,
-            AilmentParameterValueObject ailmentParameter,
+            IReadOnlyList<AilmentParameterValueObject> ailmentParameterList,
             IList<CharacterId> targetIdList)
         {
             if (!_orderedItems.First().TryGetCharacterId(out var actorId)) throw new InvalidOperationException();
-
-            var actualTargetIdList = GetActualTargetIdList(
-                targetIdList: targetIdList,
-                ailmentParameter: ailmentParameter);
             
-            var ailment = new AilmentValueObject(
-                actorId: actorId,
-                skillCode: skillCommon.SkillCode,
-                ailmentCode: ailmentParameter.AilmentCode,
-                targetIdList: targetIdList,
-                actualTargetIdList: actualTargetIdList);
+            var ailmentList = ailmentParameterList.Select(GetAilment).ToList();
+            
+            return ailmentList;
+            
+            AilmentValueObject GetAilment(AilmentParameterValueObject ailmentParameter)
+            {
+                var actualTargetIdList = GetActualTargetIdList(
+                    targetIdList: targetIdList,
+                    ailmentParameter: ailmentParameter);
+            
+                var ailment = new AilmentValueObject(
+                    actorId: actorId,
+                    skillCode: skillCommon.SkillCode,
+                    ailmentCode: ailmentParameter.AilmentCode,
+                    targetIdList: targetIdList,
+                    actualTargetIdList: actualTargetIdList);
 
-            return ailment;
+                return ailment;
+            }
         }
-
+        
         private ImmutableList<CharacterId> GetActualTargetIdList(
             IList<CharacterId> targetIdList,
             AilmentParameterValueObject ailmentParameter)

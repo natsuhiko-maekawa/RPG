@@ -7,7 +7,6 @@ using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
 using BattleScene.InterfaceAdapter.Presenter;
 using BattleScene.InterfaceAdapter.State.Battle;
-using BattleScene.UseCases.View.MessageView.OutputBoundary;
 using UnityEngine;
 using VContainer;
 
@@ -81,11 +80,7 @@ namespace BattleScene.InterfaceAdapter.State.Skill
         {
             var skill = _skillFactory.Create(_skillCode);
             var skillStates = Enumerable.Empty<AbstractSkillState>()
-                .Concat(skill.AilmentParameterList
-                    .Select(x => _ailmentStateFactory.Create(
-                        skillCommon: skill.SkillCommon,
-                        ailmentParameter: x,
-                        targetIdList: _targetIdList)))
+                .Concat(CreateAilmentSkillState(skill))
                 .Concat(skill.DamageParameterList
                     .Select(x => _damageStateFactory.Create(
                         skillCommon: skill.SkillCommon,
@@ -98,6 +93,18 @@ namespace BattleScene.InterfaceAdapter.State.Skill
                     slipParameter: x,
                     targetIdList: _targetIdList)));
             _skillStateQueue = new Queue<AbstractSkillState>(skillStates);
+        }
+
+        private IEnumerable<AbstractSkillState> CreateAilmentSkillState(SkillValueObject skill)
+        {
+            var ailmentStates = Enumerable.Empty<AbstractSkillState>();
+            if (skill.AilmentParameterList.IsEmpty) return ailmentStates;
+            var ailmentState = _ailmentStateFactory.Create(
+                skillCommon: skill.SkillCommon,
+                ailmentParameterList: skill.AilmentParameterList,
+                targetIdList: _targetIdList);
+            ailmentStates = ailmentStates.Append(ailmentState);
+            return ailmentStates;
         }
     }
 }

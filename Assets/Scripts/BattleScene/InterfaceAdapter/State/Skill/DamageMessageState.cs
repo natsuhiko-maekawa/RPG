@@ -2,8 +2,6 @@
 using BattleScene.InterfaceAdapter.Presenter;
 using BattleScene.UseCases.View.DigitView.OutputBoundary;
 using BattleScene.UseCases.View.DigitView.OutputDataFactory;
-using BattleScene.UseCases.View.HitPointBarView.OutputBoundary;
-using BattleScene.UseCases.View.MessageView.OutputBoundary;
 
 namespace BattleScene.InterfaceAdapter.State.Skill
 {

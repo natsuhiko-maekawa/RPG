@@ -33,16 +33,21 @@ namespace BattleScene.InterfaceAdapter.State.Skill
 
         public AilmentState Create(
             SkillCommonValueObject skillCommon,
-            AilmentParameterValueObject ailmentParameter,
-            IList<CharacterId> targetIdList) => new AilmentState(
-            ailmentGenerator: _ailmentGenerator,
-            ailmentRegisterer: _ailmentRegisterer,
-            battleLoggerService: _battleLoggerService,
-            battleLog: _battleLog,
-            skillCommon: skillCommon,
-            ailmentParameter: ailmentParameter,
-            targetIdList: targetIdList,
-            ailmentMessageState: _ailmentMessageState,
-            ailmentFailureState: _ailmentFailureState);
+            IReadOnlyList<AilmentParameterValueObject> ailmentParameterList,
+            IList<CharacterId> targetIdList)
+        {
+            var ailmentList = _ailmentGenerator.Generate(
+                skillCommon: skillCommon,
+                ailmentParameterList: ailmentParameterList,
+                targetIdList: targetIdList);
+            return new AilmentState(
+                ailmentList: ailmentList,
+                ailmentGenerator: _ailmentGenerator,
+                ailmentRegisterer: _ailmentRegisterer,
+                battleLoggerService: _battleLoggerService,
+                battleLog: _battleLog,
+                ailmentMessageState: _ailmentMessageState,
+                ailmentFailureState: _ailmentFailureState);
+        }
     }
 }

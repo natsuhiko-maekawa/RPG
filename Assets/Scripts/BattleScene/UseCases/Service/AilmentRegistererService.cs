@@ -1,4 +1,5 @@
-﻿using System.Collections.Immutable;
+﻿using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DataAccess;
@@ -34,6 +35,11 @@ namespace BattleScene.UseCases.Service
                     isSelfRecovery: ailmentProperty.IsSelfRecovery))
                 .ToImmutableList();
             _ailmentRepository.Update(ailmentEntityList);
+        }
+
+        public void Register(IReadOnlyList<AilmentValueObject> ailmentList)
+        {
+            foreach (var ailment in ailmentList) Register(ailment);
         }
     }
 }

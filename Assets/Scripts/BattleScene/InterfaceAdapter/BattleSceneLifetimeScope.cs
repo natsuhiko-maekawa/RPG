@@ -22,8 +22,6 @@ using BattleScene.InterfaceAdapter.State.Skill;
 using BattleScene.UseCases.IService;
 using BattleScene.UseCases.Output;
 using BattleScene.UseCases.Service;
-using BattleScene.UseCases.UseCase;
-using BattleScene.UseCases.View.AilmentView.OutputBoundary;
 using BattleScene.UseCases.View.AttackCountView.OutputBoundary;
 using BattleScene.UseCases.View.BuffView.OutputBoundary;
 using BattleScene.UseCases.View.CharacterVibesView.OutputBoundary;

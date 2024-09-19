@@ -1,20 +1,19 @@
 ﻿using BattleScene.Domain.Code;
 using BattleScene.InterfaceAdapter.Presenter;
-using BattleScene.UseCases.View.MessageView.OutputBoundary;
 
 namespace BattleScene.InterfaceAdapter.State.Skill
 {
     public class AilmentFailureState : AbstractSkillState
     {
         private readonly MessageViewPresenter _messageView;
-        private readonly SkillQuitState _skillQuitState;
+        private readonly SkillEndState _skillEndState;
 
         public AilmentFailureState(
             MessageViewPresenter messageView,
-            SkillQuitState skillQuitState)
+            SkillEndState skillEndState)
         {
             _messageView = messageView;
-            _skillQuitState = skillQuitState;
+            _skillEndState = skillEndState;
         }
 
         public override void Start()
@@ -26,7 +25,7 @@ namespace BattleScene.InterfaceAdapter.State.Skill
         {
             // TODO: 要修正
             // TODO: 本当はダメージスキルだけをスキップしたい
-            SkillContext.TransitionTo(_skillQuitState);
+            SkillContext.TransitionTo(_skillEndState);
         }
     }
 }

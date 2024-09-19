@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
@@ -28,6 +29,11 @@ namespace BattleScene.UseCases.Service
                 turn: turn,
                 ailment: ailment);
             _battleLogRepository.Update(battleLog);
+        }
+
+        public void Log(IReadOnlyList<AilmentValueObject> ailmentList)
+        {
+            foreach (var ailment in ailmentList) Log(ailment);
         }
         
         public void Log(BuffValueObject buff)

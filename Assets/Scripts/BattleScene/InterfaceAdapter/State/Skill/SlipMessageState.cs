@@ -1,6 +1,5 @@
 ﻿using BattleScene.Domain.Code;
 using BattleScene.InterfaceAdapter.Presenter;
-using BattleScene.UseCases.View.MessageView.OutputBoundary;
 
 namespace BattleScene.InterfaceAdapter.State.Skill
 {
