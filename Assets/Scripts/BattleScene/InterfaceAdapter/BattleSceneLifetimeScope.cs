@@ -20,7 +20,6 @@ using BattleScene.InterfaceAdapter.Skill.SkillElement;
 using BattleScene.InterfaceAdapter.State.Battle;
 using BattleScene.InterfaceAdapter.State.Skill;
 using BattleScene.UseCases.IService;
-using BattleScene.UseCases.Output;
 using BattleScene.UseCases.Service;
 using BattleScene.UseCases.View.AttackCountView.OutputBoundary;
 using BattleScene.UseCases.View.BuffView.OutputBoundary;
@@ -29,7 +28,6 @@ using BattleScene.UseCases.View.DestroyedPartView.OutputBoundary;
 using BattleScene.UseCases.View.DigitView.OutputBoundary;
 using BattleScene.UseCases.View.DigitView.OutputDataFactory;
 using BattleScene.UseCases.View.FrameView.OutputBoundary;
-using BattleScene.UseCases.View.HitPointBarView.OutputDataFactory;
 using BattleScene.UseCases.View.InfoView.OutputBoundary;
 using BattleScene.UseCases.View.PlayerImageView.OutputBoundary;
 using BattleScene.UseCases.View.SelectSkillView.OutputBoundary;
@@ -86,7 +84,6 @@ namespace BattleScene.InterfaceAdapter
             builder.RegisterComponentInHierarchy<GridView>();
             builder.RegisterComponentInHierarchy<MessageView>();
             builder.RegisterComponentInHierarchy<OrderView>();
-            builder.RegisterComponentInHierarchy<PlayerAilmentsView>();
             builder.RegisterComponentInHierarchy<PlayerAttackCountView>();
             builder.RegisterComponentInHierarchy<PlayerView>();
             builder.RegisterComponentInHierarchy<PlayerStatusView>();
@@ -114,7 +111,6 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<IDestroyedPartViewPresenter, DestroyedPartViewPresenter>(Lifetime.Singleton);
             builder.Register<IDigitViewPresenter, DigitViewPresenter>(Lifetime.Singleton);
             builder.Register<IFrameViewPresenter, FrameViewPresenter>(Lifetime.Singleton);
-            // builder.Register<IHitPointBarViewPresenter, HitPointBarViewPresenter>(Lifetime.Singleton);
             builder.Register<IInfoViewPresenter, InfoViewPresenter>(Lifetime.Singleton);
             builder.Register<IAttackCountViewPresenter, AttackCountViewPresenter>(Lifetime.Singleton);
             builder.Register<IPlayerImageViewPresenter, PlayerImageViewPresenter>(Lifetime.Singleton);
@@ -262,7 +258,6 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<SlipMessageState>(Lifetime.Singleton);
             builder.Register<SlipFailureState>(Lifetime.Singleton);
             builder.Register<SkillEndState>(Lifetime.Singleton);
-            builder.Register<SkillQuitState>(Lifetime.Singleton);
             builder.Register<TurnEndState>(Lifetime.Singleton);
             #endregion
 
@@ -310,8 +305,6 @@ namespace BattleScene.InterfaceAdapter
             #endregion
 
             builder.Register<DamageDigitOutputDataFactory>(Lifetime.Singleton);
-            builder.Register<HitPointBarOutputDataFactory>(Lifetime.Singleton);
-            builder.Register<ActionDescriptionMessageOutput>(Lifetime.Singleton);
         }
     }
 }
