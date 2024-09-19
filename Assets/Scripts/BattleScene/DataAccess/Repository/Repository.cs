@@ -8,19 +8,10 @@ using Utility;
 
 namespace BattleScene.DataAccess.Repository
 {
-    public class Repository<TEntity, TId> : IRepository<TEntity, TId>, IReadOnlyRepository<TEntity, TId>, ISerializable
+    public partial class Repository<TEntity, TId> : IRepository<TEntity, TId>, IReadOnlyRepository<TEntity, TId>, ISerializable
         where TEntity : BaseEntity<TId>
     {
-        private readonly IEnumerable<IObserver<TEntity>> _observers;
         private readonly HashSet<TEntity> _entitySet = new();
-        
-        public Repository(
-            IEnumerable<IObserver<TEntity>> observers)
-        {
-            _observers = observers;
-        }
-        
-        public bool IsEmpty => _entitySet.Count == 0;
 
         public TEntity Select(TId id)
         {
@@ -36,13 +27,11 @@ namespace BattleScene.DataAccess.Repository
         public void Update(TEntity entity)
         {
             if (entity == null) return;
-            foreach (var observer in _observers)
-            {
-                observer.Observe(entity);
-            }
-            
+            Observe(entity);
             _entitySet.Update(entity);
         }
+
+        partial void Observe(TEntity entity);
 
         public void Update(IReadOnlyList<TEntity> entityList)
         {
