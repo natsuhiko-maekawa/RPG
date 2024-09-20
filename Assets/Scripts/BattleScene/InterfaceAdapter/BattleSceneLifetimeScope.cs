@@ -89,6 +89,7 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<OrderViewPresenter>(Lifetime.Singleton);
             builder.Register<SkillViewPresenter>(Lifetime.Singleton);
             builder.Register<TargetViewPresenter>(Lifetime.Singleton);
+            builder.Register<VibrationViewPresenter>(Lifetime.Singleton);
             #endregion
 
             #region RegisterReactivePresenter

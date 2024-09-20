@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3622449753887370542}
   - component: {fileID: 4427299782391239297}
   - component: {fileID: 8789021091010849352}
+  - component: {fileID: 4254895926671394238}
   m_Layer: 0
   m_Name: EnemyView
   m_TagString: Untagged
@@ -35,7 +36,6 @@ RectTransform:
   - {fileID: 5137197155920883178}
   - {fileID: 3008689542497691201}
   - {fileID: 3648812092129150774}
-  - {fileID: 5987348552537047260}
   - {fileID: 6855148002243405740}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -92,6 +92,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 885e992cb35145f2b54a74a210ee9012, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4254895926671394238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 221765933986333883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5808a36ac378f74cb3bb5b2fdda2084, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2260066227530530855
@@ -304,52 +316,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b72e192d95cd3144796e24f78740970e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  barFrontImage: {fileID: 9098264562545617086, guid: 071b495b5c2104a4dae62355621d75f4, type: 3}
-  barText: {fileID: 1203977574847549956, guid: 2a903228ac74d5448870fa1b21562ede, type: 3}
---- !u!1 &6892177433988833773
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5987348552537047260}
-  - component: {fileID: -8321098875215648279}
-  m_Layer: 0
-  m_Name: EnemyVibesView
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5987348552537047260
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6892177433988833773}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 3068223072792452909}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-8321098875215648279
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6892177433988833773}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5808a36ac378f74cb3bb5b2fdda2084, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &7030318552699343797

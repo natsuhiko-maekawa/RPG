@@ -49,7 +49,7 @@ namespace BattleScene.InterfaceAdapter.State.Skill
                 targetIdList: _targetIdList);
             _slipRegisterer.Register(slip);
             _battleLogger.Log(slip);
-            AbstractSkillState nextState = _battleLog.GetLast().ActualTargetIdList.IsEmpty
+            AbstractSkillState nextState = _battleLog.GetLast().ActualTargetIdList.Count == 0
                 ? _slipFailureState 
                 : _slipMessageState;
             SkillContext.TransitionTo(nextState);

@@ -10,17 +10,20 @@ namespace BattleScene.InterfaceAdapter.State.Skill
         private readonly DamageDigitOutputDataFactory _damageDigitOutputDataFactory;
         private readonly IDigitViewPresenter _digitView;
         private readonly MessageViewPresenter _messageView;
+        private readonly VibrationViewPresenter _vibrationView;
         private readonly SkillEndState _skillEndState;
 
         public DamageMessageState(
             DamageDigitOutputDataFactory damageDigitOutputDataFactory,
             IDigitViewPresenter digitView,
             MessageViewPresenter messageView, 
+            VibrationViewPresenter vibrationView,
             SkillEndState skillEndState)
         {
             _damageDigitOutputDataFactory = damageDigitOutputDataFactory;
             _digitView = digitView;
             _messageView = messageView;
+            _vibrationView = vibrationView;
             _skillEndState = skillEndState;
         }
 
@@ -28,6 +31,7 @@ namespace BattleScene.InterfaceAdapter.State.Skill
         {
             _messageView.Start(MessageCode.DamageMessage);
             _digitView.Start(_damageDigitOutputDataFactory.Create());
+            _vibrationView.StartAnimationAsync();
         }
         
         public override void Select()
