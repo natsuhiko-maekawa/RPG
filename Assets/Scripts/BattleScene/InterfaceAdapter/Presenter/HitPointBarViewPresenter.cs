@@ -13,13 +13,16 @@ namespace BattleScene.InterfaceAdapter.Presenter
     {
         private readonly IFactory<PropertyValueObject, CharacterTypeCode> _characterPropertyFactory;
         private readonly EnemiesView _enemiesView;
+        private readonly PlayerView _playerView;
 
         public HitPointBarViewPresenter(
             IFactory<PropertyValueObject, CharacterTypeCode> characterPropertyFactory,
-            EnemiesView enemiesView)
+            EnemiesView enemiesView,
+            PlayerView playerView)
         {
             _characterPropertyFactory = characterPropertyFactory;
             _enemiesView = enemiesView;
+            _playerView = playerView;
         }
 
         public void Observe(CharacterEntity character)
@@ -27,15 +30,18 @@ namespace BattleScene.InterfaceAdapter.Presenter
             character.ReactiveCurrentHitPoint.Subscribe(x => StartHitPointBarView(character, x));
         }
 
-        public void StartHitPointBarView(CharacterEntity character, int currentHitPoint)
+        private void StartHitPointBarView(CharacterEntity character, int currentHitPoint)
         {
-            if (character.IsPlayer) StartPlayerHitPointBarView(character, currentHitPoint);
+            if (character.IsPlayer) StartPlayerHitPointBarView(currentHitPoint);
             else StartEnemyHitPointBarView(character, currentHitPoint);
         }
 
-        private void StartPlayerHitPointBarView(CharacterEntity character, int currentHitPoint)
+        private void StartPlayerHitPointBarView(int currentHitPoint)
         {
-            
+            var maxHitPoint = _characterPropertyFactory.Create(CharacterTypeCode.Player).HitPoint;
+            var statusBarViewDto = new StatusBarViewDto(maxHitPoint, currentHitPoint);
+            var dto = new PlayerHpBarViewDto(statusBarViewDto);
+            _playerView.StartPlayerHpBarView(dto);
         }
 
         private void StartEnemyHitPointBarView(CharacterEntity character, int currentHitPoint)
