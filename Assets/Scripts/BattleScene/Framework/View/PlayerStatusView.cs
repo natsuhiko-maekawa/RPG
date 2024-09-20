@@ -16,7 +16,7 @@ namespace BattleScene.Framework.View
 
         private void Awake()
         {
-            var groups = GetComponentsInChildren<GridLayoutGroup>();
+            // var groups = GetComponentsInChildren<GridLayoutGroup>();
             // _textGroup = groups[0].GetComponentsInChildren<Text>();
             // _iconGroup = groups[1].GetComponentsInChildren<Image>();
             _playerAilmentStatusArray = GetComponentsInChildren<PlayerAilmentStatus>();
