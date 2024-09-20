@@ -1,40 +1,21 @@
 using BattleScene.Domain.DomainService;
 using BattleScene.UseCases.OldEvent.Interface;
 using BattleScene.UseCases.OldEvent.Runner;
-using BattleScene.UseCases.View.AilmentView.OutputBoundary;
-using BattleScene.UseCases.View.AilmentView.OutputDataFactory;
-using BattleScene.UseCases.View.BuffView.OutputBoundary;
-using BattleScene.UseCases.View.BuffView.OutputDataFactory;
 using BattleScene.UseCases.View.FrameView.OutputBoundary;
 
 namespace BattleScene.UseCases.OldEvent
 {
     internal class LoopEndOldEvent : IOldEvent
     {
-        private readonly AilmentOutputDataFactory _ailmentOutputDataFactory;
-        private readonly IAilmentViewPresenter _ailmentView;
-        private readonly BuffDomainService _buff;
-        private readonly BuffOutputDataFactory _buffOutputDataFactory;
-        private readonly IBuffViewPresenter _buffView;
         private readonly CharactersDomainService _characters;
         private readonly IFrameViewPresenter _frameView;
         private readonly OrderedItemsDomainService _orderedItems;
 
         public LoopEndOldEvent(
-            AilmentOutputDataFactory ailmentOutputDataFactory,
-            IAilmentViewPresenter ailmentView,
-            BuffDomainService buff,
-            BuffOutputDataFactory buffOutputDataFactory,
-            IBuffViewPresenter buffView,
             CharactersDomainService characters,
             IFrameViewPresenter frameView,
             OrderedItemsDomainService orderedItems)
         {
-            _ailmentOutputDataFactory = ailmentOutputDataFactory;
-            _ailmentView = ailmentView;
-            _buff = buff;
-            _buffOutputDataFactory = buffOutputDataFactory;
-            _buffView = buffView;
             _characters = characters;
             _frameView = frameView;
             _orderedItems = orderedItems;
@@ -58,13 +39,16 @@ namespace BattleScene.UseCases.OldEvent
             {
                 // 全員の状態異常のターンを進める
                 // _ailment.AdvanceAllTurn(characterId);
-                _buff.AdvanceAllTurn(characterId);
+                // 全員のバフのターンを進める
+                // _buff.AdvanceAllTurn(characterId);
             }
 
-            var ailmentOutputData = _ailmentOutputDataFactory.Create();
-            _ailmentView.Start(ailmentOutputData);
-            var buffOutputData = _buffOutputDataFactory.Create();
-            _buffView.Start(buffOutputData);
+            // 状態異常を表示
+            // var ailmentOutputData = _ailmentOutputDataFactory.Create();
+            // _ailmentView.Start(ailmentOutputData);
+            // バフを表示
+            // var buffOutputData = _buffOutputDataFactory.Create();
+            // _buffView.Start(buffOutputData);
 
             return EventCode.OrderDecisionEvent;
         }

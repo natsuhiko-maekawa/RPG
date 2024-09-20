@@ -1,31 +1,10 @@
 using BattleScene.UseCases.OldEvent.Runner;
-using BattleScene.UseCases.View.AttackCountView.OutputBoundary;
-using BattleScene.UseCases.View.AttackCountView.OutputDataFactory;
-using BattleScene.UseCases.View.DigitView.OutputBoundary;
-using BattleScene.UseCases.View.DigitView.OutputDataFactory;
 using static BattleScene.UseCases.OldEvent.Runner.EventCode;
 
 namespace BattleScene.UseCases.OldEvent
 {
     internal class PlayerDamageOldEvent
     {
-        private readonly AttackCountOutputDataFactory _attackCountOutputDataFactory;
-        private readonly IAttackCountViewPresenter _attackCountViewPresenter;
-        private readonly DamageDigitOutputDataFactory _damageDigitOutputDataFactory;
-        private readonly IDigitViewPresenter _digitView;
-
-        public PlayerDamageOldEvent(
-            AttackCountOutputDataFactory attackCountOutputDataFactory,
-            IAttackCountViewPresenter attackCountViewPresenter,
-            DamageDigitOutputDataFactory damageDigitOutputDataFactory,
-            IDigitViewPresenter digitView)
-        {
-            _attackCountOutputDataFactory = attackCountOutputDataFactory;
-            _attackCountViewPresenter = attackCountViewPresenter;
-            _damageDigitOutputDataFactory = damageDigitOutputDataFactory;
-            _digitView = digitView;
-        }
-
         public EventCode Run()
         {
             // var characterId = _orderedItems.FirstCharacterId();
@@ -47,16 +26,18 @@ namespace BattleScene.UseCases.OldEvent
             //     _characterVibesView.Start(characterVibesOutputData);
             // }
 
-            var digitOutputData = _damageDigitOutputDataFactory.Create();
-            _digitView.Start(digitOutputData);
+            // ダメージを表示する
+            // var digitOutputData = _damageDigitOutputDataFactory.Create();
+            // _digitView.Start(digitOutputData);
             // HPバーを表示する
             // var hitPointBarOutputData = _hitPointBarOutputDataFactory.Create();
             // _hitPointBarView.Start(hitPointBarOutputData);
             // メッセージを表示する
             // var messageOutputData = _damageMessageOutputDataFactory.Create();
             // _messageViewPresenter.Start(messageOutputData);
-            var attackCountOutputData = _attackCountOutputDataFactory.Create();
-            _attackCountViewPresenter.Start(attackCountOutputData);
+            // リミットゲージを表示する
+            // var attackCountOutputData = _attackCountOutputDataFactory.Create();
+            // _attackCountViewPresenter.Start(attackCountOutputData);
 
             return WaitEvent;
         }

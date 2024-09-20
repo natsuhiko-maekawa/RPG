@@ -5,45 +5,22 @@ using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
 using BattleScene.UseCases.OldEvent.Interface;
 using BattleScene.UseCases.OldEvent.Runner;
-using BattleScene.UseCases.View.AilmentView.OutputBoundary;
-using BattleScene.UseCases.View.AilmentView.OutputDataFactory;
-using BattleScene.UseCases.View.MessageView.OutputBoundary;
-using BattleScene.UseCases.View.MessageView.OutputDataFactory;
-using BattleScene.UseCases.View.PlayerImageView.OutputBoundary;
-using BattleScene.UseCases.View.PlayerImageView.OutputData;
-using static BattleScene.UseCases.Constant;
 using static BattleScene.UseCases.OldEvent.Runner.EventCode;
-using static BattleScene.Domain.Code.MessageCode;
 
 namespace BattleScene.UseCases.OldEvent
 {
     internal class AilmentsResetOldEvent : IOldEvent, IWait
     {
-        private readonly AilmentOutputDataFactory _ailmentOutputDataFactory;
         private readonly IRepository<AilmentEntity, (CharacterId, AilmentCode)> _ailmentRepository;
-        private readonly IAilmentViewPresenter _ailmentView;
-        private readonly MessageOutputDataFactory _messageOutputDataFactory;
         private readonly PlayerDomainService _player;
-        private readonly IMessageViewPresenter _messageView;
         private readonly OrderedItemsDomainService _orderedItems;
-        private readonly IPlayerImageViewPresenter _playerImageView;
 
         public AilmentsResetOldEvent(
-            AilmentOutputDataFactory ailmentOutputDataFactory,
             IRepository<AilmentEntity, (CharacterId, AilmentCode)> ailmentRepository,
-            IAilmentViewPresenter ailmentView,
-            MessageOutputDataFactory messageOutputDataFactory,
-            IMessageViewPresenter messageView,
-            OrderedItemsDomainService orderedItems,
-            IPlayerImageViewPresenter playerImageView)
+            OrderedItemsDomainService orderedItems)
         {
-            _ailmentOutputDataFactory = ailmentOutputDataFactory;
             _ailmentRepository = ailmentRepository;
-            _ailmentView = ailmentView;
-            _messageOutputDataFactory = messageOutputDataFactory;
-            _messageView = messageView;
             _orderedItems = orderedItems;
-            _playerImageView = playerImageView;
         }
 
         public EventCode Run()
@@ -65,11 +42,14 @@ namespace BattleScene.UseCases.OldEvent
 
         private void StartView()
         {
-            var ailmentOutputData = _ailmentOutputDataFactory.Create(_player.GetId());
-            _ailmentView.Start(ailmentOutputData);
-            var messageOutputData = _messageOutputDataFactory.Create(RecoverAilmentMessage);
-            _messageView.Start(messageOutputData);
-            _playerImageView.Start(new PlayerImageOutputData(DefaultImage));
+            // 状態異常を表示
+            // var ailmentOutputData = _ailmentOutputDataFactory.Create(_player.GetId());
+            // _ailmentView.Start(ailmentOutputData);
+            // メッセージを表示
+            // var messageOutputData = _messageOutputDataFactory.Create(RecoverAilmentMessage);
+            // _messageView.Start(messageOutputData);
+            // プレイイヤーのデフォルトの立ち絵を表示
+            // _playerImageView.Start(new PlayerImageOutputData(DefaultImage));
         }
     }
 }
