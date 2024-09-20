@@ -23,7 +23,6 @@ using BattleScene.UseCases.IService;
 using BattleScene.UseCases.Service;
 using BattleScene.UseCases.View.BuffView.OutputBoundary;
 using BattleScene.UseCases.View.DestroyedPartView.OutputBoundary;
-using BattleScene.UseCases.View.DigitView.OutputDataFactory;
 using BattleScene.UseCases.View.FrameView.OutputBoundary;
 using BattleScene.UseCases.View.InfoView.OutputBoundary;
 using BattleScene.UseCases.View.SelectSkillView.OutputBoundary;
@@ -290,8 +289,6 @@ namespace BattleScene.InterfaceAdapter
             #region RegisterEntryPoint
             builder.RegisterEntryPoint<StateMachine>();
             #endregion
-
-            builder.Register<DamageDigitOutputDataFactory>(Lifetime.Singleton);
         }
     }
 }
