@@ -4759,7 +4759,6 @@ GameObject:
   - component: {fileID: 1577878020}
   - component: {fileID: 1577878019}
   - component: {fileID: 1577878024}
-  - component: {fileID: 1577878023}
   - component: {fileID: 1577878022}
   - component: {fileID: 1577878021}
   m_Layer: 0
@@ -4860,18 +4859,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buff: {fileID: 21300000, guid: 897eb1d411f53d34ab547d4a8b789422, type: 3}
   debuff: {fileID: 21300000, guid: 5904af5fa52c4a041b61336225d5a041, type: 3}
---- !u!114 &1577878023
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1577878017}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 218a7c2dd4f47584dabb8e209c070938, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1577878024
 MonoBehaviour:
   m_ObjectHideFlags: 0
