@@ -33,7 +33,7 @@ namespace BattleScene.InterfaceAdapter.Presenter
             _gridView = gridView;
         }
 
-        public void StartAnimationAsync()
+        public async void StartAnimationAsync()
         {
             var actionCodeList = ImmutableList.Create(
                 ActionCode.Attack,
@@ -59,7 +59,7 @@ namespace BattleScene.InterfaceAdapter.Presenter
             var dto = new GridViewDto(
                 ActionCode: Framework.Code.ActionCode.Action,
                 rowList);
-            _gridView.StartAnimationAsync(dto);
+            await _gridView.StartAnimationAsync(dto);
         }
 
         public void Stop()
