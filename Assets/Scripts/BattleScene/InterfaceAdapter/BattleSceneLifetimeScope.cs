@@ -21,14 +21,12 @@ using BattleScene.InterfaceAdapter.State.Battle;
 using BattleScene.InterfaceAdapter.State.Skill;
 using BattleScene.UseCases.IService;
 using BattleScene.UseCases.Service;
-using BattleScene.UseCases.View.AttackCountView.OutputBoundary;
 using BattleScene.UseCases.View.BuffView.OutputBoundary;
 using BattleScene.UseCases.View.DestroyedPartView.OutputBoundary;
 using BattleScene.UseCases.View.DigitView.OutputBoundary;
 using BattleScene.UseCases.View.DigitView.OutputDataFactory;
 using BattleScene.UseCases.View.FrameView.OutputBoundary;
 using BattleScene.UseCases.View.InfoView.OutputBoundary;
-using BattleScene.UseCases.View.PlayerImageView.OutputBoundary;
 using BattleScene.UseCases.View.SelectSkillView.OutputBoundary;
 using BattleScene.UseCases.View.TechnicalPointBarView.OutputBoundary;
 using UnityEngine;
@@ -104,8 +102,6 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<IDigitViewPresenter, DigitViewPresenter>(Lifetime.Singleton);
             builder.Register<IFrameViewPresenter, FrameViewPresenter>(Lifetime.Singleton);
             builder.Register<IInfoViewPresenter, InfoViewPresenter>(Lifetime.Singleton);
-            // builder.Register<IAttackCountViewPresenter, AttackCountViewPresenter>(Lifetime.Singleton);
-            builder.Register<IPlayerImageViewPresenter, PlayerImageViewPresenter>(Lifetime.Singleton);
             builder.Register<ISelectSkillViewPresenter, SelectSkillViewPresenter>(Lifetime.Singleton);
             builder.Register<ITechnicalPointBarViewPresenter, TechnicalPointBarViewPresenter>(Lifetime.Singleton);
             #endregion
