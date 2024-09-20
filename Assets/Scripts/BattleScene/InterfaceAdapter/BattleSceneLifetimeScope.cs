@@ -85,6 +85,7 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<HitPointBarViewPresenter>(Lifetime.Singleton);
             builder.Register<MessageViewPresenter>(Lifetime.Singleton);
             builder.Register<OrderViewPresenter>(Lifetime.Singleton);
+            builder.Register<PlayerImageViewPresenter>(Lifetime.Singleton);
             builder.Register<SkillViewPresenter>(Lifetime.Singleton);
             builder.Register<TargetViewPresenter>(Lifetime.Singleton);
             builder.Register<VibrationViewPresenter>(Lifetime.Singleton);
