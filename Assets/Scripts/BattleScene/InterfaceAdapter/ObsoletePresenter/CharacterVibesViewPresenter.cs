@@ -26,8 +26,7 @@ namespace BattleScene.InterfaceAdapter.ObsoletePresenter
             else
             {
                 var enemyPosition = outputData.CharacterOutputData.EnemyNumber;
-                _enemiesView[enemyPosition]
-                    .StartVibesAnimationAsync(new EnemyVibesViewDto(outputData.CharacterOutputData.EnemyNumber));
+                _enemiesView[enemyPosition].StartVibesAnimationAsync();
             }
         }
 
