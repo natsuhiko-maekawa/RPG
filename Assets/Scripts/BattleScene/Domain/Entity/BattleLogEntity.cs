@@ -126,19 +126,6 @@ namespace BattleScene.Domain.Entity
             SlipDamageCode = slip.SlipDamageCode;
         }
 
-        public int GetTotalDamageAmount()
-        {
-            return AttackList
-                .Where(x => x.IsHit)
-                .Select(x => x.Amount)
-                .Sum();
-        }
-
-        public bool IsAvoid()
-        {
-            return AttackList.All(x => !x.IsHit);
-        }
-        
         public int CompareTo(BattleLogEntity other)
         {
             return Sequence - other.Sequence;

@@ -118,7 +118,11 @@ namespace BattleScene.InterfaceAdapter.Service
             var totalPrefix = _battleLogRepository.Select()
                 .Max().AttackList.Count(x => x.IsHit) == 1 ? "" : "計";
             var damage = _battleLogRepository.Select()
-                .Max().GetTotalDamageAmount().ToString();
+                .Max().AttackList
+                .Where(x => x.IsHit)
+                .Select(x => x.Amount)
+                .Sum()
+                .ToString();
             return message.Replace(Damage, totalPrefix + damage);
         }
         
