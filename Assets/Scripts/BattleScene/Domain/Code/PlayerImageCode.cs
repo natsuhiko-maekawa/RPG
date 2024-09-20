@@ -7,7 +7,7 @@
         Avoidance,
         Bleeding,
         Confusion,
-        Damaged, // TODO: 立ち絵を描く
+        Damaged,
         Defence, // TODO: 立ち絵を書く
         Gun,
         Katana,
