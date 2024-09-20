@@ -23,7 +23,6 @@ using BattleScene.UseCases.IService;
 using BattleScene.UseCases.Service;
 using BattleScene.UseCases.View.BuffView.OutputBoundary;
 using BattleScene.UseCases.View.DestroyedPartView.OutputBoundary;
-using BattleScene.UseCases.View.DigitView.OutputBoundary;
 using BattleScene.UseCases.View.DigitView.OutputDataFactory;
 using BattleScene.UseCases.View.FrameView.OutputBoundary;
 using BattleScene.UseCases.View.InfoView.OutputBoundary;
@@ -81,6 +80,7 @@ namespace BattleScene.InterfaceAdapter
 
             #region RegisterPresenter
             builder.Register<AttackCountViewPresenter>(Lifetime.Singleton);
+            builder.Register<DamageViewPresenter>(Lifetime.Singleton);
             builder.Register<EnemyImagePresenter>(Lifetime.Singleton);
             builder.Register<GridViewPresenter>(Lifetime.Singleton);
             builder.Register<HitPointBarViewPresenter>(Lifetime.Singleton);
@@ -99,7 +99,6 @@ namespace BattleScene.InterfaceAdapter
             #region RegisterObsoletePresenter
             builder.Register<IBuffViewPresenter, BuffViewPresenter>(Lifetime.Singleton);
             builder.Register<IDestroyedPartViewPresenter, DestroyedPartViewPresenter>(Lifetime.Singleton);
-            builder.Register<IDigitViewPresenter, DigitViewPresenter>(Lifetime.Singleton);
             builder.Register<IFrameViewPresenter, FrameViewPresenter>(Lifetime.Singleton);
             builder.Register<IInfoViewPresenter, InfoViewPresenter>(Lifetime.Singleton);
             builder.Register<ISelectSkillViewPresenter, SelectSkillViewPresenter>(Lifetime.Singleton);

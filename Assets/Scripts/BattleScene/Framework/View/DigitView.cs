@@ -18,13 +18,13 @@ namespace BattleScene.Framework.View
         [SerializeField] private bool isPlayer;
         private readonly List<TextMeshProUGUI> _textPool = new();
 
-        public async Task StartAnimation(IList<DigitDto> dtoList)
+        public async Task StartAnimation(DigitViewModel model)
         {
             for (var i = 0; i < 10; ++i)
             {
-                if (dtoList.Any(x => x.Index == i))
+                if (model.DigitList.Any(x => x.Index == i))
                 {
-                    var digitDto = dtoList.First(x => x.Index == i);
+                    var digitDto = model.DigitList.First(x => x.Index == i);
                     ViewDigit(digitDto);
                 }
 
@@ -32,7 +32,7 @@ namespace BattleScene.Framework.View
             }
         }
 
-        private async void ViewDigit(DigitDto dto)
+        private async void ViewDigit(DigitValueObject valueObject)
         {
             if (_textPool.All(x => x.enabled))
             {
@@ -43,16 +43,16 @@ namespace BattleScene.Framework.View
 
             var text = _textPool.First(x => !x.enabled);
 
-            if (dto.IsAvoid)
+            if (valueObject.IsAvoid)
             {
                 text.text = "avoid";
                 text.enableVertexGradient = false;
             }
             else
             {
-                text.text = dto.Digit.ToString();
+                text.text = valueObject.Digit.ToString();
                 text.enableVertexGradient = true;
-                text.colorGradient = dto.DigitColor switch
+                text.colorGradient = valueObject.DigitColor switch
                 {
                     DigitColor.Green => new VertexGradient(Color.green, Color.green, Color.cyan, Color.cyan),
                     DigitColor.Blue => new VertexGradient(Color.cyan, Color.cyan, Color.blue, Color.blue),

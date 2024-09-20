@@ -2,14 +2,17 @@
 
 namespace BattleScene.Framework.ViewModel
 {
+    public record DigitViewModel(
+        IReadOnlyList<DigitValueObject> DigitList);
+    
     public record PlayerDigitViewDto(
-        IList<DigitDto> DigitDtoList);
+        IList<DigitValueObject> DigitDtoList);
 
     public record EnemyDigitViewDto(
         int EnemyInt,
-        IList<DigitDto> DigitDtoList);
+        IList<DigitValueObject> DigitDtoList);
 
-    public record DigitDto(
+    public record DigitValueObject(
         int Index,
         int Digit,
         bool IsAvoid,
