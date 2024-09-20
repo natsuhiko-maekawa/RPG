@@ -1,4 +1,5 @@
-﻿using System.Collections.Immutable;
+﻿using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.Id;
@@ -9,7 +10,8 @@ namespace BattleScene.Domain.ValueObject
     {
         public CharacterId ActorId { get; }
         public SkillCode SkillCode { get; }
-        public ImmutableList<CharacterId> TargetIdList { get; }
+        public IReadOnlyList<CharacterId> TargetIdList { get; }
+        public IReadOnlyList<CharacterId> ActualTargetIdList { get; }
         public ImmutableList<AttackValueObject> AttackList { get; }
         
         public DamageValueObject(
@@ -21,7 +23,13 @@ namespace BattleScene.Domain.ValueObject
             SkillCode = skillCode;
             TargetIdList = attackList
                 .Select(x => x.TargetId)
-                .ToImmutableList();
+                .Distinct()
+                .ToList();
+            ActualTargetIdList = attackList
+                .Where(x => x.IsHit)
+                .Select(x => x.TargetId)
+                .Distinct()
+                .ToList();
             AttackList = attackList;
         }
 
