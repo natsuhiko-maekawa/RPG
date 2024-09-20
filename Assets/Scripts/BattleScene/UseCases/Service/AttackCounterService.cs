@@ -35,13 +35,14 @@ namespace BattleScene.UseCases.Service
             var battleLogList = _battleLogRepository.Select();
             var player = _characterRepository.Select().First(x => x.IsPlayer);
             var playerId = player.Id;
-            return battleLogList
+            var count = battleLogList
                 .OrderByDescending(x => x)
-                .TakeWhile(x => x.ActionCode == ActionCode.FatalitySkill)
+                .TakeWhile((x, i) => x.ActionCode != ActionCode.FatalitySkill)
                 .Where(x => Equals(x.ActorId, playerId))
                 .Select(x => x.AttackList
                     .Count(y => y.IsHit))
                 .Sum();
+            return count;
         }
     }
 }

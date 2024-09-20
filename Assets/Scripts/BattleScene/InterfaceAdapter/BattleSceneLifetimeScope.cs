@@ -34,6 +34,7 @@ using BattleScene.UseCases.View.TechnicalPointBarView.OutputBoundary;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
+using AttackCountViewPresenter = BattleScene.InterfaceAdapter.Presenter.AttackCountViewPresenter;
 
 #if UNITY_EDITOR
 using BattleScene.UseCases.Service.DebugService;
@@ -81,6 +82,7 @@ namespace BattleScene.InterfaceAdapter
             #endregion
 
             #region RegisterPresenter
+            builder.Register<AttackCountViewPresenter>(Lifetime.Singleton);
             builder.Register<EnemyImagePresenter>(Lifetime.Singleton);
             builder.Register<GridViewPresenter>(Lifetime.Singleton);
             builder.Register<HitPointBarViewPresenter>(Lifetime.Singleton);
@@ -102,7 +104,7 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<IDigitViewPresenter, DigitViewPresenter>(Lifetime.Singleton);
             builder.Register<IFrameViewPresenter, FrameViewPresenter>(Lifetime.Singleton);
             builder.Register<IInfoViewPresenter, InfoViewPresenter>(Lifetime.Singleton);
-            builder.Register<IAttackCountViewPresenter, AttackCountViewPresenter>(Lifetime.Singleton);
+            // builder.Register<IAttackCountViewPresenter, AttackCountViewPresenter>(Lifetime.Singleton);
             builder.Register<IPlayerImageViewPresenter, PlayerImageViewPresenter>(Lifetime.Singleton);
             builder.Register<ISelectSkillViewPresenter, SelectSkillViewPresenter>(Lifetime.Singleton);
             builder.Register<ITechnicalPointBarViewPresenter, TechnicalPointBarViewPresenter>(Lifetime.Singleton);

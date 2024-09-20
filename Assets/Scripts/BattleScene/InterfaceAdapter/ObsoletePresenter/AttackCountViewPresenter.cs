@@ -16,7 +16,7 @@ namespace BattleScene.InterfaceAdapter.ObsoletePresenter
 
         public void Start(AttackCountOutputData attackCountOutputData)
         {
-            _playerAttackCountView.StartAnimation(new PlayerAttackCountViewDto(attackCountOutputData.Rate));
+            _playerAttackCountView.StartAnimation(new AttackCountViewModel(attackCountOutputData.Rate));
         }
     }
 }

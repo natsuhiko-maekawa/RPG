@@ -1,5 +1,5 @@
 ﻿namespace BattleScene.Framework.ViewModel
 {
-    public record PlayerAttackCountViewDto(
+    public record AttackCountViewModel(
         float Rate);
 }

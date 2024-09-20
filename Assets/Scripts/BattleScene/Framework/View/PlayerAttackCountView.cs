@@ -13,11 +13,12 @@ namespace BattleScene.Framework.View
         private void Awake()
         {
             _image = Instantiate(barFrontImage, transform);
+            _image.rectTransform.localScale = new Vector3(0.0f, 1.0f, 1.0f);
         }
 
-        public Task StartAnimation(PlayerAttackCountViewDto dto)
+        public Task StartAnimation(AttackCountViewModel model)
         {
-            _image.rectTransform.localScale = new Vector3(dto.Rate, 1.0f, 1.0f);
+            _image.rectTransform.localScale = new Vector3(model.Rate, 1.0f, 1.0f);
             return Task.CompletedTask;
         }
     }

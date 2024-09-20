@@ -7,6 +7,7 @@ namespace BattleScene.InterfaceAdapter.State.Skill
 {
     public class DamageMessageState : AbstractSkillState
     {
+        private readonly AttackCountViewPresenter _attackCountView;
         private readonly DamageDigitOutputDataFactory _damageDigitOutputDataFactory;
         private readonly IDigitViewPresenter _digitView;
         private readonly MessageViewPresenter _messageView;
@@ -14,12 +15,14 @@ namespace BattleScene.InterfaceAdapter.State.Skill
         private readonly SkillEndState _skillEndState;
 
         public DamageMessageState(
+            AttackCountViewPresenter attackCountView,
             DamageDigitOutputDataFactory damageDigitOutputDataFactory,
             IDigitViewPresenter digitView,
             MessageViewPresenter messageView, 
             VibrationViewPresenter vibrationView,
             SkillEndState skillEndState)
         {
+            _attackCountView = attackCountView;
             _damageDigitOutputDataFactory = damageDigitOutputDataFactory;
             _digitView = digitView;
             _messageView = messageView;
@@ -29,6 +32,7 @@ namespace BattleScene.InterfaceAdapter.State.Skill
 
         public override void Start()
         {
+            _attackCountView.Start();
             _messageView.Start(MessageCode.DamageMessage);
             _digitView.Start(_damageDigitOutputDataFactory.Create());
             _vibrationView.StartAnimationAsync();
