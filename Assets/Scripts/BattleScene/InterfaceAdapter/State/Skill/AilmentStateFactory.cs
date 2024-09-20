@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
 using BattleScene.UseCases.Service;
@@ -11,7 +10,6 @@ namespace BattleScene.InterfaceAdapter.State.Skill
         private readonly AilmentGeneratorService _ailmentGenerator;
         private readonly AilmentRegistererService _ailmentRegisterer;
         private readonly BattleLoggerService _battleLoggerService;
-        private readonly BattleLogDomainService _battleLog;
         private readonly AilmentMessageState _ailmentMessageState;
         private readonly AilmentFailureState _ailmentFailureState;
 
@@ -19,14 +17,12 @@ namespace BattleScene.InterfaceAdapter.State.Skill
             AilmentGeneratorService ailmentGenerator,
             AilmentRegistererService ailmentRegisterer,
             BattleLoggerService battleLoggerService,
-            BattleLogDomainService battleLog,
             AilmentMessageState ailmentMessageState,
             AilmentFailureState ailmentFailureState)
         {
             _ailmentGenerator = ailmentGenerator;
             _ailmentRegisterer = ailmentRegisterer;
             _battleLoggerService = battleLoggerService;
-            _battleLog = battleLog;
             _ailmentMessageState = ailmentMessageState;
             _ailmentFailureState = ailmentFailureState;
         }
@@ -42,10 +38,8 @@ namespace BattleScene.InterfaceAdapter.State.Skill
                 targetIdList: targetIdList);
             return new AilmentState(
                 ailmentList: ailmentList,
-                ailmentGenerator: _ailmentGenerator,
                 ailmentRegisterer: _ailmentRegisterer,
                 battleLoggerService: _battleLoggerService,
-                battleLog: _battleLog,
                 ailmentMessageState: _ailmentMessageState,
                 ailmentFailureState: _ailmentFailureState);
         }

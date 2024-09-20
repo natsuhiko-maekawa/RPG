@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
-using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
 using BattleScene.UseCases.Service;
@@ -11,9 +10,7 @@ namespace BattleScene.InterfaceAdapter.State.Skill
     public class AilmentState : AbstractSkillState
     {
         private readonly IReadOnlyList<AilmentValueObject> _ailmentList;
-        private readonly AilmentGeneratorService _ailmentGenerator;
         private readonly AilmentRegistererService _ailmentRegisterer;
-        private readonly BattleLogDomainService _battleLog;
         private readonly BattleLoggerService _battleLoggerService;
         private readonly SkillCommonValueObject _skillCommon;
         private readonly AilmentParameterValueObject _ailmentParameter;
@@ -22,19 +19,15 @@ namespace BattleScene.InterfaceAdapter.State.Skill
         private readonly AilmentFailureState _ailmentFailureState;
 
         public AilmentState(
-            IReadOnlyList<AilmentValueObject> ailmentList,
-            AilmentGeneratorService ailmentGenerator, 
+            IReadOnlyList<AilmentValueObject> ailmentList, 
             AilmentRegistererService ailmentRegisterer,
             BattleLoggerService battleLoggerService,
-            BattleLogDomainService battleLog,
             AilmentMessageState ailmentMessageState,
             AilmentFailureState ailmentFailureState)
         {
             _ailmentList = ailmentList;
-            _ailmentGenerator = ailmentGenerator;
             _ailmentRegisterer = ailmentRegisterer;
             _battleLoggerService = battleLoggerService;
-            _battleLog = battleLog;
             _ailmentMessageState = ailmentMessageState;
             _ailmentFailureState = ailmentFailureState;
         }

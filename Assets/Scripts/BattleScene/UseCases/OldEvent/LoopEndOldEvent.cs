@@ -35,13 +35,13 @@ namespace BattleScene.UseCases.OldEvent
             if (_characters.GetEnemies().IsEmpty) return EventCode.PlayerWinEvent;
 
             // 上記以外の場合戦闘を続行
-            foreach (var characterId in _characters.GetIdList())
-            {
-                // 全員の状態異常のターンを進める
-                // _ailment.AdvanceAllTurn(characterId);
-                // 全員のバフのターンを進める
-                // _buff.AdvanceAllTurn(characterId);
-            }
+            // foreach (var characterId in _characters.GetIdList())
+            // {
+            // 全員の状態異常のターンを進める
+            //     _ailment.AdvanceAllTurn(characterId);
+            // 全員のバフのターンを進める
+            //     _buff.AdvanceAllTurn(characterId);
+            // }
 
             // 状態異常を表示
             // var ailmentOutputData = _ailmentOutputDataFactory.Create();

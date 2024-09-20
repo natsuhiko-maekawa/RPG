@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.Immutable;
 using BattleScene.Domain.Code;
 using Range = BattleScene.Domain.Code.Range;
@@ -8,12 +7,6 @@ namespace BattleScene.Domain.ValueObject
 {
     public class SkillValueObject
     {
-        [Obsolete]
-        public int TechnicalPoint { get; }
-        [Obsolete]
-        public ImmutableList<BodyPartCode> DependencyList { get; }
-        [Obsolete]
-        public Range Range { get; }
         public SkillCommonValueObject SkillCommon { get; }
         public ImmutableList<AilmentParameterValueObject> AilmentParameterList { get; }
         public ImmutableList<BuffParameterValueObject> BuffParameterList { get; }
@@ -35,9 +28,6 @@ namespace BattleScene.Domain.ValueObject
             ImmutableList<RestoreParameterValueObject> restoreParameterList = null,
             IList<SlipParameterValueObject> slipParameterList = null)
         {
-            Range = range;
-            TechnicalPoint = technicalPoint;
-            DependencyList = dependencyList ?? ImmutableList<BodyPartCode>.Empty;
             SkillCommon = new SkillCommonValueObject(
                 skillCode: skillCode,
                 technicalPoint: technicalPoint,

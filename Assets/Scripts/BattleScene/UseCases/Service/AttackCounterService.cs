@@ -37,7 +37,7 @@ namespace BattleScene.UseCases.Service
             var playerId = player.Id;
             var count = battleLogList
                 .OrderByDescending(x => x)
-                .TakeWhile((x, i) => x.ActionCode != ActionCode.FatalitySkill)
+                .TakeWhile(x => x.ActionCode != ActionCode.FatalitySkill)
                 .Where(x => Equals(x.ActorId, playerId))
                 .Select(x => x.AttackList
                     .Count(y => y.IsHit))
