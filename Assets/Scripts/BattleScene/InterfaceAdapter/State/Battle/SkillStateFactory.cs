@@ -6,6 +6,7 @@ using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
 using BattleScene.InterfaceAdapter.Presenter;
+using BattleScene.InterfaceAdapter.Service;
 using BattleScene.InterfaceAdapter.State.Skill;
 using BattleScene.UseCases.Service;
 using VContainer;
@@ -23,6 +24,7 @@ namespace BattleScene.InterfaceAdapter.State.Battle
         private readonly DamageStateFactory _damageStateFactory;
         private readonly RestoreStateFactory _restoreStateFactory;
         private readonly SlipStateFactory _slipStateFactory;
+        private readonly SkillStateQueueCreatorService _skillStateQueueCreator;
         private readonly MessageViewPresenter _messageView;
         private readonly PlayerImageViewPresenter _playerImageView;
         
@@ -36,6 +38,7 @@ namespace BattleScene.InterfaceAdapter.State.Battle
             DamageStateFactory damageStateFactory,
             RestoreStateFactory restoreStateFactory,
             SlipStateFactory slipStateFactory,
+            SkillStateQueueCreatorService skillStateQueueCreator,
             MessageViewPresenter messageView,
             PlayerImageViewPresenter playerImageView)
         {
@@ -48,6 +51,7 @@ namespace BattleScene.InterfaceAdapter.State.Battle
             _damageStateFactory = damageStateFactory;
             _restoreStateFactory = restoreStateFactory;
             _slipStateFactory = slipStateFactory;
+            _skillStateQueueCreator = skillStateQueueCreator;
             _messageView = messageView;
             _playerImageView = playerImageView;
         }
@@ -64,6 +68,7 @@ namespace BattleScene.InterfaceAdapter.State.Battle
             damageStateFactory: _damageStateFactory,
             restoreStateFactory: _restoreStateFactory,
             slipStateFactory: _slipStateFactory,
+            skillStateQueueCreator: _skillStateQueueCreator,
             messageView: _messageView,
             playerImageView: _playerImageView);
     }

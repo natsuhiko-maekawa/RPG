@@ -8,6 +8,7 @@ using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
 using BattleScene.InterfaceAdapter.Presenter;
+using BattleScene.InterfaceAdapter.Service;
 using BattleScene.InterfaceAdapter.State.Battle;
 using BattleScene.UseCases.Service;
 using UnityEngine;
@@ -26,6 +27,7 @@ namespace BattleScene.InterfaceAdapter.State.Skill
         private readonly DamageStateFactory _damageStateFactory;
         private readonly RestoreStateFactory _restoreStateFactory;
         private readonly SlipStateFactory _slipStateFactory;
+        private readonly SkillStateQueueCreatorService _skillStateQueueCreator;
         private readonly MessageViewPresenter _messageView;
         private readonly PlayerImageViewPresenter _playerImageView;
         private readonly SkillCode _skillCode;
@@ -45,6 +47,7 @@ namespace BattleScene.InterfaceAdapter.State.Skill
             DamageStateFactory damageStateFactory,
             RestoreStateFactory restoreStateFactory,
             SlipStateFactory slipStateFactory,
+            SkillStateQueueCreatorService skillStateQueueCreator,
             MessageViewPresenter messageView,
             PlayerImageViewPresenter playerImageView)
         {
@@ -59,13 +62,14 @@ namespace BattleScene.InterfaceAdapter.State.Skill
             _damageStateFactory = damageStateFactory;
             _restoreStateFactory = restoreStateFactory;
             _slipStateFactory = slipStateFactory;
+            _skillStateQueueCreator = skillStateQueueCreator;
             _messageView = messageView;
             _playerImageView = playerImageView;
         }
 
         public override void Start()
         {
-            SetSkillContextQueue();
+            _skillStateQueue = _skillStateQueueCreator.Create(_skillCode, _targetIdList);
             _skillExecutor.Execute(_skillCode);
             var skill = _skillFactory.Create(_skillCode);
             _messageView.StartMessageAnimationAsync(skill.SkillCommon.MessageCode);

@@ -212,6 +212,7 @@ namespace BattleScene.InterfaceAdapter
 
             #region RegisterInterfaceAdapterService
             builder.Register<MessageCodeConverterService>(Lifetime.Singleton);
+            builder.Register<SkillStateQueueCreatorService>(Lifetime.Singleton);
             builder.Register<ToIndexService>(Lifetime.Singleton);
             #endregion
 

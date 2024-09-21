@@ -16,8 +16,24 @@ namespace BattleScene.InterfaceAdapter.Service
         private readonly DamageStateFactory _damageStateFactory;
         private readonly RestoreStateFactory _restoreStateFactory;
         private readonly SlipStateFactory _slipStateFactory;
-        
-        private Queue<AbstractSkillState> Create(SkillCode skillCode, IReadOnlyList<CharacterId> targetIdList)
+
+        public SkillStateQueueCreatorService(
+            IFactory<SkillValueObject, SkillCode> skillFactory,
+            AilmentStateFactory ailmentStateFactory,
+            BuffStateFactory buffStateFactory,
+            DamageStateFactory damageStateFactory,
+            RestoreStateFactory restoreStateFactory,
+            SlipStateFactory slipStateFactory)
+        {
+            _skillFactory = skillFactory;
+            _ailmentStateFactory = ailmentStateFactory;
+            _buffStateFactory = buffStateFactory;
+            _damageStateFactory = damageStateFactory;
+            _restoreStateFactory = restoreStateFactory;
+            _slipStateFactory = slipStateFactory;
+        }
+
+        public Queue<AbstractSkillState> Create(SkillCode skillCode, IReadOnlyList<CharacterId> targetIdList)
         {
             var skill = _skillFactory.Create(skillCode);
             var skillStates = Enumerable.Empty<AbstractSkillState>()
@@ -31,7 +47,7 @@ namespace BattleScene.InterfaceAdapter.Service
                     targetIdList: targetIdList)));
             var skillStateQueue = new Queue<AbstractSkillState>(skillStates);
             return skillStateQueue;
-            
+
             IEnumerable<AbstractSkillState> CreateAilmentState()
             {
                 var ailmentStates = Enumerable.Empty<AbstractSkillState>();
