@@ -1,9 +1,11 @@
-﻿using BattleScene.Framework.ViewModel;
+﻿using System;
+using BattleScene.Framework.ViewModel;
 using BattleScene.UseCases.View.TechnicalPointBarView.OutputBoundary;
 using BattleScene.UseCases.View.TechnicalPointBarView.OutputData;
 
 namespace BattleScene.InterfaceAdapter.ObsoletePresenter
 {
+    [Obsolete]
     public class TechnicalPointBarViewPresenter : ITechnicalPointBarViewPresenter
     {
         private readonly Framework.View.PlayerView _playerView;

@@ -31,6 +31,7 @@ using UnityEngine;
 using VContainer;
 using VContainer.Unity;
 using AttackCountViewPresenter = BattleScene.InterfaceAdapter.Presenter.AttackCountViewPresenter;
+using TechnicalPointBarViewPresenter = BattleScene.InterfaceAdapter.Presenter.TechnicalPointBarViewPresenter;
 
 #if UNITY_EDITOR
 using BattleScene.UseCases.Service.DebugService;
@@ -94,6 +95,7 @@ namespace BattleScene.InterfaceAdapter
             #region RegisterReactivePresenter
             builder.Register<IObserver<CharacterEntity>, HitPointBarViewPresenter>(Lifetime.Singleton);
             builder.Register<IObserver<AilmentEntity>, AilmentViewPresenter>(Lifetime.Singleton);
+            builder.Register<IObserver<CharacterEntity>, TechnicalPointBarViewPresenter>(Lifetime.Singleton);
             #endregion
             
             #region RegisterObsoletePresenter
@@ -102,7 +104,6 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<IFrameViewPresenter, FrameViewPresenter>(Lifetime.Singleton);
             builder.Register<IInfoViewPresenter, InfoViewPresenter>(Lifetime.Singleton);
             builder.Register<ISelectSkillViewPresenter, SelectSkillViewPresenter>(Lifetime.Singleton);
-            builder.Register<ITechnicalPointBarViewPresenter, TechnicalPointBarViewPresenter>(Lifetime.Singleton);
             #endregion
 
             #region RegisterResource

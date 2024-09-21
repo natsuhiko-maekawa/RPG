@@ -5,8 +5,12 @@ namespace BattleScene.Domain.Entity
 {
     public partial class CharacterEntity
     {
-        private ReactiveProperty<int> _reactiveCurrentHitPoint;
+        private readonly ReactiveProperty<int> _reactiveCurrentHitPoint = new();
         public Observable<int> ReactiveCurrentHitPoint => _reactiveCurrentHitPoint;
-        partial void CurrentHitPointOnChange(int value) => _reactiveCurrentHitPoint = new ReactiveProperty<int>(value);
+        partial void CurrentHitPointOnChange(int value) => _reactiveCurrentHitPoint.Value = value;
+
+        private readonly ReactiveProperty<int> _reactiveCurrentTechnicalPoint = new();
+        public Observable<int> ReactiveCurrentTechnicalPoint => _reactiveCurrentTechnicalPoint;
+        partial void CurrentTechnicalPointOnChange(int value) => _reactiveCurrentTechnicalPoint.Value = value;
     }
 }

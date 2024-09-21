@@ -33,8 +33,16 @@ namespace BattleScene.Domain.Entity
         }
 
         partial void CurrentHitPointOnChange(int value);
+
+        private int _currentTechnicalPoint;
+        public int CurrentTechnicalPoint
+        {
+            get => _currentTechnicalPoint;
+            set { _currentTechnicalPoint = Mathf.Max(value, 0); CurrentTechnicalPointOnChange(value);}
+        }
+
+        partial void CurrentTechnicalPointOnChange(int value);
         
-        public int CurrentTechnicalPoint { get; }
         public int ActionTime { get; set; }
         public int Position { get; }
         public bool IsSurvive => 0 < CurrentHitPoint;
