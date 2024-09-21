@@ -3,28 +3,20 @@ using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
 using BattleScene.UseCases.OldEvent.Runner;
-using BattleScene.UseCases.View.FrameView.OutputBoundary;
-using BattleScene.UseCases.View.FrameView.OutputDataFactory;
 
 namespace BattleScene.UseCases.UseCase
 {
     internal class Attack
     {
         private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
-        private readonly IFrameViewPresenter _frameView;
         private readonly OrderedItemsDomainService _orderedItems;
-        private readonly TargetFrameOutputDataFactory _targetFrameOutputDataFactory;
 
         public Attack(
             IRepository<CharacterEntity, CharacterId> characterRepository,
-            IFrameViewPresenter frameView,
-            OrderedItemsDomainService orderedItems,
-            TargetFrameOutputDataFactory targetFrameOutputDataFactory)
+            OrderedItemsDomainService orderedItems)
         {
             _characterRepository = characterRepository;
-            _frameView = frameView;
             _orderedItems = orderedItems;
-            _targetFrameOutputDataFactory = targetFrameOutputDataFactory;
         }
 
         public void Execute()
@@ -36,8 +28,9 @@ namespace BattleScene.UseCases.UseCase
             {
                 // TODO: FatalitySkillかどうか判定し、リミットゲージの表示更新を可否を決定する
 
-                var targetFrameOutputData = _targetFrameOutputDataFactory.Create();
-                _frameView.Start(targetFrameOutputData);
+                // 攻撃対象のフレームを表示していたが、不要
+                // var targetFrameOutputData = _targetFrameOutputDataFactory.Create();
+                // _frameView.Start(targetFrameOutputData);
 
                 // プレイヤーの立ち絵を表示
                 // var playerImageOutputData = _playerAttackPlayerImageOutputDataFactory.Create();
