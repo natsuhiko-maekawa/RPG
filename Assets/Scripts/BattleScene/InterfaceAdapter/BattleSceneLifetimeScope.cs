@@ -26,11 +26,9 @@ using BattleScene.UseCases.View.DestroyedPartView.OutputBoundary;
 using BattleScene.UseCases.View.FrameView.OutputBoundary;
 using BattleScene.UseCases.View.InfoView.OutputBoundary;
 using BattleScene.UseCases.View.SelectSkillView.OutputBoundary;
-using BattleScene.UseCases.View.TechnicalPointBarView.OutputBoundary;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
-using AttackCountViewPresenter = BattleScene.InterfaceAdapter.Presenter.AttackCountViewPresenter;
 using TechnicalPointBarViewPresenter = BattleScene.InterfaceAdapter.Presenter.TechnicalPointBarViewPresenter;
 
 #if UNITY_EDITOR
@@ -83,7 +81,6 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<DamageViewPresenter>(Lifetime.Singleton);
             builder.Register<EnemyImagePresenter>(Lifetime.Singleton);
             builder.Register<GridViewPresenter>(Lifetime.Singleton);
-            builder.Register<HitPointBarViewPresenter>(Lifetime.Singleton);
             builder.Register<MessageViewPresenter>(Lifetime.Singleton);
             builder.Register<OrderViewPresenter>(Lifetime.Singleton);
             builder.Register<PlayerImageViewPresenter>(Lifetime.Singleton);
