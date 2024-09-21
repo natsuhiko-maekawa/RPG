@@ -7,20 +7,15 @@ package Model{
         class Id
         class Entity
         class ValueObject
-        class DomainService
-        interface IRepository
-        interface IReadonlyRepository
-        interface IFactory
         Enum <-- Entity
         Id <-- Entity
         Enum <-- ValueObject
-        IRepository <-- DomainService
-        IReadonlyRepository <-- DomainService
     }
     
     package UseCases{
         class Service
-    
+        interface IRepository
+        interface IFactory
         Domain <-- Service
         Entity <-- IRepository
         ValueObject <-- IFactory
@@ -30,7 +25,6 @@ package Model{
         class Repository
         class Factory
         IRepository <|-- Repository
-        IReadonlyRepository <|-- Repository
         IFactory <|-- Factory
     }
 }
