@@ -266,6 +266,7 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<IsHitEvaluatorService>(Lifetime.Singleton);
             builder.Register<OrderService>(Lifetime.Singleton);
             builder.Register<RestoreGeneratorService>(Lifetime.Singleton);
+            builder.Register<SkillExecutorService>(Lifetime.Singleton);
             builder.Register<SlipDamageGeneratorService>(Lifetime.Singleton);
             builder.Register<SlipGeneratorService>(Lifetime.Singleton);
             builder.Register<SlipRegistererService>(Lifetime.Singleton);

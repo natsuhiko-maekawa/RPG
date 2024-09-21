@@ -9,6 +9,7 @@ using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
 using BattleScene.InterfaceAdapter.Presenter;
 using BattleScene.InterfaceAdapter.State.Battle;
+using BattleScene.UseCases.Service;
 using UnityEngine;
 using VContainer;
 
@@ -19,6 +20,7 @@ namespace BattleScene.InterfaceAdapter.State.Skill
         private readonly IObjectResolver _container;
         private readonly IFactory<SkillValueObject, SkillCode> _skillFactory;
         private readonly IResource<SkillPropertyDto, SkillCode> _skillViewResource;
+        private readonly SkillExecutorService _skillExecutor;
         private readonly AilmentStateFactory _ailmentStateFactory;
         private readonly BuffStateFactory _buffStateFactory;
         private readonly DamageStateFactory _damageStateFactory;
@@ -37,6 +39,7 @@ namespace BattleScene.InterfaceAdapter.State.Skill
             IObjectResolver container,
             IFactory<SkillValueObject, SkillCode> skillFactory,
             IResource<SkillPropertyDto, SkillCode> skillViewResource,
+            SkillExecutorService skillExecutor,
             AilmentStateFactory ailmentStateFactory,
             BuffStateFactory buffStateFactory,
             DamageStateFactory damageStateFactory,
@@ -50,6 +53,7 @@ namespace BattleScene.InterfaceAdapter.State.Skill
             _container = container;
             _skillFactory = skillFactory;
             _skillViewResource = skillViewResource;
+            _skillExecutor = skillExecutor;
             _ailmentStateFactory = ailmentStateFactory;
             _buffStateFactory = buffStateFactory;
             _damageStateFactory = damageStateFactory;
@@ -62,6 +66,7 @@ namespace BattleScene.InterfaceAdapter.State.Skill
         public override void Start()
         {
             SetSkillContextQueue();
+            _skillExecutor.Execute(_skillCode);
             var skill = _skillFactory.Create(_skillCode);
             _messageView.Start(skill.SkillCommon.MessageCode);
             var playerImageCode = _skillViewResource.Get(skill.SkillCommon.SkillCode).PlayerImageCode;
