@@ -33,10 +33,10 @@ namespace BattleScene.Framework.View
             //     })
             //     .ToList();
 
-            foreach (var playerAilmentStatus in _playerAilmentStatusArray)
-            {
-                playerAilmentStatus.Inactivate();
-            }
+            // foreach (var playerAilmentStatus in _playerAilmentStatusArray)
+            // {
+            //     playerAilmentStatus.Inactivate();
+            // }
 
             // var destroyedPartViewTextAndIconList = Enumerable.Range(17, 3)
             //     .Select(x => new TextAndIcon
