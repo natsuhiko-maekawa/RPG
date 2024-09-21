@@ -1,29 +1,26 @@
 using BattleScene.Domain.DomainService;
 using BattleScene.UseCases.OldEvent.Interface;
 using BattleScene.UseCases.OldEvent.Runner;
-using BattleScene.UseCases.View.FrameView.OutputBoundary;
 
 namespace BattleScene.UseCases.OldEvent
 {
     internal class LoopEndOldEvent : IOldEvent
     {
         private readonly CharactersDomainService _characters;
-        private readonly IFrameViewPresenter _frameView;
         private readonly OrderedItemsDomainService _orderedItems;
 
         public LoopEndOldEvent(
             CharactersDomainService characters,
-            IFrameViewPresenter frameView,
             OrderedItemsDomainService orderedItems)
         {
             _characters = characters;
-            _frameView = frameView;
             _orderedItems = orderedItems;
         }
 
         public EventCode Run()
         {
-            _frameView.Stop();
+            // フレームを非表示
+            // _frameView.Stop();
 
             // プレイヤーが死亡した場合、プレイヤーの敗北
             // if (!_hitPointRepository.Select(_characters.GetPlayerId()).IsSurvive()) return EventCode.PlayerDeadEvent;
