@@ -10,18 +10,21 @@ using R3;
 
 namespace BattleScene.InterfaceAdapter.Presenter
 {
-    public class AilmentViewPresenter : DataAccess.IObserver<AilmentEntity>
+    internal class AilmentViewPresenter : DataAccess.IObserver<AilmentEntity>
     {
         private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
+        private readonly ToIndexService _toIndex;
         private readonly EnemiesView _enemiesView;
         private readonly PlayerStatusView _playerAilmentsView;
 
         public AilmentViewPresenter(
             IRepository<CharacterEntity, CharacterId> characterRepository,
+            ToIndexService toIndex,
             EnemiesView enemiesView,
             PlayerStatusView playerAilmentsView)
         {
             _characterRepository = characterRepository;
+            _toIndex = toIndex;
             _enemiesView = enemiesView;
             _playerAilmentsView = playerAilmentsView;
         }
@@ -37,7 +40,7 @@ namespace BattleScene.InterfaceAdapter.Presenter
 
         private void StartPlayerAilmentView(AilmentCode ailmentCode, bool effects)
         {
-            var ailmentId = AilmentIdConverter.Ailment(ailmentCode);
+            var ailmentId = _toIndex.FromAilment(ailmentCode);
             var dto = new AilmentViewModel(ailmentId, effects);
             _playerAilmentsView.StartPlayerAilmentsView(dto);
         }
@@ -45,7 +48,7 @@ namespace BattleScene.InterfaceAdapter.Presenter
         private void StartEnemyAilmentView(CharacterId characterId, AilmentCode ailmentCode, bool effects)
         {
             var position = _characterRepository.Select(characterId).Position;
-            var ailmentId = AilmentIdConverter.Ailment(ailmentCode);
+            var ailmentId = _toIndex.FromAilment(ailmentCode);
             var dto = new AilmentViewModel(ailmentId, effects);
             _enemiesView[position].StartAilmentAnimationAsync(dto);
         }
