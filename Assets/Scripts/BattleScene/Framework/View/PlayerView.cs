@@ -35,7 +35,7 @@ namespace BattleScene.Framework.View
         {
             try
             {
-                var sprite = await _spriteFlyweight.Get(dto.PlayerImage);
+                var sprite = await _spriteFlyweight.GetAsync(dto.PlayerImage);
                 _playerImage.Set(sprite);
                 _playerImage.Show();
             }

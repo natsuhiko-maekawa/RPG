@@ -34,7 +34,7 @@ namespace BattleScene.Framework.View
         public async Task SetImage(EnemyViewDto dto)
         {
             var enemyImagePath = dto.EnemyImagePath;
-            var sprite = await _spriteFlyweight.Get(enemyImagePath);
+            var sprite = await _spriteFlyweight.GetAsync(enemyImagePath);
             Image.sprite = sprite;
         }
 

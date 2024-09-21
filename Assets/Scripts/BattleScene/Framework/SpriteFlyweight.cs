@@ -9,45 +9,59 @@ using Utility;
 
 namespace BattleScene.Framework
 {
+    /// <summary>
+    /// SpriteをAddressableからロードしてインスタンスを管理するクラス
+    /// </summary>
     public class SpriteFlyweight : Singleton<SpriteFlyweight>
     {
         private readonly Dictionary<string, ValueTask<Sprite>> _spriteCache = new();
-        private bool _throwsException;
+        private readonly object _syncObject = new();
+        private bool _throwsInvalidKeyException;
 
         private void Start()
         {
+            // https://docs.unity3d.com/Packages/com.unity.addressables@1.15/manual/ExceptionHandler.html
             ResourceManager.ExceptionHandler += ExceptionHandler;
         }
         
-        public ValueTask<Sprite> Get(string imagePath)
+        /// <summary>
+        /// AddressableのパスからSpriteを取得する
+        /// </summary>
+        /// <param name="path">Addressableのパス</param>
+        /// <returns>Spriteのインスタンス</returns>
+        public ValueTask<Sprite> GetAsync(string path)
         {
-            if (_spriteCache.TryGetValue(imagePath, out var valueTask))
+            if (_spriteCache.TryGetValue(path, out var valueTask))
             {
                 return valueTask;
             }
             
-            return Load(imagePath);
+            return LoadAsync(path);
         }
         
-        private async ValueTask<Sprite> Load(string imagePath)
+        private async ValueTask<Sprite> LoadAsync(string path)
         {
-            var task = Addressables.LoadAssetAsync<Sprite>(imagePath).Task;
-            if (_throwsException)
+            Task<Sprite> task;
+            lock (_syncObject)
             {
-                _throwsException = false;
-                throw new ArgumentException();
+                task = Addressables.LoadAssetAsync<Sprite>(path).Task;
+                if (_throwsInvalidKeyException)
+                {
+                    _throwsInvalidKeyException = false;
+                    throw new ArgumentException();
+                }
             }
             
-            _spriteCache.Add(imagePath, new ValueTask<Sprite>(task));
+            _spriteCache.Add(path, new ValueTask<Sprite>(task));
             var sprite = await task;
-            _spriteCache[imagePath] = new ValueTask<Sprite>(sprite);
+            _spriteCache[path] = new ValueTask<Sprite>(sprite);
             return sprite;
         }
 
-        // https://baba-s.hatenablog.com/entry/2020/03/12/110000
         private void ExceptionHandler(AsyncOperationHandle handle, Exception e)
         {
-            _throwsException = true;
+            if (e.GetType() == typeof(InvalidKeyException))
+                _throwsInvalidKeyException = true;
         }
     }
 }
