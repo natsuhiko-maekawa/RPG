@@ -29,7 +29,7 @@
         RestoreHitPointMessage, // 共通(HP回復)
         RestoreTechnicalPointMessage, // 共通(TP回復)
         SelectTargetMessage, // 共通(敵選択)
-        SkillMessage, // 共通(スキル)
+        SkillMessage, // 共通(スキル) TODO: 削除すること
         SlipDamageMessage, // 共通(スリップダメ)
         EnemySuicideMessage, // 共通(敵混乱死亡)
         TryAttackMessage, // 共通(攻撃後回避)
