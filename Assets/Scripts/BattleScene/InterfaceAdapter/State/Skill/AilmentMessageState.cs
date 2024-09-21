@@ -21,7 +21,7 @@ namespace BattleScene.InterfaceAdapter.State.Skill
 
         public override void Start()
         {
-            _messageView.Start(MessageCode.AilmentMessage);
+            _messageView.StartMessageAnimationAsync(MessageCode.AilmentMessage);
             _playerImageView.StartAnimationAsync(PlayerImageCode.Suffocation);
         }
         

@@ -34,7 +34,7 @@ namespace BattleScene.InterfaceAdapter.Presenter
             _messageView = messageView;
         }
 
-        public async Task Start(MessageCode messageCode, bool noWait = false)
+        public async Task StartMessageAnimationAsync(MessageCode messageCode, bool noWait = false)
         {
             Debug.Assert(messageCode != MessageCode.NoMessage);
             _messageView.StopAnimation();
@@ -43,10 +43,10 @@ namespace BattleScene.InterfaceAdapter.Presenter
             await _messageView.StartAnimationAsync(new MessageViewDto(message, noWait));
         }
 
-        public async void StartDamageMessageViewAsync()
+        public async Task StartDamageMessageAnimationAsync()
         {
             var messageCode = GetDamageMessageCode();
-            await Start(messageCode);
+            await StartMessageAnimationAsync(messageCode);
         }
         
         private MessageCode GetDamageMessageCode()

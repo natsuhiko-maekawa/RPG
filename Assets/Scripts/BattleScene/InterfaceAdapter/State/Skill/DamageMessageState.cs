@@ -31,7 +31,7 @@ namespace BattleScene.InterfaceAdapter.State.Skill
         public override void Start()
         {
             _attackCountView.Start();
-            _messageView.StartDamageMessageViewAsync();
+            _messageView.StartDamageMessageAnimationAsync();
             // TODO: プレイヤー攻撃時は被ダメージの立ち絵を表示しないようにする
             _playerImageView.StartAnimationAsync(PlayerImageCode.Damaged);
             _damageView.StartAnimationAsync();

@@ -68,7 +68,7 @@ namespace BattleScene.InterfaceAdapter.State.Skill
             SetSkillContextQueue();
             _skillExecutor.Execute(_skillCode);
             var skill = _skillFactory.Create(_skillCode);
-            _messageView.Start(skill.SkillCommon.MessageCode);
+            _messageView.StartMessageAnimationAsync(skill.SkillCommon.MessageCode);
             var playerImageCode = _skillViewResource.Get(skill.SkillCommon.SkillCode).PlayerImageCode;
             _playerImageView.StartAnimationAsync(playerImageCode);
         }

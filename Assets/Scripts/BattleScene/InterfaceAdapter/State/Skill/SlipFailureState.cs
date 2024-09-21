@@ -18,7 +18,7 @@ namespace BattleScene.InterfaceAdapter.State.Skill
 
         public override void Start()
         {
-            _messageView.Start(MessageCode.FailAilmentMessage);
+            _messageView.StartMessageAnimationAsync(MessageCode.FailAilmentMessage);
         }
         
         public override void Select()

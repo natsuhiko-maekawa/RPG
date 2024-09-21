@@ -18,7 +18,7 @@ namespace BattleScene.InterfaceAdapter.State.Skill
 
         public override void Start()
         {
-            _messageView.Start(MessageCode.RestoreTechnicalPointMessage);
+            _messageView.StartMessageAnimationAsync(MessageCode.RestoreTechnicalPointMessage);
         }
 
         public override void Select()

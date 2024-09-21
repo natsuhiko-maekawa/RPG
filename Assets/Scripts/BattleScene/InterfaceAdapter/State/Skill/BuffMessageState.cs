@@ -32,7 +32,7 @@ namespace BattleScene.InterfaceAdapter.State.Skill
         {
             var buffCode = _battleLogRepository.Select().Max().BuffCode;
             var messageCode = _buffViewResource.Get(buffCode).MessageCode;
-            _messageView.Start(messageCode);
+            _messageView.StartMessageAnimationAsync(messageCode);
         }
 
         public override void Select()
