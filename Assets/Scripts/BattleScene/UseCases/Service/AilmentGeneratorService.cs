@@ -29,7 +29,7 @@ namespace BattleScene.UseCases.Service
         public IReadOnlyList<AilmentValueObject> Generate(
             SkillCommonValueObject skillCommon,
             IReadOnlyList<AilmentParameterValueObject> ailmentParameterList,
-            IList<CharacterId> targetIdList)
+            IReadOnlyList<CharacterId> targetIdList)
         {
             if (!_orderedItems.First().TryGetCharacterId(out var actorId)) throw new InvalidOperationException();
             
@@ -54,8 +54,8 @@ namespace BattleScene.UseCases.Service
             }
         }
         
-        private ImmutableList<CharacterId> GetActualTargetIdList(
-            IList<CharacterId> targetIdList,
+        private IReadOnlyList<CharacterId> GetActualTargetIdList(
+            IReadOnlyList<CharacterId> targetIdList,
             AilmentParameterValueObject ailmentParameter)
         {
             _orderedItems.First().TryGetCharacterId(out var actorId);

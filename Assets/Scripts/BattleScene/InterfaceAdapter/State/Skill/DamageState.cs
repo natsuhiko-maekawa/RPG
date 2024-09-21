@@ -23,7 +23,7 @@ namespace BattleScene.InterfaceAdapter.State.Skill
             DamageRegistererService damageRegisterer,
             SkillCommonValueObject skillCommon,
             DamageParameterValueObject damageParameter,
-            IList<CharacterId> targetIdList)
+            IReadOnlyList<CharacterId> targetIdList)
         {
             _battleLogger = battleLogger;
             _damageGenerator = damageGenerator;

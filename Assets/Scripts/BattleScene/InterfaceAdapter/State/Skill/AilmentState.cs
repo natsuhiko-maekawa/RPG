@@ -37,7 +37,7 @@ namespace BattleScene.InterfaceAdapter.State.Skill
             _ailmentRegisterer.Register(_ailmentList);
             _battleLoggerService.Log(_ailmentList);
             var failure = _ailmentList
-                .All(x => x.ActualTargetIdList.IsEmpty);
+                .All(x => x.ActualTargetIdList.Count == 0);
             AbstractSkillState nextState = failure
                 ? _ailmentFailureState 
                 : _ailmentMessageState;

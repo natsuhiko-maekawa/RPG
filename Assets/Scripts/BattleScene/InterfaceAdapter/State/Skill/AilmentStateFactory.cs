@@ -30,7 +30,7 @@ namespace BattleScene.InterfaceAdapter.State.Skill
         public AilmentState Create(
             SkillCommonValueObject skillCommon,
             IReadOnlyList<AilmentParameterValueObject> ailmentParameterList,
-            IList<CharacterId> targetIdList)
+            IReadOnlyList<CharacterId> targetIdList)
         {
             var ailmentList = _ailmentGenerator.Generate(
                 skillCommon: skillCommon,

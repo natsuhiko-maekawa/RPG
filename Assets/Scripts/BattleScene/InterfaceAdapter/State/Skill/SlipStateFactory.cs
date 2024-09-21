@@ -34,7 +34,7 @@ namespace BattleScene.InterfaceAdapter.State.Skill
         public SlipState Create(
             SkillCommonValueObject skillCommon,
             SlipParameterValueObject slipParameter,
-            IList<CharacterId> targetIdList) => new(
+            IReadOnlyList<CharacterId> targetIdList) => new(
             battleLog: _battleLog,
             battleLogger: _battleLogger,
             slipGenerator: _slipGenerator,

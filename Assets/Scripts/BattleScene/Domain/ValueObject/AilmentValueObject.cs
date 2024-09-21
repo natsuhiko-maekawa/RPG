@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Collections.Immutable;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.Id;
 
@@ -11,20 +10,20 @@ namespace BattleScene.Domain.ValueObject
             CharacterId actorId,
             SkillCode skillCode,
             AilmentCode ailmentCode,
-            IList<CharacterId> targetIdList,
-            IList<CharacterId> actualTargetIdList)
+            IReadOnlyList<CharacterId> targetIdList,
+            IReadOnlyList<CharacterId> actualTargetIdList)
         {
             ActorId = actorId;
             SkillCode = skillCode;
             AilmentCode = ailmentCode;
-            TargetIdList = targetIdList.ToImmutableList();
-            ActualTargetIdList = actualTargetIdList.ToImmutableList();
+            TargetIdList = targetIdList;
+            ActualTargetIdList = actualTargetIdList;
         }
 
         public AilmentCode AilmentCode { get; }
         public CharacterId ActorId { get; }
         public SkillCode SkillCode { get; }
-        public ImmutableList<CharacterId> TargetIdList { get; }
-        public ImmutableList<CharacterId> ActualTargetIdList { get; }
+        public IReadOnlyList<CharacterId> TargetIdList { get; }
+        public IReadOnlyList<CharacterId> ActualTargetIdList { get; }
     }
 }

@@ -27,7 +27,7 @@ namespace BattleScene.InterfaceAdapter.State.Skill
         public DamageState Create(
             SkillCommonValueObject skillCommon,
             DamageParameterValueObject damageParameter,
-            IList<CharacterId> targetIdList) => new(
+            IReadOnlyList<CharacterId> targetIdList) => new(
             battleLogger: _battleLogger,
             damageGenerator: _damageGenerator,
             damageMessageState: _damageMessageState,

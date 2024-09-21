@@ -28,7 +28,7 @@ namespace BattleScene.InterfaceAdapter.State.Skill
             SlipMessageState slipMessageState,
             SkillCommonValueObject skillCommon,
             SlipParameterValueObject slipParameter,
-            IList<CharacterId> targetIdList)
+            IReadOnlyList<CharacterId> targetIdList)
         {
             _battleLog = battleLog;
             _battleLogger = battleLogger;
