@@ -22,7 +22,6 @@ using BattleScene.InterfaceAdapter.State.Skill;
 using BattleScene.UseCases.IService;
 using BattleScene.UseCases.Service;
 using BattleScene.UseCases.View.BuffView.OutputBoundary;
-using BattleScene.UseCases.View.DestroyedPartView.OutputBoundary;
 using BattleScene.UseCases.View.InfoView.OutputBoundary;
 using UnityEngine;
 using VContainer;
@@ -88,14 +87,14 @@ namespace BattleScene.InterfaceAdapter
             #endregion
 
             #region RegisterReactivePresenter
-            builder.Register<IObserver<CharacterEntity>, HitPointBarViewPresenter>(Lifetime.Singleton);
             builder.Register<IObserver<AilmentEntity>, AilmentViewPresenter>(Lifetime.Singleton);
+            builder.Register<IObserver<BodyPartEntity>, BodyPartViewPresenter>(Lifetime.Singleton);
+            builder.Register<IObserver<CharacterEntity>, HitPointBarViewPresenter>(Lifetime.Singleton);
             builder.Register<IObserver<CharacterEntity>, TechnicalPointBarViewPresenter>(Lifetime.Singleton);
             #endregion
             
             #region RegisterObsoletePresenter
             builder.Register<IBuffViewPresenter, BuffViewPresenter>(Lifetime.Singleton);
-            builder.Register<IDestroyedPartViewPresenter, DestroyedPartViewPresenter>(Lifetime.Singleton);
             builder.Register<IInfoViewPresenter, InfoViewPresenter>(Lifetime.Singleton);
             #endregion
 

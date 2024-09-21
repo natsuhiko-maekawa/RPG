@@ -1,5 +1,6 @@
 ﻿namespace BattleScene.Framework.ViewModel
 {
-    public record PlayerDestroyedPartViewDto(
-        int DestroyedPartCount);
+    public record BodyPartViewModel(
+        int Index,
+        int DestroyedCount);
 }

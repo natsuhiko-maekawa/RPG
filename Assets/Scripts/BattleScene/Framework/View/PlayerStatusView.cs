@@ -10,6 +10,7 @@ namespace BattleScene.Framework.View
     {
         private Image[] _iconGroup;
         private PlayerAilmentStatus[] _playerAilmentStatusArray;
+        private PlayerBodyPartStatus[] _playerBodyPartStatusArray;
         private PlayerBuffView _playerBuffView;
         private PlayerDestroyedPartView _playerDestroyedPartView;
         private Text[] _textGroup;
@@ -20,6 +21,7 @@ namespace BattleScene.Framework.View
             // _textGroup = groups[0].GetComponentsInChildren<Text>();
             // _iconGroup = groups[1].GetComponentsInChildren<Image>();
             _playerAilmentStatusArray = GetComponentsInChildren<PlayerAilmentStatus>();
+            _playerBodyPartStatusArray = GetComponentsInChildren<PlayerBodyPartStatus>();
             _playerDestroyedPartView = GetComponent<PlayerDestroyedPartView>();
             _playerBuffView = GetComponent<PlayerBuffView>();
 
@@ -64,9 +66,9 @@ namespace BattleScene.Framework.View
             else _playerAilmentStatusArray[ailment.AilmentId].Inactivate();
         }
 
-        public void StartPlayerDestroyedPartView(IList<PlayerDestroyedPartViewDto> dtoList)
+        public void StartPlayerDestroyedPartView(BodyPartViewModel bodyPart)
         {
-            _playerDestroyedPartView.StartAnimation(dtoList);
+            _playerBodyPartStatusArray[bodyPart.Index].Set(bodyPart.DestroyedCount);
         }
 
         public void StartPlayerBuffView(IList<BuffViewDto> dtoList)

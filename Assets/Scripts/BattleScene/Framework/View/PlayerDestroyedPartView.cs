@@ -25,16 +25,16 @@ namespace BattleScene.Framework.View
             }
         }
 
-        public Task StartAnimation(IList<PlayerDestroyedPartViewDto> dtoList)
+        public Task StartAnimation(IList<BodyPartViewModel> dtoList)
         {
             foreach (var (textAndIcon, index) in _textAndIconList.Select((x, i) => (x, i)))
             {
-                textAndIcon.text.color = dtoList[index].DestroyedPartCount > 0 ? Color.white : Color.gray;
-                textAndIcon.text.text = dtoList[index].DestroyedPartCount > 1
+                textAndIcon.text.color = dtoList[index].DestroyedCount > 0 ? Color.white : Color.gray;
+                textAndIcon.text.text = dtoList[index].DestroyedCount > 1
                     ? _destroyedPartsList[index]
                     : _destroyedPartList[index];
-                textAndIcon.icon.sprite = dtoList[index].DestroyedPartCount > 1 ? cross : slash;
-                textAndIcon.icon.enabled = dtoList[index].DestroyedPartCount > 0;
+                textAndIcon.icon.sprite = dtoList[index].DestroyedCount > 1 ? cross : slash;
+                textAndIcon.icon.enabled = dtoList[index].DestroyedCount > 0;
             }
 
             return Task.CompletedTask;

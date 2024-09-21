@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace BattleScene.Domain.Entity
 {
-    public class BodyPartEntity : BaseEntity<(CharacterId, BodyPartCode)>
+    public partial class BodyPartEntity : BaseEntity<(CharacterId, BodyPartCode)>
     {
         private readonly int _bodyPartCount;
 
@@ -23,17 +23,24 @@ namespace BattleScene.Domain.Entity
         public override (CharacterId, BodyPartCode) Id { get; }
         public CharacterId CharacterId { get; }
         public BodyPartCode BodyPartCode { get; }
-        public int DestroyedCount { get; private set; }
+
+        private int _destroyedCount;
+        public int DestroyedCount
+        {
+            get => _destroyedCount;
+            private set { _destroyedCount = Mathf.Min(value, _bodyPartCount); DestroyedCountOnChange(_destroyedCount);}
+        }
+
+        partial void DestroyedCountOnChange(int value);
 
         public void Destroyed()
         {
-            DestroyedCount = Mathf.Min(++DestroyedCount, _bodyPartCount);
+            ++DestroyedCount;
         }
 
         public bool IsAvailable()
         {
             return DestroyedCount < _bodyPartCount;
         }
-
     }
 }
