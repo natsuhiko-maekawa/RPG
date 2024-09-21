@@ -25,7 +25,6 @@ using BattleScene.UseCases.View.BuffView.OutputBoundary;
 using BattleScene.UseCases.View.DestroyedPartView.OutputBoundary;
 using BattleScene.UseCases.View.FrameView.OutputBoundary;
 using BattleScene.UseCases.View.InfoView.OutputBoundary;
-using BattleScene.UseCases.View.SelectSkillView.OutputBoundary;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
@@ -100,7 +99,6 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<IDestroyedPartViewPresenter, DestroyedPartViewPresenter>(Lifetime.Singleton);
             builder.Register<IFrameViewPresenter, FrameViewPresenter>(Lifetime.Singleton);
             builder.Register<IInfoViewPresenter, InfoViewPresenter>(Lifetime.Singleton);
-            builder.Register<ISelectSkillViewPresenter, SelectSkillViewPresenter>(Lifetime.Singleton);
             #endregion
 
             #region RegisterResource
