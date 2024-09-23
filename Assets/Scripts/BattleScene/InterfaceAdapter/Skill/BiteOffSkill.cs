@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using BattleScene.Domain.Code;
 using BattleScene.InterfaceAdapter.Skill.AbstractClass;
-using BattleScene.InterfaceAdapter.Skill.SkillElement;
+using BattleScene.InterfaceAdapter.Skill.PrimeSkill;
 using Utility.Interface;
 using Range = BattleScene.Domain.Code.Range;
 

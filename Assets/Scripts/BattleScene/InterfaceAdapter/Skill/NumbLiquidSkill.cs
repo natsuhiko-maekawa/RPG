@@ -1,7 +1,7 @@
 using System.Collections.Immutable;
 using BattleScene.Domain.Code;
 using BattleScene.InterfaceAdapter.Skill.AbstractClass;
-using BattleScene.InterfaceAdapter.Skill.SkillElement;
+using BattleScene.InterfaceAdapter.Skill.PrimeSkill;
 using Range = BattleScene.Domain.Code.Range;
 
 namespace BattleScene.InterfaceAdapter.Skill

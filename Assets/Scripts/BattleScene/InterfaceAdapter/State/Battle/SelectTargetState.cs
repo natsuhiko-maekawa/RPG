@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using BattleScene.Domain.Id;
 using BattleScene.InterfaceAdapter.Presenter;
-using BattleScene.InterfaceAdapter.State.Skill;
 
 namespace BattleScene.InterfaceAdapter.State.Battle
 {

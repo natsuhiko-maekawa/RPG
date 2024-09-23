@@ -3,7 +3,7 @@ using BattleScene.Domain.Code;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.IRepository;
 using BattleScene.InterfaceAdapter.Skill.AbstractClass;
-using BattleScene.InterfaceAdapter.Skill.SkillElement;
+using BattleScene.InterfaceAdapter.Skill.PrimeSkill;
 
 namespace BattleScene.InterfaceAdapter.Skill
 {

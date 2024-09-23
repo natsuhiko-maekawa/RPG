@@ -3,7 +3,6 @@ using System.Collections.Immutable;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DomainService;
 using BattleScene.InterfaceAdapter.Presenter;
-using BattleScene.InterfaceAdapter.State.Skill;
 
 namespace BattleScene.InterfaceAdapter.State.Battle
 {

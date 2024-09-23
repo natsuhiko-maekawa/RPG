@@ -3,7 +3,7 @@ using BattleScene.Domain.Code;
 using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.ValueObject;
 using BattleScene.InterfaceAdapter.State.Battle;
-using BattleScene.InterfaceAdapter.State.Skill;
+using BattleScene.InterfaceAdapter.State.PrimeSkill;
 using VContainer;
 
 namespace BattleScene.InterfaceAdapter.Service

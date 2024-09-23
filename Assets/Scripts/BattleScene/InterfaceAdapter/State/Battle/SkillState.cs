@@ -6,7 +6,7 @@ using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.ValueObject;
 using BattleScene.InterfaceAdapter.Presenter;
 using BattleScene.InterfaceAdapter.Service;
-using BattleScene.InterfaceAdapter.State.Skill;
+using BattleScene.InterfaceAdapter.State.PrimeSkill;
 using BattleScene.UseCases.Service;
 using VContainer;
 
