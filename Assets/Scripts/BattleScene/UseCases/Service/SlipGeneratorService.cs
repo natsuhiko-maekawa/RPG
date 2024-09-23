@@ -1,8 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
+using UnityEngine;
 
 namespace BattleScene.UseCases.Service
 {
@@ -19,23 +20,33 @@ namespace BattleScene.UseCases.Service
             _orderedItems = orderedItems;
         }
 
-        public SlipValueObject Generate(
+        public IReadOnlyList<SlipValueObject> Generate(
             SkillCommonValueObject skillCommon,
-            SlipParameterValueObject slipParameter,
+            IReadOnlyList<SlipParameterValueObject> slipParameterList,
             IReadOnlyList<CharacterId> targetIdList)
         {
-            if (!_orderedItems.First().TryGetCharacterId(out var actorId)) throw new InvalidOperationException();
-            var actualTargetIdList = _actualTargetIdPicker.Pick(
-                targetIdList: targetIdList, 
-                luckRate: slipParameter.LuckRate);
+            var value = _orderedItems.First().TryGetCharacterId(out var actorId);
+            Debug.Assert(value);
+
+            var slipList = slipParameterList
+                .Select(GetSlip)
+                .ToList();
+            return slipList;
+
+            SlipValueObject GetSlip(SlipParameterValueObject slipParameter)
+            {
+                var actualTargetIdList = _actualTargetIdPicker.Pick(
+                    targetIdList: targetIdList, 
+                    luckRate: slipParameter.LuckRate);
             
-            var slip = new SlipValueObject(
-                ActorId: actorId,
-                SkillCode: skillCommon.SkillCode,
-                SlipDamageCode: slipParameter.SlipDamageCode,
-                TargetIdList: targetIdList,
-                ActualTargetIdList: actualTargetIdList);
-            return slip;
+                var slip = new SlipValueObject(
+                    ActorId: actorId,
+                    SkillCode: skillCommon.SkillCode,
+                    SlipDamageCode: slipParameter.SlipDamageCode,
+                    TargetIdList: targetIdList,
+                    ActualTargetIdList: actualTargetIdList);
+                return slip;
+            }
         }
     }
 }

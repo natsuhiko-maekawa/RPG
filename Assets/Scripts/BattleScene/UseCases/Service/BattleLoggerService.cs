@@ -104,6 +104,11 @@ namespace BattleScene.UseCases.Service
             _battleLogRepository.Update(battleLog);
         }
 
+        public void Log(IReadOnlyList<SlipValueObject> slipList)
+        {
+            foreach (var slip in slipList) Log(slip);
+        }
+
         private (BattleLogId battleLogId, int nextSequence, int turn) GetBattleLogCommonArguments()
         {
             var battleLogId = new BattleLogId();

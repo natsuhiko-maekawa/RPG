@@ -1,4 +1,5 @@
-﻿using BattleScene.Domain.Code;
+﻿using System.Collections.Generic;
+using BattleScene.Domain.Code;
 using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.IRepository;
@@ -27,6 +28,11 @@ namespace BattleScene.UseCases.Service
                 slipDamageCode: slip.SlipDamageCode,
                 turn: slipDefaultTurn);
             _slipDamageRepository.Update(slipEntity);
+        }
+
+        public void Register(IReadOnlyList<SlipValueObject> slipValueObject)
+        {
+            foreach (var slip in slipValueObject) Register(slip);
         }
     }
 }

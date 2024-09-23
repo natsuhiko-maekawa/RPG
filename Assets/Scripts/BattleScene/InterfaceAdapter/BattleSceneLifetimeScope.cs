@@ -251,6 +251,7 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<IPrimeSkill<AilmentParameterValueObject, AilmentValueObject>, Ailment>(Lifetime.Singleton);
             builder.Register<IPrimeSkill<DamageParameterValueObject, DamageValueObject>, Damage>(Lifetime.Singleton);
             builder.Register<IPrimeSkill<BuffParameterValueObject, BuffValueObject>, Buff>(Lifetime.Singleton);
+            builder.Register<IPrimeSkill<SlipParameterValueObject, SlipValueObject>, Slip>(Lifetime.Singleton);
             #endregion
 
             #region RegisterService
