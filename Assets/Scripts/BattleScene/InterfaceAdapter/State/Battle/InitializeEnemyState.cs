@@ -6,7 +6,7 @@ using static BattleScene.Domain.Code.CharacterTypeCode;
 
 namespace BattleScene.InterfaceAdapter.State.Battle
 {
-    internal class InitializeEnemyState : AbstractState
+    internal class InitializeEnemyState : BaseState
     {
         private readonly IEnemiesRegistererService _enemiesRegisterer;
         private readonly EnemyImagePresenter _enemyImage;

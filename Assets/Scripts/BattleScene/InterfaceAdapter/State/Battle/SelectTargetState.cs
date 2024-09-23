@@ -4,7 +4,7 @@ using BattleScene.InterfaceAdapter.Presenter;
 
 namespace BattleScene.InterfaceAdapter.State.Battle
 {
-    public class SelectTargetState : AbstractState
+    public class SelectTargetState : BaseState
     {
         private readonly SkillState _skillState;
         private readonly TargetViewPresenter _targetView;

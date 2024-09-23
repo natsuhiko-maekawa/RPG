@@ -28,7 +28,7 @@ namespace BattleScene.InterfaceAdapter.State.PrimeSkill
         
         public override void Select()
         {
-            SkillContext.TransitionTo(_primeSkillStopState);
+            Context.TransitionTo(_primeSkillStopState);
         }
     }
 }

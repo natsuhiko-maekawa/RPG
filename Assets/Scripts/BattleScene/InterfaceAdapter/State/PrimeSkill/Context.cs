@@ -5,17 +5,17 @@ using UnityEngine;
 
 namespace BattleScene.InterfaceAdapter.State.PrimeSkill
 {
-    public class SkillContext<TPrimeSkillParameter, TPrimeSkill> : ISkillContext
+    public class Context<TPrimeSkillParameter, TPrimeSkill> : IContext
     {
-        private AbstractSkillState<TPrimeSkillParameter, TPrimeSkill> _skillState;
+        private BaseState<TPrimeSkillParameter, TPrimeSkill> _skillState;
         
         public SkillCommonValueObject SkillCommon { get; }
         public IReadOnlyList<CharacterId> TargetIdList { get; }
         public IReadOnlyList<TPrimeSkillParameter> PrimeSkillParameterList { get; }
         public IReadOnlyList<TPrimeSkill> PrimeSkillList { get; set; }
 
-        public SkillContext(
-            AbstractSkillState<TPrimeSkillParameter, TPrimeSkill> primeSkillState,
+        public Context(
+            BaseState<TPrimeSkillParameter, TPrimeSkill> primeSkillState,
             SkillCommonValueObject skillCommon ,
             IReadOnlyList<CharacterId> targetIdList ,
             IReadOnlyList<TPrimeSkillParameter> primeSkillParameterList)
@@ -26,7 +26,7 @@ namespace BattleScene.InterfaceAdapter.State.PrimeSkill
             TransitionTo(primeSkillState);
         }
 
-        public void TransitionTo(AbstractSkillState<TPrimeSkillParameter, TPrimeSkill> skillState)
+        public void TransitionTo(BaseState<TPrimeSkillParameter, TPrimeSkill> skillState)
         {
             Debug.Log(skillState.GetType().Name);
             _skillState = skillState;

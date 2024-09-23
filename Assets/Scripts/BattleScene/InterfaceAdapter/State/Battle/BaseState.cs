@@ -3,7 +3,7 @@ using BattleScene.Domain.Id;
 
 namespace BattleScene.InterfaceAdapter.State.Battle
 {
-    public abstract class AbstractState
+    public abstract class BaseState
     {
         protected Context Context { get; private set; }
         

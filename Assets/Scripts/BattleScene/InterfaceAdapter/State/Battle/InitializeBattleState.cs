@@ -2,7 +2,7 @@
 
 namespace BattleScene.InterfaceAdapter.State.Battle
 {
-    internal class InitializeBattleState : AbstractState
+    internal class InitializeBattleState : BaseState
     {
         private readonly InitializePlayerState _initializePlayerState;
         private readonly TurnInitializerService _turnInitializer;

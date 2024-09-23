@@ -4,7 +4,7 @@ using BattleScene.InterfaceAdapter.Presenter;
 
 namespace BattleScene.InterfaceAdapter.State.PrimeSkill
 {
-    public class SlipMessageState : AbstractSkillState<SlipParameterValueObject, SlipValueObject>
+    public class SlipMessageState : BaseState<SlipParameterValueObject, SlipValueObject>
     {
         private readonly MessageViewPresenter _messageView;
         private readonly PrimeSkillStopState<SlipParameterValueObject, SlipValueObject> _primeSkillStopState;
@@ -24,7 +24,7 @@ namespace BattleScene.InterfaceAdapter.State.PrimeSkill
         
         public override void Select()
         {
-            SkillContext.TransitionTo(_primeSkillStopState);
+            Context.TransitionTo(_primeSkillStopState);
         }
     }
 }

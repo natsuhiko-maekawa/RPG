@@ -2,7 +2,7 @@
 
 namespace BattleScene.InterfaceAdapter.State.Battle
 {
-    internal class TurnEndState : AbstractState
+    internal class TurnEndState : BaseState
     {
         private readonly AilmentDomainService _ailment;
         private readonly OrderState _orderState;

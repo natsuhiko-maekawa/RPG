@@ -1,6 +1,6 @@
 ﻿namespace BattleScene.InterfaceAdapter.State.PrimeSkill
 {
-    public interface ISkillContext
+    public interface IContext
     {
         public void Select();
         public bool HasEndState();

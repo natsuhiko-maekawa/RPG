@@ -1,18 +1,16 @@
-﻿using System.Collections.Generic;
-using BattleScene.DataAccess;
+﻿using BattleScene.DataAccess;
 using BattleScene.DataAccess.Dto;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.ValueObject;
 using BattleScene.InterfaceAdapter.Presenter;
 using BattleScene.InterfaceAdapter.Service;
-using BattleScene.InterfaceAdapter.State.PrimeSkill;
 using BattleScene.UseCases.Service;
 using VContainer;
 
 namespace BattleScene.InterfaceAdapter.State.Battle
 {
-    public class SkillState : AbstractState
+    public class SkillState : BaseState
     {
         private readonly IObjectResolver _container;
         private readonly IFactory<SkillValueObject, SkillCode> _skillFactory;
@@ -21,8 +19,6 @@ namespace BattleScene.InterfaceAdapter.State.Battle
         private readonly PrimeSkillContextService _primeSkillContext;
         private readonly MessageViewPresenter _messageView;
         private readonly PlayerImageViewPresenter _playerImageView;
-        private Queue<ISkillContext> _skillStateQueue;
-        private ISkillContext _skillContext;
 
         public SkillState(
             IObjectResolver container,

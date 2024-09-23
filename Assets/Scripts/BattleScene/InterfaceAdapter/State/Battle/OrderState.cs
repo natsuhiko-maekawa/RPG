@@ -11,7 +11,7 @@ using VContainer;
 
 namespace BattleScene.InterfaceAdapter.State.Battle
 {
-    internal class OrderState : AbstractState
+    internal class OrderState : BaseState
     {
         private readonly IObjectResolver _container;
         private readonly ActionTimeService _actionTime;
@@ -51,7 +51,7 @@ namespace BattleScene.InterfaceAdapter.State.Battle
             Context.TransitionTo(nextState);
         }
 
-        private AbstractState GetNextState()
+        private BaseState GetNextState()
         {
             if (IsResetAilment()) throw new NotImplementedException();
             if (IsSlipDamage()) throw new NotImplementedException();

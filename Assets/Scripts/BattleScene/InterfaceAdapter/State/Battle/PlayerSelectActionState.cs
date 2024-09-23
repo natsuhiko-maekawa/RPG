@@ -6,7 +6,7 @@ using BattleScene.InterfaceAdapter.Presenter;
 
 namespace BattleScene.InterfaceAdapter.State.Battle
 {
-    public class PlayerSelectActionState : AbstractState
+    public class PlayerSelectActionState : BaseState
     {
         private readonly PlayerDomainService _player;
         private readonly PlayerSelectSkillState _playerSelectSkillState;
@@ -50,7 +50,7 @@ namespace BattleScene.InterfaceAdapter.State.Battle
                 _ => SkillCode.NoSkill
             };
             
-            AbstractState nextState = actionCode switch
+            BaseState nextState = actionCode switch
             {
                 ActionCode.Attack => _selectTargetState,
                 ActionCode.Skill => _playerSelectSkillState,

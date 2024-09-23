@@ -5,7 +5,7 @@ using BattleScene.InterfaceAdapter.Presenter;
 
 namespace BattleScene.InterfaceAdapter.State.Battle
 {
-    public class PlayerSelectSkillState : AbstractState
+    public class PlayerSelectSkillState : BaseState
     {
         private readonly IResource<CharacterPropertyDto, CharacterTypeCode> _propertyResource;
         private readonly SelectTargetState _selectTargetState;

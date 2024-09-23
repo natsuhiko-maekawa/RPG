@@ -10,7 +10,7 @@ using BattleScene.InterfaceAdapter.Presenter;
 
 namespace BattleScene.InterfaceAdapter.State.PrimeSkill
 {
-    public class BuffMessageState : AbstractSkillState<BuffParameterValueObject, BuffValueObject>
+    public class BuffMessageState : BaseState<BuffParameterValueObject, BuffValueObject>
     {
         private readonly IRepository<BattleLogEntity, BattleLogId> _battleLogRepository;
         private readonly IResource<BuffViewDto, BuffCode> _buffViewResource;
@@ -38,7 +38,7 @@ namespace BattleScene.InterfaceAdapter.State.PrimeSkill
 
         public override void Select()
         {
-            SkillContext.TransitionTo(_primeSkillStopState);
+            Context.TransitionTo(_primeSkillStopState);
         }
     }
 }

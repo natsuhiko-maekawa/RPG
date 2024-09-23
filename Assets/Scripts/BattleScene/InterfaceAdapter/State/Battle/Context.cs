@@ -8,17 +8,17 @@ namespace BattleScene.InterfaceAdapter.State.Battle
 {
     public class Context
     {
-        private AbstractState _state;
+        private BaseState _state;
         
         public SkillCode SkillCode { get; set; }
         public IReadOnlyList<CharacterId> TargetIdList { get; set; }
 
-        public Context(AbstractState state)
+        public Context(BaseState state)
         {
             TransitionTo(state);
         }
 
-        public void TransitionTo(AbstractState state)
+        public void TransitionTo(BaseState state)
         {
             Debug.Log(state.GetType().Name);
             _state = state;

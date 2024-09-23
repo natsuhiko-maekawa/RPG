@@ -3,7 +3,7 @@
 namespace BattleScene.InterfaceAdapter.State.PrimeSkill
 {
     public class PrimeSkillStartState<TPrimeSkillParameter, TPrimeSkill>
-        : AbstractSkillState<TPrimeSkillParameter, TPrimeSkill>
+        : BaseState<TPrimeSkillParameter, TPrimeSkill>
     {
         private readonly IPrimeSkill<TPrimeSkillParameter, TPrimeSkill> _primeSkill;
         private readonly TPrimeSkillParameter _primeSkillParameter;
@@ -19,11 +19,11 @@ namespace BattleScene.InterfaceAdapter.State.PrimeSkill
 
         public override void Start()
         {
-            SkillContext.PrimeSkillList = _primeSkill.Commit(
-                skillCommon: SkillContext.SkillCommon,
-                primeSkillParameter: SkillContext.PrimeSkillParameterList,
-                targetIdList: SkillContext.TargetIdList);
-            SkillContext.TransitionTo(_primeSkillOutputState);
+            Context.PrimeSkillList = _primeSkill.Commit(
+                skillCommon: Context.SkillCommon,
+                primeSkillParameter: Context.PrimeSkillParameterList,
+                targetIdList: Context.TargetIdList);
+            Context.TransitionTo(_primeSkillOutputState);
         }
     }
 }

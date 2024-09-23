@@ -4,7 +4,7 @@ using BattleScene.InterfaceAdapter.Presenter;
 
 namespace BattleScene.InterfaceAdapter.State.PrimeSkill
 {
-    public class RestoreMessageState : AbstractSkillState<RestoreParameterValueObject, RestoreValueObject>
+    public class RestoreMessageState : BaseState<RestoreParameterValueObject, RestoreValueObject>
     {
         private readonly MessageViewPresenter _messageView;
         private readonly PrimeSkillStopState<RestoreParameterValueObject, RestoreValueObject> _primeSkillStopState;
@@ -24,7 +24,7 @@ namespace BattleScene.InterfaceAdapter.State.PrimeSkill
 
         public override void Select()
         {
-            SkillContext.TransitionTo(_primeSkillStopState);
+            Context.TransitionTo(_primeSkillStopState);
         }
     }
 }

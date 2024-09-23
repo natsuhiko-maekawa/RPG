@@ -4,7 +4,7 @@ using BattleScene.UseCases.IService;
 
 namespace BattleScene.InterfaceAdapter.State.Battle
 {
-    internal class EnemySelectSkillState : AbstractState
+    internal class EnemySelectSkillState : BaseState
     {
         private readonly IEnemySkillSelectorService _enemySkillSelector;
         private readonly PlayerDomainService _player;

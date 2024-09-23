@@ -12,8 +12,8 @@ namespace BattleScene.InterfaceAdapter.Service
     {
         private readonly IFactory<SkillValueObject, SkillCode> _skillFactory;
         private readonly IObjectResolver _container;
-        private IEnumerator<ISkillContext> _primeSkillContextEnumerator;
-        private ISkillContext _primeSkillContext;
+        private IEnumerator<IContext> _primeSkillContextEnumerator;
+        private IContext _primeContext;
 
         public PrimeSkillContextService(
             IFactory<SkillValueObject, SkillCode> skillFactory,
@@ -30,9 +30,9 @@ namespace BattleScene.InterfaceAdapter.Service
 
         public bool Select()
         {
-            if (_primeSkillContext == null) return MoveNextOrDispose();
-            _primeSkillContext.Select();
-            return !_primeSkillContext.HasEndState() || MoveNextOrDispose();
+            if (_primeContext == null) return MoveNextOrDispose();
+            _primeContext.Select();
+            return !_primeContext.HasEndState() || MoveNextOrDispose();
         }
 
         private bool MoveNextOrDispose()
@@ -40,18 +40,18 @@ namespace BattleScene.InterfaceAdapter.Service
             var value = _primeSkillContextEnumerator.MoveNext();
             if (value)
             {
-                _primeSkillContext = _primeSkillContextEnumerator.Current;
+                _primeContext = _primeSkillContextEnumerator.Current;
             }
             else
             {
-                _primeSkillContext = null;
+                _primeContext = null;
                 _primeSkillContextEnumerator.Dispose();
             }
 
             return value;
         }
         
-        private IEnumerable<ISkillContext> GetContext(Context context)
+        private IEnumerable<IContext> GetContext(Context context)
         {
             var skill = _skillFactory.Create(context.SkillCode);
 
@@ -96,11 +96,11 @@ namespace BattleScene.InterfaceAdapter.Service
             
             yield break;
             
-            ISkillContext CreateContext<TPrimeSkillParameter, TPrimeSkill>(
+            IContext CreateContext<TPrimeSkillParameter, TPrimeSkill>(
                 IReadOnlyList<TPrimeSkillParameter> primeSkillParameterList)
             {
                 var primeSkillStartState = _container.Resolve<PrimeSkillStartState<TPrimeSkillParameter, TPrimeSkill>>();
-                var skillContext = new SkillContext<TPrimeSkillParameter, TPrimeSkill>(
+                var skillContext = new Context<TPrimeSkillParameter, TPrimeSkill>(
                     primeSkillState: primeSkillStartState,
                     skillCommon: skill.SkillCommon,
                     primeSkillParameterList: primeSkillParameterList,
