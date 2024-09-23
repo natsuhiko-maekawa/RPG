@@ -5,27 +5,28 @@ using BattleScene.Domain.Code;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
+using BattleScene.Domain.ValueObject;
 using BattleScene.InterfaceAdapter.Presenter;
 
 namespace BattleScene.InterfaceAdapter.State.Skill
 {
-    public class BuffMessageState : AbstractSkillState
+    public class BuffMessageState : AbstractSkillState<BuffParameterValueObject, BuffValueObject>
     {
         private readonly IRepository<BattleLogEntity, BattleLogId> _battleLogRepository;
         private readonly IResource<BuffViewDto, BuffCode> _buffViewResource;
         private readonly MessageViewPresenter _messageView;
-        private readonly SkillEndState _skillEndState;
+        private readonly PrimeSkillStopState<BuffParameterValueObject, BuffValueObject> _primeSkillStopState;
 
         public BuffMessageState(
             IRepository<BattleLogEntity, BattleLogId> battleLogRepository,
             IResource<BuffViewDto, BuffCode> buffViewResource,
             MessageViewPresenter messageView,
-            SkillEndState skillEndState)
+            PrimeSkillStopState<BuffParameterValueObject, BuffValueObject> primeSkillStopState)
         {
             _battleLogRepository = battleLogRepository;
             _buffViewResource = buffViewResource;
             _messageView = messageView;
-            _skillEndState = skillEndState;
+            _primeSkillStopState = primeSkillStopState;
         }
 
         public override void Start()
@@ -37,7 +38,7 @@ namespace BattleScene.InterfaceAdapter.State.Skill
 
         public override void Select()
         {
-            SkillContext.TransitionTo(_skillEndState);
+            SkillContext.TransitionTo(_primeSkillStopState);
         }
     }
 }

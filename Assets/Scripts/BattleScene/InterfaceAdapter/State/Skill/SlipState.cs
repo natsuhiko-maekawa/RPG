@@ -7,13 +7,12 @@ using BattleScene.UseCases.Service;
 
 namespace BattleScene.InterfaceAdapter.State.Skill
 {
-    public class SlipState : AbstractSkillState
+    public class SlipState : AbstractSkillState<SlipParameterValueObject, SlipValueObject>
     {
         private readonly BattleLogDomainService _battleLog;
         private readonly BattleLoggerService _battleLogger;
         private readonly SlipGeneratorService _slipGenerator;
         private readonly SlipRegistererService _slipRegisterer;
-        private readonly SlipFailureState _slipFailureState;
         private readonly SlipMessageState _slipMessageState;
         private readonly SkillCommonValueObject _skillCommon;
         private readonly SlipParameterValueObject _slipParameter;
@@ -24,7 +23,6 @@ namespace BattleScene.InterfaceAdapter.State.Skill
             BattleLoggerService battleLogger,
             SlipGeneratorService slipGenerator,
             SlipRegistererService slipRegisterer,
-            SlipFailureState slipFailureState,
             SlipMessageState slipMessageState,
             SkillCommonValueObject skillCommon,
             SlipParameterValueObject slipParameter,
@@ -34,7 +32,6 @@ namespace BattleScene.InterfaceAdapter.State.Skill
             _battleLogger = battleLogger;
             _slipGenerator = slipGenerator;
             _slipRegisterer = slipRegisterer;
-            _slipFailureState = slipFailureState;
             _slipMessageState = slipMessageState;
             _skillCommon = skillCommon;
             _slipParameter = slipParameter;
@@ -49,10 +46,7 @@ namespace BattleScene.InterfaceAdapter.State.Skill
                 targetIdList: _targetIdList);
             _slipRegisterer.Register(slip);
             _battleLogger.Log(slip);
-            AbstractSkillState nextState = _battleLog.GetLast().ActualTargetIdList.Count == 0
-                ? _slipFailureState 
-                : _slipMessageState;
-            SkillContext.TransitionTo(nextState);
+            SkillContext.TransitionTo(_slipMessageState);
         }
     }
 }

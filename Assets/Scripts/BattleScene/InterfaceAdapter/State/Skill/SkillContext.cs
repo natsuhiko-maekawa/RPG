@@ -1,17 +1,32 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using BattleScene.Domain.Id;
+using BattleScene.Domain.ValueObject;
+using UnityEngine;
 
 namespace BattleScene.InterfaceAdapter.State.Skill
 {
-    public class SkillContext
+    public class SkillContext<TPrimeSkillParameter, TPrimeSkill> : ISkillContext
     {
-        private AbstractSkillState _skillState;
+        private AbstractSkillState<TPrimeSkillParameter, TPrimeSkill> _skillState;
+        
+        public SkillCommonValueObject SkillCommon { get; }
+        public IReadOnlyList<CharacterId> TargetIdList { get; }
+        public IReadOnlyList<TPrimeSkillParameter> PrimeSkillParameterList { get; }
+        public IReadOnlyList<TPrimeSkill> PrimeSkillList { get; set; }
 
-        public SkillContext(AbstractSkillState skillState)
+        public SkillContext(
+            AbstractSkillState<TPrimeSkillParameter, TPrimeSkill> primeSkillState,
+            SkillCommonValueObject skillCommon ,
+            IReadOnlyList<CharacterId> targetIdList ,
+            IReadOnlyList<TPrimeSkillParameter> primeSkillParameterList)
         {
-            TransitionTo(skillState);
+            SkillCommon = skillCommon;
+            TargetIdList = targetIdList;
+            PrimeSkillParameterList = primeSkillParameterList;
+            TransitionTo(primeSkillState);
         }
 
-        public void TransitionTo(AbstractSkillState skillState)
+        public void TransitionTo(AbstractSkillState<TPrimeSkillParameter, TPrimeSkill> skillState)
         {
             Debug.Log(skillState.GetType().Name);
             _skillState = skillState;
@@ -21,6 +36,6 @@ namespace BattleScene.InterfaceAdapter.State.Skill
 
         public void Select() => _skillState.Select();
 
-        public bool HasEndState() => _skillState is SkillEndState;
+        public bool HasEndState() => _skillState is IPrimeSkillStopState;
     }
 }

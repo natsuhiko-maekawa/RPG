@@ -3,6 +3,7 @@ using System.Collections.Immutable;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DomainService;
 using BattleScene.InterfaceAdapter.Presenter;
+using BattleScene.InterfaceAdapter.State.Skill;
 
 namespace BattleScene.InterfaceAdapter.State.Battle
 {
@@ -10,21 +11,21 @@ namespace BattleScene.InterfaceAdapter.State.Battle
     {
         private readonly PlayerDomainService _player;
         private readonly PlayerSelectSkillState _playerSelectSkillState;
-        private readonly SelectTargetStateFactory _selectTargetStateFactory;
-        private readonly SkillStateFactory _skillStateFactory;
+        private readonly SelectTargetState _selectTargetState;
+        private readonly SkillState _skillState;
         private readonly GridViewPresenter _gridView;
 
         public PlayerSelectActionState(
             PlayerDomainService player,
             PlayerSelectSkillState playerSelectSkillState,
-            SelectTargetStateFactory selectTargetStateFactory,
-            SkillStateFactory skillStateFactory,
+            SelectTargetState selectTargetState,
+            SkillState skillState,
             GridViewPresenter gridView)
         {
             _player = player;
             _playerSelectSkillState = playerSelectSkillState;
-            _selectTargetStateFactory = selectTargetStateFactory;
-            _skillStateFactory = skillStateFactory;
+            _selectTargetState = selectTargetState;
+            _skillState = skillState;
             _gridView = gridView;
         }
 
@@ -36,12 +37,25 @@ namespace BattleScene.InterfaceAdapter.State.Battle
         public override void Select(int id)
         {
             var actionCode = (ActionCode)id;
-            var oneself = ImmutableList.Create(_player.GetId());
+
+            if (actionCode == ActionCode.Defence)
+            {
+                var oneself = ImmutableList.Create(_player.GetId());
+                Context.TargetIdList = oneself;
+            }
+            
+            Context.SkillCode = actionCode switch
+            {
+                ActionCode.Attack => SkillCode.Attack,
+                ActionCode.Defence => SkillCode.Defence,
+                _ => SkillCode.NoSkill
+            };
+            
             AbstractState nextState = actionCode switch
             {
-                ActionCode.Attack => _selectTargetStateFactory.Create(SkillCode.Attack),
+                ActionCode.Attack => _selectTargetState,
                 ActionCode.Skill => _playerSelectSkillState,
-                ActionCode.Defence => _skillStateFactory.Create(SkillCode.Defence, oneself),
+                ActionCode.Defence => _skillState,
                 _ => throw new ArgumentOutOfRangeException()
             };
             

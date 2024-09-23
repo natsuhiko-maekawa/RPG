@@ -1,11 +1,11 @@
 ﻿namespace BattleScene.InterfaceAdapter.State.Skill
 {
-    public abstract class AbstractSkillState
+    public abstract class AbstractSkillState<TPrimeSkillParameter, TPrimeSkill>
     {
-        protected SkillContext SkillContext { get; set; }
+        protected SkillContext<TPrimeSkillParameter, TPrimeSkill> SkillContext { get; set; }
 
         // ReSharper disable once ParameterHidesMember
-        public void SetContext(SkillContext skillContext)
+        public void SetContext(SkillContext<TPrimeSkillParameter, TPrimeSkill> skillContext)
         {
             SkillContext = skillContext;
         }

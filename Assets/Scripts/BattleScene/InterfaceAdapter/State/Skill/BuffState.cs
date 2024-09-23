@@ -4,7 +4,7 @@ using BattleScene.UseCases.Service;
 
 namespace BattleScene.InterfaceAdapter.State.Skill
 {
-    public class BuffState : AbstractSkillState
+    public class BuffState : AbstractSkillState<BuffParameterValueObject, BuffValueObject>
     {
         private readonly IReadOnlyList<BuffValueObject> _buffList;
         private readonly BattleLoggerService _battleLogger;

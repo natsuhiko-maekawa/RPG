@@ -1,19 +1,20 @@
 ﻿using BattleScene.Domain.Code;
+using BattleScene.Domain.ValueObject;
 using BattleScene.InterfaceAdapter.Presenter;
 
 namespace BattleScene.InterfaceAdapter.State.Skill
 {
-    public class SlipMessageState : AbstractSkillState
+    public class SlipMessageState : AbstractSkillState<SlipParameterValueObject, SlipValueObject>
     {
         private readonly MessageViewPresenter _messageView;
-        private readonly SkillEndState _skillEndState;
+        private readonly PrimeSkillStopState<SlipParameterValueObject, SlipValueObject> _primeSkillStopState;
 
         public SlipMessageState(
             MessageViewPresenter messageView,
-            SkillEndState skillEndState)
+            PrimeSkillStopState<SlipParameterValueObject, SlipValueObject> primeSkillStopState)
         {
             _messageView = messageView;
-            _skillEndState = skillEndState;
+            _primeSkillStopState = primeSkillStopState;
         }
 
         public override void Start()
@@ -23,7 +24,7 @@ namespace BattleScene.InterfaceAdapter.State.Skill
         
         public override void Select()
         {
-            SkillContext.TransitionTo(_skillEndState);
+            SkillContext.TransitionTo(_primeSkillStopState);
         }
     }
 }

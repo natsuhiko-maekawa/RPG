@@ -39,7 +39,7 @@ namespace BattleScene.UseCases.Service
         public DamageValueObject Generate(
             SkillCommonValueObject skillCommon,
             DamageParameterValueObject damageParameter,
-            IList<CharacterId> targetIdList)
+            IReadOnlyList<CharacterId> targetIdList)
         {
             _orderedItems.First().TryGetCharacterId(out var actorId);
             var attackList = new List<AttackValueObject>();
@@ -67,7 +67,15 @@ namespace BattleScene.UseCases.Service
                 attackList.ToImmutableList());
         }
 
-        private ImmutableList<CharacterId> GetAttackedTargetIdList(IList<CharacterId> targetIdList, Range range)
+        public IReadOnlyList<DamageValueObject> Generate(
+            SkillCommonValueObject skillCommon,
+            IReadOnlyList<DamageParameterValueObject> damageParameterList,
+            IReadOnlyList<CharacterId> targetIdList)
+        {
+            return damageParameterList.Select(x => Generate(skillCommon, x, targetIdList)).ToList();
+        }
+
+        private IReadOnlyList<CharacterId> GetAttackedTargetIdList(IReadOnlyList<CharacterId> targetIdList, Range range)
         {
             var surviveTargetIdList = targetIdList
                 .Where(x => _characterRepository.Select(x).IsSurvive)

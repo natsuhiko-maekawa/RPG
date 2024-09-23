@@ -6,7 +6,7 @@ using BattleScene.UseCases.Service;
 
 namespace BattleScene.InterfaceAdapter.State.Skill
 {
-    public class DamageState : AbstractSkillState
+    public class DamageState : AbstractSkillState<DamageParameterValueObject, DamageValueObject>
     {
         private readonly DamageGeneratorService _damageGenerator;
         private readonly DamageRegistererService _damageRegisterer;

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
+using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
-using BattleScene.UseCases.Dto;
 using BattleScene.UseCases.Interface;
 using BattleScene.UseCases.Service;
 
@@ -22,9 +22,15 @@ namespace BattleScene.UseCases.UseCase
             _battleLogger = battleLogger;
         }
 
-        public IReadOnlyList<AilmentValueObject> Commit(PrimeSkillParameterDto<AilmentParameterValueObject> primeSkillParameter)
+        public IReadOnlyList<AilmentValueObject> Commit(
+            SkillCommonValueObject skillCommon,
+            IReadOnlyList<AilmentParameterValueObject> primeSkillParameterList,
+            IReadOnlyList<CharacterId> targetIdList)
         {
-            var ailmentList = _ailmentGenerator.Generate(primeSkillParameter);
+            var ailmentList = _ailmentGenerator.Generate(
+                skillCommon: skillCommon,
+                primeSkillParameterList: primeSkillParameterList,
+                targetIdList: targetIdList);
             _ailmentRegisterer.Register(ailmentList);
             _battleLogger.Log(ailmentList);
             return ailmentList;

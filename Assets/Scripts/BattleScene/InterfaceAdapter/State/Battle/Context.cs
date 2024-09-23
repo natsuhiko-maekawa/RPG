@@ -1,4 +1,6 @@
-﻿using System.Collections.Immutable;
+﻿using System.Collections.Generic;
+using System.Collections.Immutable;
+using BattleScene.Domain.Code;
 using BattleScene.Domain.Id;
 using UnityEngine;
 
@@ -7,6 +9,9 @@ namespace BattleScene.InterfaceAdapter.State.Battle
     public class Context
     {
         private AbstractState _state;
+        
+        public SkillCode SkillCode { get; set; }
+        public IReadOnlyList<CharacterId> TargetIdList { get; set; }
 
         public Context(AbstractState state)
         {

@@ -18,6 +18,6 @@ namespace BattleScene.InterfaceAdapter.State.Battle
         
         public virtual void Select(int id) { }
         
-        public virtual void Select(IList<CharacterId> targetIdList) { }
+        public virtual void Select(IReadOnlyList<CharacterId> targetIdList) { }
     }
 }

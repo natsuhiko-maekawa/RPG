@@ -76,6 +76,11 @@ namespace BattleScene.UseCases.Service
                 damage: damage);
             _battleLogRepository.Update(battleLog);
         }
+        
+        public void Log(IReadOnlyList<DamageValueObject> damageList)
+        {
+            foreach (var damage in damageList) Log(damage);
+        }
 
         public void Log(RestoreValueObject restore)
         {

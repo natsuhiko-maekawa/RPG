@@ -18,7 +18,7 @@ namespace BattleScene.InterfaceAdapter.State.Battle
             _slip = slip;
         }
 
-        public override void Select()
+        public override void Start()
         {
             _ailment.AdvanceTurn();
             _slip.AdvanceTurn();

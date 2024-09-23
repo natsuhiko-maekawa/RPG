@@ -1,16 +1,17 @@
 ﻿using BattleScene.Domain.Code;
+using BattleScene.Domain.ValueObject;
 using BattleScene.InterfaceAdapter.Presenter;
 
 namespace BattleScene.InterfaceAdapter.State.Skill
 {
-    public class DamageMessageState : AbstractSkillState
+    public class DamageMessageState : PrimeSkillOutputState<DamageParameterValueObject, DamageValueObject>
     {
         private readonly AttackCountViewPresenter _attackCountView;
         private readonly DamageViewPresenter _damageView;
         private readonly MessageViewPresenter _messageView;
         private readonly PlayerImageViewPresenter _playerImageView;
         private readonly VibrationViewPresenter _vibrationView;
-        private readonly SkillEndState _skillEndState;
+        private readonly PrimeSkillStopState<DamageParameterValueObject, DamageValueObject> _primeSkillStopState;
 
         public DamageMessageState(
             AttackCountViewPresenter attackCountView,
@@ -18,14 +19,14 @@ namespace BattleScene.InterfaceAdapter.State.Skill
             MessageViewPresenter messageView, 
             PlayerImageViewPresenter playerImageView,
             VibrationViewPresenter vibrationView,
-            SkillEndState skillEndState)
+            PrimeSkillStopState<DamageParameterValueObject, DamageValueObject> primeSkillStopState)
         {
             _attackCountView = attackCountView;
             _damageView = damageView;
             _messageView = messageView;
             _playerImageView = playerImageView;
             _vibrationView = vibrationView;
-            _skillEndState = skillEndState;
+            _primeSkillStopState = primeSkillStopState;
         }
 
         public override void Start()
@@ -40,7 +41,7 @@ namespace BattleScene.InterfaceAdapter.State.Skill
         
         public override void Select()
         {
-            SkillContext.TransitionTo(_skillEndState);
+            SkillContext.TransitionTo(_primeSkillStopState);
         }
     }
 }

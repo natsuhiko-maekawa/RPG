@@ -1,19 +1,20 @@
 ﻿using BattleScene.Domain.Code;
+using BattleScene.Domain.ValueObject;
 using BattleScene.InterfaceAdapter.Presenter;
 
 namespace BattleScene.InterfaceAdapter.State.Skill
 {
-    public class RestoreMessageState : AbstractSkillState
+    public class RestoreMessageState : AbstractSkillState<RestoreParameterValueObject, RestoreValueObject>
     {
         private readonly MessageViewPresenter _messageView;
-        private readonly SkillEndState _skillEndState;
+        private readonly PrimeSkillStopState<RestoreParameterValueObject, RestoreValueObject> _primeSkillStopState;
 
         public RestoreMessageState(
             MessageViewPresenter messageView,
-            SkillEndState skillEndState)
+            PrimeSkillStopState<RestoreParameterValueObject, RestoreValueObject> primeSkillStopState)
         {
             _messageView = messageView;
-            _skillEndState = skillEndState;
+            _primeSkillStopState = primeSkillStopState;
         }
 
         public override void Start()
@@ -23,7 +24,7 @@ namespace BattleScene.InterfaceAdapter.State.Skill
 
         public override void Select()
         {
-            SkillContext.TransitionTo(_skillEndState);
+            SkillContext.TransitionTo(_primeSkillStopState);
         }
     }
 }

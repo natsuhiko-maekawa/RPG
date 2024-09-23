@@ -3,7 +3,7 @@ using BattleScene.UseCases.Service;
 
 namespace BattleScene.InterfaceAdapter.State.Skill
 {
-    public class RestoreState : AbstractSkillState
+    public class RestoreState : AbstractSkillState<RestoreParameterValueObject, RestoreValueObject>
     {
         private readonly BattleLoggerService _battleLogger;
         private readonly RestoreGeneratorService _restoreGenerator;

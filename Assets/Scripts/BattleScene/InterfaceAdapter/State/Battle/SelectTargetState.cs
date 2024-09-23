@@ -1,37 +1,33 @@
 ﻿using System.Collections.Generic;
-using BattleScene.Domain.Code;
 using BattleScene.Domain.Id;
 using BattleScene.InterfaceAdapter.Presenter;
+using BattleScene.InterfaceAdapter.State.Skill;
 
 namespace BattleScene.InterfaceAdapter.State.Battle
 {
     public class SelectTargetState : AbstractState
     {
-        private readonly SkillStateFactory _skillStateFactory;
+        private readonly SkillState _skillState;
         private readonly TargetViewPresenter _targetView;
-        private readonly SkillCode _skillCode;
 
         public SelectTargetState(
-            SkillStateFactory skillStateFactory,
-            TargetViewPresenter targetView,
-            SkillCode skillCode)
+            SkillState skillState,
+            TargetViewPresenter targetView)
         {
-            _skillStateFactory = skillStateFactory;
+            _skillState = skillState;
             _targetView = targetView;
-            _skillCode = skillCode;
         }
 
         public override void Start()
         {
-            _targetView.StartAnimation(_skillCode);
+            _targetView.StartAnimation(Context.SkillCode);
         }
 
-        public override void Select(IList<CharacterId> targetIdList)
+        public override void Select(IReadOnlyList<CharacterId> targetIdList)
         {
             _targetView.StopAnimation();
-            Context.TransitionTo(_skillStateFactory.Create(
-                skillCode: _skillCode,
-                targetIdList: targetIdList));
+            Context.TargetIdList = targetIdList;
+            Context.TransitionTo(_skillState);
         }
     }
 }

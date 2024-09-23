@@ -1,39 +1,32 @@
 ﻿using System.Linq;
 using BattleScene.Domain.ValueObject;
-using BattleScene.UseCases.Dto;
 using BattleScene.UseCases.Interface;
 
 namespace BattleScene.InterfaceAdapter.State.Skill
 {
-    public class AilmentState : AbstractSkillState
+    public class AilmentState : AbstractSkillState<AilmentParameterValueObject, AilmentValueObject>
     {
-        private readonly PrimeSkillParameterDto<AilmentParameterValueObject> _ailmentParameterDto;
         private readonly IPrimeSkill<AilmentParameterValueObject, AilmentValueObject> _ailment;
         private readonly AilmentParameterValueObject _ailmentParameter;
         private readonly AilmentMessageState _ailmentMessageState;
-        private readonly AilmentFailureState _ailmentFailureState;
 
         public AilmentState(
-            PrimeSkillParameterDto<AilmentParameterValueObject> ailmentParameterDto,
             IPrimeSkill<AilmentParameterValueObject, AilmentValueObject> ailment,
-            AilmentMessageState ailmentMessageState,
-            AilmentFailureState ailmentFailureState)
+            AilmentMessageState ailmentMessageState)
         {
-            _ailmentParameterDto = ailmentParameterDto;
             _ailment = ailment;
             _ailmentMessageState = ailmentMessageState;
-            _ailmentFailureState = ailmentFailureState;
         }
 
         public override void Start()
         {
-            var ailmentList = _ailment.Commit(_ailmentParameterDto);
-            var failure = ailmentList
+            SkillContext.PrimeSkillList = _ailment.Commit(
+                skillCommon: SkillContext.SkillCommon,
+                primeSkillParameter: SkillContext.PrimeSkillParameterList,
+                targetIdList: SkillContext.TargetIdList);
+            var failure = SkillContext.PrimeSkillList
                 .All(x => x.ActualTargetIdList.Count == 0);
-            AbstractSkillState nextState = failure
-                ? _ailmentFailureState 
-                : _ailmentMessageState;
-            SkillContext.TransitionTo(nextState);
+            SkillContext.TransitionTo(_ailmentMessageState);
         }
     }
 }

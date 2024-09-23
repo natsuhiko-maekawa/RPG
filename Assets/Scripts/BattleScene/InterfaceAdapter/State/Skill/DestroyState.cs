@@ -1,18 +1,20 @@
-﻿namespace BattleScene.InterfaceAdapter.State.Skill
+﻿using BattleScene.Domain.ValueObject;
+
+namespace BattleScene.InterfaceAdapter.State.Skill
 {
-    public class DestroyState : AbstractSkillState
+    public class DestroyState : AbstractSkillState<DestroyedParameterValueObject, DestroyedPartValueObject>
     {
-        private readonly SkillEndState _skillEndState;
+        private readonly PrimeSkillStopState<DestroyedParameterValueObject, DestroyedPartValueObject> _primeSkillStopState;
 
         public DestroyState(
-            SkillEndState skillEndState)
+            PrimeSkillStopState<DestroyedParameterValueObject, DestroyedPartValueObject> primeSkillStopState)
         {
-            _skillEndState = skillEndState;
+            _primeSkillStopState = primeSkillStopState;
         }
 
         public override void Start()
         {
-            SkillContext.TransitionTo(_skillEndState);
+            SkillContext.TransitionTo(_primeSkillStopState);
         }
     }
 }

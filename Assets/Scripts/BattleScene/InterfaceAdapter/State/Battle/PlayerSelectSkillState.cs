@@ -8,16 +8,16 @@ namespace BattleScene.InterfaceAdapter.State.Battle
     public class PlayerSelectSkillState : AbstractState
     {
         private readonly IResource<CharacterPropertyDto, CharacterTypeCode> _propertyResource;
-        private readonly SelectTargetStateFactory _selectTargetStateFactory;
+        private readonly SelectTargetState _selectTargetState;
         private readonly SkillViewPresenter _skillView;
 
         public PlayerSelectSkillState(
             IResource<CharacterPropertyDto, CharacterTypeCode> propertyResource,
-            SelectTargetStateFactory selectTargetStateFactory,
+            SelectTargetState selectTargetState,
             SkillViewPresenter skillView)
         {
             _propertyResource = propertyResource;
-            _selectTargetStateFactory = selectTargetStateFactory;
+            _selectTargetState = selectTargetState;
             _skillView = skillView;
         }
 
@@ -29,9 +29,8 @@ namespace BattleScene.InterfaceAdapter.State.Battle
         public override void Select(int id)
         {
             _skillView.StopAnimation();
-            var skillCode = _propertyResource.Get(CharacterTypeCode.Player).Skills[id];
-            var selectTargetState = _selectTargetStateFactory.Create(skillCode);
-            Context.TransitionTo(selectTargetState);
+            Context.SkillCode = _propertyResource.Get(CharacterTypeCode.Player).Skills[id];
+            Context.TransitionTo(_selectTargetState);
         }
     }
 }

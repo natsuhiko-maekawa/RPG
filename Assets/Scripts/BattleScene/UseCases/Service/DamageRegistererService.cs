@@ -26,6 +26,11 @@ namespace BattleScene.UseCases.Service
             _characterRepository.Update(characterList);
         }
 
+        public void Register(IReadOnlyList<DamageValueObject> damageList)
+        {
+            foreach (var damage in damageList) Register(damage);
+        }
+
         private CharacterEntity ReduceHitPoint(KeyValuePair<CharacterId, int> characterIdDamagePair)
         {
             var characterId = characterIdDamagePair.Key;

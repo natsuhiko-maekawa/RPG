@@ -1,22 +1,23 @@
 ﻿using BattleScene.Domain.Code;
+using BattleScene.Domain.ValueObject;
 using BattleScene.InterfaceAdapter.Presenter;
 
 namespace BattleScene.InterfaceAdapter.State.Skill
 {
-    public class AilmentMessageState : AbstractSkillState
+    public class AilmentMessageState : PrimeSkillOutputState<AilmentParameterValueObject, AilmentValueObject>
     {
         private readonly MessageViewPresenter _messageView;
         private readonly PlayerImageViewPresenter _playerImageView;
-        private readonly SkillEndState _skillEndState;
+        private readonly PrimeSkillStopState<AilmentParameterValueObject, AilmentValueObject> _primeSkillStopState;
 
         public AilmentMessageState(
             MessageViewPresenter messageView,
             PlayerImageViewPresenter playerImageView,
-            SkillEndState skillEndState)
+            PrimeSkillStopState<AilmentParameterValueObject, AilmentValueObject> primeSkillStopState)
         {
             _messageView = messageView;
             _playerImageView = playerImageView;
-            _skillEndState = skillEndState;
+            _primeSkillStopState = primeSkillStopState;
         }
 
         public override void Start()
@@ -27,7 +28,7 @@ namespace BattleScene.InterfaceAdapter.State.Skill
         
         public override void Select()
         {
-            SkillContext.TransitionTo(_skillEndState);
+            SkillContext.TransitionTo(_primeSkillStopState);
         }
     }
 }
