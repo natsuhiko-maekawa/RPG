@@ -1,14 +1,15 @@
 using System.Collections.Immutable;
 using BattleScene.Domain.Code;
-using BattleScene.InterfaceAdapter.Skill.AbstractClass;
-using BattleScene.InterfaceAdapter.Skill.PrimeSkill;
+using BattleScene.InterfaceAdapter.PrimeSkill;
+using BattleScene.InterfaceAdapter.PrimeSkill.BaseClass;
+using BattleScene.InterfaceAdapter.Skill.BaseClass;
 
 namespace BattleScene.InterfaceAdapter.Skill
 {
     /// <summary>
     ///     ランダムショット
     /// </summary>
-    internal class RandomShotsSkill : AbstractSkill
+    internal class RandomShotsSkill : BaseSkill
     {
         public override SkillCode SkillCode { get; } = SkillCode.RandomShots;
         public override int TechnicalPoint { get; } = 15;
@@ -18,7 +19,7 @@ namespace BattleScene.InterfaceAdapter.Skill
         public override MessageCode Description { get; } = MessageCode.RandomShotsDescription;
         public override MessageCode AttackMessageCode { get; } = MessageCode.AttackMessage;
 
-        public override ImmutableList<AbstractDamage> DamageList { get; }
-            = ImmutableList.Create<AbstractDamage>(new RandomShot());
+        public override ImmutableList<BaseDamage> DamageList { get; }
+            = ImmutableList.Create<BaseDamage>(new RandomShot());
     }
 }

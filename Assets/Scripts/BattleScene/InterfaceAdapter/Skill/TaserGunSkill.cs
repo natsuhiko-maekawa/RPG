@@ -1,14 +1,15 @@
 using System.Collections.Immutable;
 using BattleScene.Domain.Code;
-using BattleScene.InterfaceAdapter.Skill.AbstractClass;
-using BattleScene.InterfaceAdapter.Skill.PrimeSkill;
+using BattleScene.InterfaceAdapter.PrimeSkill;
+using BattleScene.InterfaceAdapter.PrimeSkill.BaseClass;
+using BattleScene.InterfaceAdapter.Skill.BaseClass;
 
 namespace BattleScene.InterfaceAdapter.Skill
 {
     /// <summary>
     ///     テーザーガン
     /// </summary>
-    internal class TaserGunSkill : AbstractSkill
+    internal class TaserGunSkill : BaseSkill
     {
         public override SkillCode SkillCode { get; } = SkillCode.TaserGun;
         public override int TechnicalPoint { get; } = 5;
@@ -18,10 +19,10 @@ namespace BattleScene.InterfaceAdapter.Skill
         public override MessageCode Description { get; } = MessageCode.TaserGunDescription;
         public override MessageCode AttackMessageCode { get; } = MessageCode.AttackMessage;
 
-        public override ImmutableList<AbstractDamage> DamageList { get; }
-            = ImmutableList.Create<AbstractDamage>(new BasicDamage());
+        public override ImmutableList<BaseDamage> DamageList { get; }
+            = ImmutableList.Create<BaseDamage>(new BasicDamage());
 
-        public override ImmutableList<AbstractAilment> AilmentList { get; }
-            = ImmutableList.Create<AbstractAilment>(new EnemyParalysis());
+        public override ImmutableList<BaseAilment> AilmentList { get; }
+            = ImmutableList.Create<BaseAilment>(new EnemyParalysis());
     }
 }

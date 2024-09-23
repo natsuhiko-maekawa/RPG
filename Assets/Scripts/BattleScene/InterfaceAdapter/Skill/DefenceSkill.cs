@@ -1,24 +1,25 @@
 using System.Collections.Immutable;
 using BattleScene.Domain.Code;
-using BattleScene.InterfaceAdapter.Skill.AbstractClass;
-using BattleScene.InterfaceAdapter.Skill.PrimeSkill;
+using BattleScene.InterfaceAdapter.PrimeSkill;
+using BattleScene.InterfaceAdapter.PrimeSkill.BaseClass;
+using BattleScene.InterfaceAdapter.Skill.BaseClass;
 
 namespace BattleScene.InterfaceAdapter.Skill
 {
     /// <summary>
     ///     防御
     /// </summary>
-    internal class DefenceSkill : AbstractSkill
+    internal class DefenceSkill : BaseSkill
     {
         public override SkillCode SkillCode { get; } = SkillCode.Defence;
         public override Range Range { get; } = Range.Oneself;
         public override PlayerImageCode PlayerImageCode { get; } = PlayerImageCode.Defence;
         public override MessageCode AttackMessageCode { get; } = MessageCode.DefenceMessage;
 
-        public override ImmutableList<AbstractBuff> BuffList { get; }
-            = ImmutableList.Create<AbstractBuff>(new Defence());
+        public override ImmutableList<BaseBuff> BuffList { get; }
+            = ImmutableList.Create<BaseBuff>(new Defence());
 
-        public override ImmutableList<AbstractRestore> RestoreList { get; }
-            = ImmutableList.Create<AbstractRestore>(new BasicRestore());
+        public override ImmutableList<BaseRestore> RestoreList { get; }
+            = ImmutableList.Create<BaseRestore>(new BasicRestore());
     }
 }

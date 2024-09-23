@@ -1,14 +1,15 @@
 using System.Collections.Immutable;
 using BattleScene.Domain.Code;
-using BattleScene.InterfaceAdapter.Skill.AbstractClass;
-using BattleScene.InterfaceAdapter.Skill.PrimeSkill;
+using BattleScene.InterfaceAdapter.PrimeSkill;
+using BattleScene.InterfaceAdapter.PrimeSkill.BaseClass;
+using BattleScene.InterfaceAdapter.Skill.BaseClass;
 
 namespace BattleScene.InterfaceAdapter.Skill
 {
     /// <summary>
     ///     撫斬り
     /// </summary>
-    internal class NadegiriSkill : AbstractSkill
+    internal class NadegiriSkill : BaseSkill
     {
         public override SkillCode SkillCode { get; } = SkillCode.Nadegiri;
         public override int TechnicalPoint { get; } = 7;
@@ -18,7 +19,7 @@ namespace BattleScene.InterfaceAdapter.Skill
         public override MessageCode Description { get; } = MessageCode.NadegiriDescription;
         public override MessageCode AttackMessageCode { get; } = MessageCode.AttackMessage;
 
-        public override ImmutableList<AbstractDamage> DamageList { get; }
-            = ImmutableList.Create<AbstractDamage>(new Nadegiri());
+        public override ImmutableList<BaseDamage> DamageList { get; }
+            = ImmutableList.Create<BaseDamage>(new Nadegiri());
     }
 }

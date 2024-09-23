@@ -1,14 +1,15 @@
 using System.Collections.Immutable;
 using BattleScene.Domain.Code;
-using BattleScene.InterfaceAdapter.Skill.AbstractClass;
-using BattleScene.InterfaceAdapter.Skill.PrimeSkill;
+using BattleScene.InterfaceAdapter.PrimeSkill;
+using BattleScene.InterfaceAdapter.PrimeSkill.BaseClass;
+using BattleScene.InterfaceAdapter.Skill.BaseClass;
 
 namespace BattleScene.InterfaceAdapter.Skill
 {
     /// <summary>
     ///     スターシェル
     /// </summary>
-    internal class StarShellSkill : AbstractSkill
+    internal class StarShellSkill : BaseSkill
     {
         public override SkillCode SkillCode { get; } = SkillCode.StarShell;
         public override int TechnicalPoint { get; } = 3;
@@ -18,7 +19,7 @@ namespace BattleScene.InterfaceAdapter.Skill
         public override MessageCode Description { get; } = MessageCode.StarShellDescription;
         public override MessageCode AttackMessageCode { get; } = MessageCode.BuffMessage;
 
-        public override ImmutableList<AbstractBuff> BuffList { get; }
-            = ImmutableList.Create<AbstractBuff>(new StarShell());
+        public override ImmutableList<BaseBuff> BuffList { get; }
+            = ImmutableList.Create<BaseBuff>(new StarShell());
     }
 }

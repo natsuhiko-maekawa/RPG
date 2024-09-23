@@ -1,7 +1,8 @@
 using System.Collections.Immutable;
 using BattleScene.Domain.Code;
-using BattleScene.InterfaceAdapter.Skill.AbstractClass;
-using BattleScene.InterfaceAdapter.Skill.PrimeSkill;
+using BattleScene.InterfaceAdapter.PrimeSkill;
+using BattleScene.InterfaceAdapter.PrimeSkill.BaseClass;
+using BattleScene.InterfaceAdapter.Skill.BaseClass;
 using static BattleScene.Domain.Code.Range;
 
 namespace BattleScene.InterfaceAdapter.Skill
@@ -9,13 +10,13 @@ namespace BattleScene.InterfaceAdapter.Skill
     /// <summary>
     ///     混乱
     /// </summary>
-    internal class ConfusionSkill : AbstractSkill
+    internal class ConfusionSkill : BaseSkill
     {
         public override SkillCode SkillCode { get; } = SkillCode.Confusion;
         public override Range Range { get; } = Oneself;
         public override PlayerImageCode PlayerImageCode { get; } = PlayerImageCode.Confusion;
         public override MessageCode AttackMessageCode { get; } = MessageCode.ConfusionActMessage;
-        public override ImmutableList<AbstractDamage> DamageList { get; }
-            = ImmutableList.Create<AbstractDamage>(new AlwaysHitDamage());
+        public override ImmutableList<BaseDamage> DamageList { get; }
+            = ImmutableList.Create<BaseDamage>(new AlwaysHitDamage());
     }
 }

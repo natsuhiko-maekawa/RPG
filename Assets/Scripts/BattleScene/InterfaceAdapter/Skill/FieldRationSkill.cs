@@ -1,18 +1,19 @@
 using System.Collections.Immutable;
 using BattleScene.Domain.Code;
-using BattleScene.InterfaceAdapter.Skill.AbstractClass;
-using BattleScene.InterfaceAdapter.Skill.PrimeSkill;
+using BattleScene.InterfaceAdapter.PrimeSkill;
+using BattleScene.InterfaceAdapter.PrimeSkill.BaseClass;
+using BattleScene.InterfaceAdapter.Skill.BaseClass;
 
 namespace BattleScene.InterfaceAdapter.Skill
 {
     /// <summary>
     ///     レーション
     /// </summary>
-    internal class FieldRationSkill : AbstractSkill
+    internal class FieldRationSkill : BaseSkill
     {
         public FieldRationSkill(BasicCure basicCure)
         {
-            CureList = ImmutableList.Create<AbstractCure>(basicCure);
+            CureList = ImmutableList.Create<BaseCure>(basicCure);
         }
 
         public override SkillCode SkillCode { get; } = SkillCode.FieldRation;
@@ -22,6 +23,6 @@ namespace BattleScene.InterfaceAdapter.Skill
         public override MessageCode Description { get; } = MessageCode.FieldRationDescription;
         public override MessageCode AttackMessageCode { get; } = MessageCode.RestoreHitPointMessage;
 
-        public override ImmutableList<AbstractCure> CureList { get; }
+        public override ImmutableList<BaseCure> CureList { get; }
     }
 }

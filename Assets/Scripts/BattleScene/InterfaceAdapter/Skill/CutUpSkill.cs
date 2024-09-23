@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Immutable;
 using BattleScene.Domain.Code;
-using BattleScene.InterfaceAdapter.Skill.AbstractClass;
-using BattleScene.InterfaceAdapter.Skill.PrimeSkill;
+using BattleScene.InterfaceAdapter.PrimeSkill;
+using BattleScene.InterfaceAdapter.PrimeSkill.BaseClass;
+using BattleScene.InterfaceAdapter.Skill.BaseClass;
 using Utility.Interface;
 using static BattleScene.Domain.Code.MessageCode;
 using Range = BattleScene.Domain.Code.Range;
@@ -12,7 +13,7 @@ namespace BattleScene.InterfaceAdapter.Skill
     /// <summary>
     ///     切り刻み
     /// </summary>
-    internal class CutUpSkill : AbstractSkill
+    internal class CutUpSkill : BaseSkill
     {
         private readonly IRandomEx _randomEx;
         private readonly long _seed;
@@ -29,8 +30,8 @@ namespace BattleScene.InterfaceAdapter.Skill
         public override ImmutableList<BodyPartCode> DependencyList { get; } = ImmutableList.Create(BodyPartCode.Arm);
         public override MessageCode AttackMessageCode => GetAttackMessageCode();
 
-        public override ImmutableList<AbstractDamage> DamageList { get; }
-            = ImmutableList.Create<AbstractDamage>(new FiveTimeDamage());
+        public override ImmutableList<BaseDamage> DamageList { get; }
+            = ImmutableList.Create<BaseDamage>(new FiveTimeDamage());
 
         private MessageCode GetAttackMessageCode()
         {

@@ -1,14 +1,15 @@
 using System.Collections.Immutable;
 using BattleScene.Domain.Code;
-using BattleScene.InterfaceAdapter.Skill.AbstractClass;
-using BattleScene.InterfaceAdapter.Skill.PrimeSkill;
+using BattleScene.InterfaceAdapter.PrimeSkill;
+using BattleScene.InterfaceAdapter.PrimeSkill.BaseClass;
+using BattleScene.InterfaceAdapter.Skill.BaseClass;
 
 namespace BattleScene.InterfaceAdapter.Skill
 {
     /// <summary>
     ///     スモークボム
     /// </summary>
-    internal class SmokeBombSkill : AbstractSkill
+    internal class SmokeBombSkill : BaseSkill
     {
         public override SkillCode SkillCode { get; } = SkillCode.SmokeBomb;
         public override int TechnicalPoint { get; } = 5;
@@ -18,7 +19,7 @@ namespace BattleScene.InterfaceAdapter.Skill
         public override MessageCode Description { get; } = MessageCode.SmokeBombDescription;
         public override MessageCode AttackMessageCode { get; } = MessageCode.AttackMessage;
 
-        public override ImmutableList<AbstractAilment> AilmentList { get; }
-            = ImmutableList.Create<AbstractAilment>(new EnemyBlind());
+        public override ImmutableList<BaseAilment> AilmentList { get; }
+            = ImmutableList.Create<BaseAilment>(new EnemyBlind());
     }
 }

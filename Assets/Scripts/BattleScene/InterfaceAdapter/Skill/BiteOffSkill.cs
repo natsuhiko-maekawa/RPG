@@ -2,8 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using BattleScene.Domain.Code;
-using BattleScene.InterfaceAdapter.Skill.AbstractClass;
-using BattleScene.InterfaceAdapter.Skill.PrimeSkill;
+using BattleScene.InterfaceAdapter.PrimeSkill;
+using BattleScene.InterfaceAdapter.PrimeSkill.BaseClass;
+using BattleScene.InterfaceAdapter.Skill.BaseClass;
 using Utility.Interface;
 using Range = BattleScene.Domain.Code.Range;
 
@@ -12,7 +13,7 @@ namespace BattleScene.InterfaceAdapter.Skill
     /// <summary>
     ///     食いちぎり
     /// </summary>
-    internal class BiteOffSkill : AbstractSkill
+    internal class BiteOffSkill : BaseSkill
     {
         private readonly IRandomEx _randomEx;
         private readonly long _seed;
@@ -28,13 +29,13 @@ namespace BattleScene.InterfaceAdapter.Skill
         public override Range Range { get; } = Range.Solo;
         public override MessageCode AttackMessageCode => GetAttackMessageCode();
 
-        public override ImmutableList<AbstractDamage> DamageList { get; } =
-            ImmutableList.Create<AbstractDamage>(new BasicDamage());
+        public override ImmutableList<BaseDamage> DamageList { get; } =
+            ImmutableList.Create<BaseDamage>(new BasicDamage());
 
-        public override ImmutableList<AbstractSlipDamage> SlipDamageList { get; } =
-            ImmutableList.Create<AbstractSlipDamage>(new BleedingSkill());
+        public override ImmutableList<BaseSlip> SlipDamageList { get; } =
+            ImmutableList.Create<BaseSlip>(new BleedingSkill());
 
-        public override ImmutableList<AbstractDestroy> DestroyList => GetDestroyPartList();
+        public override ImmutableList<BaseDestroy> DestroyList => GetDestroyPartList();
 
         private MessageCode GetAttackMessageCode()
         {
@@ -48,9 +49,9 @@ namespace BattleScene.InterfaceAdapter.Skill
             return _randomEx.Choice(attackMessageList, _seed);
         }
 
-        private ImmutableList<AbstractDestroy> GetDestroyPartList()
+        private ImmutableList<BaseDestroy> GetDestroyPartList()
         {
-            var destroyList = new List<AbstractDestroy>()
+            var destroyList = new List<BaseDestroy>()
                 { new DestroyArm(), new DestroyLeg(), new DestroyStomach() };
             return ImmutableList.Create(_randomEx.Choice(destroyList, _seed));
         }

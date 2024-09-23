@@ -1,14 +1,15 @@
 using System.Collections.Immutable;
 using BattleScene.Domain.Code;
-using BattleScene.InterfaceAdapter.Skill.AbstractClass;
-using BattleScene.InterfaceAdapter.Skill.PrimeSkill;
+using BattleScene.InterfaceAdapter.PrimeSkill;
+using BattleScene.InterfaceAdapter.PrimeSkill.BaseClass;
+using BattleScene.InterfaceAdapter.Skill.BaseClass;
 
 namespace BattleScene.InterfaceAdapter.Skill
 {
     /// <summary>
     ///     侘助
     /// </summary>
-    internal class WabisukeSkill : AbstractSkill
+    internal class WabisukeSkill : BaseSkill
     {
         public override SkillCode SkillCode { get; } = SkillCode.Wabisuke;
         public override int TechnicalPoint { get; } = 10;
@@ -18,10 +19,10 @@ namespace BattleScene.InterfaceAdapter.Skill
         public override MessageCode Description { get; } = MessageCode.WabisukeDescription;
         public override MessageCode AttackMessageCode { get; } = MessageCode.AttackMessage;
 
-        public override ImmutableList<AbstractDamage> DamageList { get; }
-            = ImmutableList.Create<AbstractDamage>(new BasicDamage());
+        public override ImmutableList<BaseDamage> DamageList { get; }
+            = ImmutableList.Create<BaseDamage>(new BasicDamage());
 
-        public override ImmutableList<AbstractBuff> BuffList { get; }
-            = ImmutableList.Create<AbstractBuff>(new Wabisuke());
+        public override ImmutableList<BaseBuff> BuffList { get; }
+            = ImmutableList.Create<BaseBuff>(new Wabisuke());
     }
 }

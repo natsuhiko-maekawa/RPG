@@ -2,15 +2,16 @@ using System.Collections.Immutable;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.IRepository;
-using BattleScene.InterfaceAdapter.Skill.AbstractClass;
-using BattleScene.InterfaceAdapter.Skill.PrimeSkill;
+using BattleScene.InterfaceAdapter.PrimeSkill;
+using BattleScene.InterfaceAdapter.PrimeSkill.BaseClass;
+using BattleScene.InterfaceAdapter.Skill.BaseClass;
 
 namespace BattleScene.InterfaceAdapter.Skill
 {
     /// <summary>
     ///     村雨
     /// </summary>
-    internal class MurasameSkill : AbstractSkill
+    internal class MurasameSkill : BaseSkill
     {
         private readonly IRepository<SlipDamageEntity, SlipDamageCode> _slipDamageRepository;
 
@@ -27,16 +28,16 @@ namespace BattleScene.InterfaceAdapter.Skill
         public override MessageCode Description { get; } = MessageCode.MurasameDescription;
         public override MessageCode AttackMessageCode { get; } = MessageCode.AttackMessage;
 
-        public override ImmutableList<AbstractDamage> DamageList { get; }
-            = ImmutableList.Create<AbstractDamage>(new BasicDamage());
+        public override ImmutableList<BaseDamage> DamageList { get; }
+            = ImmutableList.Create<BaseDamage>(new BasicDamage());
 
-        public override ImmutableList<AbstractReset> ResetList => GetResetList();
+        public override ImmutableList<BaseReset> ResetList => GetResetList();
 
-        private ImmutableList<AbstractReset> GetResetList()
+        private ImmutableList<BaseReset> GetResetList()
         {
             return _slipDamageRepository.Select(SlipDamageCode.Burning) == null
-                ? ImmutableList<AbstractReset>.Empty
-                : ImmutableList.Create<AbstractReset>(new BurningReset());
+                ? ImmutableList<BaseReset>.Empty
+                : ImmutableList.Create<BaseReset>(new BurningReset());
         }
     }
 }

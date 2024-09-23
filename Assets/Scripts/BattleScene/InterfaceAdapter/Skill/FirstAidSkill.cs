@@ -1,14 +1,15 @@
 using System.Collections.Immutable;
 using BattleScene.Domain.Code;
-using BattleScene.InterfaceAdapter.Skill.AbstractClass;
-using BattleScene.InterfaceAdapter.Skill.PrimeSkill;
+using BattleScene.InterfaceAdapter.PrimeSkill;
+using BattleScene.InterfaceAdapter.PrimeSkill.BaseClass;
+using BattleScene.InterfaceAdapter.Skill.BaseClass;
 
 namespace BattleScene.InterfaceAdapter.Skill
 {
     /// <summary>
     ///     ファーストエイド
     /// </summary>
-    internal class FirstAidSkill : AbstractSkill
+    internal class FirstAidSkill : BaseSkill
     {
         public override SkillCode SkillCode { get; } = SkillCode.FirstAid;
         public override int TechnicalPoint { get; } = 3;
@@ -17,7 +18,7 @@ namespace BattleScene.InterfaceAdapter.Skill
         public override MessageCode Description { get; } = MessageCode.FirstAidDescription;
         public override MessageCode AttackMessageCode { get; } = MessageCode.RecoverDestroyedPartMessage;
 
-        public override ImmutableList<AbstractReset> ResetList { get; }
-            = ImmutableList.Create<AbstractReset>(new FirstAid());
+        public override ImmutableList<BaseReset> ResetList { get; }
+            = ImmutableList.Create<BaseReset>(new FirstAid());
     }
 }

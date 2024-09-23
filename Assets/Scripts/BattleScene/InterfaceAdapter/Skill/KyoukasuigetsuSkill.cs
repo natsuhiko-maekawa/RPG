@@ -1,7 +1,8 @@
 using System.Collections.Immutable;
 using BattleScene.Domain.Code;
-using BattleScene.InterfaceAdapter.Skill.AbstractClass;
-using BattleScene.InterfaceAdapter.Skill.PrimeSkill;
+using BattleScene.InterfaceAdapter.PrimeSkill;
+using BattleScene.InterfaceAdapter.PrimeSkill.BaseClass;
+using BattleScene.InterfaceAdapter.Skill.BaseClass;
 using Range = BattleScene.Domain.Code.Range;
 
 namespace BattleScene.InterfaceAdapter.Skill
@@ -9,7 +10,7 @@ namespace BattleScene.InterfaceAdapter.Skill
     /// <summary>
     ///     鏡花水月
     /// </summary>
-    internal class KyoukasuigetsuSkill : AbstractSkill
+    internal class KyoukasuigetsuSkill : BaseSkill
     {
         public override SkillCode SkillCode { get; } = SkillCode.Kyoukasuigetsu;
         public override ImmutableList<BodyPartCode> DependencyList { get; } = ImmutableList.Create(BodyPartCode.Arm);
@@ -18,10 +19,10 @@ namespace BattleScene.InterfaceAdapter.Skill
         public override MessageCode Description { get; } = MessageCode.KyoukasuigetsuDescription;
         public override MessageCode AttackMessageCode { get; } = MessageCode.NoMessage;
 
-        public override ImmutableList<AbstractAilment> AilmentList { get; } 
-            = ImmutableList.Create<AbstractAilment>(new AbsoluteConfusion());
+        public override ImmutableList<BaseAilment> AilmentList { get; } 
+            = ImmutableList.Create<BaseAilment>(new AbsoluteConfusion());
 
-        public override ImmutableList<AbstractDamage> DamageList { get; }
-            = ImmutableList.Create<AbstractDamage>(new BasicDamage());
+        public override ImmutableList<BaseDamage> DamageList { get; }
+            = ImmutableList.Create<BaseDamage>(new BasicDamage());
     }
 }

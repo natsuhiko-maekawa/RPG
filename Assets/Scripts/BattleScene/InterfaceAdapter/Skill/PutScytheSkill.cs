@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Immutable;
 using BattleScene.Domain.Code;
-using BattleScene.InterfaceAdapter.Skill.AbstractClass;
-using BattleScene.InterfaceAdapter.Skill.PrimeSkill;
+using BattleScene.InterfaceAdapter.PrimeSkill;
+using BattleScene.InterfaceAdapter.PrimeSkill.BaseClass;
+using BattleScene.InterfaceAdapter.Skill.BaseClass;
 using Utility.Interface;
 using Range = BattleScene.Domain.Code.Range;
 
@@ -11,7 +12,7 @@ namespace BattleScene.InterfaceAdapter.Skill
     /// <summary>
     ///     命を刈る鎌
     /// </summary>
-    internal class PutScytheSkill : AbstractSkill
+    internal class PutScytheSkill : BaseSkill
     {
         private readonly IRandomEx _randomEx;
         private readonly long _seed;
@@ -28,8 +29,8 @@ namespace BattleScene.InterfaceAdapter.Skill
         public override Range Range { get; } = Range.Solo;
         public override MessageCode AttackMessageCode => GetAttackMessageCode();
 
-        public override ImmutableList<AbstractDamage> DamageList { get; }
-            = ImmutableList.Create<AbstractDamage>(new BasicDamage());
+        public override ImmutableList<BaseDamage> DamageList { get; }
+            = ImmutableList.Create<BaseDamage>(new BasicDamage());
 
         private MessageCode GetAttackMessageCode()
         {

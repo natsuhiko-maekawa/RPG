@@ -5,8 +5,9 @@ using System.Linq;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.ValueObject;
+using BattleScene.InterfaceAdapter.PrimeSkill.BaseClass;
 using BattleScene.InterfaceAdapter.Skill;
-using BattleScene.InterfaceAdapter.Skill.AbstractClass;
+using BattleScene.InterfaceAdapter.Skill.BaseClass;
 using VContainer;
 using static BattleScene.Domain.Code.SkillCode;
 
@@ -45,7 +46,7 @@ namespace BattleScene.InterfaceAdapter
                 slipParameterList: slipParameterList);
         }
 
-        private AbstractSkill Resolve(SkillCode skillCode)
+        private BaseSkill Resolve(SkillCode skillCode)
         {
             return skillCode switch
             {
@@ -88,7 +89,7 @@ namespace BattleScene.InterfaceAdapter
         }
 
         private ImmutableList<AilmentParameterValueObject> CreateAilmentParameterList(
-            IList<AbstractAilment> ailmentList)
+            IList<BaseAilment> ailmentList)
         {
             if (ailmentList == null) return ImmutableList<AilmentParameterValueObject>.Empty;
             return ailmentList
@@ -98,7 +99,7 @@ namespace BattleScene.InterfaceAdapter
                 .ToImmutableList();
         }
 
-        private ImmutableList<BuffParameterValueObject> CreateBuffParameterList(IList<AbstractBuff> buffList)
+        private ImmutableList<BuffParameterValueObject> CreateBuffParameterList(IList<BaseBuff> buffList)
         {
             return buffList
                 .Select(x => new BuffParameterValueObject(
@@ -109,7 +110,7 @@ namespace BattleScene.InterfaceAdapter
                 .ToImmutableList();
         }
 
-        private ImmutableList<DamageParameterValueObject> CreateDamageParameterList(IList<AbstractDamage> damageList)
+        private ImmutableList<DamageParameterValueObject> CreateDamageParameterList(IList<BaseDamage> damageList)
         {
             if (damageList == null) return ImmutableList<DamageParameterValueObject>.Empty;
             return damageList
@@ -125,7 +126,7 @@ namespace BattleScene.InterfaceAdapter
         }
 
         private ImmutableList<DestroyedParameterValueObject> CreateDestroyParameterList(
-            IList<AbstractDestroy> destroyPartList)
+            IList<BaseDestroy> destroyPartList)
         {
             return destroyPartList
                 .Select(x => new DestroyedParameterValueObject(
@@ -136,7 +137,7 @@ namespace BattleScene.InterfaceAdapter
         }
 
         private ImmutableList<RestoreParameterValueObject> CreateRestoreParameterList(
-            IList<AbstractRestore> restoreList)
+            IList<BaseRestore> restoreList)
         {
             return restoreList
                 .Select(x => new RestoreParameterValueObject(
@@ -144,7 +145,7 @@ namespace BattleScene.InterfaceAdapter
                 .ToImmutableList();
         }
 
-        private ImmutableList<SlipParameterValueObject> CreateSlipParameterList(IList<AbstractSlipDamage> slipList)
+        private ImmutableList<SlipParameterValueObject> CreateSlipParameterList(IList<BaseSlip> slipList)
         {
             return slipList
                 .Select(x => new SlipParameterValueObject(
