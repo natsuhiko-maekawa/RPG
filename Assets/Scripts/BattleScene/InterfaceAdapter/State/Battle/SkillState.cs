@@ -6,11 +6,11 @@ using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.ValueObject;
 using BattleScene.InterfaceAdapter.Presenter;
 using BattleScene.InterfaceAdapter.Service;
-using BattleScene.InterfaceAdapter.State.Battle;
+using BattleScene.InterfaceAdapter.State.Skill;
 using BattleScene.UseCases.Service;
 using VContainer;
 
-namespace BattleScene.InterfaceAdapter.State.Skill
+namespace BattleScene.InterfaceAdapter.State.Battle
 {
     public class SkillState : AbstractState
     {
