@@ -6,10 +6,5 @@ namespace BattleScene.InterfaceAdapter.PrimeSkill
     public class DestroyArm : BaseDestroy
     {
         public override BodyPartCode BodyPartCode { get; } = BodyPartCode.Arm;
-
-        public override BodyPartCode GetDestroyPart()
-        {
-            return BodyPartCode.Arm;
-        }
     }
 }
