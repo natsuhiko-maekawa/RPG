@@ -1,16 +1,17 @@
-﻿using BattleScene.Domain.Code;
+﻿using System.Linq;
+using BattleScene.Domain.Code;
 using BattleScene.Domain.ValueObject;
 using BattleScene.InterfaceAdapter.Presenter;
 
 namespace BattleScene.InterfaceAdapter.State.PrimeSkill
 {
-    public class AilmentMessageState : PrimeSkillOutputState<AilmentParameterValueObject, AilmentValueObject>
+    public class AilmentOutputState : PrimeSkillOutputState<AilmentParameterValueObject, AilmentValueObject>
     {
         private readonly MessageViewPresenter _messageView;
         private readonly PlayerImageViewPresenter _playerImageView;
         private readonly PrimeSkillStopState<AilmentParameterValueObject, AilmentValueObject> _primeSkillStopState;
 
-        public AilmentMessageState(
+        public AilmentOutputState(
             MessageViewPresenter messageView,
             PlayerImageViewPresenter playerImageView,
             PrimeSkillStopState<AilmentParameterValueObject, AilmentValueObject> primeSkillStopState)
@@ -22,7 +23,12 @@ namespace BattleScene.InterfaceAdapter.State.PrimeSkill
 
         public override void Start()
         {
-            _messageView.StartMessageAnimationAsync(MessageCode.AilmentMessage);
+            var failure = Context.PrimeSkillList
+                .All(x => x.ActualTargetIdList.Count == 0);
+            var messageCode = failure
+                ? MessageCode.FailAilmentMessage
+                : MessageCode.AilmentMessage;
+            _messageView.StartMessageAnimationAsync(messageCode);
             _playerImageView.StartAnimationAsync(PlayerImageCode.Suffocation);
         }
         

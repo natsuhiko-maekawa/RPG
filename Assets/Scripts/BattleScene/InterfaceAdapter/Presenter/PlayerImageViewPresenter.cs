@@ -1,4 +1,5 @@
-﻿using BattleScene.DataAccess;
+﻿using System.Threading.Tasks;
+using BattleScene.DataAccess;
 using BattleScene.DataAccess.Dto;
 using BattleScene.Domain.Code;
 using BattleScene.Framework.View;
@@ -19,7 +20,7 @@ namespace BattleScene.InterfaceAdapter.Presenter
             _playerView = playerView;
         }
 
-        public async void StartAnimationAsync(PlayerImageCode playerImageCode)
+        public async Task StartAnimationAsync(PlayerImageCode playerImageCode)
         {
             var playerImagePath = _playerImagePathResource.Get(playerImageCode).PlayerImagePath;
             var dto = new PlayerViewDto(playerImagePath);
