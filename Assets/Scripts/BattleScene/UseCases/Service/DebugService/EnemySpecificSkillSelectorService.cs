@@ -10,14 +10,14 @@ using BattleScene.UseCases.IService;
 
 namespace BattleScene.UseCases.Service.DebugService
 {
-    public class EnemySlipSelectorService : IEnemySkillSelectorService
+    public class EnemySpecificSkillSelectorService : IEnemySkillSelectorService
     {
         private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
         private readonly IFactory<PropertyValueObject, CharacterTypeCode> _characterPropertyFactory;
         private readonly IFactory<SkillValueObject, SkillCode> _skillFactory;
         private readonly OrderedItemsDomainService _orderItems;
 
-        public EnemySlipSelectorService(
+        public EnemySpecificSkillSelectorService(
             IRepository<CharacterEntity, CharacterId> characterRepository,
             IFactory<PropertyValueObject, CharacterTypeCode> characterPropertyFactory,
             IFactory<SkillValueObject, SkillCode> skillFactory,
@@ -35,7 +35,7 @@ namespace BattleScene.UseCases.Service.DebugService
             var characterTypeCode = _characterRepository.Select(characterId).CharacterTypeCode;
             var skillCodeList = _characterPropertyFactory.Create(characterTypeCode).Skills;
             var skillCode = skillCodeList
-                .FirstOrDefault(x => !_skillFactory.Create(x).AilmentParameterList.IsEmpty);
+                .FirstOrDefault(x => !_skillFactory.Create(x).DestroyedParameterList.IsEmpty);
             skillCode = skillCode == SkillCode.NoSkill
                 ? skillCodeList.First()
                 : skillCode;
