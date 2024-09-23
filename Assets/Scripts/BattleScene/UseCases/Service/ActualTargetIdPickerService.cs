@@ -24,8 +24,8 @@ namespace BattleScene.UseCases.Service
             _randomEx = randomEx;
         }
 
-        public ImmutableList<CharacterId> Pick(
-            IList<CharacterId> targetIdList,
+        public IReadOnlyList<CharacterId> Pick(
+            IReadOnlyList<CharacterId> targetIdList,
             float luckRate = 1.0f)
         {
             _orderedItems.First().TryGetCharacterId(out var actorId);

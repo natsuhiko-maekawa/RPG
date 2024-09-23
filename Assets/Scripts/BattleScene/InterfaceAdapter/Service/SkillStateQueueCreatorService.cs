@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DataAccess;
@@ -14,6 +15,7 @@ namespace BattleScene.InterfaceAdapter.Service
         private readonly AilmentStateFactory _ailmentStateFactory;
         private readonly BuffStateFactory _buffStateFactory;
         private readonly DamageStateFactory _damageStateFactory;
+        private readonly DestroyStateFactory _destroyStateFactory;
         private readonly RestoreStateFactory _restoreStateFactory;
         private readonly SlipStateFactory _slipStateFactory;
 
@@ -22,6 +24,7 @@ namespace BattleScene.InterfaceAdapter.Service
             AilmentStateFactory ailmentStateFactory,
             BuffStateFactory buffStateFactory,
             DamageStateFactory damageStateFactory,
+            DestroyStateFactory destroyStateFactory,
             RestoreStateFactory restoreStateFactory,
             SlipStateFactory slipStateFactory)
         {
@@ -29,6 +32,7 @@ namespace BattleScene.InterfaceAdapter.Service
             _ailmentStateFactory = ailmentStateFactory;
             _buffStateFactory = buffStateFactory;
             _damageStateFactory = damageStateFactory;
+            _destroyStateFactory = destroyStateFactory;
             _restoreStateFactory = restoreStateFactory;
             _slipStateFactory = slipStateFactory;
         }
@@ -38,6 +42,7 @@ namespace BattleScene.InterfaceAdapter.Service
             var skill = _skillFactory.Create(skillCode);
             var skillStates = Enumerable.Empty<AbstractSkillState>()
                 .Concat(CreateAilmentState())
+                .Concat(CreateDestroyState())
                 .Concat(CreateDamageState())
                 .Concat(CreateBuffState())
                 .Concat(skill.RestoreParameterList.Select(x => _restoreStateFactory.Create(skill.SkillCommon, x)))
@@ -58,6 +63,18 @@ namespace BattleScene.InterfaceAdapter.Service
                     targetIdList: targetIdList);
                 ailmentStates = ailmentStates.Append(ailmentState);
                 return ailmentStates;
+            }
+
+            IEnumerable<AbstractSkillState> CreateDestroyState()
+            {
+                var destroyStates = Enumerable.Empty<AbstractSkillState>();
+                if (skill.DestroyedParameterList.IsEmpty) return destroyStates;
+                var destroyState = _destroyStateFactory.Create(
+                    skillCommon: skill.SkillCommon,
+                    destroyedParameterList: skill.DestroyedParameterList,
+                    targetIdList: targetIdList);
+                destroyStates = destroyStates.Append(destroyState);
+                return destroyStates;
             }
 
             IEnumerable<AbstractSkillState> CreateDamageState()

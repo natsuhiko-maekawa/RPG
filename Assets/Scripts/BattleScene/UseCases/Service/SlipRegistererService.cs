@@ -21,7 +21,7 @@ namespace BattleScene.UseCases.Service
 
         public void Register(SlipValueObject slip)
         {
-            if (slip.ActualTargetIdList.IsEmpty) return;
+            if (slip.ActualTargetIdList.Count == 0) return;
             var slipDefaultTurn = _battlePropertyFactory.Create().SlipDefaultTurn;
             var slipEntity = new SlipDamageEntity(
                 slipDamageCode: slip.SlipDamageCode,

@@ -54,6 +54,7 @@ namespace BattleScene.UseCases.Service
             }
         }
         
+        // TODO: ActualTargetIdPickerService.Pick()に置き換える
         private IReadOnlyList<CharacterId> GetActualTargetIdList(
             IReadOnlyList<CharacterId> targetIdList,
             AilmentParameterValueObject ailmentParameter)

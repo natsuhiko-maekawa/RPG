@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.Immutable;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
@@ -23,7 +22,7 @@ namespace BattleScene.UseCases.Service
         public SlipValueObject Generate(
             SkillCommonValueObject skillCommon,
             SlipParameterValueObject slipParameter,
-            IList<CharacterId> targetIdList)
+            IReadOnlyList<CharacterId> targetIdList)
         {
             if (!_orderedItems.First().TryGetCharacterId(out var actorId)) throw new InvalidOperationException();
             var actualTargetIdList = _actualTargetIdPicker.Pick(
@@ -34,7 +33,7 @@ namespace BattleScene.UseCases.Service
                 ActorId: actorId,
                 SkillCode: skillCommon.SkillCode,
                 SlipDamageCode: slipParameter.SlipDamageCode,
-                TargetIdList: targetIdList.ToImmutableList(),
+                TargetIdList: targetIdList,
                 ActualTargetIdList: actualTargetIdList);
             return slip;
         }

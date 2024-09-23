@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Collections.Immutable;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.Id;
 
@@ -9,20 +8,23 @@ namespace BattleScene.Domain.ValueObject
     {
         public DestroyedPartValueObject(
             CharacterId actorId,
-            IList<CharacterId> targetIdList,
+            IReadOnlyList<CharacterId> targetIdList,
+            IReadOnlyList<CharacterId> actualTargetIdList,
             SkillCode skillCode,
             BodyPartCode bodyPartCode,
             int destroyCount)
         {
             ActorId = actorId;
-            TargetIdList = targetIdList.ToImmutableList();
+            TargetIdList = targetIdList;
+            ActualTargetIdList = actualTargetIdList;
             SkillCode = skillCode;
             BodyPartCode = bodyPartCode;
             DestroyCount = destroyCount;
         }
         
         public CharacterId ActorId { get; }
-        public ImmutableList<CharacterId> TargetIdList { get; }
+        public IReadOnlyList<CharacterId> TargetIdList { get; }
+        public IReadOnlyList<CharacterId> ActualTargetIdList { get; }
         public SkillCode SkillCode { get; }
         public BodyPartCode BodyPartCode { get; }
         public int DestroyCount { get; }

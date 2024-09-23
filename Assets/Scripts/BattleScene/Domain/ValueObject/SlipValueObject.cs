@@ -1,4 +1,4 @@
-﻿using System.Collections.Immutable;
+﻿using System.Collections.Generic;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.Id;
 
@@ -8,6 +8,6 @@ namespace BattleScene.Domain.ValueObject
         CharacterId ActorId,
         SkillCode SkillCode,
         SlipDamageCode SlipDamageCode,
-        ImmutableList<CharacterId> TargetIdList,
-        ImmutableList<CharacterId> ActualTargetIdList);
+        IReadOnlyList<CharacterId> TargetIdList,
+        IReadOnlyList<CharacterId> ActualTargetIdList);
 }

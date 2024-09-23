@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Collections.Immutable;
 using System.Linq;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DomainService;
@@ -14,36 +12,50 @@ namespace BattleScene.UseCases.Service
 {
     public class DestroyedPartGeneratorService
     {
+        private readonly ActualTargetIdPickerService _actualTargetIdPicker;
         private readonly OrderedItemsDomainService _orderedItems;
         private readonly IRepository<BodyPartEntity, (CharacterId, BodyPartCode)> _bodyPartRepository;
         private readonly IRandomEx _randomEx;
         private readonly TargetDomainService _target;
 
-        public DestroyedPartValueObject Generate(
-            SkillCommonValueObject skillCommon,
-            DestroyedParameterValueObject destroyedParameter)
+        public DestroyedPartGeneratorService(
+            ActualTargetIdPickerService actualTargetIdPicker,
+            OrderedItemsDomainService orderedItems,
+            IRepository<BodyPartEntity, (CharacterId, BodyPartCode)> bodyPartRepository,
+            IRandomEx randomEx,
+            TargetDomainService target)
         {
-            _orderedItems.First().TryGetCharacterId(out var actorId);
-            var targetIdList = _target.Get(actorId, skillCommon.Range)
-                .Where(_ => _randomEx.Probability(destroyedParameter.LuckRate))
-                .Where(x => _bodyPartRepository.Select()
-                    .First(y => Equals(y.CharacterId, x) && y.BodyPartCode == destroyedParameter.BodyPartCode)
-                    .IsAvailable())
-                .ToImmutableList();
-
-            return new DestroyedPartValueObject(
-                actorId: actorId,
-                targetIdList: targetIdList,
-                skillCode: skillCommon.SkillCode,
-                bodyPartCode: destroyedParameter.BodyPartCode,
-                destroyCount: destroyedParameter.Count);
+            _actualTargetIdPicker = actualTargetIdPicker;
+            _orderedItems = orderedItems;
+            _bodyPartRepository = bodyPartRepository;
+            _randomEx = randomEx;
+            _target = target;
         }
 
-        public BodyPartEntity Create(
-            IList<BodyPartEntity> bodyPartList,
-            DestroyedPartValueObject destroyedPart)
+        public IReadOnlyList<DestroyedPartValueObject> Generate(
+            SkillCommonValueObject skillCommon,
+            IReadOnlyList<DestroyedParameterValueObject> destroyedParameterList,
+            IReadOnlyList<CharacterId> targetIdList)
         {
-            throw new NotImplementedException();
+            _orderedItems.First().TryGetCharacterId(out var actorId);
+            var destroyList = destroyedParameterList.Select(GetDestroy).ToList();
+            return destroyList;
+
+            DestroyedPartValueObject GetDestroy(DestroyedParameterValueObject destroyedParameter)
+            {
+                var actualTargetIdList = _actualTargetIdPicker.Pick(
+                    targetIdList: targetIdList,
+                    luckRate: destroyedParameter.LuckRate);
+                
+                var destroy = new DestroyedPartValueObject(
+                    actorId: actorId,
+                    targetIdList: targetIdList,
+                    actualTargetIdList: actualTargetIdList,
+                    skillCode: skillCommon.SkillCode,
+                    bodyPartCode: destroyedParameter.BodyPartCode,
+                    destroyCount: destroyedParameter.Count);
+                return destroy;
+            }
         }
     }
 }
