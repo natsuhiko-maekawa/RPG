@@ -1,15 +1,8 @@
 ﻿@startuml
 start
-switch()
-    case(行動不能)
-        :AilmentState]
-        if() then (yes)
-            :AilmentMessageState]
-        else (no)
-            :AilmentFailureState]
-        endif
-        :SkillEndState]
-    case(スリップ)
-        :SlipState]
+:PrimeSkillStartState]
+repeat :PrimeSkillOutputState]
+repeat while (表示するメッセージが残っている)
+:PrimeSkillStopState]
 stop
 @enduml
