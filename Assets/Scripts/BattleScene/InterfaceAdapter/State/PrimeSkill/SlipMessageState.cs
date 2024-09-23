@@ -4,7 +4,7 @@ using BattleScene.InterfaceAdapter.Presenter;
 
 namespace BattleScene.InterfaceAdapter.State.PrimeSkill
 {
-    public class SlipMessageState : BaseState<SlipParameterValueObject, SlipValueObject>
+    public class SlipMessageState : PrimeSkillOutputState<SlipParameterValueObject, SlipValueObject>
     {
         private readonly MessageViewPresenter _messageView;
         private readonly PrimeSkillStopState<SlipParameterValueObject, SlipValueObject> _primeSkillStopState;

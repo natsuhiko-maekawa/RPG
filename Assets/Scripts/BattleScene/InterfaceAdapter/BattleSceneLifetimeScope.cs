@@ -228,10 +228,10 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<EnemySelectSkillState>(Lifetime.Singleton);
             builder.Register<SkillState>(Lifetime.Singleton);
             builder.Register<PrimeSkillOutputState<AilmentParameterValueObject, AilmentValueObject>, AilmentOutputState>(Lifetime.Singleton);
-            builder.Register<BuffMessageState>(Lifetime.Singleton);
+            builder.Register<PrimeSkillOutputState<BuffParameterValueObject, BuffValueObject>, BuffMessageState>(Lifetime.Singleton);
             builder.Register<PrimeSkillOutputState<DamageParameterValueObject, DamageValueObject>, DamageMessageState>(Lifetime.Singleton);
-            builder.Register<RestoreMessageState>(Lifetime.Singleton);
-            builder.Register<SlipMessageState>(Lifetime.Singleton);
+            builder.Register<PrimeSkillOutputState<RestoreParameterValueObject, RestoreValueObject>, RestoreMessageState>(Lifetime.Singleton);
+            builder.Register<PrimeSkillOutputState<SlipParameterValueObject, SlipValueObject>, SlipMessageState>(Lifetime.Singleton);
             builder.Register<TurnEndState>(Lifetime.Singleton);
             builder.Register<PrimeSkillStartState<AilmentParameterValueObject, AilmentValueObject>>(Lifetime.Singleton);
             builder.Register<PrimeSkillStartState<DestroyedParameterValueObject, DestroyedPartValueObject>>(Lifetime.Singleton);
@@ -240,7 +240,11 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<PrimeSkillStartState<RestoreParameterValueObject, RestoreValueObject>>(Lifetime.Singleton);
             builder.Register<PrimeSkillStartState<SlipParameterValueObject, SlipValueObject>>(Lifetime.Singleton);
             builder.Register<PrimeSkillStopState<AilmentParameterValueObject, AilmentValueObject>>(Lifetime.Singleton);
+            builder.Register<PrimeSkillStopState<DestroyedParameterValueObject, DestroyedPartValueObject>>(Lifetime.Singleton);
             builder.Register<PrimeSkillStopState<DamageParameterValueObject, DamageValueObject>>(Lifetime.Singleton);
+            builder.Register<PrimeSkillStopState<BuffParameterValueObject, BuffValueObject>>(Lifetime.Singleton);
+            builder.Register<PrimeSkillStopState<RestoreParameterValueObject, RestoreValueObject>>(Lifetime.Singleton);
+            builder.Register<PrimeSkillStopState<SlipParameterValueObject, SlipValueObject>>(Lifetime.Singleton);
             #endregion
 
             #region MyRegion

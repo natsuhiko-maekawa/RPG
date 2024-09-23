@@ -10,7 +10,7 @@ using BattleScene.InterfaceAdapter.Presenter;
 
 namespace BattleScene.InterfaceAdapter.State.PrimeSkill
 {
-    public class BuffMessageState : BaseState<BuffParameterValueObject, BuffValueObject>
+    public class BuffMessageState : PrimeSkillOutputState<BuffParameterValueObject, BuffValueObject>
     {
         private readonly IRepository<BattleLogEntity, BattleLogId> _battleLogRepository;
         private readonly IResource<BuffViewDto, BuffCode> _buffViewResource;

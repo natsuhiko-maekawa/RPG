@@ -4,7 +4,7 @@ using BattleScene.InterfaceAdapter.Presenter;
 
 namespace BattleScene.InterfaceAdapter.State.PrimeSkill
 {
-    public class RestoreMessageState : BaseState<RestoreParameterValueObject, RestoreValueObject>
+    public class RestoreMessageState : PrimeSkillOutputState<RestoreParameterValueObject, RestoreValueObject>
     {
         private readonly MessageViewPresenter _messageView;
         private readonly PrimeSkillStopState<RestoreParameterValueObject, RestoreValueObject> _primeSkillStopState;
