@@ -4,9 +4,9 @@ using BattleScene.Domain.Id;
 
 namespace BattleScene.Domain.ValueObject
 {
-    public class DestroyedPartValueObject
+    public class DestroyValueObject
     {
-        public DestroyedPartValueObject(
+        public DestroyValueObject(
             CharacterId actorId,
             IReadOnlyList<CharacterId> targetIdList,
             IReadOnlyList<CharacterId> actualTargetIdList,

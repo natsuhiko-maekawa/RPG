@@ -125,11 +125,11 @@ namespace BattleScene.InterfaceAdapter
                 .ToImmutableList();
         }
 
-        private ImmutableList<DestroyedParameterValueObject> CreateDestroyParameterList(
+        private ImmutableList<DestroyParameterValueObject> CreateDestroyParameterList(
             IList<BaseDestroy> destroyPartList)
         {
             return destroyPartList
-                .Select(x => new DestroyedParameterValueObject(
+                .Select(x => new DestroyParameterValueObject(
                     BodyPartCode: x.BodyPartCode,
                     LuckRate: x.LuckRate,
                     Count: x.Count))

@@ -234,13 +234,13 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<PrimeSkillOutputState<SlipParameterValueObject, SlipValueObject>, SlipMessageState>(Lifetime.Singleton);
             builder.Register<TurnEndState>(Lifetime.Singleton);
             builder.Register<PrimeSkillStartState<AilmentParameterValueObject, AilmentValueObject>>(Lifetime.Singleton);
-            builder.Register<PrimeSkillStartState<DestroyedParameterValueObject, DestroyedPartValueObject>>(Lifetime.Singleton);
+            builder.Register<PrimeSkillStartState<DestroyParameterValueObject, DestroyValueObject>>(Lifetime.Singleton);
             builder.Register<PrimeSkillStartState<DamageParameterValueObject, DamageValueObject>>(Lifetime.Singleton);
             builder.Register<PrimeSkillStartState<BuffParameterValueObject, BuffValueObject>>(Lifetime.Singleton);
             builder.Register<PrimeSkillStartState<RestoreParameterValueObject, RestoreValueObject>>(Lifetime.Singleton);
             builder.Register<PrimeSkillStartState<SlipParameterValueObject, SlipValueObject>>(Lifetime.Singleton);
             builder.Register<PrimeSkillStopState<AilmentParameterValueObject, AilmentValueObject>>(Lifetime.Singleton);
-            builder.Register<PrimeSkillStopState<DestroyedParameterValueObject, DestroyedPartValueObject>>(Lifetime.Singleton);
+            builder.Register<PrimeSkillStopState<DestroyParameterValueObject, DestroyValueObject>>(Lifetime.Singleton);
             builder.Register<PrimeSkillStopState<DamageParameterValueObject, DamageValueObject>>(Lifetime.Singleton);
             builder.Register<PrimeSkillStopState<BuffParameterValueObject, BuffValueObject>>(Lifetime.Singleton);
             builder.Register<PrimeSkillStopState<RestoreParameterValueObject, RestoreValueObject>>(Lifetime.Singleton);
@@ -268,7 +268,7 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<DamageEvaluatorService>(Lifetime.Singleton);
             builder.Register<DamageGeneratorService>(Lifetime.Singleton);
             builder.Register<DamageRegistererService>(Lifetime.Singleton);
-            builder.Register<DestroyedPartGeneratorService>(Lifetime.Singleton);
+            builder.Register<DestroyGeneratorService>(Lifetime.Singleton);
             builder.Register<IsHitEvaluatorService>(Lifetime.Singleton);
             builder.Register<OrderService>(Lifetime.Singleton);
             builder.Register<RestoreGeneratorService>(Lifetime.Singleton);

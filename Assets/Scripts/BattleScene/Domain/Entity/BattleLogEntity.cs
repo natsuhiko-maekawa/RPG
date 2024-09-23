@@ -79,17 +79,17 @@ namespace BattleScene.Domain.Entity
             BattleLogId battleLogId,
             int sequence,
             int turn,
-            DestroyedPartValueObject destroyedPart)
+            DestroyValueObject destroy)
         {
             Id = battleLogId;
             Sequence = sequence;
             Turn = turn;
             ActionCode = ActionCode.Skill;
-            ActorId = destroyedPart.ActorId;
-            TargetIdList = destroyedPart.TargetIdList;
-            SkillCode = destroyedPart.SkillCode;
-            DestroyedPart = destroyedPart.BodyPartCode;
-            DestroyCount = destroyedPart.DestroyCount;
+            ActorId = destroy.ActorId;
+            TargetIdList = destroy.TargetIdList;
+            SkillCode = destroy.SkillCode;
+            DestroyedPart = destroy.BodyPartCode;
+            DestroyCount = destroy.DestroyCount;
         }
 
         public BattleLogEntity(

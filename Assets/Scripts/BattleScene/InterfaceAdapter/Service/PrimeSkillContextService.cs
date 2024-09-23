@@ -65,7 +65,7 @@ namespace BattleScene.InterfaceAdapter.Service
             if (skill.DestroyedParameterList.Count != 0)
             {
                 var destroyContext
-                    = CreateContext<DestroyedParameterValueObject, DestroyedPartValueObject>(skill.DestroyedParameterList);
+                    = CreateContext<DestroyParameterValueObject, DestroyValueObject>(skill.DestroyedParameterList);
                 yield return destroyContext;
             }
 
