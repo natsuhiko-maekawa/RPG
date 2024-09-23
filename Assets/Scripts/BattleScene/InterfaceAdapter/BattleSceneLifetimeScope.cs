@@ -250,6 +250,7 @@ namespace BattleScene.InterfaceAdapter
             #region MyRegion
             builder.Register<IPrimeSkill<AilmentParameterValueObject, AilmentValueObject>, Ailment>(Lifetime.Singleton);
             builder.Register<IPrimeSkill<DamageParameterValueObject, DamageValueObject>, Damage>(Lifetime.Singleton);
+            builder.Register<IPrimeSkill<BuffParameterValueObject, BuffValueObject>, Buff>(Lifetime.Singleton);
             #endregion
 
             #region RegisterService
@@ -260,7 +261,7 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<AttackCounterService>(Lifetime.Singleton);
             builder.Register<AttacksWeakPointEvaluatorService>(Lifetime.Singleton);
             builder.Register<BuffGeneratorService>(Lifetime.Singleton);
-            builder.Register<BuffRegisterService>(Lifetime.Singleton);
+            builder.Register<BuffRegistererService>(Lifetime.Singleton);
             builder.Register<CharacterOutputDataCreatorService>(Lifetime.Singleton);
             builder.Register<CharacterPropertyFactoryService>(Lifetime.Singleton);
             builder.Register<DamageEvaluatorService>(Lifetime.Singleton);

@@ -8,11 +8,11 @@ using BattleScene.Domain.ValueObject;
 
 namespace BattleScene.UseCases.Service
 {
-    public class BuffRegisterService
+    public class BuffRegistererService
     {
         private readonly IRepository<BuffEntity, (CharacterId, BuffCode)> _buffRepository;
 
-        public BuffRegisterService(
+        public BuffRegistererService(
             IRepository<BuffEntity, (CharacterId, BuffCode)> buffRepository)
         {
             _buffRepository = buffRepository;
