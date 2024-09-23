@@ -19,8 +19,10 @@ using BattleScene.InterfaceAdapter.Skill;
 using BattleScene.InterfaceAdapter.Skill.SkillElement;
 using BattleScene.InterfaceAdapter.State.Battle;
 using BattleScene.InterfaceAdapter.State.Skill;
+using BattleScene.UseCases.Interface;
 using BattleScene.UseCases.IService;
 using BattleScene.UseCases.Service;
+using BattleScene.UseCases.UseCase;
 using BattleScene.UseCases.View.BuffView.OutputBoundary;
 using BattleScene.UseCases.View.InfoView.OutputBoundary;
 using UnityEngine;
@@ -241,6 +243,10 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<SlipFailureState>(Lifetime.Singleton);
             builder.Register<SkillEndState>(Lifetime.Singleton);
             builder.Register<TurnEndState>(Lifetime.Singleton);
+            #endregion
+
+            #region MyRegion
+            builder.Register<IPrimeSkill<AilmentParameterValueObject, AilmentValueObject>, Ailment>(Lifetime.Singleton);
             #endregion
 
             #region RegisterService

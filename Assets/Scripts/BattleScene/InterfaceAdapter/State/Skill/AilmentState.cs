@@ -1,38 +1,34 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using BattleScene.Domain.ValueObject;
-using BattleScene.UseCases.Service;
+using BattleScene.UseCases.Dto;
+using BattleScene.UseCases.Interface;
 
 namespace BattleScene.InterfaceAdapter.State.Skill
 {
     public class AilmentState : AbstractSkillState
     {
-        private readonly IReadOnlyList<AilmentValueObject> _ailmentList;
-        private readonly AilmentRegistererService _ailmentRegisterer;
-        private readonly BattleLoggerService _battleLoggerService;
+        private readonly PrimeSkillParameterDto<AilmentParameterValueObject> _ailmentParameterDto;
+        private readonly IPrimeSkill<AilmentParameterValueObject, AilmentValueObject> _ailment;
         private readonly AilmentParameterValueObject _ailmentParameter;
         private readonly AilmentMessageState _ailmentMessageState;
         private readonly AilmentFailureState _ailmentFailureState;
 
         public AilmentState(
-            IReadOnlyList<AilmentValueObject> ailmentList, 
-            AilmentRegistererService ailmentRegisterer,
-            BattleLoggerService battleLoggerService,
+            PrimeSkillParameterDto<AilmentParameterValueObject> ailmentParameterDto,
+            IPrimeSkill<AilmentParameterValueObject, AilmentValueObject> ailment,
             AilmentMessageState ailmentMessageState,
             AilmentFailureState ailmentFailureState)
         {
-            _ailmentList = ailmentList;
-            _ailmentRegisterer = ailmentRegisterer;
-            _battleLoggerService = battleLoggerService;
+            _ailmentParameterDto = ailmentParameterDto;
+            _ailment = ailment;
             _ailmentMessageState = ailmentMessageState;
             _ailmentFailureState = ailmentFailureState;
         }
 
         public override void Start()
         {
-            _ailmentRegisterer.Register(_ailmentList);
-            _battleLoggerService.Log(_ailmentList);
-            var failure = _ailmentList
+            var ailmentList = _ailment.Commit(_ailmentParameterDto);
+            var failure = ailmentList
                 .All(x => x.ActualTargetIdList.Count == 0);
             AbstractSkillState nextState = failure
                 ? _ailmentFailureState 

@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
 using BattleScene.InterfaceAdapter.State.Skill;
+using BattleScene.UseCases.Dto;
 
 namespace BattleScene.InterfaceAdapter.Service
 {
@@ -57,10 +57,12 @@ namespace BattleScene.InterfaceAdapter.Service
             {
                 var ailmentStates = Enumerable.Empty<AbstractSkillState>();
                 if (skill.AilmentParameterList.IsEmpty) return ailmentStates;
+                var ailmentParameterDto = new PrimeSkillParameterDto<AilmentParameterValueObject>(
+                    SkillCommon: skill.SkillCommon,
+                    List: skill.AilmentParameterList,
+                    TargetIdList: targetIdList);
                 var ailmentState = _ailmentStateFactory.Create(
-                    skillCommon: skill.SkillCommon,
-                    ailmentParameterList: skill.AilmentParameterList,
-                    targetIdList: targetIdList);
+                    ailmentParameterDto: ailmentParameterDto);
                 ailmentStates = ailmentStates.Append(ailmentState);
                 return ailmentStates;
             }

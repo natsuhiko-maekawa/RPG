@@ -1,26 +1,26 @@
-﻿using System.Collections.Generic;
+﻿using BattleScene.UseCases.Dto;
 using BattleScene.UseCases.Interface;
 
 namespace BattleScene.InterfaceAdapter.State.Skill
 {
-    public class CommitPrimeSkillState<TPrimeSkillValueObject> : AbstractSkillState
+    public class CommitPrimeSkillState<TPrimeSkillParameterValueObject, TPrimeSkillValueObject> : AbstractSkillState
     {
-        private readonly IReadOnlyList<TPrimeSkillValueObject> _primeSkillList;
-        private readonly IPrimeSkillCollection<TPrimeSkillValueObject> _primeSkillCollection;
+        private readonly PrimeSkillParameterDto<TPrimeSkillParameterValueObject> _primeSkillParameterDto;
+        private readonly IPrimeSkill<TPrimeSkillParameterValueObject, TPrimeSkillValueObject> _primeSkill;
         private readonly OutputPrimeSkillStateFactory<TPrimeSkillValueObject> _outputPrimeSkillStateFactory;
 
         public CommitPrimeSkillState(
-            IPrimeSkillCollection<TPrimeSkillValueObject> primeSkillCollection,
+            IPrimeSkill<TPrimeSkillParameterValueObject, TPrimeSkillValueObject> primeSkill,
             OutputPrimeSkillStateFactory<TPrimeSkillValueObject> outputPrimeSkillStateFactory)
         {
-            _primeSkillCollection = primeSkillCollection;
+            _primeSkill = primeSkill;
             _outputPrimeSkillStateFactory = outputPrimeSkillStateFactory;
         }
 
         public override void Start()
         {
-            _primeSkillCollection.Commit(_primeSkillList);
-            var outputPrimeSkillState = _outputPrimeSkillStateFactory.Create(_primeSkillList);
+            var primeSkillList = _primeSkill.Commit(_primeSkillParameterDto);
+            var outputPrimeSkillState = _outputPrimeSkillStateFactory.Create(primeSkillList);
             SkillContext.TransitionTo(outputPrimeSkillState);
         }
     }

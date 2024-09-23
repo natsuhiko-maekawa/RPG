@@ -1,45 +1,31 @@
-﻿using System.Collections.Generic;
-using BattleScene.Domain.Id;
-using BattleScene.Domain.ValueObject;
-using BattleScene.UseCases.Service;
+﻿using BattleScene.Domain.ValueObject;
+using BattleScene.UseCases.Dto;
+using BattleScene.UseCases.Interface;
 
 namespace BattleScene.InterfaceAdapter.State.Skill
 {
     public class AilmentStateFactory
     {
-        private readonly AilmentGeneratorService _ailmentGenerator;
-        private readonly AilmentRegistererService _ailmentRegisterer;
-        private readonly BattleLoggerService _battleLoggerService;
+        private readonly IPrimeSkill<AilmentParameterValueObject, AilmentValueObject> _ailment;
         private readonly AilmentMessageState _ailmentMessageState;
         private readonly AilmentFailureState _ailmentFailureState;
 
         public AilmentStateFactory(
-            AilmentGeneratorService ailmentGenerator,
-            AilmentRegistererService ailmentRegisterer,
-            BattleLoggerService battleLoggerService,
+            IPrimeSkill<AilmentParameterValueObject, AilmentValueObject> ailment,
             AilmentMessageState ailmentMessageState,
             AilmentFailureState ailmentFailureState)
         {
-            _ailmentGenerator = ailmentGenerator;
-            _ailmentRegisterer = ailmentRegisterer;
-            _battleLoggerService = battleLoggerService;
+            _ailment = ailment;
             _ailmentMessageState = ailmentMessageState;
             _ailmentFailureState = ailmentFailureState;
         }
 
         public AilmentState Create(
-            SkillCommonValueObject skillCommon,
-            IReadOnlyList<AilmentParameterValueObject> ailmentParameterList,
-            IReadOnlyList<CharacterId> targetIdList)
+            PrimeSkillParameterDto<AilmentParameterValueObject> ailmentParameterDto)
         {
-            var ailmentList = _ailmentGenerator.Generate(
-                skillCommon: skillCommon,
-                ailmentParameterList: ailmentParameterList,
-                targetIdList: targetIdList);
             return new AilmentState(
-                ailmentList: ailmentList,
-                ailmentRegisterer: _ailmentRegisterer,
-                battleLoggerService: _battleLoggerService,
+                ailmentParameterDto: ailmentParameterDto,
+                ailment: _ailment,
                 ailmentMessageState: _ailmentMessageState,
                 ailmentFailureState: _ailmentFailureState);
         }

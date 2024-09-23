@@ -5,6 +5,7 @@ using System.Linq;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
+using BattleScene.UseCases.Dto;
 using Utility.Interface;
 
 namespace BattleScene.UseCases.Service
@@ -27,27 +28,25 @@ namespace BattleScene.UseCases.Service
         }
 
         public IReadOnlyList<AilmentValueObject> Generate(
-            SkillCommonValueObject skillCommon,
-            IReadOnlyList<AilmentParameterValueObject> ailmentParameterList,
-            IReadOnlyList<CharacterId> targetIdList)
+            PrimeSkillParameterDto<AilmentParameterValueObject> ailmentParameterDto)
         {
             if (!_orderedItems.First().TryGetCharacterId(out var actorId)) throw new InvalidOperationException();
             
-            var ailmentList = ailmentParameterList.Select(GetAilment).ToList();
+            var ailmentList = ailmentParameterDto.List.Select(GetAilment).ToList();
             
             return ailmentList;
             
             AilmentValueObject GetAilment(AilmentParameterValueObject ailmentParameter)
             {
                 var actualTargetIdList = GetActualTargetIdList(
-                    targetIdList: targetIdList,
+                    targetIdList: ailmentParameterDto.TargetIdList,
                     ailmentParameter: ailmentParameter);
             
                 var ailment = new AilmentValueObject(
                     actorId: actorId,
-                    skillCode: skillCommon.SkillCode,
+                    skillCode: ailmentParameterDto.SkillCommon.SkillCode,
                     ailmentCode: ailmentParameter.AilmentCode,
-                    targetIdList: targetIdList,
+                    targetIdList: ailmentParameterDto.TargetIdList,
                     actualTargetIdList: actualTargetIdList);
 
                 return ailment;
