@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Collections.Immutable;
 using System.Linq;
-using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
 using BattleScene.UseCases.Service;
 
@@ -12,9 +10,7 @@ namespace BattleScene.InterfaceAdapter.State.Skill
         private readonly IReadOnlyList<AilmentValueObject> _ailmentList;
         private readonly AilmentRegistererService _ailmentRegisterer;
         private readonly BattleLoggerService _battleLoggerService;
-        private readonly SkillCommonValueObject _skillCommon;
         private readonly AilmentParameterValueObject _ailmentParameter;
-        private readonly ImmutableList<CharacterId> _targetIdList;
         private readonly AilmentMessageState _ailmentMessageState;
         private readonly AilmentFailureState _ailmentFailureState;
 
