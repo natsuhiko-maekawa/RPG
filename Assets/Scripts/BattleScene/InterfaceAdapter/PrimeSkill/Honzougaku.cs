@@ -1,4 +1,4 @@
-﻿using System.Collections.Immutable;
+﻿using System.Collections.Generic;
 using BattleScene.Domain.Code;
 using BattleScene.InterfaceAdapter.PrimeSkill.BaseClass;
 
@@ -6,14 +6,9 @@ namespace BattleScene.InterfaceAdapter.PrimeSkill
 {
     public class Honzougaku : BaseReset
     {
-        public override ImmutableList<AilmentCode> GetResetAilment()
-        {
-            return ImmutableList.Create(AilmentCode.Blind, AilmentCode.Paralysis);
-        }
+        public override IReadOnlyList<AilmentCode> AilmentCodeList { get; } =
+            new[] { AilmentCode.Blind, AilmentCode.Paralysis };
 
-        public override ImmutableList<SlipDamageCode> GetResetSlipDamage()
-        {
-            return ImmutableList.Create(SlipDamageCode.Poisoning);
-        }
+        public override IReadOnlyList<SlipDamageCode> SlipDamageCodeList { get; } = new[] { SlipDamageCode.Poisoning };
     }
 }

@@ -1,4 +1,4 @@
-﻿using System.Collections.Immutable;
+﻿using System.Collections.Generic;
 using BattleScene.Domain.Code;
 using BattleScene.InterfaceAdapter.PrimeSkill.BaseClass;
 
@@ -6,14 +6,8 @@ namespace BattleScene.InterfaceAdapter.PrimeSkill
 {
     public class Ishinhou : BaseReset
     {
-        public override ImmutableList<AilmentCode> GetResetAilment()
-        {
-            return ImmutableList.Create(AilmentCode.Deaf);
-        }
-
-        public override ImmutableList<SlipDamageCode> GetResetSlipDamage()
-        {
-            return ImmutableList.Create(SlipDamageCode.Suffocation, SlipDamageCode.Bleeding);
-        }
+        public override IReadOnlyList<AilmentCode> AilmentCodeList { get; } = new[] { AilmentCode.Deaf };
+        public override IReadOnlyList<SlipDamageCode> SlipDamageCodeList { get; } =
+            new[] { SlipDamageCode.Suffocation, SlipDamageCode.Bleeding };
     }
 }

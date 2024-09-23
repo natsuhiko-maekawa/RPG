@@ -1,4 +1,4 @@
-﻿using System.Collections.Immutable;
+﻿using System.Collections.Generic;
 using BattleScene.Domain.Code;
 using BattleScene.InterfaceAdapter.PrimeSkill.BaseClass;
 
@@ -6,9 +6,6 @@ namespace BattleScene.InterfaceAdapter.PrimeSkill
 {
     public class BurningReset : BaseReset
     {
-        public override ImmutableList<SlipDamageCode> GetResetSlipDamage()
-        {
-            return ImmutableList.Create(SlipDamageCode.Burning);
-        }
+        public override IReadOnlyList<SlipDamageCode> SlipDamageCodeList { get; } = new[] { SlipDamageCode.Burning };
     }
 }
