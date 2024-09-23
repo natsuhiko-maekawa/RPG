@@ -156,7 +156,6 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<AlwaysHitDamage>(Lifetime.Singleton);
             builder.Register<BasicCure>(Lifetime.Singleton);
             builder.Register<BasicDamage>(Lifetime.Singleton);
-            builder.Register<BasicRestoreTechnicalPointSkillElement>(Lifetime.Singleton);
             builder.Register<BleedingSkill>(Lifetime.Singleton);
             builder.Register<Blind>(Lifetime.Singleton);
             builder.Register<BurningReset>(Lifetime.Singleton);
