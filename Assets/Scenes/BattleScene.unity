@@ -2928,7 +2928,7 @@ MonoBehaviour:
     TypeName: BattleScene.UseCases.BattleSceneLifetimeScope
   autoRun: 1
   autoInjectGameObjects: []
-  debugMode: 0
+  debugMode: 1
 --- !u!114 &809505089
 MonoBehaviour:
   m_ObjectHideFlags: 0
