@@ -2,6 +2,7 @@
 {
     public enum BodyPartCode
     {
+        NoBodyPart,
         Arm,
         Leg,
         Stomach

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.Id;
@@ -7,21 +8,21 @@ namespace BattleScene.Domain.ValueObject
 {
     public abstract class PrimeSkillValueObject
     {
-        public ActionCode ActionCode { get; protected init; }
-        public AilmentCode AilmentCode { get; protected init; }
-        public BodyPartCode BodyPartCode { get; protected init; }
-        public BuffCode BuffCode { get; protected init; }
-        public SlipDamageCode SlipDamageCode { get; protected init; }
-        public SkillCode SkillCode { get; protected init; }
+        public ActionCode ActionCode { get; protected init; } = ActionCode.NoAction;
+        public AilmentCode AilmentCode { get; protected init; } = AilmentCode.NoAilment;
+        public BodyPartCode BodyPartCode { get; protected init; } = BodyPartCode.NoBodyPart;
+        public BuffCode BuffCode { get; protected init; } = BuffCode.NoBuff;
+        public SlipDamageCode SlipDamageCode { get; protected init; } = SlipDamageCode.NoSlipDamage;
+        public SkillCode SkillCode { get; protected init; } = SkillCode.NoSkill;
         public CharacterId ActorId { get; protected init; }
-        public IReadOnlyList<CharacterId> TargetIdList { get; protected init; }
-        public IReadOnlyList<CharacterId> ActualTargetIdList { get; protected init; }
+        public IReadOnlyList<CharacterId> TargetIdList { get; protected init; } = Array.Empty<CharacterId>();
+        public IReadOnlyList<CharacterId> ActualTargetIdList { get; protected init; } = Array.Empty<CharacterId>();
         public bool IsFailure => ActualTargetIdList.Count == 0;
         public float Rate { get; protected init; }
         public int Turn { get; protected init; }
-        public LifetimeCode LifetimeCode { get; protected init; }
+        public LifetimeCode LifetimeCode { get; protected init; } = LifetimeCode.NoLifetime;
         public int DestroyCount { get; protected init; }
-        public IReadOnlyList<AttackValueObject> AttackList { get; protected init; }
+        public IReadOnlyList<AttackValueObject> AttackList { get; protected init; } = Array.Empty<AttackValueObject>();
         public IReadOnlyDictionary<CharacterId, int> DamageDictionary => 
             AttackList
                 .Where(x => x.IsHit)

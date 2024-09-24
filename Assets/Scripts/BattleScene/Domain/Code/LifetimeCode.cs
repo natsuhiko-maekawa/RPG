@@ -2,6 +2,7 @@
 {
     public enum LifetimeCode
     {
+        NoLifetime,
         ToEndTurn,
         ToNextAction
     }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.Immutable;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DomainService;
@@ -13,6 +14,14 @@ namespace BattleScene.InterfaceAdapter.State.Battle
         private readonly SelectTargetState _selectTargetState;
         private readonly SkillState _skillState;
         private readonly GridViewPresenter _gridView;
+
+        private readonly IReadOnlyDictionary<int, ActionCode> _actionCodeDictionary = new Dictionary<int, ActionCode>()
+        {
+            { 0, ActionCode.Attack },
+            { 1, ActionCode.Skill },
+            { 2, ActionCode.Defence },
+            { 3, ActionCode.FatalitySkill }
+        };
 
         public PlayerSelectActionState(
             PlayerDomainService player,
@@ -35,7 +44,7 @@ namespace BattleScene.InterfaceAdapter.State.Battle
 
         public override void Select(int id)
         {
-            var actionCode = (ActionCode)id;
+            var actionCode = _actionCodeDictionary[id];
 
             if (actionCode == ActionCode.Defence)
             {

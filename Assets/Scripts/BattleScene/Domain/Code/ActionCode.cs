@@ -2,6 +2,7 @@
 {
     public enum ActionCode
     {
+        NoAction,
         Attack,
         Skill,
         Defence,
