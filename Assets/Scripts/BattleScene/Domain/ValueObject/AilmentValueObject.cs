@@ -4,26 +4,20 @@ using BattleScene.Domain.Id;
 
 namespace BattleScene.Domain.ValueObject
 {
-    public class AilmentValueObject
+    public class AilmentValueObject : PrimeSkillValueObject
     {
         public AilmentValueObject(
-            CharacterId actorId,
-            SkillCode skillCode,
             AilmentCode ailmentCode,
+            SkillCode skillCode,
+            CharacterId actorId,
             IReadOnlyList<CharacterId> targetIdList,
             IReadOnlyList<CharacterId> actualTargetIdList)
         {
-            ActorId = actorId;
-            SkillCode = skillCode;
             AilmentCode = ailmentCode;
+            SkillCode = skillCode;
+            ActorId = actorId;
             TargetIdList = targetIdList;
             ActualTargetIdList = actualTargetIdList;
         }
-
-        public AilmentCode AilmentCode { get; }
-        public CharacterId ActorId { get; }
-        public SkillCode SkillCode { get; }
-        public IReadOnlyList<CharacterId> TargetIdList { get; }
-        public IReadOnlyList<CharacterId> ActualTargetIdList { get; }
     }
 }

@@ -4,29 +4,22 @@ using BattleScene.Domain.Id;
 
 namespace BattleScene.Domain.ValueObject
 {
-    public class DestroyValueObject
+    public class DestroyValueObject : PrimeSkillValueObject
     {
         public DestroyValueObject(
+            BodyPartCode bodyPartCode,
+            SkillCode skillCode,
             CharacterId actorId,
             IReadOnlyList<CharacterId> targetIdList,
             IReadOnlyList<CharacterId> actualTargetIdList,
-            SkillCode skillCode,
-            BodyPartCode bodyPartCode,
             int destroyCount)
         {
+            BodyPartCode = bodyPartCode;
+            SkillCode = skillCode;
             ActorId = actorId;
             TargetIdList = targetIdList;
             ActualTargetIdList = actualTargetIdList;
-            SkillCode = skillCode;
-            BodyPartCode = bodyPartCode;
             DestroyCount = destroyCount;
         }
-        
-        public CharacterId ActorId { get; }
-        public IReadOnlyList<CharacterId> TargetIdList { get; }
-        public IReadOnlyList<CharacterId> ActualTargetIdList { get; }
-        public SkillCode SkillCode { get; }
-        public BodyPartCode BodyPartCode { get; }
-        public int DestroyCount { get; }
     }
 }

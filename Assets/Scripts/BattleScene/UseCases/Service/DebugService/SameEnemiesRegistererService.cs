@@ -26,7 +26,7 @@ namespace BattleScene.UseCases.Service.DebugService
 
         public void Register(IList<CharacterTypeCode> characterTypeIdList)
         {
-            var characterList = Enumerable.Repeat(CharacterTypeCode.Shuten, 4)
+            var characterList = Enumerable.Repeat(CharacterTypeCode.Dragon, 4)
                 .Select((x, i) =>
                 {
                     PropertyValueObject property = _propertyFactory.Create(x);

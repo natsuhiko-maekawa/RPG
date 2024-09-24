@@ -50,7 +50,7 @@ namespace BattleScene.InterfaceAdapter
             if (debugMode)
             {
                 // デバッグモード時に注入するインスタンスを登録する
-                builder.Register<IEnemiesRegistererService, SameEnemiesRegistererService>(Lifetime.Singleton);
+                builder.Register<IEnemiesRegistererService, EnemiesRegistererService>(Lifetime.Singleton);
                 builder.Register<IEnemySkillSelectorService, EnemySpecificSkillSelectorService>(Lifetime.Singleton);
             }
             else
@@ -104,6 +104,7 @@ namespace BattleScene.InterfaceAdapter
             builder.RegisterComponentInHierarchy<IResource<AilmentPropertyDto, AilmentCode>>();
             builder.RegisterComponentInHierarchy<IAilmentViewResource>();
             builder.RegisterComponentInHierarchy<IResource<BattlePropertyDto>>();
+            builder.RegisterComponentInHierarchy<IResource<BodyPartPropertyDto, BodyPartCode>>();
             builder.Register<IResource<BodyPartViewDto, BodyPartCode>, BodyPartViewResource>(Lifetime.Singleton);
             builder.RegisterComponentInHierarchy<IResource<BuffViewDto, BuffCode>>();
             builder.RegisterComponentInHierarchy<IResource<CharacterPropertyDto, CharacterTypeCode>>();
@@ -188,6 +189,8 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<IFactory<AilmentPropertyValueObject, AilmentCode>, AilmentPropertyFactory>(
                 Lifetime.Singleton);
             builder.Register<IFactory<BattlePropertyValueObject>, BattlePropertyFactory>(Lifetime.Singleton);
+            builder.Register<IFactory<BodyPartPropertyValueObject, BodyPartCode>, BodyPartPropertyFactory>(
+                Lifetime.Singleton);
             builder.Register<IFactory<PropertyValueObject, CharacterTypeCode>, PropertyFactory>(Lifetime.Singleton);
             builder.Register<IFactory<PlayerPropertyValueObject, CharacterTypeCode>, PlayerPropertyFactory>
                 (Lifetime.Singleton);
@@ -247,9 +250,12 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<PrimeSkillStopState<SlipParameterValueObject, SlipValueObject>>(Lifetime.Singleton);
             #endregion
 
-            #region MyRegion
+            #region RegisterUseCase
             builder.Register<IPrimeSkill<AilmentParameterValueObject, AilmentValueObject>, Ailment>(Lifetime.Singleton);
-            builder.Register<IPrimeSkill<DamageParameterValueObject, DamageValueObject>, Damage>(Lifetime.Singleton);
+            builder.Register<IPrimeSkill<DamageParameterValueObject, DamageValueObject>, PrimeSkill<DamageParameterValueObject, DamageValueObject>>(Lifetime.Singleton);
+            builder
+                .Register<IPrimeSkill<DestroyParameterValueObject, DestroyValueObject>,
+                    PrimeSkill<DestroyParameterValueObject, DestroyValueObject>>(Lifetime.Singleton);
             builder.Register<IPrimeSkill<BuffParameterValueObject, BuffValueObject>, Buff>(Lifetime.Singleton);
             builder.Register<IPrimeSkill<SlipParameterValueObject, SlipValueObject>, Slip>(Lifetime.Singleton);
             #endregion
@@ -266,9 +272,8 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<CharacterOutputDataCreatorService>(Lifetime.Singleton);
             builder.Register<CharacterPropertyFactoryService>(Lifetime.Singleton);
             builder.Register<DamageEvaluatorService>(Lifetime.Singleton);
-            builder.Register<DamageGeneratorService>(Lifetime.Singleton);
-            builder.Register<DamageRegistererService>(Lifetime.Singleton);
-            builder.Register<DestroyGeneratorService>(Lifetime.Singleton);
+            builder.Register<IPrimeSkillGeneratorService<DamageParameterValueObject, DamageValueObject>, DamageGeneratorService>(Lifetime.Singleton);
+            builder.Register<IPrimeSkillRegistererService<DamageValueObject>, DamageRegistererService>(Lifetime.Singleton);
             builder.Register<IsHitEvaluatorService>(Lifetime.Singleton);
             builder.Register<OrderService>(Lifetime.Singleton);
             builder.Register<RestoreGeneratorService>(Lifetime.Singleton);
@@ -279,6 +284,8 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<ToBodyPartNumberService>(Lifetime.Singleton);
             builder.Register<ToBuffNumberService>(Lifetime.Singleton);
             builder.Register<TurnInitializerService>(Lifetime.Singleton);
+            builder.Register<IPrimeSkillGeneratorService<DestroyParameterValueObject, DestroyValueObject>, DestroyGeneratorService>(Lifetime.Singleton);
+            builder.Register<IPrimeSkillRegistererService<DestroyValueObject>, DestroyRegistererService>(Lifetime.Singleton);
             #endregion
 
             #region RegisterDomainService

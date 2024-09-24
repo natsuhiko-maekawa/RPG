@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.Immutable;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
@@ -12,117 +11,30 @@ namespace BattleScene.Domain.Entity
         public override BattleLogId Id { get; }
         public int Sequence { get; }
         public int Turn { get; }
-        public ActionCode ActionCode { get; }
-        public CharacterId ActorId { get; }
-        public SkillCode SkillCode { get; }
-        public IReadOnlyList<CharacterId> TargetIdList { get; }
-        public IReadOnlyList<CharacterId> ActualTargetIdList { get; }
-        public AilmentCode AilmentCode { get; } = AilmentCode.NoAilment;
-        public BodyPartCode DestroyedPart { get; }
-        public int DestroyCount { get; }
-        public BuffCode BuffCode { get; } = BuffCode.NoBuff;
-        public ImmutableList<AttackValueObject> AttackList { get; } = ImmutableList<AttackValueObject>.Empty;
-        public int TechnicalPoint { get; }
-        public SlipDamageCode SlipDamageCode { get; } = SlipDamageCode.NoSlipDamage;
+        private readonly PrimeSkillValueObject _primeSkill;
+        public ActionCode ActionCode { get; } = ActionCode.Skill;
+        public CharacterId ActorId => _primeSkill.ActorId;
+        public SkillCode SkillCode => _primeSkill.SkillCode;
+        public IReadOnlyList<CharacterId> TargetIdList => _primeSkill.TargetIdList;
+        public IReadOnlyList<CharacterId> ActualTargetIdList => _primeSkill.ActualTargetIdList;
+        public AilmentCode AilmentCode => _primeSkill.AilmentCode;
+        public BodyPartCode DestroyedPart => _primeSkill.BodyPartCode;
+        public int DestroyCount => _primeSkill.DestroyCount;
+        public BuffCode BuffCode => _primeSkill.BuffCode;
+        public IReadOnlyList<AttackValueObject> AttackList => _primeSkill.AttackList;
+        public int TechnicalPoint => _primeSkill.TechnicalPoint;
+        public SlipDamageCode SlipDamageCode => _primeSkill.SlipDamageCode;
 
         public BattleLogEntity(
             BattleLogId battleLogId,
             int sequence,
             int turn,
-            AilmentValueObject ailment)
+            PrimeSkillValueObject primeSkill)
         {
             Id = battleLogId;
             Sequence = sequence;
             Turn = turn;
-            ActionCode = ActionCode.Skill;
-            ActorId = ailment.ActorId;
-            TargetIdList = ailment.TargetIdList;
-            ActualTargetIdList = ailment.ActualTargetIdList;
-            SkillCode = ailment.SkillCode;
-            AilmentCode = ailment.AilmentCode;
-        }
-        
-        public BattleLogEntity(
-            BattleLogId battleLogId,
-            int sequence,
-            int turn,
-            BuffValueObject buff)
-        {
-            Id = battleLogId;
-            Sequence = sequence;
-            Turn = turn;
-            ActionCode = ActionCode.Skill;
-            ActorId = buff.ActorId;
-            TargetIdList = buff.TargetIdList;
-            SkillCode = buff.SkillCode;
-            BuffCode = buff.BuffCode;
-        }
-        
-        public BattleLogEntity(
-            BattleLogId battleLogId,
-            int sequence,
-            int turn,
-            DamageValueObject damage)
-        {
-            Id = battleLogId;
-            Sequence = sequence;
-            Turn = turn;
-            ActionCode = ActionCode.Skill;
-            ActorId = damage.ActorId;
-            TargetIdList = damage.TargetIdList;
-            ActualTargetIdList = damage.ActualTargetIdList;
-            SkillCode = damage.SkillCode;
-            AttackList = damage.AttackList;
-        }
-
-        public BattleLogEntity(
-            BattleLogId battleLogId,
-            int sequence,
-            int turn,
-            DestroyValueObject destroy)
-        {
-            Id = battleLogId;
-            Sequence = sequence;
-            Turn = turn;
-            ActionCode = ActionCode.Skill;
-            ActorId = destroy.ActorId;
-            TargetIdList = destroy.TargetIdList;
-            SkillCode = destroy.SkillCode;
-            DestroyedPart = destroy.BodyPartCode;
-            DestroyCount = destroy.DestroyCount;
-        }
-
-        public BattleLogEntity(
-            BattleLogId battleLogId,
-            int sequence,
-            int turn,
-            RestoreValueObject restore)
-        {
-            Id = battleLogId;
-            Sequence = sequence;
-            Turn = turn;
-            ActionCode = ActionCode.Skill;
-            ActorId = restore.ActorId;
-            TargetIdList = restore.TargetIdList;
-            SkillCode = restore.SkillCode;
-            TechnicalPoint = restore.TechnicalPoint;
-        }
-
-        public BattleLogEntity(
-            BattleLogId battleLogId,
-            int sequence,
-            int turn,
-            SlipValueObject slip)
-        {
-            Id = battleLogId;
-            Sequence = sequence;
-            Turn = turn;
-            ActionCode = ActionCode.Skill;
-            ActorId = slip.ActorId;
-            TargetIdList = slip.TargetIdList;
-            ActualTargetIdList = slip.ActualTargetIdList;
-            SkillCode = slip.SkillCode;
-            SlipDamageCode = slip.SlipDamageCode;
+            _primeSkill = primeSkill;
         }
 
         public int CompareTo(BattleLogEntity other)

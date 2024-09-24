@@ -21,7 +21,7 @@ namespace BattleScene.InterfaceAdapter.State.PrimeSkill
         {
             Context.PrimeSkillList = _primeSkill.Commit(
                 skillCommon: Context.SkillCommon,
-                primeSkillParameter: Context.PrimeSkillParameterList,
+                primeSkillParameterList: Context.PrimeSkillParameterList,
                 targetIdList: Context.TargetIdList);
             Context.TransitionTo(_primeSkillOutputState);
         }

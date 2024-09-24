@@ -6,17 +6,17 @@ namespace BattleScene.Domain.Entity
 {
     public partial class BodyPartEntity : BaseEntity<(CharacterId, BodyPartCode)>
     {
-        private readonly int _bodyPartCount;
+        private readonly int _count;
 
         public BodyPartEntity(
             CharacterId characterId,
             BodyPartCode bodyPartCode,
-            int bodyPartCount)
+            int count)
         {
             CharacterId = characterId;
             BodyPartCode = bodyPartCode;
             Id = (CharacterId, BodyPartCode);
-            _bodyPartCount = bodyPartCount;
+            _count = count;
             Destroyed();
         }
 
@@ -28,7 +28,7 @@ namespace BattleScene.Domain.Entity
         public int DestroyedCount
         {
             get => _destroyedCount;
-            private set { _destroyedCount = Mathf.Min(value, _bodyPartCount); DestroyedCountOnChange(_destroyedCount);}
+            private set { _destroyedCount = Mathf.Min(value, _count); DestroyedCountOnChange(_destroyedCount);}
         }
 
         partial void DestroyedCountOnChange(int value);
@@ -40,7 +40,7 @@ namespace BattleScene.Domain.Entity
 
         public bool IsAvailable()
         {
-            return DestroyedCount < _bodyPartCount;
+            return DestroyedCount < _count;
         }
     }
 }

@@ -6,12 +6,13 @@ using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
 using BattleScene.Domain.ValueObject;
+using BattleScene.UseCases.IService;
 using Utility.Interface;
 using Range = BattleScene.Domain.Code.Range;
 
 namespace BattleScene.UseCases.Service
 {
-    public class DamageGeneratorService
+    public class DamageGeneratorService : IPrimeSkillGeneratorService<DamageParameterValueObject, DamageValueObject>
     {
         private readonly OrderedItemsDomainService _orderedItems;
         private readonly DamageEvaluatorService _damageEvaluator;
@@ -62,9 +63,9 @@ namespace BattleScene.UseCases.Service
             attackList.Sort((x, y) => x.Number - y.Number);
             
             return new DamageValueObject(
-                actorId,
-                skillCommon.SkillCode,
-                attackList.ToImmutableList());
+                actorId: actorId,
+                skillCode: skillCommon.SkillCode,
+                attackList:attackList.ToImmutableList());
         }
 
         public IReadOnlyList<DamageValueObject> Generate(

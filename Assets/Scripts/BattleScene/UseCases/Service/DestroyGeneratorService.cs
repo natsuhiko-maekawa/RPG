@@ -3,10 +3,11 @@ using System.Linq;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
+using BattleScene.UseCases.IService;
 
 namespace BattleScene.UseCases.Service
 {
-    public class DestroyGeneratorService
+    public class DestroyGeneratorService : IPrimeSkillGeneratorService<DestroyParameterValueObject, DestroyValueObject>
     {
         private readonly ActualTargetIdPickerService _actualTargetIdPicker;
         private readonly OrderedItemsDomainService _orderedItems;

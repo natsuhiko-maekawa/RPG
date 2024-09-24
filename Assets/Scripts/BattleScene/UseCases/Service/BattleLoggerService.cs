@@ -20,95 +20,19 @@ namespace BattleScene.UseCases.Service
             _turnRepository = turnRepository;
         }
 
-        public void Log(AilmentValueObject ailment)
+        public void Log(IReadOnlyList<PrimeSkillValueObject> primeSkillList)
         {
             var (battleLogId, sequence, turn) = GetBattleLogCommonArguments();
-            var battleLog = new BattleLogEntity(
-                battleLogId: battleLogId,
-                sequence: sequence,
-                turn: turn,
-                ailment: ailment);
-            _battleLogRepository.Update(battleLog);
-        }
-
-        public void Log(IReadOnlyList<AilmentValueObject> ailmentList)
-        {
-            foreach (var ailment in ailmentList) Log(ailment);
+            var battleLogList = primeSkillList
+                .Select(x => new BattleLogEntity(
+                    battleLogId: battleLogId,
+                    sequence: sequence,
+                    turn: turn,
+                    primeSkill: x))
+                .ToList();
+            _battleLogRepository.Update(battleLogList);
         }
         
-        public void Log(BuffValueObject buff)
-        {
-            var battleLogId = new BattleLogId();
-            var sequence = _battleLogRepository.Select()
-                .Max()
-                ?.Sequence ?? 0;
-            var nextSequence = sequence + 1;
-            var turn = _turnRepository.Select()
-                .First()
-                .Turn;
-            var battleLog = new BattleLogEntity(
-                battleLogId: battleLogId,
-                sequence: nextSequence,
-                turn: turn,
-                buff: buff);
-            _battleLogRepository.Update(battleLog);
-        }
-
-        public void Log(IReadOnlyList<BuffValueObject> buffList)
-        {
-            foreach (var buff in buffList) Log(buff);
-        }
-
-        public void Log(DamageValueObject damage)
-        {
-            var battleLogId = new BattleLogId();
-            var sequence = _battleLogRepository.Select()
-                .Max()
-                ?.Sequence ?? 0;
-            var nextSequence = sequence + 1;
-            var turn = _turnRepository.Select()
-                .First()
-                .Turn;
-            var battleLog = new BattleLogEntity(
-                battleLogId: battleLogId,
-                sequence: nextSequence,
-                turn: turn,
-                damage: damage);
-            _battleLogRepository.Update(battleLog);
-        }
-        
-        public void Log(IReadOnlyList<DamageValueObject> damageList)
-        {
-            foreach (var damage in damageList) Log(damage);
-        }
-
-        public void Log(RestoreValueObject restore)
-        {
-            var (battleLogId, sequence, turn) = GetBattleLogCommonArguments();
-            var battleLog = new BattleLogEntity(
-                battleLogId: battleLogId,
-                sequence: sequence,
-                turn: turn,
-                restore: restore);
-            _battleLogRepository.Update(battleLog);
-        }
-
-        public void Log(SlipValueObject slip)
-        {
-            var (battleLogId, sequence, turn) = GetBattleLogCommonArguments();
-            var battleLog = new BattleLogEntity(
-                battleLogId: battleLogId,
-                sequence: sequence,
-                turn: turn,
-                slip: slip);
-            _battleLogRepository.Update(battleLog);
-        }
-
-        public void Log(IReadOnlyList<SlipValueObject> slipList)
-        {
-            foreach (var slip in slipList) Log(slip);
-        }
-
         private (BattleLogId battleLogId, int nextSequence, int turn) GetBattleLogCommonArguments()
         {
             var battleLogId = new BattleLogId();

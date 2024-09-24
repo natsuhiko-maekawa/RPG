@@ -35,7 +35,7 @@ namespace BattleScene.UseCases.Service.DebugService
             var characterTypeCode = _characterRepository.Select(characterId).CharacterTypeCode;
             var skillCodeList = _characterPropertyFactory.Create(characterTypeCode).Skills;
             var skillCode = skillCodeList
-                .FirstOrDefault(x => !_skillFactory.Create(x).AilmentParameterList.IsEmpty);
+                .FirstOrDefault(x => !_skillFactory.Create(x).DamageParameterList.IsEmpty);
             skillCode = skillCode == SkillCode.NoSkill
                 ? skillCodeList.First()
                 : skillCode;

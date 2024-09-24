@@ -40,11 +40,11 @@ namespace BattleScene.UseCases.Service
                     luckRate: slipParameter.LuckRate);
             
                 var slip = new SlipValueObject(
-                    ActorId: actorId,
-                    SkillCode: skillCommon.SkillCode,
-                    SlipDamageCode: slipParameter.SlipDamageCode,
-                    TargetIdList: targetIdList,
-                    ActualTargetIdList: actualTargetIdList);
+                    actorId: actorId,
+                    skillCode: skillCommon.SkillCode,
+                    slipDamageCode: slipParameter.SlipDamageCode,
+                    targetIdList: targetIdList,
+                    actualTargetIdList: actualTargetIdList);
                 return slip;
             }
         }

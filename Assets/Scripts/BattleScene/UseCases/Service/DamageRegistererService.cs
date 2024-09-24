@@ -5,10 +5,11 @@ using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.IRepository;
 using BattleScene.Domain.ValueObject;
+using BattleScene.UseCases.IService;
 
 namespace BattleScene.UseCases.Service
 {
-    public class DamageRegistererService
+    public class DamageRegistererService : IPrimeSkillRegistererService<DamageValueObject>
     {
         private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
 
@@ -20,7 +21,7 @@ namespace BattleScene.UseCases.Service
 
         public void Register(DamageValueObject damage)
         {
-            var characterList = damage.GetDamageDictionary()
+            var characterList = damage.DamageDictionary
                 .Select(ReduceHitPoint)
                 .ToImmutableList();
             _characterRepository.Update(characterList);
