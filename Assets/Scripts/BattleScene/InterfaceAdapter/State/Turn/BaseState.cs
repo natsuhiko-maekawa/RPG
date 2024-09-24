@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using BattleScene.Domain.Id;
 
-namespace BattleScene.InterfaceAdapter.State.Battle
+namespace BattleScene.InterfaceAdapter.State.Turn
 {
     public abstract class BaseState
     {

@@ -2,7 +2,7 @@
 using BattleScene.Domain.DomainService;
 using BattleScene.UseCases.IService;
 
-namespace BattleScene.InterfaceAdapter.State.Battle
+namespace BattleScene.InterfaceAdapter.State.Turn
 {
     internal class EnemySelectSkillState : BaseState
     {

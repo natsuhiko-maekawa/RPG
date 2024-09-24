@@ -3,7 +3,7 @@ using BattleScene.DataAccess.Dto;
 using BattleScene.Domain.Code;
 using BattleScene.InterfaceAdapter.Presenter;
 
-namespace BattleScene.InterfaceAdapter.State.Battle
+namespace BattleScene.InterfaceAdapter.State.Turn
 {
     internal class PlayerSelectSkillState : BaseState
     {

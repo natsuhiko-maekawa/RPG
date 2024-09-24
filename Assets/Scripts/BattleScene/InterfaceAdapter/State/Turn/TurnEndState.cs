@@ -1,7 +1,7 @@
 ﻿using BattleScene.Domain.DomainService;
 using VContainer;
 
-namespace BattleScene.InterfaceAdapter.State.Battle
+namespace BattleScene.InterfaceAdapter.State.Turn
 {
     internal class TurnEndState : BaseState
     {

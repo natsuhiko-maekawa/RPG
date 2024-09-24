@@ -1,6 +1,6 @@
 ﻿using BattleScene.UseCases.Service;
 
-namespace BattleScene.InterfaceAdapter.State.Battle
+namespace BattleScene.InterfaceAdapter.State.Turn
 {
     internal class InitializeBattleState : BaseState
     {

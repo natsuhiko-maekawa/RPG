@@ -10,7 +10,7 @@ using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
 using BattleScene.InterfaceAdapter.Presenter;
-using BattleScene.InterfaceAdapter.State.Battle;
+using BattleScene.InterfaceAdapter.State.Turn;
 
 namespace BattleScene.InterfaceAdapter.Facade
 {

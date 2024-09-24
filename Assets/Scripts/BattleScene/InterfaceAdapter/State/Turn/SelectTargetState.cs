@@ -2,7 +2,7 @@
 using BattleScene.Domain.Id;
 using BattleScene.InterfaceAdapter.Presenter;
 
-namespace BattleScene.InterfaceAdapter.State.Battle
+namespace BattleScene.InterfaceAdapter.State.Turn
 {
     internal class SelectTargetState : BaseState
     {

@@ -5,7 +5,7 @@ using BattleScene.Domain.Code;
 using BattleScene.Domain.DomainService;
 using BattleScene.InterfaceAdapter.Presenter;
 
-namespace BattleScene.InterfaceAdapter.State.Battle
+namespace BattleScene.InterfaceAdapter.State.Turn
 {
     internal class PlayerSelectActionState : BaseState
     {

@@ -4,7 +4,7 @@ using BattleScene.Domain.Code;
 using BattleScene.Domain.Id;
 using UnityEngine;
 
-namespace BattleScene.InterfaceAdapter.State.Battle
+namespace BattleScene.InterfaceAdapter.State.Turn
 {
     public class Context
     {

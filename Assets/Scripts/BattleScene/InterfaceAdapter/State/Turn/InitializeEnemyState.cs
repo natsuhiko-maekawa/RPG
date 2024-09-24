@@ -4,7 +4,7 @@ using BattleScene.InterfaceAdapter.Presenter;
 using BattleScene.UseCases.IService;
 using static BattleScene.Domain.Code.CharacterTypeCode;
 
-namespace BattleScene.InterfaceAdapter.State.Battle
+namespace BattleScene.InterfaceAdapter.State.Turn
 {
     internal class InitializeEnemyState : BaseState
     {

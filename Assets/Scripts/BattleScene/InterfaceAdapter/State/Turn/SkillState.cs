@@ -2,7 +2,7 @@
 using BattleScene.InterfaceAdapter.Service;
 using BattleScene.UseCases.Service;
 
-namespace BattleScene.InterfaceAdapter.State.Battle
+namespace BattleScene.InterfaceAdapter.State.Turn
 {
     internal class SkillState : BaseState
     {
