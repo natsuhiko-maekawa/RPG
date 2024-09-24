@@ -43,7 +43,7 @@ namespace BattleScene.UseCases.Service
         {
             var characterList = _characterRepository.Select().Select(x => x.Id);
             var orderedItemList = Enumerable
-                .Repeat(characterList, Domain.Constant.MaxOrderNumber)
+                .Repeat(characterList, Constant.MaxOrderNumber)
                 .Select((x, i) => x
                     .Select(y => (character: y,
                         speed: _characterRepository.Select(y).ActionTime +
@@ -55,7 +55,7 @@ namespace BattleScene.UseCases.Service
                 .ThenBy(x => _characterRepository.Select(x.character).Id)
                 .Select(x => new OrderedItem(x.character))
                 .ToImmutableList()
-                .GetRange(0, Domain.Constant.MaxOrderNumber);
+                .GetRange(0, Constant.MaxOrderNumber);
 
             var ailments = _ailmentRepository.Select()
                 .Where(x => Equals(x.CharacterId, _characterRepository.Select()

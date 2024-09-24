@@ -22,12 +22,12 @@ namespace BattleScene.UseCases.Service
 
         public float GetRate()
         {
-            return Mathf.Min((float)Count() / Domain.Constant.AttackCountUpperLimit, 1.0f);
+            return Mathf.Min((float)Count() / Constant.AttackCountUpperLimit, 1.0f);
         }
 
         public bool IsOverflow()
         {
-            return Domain.Constant.AttackCountUpperLimit < Count();
+            return Constant.AttackCountUpperLimit < Count();
         }
 
         private int Count()
