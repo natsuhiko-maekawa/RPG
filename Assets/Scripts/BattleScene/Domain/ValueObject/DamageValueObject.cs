@@ -18,11 +18,7 @@ namespace BattleScene.Domain.ValueObject
                 .Select(x => x.TargetId)
                 .Distinct()
                 .ToList();
-            ActualTargetIdList = attackList
-                .Where(x => x.IsHit)
-                .Select(x => x.TargetId)
-                .Distinct()
-                .ToList();
+            ActualTargetIdList = TargetIdList;
             AttackList = attackList;
         }
     }

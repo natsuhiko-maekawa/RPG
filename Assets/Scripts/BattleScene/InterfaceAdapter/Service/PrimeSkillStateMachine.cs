@@ -99,7 +99,7 @@ namespace BattleScene.InterfaceAdapter.Service
             yield break;
             
             IContext CreateContext<TPrimeSkillParameter, TPrimeSkill>(
-                IReadOnlyList<TPrimeSkillParameter> primeSkillParameterList)
+                IReadOnlyList<TPrimeSkillParameter> primeSkillParameterList) where TPrimeSkill : PrimeSkillValueObject
             {
                 var primeSkillStartState = _container.Resolve<PrimeSkillStartState<TPrimeSkillParameter, TPrimeSkill>>();
                 var skillContext = new Context<TPrimeSkillParameter, TPrimeSkill>(
