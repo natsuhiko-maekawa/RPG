@@ -16,6 +16,7 @@ namespace BattleScene.Domain.ValueObject
         public CharacterId ActorId { get; protected init; }
         public IReadOnlyList<CharacterId> TargetIdList { get; protected init; }
         public IReadOnlyList<CharacterId> ActualTargetIdList { get; protected init; }
+        public bool IsFailure => ActualTargetIdList.Count == 0;
         public float Rate { get; protected init; }
         public int Turn { get; protected init; }
         public LifetimeCode LifetimeCode { get; protected init; }

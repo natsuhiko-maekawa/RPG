@@ -95,6 +95,7 @@ namespace BattleScene.InterfaceAdapter
             #region RegisterFacade
             builder.Register<DamageOutputFacade>(Lifetime.Singleton);
             builder.Register<SkillOutputFacade>(Lifetime.Singleton);
+            builder.Register<SlipOutputFacade>(Lifetime.Singleton);
             #endregion
             
             #region RegisterResource
@@ -231,7 +232,7 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<PrimeSkillOutputState<BuffParameterValueObject, BuffValueObject>, BuffMessageState>(Lifetime.Singleton);
             builder.Register<PrimeSkillOutputState<DamageParameterValueObject, DamageValueObject>, DamageOutputState>(Lifetime.Singleton);
             builder.Register<PrimeSkillOutputState<RestoreParameterValueObject, RestoreValueObject>, RestoreMessageState>(Lifetime.Singleton);
-            builder.Register<PrimeSkillOutputState<SlipParameterValueObject, SlipValueObject>, SlipMessageState>(Lifetime.Singleton);
+            builder.Register<PrimeSkillOutputState<SlipParameterValueObject, SlipValueObject>, SlipOutputState>(Lifetime.Singleton);
             builder.Register<TurnEndState>(Lifetime.Singleton);
             builder.Register<PrimeSkillStartState<AilmentParameterValueObject, AilmentValueObject>>(Lifetime.Singleton);
             builder.Register<PrimeSkillStartState<DestroyParameterValueObject, DestroyValueObject>>(Lifetime.Singleton);

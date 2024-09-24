@@ -1,4 +1,5 @@
-﻿using BattleScene.UseCases.Interface;
+﻿using System.Collections.Generic;
+using BattleScene.UseCases.Interface;
 
 namespace BattleScene.InterfaceAdapter.State.PrimeSkill
 {
@@ -19,10 +20,11 @@ namespace BattleScene.InterfaceAdapter.State.PrimeSkill
 
         public override void Start()
         {
-            Context.PrimeSkillList = _primeSkill.Commit(
+            var primeSkillList = _primeSkill.Commit(
                 skillCommon: Context.SkillCommon,
                 primeSkillParameterList: Context.PrimeSkillParameterList,
                 targetIdList: Context.TargetIdList);
+            Context.PrimeSkillQueue = new Queue<TPrimeSkill>(primeSkillList);
             Context.TransitionTo(_primeSkillOutputState);
         }
     }

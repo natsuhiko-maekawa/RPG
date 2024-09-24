@@ -23,7 +23,7 @@ namespace BattleScene.InterfaceAdapter.State.PrimeSkill
 
         public override void Start()
         {
-            var failure = Context.PrimeSkillList
+            var failure = Context.PrimeSkillQueue
                 .All(x => x.ActualTargetIdList.Count == 0);
             var messageCode = failure
                 ? MessageCode.FailAilmentMessage
