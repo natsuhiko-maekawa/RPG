@@ -1,12 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using BattleScene.Domain.Code;
 
 namespace BattleScene.InterfaceAdapter.PrimeSkill.BaseClass
 {
-    public class BaseReset
+    public abstract class BaseReset
     {
-        public virtual IReadOnlyList<AilmentCode> AilmentCodeList { get; }
-        public virtual IReadOnlyList<SlipDamageCode> SlipDamageCodeList { get; }
-        public virtual IReadOnlyList<BodyPartCode> BodyPartCodeList { get; }
+        public virtual IReadOnlyList<AilmentCode> AilmentCodeList { get; } = Array.Empty<AilmentCode>();
+        public virtual IReadOnlyList<SlipDamageCode> SlipDamageCodeList { get; } = Array.Empty<SlipDamageCode>();
+        public virtual IReadOnlyList<BodyPartCode> BodyPartCodeList { get; } = Array.Empty<BodyPartCode>();
     }
 }
