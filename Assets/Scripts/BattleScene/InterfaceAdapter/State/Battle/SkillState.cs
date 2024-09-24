@@ -1,27 +1,26 @@
 ﻿using BattleScene.InterfaceAdapter.Facade;
 using BattleScene.InterfaceAdapter.Service;
 using BattleScene.UseCases.Service;
-using VContainer;
 
 namespace BattleScene.InterfaceAdapter.State.Battle
 {
-    public class SkillState : BaseState
+    internal class SkillState : BaseState
     {
-        private readonly IObjectResolver _container;
         private readonly SkillExecutorService _skillExecutor;
         private readonly PrimeSkillContextService _primeSkillContext;
         private readonly SkillOutputFacade _skillOutput;
+        private readonly TurnEndState _turnEndState;
 
         public SkillState(
-            IObjectResolver container,
             SkillExecutorService skillExecutor,
             PrimeSkillContextService primeSkillContext,
-            SkillOutputFacade skillOutput)
+            SkillOutputFacade skillOutput,
+            TurnEndState turnEndState)
         {
-            _container = container;
             _skillExecutor = skillExecutor;
             _primeSkillContext = primeSkillContext;
             _skillOutput = skillOutput;
+            _turnEndState = turnEndState;
         }
 
         public override async void Start()
@@ -34,11 +33,7 @@ namespace BattleScene.InterfaceAdapter.State.Battle
         public override void Select()
         {
             var value = _primeSkillContext.Select();
-            
-            if (!value)
-            {
-                Context.TransitionTo(_container.Resolve<TurnEndState>());
-            }
+            if (!value) Context.TransitionTo(_turnEndState);
         }
     }
 }

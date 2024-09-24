@@ -6,7 +6,7 @@ using BattleScene.InterfaceAdapter.Presenter;
 
 namespace BattleScene.InterfaceAdapter.State.Battle
 {
-    public class PlayerSelectActionState : BaseState
+    internal class PlayerSelectActionState : BaseState
     {
         private readonly PlayerDomainService _player;
         private readonly PlayerSelectSkillState _playerSelectSkillState;
