@@ -1,4 +1,3 @@
-using BattleScene.Domain.DomainService;
 using BattleScene.UseCases.OldEvent.Interface;
 using BattleScene.UseCases.OldEvent.Runner;
 
@@ -6,17 +5,6 @@ namespace BattleScene.UseCases.OldEvent
 {
     internal class LoopEndOldEvent : IOldEvent
     {
-        private readonly CharactersDomainService _characters;
-        private readonly OrderedItemsDomainService _orderedItems;
-
-        public LoopEndOldEvent(
-            CharactersDomainService characters,
-            OrderedItemsDomainService orderedItems)
-        {
-            _characters = characters;
-            _orderedItems = orderedItems;
-        }
-
         public EventCode Run()
         {
             // フレームを非表示
@@ -26,10 +14,10 @@ namespace BattleScene.UseCases.OldEvent
             // if (!_hitPointRepository.Select(_characters.GetPlayerId()).IsSurvive()) return EventCode.PlayerDeadEvent;
 
             // 先頭が状態異常だった場合、以下の処理は実行しないためreturnする
-            if (!_orderedItems.First().TryGetCharacterId(out _)) return EventCode.OrderDecisionEvent;
+            // if (!_orderedItems.First().TryGetCharacterId(out _)) return EventCode.OrderDecisionEvent;
 
             // 敵全体が死亡した場合、プレイヤーの勝利
-            if (_characters.GetEnemies().IsEmpty) return EventCode.PlayerWinEvent;
+            // if (_characters.GetEnemies().IsEmpty) return EventCode.PlayerWinEvent;
 
             // 上記以外の場合戦闘を続行
             // foreach (var characterId in _characters.GetIdList())

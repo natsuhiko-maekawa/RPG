@@ -12,7 +12,6 @@ using BattleScene.Domain.IRepository;
 using BattleScene.Domain.ValueObject;
 using BattleScene.Framework.Input;
 using BattleScene.Framework.View;
-using BattleScene.InterfaceAdapter.ObsoletePresenter;
 using BattleScene.InterfaceAdapter.Presenter;
 using BattleScene.InterfaceAdapter.PrimeSkill;
 using BattleScene.InterfaceAdapter.Service;
@@ -23,8 +22,6 @@ using BattleScene.UseCases.Interface;
 using BattleScene.UseCases.IService;
 using BattleScene.UseCases.Service;
 using BattleScene.UseCases.UseCase;
-using BattleScene.UseCases.View.BuffView.OutputBoundary;
-using BattleScene.UseCases.View.InfoView.OutputBoundary;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
@@ -93,11 +90,6 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<IObserver<BodyPartEntity>, BodyPartViewPresenter>(Lifetime.Singleton);
             builder.Register<IObserver<CharacterEntity>, HitPointBarViewPresenter>(Lifetime.Singleton);
             builder.Register<IObserver<CharacterEntity>, TechnicalPointBarViewPresenter>(Lifetime.Singleton);
-            #endregion
-            
-            #region RegisterObsoletePresenter
-            builder.Register<IBuffViewPresenter, BuffViewPresenter>(Lifetime.Singleton);
-            builder.Register<IInfoViewPresenter, InfoViewPresenter>(Lifetime.Singleton);
             #endregion
 
             #region RegisterResource
@@ -269,7 +261,6 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<AttacksWeakPointEvaluatorService>(Lifetime.Singleton);
             builder.Register<BuffGeneratorService>(Lifetime.Singleton);
             builder.Register<BuffRegistererService>(Lifetime.Singleton);
-            builder.Register<CharacterOutputDataCreatorService>(Lifetime.Singleton);
             builder.Register<CharacterPropertyFactoryService>(Lifetime.Singleton);
             builder.Register<DamageEvaluatorService>(Lifetime.Singleton);
             builder.Register<IPrimeSkillGeneratorService<DamageParameterValueObject, DamageValueObject>, DamageGeneratorService>(Lifetime.Singleton);
@@ -281,8 +272,6 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<SlipDamageGeneratorService>(Lifetime.Singleton);
             builder.Register<SlipGeneratorService>(Lifetime.Singleton);
             builder.Register<SlipRegistererService>(Lifetime.Singleton);
-            builder.Register<ToBodyPartNumberService>(Lifetime.Singleton);
-            builder.Register<ToBuffNumberService>(Lifetime.Singleton);
             builder.Register<TurnInitializerService>(Lifetime.Singleton);
             builder.Register<IPrimeSkillGeneratorService<DestroyParameterValueObject, DestroyValueObject>, DestroyGeneratorService>(Lifetime.Singleton);
             builder.Register<IPrimeSkillRegistererService<DestroyValueObject>, DestroyRegistererService>(Lifetime.Singleton);
@@ -294,7 +283,6 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<BattleLoggerService>(Lifetime.Singleton);
             builder.Register<BodyPartDomainService>(Lifetime.Singleton);
             builder.Register<BuffDomainService>(Lifetime.Singleton);
-            builder.Register<CharactersDomainService>(Lifetime.Singleton);
             builder.Register<EnemiesDomainService>(Lifetime.Singleton);
             builder.Register<OrderedItemsDomainService>(Lifetime.Singleton);
             builder.Register<PlayerDomainService>(Lifetime.Singleton);
