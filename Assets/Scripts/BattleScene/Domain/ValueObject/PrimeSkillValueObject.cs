@@ -30,6 +30,9 @@ namespace BattleScene.Domain.ValueObject
                     .Select(y => (targetId: y.TargetId, amount: y.Amount))
                     .Aggregate((y, z) => (y.targetId, y.amount + z.amount)))
                 .ToDictionary(x => x.targetId, x => x.amount);
+        public bool IsAvoid => 
+            AttackList
+                .All(x => !x.IsHit);
         public int TechnicalPoint { get; protected init; }
     }
 }

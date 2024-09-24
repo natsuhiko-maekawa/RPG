@@ -3,6 +3,7 @@
     public interface IContext
     {
         public void Select();
-        public bool HasEndState();
+        public bool IsContinue { get; }
+        public bool IsBreak { get; }
     }
 }

@@ -214,7 +214,7 @@ namespace BattleScene.InterfaceAdapter
 
             #region RegisterInterfaceAdapterService
             builder.Register<MessageCodeConverterService>(Lifetime.Singleton);
-            builder.Register<PrimeSkillContextService>(Lifetime.Singleton);
+            builder.Register<PrimeSkillStateMachine>(Lifetime.Singleton);
             builder.Register<ToIndexService>(Lifetime.Singleton);
             #endregion
 
@@ -247,6 +247,7 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<PrimeSkillStopState<BuffParameterValueObject, BuffValueObject>>(Lifetime.Singleton);
             builder.Register<PrimeSkillStopState<RestoreParameterValueObject, RestoreValueObject>>(Lifetime.Singleton);
             builder.Register<PrimeSkillStopState<SlipParameterValueObject, SlipValueObject>>(Lifetime.Singleton);
+            builder.Register<PrimeSkillBreakState<DamageParameterValueObject, DamageValueObject>>(Lifetime.Singleton);
             #endregion
 
             #region RegisterUseCase

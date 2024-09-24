@@ -7,32 +7,32 @@ namespace BattleScene.InterfaceAdapter.State.Battle
     internal class SkillState : BaseState
     {
         private readonly SkillExecutorService _skillExecutor;
-        private readonly PrimeSkillContextService _primeSkillContext;
+        private readonly PrimeSkillStateMachine _primeSkillStateMachine;
         private readonly SkillOutputFacade _skillOutput;
         private readonly TurnEndState _turnEndState;
 
         public SkillState(
             SkillExecutorService skillExecutor,
-            PrimeSkillContextService primeSkillContext,
+            PrimeSkillStateMachine primeSkillStateMachine,
             SkillOutputFacade skillOutput,
             TurnEndState turnEndState)
         {
             _skillExecutor = skillExecutor;
-            _primeSkillContext = primeSkillContext;
+            _primeSkillStateMachine = primeSkillStateMachine;
             _skillOutput = skillOutput;
             _turnEndState = turnEndState;
         }
 
         public override async void Start()
         {
-            _primeSkillContext.Start(Context);
+            _primeSkillStateMachine.Start(Context);
             _skillExecutor.Execute(Context.SkillCode);
             await _skillOutput.Output(Context);
         }
 
         public override void Select()
         {
-            var value = _primeSkillContext.Select();
+            var value = _primeSkillStateMachine.Select();
             if (!value) Context.TransitionTo(_turnEndState);
         }
     }

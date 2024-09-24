@@ -36,6 +36,8 @@ namespace BattleScene.InterfaceAdapter.State.PrimeSkill
 
         public void Select() => _skillState.Select();
 
-        public bool HasEndState() => _skillState is IPrimeSkillStopState;
+        public bool IsContinue => _skillState is not IPrimeSkillStopState and not IPrimeSkillBreakState;
+
+        public bool IsBreak => _skillState is IPrimeSkillBreakState;
     }
 }
