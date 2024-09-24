@@ -1,0 +1,32 @@
+﻿@startuml
+[*] --> TurnStartState
+TurnStartState --> OrderState
+OrderState --> PlayerSelectActionState
+PlayerSelectActionState --> SkillState : DEFENCEを選択
+PlayerSelectActionState --> PlayerSelectTargetState : ATTACKを選択
+PlayerSelectActionState --> PlayerSelectSkillState : SKILLを選択
+PlayerSelectSkillState --> PlayerSelectTargetState
+PlayerSelectTargetState --> SkillState
+OrderState --> EnemySelectSkillState
+EnemySelectSkillState --> SkillState
+OrderState --> SkillState
+SkillState --> SkillState
+SkillState --> TurnStopState
+OrderState --> ResetAilmentState
+ResetState --> TurnStopState
+OrderState --> SlipDamageState
+SlipDamageState --> TurnStopState
+
+PlayerSelectActionState : 選択された行動によって遷移先を変更
+State SkillState {
+[*] --> PrimeSkillStartState
+    PrimeSkillStartState --> PrimeSkillStopState : プレイヤーに対し状態異常を失敗
+    PrimeSkillStartState --> PrimeSkillOutputState
+    PrimeSkillOutputState --> PrimeSkillOutputState : 表示するメッセージが残っている
+    PrimeSkillOutputState --> PrimeSkillStopState : すべてのメッセージを表示した
+    PrimeSkillStopState --> [*]
+    
+    PrimeSkillStartState : PrimeSkillを実行した結果をCollectionに登録
+    PrimeSkillOutputState : PrimeSkillを実行した結果を画面に表示
+}
+@enduml
