@@ -8,7 +8,13 @@ namespace BattleScene.DataAccess.Factory
     public class BodyPartPropertyFactory : IFactory<BodyPartPropertyValueObject, BodyPartCode>
     {
         private readonly IResource<BodyPartPropertyDto, BodyPartCode> _bodyPartPropertyResource;
-        
+
+        public BodyPartPropertyFactory(
+            IResource<BodyPartPropertyDto, BodyPartCode> bodyPartPropertyResource)
+        {
+            _bodyPartPropertyResource = bodyPartPropertyResource;
+        }
+
         public BodyPartPropertyValueObject Create(BodyPartCode key)
         {
             var bodyPartPropertyResource = _bodyPartPropertyResource.Get(key);

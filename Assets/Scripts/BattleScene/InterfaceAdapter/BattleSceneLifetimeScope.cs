@@ -115,38 +115,38 @@ namespace BattleScene.InterfaceAdapter
             #endregion
 
             #region RegisterSkill
-            builder.Register<AfterimageSkill>(Lifetime.Singleton);
-            builder.Register<AttackSkill>(Lifetime.Singleton);
-            builder.Register<BiteSkill>(Lifetime.Singleton);
-            builder.Register<BiteOffSkill>(Lifetime.Singleton);
-            builder.Register<ConfusionSkill>(Lifetime.Singleton);
-            builder.Register<CutUpSkill>(Lifetime.Singleton);
-            builder.Register<DefenceSkill>(Lifetime.Singleton);
-            builder.Register<FieldRationSkill>(Lifetime.Singleton);
-            builder.Register<FirstAidSkill>(Lifetime.Singleton);
-            builder.Register<FlameThrowSkill>(Lifetime.Singleton);
-            builder.Register<HonzougakuSkill>(Lifetime.Singleton);
-            builder.Register<IshinhouSkill>(Lifetime.Singleton);
-            builder.Register<KuchiyoseSkill>(Lifetime.Singleton);
-            builder.Register<KyoukasuigetsuSkill>(Lifetime.Singleton);
-            builder.Register<LiquidSkill>(Lifetime.Singleton);
-            builder.Register<MurasameSkill>(Lifetime.Singleton);
-            builder.Register<MusterStrengthSkill>(Lifetime.Singleton);
-            builder.Register<NadegiriSkill>(Lifetime.Singleton);
-            builder.Register<NumbLiquidSkill>(Lifetime.Singleton);
-            builder.Register<OnikoroshiSkill>(Lifetime.Singleton);
-            builder.Register<PunchSkill>(Lifetime.Singleton);
-            builder.Register<PutScytheSkill>(Lifetime.Singleton);
-            builder.Register<RaikiriSkill>(Lifetime.Singleton);
-            builder.Register<RandomShotsSkill>(Lifetime.Singleton);
-            builder.Register<ShichishitouSkill>(Lifetime.Singleton);
-            builder.Register<SilverBulletSkill>(Lifetime.Singleton);
-            builder.Register<SmokeBombSkill>(Lifetime.Singleton);
-            builder.Register<StarShellSkill>(Lifetime.Singleton);
-            builder.Register<StringerSkill>(Lifetime.Singleton);
-            builder.Register<TaserGunSkill>(Lifetime.Singleton);
-            builder.Register<UtsusemiSkill>(Lifetime.Singleton);
-            builder.Register<WabisukeSkill>(Lifetime.Singleton);
+            builder.Register<AfterimageSkill>(Lifetime.Transient);
+            builder.Register<AttackSkill>(Lifetime.Transient);
+            builder.Register<BiteSkill>(Lifetime.Transient);
+            builder.Register<BiteOffSkill>(Lifetime.Transient);
+            builder.Register<ConfusionSkill>(Lifetime.Transient);
+            builder.Register<CutUpSkill>(Lifetime.Transient);
+            builder.Register<DefenceSkill>(Lifetime.Transient);
+            builder.Register<FieldRationSkill>(Lifetime.Transient);
+            builder.Register<FirstAidSkill>(Lifetime.Transient);
+            builder.Register<FlameThrowSkill>(Lifetime.Transient);
+            builder.Register<HonzougakuSkill>(Lifetime.Transient);
+            builder.Register<IshinhouSkill>(Lifetime.Transient);
+            builder.Register<KuchiyoseSkill>(Lifetime.Transient);
+            builder.Register<KyoukasuigetsuSkill>(Lifetime.Transient);
+            builder.Register<LiquidSkill>(Lifetime.Transient);
+            builder.Register<MurasameSkill>(Lifetime.Transient);
+            builder.Register<MusterStrengthSkill>(Lifetime.Transient);
+            builder.Register<NadegiriSkill>(Lifetime.Transient);
+            builder.Register<NumbLiquidSkill>(Lifetime.Transient);
+            builder.Register<OnikoroshiSkill>(Lifetime.Transient);
+            builder.Register<PunchSkill>(Lifetime.Transient);
+            builder.Register<PutScytheSkill>(Lifetime.Transient);
+            builder.Register<RaikiriSkill>(Lifetime.Transient);
+            builder.Register<RandomShotsSkill>(Lifetime.Transient);
+            builder.Register<ShichishitouSkill>(Lifetime.Transient);
+            builder.Register<SilverBulletSkill>(Lifetime.Transient);
+            builder.Register<SmokeBombSkill>(Lifetime.Transient);
+            builder.Register<StarShellSkill>(Lifetime.Transient);
+            builder.Register<StringerSkill>(Lifetime.Transient);
+            builder.Register<TaserGunSkill>(Lifetime.Transient);
+            builder.Register<UtsusemiSkill>(Lifetime.Transient);
+            builder.Register<WabisukeSkill>(Lifetime.Transient);
             #endregion
             
             #region RegisterSkillElement
@@ -231,6 +231,7 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<PrimeSkillOutputState<AilmentParameterValueObject, AilmentValueObject>, AilmentOutputState>(Lifetime.Singleton);
             builder.Register<PrimeSkillOutputState<BuffParameterValueObject, BuffValueObject>, BuffMessageState>(Lifetime.Singleton);
             builder.Register<PrimeSkillOutputState<DamageParameterValueObject, DamageValueObject>, DamageOutputState>(Lifetime.Singleton);
+            builder.Register<PrimeSkillOutputState<DestroyParameterValueObject, DestroyValueObject>, DestroyOutputState>(Lifetime.Singleton);
             builder.Register<PrimeSkillOutputState<RestoreParameterValueObject, RestoreValueObject>, RestoreMessageState>(Lifetime.Singleton);
             builder.Register<PrimeSkillOutputState<SlipParameterValueObject, SlipValueObject>, SlipOutputState>(Lifetime.Singleton);
             builder.Register<TurnEndState>(Lifetime.Singleton);

@@ -11,10 +11,17 @@ namespace BattleScene.UseCases.Service
 {
     public class DestroyRegistererService : IPrimeSkillRegistererService<DestroyValueObject>
     {
-        private readonly BattleLoggerService _battleLogger;
         private readonly IFactory<BodyPartPropertyValueObject, BodyPartCode> _bodyPartPropertyFactory;
         private readonly IRepository<BodyPartEntity, (CharacterId, BodyPartCode)> _bodyPartRepository;
-        
+
+        public DestroyRegistererService(
+            IFactory<BodyPartPropertyValueObject, BodyPartCode> bodyPartPropertyFactory,
+            IRepository<BodyPartEntity, (CharacterId, BodyPartCode)> bodyPartRepository)
+        {
+            _bodyPartPropertyFactory = bodyPartPropertyFactory;
+            _bodyPartRepository = bodyPartRepository;
+        }
+
         public void Register(DestroyValueObject destroy)
         {
             var bodyPartEntityList = destroy.ActualTargetIdList
@@ -37,11 +44,6 @@ namespace BattleScene.UseCases.Service
         public void Register(IReadOnlyList<DestroyValueObject> destroyList)
         {
             foreach (var destroy in destroyList) Register(destroy);
-        }
-
-        public void RegisterLog(IReadOnlyList<DestroyValueObject> destroyList)
-        {
-            
         }
     }
 }
