@@ -1,6 +1,8 @@
 ﻿using BattleScene.Domain.Code;
+using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Entity;
+using BattleScene.Domain.Id;
 using Utility.Interface;
 
 namespace BattleScene.InterfaceAdapter.Service
@@ -8,24 +10,34 @@ namespace BattleScene.InterfaceAdapter.Service
     public class ActorService
     {
         private readonly AilmentDomainService _ailment;
+        private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
         private readonly OrderedItemsDomainService _orderedItems;
         private readonly IRandomEx _randomEx;
 
         public ActorService(
             AilmentDomainService ailment,
+            IRepository<CharacterEntity, CharacterId> characterRepository,
             OrderedItemsDomainService orderedItems,
             IRandomEx randomEx)
         {
             _ailment = ailment;
+            _characterRepository = characterRepository;
             _orderedItems = orderedItems;
             _randomEx = randomEx;
         }
 
         public bool IsResetAilment => _orderedItems.First().OrderedItemType == OrderedItemType.Ailment;
-
         public bool IsSlipDamage => _orderedItems.First().OrderedItemType == OrderedItemType.Slip;
-
         public bool CantAction => CantCharacterAction();
+        public bool IsPlayer
+        {
+            get
+            {
+                var isCharacter = _orderedItems.First().TryGetCharacterId(out var characterId);
+                var isPlayer = isCharacter && _characterRepository.Select(characterId).IsPlayer;
+                return isPlayer;
+            }
+        }
         
         private bool CantCharacterAction()
         {
