@@ -19,7 +19,7 @@ namespace BattleScene.InterfaceAdapter.State.PrimeSkill
 
         public override void Start()
         {
-            _messageView.StartMessageAnimationAsync(MessageCode.RestoreTechnicalPointMessage);
+            _messageView.StartAnimationAsync(MessageCode.RestoreTechnicalPointMessage);
         }
 
         public override void Select()

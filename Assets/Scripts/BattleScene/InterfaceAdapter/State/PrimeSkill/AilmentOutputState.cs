@@ -28,7 +28,7 @@ namespace BattleScene.InterfaceAdapter.State.PrimeSkill
             var messageCode = failure
                 ? MessageCode.FailAilmentMessage
                 : MessageCode.AilmentMessage;
-            _messageView.StartMessageAnimationAsync(messageCode);
+            _messageView.StartAnimationAsync(messageCode);
             _playerImageView.StartAnimationAsync(PlayerImageCode.Suffocation);
         }
         

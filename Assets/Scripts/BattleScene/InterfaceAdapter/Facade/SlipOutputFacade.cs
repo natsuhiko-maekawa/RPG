@@ -26,7 +26,7 @@ namespace BattleScene.InterfaceAdapter.Facade
         public async Task OutputThenSlipFailureAsync()
         {
             var animationList = new List<Task>();
-            var messageAnimation = _messageView.StartMessageAnimationAsync(MessageCode.FailAilmentMessage);
+            var messageAnimation = _messageView.StartAnimationAsync(MessageCode.FailAilmentMessage);
             animationList.Add(messageAnimation);
 
             await Task.WhenAll(animationList);
@@ -35,7 +35,7 @@ namespace BattleScene.InterfaceAdapter.Facade
         public async Task OutputThenSlipSuccessAsync(PrimeSkillValueObject primeSkill)
         {
             var animationList = new List<Task>();
-            var messageAnimation = _messageView.StartMessageAnimationAsync(MessageCode.AilmentMessage);
+            var messageAnimation = _messageView.StartAnimationAsync(MessageCode.AilmentMessage);
             animationList.Add(messageAnimation);
 
             var playerImageCode = _ailmentViewResource.Get(primeSkill.SlipDamageCode).PlayerImageCode;

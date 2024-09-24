@@ -33,7 +33,7 @@ namespace BattleScene.InterfaceAdapter.State.PrimeSkill
         {
             var buffCode = _battleLogRepository.Select().Max().BuffCode;
             var messageCode = _buffViewResource.Get(buffCode).MessageCode;
-            _messageView.StartMessageAnimationAsync(messageCode);
+            _messageView.StartAnimationAsync(messageCode);
         }
 
         public override void Select()
