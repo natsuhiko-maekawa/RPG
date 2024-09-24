@@ -13,7 +13,7 @@ namespace BattleScene.InterfaceAdapter.Service
         private readonly IFactory<SkillValueObject, SkillCode> _skillFactory;
         private readonly IObjectResolver _container;
         private IEnumerator<IContext> _primeSkillContextEnumerator;
-        private IContext _primeContext;
+        private IContext _primeSkillContext;
 
         public PrimeSkillStateMachine(
             IFactory<SkillValueObject, SkillCode> skillFactory,
@@ -22,30 +22,32 @@ namespace BattleScene.InterfaceAdapter.Service
             _skillFactory = skillFactory;
             _container = container;
         }
-
-        public void Start(Context context)
+        
+        public bool Select(Context context)
         {
-            _primeSkillContextEnumerator = GetContext(context).GetEnumerator();
-        }
-
-        public bool Select()
-        {
-            if (_primeContext == null) return MoveNextOrDispose();
-            _primeContext.Select();
-            return _primeContext.IsContinue || MoveNextOrDispose();
+            if (_primeSkillContextEnumerator == null)
+            {
+                _primeSkillContextEnumerator = GetContext(context).GetEnumerator();
+                var value = MoveNextOrDispose();
+                return value;
+            }
+            
+            _primeSkillContext.Select();
+            return _primeSkillContext.IsContinue || MoveNextOrDispose();
         }
 
         private bool MoveNextOrDispose()
         {
-            var value = _primeSkillContextEnumerator.MoveNext() && _primeContext is not { IsBreak: true };
+            var value = _primeSkillContextEnumerator.MoveNext() && _primeSkillContext is not { IsBreak: true };
             if (value)
             {
-                _primeContext = _primeSkillContextEnumerator.Current;
+                _primeSkillContext = _primeSkillContextEnumerator.Current;
             }
             else
             {
-                _primeContext = null;
+                _primeSkillContext = null;
                 _primeSkillContextEnumerator.Dispose();
+                _primeSkillContextEnumerator = null;
             }
 
             return value;

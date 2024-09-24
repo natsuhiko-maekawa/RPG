@@ -25,14 +25,13 @@ namespace BattleScene.InterfaceAdapter.State.Battle
 
         public override async void Start()
         {
-            _primeSkillStateMachine.Start(Context);
             _skillExecutor.Execute(Context.SkillCode);
             await _skillOutput.Output(Context);
         }
 
         public override void Select()
         {
-            var value = _primeSkillStateMachine.Select();
+            var value = _primeSkillStateMachine.Select(Context);
             if (!value) Context.TransitionTo(_turnEndState);
         }
     }
