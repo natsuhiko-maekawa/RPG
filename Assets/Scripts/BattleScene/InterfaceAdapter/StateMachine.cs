@@ -6,9 +6,10 @@ using BattleScene.Domain.Id;
 using BattleScene.Framework.Input;
 using BattleScene.Framework.View;
 using BattleScene.Framework.ViewModel;
-using BattleScene.InterfaceAdapter.State.Turn;
+using BattleScene.InterfaceAdapter.State.Battle;
 using VContainer;
 using VContainer.Unity;
+using Context = BattleScene.InterfaceAdapter.State.Battle.Context;
 
 namespace BattleScene.InterfaceAdapter
 {

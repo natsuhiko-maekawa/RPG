@@ -7,7 +7,7 @@ namespace BattleScene.InterfaceAdapter.State.PrimeSkill
 {
     public class Context<TPrimeSkillParameter, TPrimeSkill> : IContext
     {
-        private BaseState<TPrimeSkillParameter, TPrimeSkill> _skillState;
+        private BaseState<TPrimeSkillParameter, TPrimeSkill> _state;
         
         public SkillCommonValueObject SkillCommon { get; }
         public IReadOnlyList<CharacterId> TargetIdList { get; }
@@ -29,15 +29,15 @@ namespace BattleScene.InterfaceAdapter.State.PrimeSkill
         public void TransitionTo(BaseState<TPrimeSkillParameter, TPrimeSkill> skillState)
         {
             Debug.Log(skillState.GetType().Name);
-            _skillState = skillState;
-            _skillState.SetContext(this);
-            _skillState.Start();
+            _state = skillState;
+            _state.SetContext(this);
+            _state.Start();
         }
 
-        public void Select() => _skillState.Select();
+        public void Select() => _state.Select();
 
-        public bool IsContinue => _skillState is not IPrimeSkillStopState and not IPrimeSkillBreakState;
+        public bool IsContinue => _state is not IPrimeSkillStopState and not IPrimeSkillBreakState;
 
-        public bool IsBreak => _skillState is IPrimeSkillBreakState;
+        public bool IsBreak => _state is IPrimeSkillBreakState;
     }
 }

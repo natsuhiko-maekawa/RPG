@@ -1,16 +1,12 @@
-﻿using System.Collections.Generic;
-using BattleScene.Domain.Code;
+﻿using System.Collections.Immutable;
 using BattleScene.Domain.Id;
 using UnityEngine;
 
-namespace BattleScene.InterfaceAdapter.State.Turn
+namespace BattleScene.InterfaceAdapter.State.Battle
 {
     public class Context
     {
         private BaseState _state;
-        
-        public SkillCode SkillCode { get; set; }
-        public IReadOnlyList<CharacterId> TargetIdList { get; set; }
 
         public Context(BaseState state)
         {
@@ -29,8 +25,6 @@ namespace BattleScene.InterfaceAdapter.State.Turn
 
         public void Select(int id) => _state.Select(id);
         
-        public void Select(IReadOnlyList<CharacterId> targetIdList) => _state.Select(targetIdList);
-        
-        public bool IsContinue => _state is not TurnStopState;
+        public void Select(ImmutableList<CharacterId> targetIdList) => _state.Select(targetIdList);
     }
 }

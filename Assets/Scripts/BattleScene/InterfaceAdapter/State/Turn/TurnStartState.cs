@@ -5,7 +5,7 @@ using BattleScene.UseCases.Service;
 
 namespace BattleScene.InterfaceAdapter.State.Turn
 {
-    internal class OrderState : BaseState
+    internal class TurnStartState : BaseState
     {
         private readonly ActionTimeService _actionTime;
         private readonly OrderService _order;
@@ -14,7 +14,7 @@ namespace BattleScene.InterfaceAdapter.State.Turn
         private readonly PlayerSelectActionState _playerSelectActionState;
         private readonly EnemySelectSkillState _enemySelectSkillState;
 
-        public OrderState(
+        public TurnStartState(
             ActionTimeService actionTime,
             OrderService order,
             ActorService actor,

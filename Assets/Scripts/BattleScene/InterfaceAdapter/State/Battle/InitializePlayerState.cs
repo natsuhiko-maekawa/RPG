@@ -1,6 +1,6 @@
 ﻿using BattleScene.Domain.DomainService;
 
-namespace BattleScene.InterfaceAdapter.State.Turn
+namespace BattleScene.InterfaceAdapter.State.Battle
 {
     internal class InitializePlayerState : BaseState
     {

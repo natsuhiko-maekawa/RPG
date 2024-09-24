@@ -1,32 +1,33 @@
 ﻿using System.Collections.Generic;
 using BattleScene.Domain.Code;
 using BattleScene.InterfaceAdapter.Presenter;
+using BattleScene.InterfaceAdapter.State.Turn;
 using BattleScene.UseCases.IService;
 using static BattleScene.Domain.Code.CharacterTypeCode;
 
-namespace BattleScene.InterfaceAdapter.State.Turn
+namespace BattleScene.InterfaceAdapter.State.Battle
 {
     internal class InitializeEnemyState : BaseState
     {
         private readonly IEnemiesRegistererService _enemiesRegisterer;
         private readonly EnemyImagePresenter _enemyImage;
-        private readonly OrderState _orderState;
+        private readonly TurnState _turnState;
 
         public InitializeEnemyState(
             IEnemiesRegistererService enemiesRegisterer,
             EnemyImagePresenter enemyImage,
-            OrderState orderState)
+            TurnState turnState)
         {
             _enemiesRegisterer = enemiesRegisterer;
             _enemyImage = enemyImage;
-            _orderState = orderState;
+            _turnState = turnState;
         }
 
         public override void Start()
         {
             SetEnemies();
             _enemyImage.Show();
-            Context.TransitionTo(_orderState);
+            Context.TransitionTo(_turnState);
         }
 
         private void SetEnemies()
