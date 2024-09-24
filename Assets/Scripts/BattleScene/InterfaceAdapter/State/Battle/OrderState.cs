@@ -84,7 +84,7 @@ namespace BattleScene.InterfaceAdapter.State.Battle
         private bool CantAction()
         {
             if (!_orderedItems.First().TryGetCharacterId(out var characterId)) return false;
-            var ailmentCode = _ailment.GetHighPriority(characterId)?.AilmentCode;
+            var ailmentCode = _ailment.GetHighestPriority(characterId)?.AilmentCode;
             if (!ailmentCode.HasValue) return false;
             if (ailmentCode.Value is 
                 not AilmentCode.Sleep 

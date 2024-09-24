@@ -13,7 +13,7 @@ namespace BattleScene.DataAccess.Dto
         public AilmentCode Key { get; private set; }
         public int Turn { get; private set; }
         public bool IsSelfRecovery { get; private set; }
-        public Priority Priority { get; private set; }
+        public int? Priority { get; private set; }
         
         public void OnBeforeSerialize()
         {
@@ -25,8 +25,8 @@ namespace BattleScene.DataAccess.Dto
             Turn = turn;
             IsSelfRecovery = isSelfRecovery;
             Priority = Enum.TryParse<Priority>(ailmentCode, out var priority)
-                ? priority
-                : Priority.Lowest;
+                ? (int?)priority
+                : null;
         }
     }
 }

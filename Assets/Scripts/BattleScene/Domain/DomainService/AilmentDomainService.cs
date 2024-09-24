@@ -4,16 +4,21 @@ using BattleScene.Domain.Code;
 using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
+using BattleScene.Domain.ValueObject;
+using JetBrains.Annotations;
 
 namespace BattleScene.Domain.DomainService
 {
     public class AilmentDomainService
     {
+        private readonly IFactory<AilmentPropertyValueObject, AilmentCode> _ailmentPropertyFactory;
         private readonly IRepository<AilmentEntity, (CharacterId, AilmentCode)> _ailmentRepository;
 
         public AilmentDomainService(
+            IFactory<AilmentPropertyValueObject, AilmentCode> ailmentPropertyFactory,
             IRepository<AilmentEntity, (CharacterId, AilmentCode)> ailmentRepository)
         {
+            _ailmentPropertyFactory = ailmentPropertyFactory;
             _ailmentRepository = ailmentRepository;
         }
 
@@ -54,14 +59,20 @@ namespace BattleScene.Domain.DomainService
 
         /// <summary>
         ///     有効な状態異常のうち最も優先度の高いものを返す。
+        ///     該当する状態異常がない場合はnullを返す。
         /// </summary>
-        /// <returns>状態異常エンティティ</returns>
-        public AilmentEntity GetHighPriority(CharacterId characterId)
+        /// <param name="characterId">キャラクターID</param>
+        /// <returns>状態異常エンティティ、もしくはnull</returns>
+        [CanBeNull]
+        public AilmentEntity GetHighestPriority(CharacterId characterId)
         {
-            return _ailmentRepository.Select()
+            var ailment = _ailmentRepository.Select()
                 .Where(x => Equals(x.CharacterId, characterId))
-                // .OrderByDescending(x => x.Priority)
+                .Where(x => x.Effects)
+                .Where(x => _ailmentPropertyFactory.Create(x.AilmentCode).Priority.HasValue)
+                .OrderBy(x => _ailmentPropertyFactory.Create(x.AilmentCode).Priority)
                 .FirstOrDefault();
+            return ailment;
         }
     }
 }

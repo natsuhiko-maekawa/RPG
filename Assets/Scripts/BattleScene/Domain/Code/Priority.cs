@@ -2,7 +2,8 @@
 {
     public enum Priority
     {
-        Lowest,
+        Paralysis,
+        EnemyParalysis,
         Confusion
     }
 }
