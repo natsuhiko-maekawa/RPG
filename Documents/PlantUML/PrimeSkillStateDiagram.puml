@@ -1,0 +1,11 @@
+﻿@startuml
+[*] --> PrimeSkillStartState
+PrimeSkillStartState --> PrimeSkillStopState : プレイヤーに対し状態異常を失敗
+PrimeSkillStartState --> PrimeSkillOutputState
+PrimeSkillOutputState --> PrimeSkillOutputState : 表示するメッセージが残っている
+PrimeSkillOutputState --> PrimeSkillStopState : すべてのメッセージを表示した
+PrimeSkillStopState --> [*]
+
+PrimeSkillStartState : PrimeSkillを実行した結果をCollectionに登録
+PrimeSkillOutputState : PrimeSkillを実行した結果を画面に表示
+@enduml

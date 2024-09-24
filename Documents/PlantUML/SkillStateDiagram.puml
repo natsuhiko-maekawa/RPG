@@ -1,8 +1,0 @@
-﻿@startuml
-start
-:PrimeSkillStartState]
-repeat :PrimeSkillOutputState]
-repeat while (表示するメッセージが残っている)
-:PrimeSkillStopState]
-stop
-@enduml
