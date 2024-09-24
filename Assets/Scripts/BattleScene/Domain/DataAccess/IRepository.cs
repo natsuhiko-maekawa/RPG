@@ -2,7 +2,7 @@
 using System.Collections.Immutable;
 using BattleScene.Domain.Entity;
 
-namespace BattleScene.Domain.IRepository
+namespace BattleScene.Domain.DataAccess
 {
     public interface IRepository<TEntity, TId> 
         where TEntity : BaseEntity<TId>

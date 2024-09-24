@@ -1,7 +1,7 @@
 ﻿using System.Linq;
+using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
-using BattleScene.Domain.IRepository;
 
 namespace BattleScene.Domain.DomainService
 {
