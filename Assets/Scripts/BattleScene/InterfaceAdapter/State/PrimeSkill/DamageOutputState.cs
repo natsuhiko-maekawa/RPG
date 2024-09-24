@@ -21,7 +21,7 @@ namespace BattleScene.InterfaceAdapter.State.PrimeSkill
 
         public override async void Start()
         {
-            await _damageOutput.Output();
+            await _damageOutput.Output(Context.PrimeSkillQueue.Peek());
         }
         
         public override void Select()

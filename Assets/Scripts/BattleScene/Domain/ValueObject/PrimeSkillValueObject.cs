@@ -33,6 +33,9 @@ namespace BattleScene.Domain.ValueObject
         public bool IsAvoid => 
             AttackList
                 .All(x => !x.IsHit);
+        public bool AttacksWeakPoint =>
+            AttackList
+                .Any(x => x.AttacksWeakPoint);
         public int TechnicalPoint { get; protected init; }
     }
 }

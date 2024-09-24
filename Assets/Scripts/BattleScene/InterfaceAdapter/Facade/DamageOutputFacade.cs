@@ -1,11 +1,14 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
+using BattleScene.Domain.ValueObject;
 using BattleScene.InterfaceAdapter.Presenter;
+using UnityEngine;
 
 namespace BattleScene.InterfaceAdapter.Facade
 {
@@ -37,7 +40,7 @@ namespace BattleScene.InterfaceAdapter.Facade
             _vibrationView = vibrationView;
         }
 
-        public async Task Output()
+        public async Task Output(DamageValueObject damage)
         {
             var animationList = new List<Task>();
             
@@ -50,12 +53,16 @@ namespace BattleScene.InterfaceAdapter.Facade
             }
             else
             {
-                var playerImageAnimation = _playerImageView.StartAnimationAsync(PlayerImageCode.Damaged);
+                var playerImageCode = damage.IsAvoid
+                    ? PlayerImageCode.Avoidance
+                    : PlayerImageCode.Damaged;
+                var playerImageAnimation = _playerImageView.StartAnimationAsync(playerImageCode);
                 animationList.Add(playerImageAnimation);
             }
-            
-            var damageMessageAnimation = _messageView.StartDamageMessageAnimationAsync();
-            animationList.Add(damageMessageAnimation);
+
+            var messageCode = GetMessageCode(damage);
+            var messageAnimation = _messageView.StartMessageAnimationAsync(messageCode);
+            animationList.Add(messageAnimation);
 
             var damageAnimation = _damageView.StartAnimationAsync();
             animationList.Add(damageAnimation);
@@ -64,6 +71,26 @@ namespace BattleScene.InterfaceAdapter.Facade
             animationList.Add(vibrationAnimation);
             
             await Task.WhenAll(animationList);
+        }
+        
+        private MessageCode GetMessageCode(DamageValueObject damage)
+        {
+            if (damage.IsAvoid) return MessageCode.AvoidMessage;
+            if (DamagesOneself(damage.AttackList)) return MessageCode.DamageOneselfMessage;
+            return damage.AttacksWeakPoint
+                ? MessageCode.WeakPointMessage
+                : MessageCode.DamageMessage;
+        }
+        
+        private bool DamagesOneself(IReadOnlyList<AttackValueObject> attackList) => attackList.Any(IsOneself);
+
+        private bool IsOneself(AttackValueObject attack)
+        {
+            var targetId = attack.TargetId;
+            _orderedItems.First().TryGetCharacterId(out var actorId);
+            Debug.Assert(actorId != null);
+            var value = Equals(targetId, actorId);
+            return value;
         }
     }
 }
