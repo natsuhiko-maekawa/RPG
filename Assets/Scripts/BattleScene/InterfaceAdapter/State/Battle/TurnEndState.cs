@@ -1,20 +1,22 @@
 ﻿using BattleScene.Domain.DomainService;
+using VContainer;
 
 namespace BattleScene.InterfaceAdapter.State.Battle
 {
     internal class TurnEndState : BaseState
     {
         private readonly AilmentDomainService _ailment;
-        private readonly OrderState _orderState;
+        //TODO: 循環参照を避けるための暫定的な処置
+        private readonly IObjectResolver _container;
         private readonly SlipDomainService _slip;
 
         public TurnEndState(
             AilmentDomainService ailment,
-            OrderState orderState,
+            IObjectResolver container,
             SlipDomainService slip)
         {
             _ailment = ailment;
-            _orderState = orderState;
+            _container = container;
             _slip = slip;
         }
 
@@ -22,7 +24,7 @@ namespace BattleScene.InterfaceAdapter.State.Battle
         {
             _ailment.AdvanceTurn();
             _slip.AdvanceTurn();
-            Context.TransitionTo(_orderState);
+            Context.TransitionTo(_container.Resolve<OrderState>());
         }
     }
 }
