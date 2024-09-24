@@ -81,7 +81,7 @@ namespace BattleScene.InterfaceAdapter.Presenter
         //     }
         // }
 
-        public async void StartAnimationAsync()
+        public async Task StartAnimationAsync()
         {
             var taskList = new List<Task>();
             

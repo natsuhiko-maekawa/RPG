@@ -11,6 +11,7 @@ using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
 using BattleScene.Framework.Input;
 using BattleScene.Framework.View;
+using BattleScene.InterfaceAdapter.Facade;
 using BattleScene.InterfaceAdapter.Presenter;
 using BattleScene.InterfaceAdapter.PrimeSkill;
 using BattleScene.InterfaceAdapter.Service;
@@ -91,6 +92,10 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<IObserver<CharacterEntity>, TechnicalPointBarViewPresenter>(Lifetime.Singleton);
             #endregion
 
+            #region RegisterFacade
+            builder.Register<DamageOutputFacade>(Lifetime.Singleton);
+            #endregion
+            
             #region RegisterResource
             builder.RegisterComponentInHierarchy<IResource<AilmentPropertyDto, AilmentCode>>();
             builder.RegisterComponentInHierarchy<IAilmentViewResource>();
@@ -223,7 +228,7 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<SkillState>(Lifetime.Singleton);
             builder.Register<PrimeSkillOutputState<AilmentParameterValueObject, AilmentValueObject>, AilmentOutputState>(Lifetime.Singleton);
             builder.Register<PrimeSkillOutputState<BuffParameterValueObject, BuffValueObject>, BuffMessageState>(Lifetime.Singleton);
-            builder.Register<PrimeSkillOutputState<DamageParameterValueObject, DamageValueObject>, DamageMessageState>(Lifetime.Singleton);
+            builder.Register<PrimeSkillOutputState<DamageParameterValueObject, DamageValueObject>, DamageOutputState>(Lifetime.Singleton);
             builder.Register<PrimeSkillOutputState<RestoreParameterValueObject, RestoreValueObject>, RestoreMessageState>(Lifetime.Singleton);
             builder.Register<PrimeSkillOutputState<SlipParameterValueObject, SlipValueObject>, SlipMessageState>(Lifetime.Singleton);
             builder.Register<TurnEndState>(Lifetime.Singleton);

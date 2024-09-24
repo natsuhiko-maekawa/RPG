@@ -27,7 +27,7 @@ namespace BattleScene.InterfaceAdapter.Presenter
             _playerView = playerView;
         }
 
-        public async void StartAnimationAsync()
+        public async Task StartAnimationAsync()
         {
             var characterIdList = _battleLog.GetLast().ActualTargetIdList;
             var characterList = characterIdList

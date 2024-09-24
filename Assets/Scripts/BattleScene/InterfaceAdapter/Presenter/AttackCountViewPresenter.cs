@@ -1,4 +1,5 @@
-﻿using BattleScene.Framework.ViewModel;
+﻿using System.Threading.Tasks;
+using BattleScene.Framework.ViewModel;
 using BattleScene.UseCases.Service;
 
 namespace BattleScene.InterfaceAdapter.Presenter
@@ -16,11 +17,11 @@ namespace BattleScene.InterfaceAdapter.Presenter
             _playerAttackCountView = playerAttackCountView;
         }
 
-        public void Start()
+        public async Task Start()
         {
             var rate = _attackCounter.GetRate();
             var model = new AttackCountViewModel(rate);
-            _playerAttackCountView.StartAnimation(model);
+            await _playerAttackCountView.StartAnimation(model);
         }
     }
 }
