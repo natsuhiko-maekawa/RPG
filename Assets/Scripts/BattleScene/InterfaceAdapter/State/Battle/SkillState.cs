@@ -1,9 +1,4 @@
-﻿using BattleScene.DataAccess;
-using BattleScene.DataAccess.Dto;
-using BattleScene.Domain.Code;
-using BattleScene.Domain.DataAccess;
-using BattleScene.Domain.ValueObject;
-using BattleScene.InterfaceAdapter.Presenter;
+﻿using BattleScene.InterfaceAdapter.Facade;
 using BattleScene.InterfaceAdapter.Service;
 using BattleScene.UseCases.Service;
 using VContainer;
@@ -13,39 +8,27 @@ namespace BattleScene.InterfaceAdapter.State.Battle
     public class SkillState : BaseState
     {
         private readonly IObjectResolver _container;
-        private readonly IFactory<SkillValueObject, SkillCode> _skillFactory;
-        private readonly IResource<SkillPropertyDto, SkillCode> _skillViewResource;
         private readonly SkillExecutorService _skillExecutor;
         private readonly PrimeSkillContextService _primeSkillContext;
-        private readonly MessageViewPresenter _messageView;
-        private readonly PlayerImageViewPresenter _playerImageView;
+        private readonly SkillOutputFacade _skillOutput;
 
         public SkillState(
             IObjectResolver container,
-            IFactory<SkillValueObject, SkillCode> skillFactory,
-            IResource<SkillPropertyDto, SkillCode> skillViewResource,
             SkillExecutorService skillExecutor,
             PrimeSkillContextService primeSkillContext,
-            MessageViewPresenter messageView,
-            PlayerImageViewPresenter playerImageView)
+            SkillOutputFacade skillOutput)
         {
             _container = container;
-            _skillFactory = skillFactory;
-            _skillViewResource = skillViewResource;
             _skillExecutor = skillExecutor;
             _primeSkillContext = primeSkillContext;
-            _messageView = messageView;
-            _playerImageView = playerImageView;
+            _skillOutput = skillOutput;
         }
 
-        public override void Start()
+        public override async void Start()
         {
             _primeSkillContext.Start(Context);
             _skillExecutor.Execute(Context.SkillCode);
-            var skill = _skillFactory.Create(Context.SkillCode);
-            _messageView.StartMessageAnimationAsync(skill.SkillCommon.MessageCode);
-            var playerImageCode = _skillViewResource.Get(skill.SkillCommon.SkillCode).PlayerImageCode;
-            _playerImageView.StartAnimationAsync(playerImageCode);
+            await _skillOutput.Output(Context);
         }
 
         public override void Select()
