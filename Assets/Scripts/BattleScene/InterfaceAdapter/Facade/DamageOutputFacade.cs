@@ -40,6 +40,7 @@ namespace BattleScene.InterfaceAdapter.Facade
         public async Task Output()
         {
             var animationList = new List<Task>();
+            
             _orderedItems.First().TryGetCharacterId(out var actorId);
             var isActorPlayer = _characterRepository.Select(actorId).IsPlayer;
             if (isActorPlayer)
@@ -54,11 +55,14 @@ namespace BattleScene.InterfaceAdapter.Facade
             }
             
             var damageMessageAnimation = _messageView.StartDamageMessageAnimationAsync();
-            var damageAnimation = _damageView.StartAnimationAsync();
-            var vibrationAnimation = _vibrationView.StartAnimationAsync();
             animationList.Add(damageMessageAnimation);
+
+            var damageAnimation = _damageView.StartAnimationAsync();
             animationList.Add(damageAnimation);
+
+            var vibrationAnimation = _vibrationView.StartAnimationAsync();
             animationList.Add(vibrationAnimation);
+            
             await Task.WhenAll(animationList);
         }
     }
