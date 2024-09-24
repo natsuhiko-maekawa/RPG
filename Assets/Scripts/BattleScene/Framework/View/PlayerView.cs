@@ -39,7 +39,7 @@ namespace BattleScene.Framework.View
                 _playerImage.Set(sprite);
                 _playerImage.Show();
             }
-            catch (ArgumentException e)
+            catch (ArgumentException)
             {
                 _playerImage.Hide();
                 _playerImage.SetText("NoImage");
