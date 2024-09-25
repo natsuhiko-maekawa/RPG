@@ -34,7 +34,13 @@ namespace BattleScene.Framework.View
             for (var i = 1; i < dto.Message.Length + 1; ++i)
             {
                 _text.text = dto.Message.Substring(0, i);
-                await Task.Delay(WaitTime, _cancellationTokenSource.Token);
+                try
+                {
+                    await Task.Delay(WaitTime, _cancellationTokenSource.Token);
+                }
+                catch (TaskCanceledException)
+                {
+                }
             }
         }
 
