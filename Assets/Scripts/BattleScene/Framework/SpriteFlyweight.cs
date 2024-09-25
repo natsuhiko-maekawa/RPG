@@ -21,7 +21,7 @@ namespace BattleScene.Framework
         private void Start()
         {
             // https://docs.unity3d.com/Packages/com.unity.addressables@1.15/manual/ExceptionHandler.html
-            ResourceManager.ExceptionHandler += ExceptionHandler;
+            ResourceManager.ExceptionHandler = ExceptionHandler;
         }
         
         /// <summary>
