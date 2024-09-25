@@ -1,0 +1,23 @@
+﻿@startuml
+start
+if (_primeSkillContextEnumerator == null) then (true)
+    :_primeSkillContextEnumerator = GetContext(context).GetEnumerator();]
+else (false)
+endif
+:_primeSkillContextEnumerator.Current.Select();]
+repeat
+    if (_primeSkillContextEnumerator.Current.IsContinue) then (true)
+        :return true;]
+        stop
+    else (false)
+        if (!_primeSkillContextEnumerator.Current.IsBreak \n && _primeSkillContextEnumerator.MoveNext()) then (true)
+            :Context._state.Start()]
+        else (false)
+            :_primeSkillContextEnumerator.Dispose();]
+            :_primeSkillContextEnumerator = null;]
+            :return false;]
+            stop
+        endif
+    endif
+repeat while
+@enduml

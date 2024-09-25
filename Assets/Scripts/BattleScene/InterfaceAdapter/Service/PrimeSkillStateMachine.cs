@@ -13,7 +13,6 @@ namespace BattleScene.InterfaceAdapter.Service
         private readonly IFactory<SkillValueObject, SkillCode> _skillFactory;
         private readonly IObjectResolver _container;
         private IEnumerator<IContext> _primeSkillContextEnumerator;
-        private IContext _primeSkillContext;
 
         public PrimeSkillStateMachine(
             IFactory<SkillValueObject, SkillCode> skillFactory,
@@ -32,25 +31,24 @@ namespace BattleScene.InterfaceAdapter.Service
                 return value;
             }
             
-            _primeSkillContext.Select();
-            return _primeSkillContext.IsContinue || MoveNextOrDispose();
+            _primeSkillContextEnumerator.Current?.Select();
+            
+            return MoveNextOrDispose();
         }
 
         private bool MoveNextOrDispose()
         {
-            var value = _primeSkillContextEnumerator.MoveNext() && _primeSkillContext is not { IsBreak: true };
-            if (value)
+            if (_primeSkillContextEnumerator.Current?.IsContinue ?? false) return true;
+            
+            if (_primeSkillContextEnumerator.Current is not { IsBreak: true } 
+                && _primeSkillContextEnumerator.MoveNext())
             {
-                _primeSkillContext = _primeSkillContextEnumerator.Current;
-            }
-            else
-            {
-                _primeSkillContext = null;
-                _primeSkillContextEnumerator.Dispose();
-                _primeSkillContextEnumerator = null;
+                return MoveNextOrDispose();
             }
 
-            return value;
+            _primeSkillContextEnumerator.Dispose();
+            _primeSkillContextEnumerator = null;
+            return false;
         }
         
         private IEnumerable<IContext> GetContext(Context context)
