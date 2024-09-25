@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using BattleScene.Domain.Code;
 using BattleScene.InterfaceAdapter.Presenter;
-using BattleScene.InterfaceAdapter.State.Turn;
 using BattleScene.UseCases.IService;
 using static BattleScene.Domain.Code.CharacterTypeCode;
 
