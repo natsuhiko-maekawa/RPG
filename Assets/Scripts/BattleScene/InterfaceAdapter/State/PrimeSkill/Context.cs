@@ -3,6 +3,12 @@ using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
 using UnityEngine;
 
+#if UNITY_EDITOR
+using System.Linq;
+using System.Text.RegularExpressions;
+using JetBrains.Annotations;
+#endif
+
 namespace BattleScene.InterfaceAdapter.State.PrimeSkill
 {
     public class Context<TPrimeSkillParameter, TPrimeSkill> : IContext
@@ -26,13 +32,40 @@ namespace BattleScene.InterfaceAdapter.State.PrimeSkill
             TransitionTo(primeSkillState);
         }
 
-        public void TransitionTo(BaseState<TPrimeSkillParameter, TPrimeSkill> skillState)
+        public void TransitionTo(BaseState<TPrimeSkillParameter, TPrimeSkill> skill)
         {
-            Debug.Log(skillState.GetType().Name);
-            _state = skillState;
+            _state = skill;
+#if UNITY_EDITOR
+            Debug.Log(GetClassName());
+#endif
             _state.SetContext(this);
             _state.Start();
         }
+
+#if UNITY_EDITOR
+        private string GetClassName()
+        {
+            var originalClassName = _state.GetType().Name;
+            var className = TryGetMatchedText(originalClassName, "PrimeSkill(.+State).*$", out var matchedClassName)
+                ? matchedClassName
+                : originalClassName;
+            var originalGenericName = _state.GetType().GenericTypeArguments.FirstOrDefault()?.Name ?? "";
+            if (!TryGetMatchedText(originalGenericName, "(.+)ParameterValueObject$", out var genericName))
+                return className;
+            var genericClassName = genericName + className;
+            return genericClassName;
+        }
+
+        private bool TryGetMatchedText(string input, [RegexPattern]string pattern, out string matchedText)
+        {
+            var match = Regex.Match(input, pattern);
+            matchedText = match.Success
+                ? match.Groups[1].Value 
+                : null;
+            return match.Success;
+        }
+#endif
+        
 
         public void Select() => _state.Select();
 
