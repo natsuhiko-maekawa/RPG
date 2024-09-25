@@ -9,11 +9,11 @@ namespace BattleScene.UseCases.Service
     public class SlipRegistererService
     {
         private readonly IFactory<BattlePropertyValueObject> _battlePropertyFactory;
-        private readonly IRepository<SlipDamageEntity, SlipDamageCode> _slipDamageRepository;
+        private readonly IRepository<SlipEntity, SlipDamageCode> _slipDamageRepository;
 
         public SlipRegistererService(
             IFactory<BattlePropertyValueObject> battlePropertyFactory,
-            IRepository<SlipDamageEntity, SlipDamageCode> slipDamageRepository)
+            IRepository<SlipEntity, SlipDamageCode> slipDamageRepository)
         {
             _battlePropertyFactory = battlePropertyFactory;
             _slipDamageRepository = slipDamageRepository;
@@ -23,8 +23,9 @@ namespace BattleScene.UseCases.Service
         {
             if (slip.ActualTargetIdList.Count == 0) return;
             var slipDefaultTurn = _battlePropertyFactory.Create().SlipDefaultTurn;
-            var slipEntity = new SlipDamageEntity(
+            var slipEntity = new SlipEntity(
                 slipDamageCode: slip.SlipDamageCode,
+                effects: true,
                 turn: slipDefaultTurn);
             _slipDamageRepository.Update(slipEntity);
         }

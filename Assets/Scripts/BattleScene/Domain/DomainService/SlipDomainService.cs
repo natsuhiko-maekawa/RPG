@@ -8,10 +8,10 @@ namespace BattleScene.Domain.DomainService
 {
     public class SlipDomainService
     {
-        private readonly IRepository<SlipDamageEntity, SlipDamageCode> _slipRepository;
+        private readonly IRepository<SlipEntity, SlipDamageCode> _slipRepository;
 
         public SlipDomainService(
-            IRepository<SlipDamageEntity, SlipDamageCode> slipRepository)
+            IRepository<SlipEntity, SlipDamageCode> slipRepository)
         {
             _slipRepository = slipRepository;
         }

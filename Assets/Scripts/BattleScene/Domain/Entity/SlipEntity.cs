@@ -2,13 +2,15 @@
 
 namespace BattleScene.Domain.Entity
 {
-    public class SlipDamageEntity : BaseEntity<SlipDamageCode>
+    public partial class SlipEntity : BaseEntity<SlipDamageCode>
     {
-        public SlipDamageEntity(
+        public SlipEntity(
             SlipDamageCode slipDamageCode,
+            bool effects,
             int turn)
         {
             Id = slipDamageCode;
+            Effects = effects;
             Turn = turn;
             DefaultTurn = turn;
         }
@@ -16,6 +18,16 @@ namespace BattleScene.Domain.Entity
         public override SlipDamageCode Id { get; }
         public int Turn { get; private set; }
         private int DefaultTurn { get; }
+        
+        private bool _effects;
+
+        public bool Effects
+        {
+            get => _effects;
+            set { _effects = value; EffectsOnChange(value); }
+        }
+        
+        partial void EffectsOnChange(bool value);
 
         public void AdvanceTurn()
         {

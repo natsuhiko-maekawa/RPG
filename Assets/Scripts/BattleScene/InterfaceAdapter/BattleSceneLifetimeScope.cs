@@ -91,6 +91,7 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<IObserver<BodyPartEntity>, BodyPartViewPresenter>(Lifetime.Singleton);
             builder.Register<IObserver<CharacterEntity>, HitPointBarViewPresenter>(Lifetime.Singleton);
             builder.Register<IObserver<CharacterEntity>, TechnicalPointBarViewPresenter>(Lifetime.Singleton);
+            builder.Register<IObserver<SlipEntity>, SlipViewPresenter>(Lifetime.Singleton);
             #endregion
 
             #region RegisterFacade
@@ -209,7 +210,7 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<IRepository<CharacterEntity, CharacterId>, Repository<CharacterEntity, CharacterId>>(Lifetime.Singleton);
             builder.Register<IRepository<OrderedItemEntity, OrderId>, Repository<OrderedItemEntity, OrderId>>(
                 Lifetime.Singleton);
-            builder.Register<IRepository<SlipDamageEntity, SlipDamageCode>, Repository<SlipDamageEntity, SlipDamageCode>>(
+            builder.Register<IRepository<SlipEntity, SlipDamageCode>, Repository<SlipEntity, SlipDamageCode>>(
                 Lifetime.Singleton);
             builder.Register<IRepository<TurnEntity, TurnId>, Repository<TurnEntity, TurnId>>(Lifetime.Singleton);
             #endregion

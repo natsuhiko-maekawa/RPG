@@ -19,7 +19,7 @@ namespace BattleScene.UseCases.Service
         private readonly BuffDomainService _buff;
         private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
         private readonly IRepository<OrderedItemEntity, OrderId> _orderedItemRepository;
-        private readonly IRepository<SlipDamageEntity, SlipDamageCode> _slipDamageRepository;
+        private readonly IRepository<SlipEntity, SlipDamageCode> _slipDamageRepository;
 
         public OrderService(
             IFactory<BattlePropertyValueObject> battlePropertyFactory,
@@ -28,7 +28,7 @@ namespace BattleScene.UseCases.Service
             BuffDomainService buff, 
             IRepository<CharacterEntity, CharacterId> characterRepository,
             IRepository<OrderedItemEntity, OrderId> orderedItemRepository, 
-            IRepository<SlipDamageEntity, SlipDamageCode> slipDamageRepository)
+            IRepository<SlipEntity, SlipDamageCode> slipDamageRepository)
         {
             _battlePropertyFactory = battlePropertyFactory;
             _characterPropertyFactory = characterPropertyFactory;
@@ -96,7 +96,7 @@ namespace BattleScene.UseCases.Service
         }
 
         private ImmutableList<OrderedItem> InsertSlipDamage(
-            IList<SlipDamageEntity> slipDamageEntityList,
+            IList<SlipEntity> slipDamageEntityList,
             ImmutableList<OrderedItem> order)
         {
             var newOrder = order.ToImmutableList();

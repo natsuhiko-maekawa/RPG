@@ -13,10 +13,10 @@ namespace BattleScene.InterfaceAdapter.Skill
     /// </summary>
     internal class MurasameSkill : BaseSkill
     {
-        private readonly IRepository<SlipDamageEntity, SlipDamageCode> _slipDamageRepository;
+        private readonly IRepository<SlipEntity, SlipDamageCode> _slipDamageRepository;
 
         public MurasameSkill(
-            IRepository<SlipDamageEntity, SlipDamageCode> slipDamageRepository)
+            IRepository<SlipEntity, SlipDamageCode> slipDamageRepository)
         {
             _slipDamageRepository = slipDamageRepository;
         }
