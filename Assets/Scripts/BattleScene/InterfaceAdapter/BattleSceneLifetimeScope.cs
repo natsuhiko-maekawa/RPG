@@ -96,6 +96,7 @@ namespace BattleScene.InterfaceAdapter
             #endregion
 
             #region RegisterFacade
+            builder.Register<AilmentOutputFacade>(Lifetime.Singleton);
             builder.Register<DamageOutputFacade>(Lifetime.Singleton);
             builder.Register<DestroyOutputFacade>(Lifetime.Singleton);
             builder.Register<RestoreOutputFacade>(Lifetime.Singleton);

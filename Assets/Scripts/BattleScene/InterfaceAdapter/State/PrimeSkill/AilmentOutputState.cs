@@ -1,35 +1,33 @@
-﻿using System.Linq;
-using BattleScene.Domain.Code;
-using BattleScene.Domain.ValueObject;
-using BattleScene.InterfaceAdapter.Presenter;
+﻿using BattleScene.Domain.ValueObject;
+using BattleScene.InterfaceAdapter.Facade;
 
 namespace BattleScene.InterfaceAdapter.State.PrimeSkill
 {
     public class AilmentOutputState : PrimeSkillOutputState<AilmentParameterValueObject, AilmentValueObject>
     {
-        private readonly MessageViewPresenter _messageView;
-        private readonly PlayerImageViewPresenter _playerImageView;
+        private readonly AilmentOutputFacade _ailmentOutput;
         private readonly PrimeSkillStopState<AilmentParameterValueObject, AilmentValueObject> _primeSkillStopState;
 
         public AilmentOutputState(
-            MessageViewPresenter messageView,
-            PlayerImageViewPresenter playerImageView,
+            AilmentOutputFacade ailmentOutput,
             PrimeSkillStopState<AilmentParameterValueObject, AilmentValueObject> primeSkillStopState)
         {
-            _messageView = messageView;
-            _playerImageView = playerImageView;
+            _ailmentOutput = ailmentOutput;
             _primeSkillStopState = primeSkillStopState;
         }
 
-        public override void Start()
+        public override async void Start()
         {
-            var failure = Context.PrimeSkillQueue
-                .All(x => x.ActualTargetIdList.Count == 0);
-            var messageCode = failure
-                ? MessageCode.FailAilmentMessage
-                : MessageCode.AilmentMessage;
-            _messageView.StartAnimationAsync(messageCode);
-            _playerImageView.StartAnimationAsync(PlayerImageCode.Suffocation);
+            var isFailure = Context.PrimeSkillQueue.Count == 0;
+            if (isFailure)
+            {
+                await _ailmentOutput.OutputThenAilmentFailureAsync();
+            }
+            else
+            {
+                var ailment = Context.PrimeSkillQueue.Dequeue();
+                await _ailmentOutput.OutputThenAilmentSuccessAsync(ailment);
+            }
         }
         
         public override void Select()
