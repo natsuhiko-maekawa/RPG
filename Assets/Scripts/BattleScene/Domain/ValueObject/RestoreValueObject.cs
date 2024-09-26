@@ -15,6 +15,7 @@ namespace BattleScene.Domain.ValueObject
             SkillCode = skillCode;
             ActorId = actorId;
             TargetIdList = targetIdList;
+            ActualTargetIdList = TargetIdList;
             TechnicalPoint = technicalPoint;
         }
     }
