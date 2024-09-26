@@ -6,10 +6,11 @@ using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
+using BattleScene.UseCases.IService;
 
 namespace BattleScene.UseCases.Service
 {
-    public class AilmentRegistererService
+    public class AilmentRegistererService : IPrimeSkillRegistererService<AilmentValueObject>
     {
         private readonly IFactory<AilmentPropertyValueObject, AilmentCode> _ailmentPropertyFactory;
         private readonly IRepository<AilmentEntity, (CharacterId, AilmentCode)> _ailmentRepository;

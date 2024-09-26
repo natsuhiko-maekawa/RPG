@@ -3,11 +3,12 @@ using System.Linq;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
+using BattleScene.UseCases.IService;
 using UnityEngine;
 
 namespace BattleScene.UseCases.Service
 {
-    public class BuffGeneratorService
+    public class BuffGeneratorService : IPrimeSkillGeneratorService<BuffParameterValueObject, BuffValueObject>
     {
         private readonly OrderedItemsDomainService _orderedItems;
 

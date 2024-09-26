@@ -5,11 +5,12 @@ using System.Linq;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
+using BattleScene.UseCases.IService;
 using Utility.Interface;
 
 namespace BattleScene.UseCases.Service
 {
-    public class AilmentGeneratorService
+    public class AilmentGeneratorService : IPrimeSkillGeneratorService<AilmentParameterValueObject, AilmentValueObject>
     {
         private const float Threshold = 40.0f; // 大きいほど命中しやすくなる
         private readonly CharacterPropertyFactoryService _characterPropertyFactory;

@@ -3,10 +3,11 @@ using BattleScene.Domain.Code;
 using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.ValueObject;
+using BattleScene.UseCases.IService;
 
 namespace BattleScene.UseCases.Service
 {
-    public class SlipRegistererService
+    public class SlipRegistererService: IPrimeSkillRegistererService<SlipValueObject>
     {
         private readonly IFactory<BattlePropertyValueObject> _battlePropertyFactory;
         private readonly IRepository<SlipEntity, SlipDamageCode> _slipDamageRepository;

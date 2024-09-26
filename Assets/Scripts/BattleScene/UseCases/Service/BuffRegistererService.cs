@@ -5,10 +5,11 @@ using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
+using BattleScene.UseCases.IService;
 
 namespace BattleScene.UseCases.Service
 {
-    public class BuffRegistererService
+    public class BuffRegistererService : IPrimeSkillRegistererService<BuffValueObject>
     {
         private readonly IRepository<BuffEntity, (CharacterId, BuffCode)> _buffRepository;
 
