@@ -32,7 +32,7 @@ namespace BattleScene.Framework.View
             }
         }
 
-        private async void ViewDigit(DigitValueObject valueObject)
+        private async void ViewDigit(Digit valueObject)
         {
             if (_textPool.All(x => x.enabled))
             {
@@ -50,12 +50,12 @@ namespace BattleScene.Framework.View
             }
             else
             {
-                text.text = valueObject.Digit.ToString();
+                text.text = valueObject.Number.ToString();
                 text.enableVertexGradient = true;
-                text.colorGradient = valueObject.DigitColor switch
+                text.colorGradient = valueObject.DigitType switch
                 {
-                    DigitColor.Green => new VertexGradient(Color.green, Color.green, Color.cyan, Color.cyan),
-                    DigitColor.Blue => new VertexGradient(Color.cyan, Color.cyan, Color.blue, Color.blue),
+                    DigitType.Cure => new VertexGradient(Color.green, Color.green, Color.cyan, Color.cyan),
+                    DigitType.Restore => new VertexGradient(Color.cyan, Color.cyan, Color.blue, Color.blue),
                     _ => new VertexGradient(Color.yellow, Color.yellow, Color.red, Color.red)
                 };
             }

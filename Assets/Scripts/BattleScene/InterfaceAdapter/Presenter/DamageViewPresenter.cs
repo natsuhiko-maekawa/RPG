@@ -29,17 +29,7 @@ namespace BattleScene.InterfaceAdapter.Presenter
             _enemiesView = enemiesView;
             _playerView = playerView;
         }
-
-        // public void StartDmgView(IList<DamageDataStore> dmgList)
-        // {
-        //     if (dmgList.Count == 0) return;
-        //     var tupleList = dmgList
-        //         .Select(x => (Character: x.Target, DigitDto: new DigitDto(x.AttackNum, x.DamageAmount, !x.IsHit)))
-        //         .ToList();
-        //     
-        //     StartDigitView(tupleList, DigitColor.Orange);
-        // }
-        //
+        
         // public void StartDmgView(int slipDamage, ICharacter character)
         // {
         //     var tuple = (Character: character, DigitDto: new DigitDto(0, slipDamage, false));
@@ -55,13 +45,6 @@ namespace BattleScene.InterfaceAdapter.Presenter
         //         .ToList();
         //     
         //     StartDigitView(tupleList, DigitColor.Green);
-        // }
-        //
-        // public void StartRestoreTpView(int tp, ICharacter character)
-        // {
-        //     var tuple = (Character: character, DigitDto: new DigitDto(0, tp, false));
-        //     var tupleList = new List<(ICharacter, DigitDto)> { tuple };
-        //     StartDigitView(tupleList, DigitColor.Blue);
         // }
         //
         // private void StartDigitView(List<(ICharacter character, DigitDto digitDto)> tupleList, DigitColor digitColor)
@@ -88,7 +71,7 @@ namespace BattleScene.InterfaceAdapter.Presenter
             var attackList = _battleLog.GetLast().AttackList;
             var characterDigitList = attackList
                 .GroupBy(x => x.TargetId)
-                .Select(x => new { CharacterId = x.Key, Model = x.Select(ToModel) })
+                .Select(x => new { CharacterId = x.Key, Model = x.Select(GetDigit) })
                 .ToList();
 
             var playerDigitList = characterDigitList
@@ -114,37 +97,14 @@ namespace BattleScene.InterfaceAdapter.Presenter
 
         private bool IsPlayer(CharacterId characterId) => _characterRepository.Select(characterId).IsPlayer;
 
-        private DigitValueObject ToModel(AttackValueObject attack)
+        private Digit GetDigit(AttackValueObject attack)
         {
-            var dto = new DigitValueObject(
-                Index: attack.Number,
-                Digit: attack.Amount,
+            var digit = new Digit(
+                DigitType: DigitType.Damage,
+                Number: attack.Amount,
                 IsAvoid: !attack.IsHit,
-                DigitColor: DigitColor.Orange);
-            return dto;
+                Index: attack.Number);
+            return digit;
         }
-
-        // private KeyValuePair<int, DigitValueObject> ConvertPositionModelPair(AttackValueObject attack)
-        // {
-        //     var model = ToModel(attack);
-        //     var position = _characterRepository.Select(attack.TargetId).Position;
-        //     var positionModelPair = new KeyValuePair<int, DigitValueObject>(position, model);
-        //     return positionModelPair;
-        // }
-        //
-        // private DigitValueObject ConvertDto(DigitOutputData digitOutputData)
-        // {
-        //     return new DigitValueObject(
-        //         digitOutputData.Index,
-        //         digitOutputData.Digit,
-        //         digitOutputData.IsAvoid,
-        //         digitOutputData.DigitType switch
-        //         {
-        //             DigitType.DamageHp => DigitColor.Orange,
-        //             DigitType.RestoreHp => DigitColor.Green,
-        //             DigitType.RestoreTp => DigitColor.Blue,
-        //             _ => throw new ArgumentOutOfRangeException()
-        //         });
-        // }
     }
 }
