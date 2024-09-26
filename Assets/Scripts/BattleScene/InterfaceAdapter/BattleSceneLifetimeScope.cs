@@ -81,6 +81,7 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<MessageViewPresenter>(Lifetime.Singleton);
             builder.Register<OrderViewPresenter>(Lifetime.Singleton);
             builder.Register<PlayerImageViewPresenter>(Lifetime.Singleton);
+            builder.Register<RestoreViewPresenter>(Lifetime.Singleton);
             builder.Register<SkillViewPresenter>(Lifetime.Singleton);
             builder.Register<TargetViewPresenter>(Lifetime.Singleton);
             builder.Register<VibrationViewPresenter>(Lifetime.Singleton);
@@ -97,6 +98,7 @@ namespace BattleScene.InterfaceAdapter
             #region RegisterFacade
             builder.Register<DamageOutputFacade>(Lifetime.Singleton);
             builder.Register<DestroyOutputFacade>(Lifetime.Singleton);
+            builder.Register<RestoreOutputFacade>(Lifetime.Singleton);
             builder.Register<SkillOutputFacade>(Lifetime.Singleton);
             builder.Register<SlipOutputFacade>(Lifetime.Singleton);
             #endregion
@@ -247,7 +249,7 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<PrimeSkillOutputState<BuffParameterValueObject, BuffValueObject>, BuffMessageState>(Lifetime.Singleton);
             builder.Register<PrimeSkillOutputState<DamageParameterValueObject, DamageValueObject>, DamageOutputState>(Lifetime.Singleton);
             builder.Register<PrimeSkillOutputState<DestroyParameterValueObject, DestroyValueObject>, DestroyOutputState>(Lifetime.Singleton);
-            builder.Register<PrimeSkillOutputState<RestoreParameterValueObject, RestoreValueObject>, RestoreMessageState>(Lifetime.Singleton);
+            builder.Register<PrimeSkillOutputState<RestoreParameterValueObject, RestoreValueObject>, RestoreOutputState>(Lifetime.Singleton);
             builder.Register<PrimeSkillOutputState<SlipParameterValueObject, SlipValueObject>, SlipOutputState>(Lifetime.Singleton);
             builder.Register<PrimeSkillStopState<AilmentParameterValueObject, AilmentValueObject>>(Lifetime.Singleton);
             builder.Register<PrimeSkillStopState<DestroyParameterValueObject, DestroyValueObject>>(Lifetime.Singleton);
