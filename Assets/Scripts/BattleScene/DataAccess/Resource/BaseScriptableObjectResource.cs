@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using BattleScene.DataAccess.ScriptableObjects;
 using UnityEngine;
 
@@ -13,8 +14,19 @@ namespace BattleScene.DataAccess.Resource
 
         public TItem Get(TId id)
         {
-            return listScriptableObject.ItemList
-                .First(x => Equals(x.Key, id));
+            TItem item;
+            try
+            {
+                item = listScriptableObject.ItemList
+                    .First(x => Equals(x.Key, id));
+            }
+            catch (InvalidOperationException e)
+            {
+                throw new InvalidOperationException(
+                    $"key {id.ToString()} not found in {typeof(TScriptableObject).Name}.", e);
+            }
+
+            return item;
         }
     }
 }
