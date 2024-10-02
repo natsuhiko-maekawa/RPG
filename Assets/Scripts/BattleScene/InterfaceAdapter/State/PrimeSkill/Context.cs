@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
-using UnityEngine;
+using Utility;
 
 #if UNITY_EDITOR
 using System.Linq;
@@ -35,9 +35,7 @@ namespace BattleScene.InterfaceAdapter.State.PrimeSkill
         public void TransitionTo(BaseState<TPrimeSkillParameter, TPrimeSkill> skill)
         {
             _state = skill;
-#if UNITY_EDITOR
-            Debug.Log(GetClassName());
-#endif
+            MyDebug.Log(GetClassName());
             _state.SetContext(this);
             _state.Start();
         }
