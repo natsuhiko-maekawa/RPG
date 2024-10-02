@@ -4,7 +4,7 @@ using System.Linq;
 namespace Utility
 {
     // https://baba-s.hatenablog.com/entry/2019/12/04/125000
-    public static class LinqEx
+    public static class MyLinq
     {
         public static IEnumerable<List<T>> Combination<T>(this IEnumerable<T> self, int n)
         {

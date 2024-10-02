@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BattleScene.Framework.Utility;
 using BattleScene.Framework.ViewModel;
 using UnityEngine;
 using UnityEngine.UI;
@@ -30,7 +31,7 @@ namespace BattleScene.Framework.View
                 _enemyAilmentsIconList.Add(image);
             }
 
-            _iconArray = SpriteEx.CreateByGrid(icons, 4, 4);
+            _iconArray = MySprite.CreateByGrid(icons, 4, 4);
         }
 
         public Task StartAnimation(AilmentViewModel dto)

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BattleScene.Framework.Utility;
 using BattleScene.Framework.ViewModel;
 using UnityEngine;
 using UnityEngine.UI;
@@ -36,7 +37,7 @@ namespace BattleScene.Framework.View
             }
 
             _defaultX = _imageList.First().transform.localPosition.x;
-            _ailmentsIconArray = SpriteEx.CreateByGrid(ailmentsIconTexture, 4, 4);
+            _ailmentsIconArray = MySprite.CreateByGrid(ailmentsIconTexture, 4, 4);
             _spriteFlyweight = SpriteFlyweight.Instance;
         }
 

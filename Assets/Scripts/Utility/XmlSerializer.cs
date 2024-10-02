@@ -3,18 +3,18 @@ using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Security.Cryptography;
-using Utility.Interface;
 
 namespace Utility
 {
-    public class XmlSerializer : IXmlSerializer
+    public static class XmlSerializer
     {
         private const string Key = "6c147f6ddb0943cfb92e4b279bc71dba";
         private const string Iv = "b8d8f4826b854d30bf724cee87fceb55";
 
-        public void Save<T>(T obj)
+        public static void Save<T>(T obj)
         {
             var path = typeof(T).FullName;
+            if (path == null) throw new InvalidOperationException();
             var serializer = new DataContractSerializer(typeof(T));
 
             using var aes = Aes.Create();
@@ -29,9 +29,10 @@ namespace Utility
             serializer.WriteObject(cryptoStream, obj);
         }
 
-        public T Load<T>()
+        public static T Load<T>()
         {
             var path = typeof(T).FullName;
+            if (path == null) throw new InvalidOperationException();
             var serializer = new DataContractSerializer(typeof(T));
 
             using var aes = Aes.Create();

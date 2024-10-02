@@ -1,22 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.Immutable;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using UnityEngine;
-using Utility.Interface;
 
 namespace Utility
 {
-    public class JsonUtilityEx : IJsonUtilityEx
+    public static class MyJsonUtility
     {
         private const string Key = "6c147f6ddb0943cfb92e4b279bc71dba";
         private const string Iv = "b8d8f4826b854d30bf724cee87fceb55";
         private const string Create = "新規にファイルを作成しました。";
         private const string FailLoad = "ファイルの読み込みに失敗ました。";
 
-        public void Save(object save, string path)
+        public static void Save(object save, string path)
         {
             var json = JsonUtility.ToJson(save);
             using var aes = Aes.Create();
@@ -33,13 +31,13 @@ namespace Utility
             streamWriter.Write(json);
         }
 
-        public void Save(IList<(object save, string path)> tupleList)
+        public static void Save(IReadOnlyList<(object save, string path)> tupleList)
         {
             foreach (var tuple in tupleList)
                 Save(tuple.save, tuple.path);
         }
 
-        public T Load<T>(string path)
+        public static T Load<T>(string path)
         {
             using var aes = Aes.Create();
             var key = StringToBytes(Key);
@@ -60,11 +58,11 @@ namespace Utility
             }
         }
 
-        public ImmutableList<T> Load<T>(IList<string> pathList)
+        public static IReadOnlyList<T> Load<T>(IReadOnlyList<string> pathList)
         {
             return pathList
                 .Select(Load<T>)
-                .ToImmutableList();
+                .ToList();
         }
 
         private static byte[] StringToBytes(string str)

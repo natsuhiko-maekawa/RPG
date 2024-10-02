@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
-namespace Utility
+namespace BattleScene.Framework.Utility
 {
-    public static class SpriteEx
+    public static class MySprite
     {
         public static Sprite[] CreateByGrid(Texture2D texture, int col, int row)
         {

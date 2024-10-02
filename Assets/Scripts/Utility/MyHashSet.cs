@@ -2,7 +2,7 @@
 
 namespace Utility
 {
-    public static class HashSetEx
+    public static class MyHashSet
     {
         public static void Update<T>(this HashSet<T> hashSet, T item)
         {

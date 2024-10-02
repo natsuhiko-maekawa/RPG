@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Utility
+namespace BattleScene.Framework.Utility
 {
     public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
     {
