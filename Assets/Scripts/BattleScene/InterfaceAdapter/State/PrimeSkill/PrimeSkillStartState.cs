@@ -29,6 +29,10 @@ namespace BattleScene.InterfaceAdapter.State.PrimeSkill
             _primeSkillStopState = primeSkillStopState;
         }
 
+        /// <summary>
+        /// Contextのプロパティに値を設定し、画面への出力を行うステートか終端のステートに遷移する。<br/>
+        /// 画面へ出力を行うステートに遷移する条件については、Documents/AilmentMessage.mdを参照のこと。
+        /// </summary>
         public override void Start()
         {
             var primeSkillList = _primeSkill.Commit(
