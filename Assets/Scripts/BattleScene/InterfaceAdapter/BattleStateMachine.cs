@@ -13,7 +13,7 @@ using Context = BattleScene.InterfaceAdapter.State.Battle.Context;
 
 namespace BattleScene.InterfaceAdapter
 {
-    public class StateMachine : IStartable
+    public class BattleStateMachine : IStartable
     {
         private Context _context;
         private readonly EnemiesDomainService _enemies;
@@ -23,7 +23,7 @@ namespace BattleScene.InterfaceAdapter
         private readonly TargetView _targetView;
         private readonly IObjectResolver _container;
 
-        public StateMachine(
+        public BattleStateMachine(
             EnemiesDomainService enemies,
             PlayerDomainService player,
             BattleSceneInput battleSceneInput,
