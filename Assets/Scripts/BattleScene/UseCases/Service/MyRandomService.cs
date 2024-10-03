@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Utility.Interface;
+using BattleScene.UseCases.IService;
 using Random = Unity.Mathematics.Random;
 
-namespace Utility
+namespace BattleScene.UseCases.Service
 {
-    public class RandomEx : IRandomEx
+    public class MyRandomService : IMyRandomService
     {
         public T Choice<T>(IEnumerable<T> options)
         {

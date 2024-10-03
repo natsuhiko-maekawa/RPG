@@ -5,7 +5,6 @@ using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
 using BattleScene.UseCases.IService;
-using Utility.Interface;
 
 namespace BattleScene.UseCases.Service
 {
@@ -14,18 +13,18 @@ namespace BattleScene.UseCases.Service
         private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
         private readonly IFactory<PropertyValueObject, CharacterTypeCode> _characterPropertyFactory;
         private readonly OrderedItemsDomainService _orderItems;
-        private readonly IRandomEx _randomEx;
+        private readonly IMyRandomService _myRandom;
 
         public EnemySkillSelectorService(
             IRepository<CharacterEntity, CharacterId> characterRepository,
             IFactory<PropertyValueObject, CharacterTypeCode> characterPropertyFactory,
             OrderedItemsDomainService orderItems,
-            IRandomEx randomEx)
+            IMyRandomService myRandom)
         {
             _characterRepository = characterRepository;
             _characterPropertyFactory = characterPropertyFactory;
             _orderItems = orderItems;
-            _randomEx = randomEx;
+            _myRandom = myRandom;
         }
 
         public SkillCode Select()
@@ -34,7 +33,7 @@ namespace BattleScene.UseCases.Service
             _orderItems.First().TryGetCharacterId(out var characterId);
             var characterTypeCode = _characterRepository.Select(characterId).CharacterTypeCode;
             var skillCodeList = _characterPropertyFactory.Create(characterTypeCode).Skills;
-            return _randomEx.Choice(skillCodeList);
+            return _myRandom.Choice(skillCodeList);
         }
     }
 }

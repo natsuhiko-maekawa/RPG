@@ -3,7 +3,7 @@ using System.Collections.Immutable;
 using System.Linq;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Id;
-using Utility.Interface;
+using BattleScene.UseCases.IService;
 
 namespace BattleScene.UseCases.Service
 {
@@ -12,16 +12,16 @@ namespace BattleScene.UseCases.Service
         private const float Threshold = 40.0f; // 大きいほど命中しやすくなる
         private readonly CharacterPropertyFactoryService _characterPropertyFactory;
         private readonly OrderedItemsDomainService _orderedItems;
-        private readonly IRandomEx _randomEx;
+        private readonly IMyRandomService _myRandom;
 
         public ActualTargetIdPickerService(
             CharacterPropertyFactoryService characterPropertyFactory,
             OrderedItemsDomainService orderedItems,
-            IRandomEx randomEx)
+            IMyRandomService myRandom)
         {
             _characterPropertyFactory = characterPropertyFactory;
             _orderedItems = orderedItems;
-            _randomEx = randomEx;
+            _myRandom = myRandom;
         }
 
         public IReadOnlyList<CharacterId> Pick(
@@ -36,7 +36,7 @@ namespace BattleScene.UseCases.Service
                 {
                     var targetLuck = _characterPropertyFactory.Crate(x).Luck;
                     var rate = luckRate * (1.0f + (actorLuck - targetLuck) / Threshold);
-                    return _randomEx.Probability(rate);
+                    return _myRandom.Probability(rate);
                 })
                 .ToImmutableList();
 

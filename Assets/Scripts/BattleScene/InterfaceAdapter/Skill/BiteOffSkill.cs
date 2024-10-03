@@ -5,7 +5,7 @@ using BattleScene.Domain.Code;
 using BattleScene.InterfaceAdapter.PrimeSkill;
 using BattleScene.InterfaceAdapter.PrimeSkill.BaseClass;
 using BattleScene.InterfaceAdapter.Skill.BaseClass;
-using Utility.Interface;
+using BattleScene.UseCases.IService;
 using Range = BattleScene.Domain.Code.Range;
 
 namespace BattleScene.InterfaceAdapter.Skill
@@ -15,13 +15,13 @@ namespace BattleScene.InterfaceAdapter.Skill
     /// </summary>
     internal class BiteOffSkill : BaseSkill
     {
-        private readonly IRandomEx _randomEx;
+        private readonly IMyRandomService _myRandom;
         private readonly long _seed;
 
         public BiteOffSkill(
-            IRandomEx randomEx)
+            IMyRandomService myRandom)
         {
-            _randomEx = randomEx;
+            _myRandom = myRandom;
             _seed = DateTime.Now.Ticks;
         }
 
@@ -46,14 +46,14 @@ namespace BattleScene.InterfaceAdapter.Skill
                 MessageCode.BiteStomachMessage
             };
 
-            return _randomEx.Choice(attackMessageList, _seed);
+            return _myRandom.Choice(attackMessageList, _seed);
         }
 
         private ImmutableList<BaseDestroy> GetDestroyPartList()
         {
             var destroyList = new List<BaseDestroy>()
                 { new DestroyArm(), new DestroyLeg(), new DestroyStomach() };
-            return ImmutableList.Create(_randomEx.Choice(destroyList, _seed));
+            return ImmutableList.Create(_myRandom.Choice(destroyList, _seed));
         }
     }
 }

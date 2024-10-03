@@ -4,7 +4,7 @@ using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
-using Utility.Interface;
+using BattleScene.UseCases.IService;
 
 namespace BattleScene.UseCases.Service
 {
@@ -12,7 +12,7 @@ namespace BattleScene.UseCases.Service
     {
         private readonly CharacterPropertyFactoryService _characterPropertyFactory;
         private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
-        private readonly IRandomEx _randomEx;
+        private readonly IMyRandomService _myRandom;
         
         public int Evaluate(CharacterId actorId, CureParameterValueObject cureParameter)
         {
@@ -26,7 +26,7 @@ namespace BattleScene.UseCases.Service
         private int BasicEvaluate(CharacterId actorId)
         {
             var wisdom = _characterPropertyFactory.Crate(actorId).Wisdom;
-            var restore = wisdom * 8 + _randomEx.Range(0, 2);
+            var restore = wisdom * 8 + _myRandom.Range(0, 2);
             var currentHitPoint = _characterRepository.Select(actorId).CurrentHitPoint;
             var maxHitPoint = _characterPropertyFactory.Crate(actorId).HitPoint;
             var actualRestore = Math.Min(restore, maxHitPoint - currentHitPoint);

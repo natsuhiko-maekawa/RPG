@@ -4,7 +4,7 @@ using BattleScene.Domain.Code;
 using BattleScene.InterfaceAdapter.PrimeSkill;
 using BattleScene.InterfaceAdapter.PrimeSkill.BaseClass;
 using BattleScene.InterfaceAdapter.Skill.BaseClass;
-using Utility.Interface;
+using BattleScene.UseCases.IService;
 using static BattleScene.Domain.Code.MessageCode;
 using Range = BattleScene.Domain.Code.Range;
 
@@ -15,13 +15,13 @@ namespace BattleScene.InterfaceAdapter.Skill
     /// </summary>
     internal class BiteSkill : BaseSkill
     {
-        private readonly IRandomEx _randomEx;
+        private readonly IMyRandomService _myRandom;
         private readonly long _seed;
 
         public BiteSkill(
-            IRandomEx randomEx)
+            IMyRandomService myRandom)
         {
-            _randomEx = randomEx;
+            _myRandom = myRandom;
             _seed = DateTime.Now.Ticks;
         }
 
@@ -34,7 +34,7 @@ namespace BattleScene.InterfaceAdapter.Skill
 
         private MessageCode GetAttackMessageCode()
         {
-            return _randomEx.Choice(new[] { BiteArmMessage, BiteLegMessage, BiteStomachMessage }, _seed);
+            return _myRandom.Choice(new[] { BiteArmMessage, BiteLegMessage, BiteStomachMessage }, _seed);
         }
     }
 }

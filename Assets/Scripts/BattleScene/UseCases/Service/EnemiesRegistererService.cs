@@ -8,23 +8,22 @@ using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
 using BattleScene.UseCases.IService;
 using Utility;
-using Utility.Interface;
 
 namespace BattleScene.UseCases.Service
 {
     public class EnemiesRegistererService : IEnemiesRegistererService
     {
         private readonly IFactory<PropertyValueObject, CharacterTypeCode> _propertyFactory;
-        private readonly IRandomEx _randomEx;
+        private readonly IMyRandomService _myRandom;
         private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
 
         public EnemiesRegistererService(
             IFactory<PropertyValueObject, CharacterTypeCode> propertyFactory,
-            IRandomEx randomEx, 
+            IMyRandomService myRandom, 
             IRepository<CharacterEntity, CharacterId> characterRepository)
         {
             _propertyFactory = propertyFactory;
-            _randomEx = randomEx;
+            _myRandom = myRandom;
             _characterRepository = characterRepository;
         }
 
@@ -48,7 +47,7 @@ namespace BattleScene.UseCases.Service
                     .ToList())
                 .ToList();
             
-            var characterList = _randomEx.Choice(options)
+            var characterList = _myRandom.Choice(options)
                 .Select((x, i) =>
                 {
                     PropertyValueObject property = _propertyFactory.Create(x);

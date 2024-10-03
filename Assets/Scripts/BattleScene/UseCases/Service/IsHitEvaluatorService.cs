@@ -6,8 +6,8 @@ using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
+using BattleScene.UseCases.IService;
 using UnityEngine;
-using Utility.Interface;
 
 namespace BattleScene.UseCases.Service
 {
@@ -17,20 +17,20 @@ namespace BattleScene.UseCases.Service
         private readonly BodyPartDomainService _bodyPartDomainService;
         private readonly CharacterPropertyFactoryService _characterPropertyFactory;
         private readonly IRepository<BuffEntity, (CharacterId, BuffCode)> _buffRepository;
-        private readonly IRandomEx _randomEx;
+        private readonly IMyRandomService _myRandom;
 
         public IsHitEvaluatorService(
             IRepository<AilmentEntity, (CharacterId, AilmentCode)> ailmentRepository,
             BodyPartDomainService bodyPartDomainService,
             CharacterPropertyFactoryService characterPropertyFactory,
             IRepository<BuffEntity, (CharacterId, BuffCode)> buffRepository,
-            IRandomEx randomEx)
+            IMyRandomService myRandom)
         {
             _ailmentRepository = ailmentRepository;
             _bodyPartDomainService = bodyPartDomainService;
             _characterPropertyFactory = characterPropertyFactory;
             _buffRepository = buffRepository;
-            _randomEx = randomEx;
+            _myRandom = myRandom;
         }
 
         public bool Evaluate(CharacterId actorId, CharacterId targetId, DamageParameterValueObject damageParameter)
@@ -68,7 +68,7 @@ namespace BattleScene.UseCases.Service
             var actorFixedAgility = actorAgility + (isActorBlind ? -threshold : 0);
             var targetFixedAgility = targetAgility + (isTargetDeaf ? -threshold : 0);
             var hitRate = 1.0f + (actorFixedAgility - targetFixedAgility) / threshold;
-            return _randomEx.Probability(hitRate + destroyedReduce + buff + add);
+            return _myRandom.Probability(hitRate + destroyedReduce + buff + add);
         }
 
         private bool AlwaysHitEvaluate()

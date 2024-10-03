@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 
-namespace Utility.Interface
+namespace BattleScene.UseCases.IService
 {
-    public interface IRandomEx
+    public interface IMyRandomService
     {
         public T Choice<T>(IEnumerable<T> options);
         public T Choice<T>(IEnumerable<T> options, long seed);

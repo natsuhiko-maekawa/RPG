@@ -6,7 +6,7 @@ using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
-using Utility.Interface;
+using BattleScene.UseCases.IService;
 
 namespace BattleScene.UseCases.Service
 {
@@ -16,20 +16,20 @@ namespace BattleScene.UseCases.Service
         private readonly BuffDomainService _buff;
         private readonly CharacterPropertyFactoryService _characterPropertyFactory;
         private readonly IRepository<BuffEntity, (CharacterId, BuffCode)> _buffRepository;
-        private readonly IRandomEx _randomEx;
+        private readonly IMyRandomService _myRandom;
 
         public DamageEvaluatorService(
             BodyPartDomainService bodyPartDomainService,
             BuffDomainService buff,
             CharacterPropertyFactoryService characterPropertyFactoryFactory,
             IRepository<BuffEntity, (CharacterId, BuffCode)> buffRepository, 
-            IRandomEx randomEx)
+            IMyRandomService myRandom)
         {
             _bodyPartDomainService = bodyPartDomainService;
             _buff = buff;
             _characterPropertyFactory = characterPropertyFactoryFactory;
             _buffRepository = buffRepository;
-            _randomEx = randomEx;
+            _myRandom = myRandom;
         }
 
         public int Evaluate(CharacterId actorId, CharacterId targetId, DamageParameterValueObject damageParameter)
@@ -55,7 +55,7 @@ namespace BattleScene.UseCases.Service
             var rate = damageParameter.DamageRate;
             var weekPointRate = (int)Math.Pow(2, actorMatAttr.Intersect(targetWeekPoint).Count());
             return (int)(actorStrength * actorStrength / (float)targetVitality * weekPointRate * actorBuffRate
-                / targetBuffRate * destroyedRate * targetDefence * rate * 1.5f) + _randomEx.Range(1, 3);
+                / targetBuffRate * destroyedRate * targetDefence * rate * 1.5f) + _myRandom.Range(1, 3);
         }
         
         private int ConstantEvaluate(CharacterId actorId, DamageParameterValueObject damageParameter)
@@ -67,7 +67,7 @@ namespace BattleScene.UseCases.Service
             var destroyedRate = 1.0f - _bodyPartDomainService.Count(actorId, BodyPartCode.Arm) * 0.5f;
             var rate = damageParameter.DamageRate;
             return (int)(actorStrength * actorStrength / (float)targetVitality * actorBuffRate / targetBuffRate
-                         * destroyedRate * rate * 1.5f) + _randomEx.Range(1, 3);
+                         * destroyedRate * rate * 1.5f) + _myRandom.Range(1, 3);
         }
     }
 }

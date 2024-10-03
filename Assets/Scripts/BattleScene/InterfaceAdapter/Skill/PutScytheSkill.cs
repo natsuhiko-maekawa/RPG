@@ -4,7 +4,7 @@ using BattleScene.Domain.Code;
 using BattleScene.InterfaceAdapter.PrimeSkill;
 using BattleScene.InterfaceAdapter.PrimeSkill.BaseClass;
 using BattleScene.InterfaceAdapter.Skill.BaseClass;
-using Utility.Interface;
+using BattleScene.UseCases.IService;
 using Range = BattleScene.Domain.Code.Range;
 
 namespace BattleScene.InterfaceAdapter.Skill
@@ -14,13 +14,13 @@ namespace BattleScene.InterfaceAdapter.Skill
     /// </summary>
     internal class PutScytheSkill : BaseSkill
     {
-        private readonly IRandomEx _randomEx;
+        private readonly IMyRandomService _myRandom;
         private readonly long _seed;
 
         public PutScytheSkill(
-            IRandomEx randomEx)
+            IMyRandomService myRandom)
         {
-            _randomEx = randomEx;
+            _myRandom = myRandom;
             _seed = DateTime.Now.Ticks;
         }
 
@@ -34,7 +34,7 @@ namespace BattleScene.InterfaceAdapter.Skill
 
         private MessageCode GetAttackMessageCode()
         {
-            return _randomEx.Choice(
+            return _myRandom.Choice(
                 new[] { MessageCode.CutArmMessage, MessageCode.CutLegMessage, MessageCode.CutStomachMessage }, _seed);
         }
     }

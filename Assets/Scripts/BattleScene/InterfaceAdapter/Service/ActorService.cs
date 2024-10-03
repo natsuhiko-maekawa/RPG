@@ -3,7 +3,7 @@ using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
-using Utility.Interface;
+using BattleScene.UseCases.IService;
 
 namespace BattleScene.InterfaceAdapter.Service
 {
@@ -12,18 +12,18 @@ namespace BattleScene.InterfaceAdapter.Service
         private readonly AilmentDomainService _ailment;
         private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
         private readonly OrderedItemsDomainService _orderedItems;
-        private readonly IRandomEx _randomEx;
+        private readonly IMyRandomService _myRandom;
 
         public ActorService(
             AilmentDomainService ailment,
             IRepository<CharacterEntity, CharacterId> characterRepository,
             OrderedItemsDomainService orderedItems,
-            IRandomEx randomEx)
+            IMyRandomService myRandom)
         {
             _ailment = ailment;
             _characterRepository = characterRepository;
             _orderedItems = orderedItems;
-            _randomEx = randomEx;
+            _myRandom = myRandom;
         }
 
         public bool IsResetAilment => _orderedItems.First().OrderedItemType == OrderedItemType.Ailment;
@@ -51,6 +51,6 @@ namespace BattleScene.InterfaceAdapter.Service
             return absoluteCantAction || CantActionBecauseParalysis;
         }
 
-        private bool CantActionBecauseParalysis => _randomEx.Probability(0.5f);
+        private bool CantActionBecauseParalysis => _myRandom.Probability(0.5f);
     }
 }

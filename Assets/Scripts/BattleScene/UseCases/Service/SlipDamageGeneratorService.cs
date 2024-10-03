@@ -7,8 +7,8 @@ using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
+using BattleScene.UseCases.IService;
 using UnityEngine;
-using Utility.Interface;
 
 namespace BattleScene.UseCases.Service
 {
@@ -19,20 +19,20 @@ namespace BattleScene.UseCases.Service
         private readonly CharacterPropertyFactoryService _characterPropertyFactory;
         private readonly IFactory<BattlePropertyValueObject> _battlePropertyFactory;
         private readonly IRepository<BattleLogEntity, BattleLogId> _battleLogRepository;
-        private readonly IRandomEx _randomEx;
+        private readonly IMyRandomService _myRandom;
 
         public SlipDamageGeneratorService(
             OrderedItemsDomainService orderedItems,
             PlayerDomainService player,
             CharacterPropertyFactoryService characterPropertyFactory,
             IRepository<BattleLogEntity, BattleLogId> battleLogRepository,
-            IRandomEx randomEx)
+            IMyRandomService myRandom)
         {
             _orderedItems = orderedItems;
             _player = player;
             _characterPropertyFactory = characterPropertyFactory;
             _battleLogRepository = battleLogRepository;
-            _randomEx = randomEx;
+            _myRandom = myRandom;
         }
 
         public SlipDamageValueObject Generate()
@@ -67,7 +67,7 @@ namespace BattleScene.UseCases.Service
             var playerIntelligence = _characterPropertyFactory.Crate(playerId).Intelligence;
             var damageRate = _battlePropertyFactory.Create().SlipDefalutDamageRate;
             var damage = (int)(enemyIntelligence * enemyIntelligence / (float)playerIntelligence * damageRate)
-                   + _randomEx.Range(0, 2);
+                   + _myRandom.Range(0, 2);
             return damage;
         }
     }

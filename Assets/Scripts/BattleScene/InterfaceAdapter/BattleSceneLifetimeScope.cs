@@ -25,7 +25,6 @@ using BattleScene.UseCases.Service;
 using BattleScene.UseCases.UseCase;
 using UnityEngine;
 using Utility;
-using Utility.Interface;
 using VContainer;
 using VContainer.Unity;
 using TechnicalPointBarViewPresenter = BattleScene.InterfaceAdapter.Presenter.TechnicalPointBarViewPresenter;
@@ -330,7 +329,7 @@ namespace BattleScene.InterfaceAdapter
             #endregion
 
             #region RegisterUtility
-            builder.Register<IRandomEx, RandomEx>(Lifetime.Singleton);
+            builder.Register<IMyRandomService, MyRandomService>(Lifetime.Singleton);
             #endregion
         }
     }

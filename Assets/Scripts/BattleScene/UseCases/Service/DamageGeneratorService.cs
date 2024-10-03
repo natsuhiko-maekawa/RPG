@@ -7,7 +7,6 @@ using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
 using BattleScene.UseCases.IService;
-using Utility.Interface;
 using Range = BattleScene.Domain.Code.Range;
 
 namespace BattleScene.UseCases.Service
@@ -19,7 +18,7 @@ namespace BattleScene.UseCases.Service
         private readonly IsHitEvaluatorService _isHitEvaluator;
         private readonly AttacksWeakPointEvaluatorService _attacksWeakPointEvaluator;
         private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
-        private readonly IRandomEx _randomEx;
+        private readonly IMyRandomService _myRandom;
 
         public DamageGeneratorService(
             OrderedItemsDomainService orderedItems,
@@ -27,14 +26,14 @@ namespace BattleScene.UseCases.Service
             IsHitEvaluatorService isHitEvaluator,
             AttacksWeakPointEvaluatorService attacksWeakPointEvaluator,
             IRepository<CharacterEntity, CharacterId> characterRepository,
-            IRandomEx randomEx)
+            IMyRandomService myRandom)
         {
             _orderedItems = orderedItems;
             _damageEvaluator = damageEvaluator;
             _isHitEvaluator = isHitEvaluator;
             _attacksWeakPointEvaluator = attacksWeakPointEvaluator;
             _characterRepository = characterRepository;
-            _randomEx = randomEx;
+            _myRandom = myRandom;
         }
 
         public DamageValueObject Generate(
@@ -82,7 +81,7 @@ namespace BattleScene.UseCases.Service
                 .Where(x => _characterRepository.Select(x).IsSurvive)
                 .ToImmutableList();
             if (range != Range.Random) return surviveTargetIdList;
-            var attackedTargetId = _randomEx.Choice(surviveTargetIdList);
+            var attackedTargetId = _myRandom.Choice(surviveTargetIdList);
             return ImmutableList.Create(attackedTargetId);
         }
     }
