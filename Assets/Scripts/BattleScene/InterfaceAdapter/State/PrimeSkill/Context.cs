@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
+using BattleScene.InterfaceAdapter.Code;
 using Utility;
 
 #if UNITY_EDITOR
@@ -18,17 +19,20 @@ namespace BattleScene.InterfaceAdapter.State.PrimeSkill
         public SkillCommonValueObject SkillCommon { get; }
         public IReadOnlyList<CharacterId> TargetIdList { get; }
         public IReadOnlyList<TPrimeSkillParameter> PrimeSkillParameterList { get; }
+        public IReadOnlyList<PrimeSkillCode> ExecutedPrimeSkillCodeList { get; }
         public Queue<TPrimeSkill> PrimeSkillQueue { get; set; }
 
         public Context(
             BaseState<TPrimeSkillParameter, TPrimeSkill> primeSkillState,
             SkillCommonValueObject skillCommon ,
             IReadOnlyList<CharacterId> targetIdList ,
-            IReadOnlyList<TPrimeSkillParameter> primeSkillParameterList)
+            IReadOnlyList<TPrimeSkillParameter> primeSkillParameterList,
+            IReadOnlyList<PrimeSkillCode> executedPrimeSkillCodeList)
         {
             SkillCommon = skillCommon;
             TargetIdList = targetIdList;
             PrimeSkillParameterList = primeSkillParameterList;
+            ExecutedPrimeSkillCodeList = executedPrimeSkillCodeList;
             TransitionTo(primeSkillState);
         }
 
