@@ -4,6 +4,7 @@ using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
+using BattleScene.InterfaceAdapter.Code;
 using BattleScene.UseCases.Interface;
 
 namespace BattleScene.InterfaceAdapter.State.PrimeSkill
@@ -39,8 +40,9 @@ namespace BattleScene.InterfaceAdapter.State.PrimeSkill
             Context.PrimeSkillQueue = new Queue<TPrimeSkill>(primeSkillListExceptFailure);
 
             BaseState<TPrimeSkillParameter, TPrimeSkill> nextState =
-                Context.PrimeSkillQueue.Count == 0 &&
-                Context.TargetIdList.All(x => _characterRepository.Select(x).IsPlayer)
+                Context.PrimeSkillQueue.Count == 0
+                && Context.TargetIdList.All(x => _characterRepository.Select(x).IsPlayer)
+                && Context.ExecutedPrimeSkillCodeList.Contains(PrimeSkillCode.Damage)
                     ? _primeSkillStopState
                     : _primeSkillOutputState;
             Context.TransitionTo(nextState);
