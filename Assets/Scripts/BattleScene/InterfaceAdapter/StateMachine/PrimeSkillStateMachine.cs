@@ -7,7 +7,7 @@ using BattleScene.InterfaceAdapter.State.PrimeSkill;
 using BattleScene.InterfaceAdapter.State.Turn;
 using VContainer;
 
-namespace BattleScene.InterfaceAdapter.Service
+namespace BattleScene.InterfaceAdapter.StateMachine
 {
     public class PrimeSkillStateMachine
     {
@@ -23,7 +23,7 @@ namespace BattleScene.InterfaceAdapter.Service
             _skillFactory = skillFactory;
             _container = container;
         }
-        
+
         public bool Select(Context context)
         {
             if (_primeSkillContextEnumerator == null)
@@ -32,17 +32,17 @@ namespace BattleScene.InterfaceAdapter.Service
                 var value = MoveNextOrDispose();
                 return value;
             }
-            
+
             _primeSkillContextEnumerator.Current?.Select();
-            
+
             return MoveNextOrDispose();
         }
 
         private bool MoveNextOrDispose()
         {
             if (_primeSkillContextEnumerator.Current?.IsContinue ?? false) return true;
-            
-            if (_primeSkillContextEnumerator.Current is not { IsBreak: true } 
+
+            if (_primeSkillContextEnumerator.Current is not { IsBreak: true }
                 && _primeSkillContextEnumerator.MoveNext())
             {
                 return MoveNextOrDispose();
@@ -53,7 +53,7 @@ namespace BattleScene.InterfaceAdapter.Service
             _executedPrimeSkillCodeList.Clear();
             return false;
         }
-        
+
         private IEnumerable<IContext> GetContext(Context context)
         {
             var skill = _skillFactory.Create(context.SkillCode);
@@ -65,7 +65,7 @@ namespace BattleScene.InterfaceAdapter.Service
                     = CreateContext<DamageParameterValueObject, DamageValueObject>(skill.DamageParameterList);
                 yield return damageContext;
             }
-            
+
             if (skill.AilmentParameterList.Count != 0)
             {
                 _executedPrimeSkillCodeList.Add(PrimeSkillCode.Ailment);
@@ -73,7 +73,7 @@ namespace BattleScene.InterfaceAdapter.Service
                     = CreateContext<AilmentParameterValueObject, AilmentValueObject>(skill.AilmentParameterList);
                 yield return ailmentContext;
             }
-            
+
             if (skill.SlipParameterList.Count != 0)
             {
                 _executedPrimeSkillCodeList.Add(PrimeSkillCode.Slip);
@@ -88,7 +88,7 @@ namespace BattleScene.InterfaceAdapter.Service
                     = CreateContext<DestroyParameterValueObject, DestroyValueObject>(skill.DestroyedParameterList);
                 yield return destroyContext;
             }
-            
+
             if (skill.BuffParameterList.Count != 0)
             {
                 _executedPrimeSkillCodeList.Add(PrimeSkillCode.Buff);
@@ -103,13 +103,14 @@ namespace BattleScene.InterfaceAdapter.Service
                     CreateContext<RestoreParameterValueObject, RestoreValueObject>(skill.RestoreParameterList);
                 yield return restoreContext;
             }
-            
+
             yield break;
-            
+
             IContext CreateContext<TPrimeSkillParameter, TPrimeSkill>(
                 IReadOnlyList<TPrimeSkillParameter> primeSkillParameterList) where TPrimeSkill : PrimeSkillValueObject
             {
-                var primeSkillStartState = _container.Resolve<PrimeSkillStartState<TPrimeSkillParameter, TPrimeSkill>>();
+                var primeSkillStartState =
+                    _container.Resolve<PrimeSkillStartState<TPrimeSkillParameter, TPrimeSkill>>();
                 var skillContext = new Context<TPrimeSkillParameter, TPrimeSkill>(
                     primeSkillState: primeSkillStartState,
                     skillCommon: skill.SkillCommon,

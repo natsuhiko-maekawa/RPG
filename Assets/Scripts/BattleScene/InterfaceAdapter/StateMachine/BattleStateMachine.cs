@@ -11,7 +11,7 @@ using VContainer;
 using VContainer.Unity;
 using Context = BattleScene.InterfaceAdapter.State.Battle.Context;
 
-namespace BattleScene.InterfaceAdapter
+namespace BattleScene.InterfaceAdapter.StateMachine
 {
     public class BattleStateMachine : IStartable
     {

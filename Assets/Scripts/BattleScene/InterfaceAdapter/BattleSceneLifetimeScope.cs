@@ -19,6 +19,7 @@ using BattleScene.InterfaceAdapter.Skill;
 using BattleScene.InterfaceAdapter.State.Battle;
 using BattleScene.InterfaceAdapter.State.PrimeSkill;
 using BattleScene.InterfaceAdapter.State.Turn;
+using BattleScene.InterfaceAdapter.StateMachine;
 using BattleScene.UseCases.Interface;
 using BattleScene.UseCases.IService;
 using BattleScene.UseCases.Service;
