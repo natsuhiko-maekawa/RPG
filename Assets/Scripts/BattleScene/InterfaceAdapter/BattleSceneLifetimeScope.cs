@@ -51,12 +51,14 @@ namespace BattleScene.InterfaceAdapter
                 // デバッグモード時に注入するインスタンスを登録する
                 builder.Register<IEnemiesRegistererService, SameEnemiesRegistererService>(Lifetime.Singleton);
                 builder.Register<IEnemySkillSelectorService, EnemySpecificSkillSelectorService>(Lifetime.Singleton);
+                builder.Register<IMyRandomService, AlwaysTrueRandomService>(Lifetime.Singleton);
             }
             else
             {
                 #region RegisterService
                 builder.Register<IEnemiesRegistererService, EnemiesRegistererService>(Lifetime.Singleton);
                 builder.Register<IEnemySkillSelectorService, EnemySkillSelectorService>(Lifetime.Singleton);
+                builder.Register<IMyRandomService, MyRandomService>(Lifetime.Singleton);
                 #endregion
             }
             
@@ -326,10 +328,6 @@ namespace BattleScene.InterfaceAdapter
 
             #region RegisterEntryPoint
             builder.RegisterEntryPoint<StateMachine>();
-            #endregion
-
-            #region RegisterUtility
-            builder.Register<IMyRandomService, MyRandomService>(Lifetime.Singleton);
             #endregion
         }
     }
