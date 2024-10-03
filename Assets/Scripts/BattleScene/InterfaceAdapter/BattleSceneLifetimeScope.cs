@@ -25,7 +25,6 @@ using BattleScene.UseCases.IService;
 using BattleScene.UseCases.Service;
 using BattleScene.UseCases.UseCase;
 using UnityEngine;
-using Utility;
 using VContainer;
 using VContainer.Unity;
 using TechnicalPointBarViewPresenter = BattleScene.InterfaceAdapter.Presenter.TechnicalPointBarViewPresenter;
@@ -52,7 +51,7 @@ namespace BattleScene.InterfaceAdapter
                 // デバッグモード時に注入するインスタンスを登録する
                 builder.Register<IEnemiesRegistererService, SameEnemiesRegistererService>(Lifetime.Singleton);
                 builder.Register<IEnemySkillSelectorService, EnemySpecificSkillSelectorService>(Lifetime.Singleton);
-                builder.Register<IMyRandomService, AlwaysTrueRandomService>(Lifetime.Singleton);
+                builder.Register<IMyRandomService, MyRandomService>(Lifetime.Singleton);
             }
             else
             {
@@ -328,7 +327,7 @@ namespace BattleScene.InterfaceAdapter
             #endregion
 
             #region RegisterEntryPoint
-            builder.RegisterEntryPoint<StateMachine>();
+            builder.RegisterEntryPoint<BattleStateMachine>();
             #endregion
         }
     }
