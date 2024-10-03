@@ -5,7 +5,6 @@ using BattleScene.Framework.Utility;
 using BattleScene.Framework.ViewModel;
 using UnityEngine;
 using UnityEngine.UI;
-using Utility;
 
 namespace BattleScene.Framework.View
 {

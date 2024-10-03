@@ -6,7 +6,6 @@ using BattleScene.Framework.Utility;
 using BattleScene.Framework.ViewModel;
 using UnityEngine;
 using UnityEngine.UI;
-using Utility;
 using static BattleScene.Framework.Constant;
 
 namespace BattleScene.Framework.View
