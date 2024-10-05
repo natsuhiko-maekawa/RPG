@@ -10,5 +10,10 @@ namespace Utility
         {
             Debug.Log(message);
         }
+
+        public static void Assert(bool condition)
+        {
+            Debug.Assert(condition);
+        }
     }
 }

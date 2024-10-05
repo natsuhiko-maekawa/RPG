@@ -13,6 +13,7 @@ namespace BattleScene.InterfaceAdapter.State.Turn
         private readonly OrderViewPresenter _orderView;
         private readonly PlayerSelectActionState _playerSelectActionState;
         private readonly EnemySelectSkillState _enemySelectSkillState;
+        private readonly CantActionState _cantActionState;
 
         public TurnStartState(
             ActionTimeService actionTime,
@@ -20,7 +21,8 @@ namespace BattleScene.InterfaceAdapter.State.Turn
             ActorService actor,
             OrderViewPresenter orderView,
             PlayerSelectActionState playerSelectActionState,
-            EnemySelectSkillState enemySelectSkillState)
+            EnemySelectSkillState enemySelectSkillState,
+            CantActionState cantActionState)
         {
             _actionTime = actionTime;
             _order = order;
@@ -28,6 +30,7 @@ namespace BattleScene.InterfaceAdapter.State.Turn
             _orderView = orderView;
             _playerSelectActionState = playerSelectActionState;
             _enemySelectSkillState = enemySelectSkillState;
+            _cantActionState = cantActionState;
         }
 
         public override void Start()
@@ -43,7 +46,7 @@ namespace BattleScene.InterfaceAdapter.State.Turn
         {
             if (_actor.IsResetAilment) throw new NotImplementedException();
             if (_actor.IsSlipDamage) throw new NotImplementedException();
-            if (_actor.CantAction) throw new NotImplementedException();
+            if (_actor.CantAction) return _cantActionState;
             return _actor.IsPlayer 
                 ? _playerSelectActionState 
                 : _enemySelectSkillState;

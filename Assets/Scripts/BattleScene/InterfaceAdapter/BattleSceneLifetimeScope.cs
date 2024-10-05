@@ -240,6 +240,7 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<PlayerSelectSkillState>(Lifetime.Singleton);
             builder.Register<SelectTargetState>(Lifetime.Singleton);
             builder.Register<EnemySelectSkillState>(Lifetime.Singleton);
+            builder.Register<CantActionState>(Lifetime.Singleton);
             builder.Register<SkillState>(Lifetime.Singleton);
             builder.Register<TurnStopState>(Lifetime.Singleton);
             // PrimeSkillState
@@ -288,6 +289,7 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<AttacksWeakPointEvaluatorService>(Lifetime.Singleton);
             builder.Register<BuffGeneratorService>(Lifetime.Singleton);
             builder.Register<BuffRegistererService>(Lifetime.Singleton);
+            builder.Register<CantActionService>(Lifetime.Singleton);
             builder.Register<CharacterPropertyFactoryService>(Lifetime.Singleton);
             builder.Register<DamageEvaluatorService>(Lifetime.Singleton);
             builder.Register<IsHitEvaluatorService>(Lifetime.Singleton);
