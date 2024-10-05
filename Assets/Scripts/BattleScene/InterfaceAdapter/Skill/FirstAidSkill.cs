@@ -16,7 +16,7 @@ namespace BattleScene.InterfaceAdapter.Skill
         public override Range Range { get; } = Range.Oneself;
         public override PlayerImageCode PlayerImageCode { get; } = PlayerImageCode.Gun;
         public override MessageCode Description { get; } = MessageCode.FirstAidDescription;
-        public override MessageCode AttackMessageCode { get; } = MessageCode.RecoverDestroyedPartMessage;
+        public override MessageCode AttackMessageCode { get; } = MessageCode.RecoverPartMessage;
 
         public override ImmutableList<BaseReset> ResetList { get; }
             = ImmutableList.Create<BaseReset>(new FirstAid());

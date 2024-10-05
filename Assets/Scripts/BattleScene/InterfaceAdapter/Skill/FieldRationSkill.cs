@@ -21,7 +21,7 @@ namespace BattleScene.InterfaceAdapter.Skill
         public override Range Range { get; } = Range.Oneself;
         public override PlayerImageCode PlayerImageCode { get; } = PlayerImageCode.Gun;
         public override MessageCode Description { get; } = MessageCode.FieldRationDescription;
-        public override MessageCode AttackMessageCode { get; } = MessageCode.RestoreHitPointMessage;
+        public override MessageCode AttackMessageCode { get; } = MessageCode.CureMessage;
 
         public override ImmutableList<BaseCure> CureList { get; }
     }

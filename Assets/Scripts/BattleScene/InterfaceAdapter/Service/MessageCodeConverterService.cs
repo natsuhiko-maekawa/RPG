@@ -9,6 +9,7 @@ using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using UnityEngine;
+using Utility;
 
 namespace BattleScene.InterfaceAdapter.Service
 {
@@ -19,6 +20,7 @@ namespace BattleScene.InterfaceAdapter.Service
         private const string Buff = "[buff]";
         private const string Damage = "[damage]";
         private const string Part = "[part]";
+        private const string Player = "[player]";
         private const string Skill = "[skill]";
         private const string Target = "[target]";
         private const string TechnicalPoint = "[technicalPoint]";
@@ -68,6 +70,7 @@ namespace BattleScene.InterfaceAdapter.Service
             message = ReplaceDamage(message);
             message = ReplaceCure(message);
             message = ReplaceBodyPart(message);
+            message = ReplacePlayer(message);
             message = ReplaceSkill(message);
             message = ReplaceTarget(message);
             message = ReplaceTechnicalPoint(message);
@@ -77,8 +80,8 @@ namespace BattleScene.InterfaceAdapter.Service
         private string ReplaceActor(string message)
         {
             if (!message.Contains(Actor)) return message;
-            if (!_orderedItems.First().TryGetCharacterId(out var characterId))
-                throw new InvalidOperationException();
+            _orderedItems.First().TryGetCharacterId(out var characterId);
+            MyDebug.Assert(characterId != null);
             var actorName = _characterRepository.Select(characterId).IsPlayer
                 ? _playerViewInfoResource.Get(CharacterTypeCode.Player).PlayerName
                 : _enemyViewInfoResource.Get(_characterRepository.Select(characterId).CharacterTypeCode)
@@ -137,6 +140,14 @@ namespace BattleScene.InterfaceAdapter.Service
             var bodyPartCode = _battleLogRepository.Select().Max().DestroyedPart;
             var bodyPartName = _bodyPartViewInfoResource.Get(bodyPartCode).BodyPartName;
             return message.Replace(Part, bodyPartName);
+        }
+
+        private string ReplacePlayer(string message)
+        {
+            if (!message.Contains(Player)) return message;
+            var playerName = _playerViewInfoResource.Get(CharacterTypeCode.Player).PlayerName;
+            var newMessage = message.Replace(Player, playerName);
+            return newMessage;
         }
 
         private string ReplaceSkill(string message)

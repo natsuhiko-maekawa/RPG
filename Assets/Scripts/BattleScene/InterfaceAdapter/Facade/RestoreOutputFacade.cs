@@ -22,7 +22,7 @@ namespace BattleScene.InterfaceAdapter.Facade
         {
             var animationList = new List<Task>();
             
-            var messageAnimation = _messageView.StartAnimationAsync(MessageCode.RestoreTechnicalPointMessage);
+            var messageAnimation = _messageView.StartAnimationAsync(MessageCode.RestoreMessage);
             animationList.Add(messageAnimation);
 
             var restoreAnimation = _restoreView.StartAnimationAsync();
