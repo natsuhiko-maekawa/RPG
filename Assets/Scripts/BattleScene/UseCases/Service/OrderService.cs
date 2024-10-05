@@ -113,7 +113,7 @@ namespace BattleScene.UseCases.Service
                     if (slipDamageEntity.Turn != characterTypeCount % slipDefaultTurn) continue;
                     var orderedSlipDamageEntity
                         = new OrderedItem(slipDamageEntity.Id);
-                    newOrder = newOrder.Insert(index + 1, orderedSlipDamageEntity)
+                    newOrder = newOrder.Insert(index, orderedSlipDamageEntity)
                         .RemoveAt(order.Count - 1);
                     ++index;
                 }

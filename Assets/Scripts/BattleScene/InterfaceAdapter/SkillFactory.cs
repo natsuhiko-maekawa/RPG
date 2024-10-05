@@ -71,6 +71,7 @@ namespace BattleScene.InterfaceAdapter
                 Nadegiri => _container.Resolve<NadegiriSkill>(),
                 NumbLiquid => _container.Resolve<NumbLiquidSkill>(),
                 Onikoroshi => _container.Resolve<OnikoroshiSkill>(),
+                Poisoning => _container.Resolve<PoisoningSkill>(),
                 Punch => _container.Resolve<PunchSkill>(),
                 PutScythe => _container.Resolve<PutScytheSkill>(),
                 Raikiri => _container.Resolve<RaikiriSkill>(),

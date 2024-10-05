@@ -27,6 +27,7 @@ using BattleScene.UseCases.UseCase;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
+using PoisoningSkill = BattleScene.InterfaceAdapter.Skill.PoisoningSkill;
 using TechnicalPointBarViewPresenter = BattleScene.InterfaceAdapter.Presenter.TechnicalPointBarViewPresenter;
 
 #if UNITY_EDITOR
@@ -51,7 +52,7 @@ namespace BattleScene.InterfaceAdapter
                 // デバッグモード時に注入するインスタンスを登録する
                 builder.Register<IEnemiesRegistererService, SameEnemiesRegistererService>(Lifetime.Singleton);
                 builder.Register<IEnemySkillSelectorService, EnemySpecificSkillSelectorService>(Lifetime.Singleton);
-                builder.Register<IMyRandomService, MyRandomService>(Lifetime.Singleton);
+                builder.Register<IMyRandomService, AlwaysTrueRandomService>(Lifetime.Singleton);
             }
             else
             {
@@ -104,6 +105,7 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<DestroyOutputFacade>(Lifetime.Singleton);
             builder.Register<RestoreOutputFacade>(Lifetime.Singleton);
             builder.Register<SkillOutputFacade>(Lifetime.Singleton);
+            builder.Register<SlipDamageOutputFacade>(Lifetime.Singleton);
             builder.Register<SlipOutputFacade>(Lifetime.Singleton);
             #endregion
             
@@ -144,6 +146,7 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<NadegiriSkill>(Lifetime.Transient);
             builder.Register<NumbLiquidSkill>(Lifetime.Transient);
             builder.Register<OnikoroshiSkill>(Lifetime.Transient);
+            builder.Register<PoisoningSkill>(Lifetime.Transient);
             builder.Register<PunchSkill>(Lifetime.Transient);
             builder.Register<PutScytheSkill>(Lifetime.Transient);
             builder.Register<RaikiriSkill>(Lifetime.Transient);
@@ -241,6 +244,7 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<SelectTargetState>(Lifetime.Singleton);
             builder.Register<EnemySelectSkillState>(Lifetime.Singleton);
             builder.Register<CantActionState>(Lifetime.Singleton);
+            builder.Register<SlipState>(Lifetime.Singleton);
             builder.Register<SkillState>(Lifetime.Singleton);
             builder.Register<TurnStopState>(Lifetime.Singleton);
             // PrimeSkillState
@@ -278,6 +282,7 @@ namespace BattleScene.InterfaceAdapter
                 PrimeSkill<SlipParameterValueObject, SlipValueObject>>(Lifetime.Singleton);
             builder.Register<IPrimeSkill<RestoreParameterValueObject, RestoreValueObject>, 
                 PrimeSkill<RestoreParameterValueObject, RestoreValueObject>>(Lifetime.Singleton);
+            builder.Register<SlipUseCase>(Lifetime.Singleton);
             #endregion
 
             #region RegisterService
@@ -299,6 +304,7 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<SlipDamageGeneratorService>(Lifetime.Singleton);
             builder.Register<SlipGeneratorService>(Lifetime.Singleton);
             builder.Register<SlipRegistererService>(Lifetime.Singleton);
+            builder.Register<SlipService>(Lifetime.Singleton);
             builder.Register<TurnInitializerService>(Lifetime.Singleton);
             builder.Register<IPrimeSkillGeneratorService<AilmentParameterValueObject, AilmentValueObject>, AilmentGeneratorService>(Lifetime.Singleton);
             builder.Register<IPrimeSkillRegistererService<AilmentValueObject>, AilmentRegistererService>(Lifetime.Singleton);

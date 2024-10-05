@@ -2,6 +2,7 @@
 {
     public enum Range
     {
+        Player,
         Oneself,
         Solo,
         Line,

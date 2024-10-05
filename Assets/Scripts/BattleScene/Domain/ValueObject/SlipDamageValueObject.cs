@@ -1,25 +1,19 @@
 ﻿using System.Collections.Generic;
-using System.Collections.Immutable;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.Id;
 
 namespace BattleScene.Domain.ValueObject
 {
-    public class SlipDamageValueObject
+    public class SlipDamageValueObject : PrimeSkillValueObject
     {
         public SlipDamageValueObject(
-            IList<CharacterId> targetIdList,
             SlipDamageCode slipDamageCode,
-            ImmutableList<AttackValueObject> attackList)
+            IReadOnlyList<CharacterId> targetIdList,
+            IReadOnlyList<AttackValueObject> attackList)
         {
-            TargetIdList = targetIdList.ToImmutableList();
             SlipDamageCode = slipDamageCode;
+            TargetIdList = targetIdList;
             AttackList = attackList;
         }
-
-        public CharacterId ActorId { get; } = null;
-        public ImmutableList<CharacterId> TargetIdList { get; }
-        public SlipDamageCode SlipDamageCode { get; }
-        public ImmutableList<AttackValueObject> AttackList { get; }
     }
 }

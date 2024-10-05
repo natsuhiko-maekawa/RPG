@@ -15,6 +15,7 @@ namespace BattleScene.UseCases.Service
         private readonly BodyPartDomainService _bodyPartDomainService;
         private readonly BuffDomainService _buff;
         private readonly CharacterPropertyFactoryService _characterPropertyFactory;
+        private readonly IFactory<BattlePropertyValueObject> _battlePropertyFactory;
         private readonly IRepository<BuffEntity, (CharacterId, BuffCode)> _buffRepository;
         private readonly IMyRandomService _myRandom;
 
@@ -22,12 +23,14 @@ namespace BattleScene.UseCases.Service
             BodyPartDomainService bodyPartDomainService,
             BuffDomainService buff,
             CharacterPropertyFactoryService characterPropertyFactoryFactory,
+            IFactory<BattlePropertyValueObject> battlePropertyFactory,
             IRepository<BuffEntity, (CharacterId, BuffCode)> buffRepository, 
             IMyRandomService myRandom)
         {
             _bodyPartDomainService = bodyPartDomainService;
             _buff = buff;
             _characterPropertyFactory = characterPropertyFactoryFactory;
+            _battlePropertyFactory = battlePropertyFactory;
             _buffRepository = buffRepository;
             _myRandom = myRandom;
         }
@@ -38,6 +41,7 @@ namespace BattleScene.UseCases.Service
             {
                 DamageExpressionCode.Basic => BasicEvaluate(actorId, targetId, damageParameter),
                 DamageExpressionCode.Constant => ConstantEvaluate(actorId, damageParameter),
+                DamageExpressionCode.Slip => SlipEvaluate(actorId, targetId),
                 _ => throw new ArgumentOutOfRangeException()
             };
         }
@@ -68,6 +72,16 @@ namespace BattleScene.UseCases.Service
             var rate = damageParameter.DamageRate;
             return (int)(actorStrength * actorStrength / (float)targetVitality * actorBuffRate / targetBuffRate
                          * destroyedRate * rate * 1.5f) + _myRandom.Range(1, 3);
+        }
+
+        private int SlipEvaluate(CharacterId actorId, CharacterId targetId)
+        {
+            var enemyIntelligence = _characterPropertyFactory.Crate(actorId).Intelligence;
+            var playerIntelligence = _characterPropertyFactory.Crate(targetId).Intelligence;
+            var damageRate = _battlePropertyFactory.Create().SlipDefalutDamageRate;
+            var damage = (int)(enemyIntelligence * enemyIntelligence / (float)playerIntelligence * damageRate)
+                         + _myRandom.Range(0, 2);
+            return damage;
         }
     }
 }

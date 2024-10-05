@@ -20,6 +20,17 @@ namespace BattleScene.UseCases.Service
             _turnRepository = turnRepository;
         }
 
+        public void Log(PrimeSkillValueObject primeSkill)
+        {
+            var (battleLogId, sequence, turn) = GetBattleLogCommonArguments();
+            var battleLog = new BattleLogEntity(
+                battleLogId: battleLogId,
+                sequence: sequence,
+                turn: turn,
+                primeSkill: primeSkill);
+            _battleLogRepository.Update(battleLog);
+        }
+
         public void Log(IReadOnlyList<PrimeSkillValueObject> primeSkillList)
         {
             var (battleLogId, sequence, turn) = GetBattleLogCommonArguments();
@@ -32,7 +43,7 @@ namespace BattleScene.UseCases.Service
                 .ToList();
             _battleLogRepository.Update(battleLogList);
         }
-        
+
         private (BattleLogId battleLogId, int nextSequence, int turn) GetBattleLogCommonArguments()
         {
             var battleLogId = new BattleLogId();

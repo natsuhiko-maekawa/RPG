@@ -23,6 +23,7 @@
         Nadegiri,
         NumbLiquid,
         Onikoroshi,
+        Poisoning,
         Punch,
         PutScythe,
         Raikiri,

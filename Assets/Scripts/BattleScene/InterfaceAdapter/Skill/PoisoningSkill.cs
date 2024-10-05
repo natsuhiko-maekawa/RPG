@@ -1,0 +1,18 @@
+using System.Collections.Immutable;
+using BattleScene.Domain.Code;
+using BattleScene.InterfaceAdapter.PrimeSkill;
+using BattleScene.InterfaceAdapter.PrimeSkill.BaseClass;
+using BattleScene.InterfaceAdapter.Skill.BaseClass;
+
+namespace BattleScene.InterfaceAdapter.Skill
+{
+    public class PoisoningSkill : BaseSkill
+    {
+        public override SkillCode SkillCode { get; } = SkillCode.Poisoning;
+        public override Range Range { get; } = Range.Player;
+        public override PlayerImageCode PlayerImageCode { get; } = PlayerImageCode.Poisoning;
+        public override MessageCode AttackMessageCode { get; } = MessageCode.PoisoningMessage;
+        public override ImmutableList<BaseDamage> DamageList { get; }
+            = ImmutableList.Create<BaseDamage>(new SlipDamage());
+    }
+}
