@@ -22,6 +22,7 @@ namespace BattleScene.InterfaceAdapter.State.Turn
         public override async void Start()
         {
             Context.SkillCode = _slip.GetSkillCode();
+            Context.TargetIdList = _slip.GetTargetList();
             _slip.Commit();
             await _slipDamageOutput.Output(Context.SkillCode);
         }
