@@ -4,7 +4,6 @@ using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
-using UnityEngine;
 
 namespace BattleScene.UseCases.Service
 {
@@ -26,13 +25,11 @@ namespace BattleScene.UseCases.Service
 
         public void Execute(SkillCode skillCode)
         {
+            if (!_orderedItems.First().TryGetCharacterId(out var actorId)) return;
+            if (!_characterRepository.Select(actorId).IsPlayer) return;
+            
             var skill = _skillFactory.Create(skillCode);
             var technicalPoint = skill.SkillCommon.TechnicalPoint;
-            _orderedItems.First().TryGetCharacterId(out var actorId);
-            Debug.Assert(actorId != null);
-            var actor = _characterRepository.Select(actorId);
-            if (!actor.IsPlayer) return;
-
             _characterRepository.Select(actorId).CurrentTechnicalPoint -= technicalPoint;
         }
     }
