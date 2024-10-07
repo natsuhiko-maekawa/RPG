@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Collections.Immutable;
 using UnityEngine;
 
 namespace BattleScene.DataAccess.ScriptableObjects
@@ -8,7 +7,7 @@ namespace BattleScene.DataAccess.ScriptableObjects
         where TItem : IUnique<TKey>
     {
         [SerializeField] private List<TItem> itemList = new();
-        public ImmutableList<TItem> ItemList { get; private set; }
+        public IReadOnlyList<TItem> ItemList { get; private set; }
         
         public void OnBeforeSerialize()
         {
@@ -16,7 +15,7 @@ namespace BattleScene.DataAccess.ScriptableObjects
 
         public void OnAfterDeserialize()
         {
-            ItemList = itemList.ToImmutableList();
+            ItemList = itemList;
         }
     }
 }
