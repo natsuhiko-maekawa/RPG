@@ -2,7 +2,6 @@
 using System.Linq;
 using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.Entity;
-using Utility;
 
 namespace BattleScene.DataAccess.Repository
 {
@@ -26,7 +25,7 @@ namespace BattleScene.DataAccess.Repository
         {
             if (entity == null) return;
             Observe(entity);
-            _entitySet.Update(entity);
+            _entitySet.Add(entity);
         }
 
         partial void Observe(TEntity entity);
