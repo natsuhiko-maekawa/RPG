@@ -281,6 +281,13 @@
       "dependencies": {},
       "hash": "4a23aa69588e7def4a21bfebc07107624c1c89fb"
     },
+    "net.tnrd.nsubstitute": {
+      "version": "https://github.com/Thundernerd/Unity3D-NSubstitute.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "449712b25ae237eb5da2d958dd72a5432051e192"
+    },
     "org.nuget.system.buffers": {
       "version": "4.5.1",
       "depth": 2,

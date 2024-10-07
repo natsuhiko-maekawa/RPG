@@ -4,7 +4,10 @@
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
-        "UseCase.BattleScene"
+        "Domain.BattleScene",
+        "UseCases.BattleScene",
+        "DataAccess.BattleScene",
+        "TNRD.NSubstitute"
     ],
     "includePlatforms": [
         "Editor"
