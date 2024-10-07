@@ -4,9 +4,9 @@ using System.Collections.Immutable;
 using System.Linq;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DataAccess;
-using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
+using BattleScene.Domain.IDomainService;
 using BattleScene.Domain.ValueObject;
 
 namespace BattleScene.UseCases.Service
@@ -16,7 +16,7 @@ namespace BattleScene.UseCases.Service
         private readonly IFactory<BattlePropertyValueObject> _battlePropertyFactory;
         private readonly IFactory<PropertyValueObject, CharacterTypeCode> _characterPropertyFactory;
         private readonly IRepository<AilmentEntity, (CharacterId, AilmentCode)> _ailmentRepository;
-        private readonly BuffDomainService _buff;
+        private readonly IBuffDomainService _buff;
         private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
         private readonly IRepository<OrderedItemEntity, OrderId> _orderedItemRepository;
         private readonly IRepository<SlipEntity, SlipDamageCode> _slipDamageRepository;
@@ -25,7 +25,7 @@ namespace BattleScene.UseCases.Service
             IFactory<BattlePropertyValueObject> battlePropertyFactory,
             IFactory<PropertyValueObject, CharacterTypeCode> characterPropertyFactory, 
             IRepository<AilmentEntity, (CharacterId, AilmentCode)> ailmentRepository, 
-            BuffDomainService buff, 
+            IBuffDomainService buff, 
             IRepository<CharacterEntity, CharacterId> characterRepository,
             IRepository<OrderedItemEntity, OrderId> orderedItemRepository, 
             IRepository<SlipEntity, SlipDamageCode> slipDamageRepository)

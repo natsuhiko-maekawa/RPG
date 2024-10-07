@@ -5,6 +5,7 @@ using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
+using BattleScene.Domain.IDomainService;
 using BattleScene.Domain.ValueObject;
 using BattleScene.UseCases.IService;
 
@@ -13,7 +14,7 @@ namespace BattleScene.UseCases.Service
     public class DamageEvaluatorService
     {
         private readonly BodyPartDomainService _bodyPartDomainService;
-        private readonly BuffDomainService _buff;
+        private readonly IBuffDomainService _buff;
         private readonly CharacterPropertyFactoryService _characterPropertyFactory;
         private readonly IFactory<BattlePropertyValueObject> _battlePropertyFactory;
         private readonly IRepository<BuffEntity, (CharacterId, BuffCode)> _buffRepository;
@@ -21,7 +22,7 @@ namespace BattleScene.UseCases.Service
 
         public DamageEvaluatorService(
             BodyPartDomainService bodyPartDomainService,
-            BuffDomainService buff,
+            IBuffDomainService buff,
             CharacterPropertyFactoryService characterPropertyFactoryFactory,
             IFactory<BattlePropertyValueObject> battlePropertyFactory,
             IRepository<BuffEntity, (CharacterId, BuffCode)> buffRepository, 

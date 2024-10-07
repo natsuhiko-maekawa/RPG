@@ -7,18 +7,19 @@ using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
+using BattleScene.Domain.IDomainService;
 
 namespace BattleScene.UseCases.Service
 {
     public class ActionTimeService
     {
-        private readonly BuffDomainService _buff;
+        private readonly IBuffDomainService _buff;
         private readonly CharacterPropertyFactoryService _characterPropertyFactory;
         private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
         private readonly OrderedItemsDomainService _orderedItems;
 
         public ActionTimeService(
-            BuffDomainService buff,
+            IBuffDomainService buff,
             CharacterPropertyFactoryService characterPropertyFactory,
             IRepository<CharacterEntity, CharacterId> characterRepository,
             OrderedItemsDomainService orderedItems)
