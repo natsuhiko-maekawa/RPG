@@ -96,7 +96,7 @@ namespace BattleScene.UseCases.Service
         }
 
         private ImmutableList<OrderedItem> InsertSlipDamage(
-            IList<SlipEntity> slipDamageEntityList,
+            IReadOnlyList<SlipEntity> slipDamageEntityList,
             ImmutableList<OrderedItem> order)
         {
             var newOrder = order.ToImmutableList();
