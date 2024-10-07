@@ -13,6 +13,7 @@ namespace BattleScene.Domain.ValueObject
         {
             SlipDamageCode = slipDamageCode;
             TargetIdList = targetIdList;
+            ActualTargetIdList = TargetIdList;
             AttackList = attackList;
         }
     }
