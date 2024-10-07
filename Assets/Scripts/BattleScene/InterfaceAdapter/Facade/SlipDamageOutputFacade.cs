@@ -1,12 +1,10 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using BattleScene.DataAccess;
 using BattleScene.DataAccess.Dto;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DataAccess;
-using BattleScene.Domain.DomainService;
-using BattleScene.Domain.Entity;
-using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
 using BattleScene.InterfaceAdapter.Presenter;
 
@@ -37,7 +35,15 @@ namespace BattleScene.InterfaceAdapter.Facade
             _vibrationView = vibrationView;
         }
 
-        public async Task Output(SkillCode skillCode)
+        public Queue<Func<Task>> GetOutputQueue(SkillCode skillCode)
+        {
+            var outputQueue = new Queue<Func<Task>>();
+            outputQueue.Enqueue(() => Output1(skillCode));
+            outputQueue.Enqueue(() => Output2());
+            return outputQueue;
+        }
+        
+        public Task Output1(SkillCode skillCode)
         {
             var animationList = new List<Task>();
 
@@ -48,14 +54,24 @@ namespace BattleScene.InterfaceAdapter.Facade
             var messageCode = _skillFactory.Create(skillCode).SkillCommon.MessageCode;
             var messageAnimation = _messageView.StartAnimationAsync(messageCode);
             animationList.Add(messageAnimation);
+            
+            return Task.WhenAll(animationList);
+        }
 
+        public Task Output2()
+        {
+            var animationList = new List<Task>();
+            
+            var messageAnimation = _messageView.StartAnimationAsync(MessageCode.SlipDamageMessage);
+            animationList.Add(messageAnimation);
+            
             var damageAnimation = _damageView.StartAnimationAsync();
             animationList.Add(damageAnimation);
 
             var vibrationAnimation = _vibrationView.StartAnimationAsync();
             animationList.Add(vibrationAnimation);
-
-            await Task.WhenAll(animationList);
+            
+            return Task.WhenAll(animationList);
         }
     }
 }

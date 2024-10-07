@@ -8,6 +8,7 @@ namespace BattleScene.InterfaceAdapter.State.Turn
         private readonly SlipUseCase _slip;
         private readonly SlipDamageOutputFacade _slipDamageOutput;
         private readonly TurnStopState _turnStopState;
+        private AnimationQueue _animationQueue;
 
         public SlipState(
             SlipUseCase slip,
@@ -24,12 +25,18 @@ namespace BattleScene.InterfaceAdapter.State.Turn
             Context.SkillCode = _slip.GetSkillCode();
             Context.TargetIdList = _slip.GetTargetList();
             _slip.Commit();
-            await _slipDamageOutput.Output(Context.SkillCode);
+
+            var outputQueue = _slipDamageOutput.GetOutputQueue(Context.SkillCode);
+            _animationQueue = new AnimationQueue(outputQueue);
+            _animationQueue.OnLastAnimate += TransitionState;
+            await _animationQueue.Animate();
         }
 
-        public override void Select()
+        public override async void Select()
         {
-            Context.TransitionTo(_turnStopState);
+            await _animationQueue.Animate();
         }
+
+        private void TransitionState() => Context.TransitionTo(_turnStopState);
     }
 }
