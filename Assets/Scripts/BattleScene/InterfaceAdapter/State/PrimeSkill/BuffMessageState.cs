@@ -29,11 +29,11 @@ namespace BattleScene.InterfaceAdapter.State.PrimeSkill
             _primeSkillStopState = primeSkillStopState;
         }
 
-        public override void Start()
+        public override async void Start()
         {
             var buffCode = _battleLogRepository.Select().Max().BuffCode;
             var messageCode = _buffViewResource.Get(buffCode).MessageCode;
-            _messageView.StartAnimationAsync(messageCode);
+            await _messageView.StartAnimationAsync(messageCode);
         }
 
         public override void Select()
