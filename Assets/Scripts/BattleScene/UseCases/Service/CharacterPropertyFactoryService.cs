@@ -19,7 +19,7 @@ namespace BattleScene.UseCases.Service
             _characterRepository = characterRepository;
         }
 
-        public PropertyValueObject Crate(CharacterId characterId)
+        public PropertyValueObject Create(CharacterId characterId)
         {
             var characterTypeCode = _characterRepository.Select(characterId).CharacterTypeCode;
             var characterProperty = _characterPropertyFactory.Create(characterTypeCode);

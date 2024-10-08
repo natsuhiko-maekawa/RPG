@@ -69,7 +69,7 @@ namespace BattleScene.UseCases.Service.Order
         
         private int GetSpeed(CharacterId characterId)
         {
-            var agility = (float)_characterPropertyFactory.Crate(characterId).Agility;
+            var agility = (float)_characterPropertyFactory.Create(characterId).Agility;
             var speedRate = _buff.GetRate(characterId, BuffCode.Speed);
             var speed = (int)Math.Ceiling(agility * speedRate);
             

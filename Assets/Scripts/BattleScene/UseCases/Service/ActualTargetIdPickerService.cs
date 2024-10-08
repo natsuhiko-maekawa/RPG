@@ -29,12 +29,12 @@ namespace BattleScene.UseCases.Service
             float luckRate = 1.0f)
         {
             _orderedItems.First().TryGetCharacterId(out var actorId);
-            var actorLuck = _characterPropertyFactory.Crate(actorId).Luck;
+            var actorLuck = _characterPropertyFactory.Create(actorId).Luck;
 
             var actualTargetList = targetIdList
                 .Where(x =>
                 {
-                    var targetLuck = _characterPropertyFactory.Crate(x).Luck;
+                    var targetLuck = _characterPropertyFactory.Create(x).Luck;
                     var rate = luckRate * (1.0f + (actorLuck - targetLuck) / Threshold);
                     return _myRandom.Probability(rate);
                 })

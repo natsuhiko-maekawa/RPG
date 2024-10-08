@@ -27,7 +27,7 @@ namespace BattleScene.UseCases.Service
 
         private bool BasicEvaluate(CharacterId targetId, DamageParameterValueObject damageParameter)
         {
-            return _characterPropertyFactory.Crate(targetId).WeakPoints
+            return _characterPropertyFactory.Create(targetId).WeakPoints
                 .Intersect(damageParameter.MatAttrCode)
                 .Any();
         }

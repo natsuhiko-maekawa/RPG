@@ -55,8 +55,8 @@ namespace BattleScene.UseCases.Service
 
             // 大きいほど命中しやすくなる
             const float threshold = 20.0f;
-            var actorAgility = _characterPropertyFactory.Crate(actorId).Agility;
-            var targetAgility = _characterPropertyFactory.Crate(targetId).Agility;
+            var actorAgility = _characterPropertyFactory.Create(actorId).Agility;
+            var targetAgility = _characterPropertyFactory.Create(targetId).Agility;
             var isActorBlind = _ailmentRepository.Select()
                 .FirstOrDefault(x => Equals(x.CharacterId, actorId) && x.AilmentCode == AilmentCode.Blind) != null;
             var isTargetDeaf = _ailmentRepository.Select()

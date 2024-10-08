@@ -49,10 +49,10 @@ namespace BattleScene.UseCases.Service
 
         private int BasicEvaluate(CharacterId actorId, CharacterId targetId, DamageParameterValueObject damageParameter)
         {
-            var actorStrength = _characterPropertyFactory.Crate(actorId).Strength;
-            var targetVitality = _characterPropertyFactory.Crate(targetId).Vitality;
+            var actorStrength = _characterPropertyFactory.Create(actorId).Strength;
+            var targetVitality = _characterPropertyFactory.Create(targetId).Vitality;
             var actorMatAttr = damageParameter.MatAttrCode;
-            var targetWeekPoint = _characterPropertyFactory.Crate(targetId).WeakPoints;
+            var targetWeekPoint = _characterPropertyFactory.Create(targetId).WeakPoints;
             var actorBuffRate = _buff.GetRate(actorId, BuffCode.Attack);
             var targetBuffRate = _buff.GetRate(targetId, BuffCode.Defence);
             var destroyedRate = 1.0f - _bodyPartDomainService.Count(actorId, BodyPartCode.Arm) * 0.5f;
@@ -65,7 +65,7 @@ namespace BattleScene.UseCases.Service
         
         private int ConstantEvaluate(CharacterId actorId, DamageParameterValueObject damageParameter)
         {
-            var actorStrength = _characterPropertyFactory.Crate(actorId).Strength;
+            var actorStrength = _characterPropertyFactory.Create(actorId).Strength;
             const int targetVitality = 1;
             var actorBuffRate = _buff.GetRate(actorId, BuffCode.Attack);
             const int targetBuffRate = 1;
@@ -77,8 +77,8 @@ namespace BattleScene.UseCases.Service
 
         private int SlipEvaluate(CharacterId actorId, CharacterId targetId)
         {
-            var enemyIntelligence = _characterPropertyFactory.Crate(actorId).Intelligence;
-            var playerIntelligence = _characterPropertyFactory.Crate(targetId).Intelligence;
+            var enemyIntelligence = _characterPropertyFactory.Create(actorId).Intelligence;
+            var playerIntelligence = _characterPropertyFactory.Create(targetId).Intelligence;
             var damageRate = _battlePropertyFactory.Create().SlipDefalutDamageRate;
             var damage = (int)(enemyIntelligence * enemyIntelligence / (float)playerIntelligence * damageRate)
                          + _myRandom.Range(0, 2);

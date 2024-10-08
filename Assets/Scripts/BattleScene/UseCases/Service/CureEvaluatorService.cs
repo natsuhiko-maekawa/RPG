@@ -25,10 +25,10 @@ namespace BattleScene.UseCases.Service
         
         private int BasicEvaluate(CharacterId actorId)
         {
-            var wisdom = _characterPropertyFactory.Crate(actorId).Wisdom;
+            var wisdom = _characterPropertyFactory.Create(actorId).Wisdom;
             var restore = wisdom * 8 + _myRandom.Range(0, 2);
             var currentHitPoint = _characterRepository.Select(actorId).CurrentHitPoint;
-            var maxHitPoint = _characterPropertyFactory.Crate(actorId).HitPoint;
+            var maxHitPoint = _characterPropertyFactory.Create(actorId).HitPoint;
             var actualRestore = Math.Min(restore, maxHitPoint - currentHitPoint);
             return actualRestore;
         }
