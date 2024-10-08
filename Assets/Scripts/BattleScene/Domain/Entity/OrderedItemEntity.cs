@@ -25,7 +25,7 @@ namespace BattleScene.Domain.Entity
         private AilmentCode AilmentCode { get; }
         private SlipDamageCode SlipDamageCode { get; }
         public OrderedItemType OrderedItemType { get; }
-        
+
         public bool TryGetCharacterId(out CharacterId characterId)
         {
             characterId = CharacterId;
@@ -43,8 +43,19 @@ namespace BattleScene.Domain.Entity
             slipDamageCode = SlipDamageCode;
             return SlipDamageCode != SlipDamageCode.NoSlipDamage;
         }
+
+        public override string ToString()
+        {
+            var str = $@"Id: {Id},
+OrderNumber: {OrderNumber},
+CharacterId: {CharacterId},
+AilmentCode: {AilmentCode},
+SlipDamageCode: {SlipDamageCode},
+OrderedItemType: {OrderedItemType}";
+            return str;
+        }
     }
-    
+
     public class OrderedItem
     {
         public OrderedItemType OrderedItemType { get; }
