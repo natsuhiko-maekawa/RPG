@@ -108,9 +108,9 @@ namespace BattleScene.UseCases.Service
                     var copiedIndex = index;
                     var characterTypeCount = newOrder
                             // TODO: Take()を使って書き換える
-                        .Where((_, i) => i <= copiedIndex)
-                        .Count(x => x.CharacterId != null) - 1;
-                    if (slipDamageEntity.Turn != characterTypeCount % slipDefaultTurn) continue;
+                        .Where((_, i) => i <= copiedIndex - 1)
+                        .Count(x => x.CharacterId != null);
+                    if (slipDamageEntity.Turn != characterTypeCount % (slipDefaultTurn + 1)) continue;
                     var orderedSlipDamageEntity
                         = new OrderedItem(slipDamageEntity.Id);
                     newOrder = newOrder.Insert(index, orderedSlipDamageEntity)
