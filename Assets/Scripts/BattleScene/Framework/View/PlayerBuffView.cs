@@ -16,8 +16,8 @@ namespace BattleScene.Framework.View
             _textAndIconList = textAndIconList;
             foreach (var textAndIcon in _textAndIconList)
             {
-                textAndIcon.text.color = Color.gray;
-                textAndIcon.icon.enabled = false;
+                textAndIcon.Text.color = Color.gray;
+                textAndIcon.Icon.enabled = false;
             }
         }
 
@@ -27,18 +27,18 @@ namespace BattleScene.Framework.View
                 switch (dtoList[index].State)
                 {
                     case > 0:
-                        textAndIcon.text.color = Color.white;
-                        textAndIcon.icon.sprite = buff;
-                        textAndIcon.icon.enabled = true;
+                        textAndIcon.Text.color = Color.white;
+                        textAndIcon.Icon.sprite = buff;
+                        textAndIcon.Icon.enabled = true;
                         break;
                     case 0:
-                        textAndIcon.text.color = Color.gray;
-                        textAndIcon.icon.enabled = false;
+                        textAndIcon.Text.color = Color.gray;
+                        textAndIcon.Icon.enabled = false;
                         break;
                     case < 0:
-                        textAndIcon.text.color = Color.white;
-                        textAndIcon.icon.sprite = debuff;
-                        textAndIcon.icon.enabled = true;
+                        textAndIcon.Text.color = Color.white;
+                        textAndIcon.Icon.sprite = debuff;
+                        textAndIcon.Icon.enabled = true;
                         break;
                 }
         }

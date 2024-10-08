@@ -39,8 +39,8 @@ namespace BattleScene.Framework.View
 
         public struct TextAndIcon
         {
-            public Text text;
-            public Image icon;
+            public Text Text;
+            public Image Icon;
         }
     }
 }
