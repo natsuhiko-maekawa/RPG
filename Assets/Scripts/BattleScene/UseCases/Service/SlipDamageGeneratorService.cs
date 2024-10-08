@@ -6,7 +6,6 @@ using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
-using BattleScene.UseCases.IService;
 using UnityEngine;
 using Utility;
 
@@ -17,27 +16,21 @@ namespace BattleScene.UseCases.Service
         private readonly OrderedItemsDomainService _orderedItems;
         private readonly PlayerDomainService _player;
         private readonly DamageEvaluatorService _damageEvaluator;
-        private readonly CharacterPropertyFactoryService _characterPropertyFactory;
         private readonly IFactory<BattlePropertyValueObject> _battlePropertyFactory;
         private readonly IRepository<BattleLogEntity, BattleLogId> _battleLogRepository;
-        private readonly IMyRandomService _myRandom;
 
         public SlipDamageGeneratorService(
             OrderedItemsDomainService orderedItems,
             PlayerDomainService player,
             DamageEvaluatorService damageEvaluator,
-            CharacterPropertyFactoryService characterPropertyFactory,
             IFactory<BattlePropertyValueObject> battlePropertyFactory,
-            IRepository<BattleLogEntity, BattleLogId> battleLogRepository,
-            IMyRandomService myRandom)
+            IRepository<BattleLogEntity, BattleLogId> battleLogRepository)
         {
             _orderedItems = orderedItems;
             _player = player;
             _damageEvaluator = damageEvaluator;
-            _characterPropertyFactory = characterPropertyFactory;
             _battlePropertyFactory = battlePropertyFactory;
             _battleLogRepository = battleLogRepository;
-            _myRandom = myRandom;
         }
 
         public SlipDamageValueObject Generate()
@@ -70,22 +63,6 @@ namespace BattleScene.UseCases.Service
                 slipDamageCode: slipCode,
                 attackList: new List<AttackValueObject> { attack });
             return slipDamage;
-        }
-
-        private int GetDamageAmount(SlipDamageCode slipDamageCode)
-        {
-            var battleLog = _battleLogRepository.Select()
-                .Where(x => x.SlipDamageCode == slipDamageCode)
-                .Max();
-            Debug.Assert(battleLog != null);
-            var enemyId = battleLog.ActorId;
-            var playerId = _player.GetId();
-            var enemyIntelligence = _characterPropertyFactory.Crate(enemyId).Intelligence;
-            var playerIntelligence = _characterPropertyFactory.Crate(playerId).Intelligence;
-            var damageRate = _battlePropertyFactory.Create().SlipDefalutDamageRate;
-            var damage = (int)(enemyIntelligence * enemyIntelligence / (float)playerIntelligence * damageRate)
-                         + _myRandom.Range(0, 2);
-            return damage;
         }
     }
 }
