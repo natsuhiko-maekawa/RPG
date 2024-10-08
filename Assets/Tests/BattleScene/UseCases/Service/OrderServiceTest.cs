@@ -8,7 +8,7 @@ using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.IDomainService;
 using BattleScene.Domain.ValueObject;
-using BattleScene.UseCases.Service;
+using BattleScene.UseCases.Service.Order;
 using NSubstitute;
 using NUnit.Framework;
 using Tests.BattleScene.DataAccess.Repository;

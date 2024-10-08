@@ -1,7 +1,7 @@
 ﻿using System;
 using BattleScene.InterfaceAdapter.Presenter;
 using BattleScene.InterfaceAdapter.Service;
-using BattleScene.UseCases.Service;
+using BattleScene.UseCases.Service.Order;
 
 namespace BattleScene.InterfaceAdapter.State.Turn
 {

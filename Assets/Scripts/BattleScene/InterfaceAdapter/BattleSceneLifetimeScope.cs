@@ -24,6 +24,7 @@ using BattleScene.InterfaceAdapter.StateMachine;
 using BattleScene.UseCases.Interface;
 using BattleScene.UseCases.IService;
 using BattleScene.UseCases.Service;
+using BattleScene.UseCases.Service.Order;
 using BattleScene.UseCases.UseCase;
 using UnityEngine;
 using VContainer;

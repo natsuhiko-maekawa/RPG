@@ -9,7 +9,7 @@ using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.IDomainService;
 
-namespace BattleScene.UseCases.Service
+namespace BattleScene.UseCases.Service.Order
 {
     public class ActionTimeService
     {

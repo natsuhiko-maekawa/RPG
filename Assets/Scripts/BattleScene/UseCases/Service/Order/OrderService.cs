@@ -9,7 +9,7 @@ using BattleScene.Domain.Id;
 using BattleScene.Domain.IDomainService;
 using BattleScene.Domain.ValueObject;
 
-namespace BattleScene.UseCases.Service
+namespace BattleScene.UseCases.Service.Order
 {
     public class OrderService
     {
