@@ -203,7 +203,7 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<IFactory<BattlePropertyValueObject>, BattlePropertyFactory>(Lifetime.Singleton);
             builder.Register<IFactory<BodyPartPropertyValueObject, BodyPartCode>, BodyPartPropertyFactory>(
                 Lifetime.Singleton);
-            builder.Register<IFactory<PropertyValueObject, CharacterTypeCode>, PropertyFactory>(Lifetime.Singleton);
+            builder.Register<IFactory<PropertyValueObject, CharacterTypeCode>, CharacterPropertyFactory>(Lifetime.Singleton);
             builder.Register<IFactory<PlayerPropertyValueObject, CharacterTypeCode>, PlayerPropertyFactory>
                 (Lifetime.Singleton);
             builder.Register<IFactory<SkillValueObject, SkillCode>, SkillFactory>(Lifetime.Singleton);

@@ -5,11 +5,11 @@ using BattleScene.Domain.ValueObject;
 
 namespace BattleScene.DataAccess.Factory
 {
-    public class PropertyFactory : IFactory<PropertyValueObject, CharacterTypeCode>
+    public class CharacterPropertyFactory : IFactory<PropertyValueObject, CharacterTypeCode>
     {
         private readonly IResource<CharacterPropertyDto, CharacterTypeCode> _propertyResource;
 
-        public PropertyFactory(
+        public CharacterPropertyFactory(
             IResource<CharacterPropertyDto, CharacterTypeCode> propertyResource)
         {
             _propertyResource = propertyResource;
