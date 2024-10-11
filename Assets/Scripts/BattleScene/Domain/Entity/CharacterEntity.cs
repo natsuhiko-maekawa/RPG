@@ -29,7 +29,7 @@ namespace BattleScene.Domain.Entity
         public int CurrentHitPoint
         {
             get => _currentHitPoint;
-            set { _currentHitPoint = Mathf.Max(value, 0); CurrentHitPointOnChange(value);}
+            set { _currentHitPoint = Mathf.Max(value, 0); CurrentHitPointOnChange(_currentHitPoint);}
         }
 
         partial void CurrentHitPointOnChange(int value);
