@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using BattleScene.DataAccess;
+using BattleScene.DataAccess.Dto;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.ValueObject;
 using BattleScene.InterfaceAdapter.Presenter;
@@ -9,12 +10,12 @@ namespace BattleScene.InterfaceAdapter.Facade
 {
     public class SlipOutputFacade
     {
-        private readonly IAilmentViewResource _ailmentViewResource;
+        private readonly IResource<AilmentViewDto, AilmentCode, SlipDamageCode> _ailmentViewResource;
         private readonly MessageViewPresenter _messageView;
         private readonly PlayerImageViewPresenter _playerImageView;
 
         public SlipOutputFacade(
-            IAilmentViewResource ailmentViewResource,
+            IResource<AilmentViewDto, AilmentCode, SlipDamageCode> ailmentViewResource,
             MessageViewPresenter messageView, 
             PlayerImageViewPresenter playerImageView)
         {

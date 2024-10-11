@@ -23,7 +23,7 @@ namespace BattleScene.InterfaceAdapter.Service
         private const string Skill = "[skill]";
         private const string Target = "[target]";
         private const string TechnicalPoint = "[technicalPoint]";
-        private readonly IAilmentViewResource _ailmentViewResource;
+        private readonly IResource<AilmentViewDto, AilmentCode, SlipDamageCode> _ailmentViewResource;
         private readonly IResource<BodyPartViewDto, BodyPartCode> _bodyPartViewInfoResource;
         private readonly IResource<BuffViewDto, BuffCode> _buffViewInfoResource;
         private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
@@ -36,7 +36,7 @@ namespace BattleScene.InterfaceAdapter.Service
         private readonly PlayerDomainService _player;
 
         public MessageCodeConverterService(
-            IAilmentViewResource ailmentViewResource,
+            IResource<AilmentViewDto, AilmentCode, SlipDamageCode> ailmentViewResource,
             IResource<BodyPartViewDto, BodyPartCode> bodyPartViewInfoResource,
             IResource<BuffViewDto, BuffCode> buffViewInfoResource,
             IRepository<CharacterEntity, CharacterId> characterRepository,
