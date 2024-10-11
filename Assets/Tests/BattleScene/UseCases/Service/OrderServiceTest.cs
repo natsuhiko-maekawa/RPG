@@ -21,6 +21,18 @@ namespace Tests.BattleScene.UseCases.Service
     [TestFixture]
     public class OrderServiceTest
     {
+        private CharacterPropertyFactory _stubCharacterPropertyFactory;
+        private readonly MockRepository<CharacterEntity, CharacterId> _mockCharacterRepository = new();
+        
+        [SetUp]
+        public void SetUp()
+        {
+            var characterPropertyScriptableObject = AssetDatabase.LoadAssetAtPath<BaseScriptableObject<CharacterPropertyDto, CharacterTypeCode>>(
+                "Assets/ScriptableObject/CharacterPropertyScriptableObject.asset");
+            var stubCharacterPropertyResource = new StubBaseScriptableObjectResource<CharacterPropertyDto, CharacterTypeCode>(characterPropertyScriptableObject.ItemList);
+            _stubCharacterPropertyFactory = new CharacterPropertyFactory(stubCharacterPropertyResource);
+        }
+        
         [Test]
         public void スリップダメージが5の倍数順に挿入される()
         {
@@ -33,25 +45,21 @@ namespace Tests.BattleScene.UseCases.Service
             var stubBuff = Substitute.For<IBuffDomainService>();
             stubBuff.GetRate(Arg.Any<CharacterId>(), Arg.Any<BuffCode>()).Returns(1.0f);
 
+            var playerId = new CharacterId();
             var player = new CharacterEntity(
-                id: new CharacterId(),
+                id: playerId,
                 characterTypeCode: CharacterTypeCode.Player,
                 currentHitPoint: 179,
                 currentTechnicalPoint: 50);
+            var beeId = new CharacterId();
             var bee = new CharacterEntity(
-                id:  new CharacterId(),
+                id: beeId,
                 characterTypeCode: CharacterTypeCode.Bee,
                 currentHitPoint: 39,
                 position: 0);
 
-            var mockCharacterRepository = new MockRepository<CharacterEntity, CharacterId>();
-            mockCharacterRepository.Update(player);
-            mockCharacterRepository.Update(bee);
-
-            var characterPropertyScriptableObject = AssetDatabase.LoadAssetAtPath<BaseScriptableObject<CharacterPropertyDto, CharacterTypeCode>>(
-                "Assets/ScriptableObject/CharacterPropertyScriptableObject.asset");
-            var stubCharacterPropertyResource = new StubBaseScriptableObjectResource<CharacterPropertyDto, CharacterTypeCode>(characterPropertyScriptableObject.ItemList);
-            var stubCharacterPropertyFactory = new PropertyFactory(stubCharacterPropertyResource);
+            _mockCharacterRepository.Update(player);
+            _mockCharacterRepository.Update(bee);
             
             var mockOrderedItemRepository = new MockRepository<OrderedItemEntity, OrderId>();
 
@@ -61,18 +69,28 @@ namespace Tests.BattleScene.UseCases.Service
 
             var orderService = new OrderService(
                 battlePropertyFactory: stubBattlePropertyFactory,
-                characterPropertyFactory: stubCharacterPropertyFactory,
+                characterPropertyFactory: _stubCharacterPropertyFactory,
                 ailmentRepository: stubAilmentRepository,
                 buff: stubBuff,
-                characterRepository: mockCharacterRepository,
+                characterRepository: _mockCharacterRepository,
                 orderedItemRepository: mockOrderedItemRepository,
                 slipDamageRepository: stubSlipDamageRepository);
             
             orderService.Update();
             var orderedItemRepositoryToString = mockOrderedItemRepository.ToString();
             Debug.Log(orderedItemRepositoryToString);
+
+            var orderedItemList = mockOrderedItemRepository.Select();
+
+            var orderedItem1 = new OrderedItemEntity(
+                orderId: new OrderId(),
+                orderNumber: 0,
+                orderedItem: new OrderedItem(playerId));
             
-            Assert.That(true);
+            orderedItemList[0].TryGetCharacterId(out var characterId1);
+            Assert.That(characterId1, Is.EqualTo(playerId), "順番の1番目は正しい");
+            orderedItemList[1].TryGetCharacterId(out var characterId2);
+            Assert.That(characterId2, Is.EqualTo(beeId), "順番の2番目は正しい");
         }
     }
 }
