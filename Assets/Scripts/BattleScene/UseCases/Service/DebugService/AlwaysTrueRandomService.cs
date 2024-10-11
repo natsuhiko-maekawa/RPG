@@ -25,5 +25,25 @@ namespace BattleScene.UseCases.Service.DebugService
         {
             return min;
         }
+
+        public T Choice<T>(IEnumerable<T> options, string memberName = "")
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public T Choice<T>(IEnumerable<T> options, long seed, string memberName = "")
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public bool Probability(float rate, string memberName = "")
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public int Range(int min, int max, string memberName = "")
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

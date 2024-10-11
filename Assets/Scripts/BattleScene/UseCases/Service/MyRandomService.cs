@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using BattleScene.UseCases.IService;
 using Random = Unity.Mathematics.Random;
 
@@ -8,12 +9,23 @@ namespace BattleScene.UseCases.Service
 {
     public class MyRandomService : IMyRandomService
     {
-        public T Choice<T>(IEnumerable<T> options) => Choice(options, GenerateSeed());
-        public T Choice<T>(IEnumerable<T> options, long seed) => Choice(options, (uint)seed);
-        public bool Probability(float rate) => Probability(rate, GenerateSeed());
-        public bool Probability(float rate, long seed) => Probability(rate, (uint)seed);
-        public int Range(int min, int max) => Range(min, max, GenerateSeed());
-        public int Range(int min, int max, long seed) => Range(min, max, (uint)seed);
+        public T Choice<T>(IEnumerable<T> options, [CallerMemberName] string memberName = "")
+            => Choice(options, GenerateSeed());
+        
+        public T Choice<T>(IEnumerable<T> options, long seed, [CallerMemberName] string memberName = "")
+            => Choice(options, (uint)seed);
+        
+        public bool Probability(float rate, [CallerMemberName] string memberName = "")
+            => Probability(rate, GenerateSeed());
+        
+        public bool Probability(float rate, long seed, [CallerMemberName] string memberName = "")
+            => Probability(rate, (uint)seed);
+        
+        public int Range(int min, int max, [CallerMemberName] string memberName = "")
+            => Range(min, max, GenerateSeed());
+        
+        public int Range(int min, int max, long seed, [CallerMemberName] string memberName = "")
+            => Range(min, max, (uint)seed);
 
         private T Choice<T>(IEnumerable<T> options, uint seed)
         {
