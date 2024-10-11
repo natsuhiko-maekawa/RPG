@@ -18,19 +18,22 @@ namespace BattleScene.UseCases.Service
         private readonly CharacterPropertyFactoryService _characterPropertyFactory;
         private readonly IRepository<BuffEntity, (CharacterId, BuffCode)> _buffRepository;
         private readonly IMyRandomService _myRandom;
+        private readonly IFactory<BattlePropertyValueObject> _battlePropertyFactory;
 
         public IsHitEvaluatorService(
             IRepository<AilmentEntity, (CharacterId, AilmentCode)> ailmentRepository,
             BodyPartDomainService bodyPartDomainService,
             CharacterPropertyFactoryService characterPropertyFactory,
             IRepository<BuffEntity, (CharacterId, BuffCode)> buffRepository,
-            IMyRandomService myRandom)
+            IMyRandomService myRandom,
+            IFactory<BattlePropertyValueObject> battlePropertyFactory)
         {
             _ailmentRepository = ailmentRepository;
             _bodyPartDomainService = bodyPartDomainService;
             _characterPropertyFactory = characterPropertyFactory;
             _buffRepository = buffRepository;
             _myRandom = myRandom;
+            _battlePropertyFactory = battlePropertyFactory;
         }
 
         public bool Evaluate(CharacterId actorId, CharacterId targetId, DamageParameterValueObject damageParameter)
@@ -64,7 +67,7 @@ namespace BattleScene.UseCases.Service
             if (_buffRepository.Select((targetId, BuffCode.UtsusemiSkill)) != null) return false;
 
             // 大きいほど命中しやすくなる
-            const float threshold = 20.0f;
+            var threshold = _battlePropertyFactory.Create().IsHitThreshold; 
             var actorAgility = _characterPropertyFactory.Create(actorId).Agility;
             var targetAgility = _characterPropertyFactory.Create(targetId).Agility;
             var isActorBlind = _ailmentRepository.Select()
