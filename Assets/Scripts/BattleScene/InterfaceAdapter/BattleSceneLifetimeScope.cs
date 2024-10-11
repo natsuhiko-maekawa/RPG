@@ -52,7 +52,7 @@ namespace BattleScene.InterfaceAdapter
             if (debugMode)
             {
                 // デバッグモード時に注入するインスタンスを登録する
-                builder.Register<IEnemiesRegistererService, SameEnemiesRegistererService>(Lifetime.Singleton);
+                builder.RegisterComponentInHierarchy<IEnemiesRegistererService>();
                 builder.Register<IEnemySkillSelectorService, EnemySpecificSkillSelectorService>(Lifetime.Singleton);
                 builder.RegisterComponentInHierarchy<IMyRandomService>();
                 builder.Register<MyRandomService>(Lifetime.Singleton);
