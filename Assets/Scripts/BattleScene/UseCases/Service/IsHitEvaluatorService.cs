@@ -60,6 +60,7 @@ namespace BattleScene.UseCases.Service
             // 両脚損傷時、必ず命中する
             if (!_bodyPartDomainService.IsAvailable(targetId, BodyPartCode.Leg)) return true;
             
+            // 空蝉状態の時、必ず回避する
             if (_buffRepository.Select((targetId, BuffCode.UtsusemiSkill)) != null) return false;
 
             // 大きいほど命中しやすくなる
@@ -80,9 +81,6 @@ namespace BattleScene.UseCases.Service
             return _myRandom.Probability(hitRate + destroyedReduce + buff + add);
         }
 
-        private bool AlwaysHitEvaluate()
-        {
-            return true;
-        }
+        private bool AlwaysHitEvaluate() => true;
     }
 }
