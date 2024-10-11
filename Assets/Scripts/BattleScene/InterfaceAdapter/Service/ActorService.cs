@@ -50,7 +50,12 @@ namespace BattleScene.InterfaceAdapter.Service
             var absoluteCantAction = ailmentCode.Value is not (AilmentCode.Paralysis or AilmentCode.EnemyParalysis);
             return absoluteCantAction || CantActionBecauseParalysis;
         }
-
+        
+        /// <summary>
+        /// 麻痺によって行動不能になったかを表すプロパティ。<br/>
+        /// <see cref="BattleScene.UseCases.Service.DebugService.DebugRandomService"/>でプロパティ名を利用してリフレクションを行っているため、
+        /// NOTE: プロパティ名を変更するときは上記クラスも修正すること。
+        /// </summary>
         private bool CantActionBecauseParalysis => _myRandom.Probability(0.5f);
     }
 }
