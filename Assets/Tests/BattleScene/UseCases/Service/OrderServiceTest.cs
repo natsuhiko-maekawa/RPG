@@ -37,7 +37,10 @@ namespace Tests.BattleScene.UseCases.Service
         public void スリップダメージが5の倍数順に挿入される()
         {
             var stubBattlePropertyFactory = Substitute.For<IFactory<BattlePropertyValueObject>>();
-            stubBattlePropertyFactory.Create().Returns(new BattlePropertyValueObject(5, 1.2f));
+            stubBattlePropertyFactory.Create().Returns(new BattlePropertyValueObject(
+                SlipDefaultTurn: 5, 
+                SlipDefaultDamageRate:1.2f,
+                IsHitThreshold: 20.0f));
             
             var stubAilmentRepository = Substitute.For<IRepository<AilmentEntity, (CharacterId, AilmentCode)>>();
             stubAilmentRepository.Select().Returns(new List<AilmentEntity>());

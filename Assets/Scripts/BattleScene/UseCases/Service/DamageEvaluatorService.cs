@@ -79,7 +79,7 @@ namespace BattleScene.UseCases.Service
         {
             var enemyIntelligence = _characterPropertyFactory.Create(actorId).Intelligence;
             var playerIntelligence = _characterPropertyFactory.Create(targetId).Intelligence;
-            var damageRate = _battlePropertyFactory.Create().SlipDefalutDamageRate;
+            var damageRate = _battlePropertyFactory.Create().SlipDefaultDamageRate;
             var damage = (int)(enemyIntelligence * enemyIntelligence / (float)playerIntelligence * damageRate)
                          + _myRandom.Range(0, 2);
             return damage;

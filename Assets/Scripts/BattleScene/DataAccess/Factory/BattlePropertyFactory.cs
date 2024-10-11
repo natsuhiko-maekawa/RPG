@@ -18,8 +18,9 @@ namespace BattleScene.DataAccess.Factory
         {
             var battleProperty = _battlePropertyResource.Get();
             var battlePropertyValueObject = new BattlePropertyValueObject(
-                slipDefaultTurn: battleProperty.SlipDefaultTurn,
-                slipDefaultDamageRate: battleProperty.SlipDefaultDamageRate);
+                SlipDefaultTurn: battleProperty.SlipDefaultTurn,
+                SlipDefaultDamageRate: battleProperty.SlipDefaultDamageRate,
+                IsHitThreshold: battleProperty.IsHitThreshold);
             return battlePropertyValueObject;
         }
     }

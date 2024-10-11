@@ -8,8 +8,10 @@ namespace BattleScene.DataAccess.Dto
     {
         [SerializeField] private int slipDefaultTurn = 5;
         [SerializeField] private float slipDefaultDamageRate = 1.2f;
+        [SerializeField] private float isHitThreshold = 20.0f;
         public int SlipDefaultTurn { get; private set; }
         public float SlipDefaultDamageRate { get; private set; }
+        public float IsHitThreshold {get; private set;}
         
         public void OnBeforeSerialize()
         {
@@ -19,6 +21,7 @@ namespace BattleScene.DataAccess.Dto
         {
             SlipDefaultTurn = slipDefaultTurn;
             SlipDefaultDamageRate = slipDefaultDamageRate;
+            IsHitThreshold = isHitThreshold;
         }
     }
 }
