@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
+using BattleScene.Domain.Code;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
-using BattleScene.InterfaceAdapter.Code;
 using Utility;
 
 #if UNITY_EDITOR

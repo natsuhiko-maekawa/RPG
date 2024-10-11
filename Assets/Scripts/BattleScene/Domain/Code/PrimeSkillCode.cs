@@ -1,4 +1,4 @@
-﻿namespace BattleScene.InterfaceAdapter.Code
+﻿namespace BattleScene.Domain.Code
 {
     public enum PrimeSkillCode
     {

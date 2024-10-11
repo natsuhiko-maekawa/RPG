@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using BattleScene.Domain.Code;
 using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
-using BattleScene.InterfaceAdapter.Code;
 using BattleScene.UseCases.Interface;
 
 namespace BattleScene.InterfaceAdapter.State.PrimeSkill
