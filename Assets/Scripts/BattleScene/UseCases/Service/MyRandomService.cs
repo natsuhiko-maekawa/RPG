@@ -8,60 +8,41 @@ namespace BattleScene.UseCases.Service
 {
     public class MyRandomService : IMyRandomService
     {
-        public T Choice<T>(IEnumerable<T> options)
-        {
-            return Choice(options, GenerateSeed());
-        }
-
-        public T Choice<T>(IEnumerable<T> options, long seed)
-        {
-            return Choice(options, (uint)seed);
-        }
-
-        public bool Probability(float rate)
-        {
-            return Probability(rate, GenerateSeed());
-        }
-
-        public bool Probability(float rate, long seed)
-        {
-            return Probability(rate, (uint)seed);
-        }
-
-        public int Range(int min, int max)
-        {
-            return Range(min, max, GenerateSeed());
-        }
-
-        public int Range(int min, int max, long seed)
-        {
-            return Range(min, max, (uint)seed);
-        }
+        public T Choice<T>(IEnumerable<T> options) => Choice(options, GenerateSeed());
+        public T Choice<T>(IEnumerable<T> options, long seed) => Choice(options, (uint)seed);
+        public bool Probability(float rate) => Probability(rate, GenerateSeed());
+        public bool Probability(float rate, long seed) => Probability(rate, (uint)seed);
+        public int Range(int min, int max) => Range(min, max, GenerateSeed());
+        public int Range(int min, int max, long seed) => Range(min, max, (uint)seed);
 
         private T Choice<T>(IEnumerable<T> options, uint seed)
         {
             var optionList = options.ToList();
             var random = new Random(seed);
             var index = random.NextInt(optionList.Count);
-            return optionList[index];
+            var choose = optionList[index];
+            return choose;
         }
 
         private bool Probability(float rate, uint seed)
         {
             var random = new Random(seed);
-            return rate >= random.NextFloat(1.0f);
+            var value = rate >= random.NextFloat(1.0f);
+            return value;
         }
 
         private int Range(int min, int max, uint seed)
         {
             var random = new Random(seed);
-            return random.NextInt(min, max);
+            var value = random.NextInt(min, max);
+            return value;
         }
 
         private uint GenerateSeed()
         {
             var intSeed = UnityEngine.Random.Range(int.MinValue, int.MaxValue);
-            return BitConverter.ToUInt32(BitConverter.GetBytes(intSeed));
+            var seed = BitConverter.ToUInt32(BitConverter.GetBytes(intSeed));
+            return seed;
         }
     }
 }
