@@ -50,6 +50,7 @@ namespace BattleScene.InterfaceAdapter.Presenter
 
         private Task GetTask(KeyValuePair<int, EnemyViewDto> indexDtoPair)
         {
+            _enemiesView[indexDtoPair.Key].SetActive(true);
             var task = _enemiesView[indexDtoPair.Key].SetImage(indexDtoPair.Value);
             return task;
         }

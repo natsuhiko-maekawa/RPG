@@ -16,6 +16,7 @@ namespace BattleScene.Framework.View
             _enemyViewGrid = GetComponent<EnemyGrid>();
             _enemyViewGrid.Initialize();
             _enemyViewGrid.SetItem(maxCacheSize);
+            foreach (var enemyView in _enemyViewGrid) enemyView.SetActive(false);
         }
         
         public void StopEnemyFrameView()
