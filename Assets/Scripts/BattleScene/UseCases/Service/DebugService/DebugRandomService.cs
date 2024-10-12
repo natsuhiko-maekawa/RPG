@@ -9,6 +9,7 @@ namespace BattleScene.UseCases.Service.DebugService
     {
         [SerializeField] private bool cantActionBecauseParalysis;
         [SerializeField] private bool isHit;
+        [SerializeField] private bool isSuccess;
         private MyRandomService _myRandom;
         
         [Inject]
@@ -33,6 +34,7 @@ namespace BattleScene.UseCases.Service.DebugService
             {
                 "CantActionBecauseParalysis" => cantActionBecauseParalysis,
                 "BasicEvaluate" => isHit,
+                "GetActualTargetIdList" => isSuccess,
                 _ => _myRandom.Probability(rate)
             };
         }
