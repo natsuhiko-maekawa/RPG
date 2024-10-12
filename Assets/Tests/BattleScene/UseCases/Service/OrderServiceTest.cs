@@ -97,11 +97,6 @@ namespace Tests.BattleScene.UseCases.Service
             Debug.Log(orderedItemRepositoryToString);
 
             var orderedItemList = mockOrderedItemRepository.Select();
-
-            var orderedItem1 = new OrderedItemEntity(
-                orderId: new OrderId(),
-                orderNumber: 0,
-                orderedItem: new OrderedItem(playerId));
             
             orderedItemList[0].TryGetCharacterId(out var characterId1);
             Assert.That(characterId1, Is.EqualTo(playerId), "順番の1番目は正しい");
