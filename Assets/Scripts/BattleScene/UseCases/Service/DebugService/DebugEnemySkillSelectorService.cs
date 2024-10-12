@@ -17,7 +17,7 @@ namespace BattleScene.UseCases.Service.DebugService
         [SerializeField] private bool isActive;
         [SerializeField] private PrimeSkillCode primeSkillCode;
         private IRepository<CharacterEntity, CharacterId> _characterRepository;
-        private IFactory<PropertyValueObject, CharacterTypeCode> _characterPropertyFactory;
+        private IFactory<CharacterPropertyValueObject, CharacterTypeCode> _characterPropertyFactory;
         private IFactory<SkillValueObject, SkillCode> _skillFactory;
         private OrderedItemsDomainService _orderItems;
         private IMyRandomService _myRandom;
@@ -25,7 +25,7 @@ namespace BattleScene.UseCases.Service.DebugService
         [Inject]
         public void Construct(
             IRepository<CharacterEntity, CharacterId> characterRepository,
-            IFactory<PropertyValueObject, CharacterTypeCode> characterPropertyFactory,
+            IFactory<CharacterPropertyValueObject, CharacterTypeCode> characterPropertyFactory,
             IFactory<SkillValueObject, SkillCode> skillFactory,
             OrderedItemsDomainService orderItems,
             IMyRandomService myRandom)
@@ -41,7 +41,7 @@ namespace BattleScene.UseCases.Service.DebugService
         {
             _orderItems.First().TryGetCharacterId(out var characterId);
             var characterTypeCode = _characterRepository.Select(characterId).CharacterTypeCode;
-            var skillCodeList = _characterPropertyFactory.Create(characterTypeCode).Skills;
+            var skillCodeList = _characterPropertyFactory.Create(characterTypeCode).SkillCodeList;
 
             SkillCode skillCode;
             if (!isActive)

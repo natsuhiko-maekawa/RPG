@@ -29,7 +29,7 @@ namespace BattleScene.InterfaceAdapter.State.Turn
         public override void Select(int id)
         {
             _skillView.StopAnimation();
-            Context.SkillCode = _propertyResource.Get(CharacterTypeCode.Player).Skills[id];
+            Context.SkillCode = _propertyResource.Get(CharacterTypeCode.Player).SkillCodeList[id];
             Context.TransitionTo(_selectTargetState);
         }
     }

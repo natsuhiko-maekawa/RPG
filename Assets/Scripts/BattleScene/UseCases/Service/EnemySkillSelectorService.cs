@@ -11,13 +11,13 @@ namespace BattleScene.UseCases.Service
     public class EnemySkillSelectorService : IEnemySkillSelectorService
     {
         private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
-        private readonly IFactory<PropertyValueObject, CharacterTypeCode> _characterPropertyFactory;
+        private readonly IFactory<CharacterPropertyValueObject, CharacterTypeCode> _characterPropertyFactory;
         private readonly OrderedItemsDomainService _orderItems;
         private readonly IMyRandomService _myRandom;
 
         public EnemySkillSelectorService(
             IRepository<CharacterEntity, CharacterId> characterRepository,
-            IFactory<PropertyValueObject, CharacterTypeCode> characterPropertyFactory,
+            IFactory<CharacterPropertyValueObject, CharacterTypeCode> characterPropertyFactory,
             OrderedItemsDomainService orderItems,
             IMyRandomService myRandom)
         {
@@ -32,7 +32,7 @@ namespace BattleScene.UseCases.Service
             // TODO: 敵がスキルを選択する際、ランダムに選択する仮のアルゴリズムを実装している
             _orderItems.First().TryGetCharacterId(out var characterId);
             var characterTypeCode = _characterRepository.Select(characterId).CharacterTypeCode;
-            var skillCodeList = _characterPropertyFactory.Create(characterTypeCode).Skills;
+            var skillCodeList = _characterPropertyFactory.Create(characterTypeCode).SkillCodeList;
             return _myRandom.Choice(skillCodeList);
         }
     }

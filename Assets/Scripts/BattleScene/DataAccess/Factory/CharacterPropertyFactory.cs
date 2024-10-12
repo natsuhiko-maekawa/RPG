@@ -5,7 +5,7 @@ using BattleScene.Domain.ValueObject;
 
 namespace BattleScene.DataAccess.Factory
 {
-    public class CharacterPropertyFactory : IFactory<PropertyValueObject, CharacterTypeCode>
+    public class CharacterPropertyFactory : IFactory<CharacterPropertyValueObject, CharacterTypeCode>
     {
         private readonly IResource<CharacterPropertyDto, CharacterTypeCode> _propertyResource;
 
@@ -15,10 +15,10 @@ namespace BattleScene.DataAccess.Factory
             _propertyResource = propertyResource;
         }
 
-        public PropertyValueObject Create(CharacterTypeCode key)
+        public CharacterPropertyValueObject Create(CharacterTypeCode key)
         {
             var property = _propertyResource.Get(key);
-            return new PropertyValueObject(
+            return new CharacterPropertyValueObject(
                 characterTypeCode: property.Key,
                 hitPoint: property.HitPoint,
                 strength: property.Strength,
@@ -27,8 +27,8 @@ namespace BattleScene.DataAccess.Factory
                 wisdom: property.Wisdom,
                 agility:property.Agility,
                 luck: property.Luck,
-                weakPoints: property.WeakPoints, 
-                skills: property.Skills);
+                weakPointCodeList: property.WeakPointCodeList, 
+                skillCodeList: property.SkillCodeList);
         }
     }
 }

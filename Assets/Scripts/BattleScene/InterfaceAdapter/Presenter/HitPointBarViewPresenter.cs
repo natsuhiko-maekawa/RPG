@@ -11,12 +11,12 @@ namespace BattleScene.InterfaceAdapter.Presenter
 {
     public class HitPointBarViewPresenter : IObserver<CharacterEntity>
     {
-        private readonly IFactory<PropertyValueObject, CharacterTypeCode> _characterPropertyFactory;
+        private readonly IFactory<CharacterPropertyValueObject, CharacterTypeCode> _characterPropertyFactory;
         private readonly EnemiesView _enemiesView;
         private readonly PlayerView _playerView;
 
         public HitPointBarViewPresenter(
-            IFactory<PropertyValueObject, CharacterTypeCode> characterPropertyFactory,
+            IFactory<CharacterPropertyValueObject, CharacterTypeCode> characterPropertyFactory,
             EnemiesView enemiesView,
             PlayerView playerView)
         {

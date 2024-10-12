@@ -15,12 +15,12 @@ namespace BattleScene.UseCases.Service.DebugService
     public class DebugEnemiesRegistererService : MonoBehaviour, IEnemiesRegistererService
     {
         [SerializeField] private CharacterTypeCode[] characterTypeCodeArray;
-        private IFactory<PropertyValueObject, CharacterTypeCode> _propertyFactory;
+        private IFactory<CharacterPropertyValueObject, CharacterTypeCode> _propertyFactory;
         private IRepository<CharacterEntity, CharacterId> _characterRepository;
 
         [Inject]
         public void Construct(
-            IFactory<PropertyValueObject, CharacterTypeCode> propertyFactory,
+            IFactory<CharacterPropertyValueObject, CharacterTypeCode> propertyFactory,
             IRepository<CharacterEntity, CharacterId> characterRepository)
         {
             _propertyFactory = propertyFactory;
@@ -37,12 +37,12 @@ namespace BattleScene.UseCases.Service.DebugService
 
         private CharacterEntity GetCharacter(CharacterTypeCode characterTypeCode, int position)
         {
-            PropertyValueObject property = _propertyFactory.Create(characterTypeCode);
+            CharacterPropertyValueObject characterProperty = _propertyFactory.Create(characterTypeCode);
             var characterId = new CharacterId();
             return new CharacterEntity(
                 id: characterId,
-                characterTypeCode: property.CharacterTypeCode,
-                currentHitPoint: property.HitPoint,
+                characterTypeCode: characterProperty.CharacterTypeCode,
+                currentHitPoint: characterProperty.HitPoint,
                 position: position);
         }
     }

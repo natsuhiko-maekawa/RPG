@@ -1,11 +1,12 @@
-﻿using System.Collections.Immutable;
+﻿using System.Collections.Generic;
 using BattleScene.Domain.Code;
 
 namespace BattleScene.Domain.ValueObject
 {
-    public class PropertyValueObject
+    public class CharacterPropertyValueObject
     {
-        public PropertyValueObject(CharacterTypeCode characterTypeCode,
+        public CharacterPropertyValueObject(
+            CharacterTypeCode characterTypeCode,
             int hitPoint,
             int strength,
             int vitality,
@@ -13,8 +14,8 @@ namespace BattleScene.Domain.ValueObject
             int wisdom,
             int agility,
             int luck,
-            MatAttrCode[] weakPoints,
-            SkillCode[] skills)
+            List<MatAttrCode> weakPointCodeList,
+            List<SkillCode> skillCodeList)
         {
             CharacterTypeCode = characterTypeCode;
             HitPoint = hitPoint;
@@ -24,8 +25,8 @@ namespace BattleScene.Domain.ValueObject
             Wisdom = wisdom;
             Agility = agility;
             Luck = luck;
-            WeakPoints = ImmutableList.Create(weakPoints);
-            Skills = ImmutableList.Create(skills);
+            WeakPointsCodeList = weakPointCodeList;
+            SkillCodeList = skillCodeList;
         }
 
         public CharacterTypeCode CharacterTypeCode { get; }
@@ -36,12 +37,9 @@ namespace BattleScene.Domain.ValueObject
         public int Wisdom { get; }
         public int Agility { get; }
         public int Luck { get; }
-        public ImmutableList<MatAttrCode> WeakPoints { get; }
-        public ImmutableList<SkillCode> Skills { get; }
+        public IReadOnlyList<MatAttrCode> WeakPointsCodeList { get; }
+        public IReadOnlyList<SkillCode> SkillCodeList { get; }
 
-        public int SumParameter()
-        {
-            return (int)(HitPoint / 10.0f * (Strength + Vitality + Intelligence + Agility + Luck)) / 10;
-        }
+        public int SumParameter => (int)(HitPoint / 10.0f * (Strength + Vitality + Intelligence + Agility + Luck)) / 10;
     }
 }

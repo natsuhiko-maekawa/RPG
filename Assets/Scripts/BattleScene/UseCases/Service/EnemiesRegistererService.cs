@@ -13,12 +13,12 @@ namespace BattleScene.UseCases.Service
 {
     public class EnemiesRegistererService : IEnemiesRegistererService
     {
-        private readonly IFactory<PropertyValueObject, CharacterTypeCode> _propertyFactory;
+        private readonly IFactory<CharacterPropertyValueObject, CharacterTypeCode> _propertyFactory;
         private readonly IMyRandomService _myRandom;
         private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
 
         public EnemiesRegistererService(
-            IFactory<PropertyValueObject, CharacterTypeCode> propertyFactory,
+            IFactory<CharacterPropertyValueObject, CharacterTypeCode> propertyFactory,
             IMyRandomService myRandom, 
             IRepository<CharacterEntity, CharacterId> characterRepository)
         {
@@ -33,13 +33,13 @@ namespace BattleScene.UseCases.Service
                 .Select(x =>
                 {
                     var property = _propertyFactory.Create(x);
-                    return (Id: property.CharacterTypeCode, Parameter: property.SumParameter());
+                    return (Id: property.CharacterTypeCode, Parameter: property.SumParameter);
                 })
                 .Combination(1, 4)
                 .Where(x =>
                 {
                     var diff 
-                        = _propertyFactory.Create(CharacterTypeCode.Player).SumParameter() - x.Sum(y => y.Parameter);
+                        = _propertyFactory.Create(CharacterTypeCode.Player).SumParameter - x.Sum(y => y.Parameter);
                     return diff is >= 0 and <= 5;
                 })
                 .Select(x => x
@@ -50,12 +50,12 @@ namespace BattleScene.UseCases.Service
             var characterList = _myRandom.Choice(options)
                 .Select((x, i) =>
                 {
-                    PropertyValueObject property = _propertyFactory.Create(x);
+                    CharacterPropertyValueObject characterProperty = _propertyFactory.Create(x);
                     var characterId = new CharacterId();
                     return new CharacterEntity(
                         id: characterId,
-                        characterTypeCode: property.CharacterTypeCode,
-                        currentHitPoint: property.HitPoint,
+                        characterTypeCode: characterProperty.CharacterTypeCode,
+                        currentHitPoint: characterProperty.HitPoint,
                         position: i);
                 })
                 .ToImmutableList();

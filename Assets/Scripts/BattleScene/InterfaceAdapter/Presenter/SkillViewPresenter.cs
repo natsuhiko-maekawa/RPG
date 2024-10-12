@@ -20,13 +20,13 @@ namespace BattleScene.InterfaceAdapter.Presenter
         private readonly IResource<MessageDto, MessageCode> _messageResource;
         private readonly IResource<PlayerImagePathDto, PlayerImageCode> _playerPropertyResource;
         private readonly PlayerDomainService _player;
-        private readonly IFactory<PropertyValueObject, CharacterTypeCode> _propertyFactory;
+        private readonly IFactory<CharacterPropertyValueObject, CharacterTypeCode> _propertyFactory;
         private readonly IFactory<SkillValueObject, SkillCode> _skillFactory;
         private readonly IResource<SkillPropertyDto, SkillCode> _skillPropertyFactory;
 
         public SkillViewPresenter(
             PlayerDomainService player,
-            IFactory<PropertyValueObject, CharacterTypeCode> propertyFactory,
+            IFactory<CharacterPropertyValueObject, CharacterTypeCode> propertyFactory,
             IFactory<SkillValueObject, SkillCode> skillFactory,
             IResource<SkillPropertyDto, SkillCode> skillPropertyFactory,
             IResource<MessageDto, MessageCode> messageResource,
@@ -47,7 +47,7 @@ namespace BattleScene.InterfaceAdapter.Presenter
         public async void StartAnimationAsync()
         {
             var actionCode = ActionCode.Skill;
-            var rowDtoList = _propertyFactory.Create(CharacterTypeCode.Player).Skills
+            var rowDtoList = _propertyFactory.Create(CharacterTypeCode.Player).SkillCodeList
                 .Select(GetRowDto)
                 .ToImmutableList();
             var dto = new GridViewDto(

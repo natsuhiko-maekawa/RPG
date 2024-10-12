@@ -52,7 +52,7 @@ namespace BattleScene.UseCases.Service
             var actorStrength = _characterPropertyFactory.Create(actorId).Strength;
             var targetVitality = _characterPropertyFactory.Create(targetId).Vitality;
             var actorMatAttr = damageParameter.MatAttrCode;
-            var targetWeekPoint = _characterPropertyFactory.Create(targetId).WeakPoints;
+            var targetWeekPoint = _characterPropertyFactory.Create(targetId).WeakPointsCodeList;
             var actorBuffRate = _buff.GetRate(actorId, BuffCode.Attack);
             var targetBuffRate = _buff.GetRate(targetId, BuffCode.Defence);
             var destroyedRate = 1.0f - _bodyPartDomainService.Count(actorId, BodyPartCode.Arm) * 0.5f;
