@@ -2,6 +2,6 @@
 
 namespace BattleScene.Framework.ViewModel
 {
-    public record SkillViewDto(
+    public record SkillViewModel(
         ImmutableList<SkillRowDto> SkillRowDtoList);
 }

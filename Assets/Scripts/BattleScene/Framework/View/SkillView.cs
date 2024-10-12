@@ -28,14 +28,14 @@ namespace BattleScene.Framework.View
             _obsoleteGridView = GetComponent<ObsoleteGridView>();
         }
 
-        public Task StartAnimationAsync(SkillViewDto dto)
+        public Task StartAnimationAsync(SkillViewModel model)
         {
             var gridState = _obsoleteGridView.GridStateDictionary[ActionCode.Skill];
             foreach (var index in Enumerable.Range(0, _obsoleteGridView.MaxGridSize))
             {
                 _technicalPointList[index].text
-                    = dto.SkillRowDtoList[index + gridState.TopItemIndex].TechnicalPoint.ToString();
-                if (dto.SkillRowDtoList[index + gridState.TopItemIndex].Enabled)
+                    = model.SkillRowDtoList[index + gridState.TopItemIndex].TechnicalPoint.ToString();
+                if (model.SkillRowDtoList[index + gridState.TopItemIndex].Enabled)
                     _technicalPointList[index].colorGradient = new VertexGradient(white, white, gray, gray);
                 else if (index == gridState.SelectedRow)
                     _technicalPointList[index].colorGradient = new VertexGradient(lightRed, lightRed, red, red);
