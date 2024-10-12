@@ -14,7 +14,6 @@ namespace BattleScene.InterfaceAdapter.Skill
     {
         public override SkillCode SkillCode { get; } = SkillCode.Confusion;
         public override Range Range { get; } = Oneself;
-        public override PlayerImageCode PlayerImageCode { get; } = PlayerImageCode.Confusion;
         public override MessageCode AttackMessageCode { get; } = MessageCode.ConfusionActMessage;
         public override ImmutableList<BaseDamage> DamageList { get; }
             = ImmutableList.Create<BaseDamage>(new AlwaysHitDamage());

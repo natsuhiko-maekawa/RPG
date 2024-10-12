@@ -15,8 +15,6 @@ namespace BattleScene.InterfaceAdapter.Skill
         public override int TechnicalPoint { get; } = 7;
         public override ImmutableList<BodyPartCode> DependencyList { get; } = ImmutableList.Create(BodyPartCode.Arm);
         public override Range Range { get; } = Range.Line;
-        public override PlayerImageCode PlayerImageCode { get; } = PlayerImageCode.Katana;
-        public override MessageCode Description { get; } = MessageCode.NadegiriDescription;
         public override MessageCode AttackMessageCode { get; } = MessageCode.AttackMessage;
 
         public override ImmutableList<BaseDamage> DamageList { get; }

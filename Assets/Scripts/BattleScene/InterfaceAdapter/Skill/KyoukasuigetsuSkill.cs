@@ -15,8 +15,6 @@ namespace BattleScene.InterfaceAdapter.Skill
         public override SkillCode SkillCode { get; } = SkillCode.Kyoukasuigetsu;
         public override ImmutableList<BodyPartCode> DependencyList { get; } = ImmutableList.Create(BodyPartCode.Arm);
         public override Range Range { get; } = Range.Line;
-        public override PlayerImageCode PlayerImageCode { get; } = PlayerImageCode.Katana;
-        public override MessageCode Description { get; } = MessageCode.KyoukasuigetsuDescription;
         public override MessageCode AttackMessageCode { get; } = MessageCode.NoMessage;
 
         public override ImmutableList<BaseAilment> AilmentList { get; } 

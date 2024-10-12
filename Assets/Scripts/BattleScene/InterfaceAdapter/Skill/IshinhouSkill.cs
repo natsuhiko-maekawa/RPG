@@ -14,8 +14,6 @@ namespace BattleScene.InterfaceAdapter.Skill
         public override SkillCode SkillCode { get; } = SkillCode.Ishinhou;
         public override int TechnicalPoint { get; } = 3;
         public override Range Range { get; } = Range.Oneself;
-        public override PlayerImageCode PlayerImageCode { get; } = PlayerImageCode.Katana;
-        public override MessageCode Description { get; } = MessageCode.IshinhouDescription;
         public override MessageCode AttackMessageCode { get; } = MessageCode.ResetAilmentMessage;
 
         public override ImmutableList<BaseReset> ResetList { get; }

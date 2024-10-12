@@ -11,8 +11,6 @@ namespace BattleScene.InterfaceAdapter.Skill.BaseClass
         public virtual int TechnicalPoint { get; } = 0;
         public virtual ImmutableList<BodyPartCode> DependencyList { get; } = ImmutableList<BodyPartCode>.Empty;
         public abstract Range Range { get; }
-        public virtual PlayerImageCode PlayerImageCode { get; } = PlayerImageCode.NoImage;
-        public virtual MessageCode Description { get; } = MessageCode.NoMessage;
         public abstract MessageCode AttackMessageCode { get; }
 
         public virtual ImmutableList<BaseAilment> AilmentList { get; } = ImmutableList<BaseAilment>.Empty;

@@ -13,7 +13,6 @@ namespace BattleScene.InterfaceAdapter.Skill
     {
         public override SkillCode SkillCode { get; } = SkillCode.Defence;
         public override Range Range { get; } = Range.Oneself;
-        public override PlayerImageCode PlayerImageCode { get; } = PlayerImageCode.Defence;
         public override MessageCode AttackMessageCode { get; } = MessageCode.DefenceMessage;
 
         public override ImmutableList<BaseBuff> BuffList { get; }

@@ -15,8 +15,6 @@ namespace BattleScene.InterfaceAdapter.Skill
         public override SkillCode SkillCode { get; } = SkillCode.Utsusemi;
         public override int TechnicalPoint { get; } = 5;
         public override Range Range { get; } = Range.Oneself;
-        public override PlayerImageCode PlayerImageCode { get; } = PlayerImageCode.Katana;
-        public override MessageCode Description { get; } = MessageCode.UtsusemiDescription;
         public override MessageCode AttackMessageCode { get; } = MessageCode.NoMessage;
 
         public override ImmutableList<BaseBuff> BuffList { get; }
