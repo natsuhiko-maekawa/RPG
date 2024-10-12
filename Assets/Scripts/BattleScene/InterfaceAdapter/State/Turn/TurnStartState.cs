@@ -1,5 +1,4 @@
-﻿using System;
-using BattleScene.InterfaceAdapter.Presenter;
+﻿using BattleScene.InterfaceAdapter.Presenter;
 using BattleScene.InterfaceAdapter.Service;
 using BattleScene.UseCases.Service.Order;
 

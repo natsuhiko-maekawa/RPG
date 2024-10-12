@@ -10,7 +10,6 @@ using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.InterfaceAdapter.State.Turn;
-using UnityEngine;
 
 namespace BattleScene.InterfaceAdapter.Service
 {
