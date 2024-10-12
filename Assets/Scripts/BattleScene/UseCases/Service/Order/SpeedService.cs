@@ -1,11 +1,12 @@
-using System;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.IDomainService;
+using BattleScene.UseCases.IService;
+using UnityEngine;
 
 namespace BattleScene.UseCases.Service.Order
 {
-    public class SpeedService
+    public class SpeedService : ISpeedService
     {
         private readonly IBuffDomainService _buff;
         private readonly CharacterPropertyFactoryService _characterPropertyFactory;
@@ -18,11 +19,11 @@ namespace BattleScene.UseCases.Service.Order
             _characterPropertyFactory = characterPropertyFactory;
         }
 
-        private int GetSpeed(CharacterId characterId)
+        public int Get(CharacterId characterId)
         {
             var agility = (float)_characterPropertyFactory.Create(characterId).Agility;
             var speedRate = _buff.GetRate(characterId, BuffCode.Speed);
-            var speed = (int)Math.Ceiling(agility * speedRate);
+            var speed = Mathf.CeilToInt(agility * speedRate);
             return speed;
         }
     }

@@ -8,6 +8,7 @@ using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.IDomainService;
 using BattleScene.Domain.ValueObject;
+using BattleScene.UseCases.Service;
 using BattleScene.UseCases.Service.Order;
 using NSubstitute;
 using NUnit.Framework;
@@ -22,6 +23,7 @@ namespace Tests.BattleScene.UseCases.Service
     public class OrderServiceTest
     {
         private CharacterPropertyFactory _stubCharacterPropertyFactory;
+        private CharacterPropertyFactoryService _stubCharacterPropertyFactoryService;
         private readonly MockRepository<CharacterEntity, CharacterId> _mockCharacterRepository = new();
         
         [SetUp]
@@ -47,7 +49,7 @@ namespace Tests.BattleScene.UseCases.Service
 
             var stubBuff = Substitute.For<IBuffDomainService>();
             stubBuff.GetRate(Arg.Any<CharacterId>(), Arg.Any<BuffCode>()).Returns(1.0f);
-
+            
             var playerId = new CharacterId();
             var player = new CharacterEntity(
                 id: playerId,
@@ -63,6 +65,14 @@ namespace Tests.BattleScene.UseCases.Service
 
             _mockCharacterRepository.Update(player);
             _mockCharacterRepository.Update(bee);
+
+            _stubCharacterPropertyFactoryService = new CharacterPropertyFactoryService(
+                characterPropertyFactory: _stubCharacterPropertyFactory,
+                characterRepository: _mockCharacterRepository);
+            
+            var mockSpeedService = new SpeedService(
+                buff: stubBuff,
+                characterPropertyFactory: _stubCharacterPropertyFactoryService);
             
             var mockOrderedItemRepository = new MockRepository<OrderedItemEntity, OrderId>();
 
@@ -74,10 +84,10 @@ namespace Tests.BattleScene.UseCases.Service
                 battlePropertyFactory: stubBattlePropertyFactory,
                 characterPropertyFactory: _stubCharacterPropertyFactory,
                 ailmentRepository: stubAilmentRepository,
-                buff: stubBuff,
                 characterRepository: _mockCharacterRepository,
                 orderedItemRepository: mockOrderedItemRepository,
-                slipDamageRepository: stubSlipDamageRepository);
+                slipDamageRepository: stubSlipDamageRepository,
+                speed: mockSpeedService);
             
             orderService.Update();
             var orderedItemRepositoryToString = mockOrderedItemRepository.ToString();

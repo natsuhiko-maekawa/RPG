@@ -311,6 +311,7 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<SlipGeneratorService>(Lifetime.Singleton);
             builder.Register<SlipRegistererService>(Lifetime.Singleton);
             builder.Register<SlipService>(Lifetime.Singleton);
+            builder.Register<ISpeedService, SpeedService>(Lifetime.Singleton);
             builder.Register<TurnInitializerService>(Lifetime.Singleton);
             builder.Register<IPrimeSkillGeneratorService<AilmentParameterValueObject, AilmentValueObject>, AilmentGeneratorService>(Lifetime.Singleton);
             builder.Register<IPrimeSkillRegistererService<AilmentValueObject>, AilmentRegistererService>(Lifetime.Singleton);

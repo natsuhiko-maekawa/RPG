@@ -1,33 +1,28 @@
-using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
-using BattleScene.Domain.Code;
 using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
-using BattleScene.Domain.IDomainService;
+using BattleScene.UseCases.IService;
 
 namespace BattleScene.UseCases.Service.Order
 {
     public class ActionTimeService
     {
-        private readonly IBuffDomainService _buff;
-        private readonly CharacterPropertyFactoryService _characterPropertyFactory;
         private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
         private readonly OrderedItemsDomainService _orderedItems;
+        private readonly ISpeedService _speed;
 
         public ActionTimeService(
-            IBuffDomainService buff,
-            CharacterPropertyFactoryService characterPropertyFactory,
             IRepository<CharacterEntity, CharacterId> characterRepository,
-            OrderedItemsDomainService orderedItems)
+            OrderedItemsDomainService orderedItems,
+            ISpeedService speed)
         {
-            _buff = buff;
-            _characterPropertyFactory = characterPropertyFactory;
             _characterRepository = characterRepository;
             _orderedItems = orderedItems;
+            _speed = speed;
         }
 
         public void Update()
@@ -63,17 +58,8 @@ namespace BattleScene.UseCases.Service.Order
             if (!Equals(characterId, actorId))
                 return actionTime;
 
-            actionTime += Constant.MaxAgility / GetSpeed(characterId);
+            actionTime += Constant.MaxAgility / _speed.Get(characterId);
             return actionTime;
-        }
-        
-        private int GetSpeed(CharacterId characterId)
-        {
-            var agility = (float)_characterPropertyFactory.Create(characterId).Agility;
-            var speedRate = _buff.GetRate(characterId, BuffCode.Speed);
-            var speed = (int)Math.Ceiling(agility * speedRate);
-            
-            return speed;
         }
     }
 }
