@@ -256,7 +256,7 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<PrimeSkillStartState<RestoreParameterValueObject, RestoreValueObject>>(Lifetime.Singleton);
             builder.Register<PrimeSkillStartState<SlipParameterValueObject, SlipValueObject>>(Lifetime.Singleton);
             builder.Register<PrimeSkillOutputState<AilmentParameterValueObject, AilmentValueObject>, AilmentOutputState>(Lifetime.Singleton);
-            builder.Register<PrimeSkillOutputState<BuffParameterValueObject, BuffValueObject>, BuffMessageState>(Lifetime.Singleton);
+            builder.Register<PrimeSkillOutputState<BuffParameterValueObject, BuffValueObject>, BuffOutputState>(Lifetime.Singleton);
             builder.Register<PrimeSkillOutputState<DamageParameterValueObject, DamageValueObject>, DamageOutputState>(Lifetime.Singleton);
             builder.Register<PrimeSkillOutputState<DestroyParameterValueObject, DestroyValueObject>, DestroyOutputState>(Lifetime.Singleton);
             builder.Register<PrimeSkillOutputState<RestoreParameterValueObject, RestoreValueObject>, RestoreOutputState>(Lifetime.Singleton);
