@@ -127,9 +127,9 @@ namespace BattleScene.InterfaceAdapter.Service
             message.Replace(Damage, totalPrefix + damage);
         }
         
-        private void ReplaceCure(StringBuilder message)
-        {
-        }
+        // private void ReplaceCure(StringBuilder message)
+        // {
+        // }
 
         private void ReplaceBodyPart(StringBuilder message)
         {
