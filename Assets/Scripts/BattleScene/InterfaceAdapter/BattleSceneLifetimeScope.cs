@@ -104,6 +104,7 @@ namespace BattleScene.InterfaceAdapter
 
             #region RegisterFacade
             builder.Register<AilmentOutputFacade>(Lifetime.Singleton);
+            builder.Register<ResetAilmentOutputFacade>(Lifetime.Singleton);
             builder.Register<DamageOutputFacade>(Lifetime.Singleton);
             builder.Register<DestroyOutputFacade>(Lifetime.Singleton);
             builder.Register<RestoreOutputFacade>(Lifetime.Singleton);
@@ -248,6 +249,7 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<EnemySelectSkillState>(Lifetime.Singleton);
             builder.Register<CantActionState>(Lifetime.Singleton);
             builder.Register<SlipState>(Lifetime.Singleton);
+            builder.Register<ResetAilmentState>(Lifetime.Singleton);
             builder.Register<SkillState>(Lifetime.Singleton);
             builder.Register<TurnStopState>(Lifetime.Singleton);
             // PrimeSkillState
@@ -293,6 +295,7 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<ActualTargetIdPickerService>(Lifetime.Singleton);
             builder.Register<AilmentGeneratorService>(Lifetime.Singleton);
             builder.Register<AilmentRegistererService>(Lifetime.Singleton);
+            builder.Register<AilmentResetService>(Lifetime.Singleton);
             builder.Register<AttackCounterService>(Lifetime.Singleton);
             builder.Register<AttacksWeakPointEvaluatorService>(Lifetime.Singleton);
             builder.Register<BuffGeneratorService>(Lifetime.Singleton);
