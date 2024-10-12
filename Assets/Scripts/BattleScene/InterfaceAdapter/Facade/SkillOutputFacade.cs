@@ -50,10 +50,10 @@ namespace BattleScene.InterfaceAdapter.Facade
             var isActorPlayer = _characterRepository.Select(actorId).IsPlayer;
 
             var messageCode = isActorPlayer
-                ? MessageCode.AttackMessage
+                ? MessageCode.SkillMessage
                 : _skillFactory.Create(context.SkillCode).SkillCommon.AttackMessageCode;
             
-            var messageAnimation = _messageView.StartAnimationAsync(messageCode);
+            var messageAnimation = _messageView.StartAnimationAsync(messageCode, context);
             animationList.Add(messageAnimation);
             
             var playerSkillCode = isActorPlayer

@@ -5,6 +5,7 @@ using BattleScene.Domain.Code;
 using BattleScene.Framework.View;
 using BattleScene.Framework.ViewModel;
 using BattleScene.InterfaceAdapter.Service;
+using BattleScene.InterfaceAdapter.State.Turn;
 using UnityEngine;
 
 namespace BattleScene.InterfaceAdapter.Presenter
@@ -25,12 +26,12 @@ namespace BattleScene.InterfaceAdapter.Presenter
             _messageView = messageView;
         }
 
-        public async Task StartAnimationAsync(MessageCode messageCode, bool noWait = false)
+        public async Task StartAnimationAsync(MessageCode messageCode, Context context = null, bool noWait = false)
         {
             Debug.Assert(messageCode != MessageCode.NoMessage);
             _messageView.StopAnimation();
             var message = _messageResource.Get(messageCode).Message;
-            message = _messageCodeConverter.Replace(message);
+            message = _messageCodeConverter.Replace(message, context);
             await _messageView.StartAnimationAsync(new MessageViewDto(message, noWait));
         }
     }

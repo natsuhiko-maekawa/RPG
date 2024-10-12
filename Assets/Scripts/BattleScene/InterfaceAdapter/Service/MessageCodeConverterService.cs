@@ -9,6 +9,7 @@ using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
+using BattleScene.InterfaceAdapter.State.Turn;
 using UnityEngine;
 
 namespace BattleScene.InterfaceAdapter.Service
@@ -62,7 +63,7 @@ namespace BattleScene.InterfaceAdapter.Service
             _player = player;
         }
 
-        public string Replace(string message)
+        public string Replace(string message, Context context = null)
         {
             var replacedMessage = new Message(message)
                 .Replace(Actor, ReplaceActor)
@@ -71,7 +72,7 @@ namespace BattleScene.InterfaceAdapter.Service
                 .Replace(Damage, ReplaceDamage)
                 .Replace(Part, ReplaceBodyPart)
                 .Replace(Player, ReplacePlayer)
-                .Replace(Skill, ReplaceSkill)
+                .Replace(Skill, x => ReplaceSkill(x, context?.SkillCode ?? SkillCode.NoSkill))
                 .Replace(Target, ReplaceTarget)
                 .Replace(TechnicalPoint, ReplaceTechnicalPoint)
                 .GetMessage();
@@ -143,11 +144,8 @@ namespace BattleScene.InterfaceAdapter.Service
             message.Replace(Player, playerName);
         }
 
-        private void ReplaceSkill(StringBuilder message)
+        private void ReplaceSkill(StringBuilder message, SkillCode skillCode)
         {
-            _orderedItems.First().TryGetCharacterId(out var characterId);
-            Debug.Assert(characterId != null);
-            var skillCode = _battleLog.GetLast().SkillCode;
             var skillName = _skillViewInfoResource.Get(skillCode).SkillName;
             message.Replace(Skill, skillName);
         }
