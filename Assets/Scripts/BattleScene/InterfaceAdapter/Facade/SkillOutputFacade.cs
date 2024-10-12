@@ -46,12 +46,16 @@ namespace BattleScene.InterfaceAdapter.Facade
         {
             var animationList = new List<Task>();
 
-            var skill = _skillFactory.Create(context.SkillCode);
-            var messageAnimation = _messageView.StartAnimationAsync(skill.SkillCommon.AttackMessageCode);
-            animationList.Add(messageAnimation);
-
             _orderedItems.First().TryGetCharacterId(out var actorId);
             var isActorPlayer = _characterRepository.Select(actorId).IsPlayer;
+
+            var messageCode = isActorPlayer
+                ? MessageCode.AttackMessage
+                : _skillFactory.Create(context.SkillCode).SkillCommon.AttackMessageCode;
+            
+            var messageAnimation = _messageView.StartAnimationAsync(messageCode);
+            animationList.Add(messageAnimation);
+            
             var playerSkillCode = isActorPlayer
                 ? context.SkillCode
                 : _battleLogRepository.Select()
