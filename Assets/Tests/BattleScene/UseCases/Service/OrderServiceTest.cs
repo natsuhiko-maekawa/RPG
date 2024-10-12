@@ -1,13 +1,13 @@
 using System.Collections.Generic;
 using BattleScene.DataAccess.Dto;
 using BattleScene.DataAccess.Factory;
+using BattleScene.DataAccess.Resource;
 using BattleScene.DataAccess.ScriptableObjects;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.IDomainService;
-using BattleScene.Domain.ValueObject;
 using BattleScene.UseCases.Service;
 using BattleScene.UseCases.Service.Order;
 using NSubstitute;
@@ -22,6 +22,7 @@ namespace Tests.BattleScene.UseCases.Service
     [TestFixture]
     public class OrderServiceTest
     {
+        private BattlePropertyFactory _stubBattlePropertyFactory;
         private CharacterPropertyFactory _stubCharacterPropertyFactory;
         private CharacterPropertyFactoryService _stubCharacterPropertyFactoryService;
         private readonly MockRepository<CharacterEntity, CharacterId> _mockCharacterRepository = new();
@@ -29,21 +30,23 @@ namespace Tests.BattleScene.UseCases.Service
         [SetUp]
         public void SetUp()
         {
-            var characterPropertyScriptableObject = AssetDatabase.LoadAssetAtPath<BaseScriptableObject<CharacterPropertyDto, CharacterTypeCode>>(
+            var stubBattlePropertyResource = Object.FindObjectOfType<BattlePropertyResource>();
+            _stubBattlePropertyFactory = new BattlePropertyFactory(
+                battlePropertyResource: stubBattlePropertyResource);
+            
+            var characterPropertyScriptableObject
+                = AssetDatabase.LoadAssetAtPath<BaseScriptableObject<CharacterPropertyDto, CharacterTypeCode>>(
                 "Assets/ScriptableObject/CharacterPropertyScriptableObject.asset");
-            var stubCharacterPropertyResource = new StubBaseScriptableObjectResource<CharacterPropertyDto, CharacterTypeCode>(characterPropertyScriptableObject.ItemList);
-            _stubCharacterPropertyFactory = new CharacterPropertyFactory(stubCharacterPropertyResource);
+            var stubCharacterPropertyResource
+                = new StubBaseScriptableObjectResource<CharacterPropertyDto, CharacterTypeCode>(
+                    itemList: characterPropertyScriptableObject.ItemList);
+            _stubCharacterPropertyFactory = new CharacterPropertyFactory(
+                propertyResource: stubCharacterPropertyResource);
         }
         
         [Test]
         public void スリップダメージが5の倍数順に挿入される()
         {
-            var stubBattlePropertyFactory = Substitute.For<IFactory<BattlePropertyValueObject>>();
-            stubBattlePropertyFactory.Create().Returns(new BattlePropertyValueObject(
-                SlipDefaultTurn: 5, 
-                SlipDefaultDamageRate:1.2f,
-                IsHitThreshold: 20.0f));
-            
             var stubAilmentRepository = Substitute.For<IRepository<AilmentEntity, (CharacterId, AilmentCode)>>();
             stubAilmentRepository.Select().Returns(new List<AilmentEntity>());
 
@@ -81,8 +84,8 @@ namespace Tests.BattleScene.UseCases.Service
                 { new SlipEntity(SlipDamageCode.Poisoning, true, 5) });
 
             var orderService = new OrderService(
-                battlePropertyFactory: stubBattlePropertyFactory,
-                characterPropertyFactory: _stubCharacterPropertyFactory,
+                battlePropertyFactory: _stubBattlePropertyFactory,
+                characterPropertyFactory: _stubCharacterPropertyFactoryService,
                 ailmentRepository: stubAilmentRepository,
                 characterRepository: _mockCharacterRepository,
                 orderedItemRepository: mockOrderedItemRepository,
