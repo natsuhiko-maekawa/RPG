@@ -3,19 +3,16 @@ using System.Linq;
 using System.Threading.Tasks;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DataAccess;
-using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
 using BattleScene.InterfaceAdapter.Presenter;
-using UnityEngine;
 
 namespace BattleScene.InterfaceAdapter.Facade
 {
     public class DamageOutputFacade
     {
         private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
-        private readonly OrderedItemsDomainService _orderedItems;
         private readonly AttackCountViewPresenter _attackCountView;
         private readonly DamageViewPresenter _damageView;
         private readonly MessageViewPresenter _messageView;
@@ -23,8 +20,7 @@ namespace BattleScene.InterfaceAdapter.Facade
         private readonly VibrationViewPresenter _vibrationView;
 
         public DamageOutputFacade(
-            IRepository<CharacterEntity, CharacterId> characterRepository, 
-            OrderedItemsDomainService orderedItems,
+            IRepository<CharacterEntity, CharacterId> characterRepository,
             AttackCountViewPresenter attackCountView,
             DamageViewPresenter damageView,
             MessageViewPresenter messageView,
@@ -32,7 +28,6 @@ namespace BattleScene.InterfaceAdapter.Facade
             VibrationViewPresenter vibrationView)
         {
             _characterRepository = characterRepository;
-            _orderedItems = orderedItems;
             _attackCountView = attackCountView;
             _damageView = damageView;
             _messageView = messageView;
@@ -44,16 +39,18 @@ namespace BattleScene.InterfaceAdapter.Facade
         {
             var animationList = new List<Task>();
             
-            _orderedItems.First().TryGetCharacterId(out var actorId);
-            var isActorPlayer = _characterRepository.Select(actorId).IsPlayer;
+            var isActorPlayer = _characterRepository.Select(damage.ActorId).IsPlayer;
             if (isActorPlayer)
             {
                 var attackCountAnimation = _attackCountView.Start();
                 animationList.Add(attackCountAnimation);
             }
-            else
+            
+            if (damage.ActualTargetIdList.Any(x => _characterRepository.Select(x).IsPlayer))
             {
-                var playerImageCode = damage.IsAvoid
+                var playerImageCode = damage.AttackList
+                        .Where(x => _characterRepository.Select(x.TargetId).IsPlayer)
+                        .All(x => !x.IsHit)
                     ? PlayerImageCode.Avoidance
                     : PlayerImageCode.Damaged;
                 var playerImageAnimation = _playerImageView.StartAnimationAsync(playerImageCode);
@@ -76,20 +73,16 @@ namespace BattleScene.InterfaceAdapter.Facade
         private MessageCode GetMessageCode(DamageValueObject damage)
         {
             if (damage.IsAvoid) return MessageCode.AvoidMessage;
-            if (DamagesOneself(damage.AttackList)) return MessageCode.DamageOneselfMessage;
+            if (DamagesOneself(damage)) return MessageCode.DamageOneselfMessage;
             return damage.AttacksWeakPoint
                 ? MessageCode.WeakPointMessage
                 : MessageCode.DamageMessage;
         }
         
-        private bool DamagesOneself(IReadOnlyList<AttackValueObject> attackList) => attackList.Any(IsOneself);
-
-        private bool IsOneself(AttackValueObject attack)
+        private bool DamagesOneself(DamageValueObject damage)
         {
-            var targetId = attack.TargetId;
-            _orderedItems.First().TryGetCharacterId(out var actorId);
-            Debug.Assert(actorId != null);
-            var value = Equals(targetId, actorId);
+            var value = damage.AttackList
+                .Any(x => Equals(x.TargetId, damage.ActorId));
             return value;
         }
     }
