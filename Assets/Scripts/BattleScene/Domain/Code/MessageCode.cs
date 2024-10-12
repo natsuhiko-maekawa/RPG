@@ -5,7 +5,7 @@
         NoMessage, //  (メッセージ未設定)
         BleedingMessage, // 状態異常 (出血)
         BurningMessage, // 状態異常 (燃焼)
-        ConfusionActMessage, // 状態異常 (混乱)
+        PlayerConfusionActMessage, // 状態異常 (混乱)
         EnemyConfusionActMessage, // 状態異常 (敵混乱)
         ParalysisCantActMessage, // 状態異常 (麻痺)
         PoisoningMessage, // 状態異常 (中毒)
