@@ -1,5 +1,6 @@
 ﻿namespace BattleScene.Framework.ViewModel
 {
-    public record BuffViewDto(
+    public record BuffViewModel(
+        int BuffId,
         int State);
 }

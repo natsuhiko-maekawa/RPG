@@ -3,7 +3,7 @@ using BattleScene.Domain.Id;
 
 namespace BattleScene.Domain.Entity
 {
-    public class BuffEntity : BaseEntity<(CharacterId, BuffCode)>
+    public partial class BuffEntity : BaseEntity<(CharacterId, BuffCode)>
     {
         public BuffEntity(
             CharacterId characterId,
@@ -24,7 +24,16 @@ namespace BattleScene.Domain.Entity
         public BuffCode BuffCode { get; }
         public int Turn { get; private set; }
         public LifetimeCode LifetimeCode { get; }
-        public float Rate { get; }
+
+        private float _rate;
+        public float Rate
+        {
+            get => _rate;
+            private set { _rate = value; RateOnChange(_rate); }
+        }
+        
+        partial void RateOnChange(float value);
+        
         public bool TurnIsEnd => Turn < 0;
 
         public void AdvanceTurn()

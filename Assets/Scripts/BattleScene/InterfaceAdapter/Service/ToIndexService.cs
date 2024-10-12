@@ -42,8 +42,19 @@ namespace BattleScene.InterfaceAdapter.Service
                 { BodyPartCode.Stomach, 2 }
             };
 
+        private readonly IReadOnlyDictionary<BuffCode, int> _buffDictionary
+            = new Dictionary<BuffCode, int>()
+            {
+                { BuffCode.Attack, 0 },
+                { BuffCode.Defence, 1 },
+                { BuffCode.HitRate, 2 },
+                { BuffCode.Avoidance, 3 },
+                { BuffCode.Speed, 4 }
+            };
+
         public int FromAilment(AilmentCode ailmentCode) => _ailmentDictionary[ailmentCode];
         public int FromSlipDamage(SlipDamageCode slipDamageCode) => _slipDamageDictionary[slipDamageCode];
         public int FromBodyPart(BodyPartCode bodyPartCode) => _bodyPartDictionary[bodyPartCode];
+        public int FromBuff(BuffCode buffCode) => _buffDictionary[buffCode];
     }
 }

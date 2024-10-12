@@ -93,6 +93,7 @@ namespace BattleScene.InterfaceAdapter
             #region RegisterReactivePresenter
             builder.Register<IObserver<AilmentEntity>, AilmentViewPresenter>(Lifetime.Singleton);
             builder.Register<IObserver<BodyPartEntity>, BodyPartViewPresenter>(Lifetime.Singleton);
+            builder.Register<IObserver<BuffEntity>, BuffViewPresenter>(Lifetime.Singleton);
             builder.Register<IObserver<CharacterEntity>, HitPointBarViewPresenter>(Lifetime.Singleton);
             builder.Register<IObserver<CharacterEntity>, TechnicalPointBarViewPresenter>(Lifetime.Singleton);
             builder.Register<IObserver<SlipEntity>, SlipViewPresenter>(Lifetime.Singleton);

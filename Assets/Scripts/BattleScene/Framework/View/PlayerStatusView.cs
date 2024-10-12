@@ -11,14 +11,14 @@ namespace BattleScene.Framework.View
         private Image[] _iconGroup;
         private PlayerAilmentStatus[] _playerAilmentStatusArray;
         private PlayerBodyPartStatus[] _playerBodyPartStatusArray;
-        private PlayerBuffView _playerBuffView;
+        private PlayerBuffStatus[] _playerBuffStatusArray;
         private Text[] _textGroup;
 
         private void Awake()
         {
             _playerAilmentStatusArray = GetComponentsInChildren<PlayerAilmentStatus>();
             _playerBodyPartStatusArray = GetComponentsInChildren<PlayerBodyPartStatus>();
-            _playerBuffView = GetComponent<PlayerBuffView>();
+            _playerBuffStatusArray = GetComponentsInChildren<PlayerBuffStatus>();
         }
 
         public void StartPlayerAilmentsView(AilmentViewModel ailment)
@@ -32,9 +32,9 @@ namespace BattleScene.Framework.View
             _playerBodyPartStatusArray[bodyPart.Index].Set(bodyPart.DestroyedCount);
         }
 
-        public void StartPlayerBuffView(IList<BuffViewDto> dtoList)
+        public void StartPlayerBuffView(BuffViewModel buff)
         {
-            _playerBuffView.StartAnimation(dtoList);
+            _playerBuffStatusArray[buff.BuffId].Set(buff.State);
         }
 
         public struct TextAndIcon

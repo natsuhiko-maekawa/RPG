@@ -21,7 +21,7 @@ namespace BattleScene.Framework.View
             }
         }
 
-        public void StartAnimation(IList<BuffViewDto> dtoList)
+        public void StartAnimation(IList<BuffViewModel> dtoList)
         {
             foreach (var (textAndIcon, index) in _textAndIconList.Select((x, i) => (x, i)))
                 switch (dtoList[index].State)
