@@ -51,7 +51,7 @@ namespace BattleScene.InterfaceAdapter.Facade
             var playerImageAnimation = _playerImageView.StartAnimationAsync(playerImageCode);
             animationList.Add(playerImageAnimation);
 
-            var messageCode = _skillFactory.Create(skillCode).SkillCommon.MessageCode;
+            var messageCode = _skillFactory.Create(skillCode).SkillCommon.AttackMessageCode;
             var messageAnimation = _messageView.StartAnimationAsync(messageCode);
             animationList.Add(messageAnimation);
             

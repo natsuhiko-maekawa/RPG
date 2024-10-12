@@ -35,7 +35,7 @@ namespace BattleScene.InterfaceAdapter
             return new SkillValueObject(
                 skillCode: key,
                 range: skill.Range,
-                messageCode: skill.AttackMessageCode,
+                attackMessageCode: skill.AttackMessageCode,
                 technicalPoint: skill.TechnicalPoint,
                 dependencyList: skill.DependencyList,
                 ailmentList: ailmentList,
