@@ -126,7 +126,7 @@ namespace BattleScene.InterfaceAdapter
             builder.RegisterComponentInHierarchy<IResource<PlayerViewDto, CharacterTypeCode>>();
             builder.RegisterComponentInHierarchy<IResource<PlayerPropertyDto, CharacterTypeCode>>();
             builder.RegisterComponentInHierarchy<IResource<PlayerImagePathDto, PlayerImageCode>>();
-            builder.RegisterComponentInHierarchy<IResource<SkillPropertyDto, SkillCode>>();
+            builder.RegisterComponentInHierarchy<IResource<SkillViewDto, SkillCode>>();
             #endregion
 
             #region RegisterSkill

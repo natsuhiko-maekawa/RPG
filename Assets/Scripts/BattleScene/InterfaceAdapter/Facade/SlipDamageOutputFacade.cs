@@ -13,7 +13,7 @@ namespace BattleScene.InterfaceAdapter.Facade
     public class SlipDamageOutputFacade
     {
         private readonly IFactory<SkillValueObject, SkillCode> _skillFactory;
-        private readonly IResource<SkillPropertyDto, SkillCode> _skillViewResource;
+        private readonly IResource<SkillViewDto, SkillCode> _skillViewResource;
         private readonly DamageViewPresenter _damageView;
         private readonly MessageViewPresenter _messageView;
         private readonly PlayerImageViewPresenter _playerImageView;
@@ -21,7 +21,7 @@ namespace BattleScene.InterfaceAdapter.Facade
 
         public SlipDamageOutputFacade(
             IFactory<SkillValueObject, SkillCode> skillFactory,
-            IResource<SkillPropertyDto, SkillCode> skillViewResource,
+            IResource<SkillViewDto, SkillCode> skillViewResource,
             DamageViewPresenter damageView,
             MessageViewPresenter messageView,
             PlayerImageViewPresenter playerImageView,

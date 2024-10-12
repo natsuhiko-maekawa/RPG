@@ -17,7 +17,7 @@ namespace BattleScene.InterfaceAdapter.Facade
     public class SkillOutputFacade
     {
         private readonly IFactory<SkillValueObject, SkillCode> _skillFactory;
-        private readonly IResource<SkillPropertyDto, SkillCode> _skillViewResource;
+        private readonly IResource<SkillViewDto, SkillCode> _skillViewResource;
         private readonly IRepository<BattleLogEntity, BattleLogId> _battleLogRepository;
         private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
         private readonly OrderedItemsDomainService _orderedItems;
@@ -26,7 +26,7 @@ namespace BattleScene.InterfaceAdapter.Facade
 
         public SkillOutputFacade(
             IFactory<SkillValueObject, SkillCode> skillFactory,
-            IResource<SkillPropertyDto, SkillCode> skillViewResource,
+            IResource<SkillViewDto, SkillCode> skillViewResource,
             IRepository<BattleLogEntity, BattleLogId> battleLogRepository,
             IRepository<CharacterEntity, CharacterId> characterRepository,
             OrderedItemsDomainService orderedItems,

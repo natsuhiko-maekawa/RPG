@@ -5,7 +5,7 @@ using BattleScene.Domain.Code;
 namespace BattleScene.DataAccess.Resource
 {
     public class SkillViewResource
-        : BaseScriptableObjectResource<SkillViewScriptableObject, SkillPropertyDto, SkillCode>
+        : BaseScriptableObjectResource<SkillViewScriptableObject, SkillViewDto, SkillCode>
     {
     }
 }

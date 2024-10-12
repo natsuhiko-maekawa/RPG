@@ -11,12 +11,12 @@ namespace BattleScene.InterfaceAdapter.Facade
     {
         private readonly MessageViewPresenter _messageView;
         private readonly PlayerImageViewPresenter _playerImageView;
-        private readonly IResource<SkillPropertyDto, SkillCode> _skillViewResource;
+        private readonly IResource<SkillViewDto, SkillCode> _skillViewResource;
 
         public ResetAilmentOutputFacade(
             MessageViewPresenter messageView,
             PlayerImageViewPresenter playerImageView,
-            IResource<SkillPropertyDto, SkillCode> skillViewResource)
+            IResource<SkillViewDto, SkillCode> skillViewResource)
         {
             _messageView = messageView;
             _playerImageView = playerImageView;

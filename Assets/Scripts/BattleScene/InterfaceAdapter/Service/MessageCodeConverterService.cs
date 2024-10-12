@@ -30,7 +30,7 @@ namespace BattleScene.InterfaceAdapter.Service
         private readonly IResource<EnemyViewDto, CharacterTypeCode> _enemyViewInfoResource;
         private readonly OrderedItemsDomainService _orderedItems;
         private readonly IResource<PlayerViewDto, CharacterTypeCode> _playerViewInfoResource;
-        private readonly IResource<SkillPropertyDto, SkillCode> _skillViewInfoResource;
+        private readonly IResource<SkillViewDto, SkillCode> _skillViewInfoResource;
         private readonly IRepository<BattleLogEntity, BattleLogId> _battleLogRepository;
         private readonly BattleLogDomainService _battleLog;
         private readonly PlayerDomainService _player;
@@ -43,7 +43,7 @@ namespace BattleScene.InterfaceAdapter.Service
             IResource<EnemyViewDto, CharacterTypeCode> enemyViewInfoResource,
             OrderedItemsDomainService orderedItems,
             IResource<PlayerViewDto, CharacterTypeCode> playerViewInfoResource,
-            IResource<SkillPropertyDto, SkillCode> skillViewInfoResource,
+            IResource<SkillViewDto, SkillCode> skillViewInfoResource,
             IRepository<BattleLogEntity, BattleLogId> battleLogRepository,
             BattleLogDomainService battleLog,
             PlayerDomainService player)
