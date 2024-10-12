@@ -1,8 +1,12 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using BattleScene.DataAccess;
 using BattleScene.DataAccess.Dto;
 using BattleScene.Domain.Code;
+using BattleScene.Domain.DataAccess;
+using BattleScene.Domain.Entity;
+using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
 using BattleScene.InterfaceAdapter.Presenter;
 
@@ -11,15 +15,18 @@ namespace BattleScene.InterfaceAdapter.Facade
     public class AilmentOutputFacade
     {
         private readonly IResource<AilmentViewDto, AilmentCode, SlipDamageCode> _ailmentViewResource;
+        private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
         private readonly MessageViewPresenter _messageView;
         private readonly PlayerImageViewPresenter _playerImageView;
 
         public AilmentOutputFacade(
             IResource<AilmentViewDto, AilmentCode, SlipDamageCode> ailmentViewResource,
+            IRepository<CharacterEntity, CharacterId> characterRepository,
             MessageViewPresenter messageView,
             PlayerImageViewPresenter playerImageView)
         {
             _ailmentViewResource = ailmentViewResource;
+            _characterRepository = characterRepository;
             _messageView = messageView;
             _playerImageView = playerImageView;
         }
@@ -38,10 +45,13 @@ namespace BattleScene.InterfaceAdapter.Facade
             var animationList = new List<Task>();
             var messageAnimation = _messageView.StartAnimationAsync(MessageCode.AilmentMessage);
             animationList.Add(messageAnimation);
-
-            var playerImageCode = _ailmentViewResource.Get(ailment.AilmentCode).PlayerImageCode;
-            var playerImageAnimation = _playerImageView.StartAnimationAsync(playerImageCode);
-            animationList.Add(playerImageAnimation);
+            
+            if (ailment.ActualTargetIdList.Any(x => _characterRepository.Select(x).IsPlayer))
+            {
+                var playerImageCode = _ailmentViewResource.Get(ailment.AilmentCode).PlayerImageCode;
+                var playerImageAnimation = _playerImageView.StartAnimationAsync(playerImageCode);
+                animationList.Add(playerImageAnimation);
+            }
             
             await Task.WhenAll(animationList);
         }
