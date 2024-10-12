@@ -13,7 +13,7 @@ namespace BattleScene.UseCases.Service.Order
     public class OrderService
     {
         private readonly IFactory<BattlePropertyValueObject> _battlePropertyFactory;
-        private readonly IFactory<PropertyValueObject, CharacterTypeCode> _characterPropertyFactory;
+        private readonly CharacterPropertyFactoryService _characterPropertyFactory;
         private readonly IRepository<AilmentEntity, (CharacterId, AilmentCode)> _ailmentRepository;
         private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
         private readonly IRepository<OrderedItemEntity, OrderId> _orderedItemRepository;
@@ -22,7 +22,7 @@ namespace BattleScene.UseCases.Service.Order
 
         public OrderService(
             IFactory<BattlePropertyValueObject> battlePropertyFactory,
-            IFactory<PropertyValueObject, CharacterTypeCode> characterPropertyFactory, 
+            CharacterPropertyFactoryService characterPropertyFactory, 
             IRepository<AilmentEntity, (CharacterId, AilmentCode)> ailmentRepository, 
             IRepository<CharacterEntity, CharacterId> characterRepository,
             IRepository<OrderedItemEntity, OrderId> orderedItemRepository, 
@@ -44,15 +44,15 @@ namespace BattleScene.UseCases.Service.Order
             var orderedItemList = Enumerable
                 .Repeat(characterList, Constant.MaxOrderNumber)
                 .Select((x, i) => x
-                    .Select(y => (character: y,
+                    .Select(y => (characterId: y,
                         speed: _characterRepository.Select(y).ActionTime +
                                Constant.MaxAgility / _speed.Get(y) * i)))
                 .SelectMany(x => x)
                 .OrderBy(x => x.speed)
                 .ThenByDescending(x => _characterPropertyFactory
-                    .Create(_characterRepository.Select(x.character).CharacterTypeCode).Agility)
-                .ThenBy(x => _characterRepository.Select(x.character).Id)
-                .Select(x => new OrderedItem(x.character))
+                    .Create(x.characterId).Agility)
+                .ThenBy(x => _characterRepository.Select(x.characterId).Id)
+                .Select(x => new OrderedItem(x.characterId))
                 .ToList()
                 .GetRange(0, Constant.MaxOrderNumber);
 
