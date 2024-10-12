@@ -54,17 +54,15 @@ namespace BattleScene.UseCases.Service.Order
                     .Create(_characterRepository.Select(x.character).CharacterTypeCode).Agility)
                 .ThenBy(x => _characterRepository.Select(x.character).Id)
                 .Select(x => new OrderedItem(x.character))
-                .ToImmutableList()
+                .ToList()
                 .GetRange(0, Constant.MaxOrderNumber);
 
             var ailments = _ailmentRepository.Select()
-                .Where(x => Equals(x.CharacterId, _characterRepository.Select()
-                    .First(y => y.IsPlayer)
-                    .Id))
-                .ToImmutableList();
+                .Where(x => _characterRepository.Select(x.CharacterId).IsPlayer)
+                .ToList();
             var slipDamages = _slipDamageRepository.Select();
-            orderedItemList = InsertAilmentsEnd(ailments, orderedItemList);
-            orderedItemList = InsertSlipDamage(slipDamages, orderedItemList);
+            InsertAilmentEnd(ailments, ref orderedItemList);
+            InsertSlipDamage(slipDamages, ref orderedItemList);
             
             var orderedItemEntityList = orderedItemList
                 .Select((x, i) => new OrderedItemEntity(
@@ -77,48 +75,40 @@ namespace BattleScene.UseCases.Service.Order
             _orderedItemRepository.Update(orderedItemEntityList);
         }
 
-        private ImmutableList<OrderedItem> InsertAilmentsEnd(
-            IList<AilmentEntity> ailmentEntityList,
-            ImmutableList<OrderedItem> order)
+        private void InsertAilmentEnd(
+            IReadOnlyList<AilmentEntity> ailmentEntityList,
+            ref List<OrderedItem> order)
         {
-            var newOrder = order.ToImmutableList();
-
-            foreach (var ailmentEntity in ailmentEntityList.Where(x => x.IsSelfRecovery))
+            foreach (var ailmentEntity in ailmentEntityList.Where(x => x.IsSelfRecovery && x.Effects))
             {
                 var index = ailmentEntity.Turn;
                 var orderedAilmentEntity = new OrderedItem(ailmentEntity.AilmentCode);
-                newOrder = newOrder
-                    .Insert(index, orderedAilmentEntity)
-                    .RemoveAt(order.Count - 1);
+                order.Insert(index, orderedAilmentEntity);
+                order.RemoveAt(order.Count - 1);
             }
-
-            return newOrder;
         }
 
-        private ImmutableList<OrderedItem> InsertSlipDamage(
+        private void InsertSlipDamage(
             IReadOnlyList<SlipEntity> slipDamageEntityList,
-            ImmutableList<OrderedItem> order)
+            ref List<OrderedItem> order)
         {
-            var newOrder = order.ToImmutableList();
             var slipDefaultTurn = _battlePropertyFactory.Create().SlipDefaultTurn;
 
             foreach (var slipDamageEntity in slipDamageEntityList)
-                for (var index = 0; index < newOrder.Count; ++index)
+                for (var index = 0; index < order.Count; ++index)
                 {
                     var copiedIndex = index;
-                    var characterTypeCount = newOrder
+                    var characterTypeCount = order
                             // TODO: Take()を使って書き換える
                         .Where((_, i) => i <= copiedIndex - 1)
                         .Count(x => x.CharacterId != null);
                     if (slipDamageEntity.Turn != characterTypeCount % (slipDefaultTurn + 1)) continue;
                     var orderedSlipDamageEntity
                         = new OrderedItem(slipDamageEntity.Id);
-                    newOrder = newOrder.Insert(index, orderedSlipDamageEntity)
-                        .RemoveAt(order.Count - 1);
+                    order.Insert(index, orderedSlipDamageEntity); 
+                    order.RemoveAt(order.Count - 1);
                     ++index;
                 }
-
-            return newOrder;
         }
         
         // TODO: ActionTimeServiceにも同様のメソッドあり
