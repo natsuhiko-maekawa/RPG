@@ -1,5 +1,7 @@
-﻿using System.Collections.Immutable;
+﻿using System;
+using System.Collections.Immutable;
 using System.Linq;
+using System.Text;
 using BattleScene.DataAccess;
 using BattleScene.DataAccess.Dto;
 using BattleScene.Domain.Code;
@@ -8,7 +10,6 @@ using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using UnityEngine;
-using Utility;
 
 namespace BattleScene.InterfaceAdapter.Service
 {
@@ -63,36 +64,35 @@ namespace BattleScene.InterfaceAdapter.Service
 
         public string Replace(string message)
         {
-            message = ReplaceActor(message);
-            message = ReplaceAilments(message);
-            message = ReplaceBuff(message);
-            message = ReplaceDamage(message);
-            message = ReplaceCure(message);
-            message = ReplaceBodyPart(message);
-            message = ReplacePlayer(message);
-            message = ReplaceSkill(message);
-            message = ReplaceTarget(message);
-            message = ReplaceTechnicalPoint(message);
-            return message;
+            var replacedMessage = new Message(message)
+                .Replace(Actor, ReplaceActor)
+                .Replace(Ailment, ReplaceAilment)
+                .Replace(Buff, ReplaceBuff)
+                .Replace(Damage, ReplaceDamage)
+                .Replace(Part, ReplaceBodyPart)
+                .Replace(Player, ReplacePlayer)
+                .Replace(Skill, ReplaceSkill)
+                .Replace(Target, ReplaceTarget)
+                .Replace(TechnicalPoint, ReplaceTechnicalPoint)
+                .GetMessage();
+
+            return replacedMessage;
         }
 
-        private string ReplaceActor(string message)
+        private void ReplaceActor(StringBuilder message)
         {
-            if (!message.Contains(Actor)) return message;
-            _orderedItems.First().TryGetCharacterId(out var characterId);
-            MyDebug.Assert(characterId != null);
+            if (!_orderedItems.First().TryGetCharacterId(out var characterId)) throw new InvalidOperationException();
+            
             var actorName = _characterRepository.Select(characterId).IsPlayer
                 ? _playerViewInfoResource.Get(CharacterTypeCode.Player).PlayerName
-                : _enemyViewInfoResource.Get(_characterRepository.Select(characterId).CharacterTypeCode)
-                    .EnemyName;
-            return message.Replace(Actor, actorName);
+                : _enemyViewInfoResource.Get(_characterRepository.Select(characterId).CharacterTypeCode).EnemyName;
+            message.Replace(Actor, actorName);
         }
 
-        private string ReplaceAilments(string message)
+        private void ReplaceAilment(StringBuilder message)
         {
-            if (!message.Contains(Ailment)) return message;
             var ailmentName = GetAilmentName();
-            return message.Replace(Ailment, ailmentName);
+            message.Replace(Ailment, ailmentName);
         }
 
         private string GetAilmentName()
@@ -102,21 +102,19 @@ namespace BattleScene.InterfaceAdapter.Service
                 return _ailmentViewResource.Get(battleLog.AilmentCode).Name;
             if (battleLog.SlipDamageCode != SlipDamageCode.NoSlipDamage)
                 return _ailmentViewResource.Get(battleLog.SlipDamageCode).Name;
-            Debug.Assert(false);
-            return "";
+            throw new InvalidOperationException();
         }
 
-        private string ReplaceBuff(string message)
+        private void ReplaceBuff(StringBuilder message)
         {
             var buffCode = _battleLogRepository.Select().Max()?.BuffCode ?? BuffCode.NoBuff;
-            if (buffCode == BuffCode.NoBuff) return message;
+            if (buffCode == BuffCode.NoBuff) throw new InvalidOperationException();
             var buffName = _buffViewInfoResource.Get(buffCode).BuffName;
-            return message.Replace(Buff, buffName);
+            message.Replace(Buff, buffName);
         }
 
-        private string ReplaceDamage(string message)
+        private void ReplaceDamage(StringBuilder message)
         {
-            if (!message.Contains(Damage)) return message;
             var totalPrefix = _battleLogRepository.Select()
                 .Max().AttackList.Count(x => x.IsHit) == 1 ? "" : "計";
             var damage = _battleLogRepository.Select()
@@ -125,51 +123,45 @@ namespace BattleScene.InterfaceAdapter.Service
                 .Select(x => x.Amount)
                 .Sum()
                 .ToString();
-            return message.Replace(Damage, totalPrefix + damage);
+            message.Replace(Damage, totalPrefix + damage);
         }
         
-        private string ReplaceCure(string message)
+        private void ReplaceCure(StringBuilder message)
         {
-            return message;
         }
 
-        private string ReplaceBodyPart(string message)
+        private void ReplaceBodyPart(StringBuilder message)
         {
-            if (!message.Contains(Part)) return message;
             var bodyPartCode = _battleLogRepository.Select().Max().DestroyedPart;
             var bodyPartName = _bodyPartViewInfoResource.Get(bodyPartCode).BodyPartName;
-            return message.Replace(Part, bodyPartName);
+            message.Replace(Part, bodyPartName);
         }
 
-        private string ReplacePlayer(string message)
+        private void ReplacePlayer(StringBuilder message)
         {
-            if (!message.Contains(Player)) return message;
-            var playerName = _playerViewInfoResource.Get(CharacterTypeCode.Player).PlayerName;
-            var newMessage = message.Replace(Player, playerName);
-            return newMessage;
+            var playerName = _playerViewInfoResource.Get(CharacterTypeCode.Player).PlayerName; 
+            message.Replace(Player, playerName);
         }
 
-        private string ReplaceSkill(string message)
+        private void ReplaceSkill(StringBuilder message)
         {
-            if (!message.Contains(Skill)) return message;
             _orderedItems.First().TryGetCharacterId(out var characterId);
             Debug.Assert(characterId != null);
             var skillCode = _battleLog.GetLast().SkillCode;
             var skillName = _skillViewInfoResource.Get(skillCode).SkillName;
-            return message.Replace(Skill, skillName);
+            message.Replace(Skill, skillName);
         }
 
-        private string ReplaceTarget(string message)
+        private void ReplaceTarget(StringBuilder message)
         {
-            if (!message.Contains(Target)) return message;
             var targetNameList = _battleLogRepository.Select()
                 .Max().TargetIdList
                 .Distinct()
                 .Select(GetCharacterName)
                 .ToImmutableList();
-            if (targetNameList.IsEmpty) return message;
+            if (targetNameList.IsEmpty) throw new InvalidOperationException();
             var totalSuffix = targetNameList.Count == 1 ? "" : "たち";
-            return message.Replace(Target, targetNameList.First() + totalSuffix);
+            message.Replace(Target, targetNameList.First() + totalSuffix);
         }
 
         private string GetCharacterName(CharacterId characterId)
@@ -180,13 +172,12 @@ namespace BattleScene.InterfaceAdapter.Service
             return characterName;
         }
 
-        private string ReplaceTechnicalPoint(string message)
+        private void ReplaceTechnicalPoint(StringBuilder message)
         {
-            if (!message.Contains(TechnicalPoint)) return message;
             var technicalPoint = _battleLogRepository.Select()
                 .Max().TechnicalPoint
                 .ToString();
-            return message.Replace(TechnicalPoint, technicalPoint);
+            message.Replace(TechnicalPoint, technicalPoint);
         }
     }
 }
