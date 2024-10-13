@@ -14,5 +14,5 @@ namespace BattleScene.Domain.ValueObject
     )
     {
         public IReadOnlyList<MatAttrCode> MatAttrCode { get; private set; } = MatAttrCode ?? new List<MatAttrCode>();
-    };
+    }
 }
