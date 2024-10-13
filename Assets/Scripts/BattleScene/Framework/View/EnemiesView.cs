@@ -14,7 +14,7 @@ namespace BattleScene.Framework.View
         private void Awake()
         {
             _enemyViewGrid = GetComponent<EnemyGrid>();
-            _enemyViewGrid.Initialize();
+            // _enemyViewGrid.Initialize();
             _enemyViewGrid.SetItem(maxCacheSize);
             foreach (var enemyView in _enemyViewGrid) enemyView.SetActive(false);
         }

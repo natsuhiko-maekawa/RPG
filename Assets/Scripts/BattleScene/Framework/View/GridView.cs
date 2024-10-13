@@ -29,6 +29,7 @@ namespace BattleScene.Framework.View
         {
             _window = GetComponentInChildren<Window>();
             _grid = GetComponentInChildren<Table>();
+            _grid.SetItem(maxGridSize);
             _arrowRight = GetComponentInChildren<ArrowRight>();
             _arrowUp = GetComponentInChildren<ArrowUp>();
             _arrowDown = GetComponentInChildren<ArrowDown>();
@@ -53,7 +54,6 @@ namespace BattleScene.Framework.View
                 _gridStateDictionary.Add(dto.ActionCode, gridState);
             }
             
-            _grid.SetItem(Math.Min(dto.RowDtoList.Count, maxGridSize));
             _grid.Show();
             
             foreach (var (row, rowDto) in _grid.Zip(dto.RowDtoList.Skip(gridState.TopItemIndex), (row, rowDto) => (row, rowDto)))

@@ -11,15 +11,12 @@ namespace BattleScene.Framework.GameObjects
         private TGameObject _gameObject;
         private readonly List<TGameObject> _gameObjectList = new();
         public TGameObject this[int index] => _gameObjectList[index];
-
-        public void Initialize()
-        {
-            _gameObject = GetComponentInChildren<TGameObject>();
-            _gameObjectList.Add(_gameObject);
-        }
         
         public void SetItem(int itemCount)
         {
+            _gameObject = GetComponentInChildren<TGameObject>();
+            _gameObjectList.Add(_gameObject);
+            
             if (itemCount > _gameObjectList.Count)
             {
                 AddItem(itemCount - _gameObjectList.Count);
