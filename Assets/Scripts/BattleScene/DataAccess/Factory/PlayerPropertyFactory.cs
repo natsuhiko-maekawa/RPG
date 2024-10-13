@@ -20,7 +20,7 @@ namespace BattleScene.DataAccess.Factory
             var dto = _resource.Get(key);
             return new PlayerPropertyValueObject(
                 technicalPoint: dto.TechnicalPoint,
-                fatalitySkills: dto.FatalitySkills);
+                fatalitySkillList: dto.FatalitySkillList);
         }
     }
 }

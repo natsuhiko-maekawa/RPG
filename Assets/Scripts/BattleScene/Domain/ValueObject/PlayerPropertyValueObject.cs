@@ -1,4 +1,4 @@
-﻿using System.Collections.Immutable;
+﻿using System.Collections.Generic;
 using BattleScene.Domain.Code;
 
 namespace BattleScene.Domain.ValueObject
@@ -7,13 +7,13 @@ namespace BattleScene.Domain.ValueObject
     {
         public PlayerPropertyValueObject(
             int technicalPoint,
-            SkillCode[] fatalitySkills)
+            IReadOnlyList<SkillCode> fatalitySkillList)
         {
             TechnicalPoint = technicalPoint;
-            FatalitySkills = ImmutableList.Create(fatalitySkills);
+            FatalitySkillList = fatalitySkillList;
         }
 
         public int TechnicalPoint { get; }
-        public ImmutableList<SkillCode> FatalitySkills { get; }
+        public IReadOnlyList<SkillCode> FatalitySkillList { get; }
     }
 }
