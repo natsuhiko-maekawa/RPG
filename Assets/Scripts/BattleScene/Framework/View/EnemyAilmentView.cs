@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 namespace BattleScene.Framework.View
 {
-    public class EnemyAilmentsView : MonoBehaviour
+    public class EnemyAilmentView : MonoBehaviour
     {
         private const int AreaWidth = 95;
         private const int AilmentsSmallIconSize = 13;

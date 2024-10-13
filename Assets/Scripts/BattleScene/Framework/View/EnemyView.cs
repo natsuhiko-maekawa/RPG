@@ -8,7 +8,7 @@ namespace BattleScene.Framework.View
     public class EnemyView : MonoBehaviour
     {
         public Image Image { get;  set; }
-        private EnemyAilmentsView _enemyAilmentView;
+        private EnemyAilmentView _enemyAilmentView;
         private DigitView _digitView;
         private FrameView _frameView;
         private StatusBarView _hitPointBarView;
@@ -18,7 +18,7 @@ namespace BattleScene.Framework.View
         private void Awake()
         {
             Image = GetComponent<Image>();
-            _enemyAilmentView = GetComponentInChildren<EnemyAilmentsView>();
+            _enemyAilmentView = GetComponentInChildren<EnemyAilmentView>();
             _digitView = GetComponentInChildren<DigitView>();
             _frameView = GetComponentInChildren<FrameView>();
             _hitPointBarView = GetComponentInChildren<StatusBarView>();
