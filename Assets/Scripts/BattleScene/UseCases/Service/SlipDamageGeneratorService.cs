@@ -56,7 +56,7 @@ namespace BattleScene.UseCases.Service
                 targetId: targetId,
                 isHit: true,
                 attacksWeakPoint: false,
-                number: 0);
+                index: 0);
 
             var slipDamage = new SlipDamageValueObject(
                 targetIdList: new List<CharacterId> { targetId },

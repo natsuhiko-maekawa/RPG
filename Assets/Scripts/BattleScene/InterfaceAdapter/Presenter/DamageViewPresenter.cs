@@ -103,7 +103,7 @@ namespace BattleScene.InterfaceAdapter.Presenter
                 DigitType: DigitType.Damage,
                 Number: attack.Amount,
                 IsAvoid: !attack.IsHit,
-                Index: attack.Number);
+                Index: attack.Index);
             return digit;
         }
     }

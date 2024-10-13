@@ -54,12 +54,12 @@ namespace BattleScene.UseCases.Service
                         attacksWeakPoint: _attacksWeakPointEvaluator
                             .Evaluate(actorId, attackedTargetId, damageParameter),
                         targetId: attackedTargetId,
-                        number: i);
+                        index: i);
                     attackList.Add(attack);
                 }
             }
 
-            attackList.Sort((x, y) => x.Number - y.Number);
+            attackList.Sort((x, y) => x.Index - y.Index);
             
             return new DamageValueObject(
                 actorId: actorId,
