@@ -3,7 +3,7 @@ using System.Linq;
 using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.Entity;
 
-namespace BattleScene.DataAccess.Repository
+namespace BattleScene.DataAccess.Collection
 {
     public partial class Collection<TEntity, TId> : ICollection<TEntity, TId>, ISerializable
         where TEntity : BaseEntity<TId>

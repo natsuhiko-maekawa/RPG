@@ -1,7 +1,7 @@
 ﻿using BattleScene.DataAccess;
+using BattleScene.DataAccess.Collection;
 using BattleScene.DataAccess.Dto;
 using BattleScene.DataAccess.Factory;
-using BattleScene.DataAccess.Repository;
 using BattleScene.DataAccess.Resource;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DataAccess;

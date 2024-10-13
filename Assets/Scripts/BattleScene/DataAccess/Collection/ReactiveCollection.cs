@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace BattleScene.DataAccess.Repository
+namespace BattleScene.DataAccess.Collection
 {
     public partial class Collection<TEntity, TId>
     {
