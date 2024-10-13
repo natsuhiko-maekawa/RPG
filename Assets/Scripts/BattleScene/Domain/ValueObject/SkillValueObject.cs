@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Collections.Immutable;
 using BattleScene.Domain.Code;
 using Range = BattleScene.Domain.Code.Range;
 
@@ -8,25 +7,25 @@ namespace BattleScene.Domain.ValueObject
     public class SkillValueObject
     {
         public SkillCommonValueObject SkillCommon { get; }
-        public ImmutableList<AilmentParameterValueObject> AilmentParameterList { get; }
-        public ImmutableList<BuffParameterValueObject> BuffParameterList { get; }
-        public ImmutableList<DamageParameterValueObject> DamageParameterList { get; }
-        public ImmutableList<DestroyParameterValueObject> DestroyedParameterList { get; }
-        public ImmutableList<RestoreParameterValueObject> RestoreParameterList { get; }
-        public ImmutableList<SlipParameterValueObject> SlipParameterList { get; }
+        public IReadOnlyList<AilmentParameterValueObject> AilmentParameterList { get; }
+        public IReadOnlyList<BuffParameterValueObject> BuffParameterList { get; }
+        public IReadOnlyList<DamageParameterValueObject> DamageParameterList { get; }
+        public IReadOnlyList<DestroyParameterValueObject> DestroyedParameterList { get; }
+        public IReadOnlyList<RestoreParameterValueObject> RestoreParameterList { get; }
+        public IReadOnlyList<SlipParameterValueObject> SlipParameterList { get; }
 
         public SkillValueObject(
             SkillCode skillCode,
             Range range,
             MessageCode attackMessageCode,
             int technicalPoint,
-            ImmutableList<BodyPartCode> dependencyList,
-            ImmutableList<AilmentParameterValueObject> ailmentList = null,
-            ImmutableList<BuffParameterValueObject> buffList = null,
-            ImmutableList<DamageParameterValueObject> damageList = null,
-            ImmutableList<DestroyParameterValueObject> destroyedPartList = null,
-            ImmutableList<RestoreParameterValueObject> restoreParameterList = null,
-            IList<SlipParameterValueObject> slipParameterList = null)
+            IReadOnlyList<BodyPartCode> dependencyList,
+            IReadOnlyList<AilmentParameterValueObject> ailmentList = null,
+            IReadOnlyList<BuffParameterValueObject> buffList = null,
+            IReadOnlyList<DamageParameterValueObject> damageList = null,
+            IReadOnlyList<DestroyParameterValueObject> destroyedPartList = null,
+            IReadOnlyList<RestoreParameterValueObject> restoreParameterList = null,
+            IReadOnlyList<SlipParameterValueObject> slipParameterList = null)
         {
             SkillCommon = new SkillCommonValueObject(
                 skillCode: skillCode,
@@ -34,12 +33,12 @@ namespace BattleScene.Domain.ValueObject
                 dependencyList: dependencyList,
                 range: range,
                 attackMessageCode: attackMessageCode);
-            AilmentParameterList = ailmentList ?? ImmutableList<AilmentParameterValueObject>.Empty;
-            BuffParameterList = buffList ?? ImmutableList<BuffParameterValueObject>.Empty;
-            DamageParameterList = damageList ?? ImmutableList<DamageParameterValueObject>.Empty;
-            DestroyedParameterList = destroyedPartList ?? ImmutableList<DestroyParameterValueObject>.Empty;
-            RestoreParameterList = restoreParameterList ?? ImmutableList<RestoreParameterValueObject>.Empty;
-            SlipParameterList = slipParameterList?.ToImmutableList() ?? ImmutableList<SlipParameterValueObject>.Empty;
+            AilmentParameterList = ailmentList ?? new List<AilmentParameterValueObject>();
+            BuffParameterList = buffList ?? new List<BuffParameterValueObject>();
+            DamageParameterList = damageList ?? new List<DamageParameterValueObject>();
+            DestroyedParameterList = destroyedPartList ?? new List<DestroyParameterValueObject>();
+            RestoreParameterList = restoreParameterList ?? new List<RestoreParameterValueObject>();
+            SlipParameterList = slipParameterList ?? new List<SlipParameterValueObject>();
         }
     }
 }

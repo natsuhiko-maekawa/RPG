@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Immutable;
+using System.Collections.Generic;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.Id;
 
@@ -10,8 +10,8 @@ namespace BattleScene.Domain.ValueObject
         public ResetSkillResultValueObject(
             CharacterId actorId,
             SkillCode skillCode,
-            ImmutableList<AilmentCode> ailmentCodeList,
-            ImmutableList<CharacterId> targetIdList)
+            IReadOnlyList<AilmentCode> ailmentCodeList,
+            IReadOnlyList<CharacterId> targetIdList)
         {
             ActorId = actorId;
             SkillCode = skillCode;
@@ -19,10 +19,10 @@ namespace BattleScene.Domain.ValueObject
             TargetIdList = targetIdList;
         }
 
-        public ImmutableList<AilmentCode> AilmentCodeList { get; }
+        public IReadOnlyList<AilmentCode> AilmentCodeList { get; }
         public CharacterId ActorId { get; }
         public SkillCode SkillCode { get; }
-        public ImmutableList<CharacterId> TargetIdList { get; }
+        public IReadOnlyList<CharacterId> TargetIdList { get; }
 
         public bool Success()
         {
