@@ -1,4 +1,5 @@
-﻿using System.Collections.Immutable;
+﻿using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DataAccess;
@@ -26,14 +27,14 @@ namespace BattleScene.Domain.DomainService
         ///     状態異常を効果時間が短い順にソートして返す。
         /// </summary>
         /// <returns>状態異常エンティティのリスト</returns>
-        public ImmutableList<AilmentEntity> GetOrdered(CharacterId characterId)
+        public IReadOnlyList<AilmentEntity> GetOrdered(CharacterId characterId)
         {
             return _ailmentCollection.Get()
                 .Where(x => Equals(x.CharacterId, characterId))
                 .Where(x => x.IsSelfRecovery)
                 .OrderBy(x => x.Turn)
                 .ThenBy(x => x)
-                .ToImmutableList();
+                .ToList();
         }
 
         /// <summary>
