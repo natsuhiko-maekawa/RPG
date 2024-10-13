@@ -2,42 +2,59 @@
 'https://plantuml.com/class-diagram
 
 package Model{
-    package Domain{
-        enum Enum
-        class Id
-        class Entity
-        class ValueObject
-        Enum <-- Entity
-        Id <-- Entity
-        Enum <-- ValueObject
+    package DataAccess{
+        class Collection
+        class Factory
+        interface IResource
+        class Resource
+        Resource --|> IResource
     }
-    
+
     package UseCases{
         class Service
-        interface IRepository
+        class UseCase
+        interface ICollection
         interface IFactory
-        Domain <-- Service
-        Entity <-- IRepository
-        ValueObject <-- IFactory
+        interface IService
+        ICollection <-- Service
+        IFactory <-- Service
+        IService <|-- Service
+        IService <-- UseCase
     }
-    
-    package DataAccess{
-        class Repository
-        class Factory
-        IRepository <|-- Repository
-        IFactory <|-- Factory
+
+    package Domain{
+        class Entity
+        class ValueObject
+        ValueObject <-l- Entity
     }
+
+    ICollection ---> Entity
+    IFactory ---> ValueObject
+    Collection ---|> ICollection
+    Factory ---|> IFactory
 }
 
-package Presenter{
-    class ViewModelService
+package Presenters{
+    class State
+    class Context
+    class StateMachine
+    class Facade
+    class Presenter
+    UseCase <-- State
+    Facade <-- State
+    Presenter <-- Facade
+    State <-- Context
+    Context <-- StateMachine
 }
 
-package View{
+package Views{
+    class View
+    class ViewModel
+    ViewModel <- View
 }
 
-
-
-
+IResource <-- Presenter
+View <-- Presenter
+ViewModel <-- Presenter
 
 @enduml
