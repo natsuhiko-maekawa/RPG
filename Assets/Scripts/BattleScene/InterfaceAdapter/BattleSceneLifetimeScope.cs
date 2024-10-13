@@ -297,6 +297,7 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<AttacksWeakPointEvaluatorService>(Lifetime.Singleton);
             builder.Register<BuffGeneratorService>(Lifetime.Singleton);
             builder.Register<BuffRegistererService>(Lifetime.Singleton);
+            builder.Register<BuffTurnService>(Lifetime.Singleton);
             builder.Register<CantActionService>(Lifetime.Singleton);
             builder.Register<CharacterPropertyFactoryService>(Lifetime.Singleton);
             builder.Register<DamageEvaluatorService>(Lifetime.Singleton);

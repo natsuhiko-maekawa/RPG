@@ -38,7 +38,8 @@ namespace BattleScene.Domain.Entity
 
         public void AdvanceTurn()
         {
-            ++Turn;
+            --Turn;
+            if (Turn < 0) Rate = 1.0f;
         }
     }
 }

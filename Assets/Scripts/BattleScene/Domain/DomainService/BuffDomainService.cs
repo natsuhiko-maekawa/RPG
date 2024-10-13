@@ -23,19 +23,5 @@ namespace BattleScene.Domain.DomainService
             var buffEntity = _buffRepository.Select((characterId, buffCode));
             return buffEntity?.Rate ?? 1.0f;
         }
-
-        public void AdvanceAllTurn(CharacterId characterId)
-        {
-            var buffEntityList = _buffRepository.Select()
-                .Where(x => Equals(x.CharacterId, characterId))
-                .ToImmutableList();
-            foreach (var buffEntity in buffEntityList)
-                buffEntity.AdvanceTurn();
-            var recoverBuffEntityList = buffEntityList
-                .Where(x => x.TurnIsEnd)
-                .Select(x => x.Id)
-                .ToImmutableList();
-            _buffRepository.Delete(recoverBuffEntityList);
-        }
     }
 }
