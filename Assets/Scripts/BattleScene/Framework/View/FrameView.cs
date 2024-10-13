@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace BattleScene.Framework.View
 {
-    public class FrameView : BaseView<FrameViewDto>
+    public class FrameView : MonoBehaviour
     {
         [SerializeField] private Image frame;
         private Image _frame;
@@ -16,7 +16,7 @@ namespace BattleScene.Framework.View
             _frame.enabled = false;
         }
 
-        public override Task StartAnimation(FrameViewDto dto)
+        public Task StartAnimation(FrameViewDto dto)
         {
             _frame.color = dto.Color;
             _frame.enabled = true;
