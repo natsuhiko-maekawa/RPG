@@ -10,21 +10,21 @@ namespace BattleScene.Domain.DomainService
 {
     public class TargetDomainService
     {
-        private readonly IRepository<BattleLogEntity, BattleLogId> _battleLogRepository;
+        private readonly ICollection<BattleLogEntity, BattleLogId> _battleLogCollection;
         private readonly EnemiesDomainService _enemies;
-        private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
+        private readonly ICollection<CharacterEntity, CharacterId> _characterCollection;
         private readonly PlayerDomainService _player;
 
         public TargetDomainService(
             EnemiesDomainService enemies,
             PlayerDomainService player,
-            IRepository<BattleLogEntity, BattleLogId> battleLogRepository,
-            IRepository<CharacterEntity, CharacterId> characterRepository)
+            ICollection<BattleLogEntity, BattleLogId> battleLogCollection,
+            ICollection<CharacterEntity, CharacterId> characterCollection)
         {
             _enemies = enemies;
             _player = player;
-            _battleLogRepository = battleLogRepository;
-            _characterRepository = characterRepository;
+            _battleLogCollection = battleLogCollection;
+            _characterCollection = characterCollection;
         }
 
         public ImmutableList<CharacterId> Get(CharacterId characterId, Range range)
@@ -32,7 +32,7 @@ namespace BattleScene.Domain.DomainService
             var targetList = range switch
             {
                 Range.Oneself =>
-                    _characterRepository.Select(characterId).IsSurvive
+                    _characterCollection.Get(characterId).IsSurvive
                         ? ImmutableList.Create(characterId)
                         : ImmutableList<CharacterId>.Empty,
                 Range.Solo =>
@@ -51,17 +51,17 @@ namespace BattleScene.Domain.DomainService
 
         private CharacterId GetEnemySolo()
         {
-            var targetId = _battleLogRepository.Select()
+            var targetId = _battleLogCollection.Get()
                 .Where(x => Equals(x.ActorId, _player.GetId()))
                 .Where(x => x.TargetIdList.Count == 1)
                 .Where(x => x.TargetIdList.Contains(_player.GetId()))
                 .Max()?.TargetIdList
                 .First();
-            targetId = targetId == null || !_characterRepository.Select(targetId).IsSurvive
+            targetId = targetId == null || !_characterCollection.Get(targetId).IsSurvive
                 ? _enemies.Get()
                     .Select(x => x.Id)
-                    .OrderBy(x => _characterRepository.Select(x).Position)
-                    .First(x => _characterRepository.Select(x).IsSurvive)
+                    .OrderBy(x => _characterCollection.Get(x).Position)
+                    .First(x => _characterCollection.Get(x).IsSurvive)
                 : targetId;
             return targetId;
         }

@@ -10,22 +10,22 @@ namespace BattleScene.UseCases.Service
     public class BuffTurnService
     {
         private readonly OrderedItemsDomainService _orderedItems;
-        private readonly IRepository<BuffEntity, (CharacterId, BuffCode)> _buffRepository;
-        private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
+        private readonly ICollection<BuffEntity, (CharacterId, BuffCode)> _buffCollection;
+        private readonly ICollection<CharacterEntity, CharacterId> _characterCollection;
 
         public BuffTurnService(
             OrderedItemsDomainService orderedItems,
-            IRepository<BuffEntity, (CharacterId, BuffCode)> buffRepository,
-            IRepository<CharacterEntity, CharacterId> characterRepository)
+            ICollection<BuffEntity, (CharacterId, BuffCode)> buffCollection,
+            ICollection<CharacterEntity, CharacterId> characterCollection)
         {
             _orderedItems = orderedItems;
-            _buffRepository = buffRepository;
-            _characterRepository = characterRepository;
+            _buffCollection = buffCollection;
+            _characterCollection = characterCollection;
         }
 
         public void Advance()
         {
-            foreach (var buff in _buffRepository.Select()
+            foreach (var buff in _buffCollection.Get()
                          .Where(x => x.LifetimeCode == LifetimeCode.ToEndTurn || IsNextAction(x.LifetimeCode)))
             { 
                 buff.AdvanceTurn();
@@ -36,7 +36,7 @@ namespace BattleScene.UseCases.Service
         {
             if (lifetimeCode != LifetimeCode.ToNextAction) return false;
             if (!_orderedItems.First().TryGetCharacterId(out var characterId)) return false;
-            if (!_characterRepository.Select(characterId).IsPlayer) return false;
+            if (!_characterCollection.Get(characterId).IsPlayer) return false;
             return true;
         }
     }

@@ -12,14 +12,14 @@ namespace BattleScene.Domain.DomainService
     public class AilmentDomainService
     {
         private readonly IFactory<AilmentPropertyValueObject, AilmentCode> _ailmentPropertyFactory;
-        private readonly IRepository<AilmentEntity, (CharacterId, AilmentCode)> _ailmentRepository;
+        private readonly ICollection<AilmentEntity, (CharacterId, AilmentCode)> _ailmentCollection;
 
         public AilmentDomainService(
             IFactory<AilmentPropertyValueObject, AilmentCode> ailmentPropertyFactory,
-            IRepository<AilmentEntity, (CharacterId, AilmentCode)> ailmentRepository)
+            ICollection<AilmentEntity, (CharacterId, AilmentCode)> ailmentCollection)
         {
             _ailmentPropertyFactory = ailmentPropertyFactory;
-            _ailmentRepository = ailmentRepository;
+            _ailmentCollection = ailmentCollection;
         }
 
         /// <summary>
@@ -28,7 +28,7 @@ namespace BattleScene.Domain.DomainService
         /// <returns>状態異常エンティティのリスト</returns>
         public ImmutableList<AilmentEntity> GetOrdered(CharacterId characterId)
         {
-            return _ailmentRepository.Select()
+            return _ailmentCollection.Get()
                 .Where(x => Equals(x.CharacterId, characterId))
                 .Where(x => x.IsSelfRecovery)
                 .OrderBy(x => x.Turn)
@@ -41,20 +41,20 @@ namespace BattleScene.Domain.DomainService
         /// </summary>
         public void AdvanceTurn()
         {
-            var ailments = _ailmentRepository.Select()
+            var ailments = _ailmentCollection.Get()
                 .Select(x =>
                 {
                     x.AdvanceTurn();
                     return x;
                 })
             .ToImmutableList();
-            _ailmentRepository.Update(ailments);
+            _ailmentCollection.Add(ailments);
 
-            var recoverAilmentsList = _ailmentRepository.Select()
+            var recoverAilmentsList = _ailmentCollection.Get()
                 .Where(x => x.TurnIsEnd)
                 .Select(x => x.Id)
                 .ToImmutableList();
-            _ailmentRepository.Delete(recoverAilmentsList);
+            _ailmentCollection.Remove(recoverAilmentsList);
         }
 
         /// <summary>
@@ -66,7 +66,7 @@ namespace BattleScene.Domain.DomainService
         [CanBeNull]
         public AilmentEntity GetHighestPriority(CharacterId characterId)
         {
-            var ailment = _ailmentRepository.Select()
+            var ailment = _ailmentCollection.Get()
                 .Where(x => Equals(x.CharacterId, characterId))
                 .Where(x => x.Effects)
                 .Where(x => _ailmentPropertyFactory.Create(x.AilmentCode).Priority.HasValue)

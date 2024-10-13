@@ -13,7 +13,7 @@ namespace BattleScene.InterfaceAdapter.Presenter
 {
     public class TargetViewPresenter
     {
-        private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
+        private readonly ICollection<CharacterEntity, CharacterId> _characterCollection;
         private readonly OrderedItemsDomainService _orderedItems;
         private readonly PlayerDomainService _player;
         private readonly IFactory<SkillValueObject, SkillCode> _skillFactory;
@@ -25,14 +25,14 @@ namespace BattleScene.InterfaceAdapter.Presenter
             OrderedItemsDomainService orderedItems,
             TargetDomainService target,
             PlayerDomainService player,
-            IRepository<CharacterEntity, CharacterId> characterRepository,
+            ICollection<CharacterEntity, CharacterId> characterCollection,
             TargetView targetView)
         {
             _skillFactory = skillFactory;
             _orderedItems = orderedItems;
             _target = target;
             _player = player;
-            _characterRepository = characterRepository;
+            _characterCollection = characterCollection;
             _targetView = targetView;
         }
 
@@ -59,7 +59,7 @@ namespace BattleScene.InterfaceAdapter.Presenter
         {
             var characterDto = Equals(x, _player.GetId())
                 ? CharacterDto.CreatePlayer()
-                : new CharacterDto(_characterRepository.Select(x).Position);
+                : new CharacterDto(_characterCollection.Get(x).Position);
             return characterDto;
         }
     }

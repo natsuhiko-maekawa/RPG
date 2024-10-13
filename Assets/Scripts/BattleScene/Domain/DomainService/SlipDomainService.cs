@@ -8,24 +8,24 @@ namespace BattleScene.Domain.DomainService
 {
     public class SlipDomainService
     {
-        private readonly IRepository<SlipEntity, SlipDamageCode> _slipRepository;
+        private readonly ICollection<SlipEntity, SlipDamageCode> _slipCollection;
 
         public SlipDomainService(
-            IRepository<SlipEntity, SlipDamageCode> slipRepository)
+            ICollection<SlipEntity, SlipDamageCode> slipCollection)
         {
-            _slipRepository = slipRepository;
+            _slipCollection = slipCollection;
         }
 
         public void AdvanceTurn()
         {
-            var slip = _slipRepository.Select()
+            var slip = _slipCollection.Get()
                 .Select(x =>
                 {
                     x.AdvanceTurn();
                     return x;
                 })
                 .ToImmutableList();
-            _slipRepository.Update(slip);
+            _slipCollection.Add(slip);
         }
     }
 }

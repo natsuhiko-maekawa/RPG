@@ -5,20 +5,20 @@ using BattleScene.Domain.Entity;
 
 namespace BattleScene.DataAccess.Repository
 {
-    public partial class Repository<TEntity, TId> : IRepository<TEntity, TId>, ISerializable
+    public partial class Collection<TEntity, TId> : ICollection<TEntity, TId>, ISerializable
         where TEntity : BaseEntity<TId>
     {
         private readonly Dictionary<TId, TEntity> _entityDictionary = new();
         
-        public TEntity Select(TId id)
+        public TEntity Get(TId id)
         {
             _entityDictionary.TryGetValue(id, out var entity);
             return entity;
         }
 
-        public IReadOnlyList<TEntity> Select() => _entityDictionary.Values.ToList();
+        public IReadOnlyList<TEntity> Get() => _entityDictionary.Values.ToList();
 
-        public void Update(TEntity entity)
+        public void Add(TEntity entity)
         {
             if (entity == null) return;
             Observe(entity);
@@ -31,24 +31,24 @@ namespace BattleScene.DataAccess.Repository
 
         partial void Observe(TEntity entity);
 
-        public void Update(IReadOnlyList<TEntity> entityList)
+        public void Add(IReadOnlyList<TEntity> entityList)
         {
-            foreach (var entity in entityList) Update(entity);
+            foreach (var entity in entityList) Add(entity);
         }
 
-        public void Delete()
+        public void Remove()
         {
             _entityDictionary.Clear();
         }
         
-        public void Delete(TId id)
+        public void Remove(TId id)
         {
             _entityDictionary.Remove(id);
         }
 
-        public void Delete(IReadOnlyList<TId> idList)
+        public void Remove(IReadOnlyList<TId> idList)
         {
-            foreach (var id in idList) Delete(id);
+            foreach (var id in idList) Remove(id);
         }
     }
 }

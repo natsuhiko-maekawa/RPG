@@ -13,14 +13,14 @@ namespace BattleScene.UseCases.Service
     public class AilmentRegistererService : IPrimeSkillRegistererService<AilmentValueObject>
     {
         private readonly IFactory<AilmentPropertyValueObject, AilmentCode> _ailmentPropertyFactory;
-        private readonly IRepository<AilmentEntity, (CharacterId, AilmentCode)> _ailmentRepository;
+        private readonly ICollection<AilmentEntity, (CharacterId, AilmentCode)> _ailmentCollection;
 
         public AilmentRegistererService(
             IFactory<AilmentPropertyValueObject, AilmentCode> ailmentPropertyFactory,
-            IRepository<AilmentEntity, (CharacterId, AilmentCode)> ailmentRepository)
+            ICollection<AilmentEntity, (CharacterId, AilmentCode)> ailmentCollection)
         {
             _ailmentPropertyFactory = ailmentPropertyFactory;
-            _ailmentRepository = ailmentRepository;
+            _ailmentCollection = ailmentCollection;
         }
 
         public void Register(AilmentValueObject ailment)
@@ -34,7 +34,7 @@ namespace BattleScene.UseCases.Service
                     turn: ailmentProperty.Turn,
                     isSelfRecovery: ailmentProperty.IsSelfRecovery))
                 .ToImmutableList();
-            _ailmentRepository.Update(ailmentEntityList);
+            _ailmentCollection.Add(ailmentEntityList);
         }
 
         public void Register(IReadOnlyList<AilmentValueObject> ailmentList)

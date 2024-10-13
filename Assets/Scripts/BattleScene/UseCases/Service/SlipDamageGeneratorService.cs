@@ -17,20 +17,20 @@ namespace BattleScene.UseCases.Service
         private readonly PlayerDomainService _player;
         private readonly DamageEvaluatorService _damageEvaluator;
         private readonly IFactory<BattlePropertyValueObject> _battlePropertyFactory;
-        private readonly IRepository<BattleLogEntity, BattleLogId> _battleLogRepository;
+        private readonly ICollection<BattleLogEntity, BattleLogId> _battleLogCollection;
 
         public SlipDamageGeneratorService(
             OrderedItemsDomainService orderedItems,
             PlayerDomainService player,
             DamageEvaluatorService damageEvaluator,
             IFactory<BattlePropertyValueObject> battlePropertyFactory,
-            IRepository<BattleLogEntity, BattleLogId> battleLogRepository)
+            ICollection<BattleLogEntity, BattleLogId> battleLogCollection)
         {
             _orderedItems = orderedItems;
             _player = player;
             _damageEvaluator = damageEvaluator;
             _battlePropertyFactory = battlePropertyFactory;
-            _battleLogRepository = battleLogRepository;
+            _battleLogCollection = battleLogCollection;
         }
 
         public SlipDamageValueObject Generate()
@@ -38,7 +38,7 @@ namespace BattleScene.UseCases.Service
             _orderedItems.First().TryGetSlipDamageCode(out var slipCode);
             MyDebug.Assert(slipCode != SlipDamageCode.NoSlipDamage);
 
-            var battleLog = _battleLogRepository.Select()
+            var battleLog = _battleLogCollection.Get()
                 .Where(x => x.SlipDamageCode == slipCode)
                 .Max();
             Debug.Assert(battleLog != null);

@@ -9,12 +9,12 @@ namespace BattleScene.UseCases.Service
 {
     public class RestoreRegistererService : IPrimeSkillRegistererService<RestoreValueObject>
     {
-        private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
+        private readonly ICollection<CharacterEntity, CharacterId> _characterCollection;
 
         public RestoreRegistererService(
-            IRepository<CharacterEntity, CharacterId> characterRepository)
+            ICollection<CharacterEntity, CharacterId> characterCollection)
         {
-            _characterRepository = characterRepository;
+            _characterCollection = characterCollection;
         }
         
         public void Register(IReadOnlyList<RestoreValueObject> restoreList)
@@ -24,10 +24,10 @@ namespace BattleScene.UseCases.Service
 
         private void AddTechnicalPoint(RestoreValueObject restore)
         {
-            var currentTechnicalPoint = _characterRepository.Select(restore.ActorId).CurrentTechnicalPoint;
+            var currentTechnicalPoint = _characterCollection.Get(restore.ActorId).CurrentTechnicalPoint;
             var technicalPoint = restore.TechnicalPoint;
             var newTechnicalPoint = currentTechnicalPoint + technicalPoint;
-            _characterRepository.Select(restore.ActorId).CurrentTechnicalPoint = newTechnicalPoint;
+            _characterCollection.Get(restore.ActorId).CurrentTechnicalPoint = newTechnicalPoint;
         }
     }
 }

@@ -11,16 +11,16 @@ namespace BattleScene.UseCases.Service.Order
 {
     public class ActionTimeService
     {
-        private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
+        private readonly ICollection<CharacterEntity, CharacterId> _characterCollection;
         private readonly OrderedItemsDomainService _orderedItems;
         private readonly ISpeedService _speed;
 
         public ActionTimeService(
-            IRepository<CharacterEntity, CharacterId> characterRepository,
+            ICollection<CharacterEntity, CharacterId> characterCollection,
             OrderedItemsDomainService orderedItems,
             ISpeedService speed)
         {
-            _characterRepository = characterRepository;
+            _characterCollection = characterCollection;
             _orderedItems = orderedItems;
             _speed = speed;
         }
@@ -30,11 +30,11 @@ namespace BattleScene.UseCases.Service.Order
             if (!_orderedItems.First().TryGetCharacterId(out var actorId))
                 return;
 
-            var characterIdList = _characterRepository.Select().Select(x => x.Id).ToImmutableList();
+            var characterIdList = _characterCollection.Get().Select(x => x.Id).ToImmutableList();
             var characterList = characterIdList
                 .Select(x =>
                 {
-                    var character = _characterRepository.Select(x);
+                    var character = _characterCollection.Get(x);
                     var actionTime = ComputeActionTime(
                         characterIdList: characterIdList,
                         actorId: actorId,
@@ -44,14 +44,14 @@ namespace BattleScene.UseCases.Service.Order
                 })
                 .ToImmutableList();
             
-            _characterRepository.Update(characterList);
+            _characterCollection.Add(characterList);
         }
 
         private int ComputeActionTime(IList<CharacterId> characterIdList, CharacterId actorId, CharacterId characterId)
         {
-            var actionTime = _characterRepository.Select(characterId).ActionTime;
+            var actionTime = _characterCollection.Get(characterId).ActionTime;
             var minTime = characterIdList
-                .Select(x => _characterRepository.Select(x).ActionTime)
+                .Select(x => _characterCollection.Get(x).ActionTime)
                 .Min();
             actionTime -= minTime;
 

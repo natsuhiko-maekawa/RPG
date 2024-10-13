@@ -8,14 +8,14 @@ namespace BattleScene.UseCases.UseCase
 {
     internal class Attack
     {
-        private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
+        private readonly ICollection<CharacterEntity, CharacterId> _characterCollection;
         private readonly OrderedItemsDomainService _orderedItems;
 
         public Attack(
-            IRepository<CharacterEntity, CharacterId> characterRepository,
+            ICollection<CharacterEntity, CharacterId> characterCollection,
             OrderedItemsDomainService orderedItems)
         {
-            _characterRepository = characterRepository;
+            _characterCollection = characterCollection;
             _orderedItems = orderedItems;
         }
 
@@ -24,7 +24,7 @@ namespace BattleScene.UseCases.UseCase
             _orderedItems.First().TryGetCharacterId(out var characterId);
             // var skill = _skillRepository.Select(characterId);
 
-            if (_characterRepository.Select(characterId).IsPlayer)
+            if (_characterCollection.Get(characterId).IsPlayer)
             {
                 // TODO: FatalitySkillかどうか判定し、リミットゲージの表示更新を可否を決定する
 

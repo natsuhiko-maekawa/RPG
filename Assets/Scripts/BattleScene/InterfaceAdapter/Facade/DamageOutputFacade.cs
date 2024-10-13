@@ -12,7 +12,7 @@ namespace BattleScene.InterfaceAdapter.Facade
 {
     public class DamageOutputFacade
     {
-        private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
+        private readonly ICollection<CharacterEntity, CharacterId> _characterCollection;
         private readonly AttackCountViewPresenter _attackCountView;
         private readonly DamageViewPresenter _damageView;
         private readonly MessageViewPresenter _messageView;
@@ -20,14 +20,14 @@ namespace BattleScene.InterfaceAdapter.Facade
         private readonly VibrationViewPresenter _vibrationView;
 
         public DamageOutputFacade(
-            IRepository<CharacterEntity, CharacterId> characterRepository,
+            ICollection<CharacterEntity, CharacterId> characterCollection,
             AttackCountViewPresenter attackCountView,
             DamageViewPresenter damageView,
             MessageViewPresenter messageView,
             PlayerImageViewPresenter playerImageView,
             VibrationViewPresenter vibrationView)
         {
-            _characterRepository = characterRepository;
+            _characterCollection = characterCollection;
             _attackCountView = attackCountView;
             _damageView = damageView;
             _messageView = messageView;
@@ -39,17 +39,17 @@ namespace BattleScene.InterfaceAdapter.Facade
         {
             var animationList = new List<Task>();
             
-            var isActorPlayer = _characterRepository.Select(damage.ActorId).IsPlayer;
+            var isActorPlayer = _characterCollection.Get(damage.ActorId).IsPlayer;
             if (isActorPlayer)
             {
                 var attackCountAnimation = _attackCountView.Start();
                 animationList.Add(attackCountAnimation);
             }
             
-            if (damage.ActualTargetIdList.Any(x => _characterRepository.Select(x).IsPlayer))
+            if (damage.ActualTargetIdList.Any(x => _characterCollection.Get(x).IsPlayer))
             {
                 var playerImageCode = damage.AttackList
-                        .Where(x => _characterRepository.Select(x.TargetId).IsPlayer)
+                        .Where(x => _characterCollection.Get(x.TargetId).IsPlayer)
                         .All(x => !x.IsHit)
                     ? PlayerImageCode.Avoidance
                     : PlayerImageCode.Damaged;

@@ -209,20 +209,20 @@ namespace BattleScene.InterfaceAdapter
             #endregion
             
             #region RegisterRepository
-            builder.Register<IRepository<AilmentEntity, (CharacterId, AilmentCode)>, Repository<AilmentEntity, (CharacterId, AilmentCode)>>(
+            builder.Register<ICollection<AilmentEntity, (CharacterId, AilmentCode)>, Collection<AilmentEntity, (CharacterId, AilmentCode)>>(
                 Lifetime.Singleton);
-            builder.Register<IRepository<BattleLogEntity, BattleLogId>, Repository<BattleLogEntity, BattleLogId>>(
+            builder.Register<ICollection<BattleLogEntity, BattleLogId>, Collection<BattleLogEntity, BattleLogId>>(
                 Lifetime.Singleton);
-            builder.Register<IRepository<BodyPartEntity, (CharacterId, BodyPartCode)>, Repository<BodyPartEntity, (CharacterId, BodyPartCode)>>(
+            builder.Register<ICollection<BodyPartEntity, (CharacterId, BodyPartCode)>, Collection<BodyPartEntity, (CharacterId, BodyPartCode)>>(
                 Lifetime.Singleton);
-            builder.Register<IRepository<BuffEntity, (CharacterId, BuffCode)>, Repository<BuffEntity, (CharacterId, BuffCode)>>(
+            builder.Register<ICollection<BuffEntity, (CharacterId, BuffCode)>, Collection<BuffEntity, (CharacterId, BuffCode)>>(
                 Lifetime.Singleton);
-            builder.Register<IRepository<CharacterEntity, CharacterId>, Repository<CharacterEntity, CharacterId>>(Lifetime.Singleton);
-            builder.Register<IRepository<OrderedItemEntity, OrderId>, Repository<OrderedItemEntity, OrderId>>(
+            builder.Register<ICollection<CharacterEntity, CharacterId>, Collection<CharacterEntity, CharacterId>>(Lifetime.Singleton);
+            builder.Register<ICollection<OrderedItemEntity, OrderId>, Collection<OrderedItemEntity, OrderId>>(
                 Lifetime.Singleton);
-            builder.Register<IRepository<SlipEntity, SlipDamageCode>, Repository<SlipEntity, SlipDamageCode>>(
+            builder.Register<ICollection<SlipEntity, SlipDamageCode>, Collection<SlipEntity, SlipDamageCode>>(
                 Lifetime.Singleton);
-            builder.Register<IRepository<TurnEntity, TurnId>, Repository<TurnEntity, TurnId>>(Lifetime.Singleton);
+            builder.Register<ICollection<TurnEntity, TurnId>, Collection<TurnEntity, TurnId>>(Lifetime.Singleton);
             #endregion
 
             #region RegisterInterfaceAdapterService

@@ -17,7 +17,7 @@ namespace BattleScene.UseCases.Service
         private readonly IBuffDomainService _buff;
         private readonly CharacterPropertyFactoryService _characterPropertyFactory;
         private readonly IFactory<BattlePropertyValueObject> _battlePropertyFactory;
-        private readonly IRepository<BuffEntity, (CharacterId, BuffCode)> _buffRepository;
+        private readonly ICollection<BuffEntity, (CharacterId, BuffCode)> _buffCollection;
         private readonly IMyRandomService _myRandom;
 
         public DamageEvaluatorService(
@@ -25,14 +25,14 @@ namespace BattleScene.UseCases.Service
             IBuffDomainService buff,
             CharacterPropertyFactoryService characterPropertyFactoryFactory,
             IFactory<BattlePropertyValueObject> battlePropertyFactory,
-            IRepository<BuffEntity, (CharacterId, BuffCode)> buffRepository, 
+            ICollection<BuffEntity, (CharacterId, BuffCode)> buffCollection, 
             IMyRandomService myRandom)
         {
             _bodyPartDomainService = bodyPartDomainService;
             _buff = buff;
             _characterPropertyFactory = characterPropertyFactoryFactory;
             _battlePropertyFactory = battlePropertyFactory;
-            _buffRepository = buffRepository;
+            _buffCollection = buffCollection;
             _myRandom = myRandom;
         }
 
@@ -56,7 +56,7 @@ namespace BattleScene.UseCases.Service
             var actorBuffRate = _buff.GetRate(actorId, BuffCode.Attack);
             var targetBuffRate = _buff.GetRate(targetId, BuffCode.Defence);
             var destroyedRate = 1.0f - _bodyPartDomainService.Count(actorId, BodyPartCode.Arm) * 0.5f;
-            var targetDefence = _buffRepository.Select((targetId, BuffCode.DefenceSkill)) == null ? 1.0f : 0.5f;
+            var targetDefence = _buffCollection.Get((targetId, BuffCode.DefenceSkill)) == null ? 1.0f : 0.5f;
             var rate = damageParameter.DamageRate;
             var weekPointRate = (int)Math.Pow(2, actorMatAttr.Intersect(targetWeekPoint).Count());
             return (int)(actorStrength * actorStrength / (float)targetVitality * weekPointRate * actorBuffRate

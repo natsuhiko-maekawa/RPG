@@ -10,17 +10,17 @@ namespace BattleScene.Domain.DomainService
 {
     public class BuffDomainService : IBuffDomainService
     {
-        private readonly IRepository<BuffEntity, (CharacterId, BuffCode)> _buffRepository;
+        private readonly ICollection<BuffEntity, (CharacterId, BuffCode)> _buffCollection;
 
         public BuffDomainService(
-            IRepository<BuffEntity, (CharacterId, BuffCode)> buffRepository)
+            ICollection<BuffEntity, (CharacterId, BuffCode)> buffCollection)
         {
-            _buffRepository = buffRepository;
+            _buffCollection = buffCollection;
         }
         
         public float GetRate(CharacterId characterId, BuffCode buffCode)
         {
-            var buffEntity = _buffRepository.Select((characterId, buffCode));
+            var buffEntity = _buffCollection.Get((characterId, buffCode));
             return buffEntity?.Rate ?? 1.0f;
         }
     }

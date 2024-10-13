@@ -9,15 +9,15 @@ namespace BattleScene.UseCases.Service
 {
     public class BattleLoggerService
     {
-        private readonly IRepository<BattleLogEntity, BattleLogId> _battleLogRepository;
-        private readonly IRepository<TurnEntity, TurnId> _turnRepository;
+        private readonly ICollection<BattleLogEntity, BattleLogId> _battleLogCollection;
+        private readonly ICollection<TurnEntity, TurnId> _turnCollection;
 
         public BattleLoggerService(
-            IRepository<BattleLogEntity, BattleLogId> battleLogRepository,
-            IRepository<TurnEntity, TurnId> turnRepository)
+            ICollection<BattleLogEntity, BattleLogId> battleLogCollection,
+            ICollection<TurnEntity, TurnId> turnCollection)
         {
-            _battleLogRepository = battleLogRepository;
-            _turnRepository = turnRepository;
+            _battleLogCollection = battleLogCollection;
+            _turnCollection = turnCollection;
         }
 
         public void Log(PrimeSkillValueObject primeSkill)
@@ -28,7 +28,7 @@ namespace BattleScene.UseCases.Service
                 sequence: sequence,
                 turn: turn,
                 primeSkill: primeSkill);
-            _battleLogRepository.Update(battleLog);
+            _battleLogCollection.Add(battleLog);
         }
 
         public void Log(IReadOnlyList<PrimeSkillValueObject> primeSkillList)
@@ -41,17 +41,17 @@ namespace BattleScene.UseCases.Service
                     turn: turn,
                     primeSkill: x))
                 .ToList();
-            _battleLogRepository.Update(battleLogList);
+            _battleLogCollection.Add(battleLogList);
         }
 
         private (BattleLogId battleLogId, int nextSequence, int turn) GetBattleLogCommonArguments()
         {
             var battleLogId = new BattleLogId();
-            var sequence = _battleLogRepository.Select()
+            var sequence = _battleLogCollection.Get()
                 .Max()
                 ?.Sequence ?? 0;
             var nextSequence = sequence + 1;
-            var turn = _turnRepository.Select()
+            var turn = _turnCollection.Get()
                 .First()
                 .Turn;
             return (battleLogId, nextSequence, turn);

@@ -6,19 +6,19 @@ namespace BattleScene.UseCases.Service
 {
     public class TurnInitializerService
     {
-        private readonly IRepository<TurnEntity, TurnId> _turnRepository;
+        private readonly ICollection<TurnEntity, TurnId> _turnCollection;
 
         public TurnInitializerService(
-            IRepository<TurnEntity, TurnId> turnRepository)
+            ICollection<TurnEntity, TurnId> turnCollection)
         {
-            _turnRepository = turnRepository;
+            _turnCollection = turnCollection;
         }
 
         public void Initialize()
         {
             var turnId = new TurnId();
             var turn = new TurnEntity(turnId, 0);
-            _turnRepository.Update(turn);
+            _turnCollection.Add(turn);
         }
     }
 }

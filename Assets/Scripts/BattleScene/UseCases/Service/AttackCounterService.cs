@@ -9,15 +9,15 @@ namespace BattleScene.UseCases.Service
 {
     public class AttackCounterService
     {
-        private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
-        private readonly IRepository<BattleLogEntity, BattleLogId> _battleLogRepository;
+        private readonly ICollection<CharacterEntity, CharacterId> _characterCollection;
+        private readonly ICollection<BattleLogEntity, BattleLogId> _battleLogCollection;
 
         public AttackCounterService(
-            IRepository<CharacterEntity, CharacterId> characterRepository,
-            IRepository<BattleLogEntity, BattleLogId> battleLogRepository)
+            ICollection<CharacterEntity, CharacterId> characterCollection,
+            ICollection<BattleLogEntity, BattleLogId> battleLogCollection)
         {
-            _characterRepository = characterRepository;
-            _battleLogRepository = battleLogRepository;
+            _characterCollection = characterCollection;
+            _battleLogCollection = battleLogCollection;
         }
 
         public float GetRate()
@@ -32,8 +32,8 @@ namespace BattleScene.UseCases.Service
 
         private int Count()
         {
-            var battleLogList = _battleLogRepository.Select();
-            var player = _characterRepository.Select().First(x => x.IsPlayer);
+            var battleLogList = _battleLogCollection.Get();
+            var player = _characterCollection.Get().First(x => x.IsPlayer);
             var playerId = player.Id;
             var count = battleLogList
                 .OrderByDescending(x => x)

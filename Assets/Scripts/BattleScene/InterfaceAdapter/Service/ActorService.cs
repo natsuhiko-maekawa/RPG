@@ -10,18 +10,18 @@ namespace BattleScene.InterfaceAdapter.Service
     public class ActorService
     {
         private readonly AilmentDomainService _ailment;
-        private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
+        private readonly ICollection<CharacterEntity, CharacterId> _characterCollection;
         private readonly OrderedItemsDomainService _orderedItems;
         private readonly IMyRandomService _myRandom;
 
         public ActorService(
             AilmentDomainService ailment,
-            IRepository<CharacterEntity, CharacterId> characterRepository,
+            ICollection<CharacterEntity, CharacterId> characterCollection,
             OrderedItemsDomainService orderedItems,
             IMyRandomService myRandom)
         {
             _ailment = ailment;
-            _characterRepository = characterRepository;
+            _characterCollection = characterCollection;
             _orderedItems = orderedItems;
             _myRandom = myRandom;
         }
@@ -34,7 +34,7 @@ namespace BattleScene.InterfaceAdapter.Service
             get
             {
                 var isCharacter = _orderedItems.First().TryGetCharacterId(out var characterId);
-                var isPlayer = isCharacter && _characterRepository.Select(characterId).IsPlayer;
+                var isPlayer = isCharacter && _characterCollection.Get(characterId).IsPlayer;
                 return isPlayer;
             }
         }

@@ -11,17 +11,17 @@ namespace BattleScene.Domain.DomainService
     {
         private readonly IFactory<CharacterPropertyValueObject, CharacterTypeCode> _propertyFactory;
         private readonly IFactory<PlayerPropertyValueObject, CharacterTypeCode> _playerPropertyFactory;
-        private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
+        private readonly ICollection<CharacterEntity, CharacterId> _characterCollection;
 
         public PlayerDomainService(
             IFactory<CharacterPropertyValueObject, CharacterTypeCode> propertyFactory,
             IFactory<PlayerPropertyValueObject, CharacterTypeCode> playerPropertyFactory,
-            IRepository<CharacterEntity, CharacterId> characterRepository
+            ICollection<CharacterEntity, CharacterId> characterCollection
             )
         {
             _propertyFactory = propertyFactory;
             _playerPropertyFactory = playerPropertyFactory;
-            _characterRepository = characterRepository;
+            _characterCollection = characterCollection;
         }
 
         public void Add()
@@ -36,12 +36,12 @@ namespace BattleScene.Domain.DomainService
                 currentHitPoint: characterProperty.HitPoint,
                 currentTechnicalPoint: playerProperty.TechnicalPoint);
             
-            _characterRepository.Update(player);
+            _characterCollection.Add(player);
         }
         
         public CharacterEntity Get()
         {
-            return _characterRepository.Select().First(x => x.CharacterTypeCode == CharacterTypeCode.Player);
+            return _characterCollection.Get().First(x => x.CharacterTypeCode == CharacterTypeCode.Player);
         }
 
         public CharacterId GetId()

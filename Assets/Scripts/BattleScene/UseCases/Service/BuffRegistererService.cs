@@ -11,12 +11,12 @@ namespace BattleScene.UseCases.Service
 {
     public class BuffRegistererService : IPrimeSkillRegistererService<BuffValueObject>
     {
-        private readonly IRepository<BuffEntity, (CharacterId, BuffCode)> _buffRepository;
+        private readonly ICollection<BuffEntity, (CharacterId, BuffCode)> _buffCollection;
 
         public BuffRegistererService(
-            IRepository<BuffEntity, (CharacterId, BuffCode)> buffRepository)
+            ICollection<BuffEntity, (CharacterId, BuffCode)> buffCollection)
         {
-            _buffRepository = buffRepository;
+            _buffCollection = buffCollection;
         }
 
         public void Register(BuffValueObject buff)
@@ -24,7 +24,7 @@ namespace BattleScene.UseCases.Service
             var buffEntityList = buff.TargetIdList
                 .Select(CreateBuffEntity)
                 .ToList();
-            _buffRepository.Update(buffEntityList);
+            _buffCollection.Add(buffEntityList);
             
             return;
             

@@ -11,16 +11,16 @@ namespace BattleScene.UseCases.Service
     {
         private readonly PlayerDomainService _player;
         private readonly OrderedItemsDomainService _orderedItems;
-        private readonly IRepository<AilmentEntity, (CharacterId, AilmentCode)> _ailmentRepository;
+        private readonly ICollection<AilmentEntity, (CharacterId, AilmentCode)> _ailmentCollection;
 
         public AilmentResetService(
             PlayerDomainService player,
             OrderedItemsDomainService orderedItems,
-            IRepository<AilmentEntity, (CharacterId, AilmentCode)> ailmentRepository)
+            ICollection<AilmentEntity, (CharacterId, AilmentCode)> ailmentCollection)
         {
             _player = player;
             _orderedItems = orderedItems;
-            _ailmentRepository = ailmentRepository;
+            _ailmentCollection = ailmentCollection;
         }
 
         public void Reset()
@@ -28,7 +28,7 @@ namespace BattleScene.UseCases.Service
             _orderedItems.First().TryGetAilmentCode(out var ailmentCode);
             MyDebug.Assert(ailmentCode != AilmentCode.NoAilment);
             var playerId = _player.GetId();
-            _ailmentRepository.Select((playerId, ailmentCode)).Effects = false;
+            _ailmentCollection.Get((playerId, ailmentCode)).Effects = false;
         }
     }
 }

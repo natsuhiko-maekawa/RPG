@@ -9,16 +9,16 @@ namespace BattleScene.UseCases.Service
 {
     public class SkillExecutorService
     {
-        private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
+        private readonly ICollection<CharacterEntity, CharacterId> _characterCollection;
         private readonly IFactory<SkillValueObject, SkillCode> _skillFactory;
         private readonly OrderedItemsDomainService _orderedItems;
 
         public SkillExecutorService(
-            IRepository<CharacterEntity, CharacterId> characterRepository,
+            ICollection<CharacterEntity, CharacterId> characterCollection,
             IFactory<SkillValueObject, SkillCode> skillFactory,
             OrderedItemsDomainService orderedItems)
         {
-            _characterRepository = characterRepository;
+            _characterCollection = characterCollection;
             _skillFactory = skillFactory;
             _orderedItems = orderedItems;
         }
@@ -26,11 +26,11 @@ namespace BattleScene.UseCases.Service
         public void Execute(SkillCode skillCode)
         {
             if (!_orderedItems.First().TryGetCharacterId(out var actorId)) return;
-            if (!_characterRepository.Select(actorId).IsPlayer) return;
+            if (!_characterCollection.Get(actorId).IsPlayer) return;
             
             var skill = _skillFactory.Create(skillCode);
             var technicalPoint = skill.SkillCommon.TechnicalPoint;
-            _characterRepository.Select(actorId).CurrentTechnicalPoint -= technicalPoint;
+            _characterCollection.Get(actorId).CurrentTechnicalPoint -= technicalPoint;
         }
     }
 }

@@ -2,11 +2,11 @@
 
 namespace BattleScene.DataAccess.Repository
 {
-    public partial class Repository<TEntity, TId>
+    public partial class Collection<TEntity, TId>
     {
         private readonly IEnumerable<IObserver<TEntity>> _observers;
         
-        public Repository(
+        public Collection(
             IEnumerable<IObserver<TEntity>> observers)
         {
             _observers = observers;

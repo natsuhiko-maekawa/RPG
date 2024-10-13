@@ -11,18 +11,18 @@ namespace BattleScene.InterfaceAdapter.Presenter
     public class VibrationViewPresenter
     {
         private readonly BattleLogDomainService _battleLog;
-        private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
+        private readonly ICollection<CharacterEntity, CharacterId> _characterCollection;
         private readonly EnemiesView _enemiesView;
         private readonly PlayerView _playerView;
 
         public VibrationViewPresenter(
             BattleLogDomainService battleLog,
-            IRepository<CharacterEntity, CharacterId> characterRepository,
+            ICollection<CharacterEntity, CharacterId> characterCollection,
             EnemiesView enemiesView,
             PlayerView playerView)
         {
             _battleLog = battleLog;
-            _characterRepository = characterRepository;
+            _characterCollection = characterCollection;
             _enemiesView = enemiesView;
             _playerView = playerView;
         }
@@ -31,7 +31,7 @@ namespace BattleScene.InterfaceAdapter.Presenter
         {
             var characterIdList = _battleLog.GetLast().ActualTargetIdList;
             var characterList = characterIdList
-                .Select(_characterRepository.Select)
+                .Select(_characterCollection.Get)
                 .ToList();
             var taskList = characterList
                 .Select(x => x.IsPlayer 

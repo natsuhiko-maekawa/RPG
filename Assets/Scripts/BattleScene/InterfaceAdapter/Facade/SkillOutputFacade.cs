@@ -18,8 +18,8 @@ namespace BattleScene.InterfaceAdapter.Facade
     {
         private readonly IFactory<SkillValueObject, SkillCode> _skillFactory;
         private readonly IResource<SkillViewDto, SkillCode> _skillViewResource;
-        private readonly IRepository<BattleLogEntity, BattleLogId> _battleLogRepository;
-        private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
+        private readonly ICollection<BattleLogEntity, BattleLogId> _battleLogCollection;
+        private readonly ICollection<CharacterEntity, CharacterId> _characterCollection;
         private readonly OrderedItemsDomainService _orderedItems;
         private readonly MessageViewPresenter _messageView;
         private readonly PlayerImageViewPresenter _playerImageView;
@@ -27,16 +27,16 @@ namespace BattleScene.InterfaceAdapter.Facade
         public SkillOutputFacade(
             IFactory<SkillValueObject, SkillCode> skillFactory,
             IResource<SkillViewDto, SkillCode> skillViewResource,
-            IRepository<BattleLogEntity, BattleLogId> battleLogRepository,
-            IRepository<CharacterEntity, CharacterId> characterRepository,
+            ICollection<BattleLogEntity, BattleLogId> battleLogCollection,
+            ICollection<CharacterEntity, CharacterId> characterCollection,
             OrderedItemsDomainService orderedItems,
             MessageViewPresenter messageView,
             PlayerImageViewPresenter playerImageView)
         {
             _skillFactory = skillFactory;
             _skillViewResource = skillViewResource;
-            _battleLogRepository = battleLogRepository;
-            _characterRepository = characterRepository;
+            _battleLogCollection = battleLogCollection;
+            _characterCollection = characterCollection;
             _orderedItems = orderedItems;
             _messageView = messageView;
             _playerImageView = playerImageView;
@@ -47,7 +47,7 @@ namespace BattleScene.InterfaceAdapter.Facade
             var animationList = new List<Task>();
 
             _orderedItems.First().TryGetCharacterId(out var actorId);
-            var isActorPlayer = _characterRepository.Select(actorId).IsPlayer;
+            var isActorPlayer = _characterCollection.Get(actorId).IsPlayer;
 
             var messageCode = isActorPlayer
                 ? MessageCode.SkillMessage
@@ -58,8 +58,8 @@ namespace BattleScene.InterfaceAdapter.Facade
             
             var playerSkillCode = isActorPlayer
                 ? context.SkillCode
-                : _battleLogRepository.Select()
-                    .Last(x => _characterRepository.Select(x.ActorId).IsPlayer)
+                : _battleLogCollection.Get()
+                    .Last(x => _characterCollection.Get(x.ActorId).IsPlayer)
                     .SkillCode;
             var playerImageCode = _skillViewResource.Get(playerSkillCode).PlayerImageCode;
             var playerImageAnimation = _playerImageView.StartAnimationAsync(playerImageCode);

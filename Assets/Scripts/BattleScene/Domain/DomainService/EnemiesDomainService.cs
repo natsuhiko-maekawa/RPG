@@ -9,23 +9,23 @@ namespace BattleScene.Domain.DomainService
 {
     public class EnemiesDomainService
     {
-        private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
+        private readonly ICollection<CharacterEntity, CharacterId> _characterCollection;
 
-        public EnemiesDomainService(IRepository<CharacterEntity, CharacterId> characterRepository)
+        public EnemiesDomainService(ICollection<CharacterEntity, CharacterId> characterCollection)
         {
-            _characterRepository = characterRepository;
+            _characterCollection = characterCollection;
         }
 
         public ImmutableList<CharacterEntity> Get()
         {
-            return _characterRepository.Select()
+            return _characterCollection.Get()
                 .Where(x => x.CharacterTypeCode != CharacterTypeCode.Player)
                 .ToImmutableList();
         }
 
         public ImmutableList<CharacterEntity> GetSurvive()
         {
-            var surviveEnemyList = _characterRepository.Select()
+            var surviveEnemyList = _characterCollection.Get()
                 .Where(x => x.CharacterTypeCode != CharacterTypeCode.Player)
                 .Where(x => x.IsSurvive)
                 .ToImmutableList();
@@ -34,7 +34,7 @@ namespace BattleScene.Domain.DomainService
         
         public ImmutableList<CharacterId> GetIdSurvive()
         {
-            return _characterRepository.Select()
+            return _characterCollection.Get()
                 .Where(x => x.CharacterTypeCode != CharacterTypeCode.Player)
                 .Where(x => x.IsSurvive)
                 .Select(x => x.Id)
@@ -43,7 +43,7 @@ namespace BattleScene.Domain.DomainService
 
         public CharacterId GetIdByPosition(int position)
         {
-            return _characterRepository.Select()
+            return _characterCollection.Get()
                 .Where(x => x.CharacterTypeCode != CharacterTypeCode.Player)
                 .First(x => x.Position == position)
                 .Id;

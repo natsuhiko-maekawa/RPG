@@ -14,52 +14,52 @@ namespace BattleScene.UseCases.Service.Order
     {
         private readonly IFactory<BattlePropertyValueObject> _battlePropertyFactory;
         private readonly CharacterPropertyFactoryService _characterPropertyFactory;
-        private readonly IRepository<AilmentEntity, (CharacterId, AilmentCode)> _ailmentRepository;
-        private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
-        private readonly IRepository<OrderedItemEntity, OrderId> _orderedItemRepository;
-        private readonly IRepository<SlipEntity, SlipDamageCode> _slipDamageRepository;
+        private readonly ICollection<AilmentEntity, (CharacterId, AilmentCode)> _ailmentCollection;
+        private readonly ICollection<CharacterEntity, CharacterId> _characterCollection;
+        private readonly ICollection<OrderedItemEntity, OrderId> _orderedItemCollection;
+        private readonly ICollection<SlipEntity, SlipDamageCode> _slipDamageCollection;
         private readonly ISpeedService _speed;
 
         public OrderService(
             IFactory<BattlePropertyValueObject> battlePropertyFactory,
             CharacterPropertyFactoryService characterPropertyFactory, 
-            IRepository<AilmentEntity, (CharacterId, AilmentCode)> ailmentRepository, 
-            IRepository<CharacterEntity, CharacterId> characterRepository,
-            IRepository<OrderedItemEntity, OrderId> orderedItemRepository, 
-            IRepository<SlipEntity, SlipDamageCode> slipDamageRepository,
+            ICollection<AilmentEntity, (CharacterId, AilmentCode)> ailmentCollection, 
+            ICollection<CharacterEntity, CharacterId> characterCollection,
+            ICollection<OrderedItemEntity, OrderId> orderedItemCollection, 
+            ICollection<SlipEntity, SlipDamageCode> slipDamageCollection,
             ISpeedService speed)
         {
             _battlePropertyFactory = battlePropertyFactory;
             _characterPropertyFactory = characterPropertyFactory;
-            _ailmentRepository = ailmentRepository;
-            _characterRepository = characterRepository;
-            _orderedItemRepository = orderedItemRepository;
-            _slipDamageRepository = slipDamageRepository;
+            _ailmentCollection = ailmentCollection;
+            _characterCollection = characterCollection;
+            _orderedItemCollection = orderedItemCollection;
+            _slipDamageCollection = slipDamageCollection;
             _speed = speed;
         }
 
         public void Update()
         {
-            var characterList = _characterRepository.Select().Select(x => x.Id);
+            var characterList = _characterCollection.Get().Select(x => x.Id);
             var orderedItemList = Enumerable
                 .Repeat(characterList, Constant.MaxOrderNumber)
                 .Select((x, i) => x
                     .Select(y => (characterId: y,
-                        speed: _characterRepository.Select(y).ActionTime +
+                        speed: _characterCollection.Get(y).ActionTime +
                                Constant.MaxAgility / _speed.Get(y) * i)))
                 .SelectMany(x => x)
                 .OrderBy(x => x.speed)
                 .ThenByDescending(x => _characterPropertyFactory
                     .Create(x.characterId).Agility)
-                .ThenBy(x => _characterRepository.Select(x.characterId).Id)
+                .ThenBy(x => _characterCollection.Get(x.characterId).Id)
                 .Select(x => new OrderedItem(x.characterId))
                 .ToList()
                 .GetRange(0, Constant.MaxOrderNumber);
 
-            var ailments = _ailmentRepository.Select()
-                .Where(x => _characterRepository.Select(x.CharacterId).IsPlayer)
+            var ailments = _ailmentCollection.Get()
+                .Where(x => _characterCollection.Get(x.CharacterId).IsPlayer)
                 .ToList();
-            var slipDamages = _slipDamageRepository.Select();
+            var slipDamages = _slipDamageCollection.Get();
             InsertAilmentEnd(ailments, ref orderedItemList);
             InsertSlipDamage(slipDamages, ref orderedItemList);
             
@@ -70,8 +70,8 @@ namespace BattleScene.UseCases.Service.Order
                     orderedItem: x))
                 .ToImmutableList();
             
-            _orderedItemRepository.Delete();
-            _orderedItemRepository.Update(orderedItemEntityList);
+            _orderedItemCollection.Remove();
+            _orderedItemCollection.Add(orderedItemEntityList);
         }
 
         private void InsertAilmentEnd(

@@ -25,7 +25,7 @@ namespace Tests.BattleScene.UseCases.Service
         private BattlePropertyFactory _stubBattlePropertyFactory;
         private CharacterPropertyFactory _stubCharacterPropertyFactory;
         private CharacterPropertyFactoryService _stubCharacterPropertyFactoryService;
-        private readonly MockRepository<CharacterEntity, CharacterId> _mockCharacterRepository = new();
+        private readonly MockCollection<CharacterEntity, CharacterId> _mockCharacterCollection = new();
         
         [SetUp]
         public void SetUp()
@@ -47,8 +47,8 @@ namespace Tests.BattleScene.UseCases.Service
         [Test]
         public void スリップダメージが5の倍数順に挿入される()
         {
-            var stubAilmentRepository = Substitute.For<IRepository<AilmentEntity, (CharacterId, AilmentCode)>>();
-            stubAilmentRepository.Select().Returns(new List<AilmentEntity>());
+            var stubAilmentRepository = Substitute.For<ICollection<AilmentEntity, (CharacterId, AilmentCode)>>();
+            stubAilmentRepository.Get().Returns(new List<AilmentEntity>());
 
             var stubBuff = Substitute.For<IBuffDomainService>();
             stubBuff.GetRate(Arg.Any<CharacterId>(), Arg.Any<BuffCode>()).Returns(1.0f);
@@ -66,37 +66,37 @@ namespace Tests.BattleScene.UseCases.Service
                 currentHitPoint: 39,
                 position: 0);
 
-            _mockCharacterRepository.Update(player);
-            _mockCharacterRepository.Update(bee);
+            _mockCharacterCollection.Add(player);
+            _mockCharacterCollection.Add(bee);
 
             _stubCharacterPropertyFactoryService = new CharacterPropertyFactoryService(
                 characterPropertyFactory: _stubCharacterPropertyFactory,
-                characterRepository: _mockCharacterRepository);
+                characterCollection: _mockCharacterCollection);
             
             var mockSpeedService = new SpeedService(
                 buff: stubBuff,
                 characterPropertyFactory: _stubCharacterPropertyFactoryService);
             
-            var mockOrderedItemRepository = new MockRepository<OrderedItemEntity, OrderId>();
+            var mockOrderedItemRepository = new MockCollection<OrderedItemEntity, OrderId>();
 
-            var stubSlipDamageRepository = Substitute.For<IRepository<SlipEntity, SlipDamageCode>>();
-            stubSlipDamageRepository.Select().Returns(new List<SlipEntity>()
+            var stubSlipDamageRepository = Substitute.For<ICollection<SlipEntity, SlipDamageCode>>();
+            stubSlipDamageRepository.Get().Returns(new List<SlipEntity>()
                 { new SlipEntity(SlipDamageCode.Poisoning, true, 5) });
 
             var orderService = new OrderService(
                 battlePropertyFactory: _stubBattlePropertyFactory,
                 characterPropertyFactory: _stubCharacterPropertyFactoryService,
-                ailmentRepository: stubAilmentRepository,
-                characterRepository: _mockCharacterRepository,
-                orderedItemRepository: mockOrderedItemRepository,
-                slipDamageRepository: stubSlipDamageRepository,
+                ailmentCollection: stubAilmentRepository,
+                characterCollection: _mockCharacterCollection,
+                orderedItemCollection: mockOrderedItemRepository,
+                slipDamageCollection: stubSlipDamageRepository,
                 speed: mockSpeedService);
             
             orderService.Update();
             var orderedItemRepositoryToString = mockOrderedItemRepository.ToString();
             Debug.Log(orderedItemRepositoryToString);
 
-            var orderedItemList = mockOrderedItemRepository.Select();
+            var orderedItemList = mockOrderedItemRepository.Get();
             
             orderedItemList[0].TryGetCharacterId(out var characterId1);
             Assert.That(characterId1, Is.EqualTo(playerId), "順番の1番目は正しい");

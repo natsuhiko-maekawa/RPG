@@ -7,17 +7,17 @@ namespace BattleScene.Domain.DomainService
 {
     public class BattleLogDomainService
     {
-        private readonly IRepository<BattleLogEntity, BattleLogId> _battleLogRepository;
+        private readonly ICollection<BattleLogEntity, BattleLogId> _battleLogCollection;
 
         public BattleLogDomainService(
-            IRepository<BattleLogEntity, BattleLogId> battleLogRepository)
+            ICollection<BattleLogEntity, BattleLogId> battleLogCollection)
         {
-            _battleLogRepository = battleLogRepository;
+            _battleLogCollection = battleLogCollection;
         }
 
         public BattleLogEntity GetLast()
         {
-            return _battleLogRepository.Select().Max();
+            return _battleLogCollection.Get().Max();
         }
     }
 }

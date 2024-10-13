@@ -11,15 +11,15 @@ namespace BattleScene.UseCases.OldEvent
 {
     internal class AilmentsResetOldEvent : IOldEvent, IWait
     {
-        private readonly IRepository<AilmentEntity, (CharacterId, AilmentCode)> _ailmentRepository;
+        private readonly ICollection<AilmentEntity, (CharacterId, AilmentCode)> _ailmentCollection;
         private readonly PlayerDomainService _player;
         private readonly OrderedItemsDomainService _orderedItems;
 
         public AilmentsResetOldEvent(
-            IRepository<AilmentEntity, (CharacterId, AilmentCode)> ailmentRepository,
+            ICollection<AilmentEntity, (CharacterId, AilmentCode)> ailmentCollection,
             OrderedItemsDomainService orderedItems)
         {
-            _ailmentRepository = ailmentRepository;
+            _ailmentCollection = ailmentCollection;
             _orderedItems = orderedItems;
         }
 
@@ -29,7 +29,7 @@ namespace BattleScene.UseCases.OldEvent
             if (_orderedItems.First().TryGetAilmentCode(out var ailmentCode) && ailmentCode == AilmentCode.Confusion) { }
                 // _skillRepository.Update(_skillCreator.Create(playerId, SkillCode.Attack));
 
-            _ailmentRepository.Delete((playerId, ailmentCode));
+            _ailmentCollection.Remove((playerId, ailmentCode));
             StartView();
 
             return WaitEvent;

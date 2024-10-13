@@ -13,25 +13,25 @@ namespace BattleScene.UseCases.Service
 {
     public class IsHitEvaluatorService
     {
-        private readonly IRepository<AilmentEntity, (CharacterId, AilmentCode)> _ailmentRepository;
+        private readonly ICollection<AilmentEntity, (CharacterId, AilmentCode)> _ailmentCollection;
         private readonly BodyPartDomainService _bodyPartDomainService;
         private readonly CharacterPropertyFactoryService _characterPropertyFactory;
-        private readonly IRepository<BuffEntity, (CharacterId, BuffCode)> _buffRepository;
+        private readonly ICollection<BuffEntity, (CharacterId, BuffCode)> _buffCollection;
         private readonly IMyRandomService _myRandom;
         private readonly IFactory<BattlePropertyValueObject> _battlePropertyFactory;
 
         public IsHitEvaluatorService(
-            IRepository<AilmentEntity, (CharacterId, AilmentCode)> ailmentRepository,
+            ICollection<AilmentEntity, (CharacterId, AilmentCode)> ailmentCollection,
             BodyPartDomainService bodyPartDomainService,
             CharacterPropertyFactoryService characterPropertyFactory,
-            IRepository<BuffEntity, (CharacterId, BuffCode)> buffRepository,
+            ICollection<BuffEntity, (CharacterId, BuffCode)> buffCollection,
             IMyRandomService myRandom,
             IFactory<BattlePropertyValueObject> battlePropertyFactory)
         {
-            _ailmentRepository = ailmentRepository;
+            _ailmentCollection = ailmentCollection;
             _bodyPartDomainService = bodyPartDomainService;
             _characterPropertyFactory = characterPropertyFactory;
-            _buffRepository = buffRepository;
+            _buffCollection = buffCollection;
             _myRandom = myRandom;
             _battlePropertyFactory = battlePropertyFactory;
         }
@@ -64,18 +64,18 @@ namespace BattleScene.UseCases.Service
             if (!_bodyPartDomainService.IsAvailable(targetId, BodyPartCode.Leg)) return true;
             
             // 空蝉状態の時、必ず回避する
-            if (_buffRepository.Select((targetId, BuffCode.UtsusemiSkill)) != null) return false;
+            if (_buffCollection.Get((targetId, BuffCode.UtsusemiSkill)) != null) return false;
 
             // 大きいほど命中しやすくなる
             var threshold = _battlePropertyFactory.Create().IsHitThreshold; 
             var actorAgility = _characterPropertyFactory.Create(actorId).Agility;
             var targetAgility = _characterPropertyFactory.Create(targetId).Agility;
-            var isActorBlind = _ailmentRepository.Select()
+            var isActorBlind = _ailmentCollection.Get()
                 .FirstOrDefault(x => Equals(x.CharacterId, actorId) && x.AilmentCode == AilmentCode.Blind) != null;
-            var isTargetDeaf = _ailmentRepository.Select()
+            var isTargetDeaf = _ailmentCollection.Get()
                 .FirstOrDefault(x => Equals(x.CharacterId, targetId) && x.AilmentCode == AilmentCode.Deaf) != null;
             var destroyedReduce = _bodyPartDomainService.Count(targetId, BodyPartCode.Leg) * 0.5f;
-            var buff = Mathf.Log(_buffRepository.Select()
+            var buff = Mathf.Log(_buffCollection.Get()
                 .FirstOrDefault(x => Equals(x.CharacterId, actorId) && x.BuffCode == BuffCode.HitRate)?.Rate ?? 1, 2.0f);
             var add = Mathf.Log(damageParameter.HitRate, 2.0f);
             var actorFixedAgility = actorAgility + (isActorBlind ? -threshold : 0);

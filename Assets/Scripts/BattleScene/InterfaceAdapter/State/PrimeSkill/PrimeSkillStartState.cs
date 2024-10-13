@@ -13,18 +13,18 @@ namespace BattleScene.InterfaceAdapter.State.PrimeSkill
         : BaseState<TPrimeSkillParameter, TPrimeSkill> where TPrimeSkill : PrimeSkillValueObject
     {
         private readonly IPrimeSkill<TPrimeSkillParameter, TPrimeSkill> _primeSkill;
-        private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
+        private readonly ICollection<CharacterEntity, CharacterId> _characterCollection;
         private readonly PrimeSkillOutputState<TPrimeSkillParameter, TPrimeSkill> _primeSkillOutputState;
         private readonly PrimeSkillStopState<TPrimeSkillParameter, TPrimeSkill> _primeSkillStopState;
 
         public PrimeSkillStartState(
             IPrimeSkill<TPrimeSkillParameter, TPrimeSkill> primeSkill,
-            IRepository<CharacterEntity, CharacterId> characterRepository,
+            ICollection<CharacterEntity, CharacterId> characterCollection,
             PrimeSkillOutputState<TPrimeSkillParameter, TPrimeSkill> primeSkillOutputState,
             PrimeSkillStopState<TPrimeSkillParameter, TPrimeSkill> primeSkillStopState)
         {
             _primeSkill = primeSkill;
-            _characterRepository = characterRepository;
+            _characterCollection = characterCollection;
             _primeSkillOutputState = primeSkillOutputState;
             _primeSkillStopState = primeSkillStopState;
         }
@@ -45,7 +45,7 @@ namespace BattleScene.InterfaceAdapter.State.PrimeSkill
 
             BaseState<TPrimeSkillParameter, TPrimeSkill> nextState =
                 Context.PrimeSkillQueue.Count == 0
-                && Context.TargetIdList.All(x => _characterRepository.Select(x).IsPlayer)
+                && Context.TargetIdList.All(x => _characterCollection.Get(x).IsPlayer)
                 && Context.ExecutedPrimeSkillCodeList.Contains(PrimeSkillCode.Damage)
                     ? _primeSkillStopState
                     : _primeSkillOutputState;

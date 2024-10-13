@@ -18,14 +18,14 @@ namespace BattleScene.InterfaceAdapter.Skill
     /// </summary>
     internal class ConfusionSkill : BaseSkill
     {
-        private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
+        private readonly ICollection<CharacterEntity, CharacterId> _characterCollection;
         private readonly OrderedItemsDomainService _orderedItems;
 
         public ConfusionSkill(
-            IRepository<CharacterEntity, CharacterId> characterRepository,
+            ICollection<CharacterEntity, CharacterId> characterCollection,
             OrderedItemsDomainService orderedItems)
         {
-            _characterRepository = characterRepository;
+            _characterCollection = characterCollection;
             _orderedItems = orderedItems;
         }
         
@@ -38,7 +38,7 @@ namespace BattleScene.InterfaceAdapter.Skill
         private MessageCode GetAttackMessageCode()
         {
             if (!_orderedItems.First().TryGetCharacterId(out var characterId)) throw new InvalidOperationException();
-            var attackMessageCode = _characterRepository.Select(characterId).IsPlayer
+            var attackMessageCode = _characterCollection.Get(characterId).IsPlayer
                 ? MessageCode.PlayerConfusionActMessage
                 : MessageCode.EnemyConfusionActMessage;
             return attackMessageCode;

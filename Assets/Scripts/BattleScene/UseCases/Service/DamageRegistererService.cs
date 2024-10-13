@@ -11,12 +11,12 @@ namespace BattleScene.UseCases.Service
 {
     public class DamageRegistererService : IPrimeSkillRegistererService<DamageValueObject>
     {
-        private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
+        private readonly ICollection<CharacterEntity, CharacterId> _characterCollection;
 
         public DamageRegistererService(
-            IRepository<CharacterEntity, CharacterId> characterRepository)
+            ICollection<CharacterEntity, CharacterId> characterCollection)
         {
-            _characterRepository = characterRepository;
+            _characterCollection = characterCollection;
         }
 
         public void Register(DamageValueObject damage)
@@ -24,7 +24,7 @@ namespace BattleScene.UseCases.Service
             var characterList = damage.DamageDictionary
                 .Select(ReduceHitPoint)
                 .ToImmutableList();
-            _characterRepository.Update(characterList);
+            _characterCollection.Add(characterList);
         }
 
         public void Register(IReadOnlyList<DamageValueObject> damageList)
@@ -35,7 +35,7 @@ namespace BattleScene.UseCases.Service
         private CharacterEntity ReduceHitPoint(KeyValuePair<CharacterId, int> characterIdDamagePair)
         {
             var characterId = characterIdDamagePair.Key;
-            var character = _characterRepository.Select(characterId);
+            var character = _characterCollection.Get(characterId);
             var currentHitPoint = character.CurrentHitPoint;
             var damage = characterIdDamagePair.Value;
             var reducedHitPoint = currentHitPoint - damage;

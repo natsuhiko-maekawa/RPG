@@ -12,18 +12,18 @@ namespace BattleScene.InterfaceAdapter.State.PrimeSkill
 {
     public class BuffOutputState : PrimeSkillOutputState<BuffParameterValueObject, BuffValueObject>
     {
-        private readonly IRepository<BattleLogEntity, BattleLogId> _battleLogRepository;
+        private readonly ICollection<BattleLogEntity, BattleLogId> _battleLogCollection;
         private readonly IResource<BuffViewDto, BuffCode> _buffViewResource;
         private readonly MessageViewPresenter _messageView;
         private readonly PrimeSkillStopState<BuffParameterValueObject, BuffValueObject> _primeSkillStopState;
 
         public BuffOutputState(
-            IRepository<BattleLogEntity, BattleLogId> battleLogRepository,
+            ICollection<BattleLogEntity, BattleLogId> battleLogCollection,
             IResource<BuffViewDto, BuffCode> buffViewResource,
             MessageViewPresenter messageView,
             PrimeSkillStopState<BuffParameterValueObject, BuffValueObject> primeSkillStopState)
         {
-            _battleLogRepository = battleLogRepository;
+            _battleLogCollection = battleLogCollection;
             _buffViewResource = buffViewResource;
             _messageView = messageView;
             _primeSkillStopState = primeSkillStopState;
@@ -31,7 +31,7 @@ namespace BattleScene.InterfaceAdapter.State.PrimeSkill
 
         public override async void Start()
         {
-            var buffCode = _battleLogRepository.Select().Max().BuffCode;
+            var buffCode = _battleLogCollection.Get().Max().BuffCode;
             var messageCode = _buffViewResource.Get(buffCode).MessageCode;
             await _messageView.StartAnimationAsync(messageCode);
         }

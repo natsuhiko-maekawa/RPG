@@ -27,12 +27,12 @@ namespace BattleScene.InterfaceAdapter.Service
         private readonly IResource<AilmentViewDto, AilmentCode, SlipDamageCode> _ailmentViewResource;
         private readonly IResource<BodyPartViewDto, BodyPartCode> _bodyPartViewInfoResource;
         private readonly IResource<BuffViewDto, BuffCode> _buffViewInfoResource;
-        private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
+        private readonly ICollection<CharacterEntity, CharacterId> _characterCollection;
         private readonly IResource<EnemyViewDto, CharacterTypeCode> _enemyViewInfoResource;
         private readonly OrderedItemsDomainService _orderedItems;
         private readonly IResource<PlayerViewDto, CharacterTypeCode> _playerViewInfoResource;
         private readonly IResource<SkillViewDto, SkillCode> _skillViewInfoResource;
-        private readonly IRepository<BattleLogEntity, BattleLogId> _battleLogRepository;
+        private readonly ICollection<BattleLogEntity, BattleLogId> _battleLogCollection;
         private readonly BattleLogDomainService _battleLog;
         private readonly PlayerDomainService _player;
 
@@ -40,24 +40,24 @@ namespace BattleScene.InterfaceAdapter.Service
             IResource<AilmentViewDto, AilmentCode, SlipDamageCode> ailmentViewResource,
             IResource<BodyPartViewDto, BodyPartCode> bodyPartViewInfoResource,
             IResource<BuffViewDto, BuffCode> buffViewInfoResource,
-            IRepository<CharacterEntity, CharacterId> characterRepository,
+            ICollection<CharacterEntity, CharacterId> characterCollection,
             IResource<EnemyViewDto, CharacterTypeCode> enemyViewInfoResource,
             OrderedItemsDomainService orderedItems,
             IResource<PlayerViewDto, CharacterTypeCode> playerViewInfoResource,
             IResource<SkillViewDto, SkillCode> skillViewInfoResource,
-            IRepository<BattleLogEntity, BattleLogId> battleLogRepository,
+            ICollection<BattleLogEntity, BattleLogId> battleLogCollection,
             BattleLogDomainService battleLog,
             PlayerDomainService player)
         {
             _ailmentViewResource = ailmentViewResource;
             _bodyPartViewInfoResource = bodyPartViewInfoResource;
             _buffViewInfoResource = buffViewInfoResource;
-            _characterRepository = characterRepository;
+            _characterCollection = characterCollection;
             _enemyViewInfoResource = enemyViewInfoResource;
             _orderedItems = orderedItems;
             _playerViewInfoResource = playerViewInfoResource;
             _skillViewInfoResource = skillViewInfoResource;
-            _battleLogRepository = battleLogRepository;
+            _battleLogCollection = battleLogCollection;
             _battleLog = battleLog;
             _player = player;
         }
@@ -83,9 +83,9 @@ namespace BattleScene.InterfaceAdapter.Service
         {
             if (!_orderedItems.First().TryGetCharacterId(out var characterId)) throw new InvalidOperationException();
             
-            var actorName = _characterRepository.Select(characterId).IsPlayer
+            var actorName = _characterCollection.Get(characterId).IsPlayer
                 ? _playerViewInfoResource.Get(CharacterTypeCode.Player).PlayerName
-                : _enemyViewInfoResource.Get(_characterRepository.Select(characterId).CharacterTypeCode).EnemyName;
+                : _enemyViewInfoResource.Get(_characterCollection.Get(characterId).CharacterTypeCode).EnemyName;
             message.Replace(Actor, actorName);
         }
 
@@ -107,7 +107,7 @@ namespace BattleScene.InterfaceAdapter.Service
 
         private void ReplaceBuff(StringBuilder message)
         {
-            var buffCode = _battleLogRepository.Select().Max()?.BuffCode ?? BuffCode.NoBuff;
+            var buffCode = _battleLogCollection.Get().Max()?.BuffCode ?? BuffCode.NoBuff;
             if (buffCode == BuffCode.NoBuff) throw new InvalidOperationException();
             var buffName = _buffViewInfoResource.Get(buffCode).BuffName;
             message.Replace(Buff, buffName);
@@ -115,9 +115,9 @@ namespace BattleScene.InterfaceAdapter.Service
 
         private void ReplaceDamage(StringBuilder message)
         {
-            var totalPrefix = _battleLogRepository.Select()
+            var totalPrefix = _battleLogCollection.Get()
                 .Max().AttackList.Count(x => x.IsHit) == 1 ? "" : "計";
-            var damage = _battleLogRepository.Select()
+            var damage = _battleLogCollection.Get()
                 .Max().AttackList
                 .Where(x => x.IsHit)
                 .Select(x => x.Amount)
@@ -132,7 +132,7 @@ namespace BattleScene.InterfaceAdapter.Service
 
         private void ReplaceBodyPart(StringBuilder message)
         {
-            var bodyPartCode = _battleLogRepository.Select().Max().DestroyedPart;
+            var bodyPartCode = _battleLogCollection.Get().Max().DestroyedPart;
             var bodyPartName = _bodyPartViewInfoResource.Get(bodyPartCode).BodyPartName;
             message.Replace(Part, bodyPartName);
         }
@@ -151,7 +151,7 @@ namespace BattleScene.InterfaceAdapter.Service
 
         private void ReplaceTarget(StringBuilder message)
         {
-            var targetNameList = _battleLogRepository.Select()
+            var targetNameList = _battleLogCollection.Get()
                 .Max().TargetIdList
                 .Distinct()
                 .Select(GetCharacterName)
@@ -165,13 +165,13 @@ namespace BattleScene.InterfaceAdapter.Service
         {
             var characterName = Equals(characterId, _player.GetId())
                 ? _playerViewInfoResource.Get(CharacterTypeCode.Player).PlayerName
-                : _enemyViewInfoResource.Get(_characterRepository.Select(characterId).CharacterTypeCode).EnemyName;
+                : _enemyViewInfoResource.Get(_characterCollection.Get(characterId).CharacterTypeCode).EnemyName;
             return characterName;
         }
 
         private void ReplaceTechnicalPoint(StringBuilder message)
         {
-            var technicalPoint = _battleLogRepository.Select()
+            var technicalPoint = _battleLogCollection.Get()
                 .Max().TechnicalPoint
                 .ToString();
             message.Replace(TechnicalPoint, technicalPoint);

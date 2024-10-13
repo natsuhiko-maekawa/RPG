@@ -17,7 +17,7 @@ namespace BattleScene.UseCases.Service
         private readonly DamageEvaluatorService _damageEvaluator;
         private readonly IsHitEvaluatorService _isHitEvaluator;
         private readonly AttacksWeakPointEvaluatorService _attacksWeakPointEvaluator;
-        private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
+        private readonly ICollection<CharacterEntity, CharacterId> _characterCollection;
         private readonly IMyRandomService _myRandom;
 
         public DamageGeneratorService(
@@ -25,14 +25,14 @@ namespace BattleScene.UseCases.Service
             DamageEvaluatorService damageEvaluator,
             IsHitEvaluatorService isHitEvaluator,
             AttacksWeakPointEvaluatorService attacksWeakPointEvaluator,
-            IRepository<CharacterEntity, CharacterId> characterRepository,
+            ICollection<CharacterEntity, CharacterId> characterCollection,
             IMyRandomService myRandom)
         {
             _orderedItems = orderedItems;
             _damageEvaluator = damageEvaluator;
             _isHitEvaluator = isHitEvaluator;
             _attacksWeakPointEvaluator = attacksWeakPointEvaluator;
-            _characterRepository = characterRepository;
+            _characterCollection = characterCollection;
             _myRandom = myRandom;
         }
 
@@ -78,7 +78,7 @@ namespace BattleScene.UseCases.Service
         private IReadOnlyList<CharacterId> GetAttackedTargetIdList(IReadOnlyList<CharacterId> targetIdList, Range range)
         {
             var surviveTargetIdList = targetIdList
-                .Where(x => _characterRepository.Select(x).IsSurvive)
+                .Where(x => _characterCollection.Get(x).IsSurvive)
                 .ToImmutableList();
             if (range != Range.Random) return surviveTargetIdList;
             var attackedTargetId = _myRandom.Choice(surviveTargetIdList);
