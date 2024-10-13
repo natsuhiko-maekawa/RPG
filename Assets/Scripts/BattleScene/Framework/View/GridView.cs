@@ -54,7 +54,7 @@ namespace BattleScene.Framework.View
                 _gridStateDictionary.Add(dto.ActionCode, gridState);
             }
             
-            _grid.Show();
+            _grid.SetActive();
             
             foreach (var (row, rowDto) in _grid.Zip(dto.RowDtoList.Skip(gridState.TopItemIndex), (row, rowDto) => (row, rowDto)))
             {
@@ -83,7 +83,7 @@ namespace BattleScene.Framework.View
         public void StopAnimation()
         {
             _window.Hide();
-            _grid.Hide();
+            _grid.SetInActive();
             _arrowRight.Hide();
             _arrowUp.Hide();
             _arrowDown.Hide();
