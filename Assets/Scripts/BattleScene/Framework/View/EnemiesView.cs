@@ -18,22 +18,9 @@ namespace BattleScene.Framework.View
             _enemyViewGrid.SetItem(maxCacheSize);
             foreach (var enemyView in _enemyViewGrid) enemyView.SetActive(false);
         }
-        
-        public void StopEnemyFrameView()
-        {
-            foreach (var enemyView in _enemyViewGrid) enemyView.StopFrameAnimation();
-        }
 
         public EnemyView this[int i] => _enemyViewGrid[i];
-
-        public IEnumerator<EnemyView> GetEnumerator()
-        {
-            return _enemyViewGrid.GetEnumerator();
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
-        }
+        public IEnumerator<EnemyView> GetEnumerator() => _enemyViewGrid.GetEnumerator();
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }
 }
