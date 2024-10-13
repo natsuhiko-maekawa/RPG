@@ -68,7 +68,7 @@ namespace BattleScene.Framework.View
 
         public async Task StartVibesAnimationAsync()
         {
-            await _enemyVibesView.StartAnimation();
+            await _enemyVibesView.StartAnimationAsync();
         }
     }
 }
