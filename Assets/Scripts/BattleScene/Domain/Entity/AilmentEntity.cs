@@ -1,5 +1,6 @@
 ﻿using BattleScene.Domain.Code;
 using BattleScene.Domain.Id;
+using UnityEngine;
 
 namespace BattleScene.Domain.Entity
 {
@@ -22,19 +23,17 @@ namespace BattleScene.Domain.Entity
         public override (CharacterId, AilmentCode) Id => (CharacterId, AilmentCode);
         public CharacterId CharacterId { get; }
         public AilmentCode AilmentCode { get; }
-        public int Turn { get; private set; }
-        public bool IsSelfRecovery { get; }
-        public bool TurnIsEnd
+
+        private int _turn;
+        public int Turn
         {
-            get
-            {
-                if (!IsSelfRecovery) return false;
-                return Turn < 0;
-            }
+            get => _turn;
+            private set => _turn = Mathf.Max(value, 0);
         }
+        
+        public bool IsSelfRecovery { get; }
 
         private bool _effects;
-
         public bool Effects
         {
             get => _effects;
@@ -46,8 +45,8 @@ namespace BattleScene.Domain.Entity
         public void AdvanceTurn()
         {
             if (!IsSelfRecovery) return;
-            if (Turn <= 0) return;
             Turn--;
+            if (Turn < 0 && Effects) Effects = false;
         }
     }
 }
