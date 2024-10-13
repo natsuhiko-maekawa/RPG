@@ -1,4 +1,5 @@
 ﻿using System;
+using BattleScene.DataAccess;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.Entity;
@@ -10,14 +11,14 @@ using R3;
 
 namespace BattleScene.InterfaceAdapter.Presenter
 {
-    internal class AilmentViewPresenter : DataAccess.IObserver<AilmentEntity>
+    internal class AilmentViewReactivePresenter : IReactive<AilmentEntity>
     {
         private readonly ICollection<CharacterEntity, CharacterId> _characterCollection;
         private readonly ToIndexService _toIndex;
         private readonly EnemiesView _enemiesView;
         private readonly PlayerStatusView _playerAilmentsView;
 
-        public AilmentViewPresenter(
+        public AilmentViewReactivePresenter(
             ICollection<CharacterEntity, CharacterId> characterCollection,
             ToIndexService toIndex,
             EnemiesView enemiesView,

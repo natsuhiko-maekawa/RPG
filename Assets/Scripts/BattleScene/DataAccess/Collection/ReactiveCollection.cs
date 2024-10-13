@@ -4,10 +4,10 @@ namespace BattleScene.DataAccess.Collection
 {
     public partial class Collection<TEntity, TId>
     {
-        private readonly IEnumerable<IObserver<TEntity>> _observers;
+        private readonly IEnumerable<IReactive<TEntity>> _observers;
         
         public Collection(
-            IEnumerable<IObserver<TEntity>> observers)
+            IEnumerable<IReactive<TEntity>> observers)
         {
             _observers = observers;
         }

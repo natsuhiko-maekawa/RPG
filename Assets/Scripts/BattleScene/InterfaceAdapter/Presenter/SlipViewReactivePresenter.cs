@@ -1,4 +1,5 @@
-﻿using BattleScene.Domain.Code;
+﻿using BattleScene.DataAccess;
+using BattleScene.Domain.Code;
 using BattleScene.Domain.Entity;
 using BattleScene.Framework.View;
 using BattleScene.Framework.ViewModel;
@@ -7,12 +8,12 @@ using R3;
 
 namespace BattleScene.InterfaceAdapter.Presenter
 {
-    internal class SlipViewPresenter : DataAccess.IObserver<SlipEntity>
+    internal class SlipViewReactivePresenter : IReactive<SlipEntity>
     {
         private readonly ToIndexService _toIndex;
         private readonly PlayerStatusView _playerAilmentsView;
 
-        public SlipViewPresenter(
+        public SlipViewReactivePresenter(
             ToIndexService toIndex,
             PlayerStatusView playerAilmentsView)
         {

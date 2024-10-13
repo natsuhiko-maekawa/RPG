@@ -9,13 +9,13 @@ using R3;
 
 namespace BattleScene.InterfaceAdapter.Presenter
 {
-    public class HitPointBarViewPresenter : IObserver<CharacterEntity>
+    public class HitPointBarViewReactivePresenter : IReactive<CharacterEntity>
     {
         private readonly IFactory<CharacterPropertyValueObject, CharacterTypeCode> _characterPropertyFactory;
         private readonly EnemiesView _enemiesView;
         private readonly PlayerView _playerView;
 
-        public HitPointBarViewPresenter(
+        public HitPointBarViewReactivePresenter(
             IFactory<CharacterPropertyValueObject, CharacterTypeCode> characterPropertyFactory,
             EnemiesView enemiesView,
             PlayerView playerView)

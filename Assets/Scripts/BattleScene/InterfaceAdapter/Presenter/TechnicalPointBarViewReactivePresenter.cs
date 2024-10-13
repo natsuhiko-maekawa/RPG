@@ -9,12 +9,12 @@ using R3;
 
 namespace BattleScene.InterfaceAdapter.Presenter
 {
-    public class TechnicalPointBarViewPresenter : IObserver<CharacterEntity>
+    public class TechnicalPointBarViewReactivePresenter : IReactive<CharacterEntity>
     {
         private readonly IFactory<PlayerPropertyValueObject, CharacterTypeCode> _playerPropertyFactory;
         private readonly PlayerView _playerView;
 
-        public TechnicalPointBarViewPresenter(
+        public TechnicalPointBarViewReactivePresenter(
             IFactory<PlayerPropertyValueObject, CharacterTypeCode> playerPropertyFactory,
             PlayerView playerView)
         {

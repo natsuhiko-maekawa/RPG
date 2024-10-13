@@ -8,12 +8,12 @@ using R3;
 
 namespace BattleScene.InterfaceAdapter.Presenter
 {
-    internal class BodyPartViewPresenter : IObserver<BodyPartEntity>
+    internal class BodyPartViewReactivePresenter : IReactive<BodyPartEntity>
     {
         private readonly ToIndexService _toIndex;
         private readonly PlayerStatusView _playerStatusView;
 
-        public BodyPartViewPresenter(
+        public BodyPartViewReactivePresenter(
             ToIndexService toIndex,
             PlayerStatusView playerStatusView)
         {

@@ -30,7 +30,6 @@ using UnityEngine;
 using VContainer;
 using VContainer.Unity;
 using PoisoningSkill = BattleScene.InterfaceAdapter.Skill.PoisoningSkill;
-using TechnicalPointBarViewPresenter = BattleScene.InterfaceAdapter.Presenter.TechnicalPointBarViewPresenter;
 
 namespace BattleScene.InterfaceAdapter
 {
@@ -91,12 +90,12 @@ namespace BattleScene.InterfaceAdapter
             #endregion
 
             #region RegisterReactivePresenter
-            builder.Register<IObserver<AilmentEntity>, AilmentViewPresenter>(Lifetime.Singleton);
-            builder.Register<IObserver<BodyPartEntity>, BodyPartViewPresenter>(Lifetime.Singleton);
-            builder.Register<IObserver<BuffEntity>, BuffViewPresenter>(Lifetime.Singleton);
-            builder.Register<IObserver<CharacterEntity>, HitPointBarViewPresenter>(Lifetime.Singleton);
-            builder.Register<IObserver<CharacterEntity>, TechnicalPointBarViewPresenter>(Lifetime.Singleton);
-            builder.Register<IObserver<SlipEntity>, SlipViewPresenter>(Lifetime.Singleton);
+            builder.Register<IReactive<AilmentEntity>, AilmentViewReactivePresenter>(Lifetime.Singleton);
+            builder.Register<IReactive<BodyPartEntity>, BodyPartViewReactivePresenter>(Lifetime.Singleton);
+            builder.Register<IReactive<BuffEntity>, BuffViewReactivePresenter>(Lifetime.Singleton);
+            builder.Register<IReactive<CharacterEntity>, HitPointBarViewReactivePresenter>(Lifetime.Singleton);
+            builder.Register<IReactive<CharacterEntity>, TechnicalPointBarViewReactivePresenter>(Lifetime.Singleton);
+            builder.Register<IReactive<SlipEntity>, SlipViewReactivePresenter>(Lifetime.Singleton);
             #endregion
 
             #region RegisterFacade

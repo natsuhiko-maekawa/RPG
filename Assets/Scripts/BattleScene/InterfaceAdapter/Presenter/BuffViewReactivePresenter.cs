@@ -1,4 +1,5 @@
 using System;
+using BattleScene.DataAccess;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.Entity;
 using BattleScene.Framework.View;
@@ -9,12 +10,12 @@ using R3;
 
 namespace BattleScene.InterfaceAdapter.Presenter
 {
-    internal class BuffViewPresenter : DataAccess.IObserver<BuffEntity>
+    internal class BuffViewReactivePresenter : IReactive<BuffEntity>
     {
         private readonly ToIndexService _toIndex;
         private readonly PlayerStatusView _playerStatusView;
 
-        public BuffViewPresenter(
+        public BuffViewReactivePresenter(
             ToIndexService toIndex,
             PlayerStatusView playerStatusView)
         {
