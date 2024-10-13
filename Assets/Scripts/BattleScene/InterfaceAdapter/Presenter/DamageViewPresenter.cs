@@ -78,7 +78,7 @@ namespace BattleScene.InterfaceAdapter.Presenter
                 .Where(x => IsPlayer(x.CharacterId))
                 .SelectMany(x => x.Model)
                 .ToList();
-            var playerModel = new DigitViewModel(playerDigitList);
+            var playerModel = new DigitListViewModel(playerDigitList);
             var startPlayerView = _playerView.StartPlayerDigitView(playerModel);
             taskList.Add(startPlayerView);
 
@@ -87,7 +87,7 @@ namespace BattleScene.InterfaceAdapter.Presenter
                 .ToDictionary(k => _characterCollection.Get(k.CharacterId).Position, v => v.Model.ToList());
             foreach (var (position, digitList) in enemyDigitDict)
             {
-                var enemyModel = new DigitViewModel(digitList);
+                var enemyModel = new DigitListViewModel(digitList);
                 var startEnemyView = _enemiesView[position].StartDigitAnimationAsync(enemyModel);
                 taskList.Add(startEnemyView);
             }
@@ -97,11 +97,11 @@ namespace BattleScene.InterfaceAdapter.Presenter
 
         private bool IsPlayer(CharacterId characterId) => _characterCollection.Get(characterId).IsPlayer;
 
-        private Digit GetDigit(AttackValueObject attack)
+        private DigitViewModel GetDigit(AttackValueObject attack)
         {
-            var digit = new Digit(
+            var digit = new DigitViewModel(
                 DigitType: DigitType.Damage,
-                Number: attack.Amount,
+                Digit: attack.Amount,
                 IsAvoid: !attack.IsHit,
                 Index: attack.Index);
             return digit;

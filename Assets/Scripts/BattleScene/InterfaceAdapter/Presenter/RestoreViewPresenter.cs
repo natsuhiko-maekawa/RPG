@@ -22,11 +22,11 @@ namespace BattleScene.InterfaceAdapter.Presenter
         public async Task StartAnimationAsync()
         {
             var technicalPoint = _battleLog.GetLast().TechnicalPoint;
-            var digit = new Digit(
+            var digit = new DigitViewModel(
                 DigitType: DigitType.Restore,
-                Number: technicalPoint);
-            var digitList = new List<Digit> { digit };
-            var digitViewModel = new DigitViewModel(digitList);
+                Digit: technicalPoint);
+            var digitList = new List<DigitViewModel> { digit };
+            var digitViewModel = new DigitListViewModel(digitList);
             await _playerView.StartPlayerDigitView(digitViewModel);
         }
     }

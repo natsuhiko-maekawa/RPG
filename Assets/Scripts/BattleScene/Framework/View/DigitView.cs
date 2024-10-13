@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -11,31 +12,42 @@ namespace BattleScene.Framework.View
 {
     public class DigitView : MonoBehaviour
     {
-        private const int Frame = 20;
-        private const float MoveRange = 20.0f;
-        private const float AlphaRate = 0.0f;
+        [SerializeField] private int frame = 20;
+        [SerializeField] private float moveRange = 20.0f;
+        [SerializeField] private float randomRange = 80.0f;
+        [SerializeField] private float alphaRate = 0.0f;
+        [SerializeField] private int waitTime = 70;
+        [SerializeField] private string avoidText = "avoid";
+        [SerializeField] private VertexGradient damageColor = new(Color.yellow, Color.yellow, Color.red, Color.red);
+        [SerializeField] private VertexGradient cureColor = new(Color.green, Color.green, Color.cyan, Color.cyan);
+        [SerializeField] private VertexGradient restoreColor = new(Color.cyan, Color.cyan, Color.blue, Color.blue);
+        private const int PoolSize = 10;
         [SerializeField] private TextMeshProUGUI damageText;
         [SerializeField] private bool isPlayer;
         private readonly List<TextMeshProUGUI> _textPool = new();
 
-        public async Task StartAnimation(DigitViewModel model)
+        public async Task StartAnimationAsync(DigitListViewModel digitList)
         {
-            for (var i = 0; i < 10; ++i)
+            var animationList = new List<Task>();
+            for (var i = 0; i < PoolSize; ++i)
             {
-                if (model.DigitList.Any(x => x.Index == i))
+                if (digitList.DigitList.Any(x => x.Index == i))
                 {
-                    var digitDto = model.DigitList.First(x => x.Index == i);
-                    ViewDigit(digitDto);
+                    var digit = digitList.DigitList.First(x => x.Index == i);
+                    animationList.Add(StartDigitAnimationAsync(digit));
                 }
 
-                await Task.Delay(70);
+                await Task.Delay(waitTime);
             }
+
+            await Task.WhenAll(animationList);
         }
 
-        private async void ViewDigit(Digit valueObject)
+        private async Task StartDigitAnimationAsync(DigitViewModel digit)
         {
             if (_textPool.All(x => x.enabled))
             {
+                // TODO: UpdateでInstantiateしている
                 var tmpText = Instantiate(damageText, transform);
                 tmpText.enabled = false;
                 _textPool.Add(tmpText);
@@ -43,32 +55,33 @@ namespace BattleScene.Framework.View
 
             var text = _textPool.First(x => !x.enabled);
 
-            if (valueObject.IsAvoid)
+            if (digit.IsAvoid)
             {
-                text.text = "avoid";
+                text.text = avoidText;
                 text.enableVertexGradient = false;
             }
             else
             {
-                text.text = valueObject.Number.ToString();
+                text.text = digit.Digit.ToString();
                 text.enableVertexGradient = true;
-                text.colorGradient = valueObject.DigitType switch
+                text.colorGradient = digit.DigitType switch
                 {
-                    DigitType.Cure => new VertexGradient(Color.green, Color.green, Color.cyan, Color.cyan),
-                    DigitType.Restore => new VertexGradient(Color.cyan, Color.cyan, Color.blue, Color.blue),
-                    _ => new VertexGradient(Color.yellow, Color.yellow, Color.red, Color.red)
+                    DigitType.Damage => damageColor,
+                    DigitType.Cure => cureColor,
+                    DigitType.Restore => restoreColor,
+                    _ => throw new ArgumentOutOfRangeException()
                 };
             }
 
             text.enabled = true;
-            var rand = isPlayer ? Mathf.Floor(Random.Range(-80.0f, 80.0f) / 10) * 10.0f : 0;
-            for (var frame = 0; frame < Frame; ++frame)
+            var rand = isPlayer ? Mathf.Floor(Random.Range(-randomRange, randomRange) / 10) * 10.0f : 0;
+            for (var i = 0; i < frame; ++i)
             {
-                var sin = Mathf.Sin(frame / (float)Frame * 90 * Mathf.Deg2Rad);
-                text.transform.localPosition = new Vector3(rand, MoveRange * sin + rand, 0);
+                var sin = Mathf.Sin(i / (float)frame * 90 * Mathf.Deg2Rad);
+                text.transform.localPosition = new Vector3(rand, moveRange * sin + rand, 0);
 
-                var a = 1.0f - AlphaRate * sin;
-                if (a <= 0.0f) a = 0.0f;
+                var a = 1.0f - alphaRate * sin;
+                a = Mathf.Max(a, 0.0f);
                 text.color = new Color(text.color.r, text.color.g, text.color.b, a);
 
                 await Task.Delay(WaitTime);

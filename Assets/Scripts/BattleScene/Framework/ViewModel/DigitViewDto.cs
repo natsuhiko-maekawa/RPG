@@ -2,12 +2,12 @@
 
 namespace BattleScene.Framework.ViewModel
 {
-    public record DigitViewModel(
-        IReadOnlyList<Digit> DigitList);
+    public record DigitListViewModel(
+        IReadOnlyList<DigitViewModel> DigitList);
 
-    public record Digit(
+    public record DigitViewModel(
         DigitType DigitType,
-        int Number,
+        int Digit,
         bool IsAvoid = false,
         int Index = 0);
 

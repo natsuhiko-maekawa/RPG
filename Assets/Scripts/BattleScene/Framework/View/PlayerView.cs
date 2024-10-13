@@ -56,9 +56,9 @@ namespace BattleScene.Framework.View
             }
         }
 
-        public async Task StartPlayerDigitView(DigitViewModel model)
+        public async Task StartPlayerDigitView(DigitListViewModel model)
         {
-            await _playerDigitView.StartAnimation(model);
+            await _playerDigitView.StartAnimationAsync(model);
         }
 
         public Task StartFrameView(FrameViewDto dto)
