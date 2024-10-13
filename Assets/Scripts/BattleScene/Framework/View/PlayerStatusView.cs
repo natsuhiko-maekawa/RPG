@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using BattleScene.Framework.GameObjects;
+﻿using BattleScene.Framework.GameObjects;
 using BattleScene.Framework.ViewModel;
 using UnityEngine;
 using UnityEngine.UI;
@@ -35,12 +34,6 @@ namespace BattleScene.Framework.View
         public void StartPlayerBuffView(BuffViewModel buff)
         {
             _playerBuffStatusArray[buff.BuffId].Set(buff.State);
-        }
-
-        public struct TextAndIcon
-        {
-            public Text Text;
-            public Image Icon;
         }
     }
 }
