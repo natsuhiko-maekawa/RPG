@@ -15,6 +15,7 @@ using BattleScene.Framework.View;
 using BattleScene.InterfaceAdapter.Facade;
 using BattleScene.InterfaceAdapter.Presenter;
 using BattleScene.InterfaceAdapter.PrimeSkill;
+using BattleScene.InterfaceAdapter.ReactivePresenter;
 using BattleScene.InterfaceAdapter.Service;
 using BattleScene.InterfaceAdapter.Skill;
 using BattleScene.InterfaceAdapter.State.Battle;

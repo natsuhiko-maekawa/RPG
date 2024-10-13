@@ -9,7 +9,7 @@ using BattleScene.Framework.ViewModel;
 using BattleScene.InterfaceAdapter.Service;
 using R3;
 
-namespace BattleScene.InterfaceAdapter.Presenter
+namespace BattleScene.InterfaceAdapter.ReactivePresenter
 {
     internal class AilmentViewReactivePresenter : IReactive<AilmentEntity>
     {

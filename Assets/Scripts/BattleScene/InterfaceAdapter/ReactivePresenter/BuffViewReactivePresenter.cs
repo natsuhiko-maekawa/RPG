@@ -5,10 +5,10 @@ using BattleScene.Domain.Entity;
 using BattleScene.Framework.View;
 using BattleScene.Framework.ViewModel;
 using BattleScene.InterfaceAdapter.Service;
-using UnityEngine;
 using R3;
+using UnityEngine;
 
-namespace BattleScene.InterfaceAdapter.Presenter
+namespace BattleScene.InterfaceAdapter.ReactivePresenter
 {
     internal class BuffViewReactivePresenter : IReactive<BuffEntity>
     {

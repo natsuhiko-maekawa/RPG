@@ -7,7 +7,7 @@ using BattleScene.Framework.View;
 using BattleScene.Framework.ViewModel;
 using R3;
 
-namespace BattleScene.InterfaceAdapter.Presenter
+namespace BattleScene.InterfaceAdapter.ReactivePresenter
 {
     public class HitPointBarViewReactivePresenter : IReactive<CharacterEntity>
     {
