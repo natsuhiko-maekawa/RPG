@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Collections.Immutable;
 using System.Linq;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Id;
@@ -38,7 +37,7 @@ namespace BattleScene.UseCases.Service
                     var rate = luckRate * (1.0f + (actorLuck - targetLuck) / Threshold);
                     return _myRandom.Probability(rate);
                 })
-                .ToImmutableList();
+                .ToList();
 
             return actualTargetList;
         }

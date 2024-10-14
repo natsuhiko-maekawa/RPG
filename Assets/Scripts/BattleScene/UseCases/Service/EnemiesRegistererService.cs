@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Collections.Immutable;
 using System.Linq;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DataAccess;
@@ -58,7 +57,7 @@ namespace BattleScene.UseCases.Service
                         currentHitPoint: characterProperty.HitPoint,
                         position: i);
                 })
-                .ToImmutableList();
+                .ToList();
             _characterCollection.Add(characterList);
         }
     }

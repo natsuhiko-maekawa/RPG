@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Collections.Immutable;
 using System.Linq;
 using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.Entity;
@@ -23,7 +22,7 @@ namespace BattleScene.UseCases.Service
         {
             var characterList = damage.DamageDictionary
                 .Select(ReduceHitPoint)
-                .ToImmutableList();
+                .ToList();
             _characterCollection.Add(characterList);
         }
 

@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Collections.Immutable;
 using System.Linq;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DataAccess;
@@ -68,7 +67,7 @@ namespace BattleScene.UseCases.Service.Order
                     orderId: new OrderId(),
                     orderNumber: i,
                     orderedItem: x))
-                .ToImmutableList();
+                .ToList();
             
             _orderedItemCollection.Remove();
             _orderedItemCollection.Add(orderedItemEntityList);

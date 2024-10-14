@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Collections.Immutable;
 using System.Linq;
 using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.DomainService;
@@ -60,11 +59,11 @@ namespace BattleScene.UseCases.Service
             }
 
             attackList.Sort((x, y) => x.Index - y.Index);
-            
+
             return new DamageValueObject(
                 actorId: actorId,
                 skillCode: skillCommon.SkillCode,
-                attackList:attackList.ToImmutableList());
+                attackList: attackList.ToList());
         }
 
         public IReadOnlyList<DamageValueObject> Generate(
@@ -79,10 +78,10 @@ namespace BattleScene.UseCases.Service
         {
             var surviveTargetIdList = targetIdList
                 .Where(x => _characterCollection.Get(x).IsSurvive)
-                .ToImmutableList();
+                .ToList();
             if (range != Range.Random) return surviveTargetIdList;
             var attackedTargetId = _myRandom.Choice(surviveTargetIdList);
-            return ImmutableList.Create(attackedTargetId);
+            return new List<CharacterId> { attackedTargetId };
         }
     }
 }
