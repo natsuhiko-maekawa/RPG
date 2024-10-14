@@ -157,6 +157,7 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<SmokeBombSkill>(Lifetime.Transient);
             builder.Register<StarShellSkill>(Lifetime.Transient);
             builder.Register<StringerSkill>(Lifetime.Transient);
+            builder.Register<SuffocationSkill>(Lifetime.Transient);
             builder.Register<TaserGunSkill>(Lifetime.Transient);
             builder.Register<UtsusemiSkill>(Lifetime.Transient);
             builder.Register<WabisukeSkill>(Lifetime.Transient);

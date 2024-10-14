@@ -81,6 +81,7 @@ namespace BattleScene.InterfaceAdapter
                 SmokeBomb => _container.Resolve<SmokeBombSkill>(),
                 StarShell => _container.Resolve<StarShellSkill>(),
                 Stringer => _container.Resolve<StringerSkill>(),
+                Suffocation => _container.Resolve<SuffocationSkill>(),
                 TaserGun => _container.Resolve<TaserGunSkill>(),
                 Utsusemi => _container.Resolve<UtsusemiSkill>(),
                 Wabisuke => _container.Resolve<WabisukeSkill>(),

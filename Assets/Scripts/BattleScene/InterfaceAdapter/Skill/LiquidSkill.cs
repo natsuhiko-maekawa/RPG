@@ -20,6 +20,6 @@ namespace BattleScene.InterfaceAdapter.Skill
             = ImmutableList.Create<BaseDamage>(new BasicDamage());
 
         public override ImmutableList<BaseSlip> SlipDamageList { get; }
-            = ImmutableList.Create<BaseSlip>(new SuffocationSkill());
+            = ImmutableList.Create<BaseSlip>(new Suffocation());
     }
 }

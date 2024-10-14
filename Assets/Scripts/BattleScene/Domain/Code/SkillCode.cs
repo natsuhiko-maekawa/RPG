@@ -33,6 +33,7 @@
         SmokeBomb,
         StarShell,
         Stringer,
+        Suffocation,
         TaserGun,
         Utsusemi,
         Wabisuke

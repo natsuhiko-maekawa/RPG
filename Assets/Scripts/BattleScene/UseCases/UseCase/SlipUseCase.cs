@@ -40,6 +40,7 @@ namespace BattleScene.UseCases.UseCase
             var skillCode = slipCode switch
             {
                 SlipDamageCode.Poisoning => SkillCode.Poisoning,
+                SlipDamageCode.Suffocation => SkillCode.Suffocation,
                 _ => throw new ArgumentOutOfRangeException()
             };
 
