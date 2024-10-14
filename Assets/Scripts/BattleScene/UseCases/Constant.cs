@@ -5,7 +5,6 @@ namespace BattleScene.UseCases
     public static class Constant
     {
         public const int AttackCountUpperLimit = 25;
-        public const int MaxOrderNumber = 14;
 
         // エラーメッセージ系
         public const string CreateSaveData = "新規にセーブデータを作成しました。";
