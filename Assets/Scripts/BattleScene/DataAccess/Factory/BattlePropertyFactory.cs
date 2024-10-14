@@ -21,6 +21,7 @@ namespace BattleScene.DataAccess.Factory
                 SlipDefaultTurn: battleProperty.SlipDefaultTurn,
                 SlipDefaultDamageRate: battleProperty.SlipDefaultDamageRate,
                 IsHitThreshold: battleProperty.IsHitThreshold,
+                AilmentSuccessThreshold: battleProperty.AilmentSuccessThreshold,
                 MaxAgility: battleProperty.MaxAgility,
                 MaxOrderCount: battleProperty.MaxOrderCount);
             return battlePropertyValueObject;

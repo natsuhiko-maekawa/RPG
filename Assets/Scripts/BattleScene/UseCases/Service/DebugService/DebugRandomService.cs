@@ -34,7 +34,7 @@ namespace BattleScene.UseCases.Service.DebugService
             {
                 "CantActionBecauseParalysis" => cantActionBecauseParalysis,
                 "BasicEvaluate" => isHit,
-                "GetActualTargetIdList" => isSuccess,
+                "Pick" => isSuccess,
                 _ => _myRandom.Probability(rate)
             };
         }

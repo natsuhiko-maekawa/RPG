@@ -1177,7 +1177,7 @@ MonoBehaviour:
     TypeName: 
   autoRun: 1
   autoInjectGameObjects: []
-  debugMode: 1
+  debugMode: 0
 --- !u!114 &809505089
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2606,6 +2606,7 @@ MonoBehaviour:
     slipDefaultTurn: 2
     slipDefaultDamageRate: 1.2
     isHitThreshold: 20
+    ailmentSuccessThreshold: 40
     maxAgility: 256
     maxOrderCount: 14
 --- !u!1001 &130856577308979065
