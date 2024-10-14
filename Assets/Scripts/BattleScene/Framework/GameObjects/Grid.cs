@@ -14,8 +14,8 @@ namespace BattleScene.Framework.GameObjects
         
         public void SetItem(int itemCount)
         {
-            _gameObject = GetComponentInChildren<TGameObject>();
-            _gameObjectList.Add(_gameObject);
+            _gameObjectList.AddRange(GetComponentsInChildren<TGameObject>());
+            _gameObject = _gameObjectList.First();
             
             if (itemCount > _gameObjectList.Count)
             {
