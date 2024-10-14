@@ -4,7 +4,6 @@ namespace BattleScene.UseCases
 {
     public static class Constant
     {
-        public const int MaxAgility = 256; // Agilityの最大値
         public const int AttackCountUpperLimit = 25;
         public const int MaxOrderNumber = 14;
 

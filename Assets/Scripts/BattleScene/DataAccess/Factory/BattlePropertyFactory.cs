@@ -20,7 +20,8 @@ namespace BattleScene.DataAccess.Factory
             var battlePropertyValueObject = new BattlePropertyValueObject(
                 SlipDefaultTurn: battleProperty.SlipDefaultTurn,
                 SlipDefaultDamageRate: battleProperty.SlipDefaultDamageRate,
-                IsHitThreshold: battleProperty.IsHitThreshold);
+                IsHitThreshold: battleProperty.IsHitThreshold,
+                MaxAgility: battleProperty.MaxAgility);
             return battlePropertyValueObject;
         }
     }

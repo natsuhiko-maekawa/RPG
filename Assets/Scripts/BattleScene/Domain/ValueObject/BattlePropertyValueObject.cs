@@ -3,5 +3,6 @@
     public record BattlePropertyValueObject(
         int SlipDefaultTurn,
         float SlipDefaultDamageRate,
-        float IsHitThreshold);
+        float IsHitThreshold,
+        int MaxAgility);
 }

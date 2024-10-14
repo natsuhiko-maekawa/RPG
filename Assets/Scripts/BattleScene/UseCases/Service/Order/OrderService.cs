@@ -46,7 +46,7 @@ namespace BattleScene.UseCases.Service.Order
                 .Select((x, i) => x
                     .Select(y => (characterId: y,
                         speed: _characterCollection.Get(y).ActionTime +
-                               Constant.MaxAgility / _speed.Get(y) * i)))
+                               _battlePropertyFactory.Create().MaxAgility / _speed.Get(y) * i)))
                 .SelectMany(x => x)
                 .OrderBy(x => x.speed)
                 .ThenByDescending(x => _characterPropertyFactory
