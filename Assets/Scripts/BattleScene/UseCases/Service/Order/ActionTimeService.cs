@@ -42,7 +42,7 @@ namespace BattleScene.UseCases.Service.Order
             }
         }
 
-        private int CreateActionTime(IList<CharacterId> characterIdList, CharacterId actorId, CharacterId characterId)
+        private int CreateActionTime(IReadOnlyList<CharacterId> characterIdList, CharacterId actorId, CharacterId characterId)
         {
             var actionTime = _characterCollection.Get(characterId).ActionTime;
             var minTime = characterIdList
