@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.Immutable;
 using System.Linq;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Id;
@@ -11,19 +10,15 @@ namespace BattleScene.UseCases.Service
 {
     public class AilmentGeneratorService : IPrimeSkillGeneratorService<AilmentParameterValueObject, AilmentValueObject>
     {
-        private const float Threshold = 40.0f; // 大きいほど命中しやすくなる
-        private readonly CharacterPropertyFactoryService _characterPropertyFactory;
+        private readonly ActualTargetIdPickerService _actualTargetIdPicker;
         private readonly OrderedItemsDomainService _orderedItems;
-        private readonly IMyRandomService _myRandom;
 
         public AilmentGeneratorService(
-            CharacterPropertyFactoryService characterPropertyFactory,
-            OrderedItemsDomainService orderedItems,
-            IMyRandomService myRandom)
+            ActualTargetIdPickerService actualTargetIdPicker,
+            OrderedItemsDomainService orderedItems)
         {
-            _characterPropertyFactory = characterPropertyFactory;
+            _actualTargetIdPicker = actualTargetIdPicker;
             _orderedItems = orderedItems;
-            _myRandom = myRandom;
         }
 
         public IReadOnlyList<AilmentValueObject> Generate(
@@ -39,9 +34,9 @@ namespace BattleScene.UseCases.Service
             
             AilmentValueObject GetAilment(AilmentParameterValueObject ailmentParameter)
             {
-                var actualTargetIdList = GetActualTargetIdList(
+                var actualTargetIdList = _actualTargetIdPicker.Pick(
                     targetIdList: targetIdList,
-                    ailmentParameter: ailmentParameter);
+                    luckRate: ailmentParameter.LuckRate);
             
                 var ailment = new AilmentValueObject(
                     actorId: actorId,
@@ -52,26 +47,6 @@ namespace BattleScene.UseCases.Service
 
                 return ailment;
             }
-        }
-        
-        // TODO: ActualTargetIdPickerService.Pick()に置き換える
-        private IReadOnlyList<CharacterId> GetActualTargetIdList(
-            IReadOnlyList<CharacterId> targetIdList,
-            AilmentParameterValueObject ailmentParameter)
-        {
-            _orderedItems.First().TryGetCharacterId(out var actorId);
-            var actorLuck = _characterPropertyFactory.Create(actorId).Luck;
-
-            var actualTargetList = targetIdList
-                .Where(x =>
-                {
-                    var targetLuck = _characterPropertyFactory.Create(x).Luck;
-                    var rate = ailmentParameter.LuckRate * (1.0f + (actorLuck - targetLuck) / Threshold);
-                    return _myRandom.Probability(rate);
-                })
-                .ToImmutableList();
-
-            return actualTargetList;
         }
     }
 }
