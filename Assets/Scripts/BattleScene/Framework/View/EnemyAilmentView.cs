@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BattleScene.Framework.GameObjects;
 using BattleScene.Framework.Utility;
 using BattleScene.Framework.ViewModel;
 using UnityEngine;
@@ -10,41 +11,38 @@ namespace BattleScene.Framework.View
 {
     public class EnemyAilmentView : MonoBehaviour
     {
-        private const int AreaWidth = 95;
-        private const int AilmentsSmallIconSize = 13;
-        private const int MaxIconNum = 8;
+        [SerializeField] private int iconPoolSize = 8;
         [SerializeField] private Image icon;
         [SerializeField] private Texture2D icons;
-        private readonly SortedSet<int> _ailmentIdSet = new();
-        private readonly List<Image> _enemyAilmentsIconList = new();
+        private readonly List<int> _ailmentIdList = new();
         private Sprite[] _iconArray;
+        private EnemyAilmentGrid _enemyAilmentGrid;
 
         private void Awake()
         {
-            const float left = -AreaWidth / 2.0f;
-            for (var i = 0; i < MaxIconNum; ++i)
-            {
-                var image = Instantiate(icon, transform);
-                image.transform.localPosition += new Vector3(left + AilmentsSmallIconSize * i, 60, 0);
-                image.enabled = false;
-                _enemyAilmentsIconList.Add(image);
-            }
-
+            _enemyAilmentGrid = GetComponent<EnemyAilmentGrid>();
+            _enemyAilmentGrid.SetItem(iconPoolSize);
+            // TODO: 各ViewでiconArrayを作成しているため修正したい
             _iconArray = MySprite.CreateByGrid(icons, 4, 4);
         }
 
-        public Task StartAnimation(AilmentViewModel dto)
+        public Task StartAnimation(AilmentViewModel ailment)
         {
-            // TODO: 本当はHashSetの末尾に要素を追加したい
-            if (dto.Effects) _ailmentIdSet.Add(dto.AilmentId);
-            else _ailmentIdSet.Remove(dto.AilmentId);
-            
-            foreach (var enemyAilmentsIcon in _enemyAilmentsIconList) enemyAilmentsIcon.enabled = false;
+            if (ailment.Effects) _ailmentIdList.Add(ailment.AilmentId);
+            else _ailmentIdList.Remove(ailment.AilmentId);
 
-            foreach (var (ailmentId, index) in _ailmentIdSet.Select((x, i) => (x, i)))
+            foreach (var (enemyAilment, i) in _enemyAilmentGrid.Select((x, i) => (x, i)))
             {
-                _enemyAilmentsIconList[index].sprite = _iconArray[ailmentId];
-                _enemyAilmentsIconList[index].enabled = true;
+                if (i < _ailmentIdList.Count)
+                {
+                    var ailmentId = _ailmentIdList[i];
+                    var sprite = _iconArray[ailmentId];
+                    enemyAilment.SetIcon(sprite);
+                }
+                else
+                {
+                    enemyAilment.ResetIcon();
+                }
             }
 
             return Task.CompletedTask;
