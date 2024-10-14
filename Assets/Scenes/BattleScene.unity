@@ -762,6 +762,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyView
       objectReference: {fileID: 0}
+    - target: {fileID: 1785603810576713470, guid: e5b23f012c6997f47aaa6f525c29fa55, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1785603810576713470, guid: e5b23f012c6997f47aaa6f525c29fa55, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1785603810576713470, guid: e5b23f012c6997f47aaa6f525c29fa55, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1785603810576713470, guid: e5b23f012c6997f47aaa6f525c29fa55, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1785603810576713470, guid: e5b23f012c6997f47aaa6f525c29fa55, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1785603810576713470, guid: e5b23f012c6997f47aaa6f525c29fa55, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3068223072792452909, guid: e5b23f012c6997f47aaa6f525c29fa55, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2582,6 +2606,8 @@ MonoBehaviour:
     slipDefaultTurn: 2
     slipDefaultDamageRate: 1.2
     isHitThreshold: 20
+    maxAgility: 256
+    maxOrderCount: 14
 --- !u!1001 &130856577308979065
 PrefabInstance:
   m_ObjectHideFlags: 0

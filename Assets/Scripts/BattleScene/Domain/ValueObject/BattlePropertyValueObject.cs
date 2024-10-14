@@ -4,5 +4,6 @@
         int SlipDefaultTurn,
         float SlipDefaultDamageRate,
         float IsHitThreshold,
-        int MaxAgility);
+        int MaxAgility,
+        int MaxOrderCount);
 }

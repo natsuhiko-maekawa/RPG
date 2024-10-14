@@ -21,7 +21,8 @@ namespace BattleScene.DataAccess.Factory
                 SlipDefaultTurn: battleProperty.SlipDefaultTurn,
                 SlipDefaultDamageRate: battleProperty.SlipDefaultDamageRate,
                 IsHitThreshold: battleProperty.IsHitThreshold,
-                MaxAgility: battleProperty.MaxAgility);
+                MaxAgility: battleProperty.MaxAgility,
+                MaxOrderCount: battleProperty.MaxOrderCount);
             return battlePropertyValueObject;
         }
     }

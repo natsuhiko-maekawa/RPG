@@ -42,7 +42,7 @@ namespace BattleScene.UseCases.Service.Order
         {
             var characterList = _characterCollection.Get().Select(x => x.Id);
             var orderedItemList = Enumerable
-                .Repeat(characterList, Constant.MaxOrderNumber)
+                .Repeat(characterList, _battlePropertyFactory.Create().MaxOrderCount)
                 .Select((x, i) => x
                     .Select(y => (characterId: y,
                         speed: _characterCollection.Get(y).ActionTime +
@@ -54,7 +54,7 @@ namespace BattleScene.UseCases.Service.Order
                 .ThenBy(x => _characterCollection.Get(x.characterId).Id)
                 .Select(x => new OrderedItem(x.characterId))
                 .ToList()
-                .GetRange(0, Constant.MaxOrderNumber);
+                .GetRange(0, _battlePropertyFactory.Create().MaxOrderCount);
 
             var ailments = _ailmentCollection.Get()
                 .Where(x => _characterCollection.Get(x.CharacterId).IsPlayer)
