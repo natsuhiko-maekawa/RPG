@@ -286,6 +286,7 @@ namespace BattleScene.InterfaceAdapter
                 PrimeSkill<SlipParameterValueObject, SlipValueObject>>(Lifetime.Singleton);
             builder.Register<IPrimeSkill<RestoreParameterValueObject, RestoreValueObject>, 
                 PrimeSkill<RestoreParameterValueObject, RestoreValueObject>>(Lifetime.Singleton);
+            builder.Register<OrderUseCase>(Lifetime.Singleton);
             builder.Register<SlipUseCase>(Lifetime.Singleton);
             #endregion
 

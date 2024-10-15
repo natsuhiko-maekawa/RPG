@@ -1,13 +1,12 @@
 ﻿using BattleScene.InterfaceAdapter.Presenter;
 using BattleScene.InterfaceAdapter.Service;
-using BattleScene.UseCases.Service.Order;
+using BattleScene.UseCases.UseCase;
 
 namespace BattleScene.InterfaceAdapter.State.Turn
 {
     internal class TurnStartState : BaseState
     {
-        private readonly ActionTimeService _actionTime;
-        private readonly OrderService _order;
+        private readonly OrderUseCase _order;
         private readonly ActorService _actor;
         private readonly OrderViewPresenter _orderView;
         private readonly PlayerSelectActionState _playerSelectActionState;
@@ -17,8 +16,7 @@ namespace BattleScene.InterfaceAdapter.State.Turn
         private readonly ResetAilmentState _resetAilmentState;
 
         public TurnStartState(
-            ActionTimeService actionTime,
-            OrderService order,
+            OrderUseCase order,
             ActorService actor,
             OrderViewPresenter orderView,
             PlayerSelectActionState playerSelectActionState,
@@ -27,7 +25,6 @@ namespace BattleScene.InterfaceAdapter.State.Turn
             SlipState slipState,
             ResetAilmentState resetAilmentState)
         {
-            _actionTime = actionTime;
             _order = order;
             _actor = actor;
             _orderView = orderView;
@@ -40,8 +37,8 @@ namespace BattleScene.InterfaceAdapter.State.Turn
 
         public override void Start()
         {
-            _order.Update();
-            _actionTime.Update();
+            _order.Register();
+            (Context.ActorId, Context.AilmentCode, Context.SlipDamageCode) = _order.First();
             _orderView.StartAnimationAsync();
             var nextState = GetNextState();
             Context.TransitionTo(nextState);
