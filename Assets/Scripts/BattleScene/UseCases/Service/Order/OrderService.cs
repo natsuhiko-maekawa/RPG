@@ -92,21 +92,21 @@ namespace BattleScene.UseCases.Service.Order
         {
             var slipDefaultTurn = _battlePropertyFactory.Create().SlipDefaultTurn;
 
-            foreach (var slipDamageEntity in slipDamageEntityList)
-                for (var index = 0; index < order.Count; ++index)
+            foreach (var slip in slipDamageEntityList)
+            {
+                for (var i = 0; i < order.Count; ++i)
                 {
-                    var copiedIndex = index;
                     var characterTypeCount = order
-                            // TODO: Take()を使って書き換える
-                        .Where((_, i) => i <= copiedIndex - 1)
+                        .Take(i)
                         .Count(x => x.CharacterId != null);
-                    if (slipDamageEntity.Turn != characterTypeCount % (slipDefaultTurn + 1)) continue;
+                    if (slip.Turn != characterTypeCount % (slipDefaultTurn + 1)) continue;
                     var orderedSlipDamageEntity
-                        = new OrderedItem(slipDamageEntity.Id);
-                    order.Insert(index, orderedSlipDamageEntity); 
+                        = new OrderedItem(slip.Id);
+                    order.Insert(i, orderedSlipDamageEntity); 
                     order.RemoveAt(order.Count - 1);
-                    ++index;
+                    ++i;
                 }
+            }
         }
     }
 }
