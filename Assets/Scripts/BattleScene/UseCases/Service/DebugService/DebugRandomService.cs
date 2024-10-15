@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using BattleScene.UseCases.IService;
 using UnityEngine;
@@ -7,9 +8,9 @@ namespace BattleScene.UseCases.Service.DebugService
 {
     public class DebugRandomService : MonoBehaviour, IMyRandomService
     {
-        [SerializeField] private bool cantActionBecauseParalysis;
-        [SerializeField] private bool isHit;
-        [SerializeField] private bool isSuccess;
+        [SerializeField] private ProbabilityDebugMode cantActionBecauseParalysis;
+        [SerializeField] private ProbabilityDebugMode isHit;
+        [SerializeField] private ProbabilityDebugMode isSuccess;
         private MyRandomService _myRandom;
         
         [Inject]
@@ -30,18 +31,35 @@ namespace BattleScene.UseCases.Service.DebugService
 
         public bool Probability(float rate, string memberName = "")
         {
-            return memberName switch
+            var debugMode = memberName switch
             {
                 "CantActionBecauseParalysis" => cantActionBecauseParalysis,
                 "BasicEvaluate" => isHit,
                 "Pick" => isSuccess,
-                _ => _myRandom.Probability(rate)
+                _ => ProbabilityDebugMode.Random
             };
+
+            var value = debugMode switch
+            {
+                ProbabilityDebugMode.Random => _myRandom.Probability(rate),
+                ProbabilityDebugMode.True => true,
+                ProbabilityDebugMode.False => false,
+                _ => throw new ArgumentOutOfRangeException()
+            };
+
+            return value;
         }
 
         public int Range(int min, int max, string memberName = "")
         {
             return _myRandom.Range(min, max);
+        }
+
+        private enum ProbabilityDebugMode
+        {
+            Random,
+            True,
+            False
         }
     }
 }
