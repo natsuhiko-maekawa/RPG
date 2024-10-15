@@ -9,6 +9,9 @@ namespace BattleScene.InterfaceAdapter.State.Turn
     {
         private BaseState _state;
         
+        public CharacterId ActorId { get; set; }
+        public AilmentCode AilmentCode { get; set; }
+        public SlipDamageCode SlipDamageCode { get; set; }
         public SkillCode SkillCode { get; set; }
         public IReadOnlyList<CharacterId> TargetIdList { get; set; }
 
