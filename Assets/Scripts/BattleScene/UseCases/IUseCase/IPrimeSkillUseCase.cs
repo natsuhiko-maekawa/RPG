@@ -2,9 +2,9 @@
 using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
 
-namespace BattleScene.UseCases.Interface
+namespace BattleScene.UseCases.IUseCase
 {
-    public interface IPrimeSkill<TPrimeSkillParameter, TPrimeSkill>
+    public interface IPrimeSkillUseCase<in TPrimeSkillParameter, out TPrimeSkill>
     {
         public IReadOnlyList<TPrimeSkill> Commit(
             SkillCommonValueObject skillCommon,

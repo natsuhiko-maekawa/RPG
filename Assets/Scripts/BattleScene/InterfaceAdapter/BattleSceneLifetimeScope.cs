@@ -22,8 +22,8 @@ using BattleScene.InterfaceAdapter.State.Battle;
 using BattleScene.InterfaceAdapter.State.PrimeSkill;
 using BattleScene.InterfaceAdapter.State.Turn;
 using BattleScene.InterfaceAdapter.StateMachine;
-using BattleScene.UseCases.Interface;
 using BattleScene.UseCases.IService;
+using BattleScene.UseCases.IUseCase;
 using BattleScene.UseCases.Service;
 using BattleScene.UseCases.Service.Order;
 using BattleScene.UseCases.UseCase;
@@ -274,18 +274,18 @@ namespace BattleScene.InterfaceAdapter
             #endregion
 
             #region RegisterUseCase
-            builder.Register<IPrimeSkill<DamageParameterValueObject, DamageValueObject>, 
-                PrimeSkill<DamageParameterValueObject, DamageValueObject>>(Lifetime.Singleton);
-            builder.Register<IPrimeSkill<AilmentParameterValueObject, AilmentValueObject>, 
-                PrimeSkill<AilmentParameterValueObject, AilmentValueObject>>(Lifetime.Singleton);
-            builder.Register<IPrimeSkill<DestroyParameterValueObject, DestroyValueObject>, 
-                PrimeSkill<DestroyParameterValueObject, DestroyValueObject>>(Lifetime.Singleton);
-            builder.Register<IPrimeSkill<BuffParameterValueObject, BuffValueObject>, 
-                PrimeSkill<BuffParameterValueObject, BuffValueObject>>(Lifetime.Singleton);
-            builder.Register<IPrimeSkill<SlipParameterValueObject, SlipValueObject>, 
-                PrimeSkill<SlipParameterValueObject, SlipValueObject>>(Lifetime.Singleton);
-            builder.Register<IPrimeSkill<RestoreParameterValueObject, RestoreValueObject>, 
-                PrimeSkill<RestoreParameterValueObject, RestoreValueObject>>(Lifetime.Singleton);
+            builder.Register<IPrimeSkillUseCase<DamageParameterValueObject, DamageValueObject>, 
+                PrimeSkillUseCase<DamageParameterValueObject, DamageValueObject>>(Lifetime.Singleton);
+            builder.Register<IPrimeSkillUseCase<AilmentParameterValueObject, AilmentValueObject>, 
+                PrimeSkillUseCase<AilmentParameterValueObject, AilmentValueObject>>(Lifetime.Singleton);
+            builder.Register<IPrimeSkillUseCase<DestroyParameterValueObject, DestroyValueObject>, 
+                PrimeSkillUseCase<DestroyParameterValueObject, DestroyValueObject>>(Lifetime.Singleton);
+            builder.Register<IPrimeSkillUseCase<BuffParameterValueObject, BuffValueObject>, 
+                PrimeSkillUseCase<BuffParameterValueObject, BuffValueObject>>(Lifetime.Singleton);
+            builder.Register<IPrimeSkillUseCase<SlipParameterValueObject, SlipValueObject>, 
+                PrimeSkillUseCase<SlipParameterValueObject, SlipValueObject>>(Lifetime.Singleton);
+            builder.Register<IPrimeSkillUseCase<RestoreParameterValueObject, RestoreValueObject>, 
+                PrimeSkillUseCase<RestoreParameterValueObject, RestoreValueObject>>(Lifetime.Singleton);
             builder.Register<OrderUseCase>(Lifetime.Singleton);
             builder.Register<SlipUseCase>(Lifetime.Singleton);
             #endregion

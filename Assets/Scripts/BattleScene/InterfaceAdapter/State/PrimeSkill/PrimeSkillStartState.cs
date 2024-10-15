@@ -5,25 +5,25 @@ using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
-using BattleScene.UseCases.Interface;
+using BattleScene.UseCases.IUseCase;
 
 namespace BattleScene.InterfaceAdapter.State.PrimeSkill
 {
     public class PrimeSkillStartState<TPrimeSkillParameter, TPrimeSkill>
         : BaseState<TPrimeSkillParameter, TPrimeSkill> where TPrimeSkill : PrimeSkillValueObject
     {
-        private readonly IPrimeSkill<TPrimeSkillParameter, TPrimeSkill> _primeSkill;
+        private readonly IPrimeSkillUseCase<TPrimeSkillParameter, TPrimeSkill> _primeSkillUseCase;
         private readonly ICollection<CharacterEntity, CharacterId> _characterCollection;
         private readonly PrimeSkillOutputState<TPrimeSkillParameter, TPrimeSkill> _primeSkillOutputState;
         private readonly PrimeSkillStopState<TPrimeSkillParameter, TPrimeSkill> _primeSkillStopState;
 
         public PrimeSkillStartState(
-            IPrimeSkill<TPrimeSkillParameter, TPrimeSkill> primeSkill,
+            IPrimeSkillUseCase<TPrimeSkillParameter, TPrimeSkill> primeSkillUseCase,
             ICollection<CharacterEntity, CharacterId> characterCollection,
             PrimeSkillOutputState<TPrimeSkillParameter, TPrimeSkill> primeSkillOutputState,
             PrimeSkillStopState<TPrimeSkillParameter, TPrimeSkill> primeSkillStopState)
         {
-            _primeSkill = primeSkill;
+            _primeSkillUseCase = primeSkillUseCase;
             _characterCollection = characterCollection;
             _primeSkillOutputState = primeSkillOutputState;
             _primeSkillStopState = primeSkillStopState;
@@ -35,7 +35,7 @@ namespace BattleScene.InterfaceAdapter.State.PrimeSkill
         /// </summary>
         public override void Start()
         {
-            var primeSkillList = _primeSkill.Commit(
+            var primeSkillList = _primeSkillUseCase.Commit(
                 skillCommon: Context.SkillCommon,
                 primeSkillParameterList: Context.PrimeSkillParameterList,
                 targetIdList: Context.TargetIdList);
