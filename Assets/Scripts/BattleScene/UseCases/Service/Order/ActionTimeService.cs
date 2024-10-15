@@ -35,8 +35,11 @@ namespace BattleScene.UseCases.Service.Order
             foreach (var character in _characterCollection.Get())
             {
                 character.ActionTime -= actionTime;
+                
                 if (!Equals(character.Id, actorId)) continue;
-                character.ActionTime += _battlePropertyFactory.Create().MaxAgility / _speed.Get(character.Id);
+                var maxAgility = _battlePropertyFactory.Create().MaxAgility;
+                var speed = _speed.Get(character.Id);
+                character.ActionTime += maxAgility / speed;
             }
         }
     }
