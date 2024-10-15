@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using BattleScene.Domain.Code;
+using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.DomainService;
+using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.UseCases.Service;
 using Utility;
@@ -14,22 +16,26 @@ namespace BattleScene.UseCases.UseCase
         private readonly PlayerDomainService _player;
         private readonly OrderedItemsDomainService _orderedItems;
         private readonly SlipDamageGeneratorService _slipDamageGenerator;
+        private readonly ICollection<SlipEntity, SlipDamageCode> _slipCollection;
 
         public SlipUseCase(
             BattleLoggerService battleLogger,
             PlayerDomainService player,
             OrderedItemsDomainService orderedItems,
-            SlipDamageGeneratorService slipDamageGenerator)
+            SlipDamageGeneratorService slipDamageGenerator,
+            ICollection<SlipEntity, SlipDamageCode> slipCollection)
         {
             _battleLogger = battleLogger;
             _player = player;
             _orderedItems = orderedItems;
             _slipDamageGenerator = slipDamageGenerator;
+            _slipCollection = slipCollection;
         }
 
         public void Commit()
         {
             var slipDamage = _slipDamageGenerator.Generate();
+            _slipCollection.Get(slipDamage.SlipDamageCode).AdvanceTurn();
             _battleLogger.Log(slipDamage);
         }
 

@@ -9,18 +9,18 @@ namespace BattleScene.InterfaceAdapter.State.Turn
         private readonly SkillExecutorService _skillExecutor;
         private readonly PrimeSkillStateMachine _primeSkillStateMachine;
         private readonly SkillOutputFacade _skillOutput;
-        private readonly TurnStopState _turnStopState;
+        private readonly AdvanceTurnState _advanceTurnState;
 
         public SkillState(
             SkillExecutorService skillExecutor,
             PrimeSkillStateMachine primeSkillStateMachine,
             SkillOutputFacade skillOutput,
-            TurnStopState turnStopState)
+            AdvanceTurnState advanceTurnState)
         {
             _skillExecutor = skillExecutor;
             _primeSkillStateMachine = primeSkillStateMachine;
             _skillOutput = skillOutput;
-            _turnStopState = turnStopState;
+            _advanceTurnState = advanceTurnState;
         }
 
         public override async void Start()
@@ -32,7 +32,7 @@ namespace BattleScene.InterfaceAdapter.State.Turn
         public override void Select()
         {
             var value = _primeSkillStateMachine.Select(Context);
-            if (!value) Context.TransitionTo(_turnStopState);
+            if (!value) Context.TransitionTo(_advanceTurnState);
         }
     }
 }

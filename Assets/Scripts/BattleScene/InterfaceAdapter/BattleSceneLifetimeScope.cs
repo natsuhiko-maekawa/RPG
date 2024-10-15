@@ -249,6 +249,7 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<SlipState>(Lifetime.Singleton);
             builder.Register<ResetAilmentState>(Lifetime.Singleton);
             builder.Register<SkillState>(Lifetime.Singleton);
+            builder.Register<AdvanceTurnState>(Lifetime.Singleton);
             builder.Register<TurnStopState>(Lifetime.Singleton);
             // PrimeSkillState
             builder.Register<PrimeSkillStartState<AilmentParameterValueObject, AilmentValueObject>>(Lifetime.Singleton);
