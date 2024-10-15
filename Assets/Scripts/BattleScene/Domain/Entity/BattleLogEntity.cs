@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
+using JetBrains.Annotations;
 
 namespace BattleScene.Domain.Entity
 {
@@ -13,7 +14,7 @@ namespace BattleScene.Domain.Entity
         public int Turn { get; }
         private readonly PrimeSkillValueObject _primeSkill;
         public ActionCode ActionCode { get; } = ActionCode.Skill;
-        public CharacterId ActorId => _primeSkill.ActorId;
+        [CanBeNull] public CharacterId ActorId => _primeSkill.ActorId;
         public SkillCode SkillCode => _primeSkill.SkillCode;
         public IReadOnlyList<CharacterId> TargetIdList => _primeSkill.TargetIdList;
         public IReadOnlyList<CharacterId> ActualTargetIdList => _primeSkill.ActualTargetIdList;

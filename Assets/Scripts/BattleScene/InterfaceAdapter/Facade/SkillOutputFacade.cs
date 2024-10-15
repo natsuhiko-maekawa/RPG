@@ -59,7 +59,7 @@ namespace BattleScene.InterfaceAdapter.Facade
             var playerSkillCode = isActorPlayer
                 ? context.SkillCode
                 : _battleLogCollection.Get()
-                    .Last(x => _characterCollection.Get(x.ActorId).IsPlayer)
+                    .Last(x => x.ActorId != null && _characterCollection.Get(x.ActorId).IsPlayer)
                     .SkillCode;
             var playerImageCode = _skillViewResource.Get(playerSkillCode).PlayerImageCode;
             var playerImageAnimation = _playerImageView.StartAnimationAsync(playerImageCode);
