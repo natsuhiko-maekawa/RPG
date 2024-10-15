@@ -30,7 +30,9 @@ namespace BattleScene.UseCases.Service
             var skillCode = ailmentCode.Value switch
             {
                 AilmentCode.Confusion => SkillCode.Confusion,
-                _ => throw new ArgumentOutOfRangeException()
+                AilmentCode.Paralysis => SkillCode.Paralysis,
+                AilmentCode.EnemyParalysis => SkillCode.Paralysis,
+                _ => throw new ArgumentOutOfRangeException(nameof(ailmentCode.Value), ailmentCode.Value, null)
             };
             
             return skillCode;

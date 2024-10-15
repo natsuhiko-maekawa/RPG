@@ -11,6 +11,7 @@
         Defence, // TODO: 立ち絵を書く
         Gun,
         Katana,
+        Paralysis, // TODO: 立ち絵を書く
         Poisoning,
         Suffocation
     }

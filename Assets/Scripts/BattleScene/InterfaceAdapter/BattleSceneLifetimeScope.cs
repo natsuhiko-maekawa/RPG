@@ -147,6 +147,7 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<NadegiriSkill>(Lifetime.Transient);
             builder.Register<NumbLiquidSkill>(Lifetime.Transient);
             builder.Register<OnikoroshiSkill>(Lifetime.Transient);
+            builder.Register<ParalysisSkill>(Lifetime.Transient);
             builder.Register<PoisoningSkill>(Lifetime.Transient);
             builder.Register<PunchSkill>(Lifetime.Transient);
             builder.Register<PutScytheSkill>(Lifetime.Transient);
