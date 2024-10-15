@@ -87,22 +87,22 @@ namespace BattleScene.UseCases.Service.Order
         }
 
         private void InsertSlipDamage(
-            IReadOnlyList<SlipEntity> slipDamageEntityList,
+            IReadOnlyList<SlipEntity> slipEntityList,
             ref List<OrderedItem> order)
         {
             var slipDefaultTurn = _battlePropertyFactory.Create().SlipDefaultTurn;
 
-            foreach (var slip in slipDamageEntityList)
+            foreach (var slip in slipEntityList)
             {
                 for (var i = 0; i < order.Count; ++i)
                 {
                     var characterTypeCount = order
                         .Take(i)
-                        .Count(x => x.CharacterId != null);
-                    if (slip.Turn != characterTypeCount % (slipDefaultTurn + 1)) continue;
-                    var orderedSlipDamageEntity
+                        .Count(x => x.CharacterId != null || x.SlipDamageCode == slip.Id);
+                    if (slip.Turn != characterTypeCount % slipDefaultTurn) continue;
+                    var orderedSlip
                         = new OrderedItem(slip.Id);
-                    order.Insert(i, orderedSlipDamageEntity); 
+                    order.Insert(i, orderedSlip); 
                     order.RemoveAt(order.Count - 1);
                     ++i;
                 }

@@ -12,7 +12,7 @@ namespace BattleScene.Domain.Entity
             Id = slipDamageCode;
             Effects = effects;
             Turn = turn;
-            DefaultTurn = turn;
+            DefaultTurn = turn - 1;
         }
         
         public override SlipDamageCode Id { get; }
