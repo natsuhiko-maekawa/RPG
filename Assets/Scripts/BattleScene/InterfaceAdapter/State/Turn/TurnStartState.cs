@@ -38,7 +38,7 @@ namespace BattleScene.InterfaceAdapter.State.Turn
         public override void Start()
         {
             _order.Register();
-            (Context.ActorId, Context.AilmentCode, Context.SlipDamageCode) = _order.First();
+            (Context.ActorId, Context.AilmentCode, Context.SlipCode) = _order.First();
             _orderView.StartAnimationAsync();
             var nextState = GetNextState();
             Context.TransitionTo(nextState);

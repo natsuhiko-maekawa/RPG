@@ -11,7 +11,7 @@ namespace BattleScene.InterfaceAdapter.State.Turn
         
         public CharacterId ActorId { get; set; }
         public AilmentCode AilmentCode { get; set; }
-        public SlipDamageCode SlipDamageCode { get; set; }
+        public SlipCode SlipCode { get; set; }
         public SkillCode SkillCode { get; set; }
         public IReadOnlyList<CharacterId> TargetIdList { get; set; }
 

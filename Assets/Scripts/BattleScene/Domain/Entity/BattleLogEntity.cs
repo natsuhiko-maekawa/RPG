@@ -24,7 +24,7 @@ namespace BattleScene.Domain.Entity
         public BuffCode BuffCode => _primeSkill.BuffCode;
         public IReadOnlyList<AttackValueObject> AttackList => _primeSkill.AttackList;
         public int TechnicalPoint => _primeSkill.TechnicalPoint;
-        public SlipDamageCode SlipDamageCode => _primeSkill.SlipDamageCode;
+        public SlipCode SlipCode => _primeSkill.SlipCode;
 
         public BattleLogEntity(
             BattleLogId battleLogId,

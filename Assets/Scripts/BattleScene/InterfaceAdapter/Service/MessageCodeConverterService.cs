@@ -24,7 +24,7 @@ namespace BattleScene.InterfaceAdapter.Service
         private const string Skill = "[skill]";
         private const string Target = "[target]";
         private const string TechnicalPoint = "[technicalPoint]";
-        private readonly IResource<AilmentViewDto, AilmentCode, SlipDamageCode> _ailmentViewResource;
+        private readonly IResource<AilmentViewDto, AilmentCode, SlipCode> _ailmentViewResource;
         private readonly IResource<BodyPartViewDto, BodyPartCode> _bodyPartViewInfoResource;
         private readonly IResource<BuffViewDto, BuffCode> _buffViewInfoResource;
         private readonly ICollection<CharacterEntity, CharacterId> _characterCollection;
@@ -37,7 +37,7 @@ namespace BattleScene.InterfaceAdapter.Service
         private readonly PlayerDomainService _player;
 
         public MessageCodeConverterService(
-            IResource<AilmentViewDto, AilmentCode, SlipDamageCode> ailmentViewResource,
+            IResource<AilmentViewDto, AilmentCode, SlipCode> ailmentViewResource,
             IResource<BodyPartViewDto, BodyPartCode> bodyPartViewInfoResource,
             IResource<BuffViewDto, BuffCode> buffViewInfoResource,
             ICollection<CharacterEntity, CharacterId> characterCollection,
@@ -100,8 +100,8 @@ namespace BattleScene.InterfaceAdapter.Service
             var battleLog = _battleLog.GetLast();
             if (battleLog.AilmentCode != AilmentCode.NoAilment)
                 return _ailmentViewResource.Get(battleLog.AilmentCode).Name;
-            if (battleLog.SlipDamageCode != SlipDamageCode.NoSlipDamage)
-                return _ailmentViewResource.Get(battleLog.SlipDamageCode).Name;
+            if (battleLog.SlipCode != SlipCode.NoSlip)
+                return _ailmentViewResource.Get(battleLog.SlipCode).Name;
             throw new InvalidOperationException();
         }
 

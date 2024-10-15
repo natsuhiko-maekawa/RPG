@@ -36,10 +36,10 @@ namespace BattleScene.UseCases.Service
         public SlipDamageValueObject Generate()
         {
             _orderedItems.First().TryGetSlipDamageCode(out var slipCode);
-            MyDebug.Assert(slipCode != SlipDamageCode.NoSlipDamage);
+            MyDebug.Assert(slipCode != SlipCode.NoSlip);
 
             var battleLog = _battleLogCollection.Get()
-                .Where(x => x.SlipDamageCode == slipCode)
+                .Where(x => x.SlipCode == slipCode)
                 .Max();
             Debug.Assert(battleLog != null);
             var actorId = battleLog.ActorId;
@@ -60,7 +60,7 @@ namespace BattleScene.UseCases.Service
 
             var slipDamage = new SlipDamageValueObject(
                 targetIdList: new List<CharacterId> { targetId },
-                slipDamageCode: slipCode,
+                slipCode: slipCode,
                 attackList: new List<AttackValueObject> { attack });
             return slipDamage;
         }

@@ -16,7 +16,7 @@ namespace BattleScene.UseCases.Service.Order
         private readonly ICollection<AilmentEntity, (CharacterId, AilmentCode)> _ailmentCollection;
         private readonly ICollection<CharacterEntity, CharacterId> _characterCollection;
         private readonly ICollection<OrderedItemEntity, OrderId> _orderedItemCollection;
-        private readonly ICollection<SlipEntity, SlipDamageCode> _slipDamageCollection;
+        private readonly ICollection<SlipEntity, SlipCode> _slipDamageCollection;
         private readonly ISpeedService _speed;
 
         public OrderService(
@@ -25,7 +25,7 @@ namespace BattleScene.UseCases.Service.Order
             ICollection<AilmentEntity, (CharacterId, AilmentCode)> ailmentCollection, 
             ICollection<CharacterEntity, CharacterId> characterCollection,
             ICollection<OrderedItemEntity, OrderId> orderedItemCollection, 
-            ICollection<SlipEntity, SlipDamageCode> slipDamageCollection,
+            ICollection<SlipEntity, SlipCode> slipDamageCollection,
             ISpeedService speed)
         {
             _battlePropertyFactory = battlePropertyFactory;
@@ -98,7 +98,7 @@ namespace BattleScene.UseCases.Service.Order
                 {
                     var characterTypeCount = order
                         .Take(i)
-                        .Count(x => x.CharacterId != null || x.SlipDamageCode == slip.Id);
+                        .Count(x => x.CharacterId != null || x.SlipCode == slip.Id);
                     if (slip.Turn != characterTypeCount % slipDefaultTurn) continue;
                     var orderedSlip
                         = new OrderedItem(slip.Id);

@@ -9,6 +9,6 @@ namespace BattleScene.InterfaceAdapter.PrimeSkill
         public override IReadOnlyList<AilmentCode> AilmentCodeList { get; } =
             new[] { AilmentCode.Blind, AilmentCode.Paralysis };
 
-        public override IReadOnlyList<SlipDamageCode> SlipDamageCodeList { get; } = new[] { SlipDamageCode.Poisoning };
+        public override IReadOnlyList<SlipCode> SlipDamageCodeList { get; } = new[] { SlipCode.Poisoning };
     }
 }

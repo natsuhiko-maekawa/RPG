@@ -79,9 +79,9 @@ namespace Tests.BattleScene.UseCases.Service
             
             var mockOrderedItemRepository = new MockCollection<OrderedItemEntity, OrderId>();
 
-            var stubSlipDamageRepository = Substitute.For<ICollection<SlipEntity, SlipDamageCode>>();
+            var stubSlipDamageRepository = Substitute.For<ICollection<SlipEntity, SlipCode>>();
             stubSlipDamageRepository.Get().Returns(new List<SlipEntity>()
-                { new SlipEntity(SlipDamageCode.Poisoning, true, 5) });
+                { new SlipEntity(SlipCode.Poisoning, true, 5) });
 
             var orderService = new OrderService(
                 battlePropertyFactory: _stubBattlePropertyFactory,

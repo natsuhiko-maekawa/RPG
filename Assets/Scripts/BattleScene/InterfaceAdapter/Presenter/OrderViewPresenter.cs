@@ -9,7 +9,7 @@ using BattleScene.Domain.Id;
 using BattleScene.Framework.View;
 using BattleScene.Framework.ViewModel;
 using EnemyViewDto = BattleScene.DataAccess.Dto.EnemyViewDto;
-using static BattleScene.Domain.Code.SlipDamageCode;
+using static BattleScene.Domain.Code.SlipCode;
 using static BattleScene.Domain.Code.AilmentCode;
 
 namespace BattleScene.InterfaceAdapter.Presenter
@@ -115,9 +115,9 @@ namespace BattleScene.InterfaceAdapter.Presenter
             };
         }
 
-        private int ConvertToIntFrom(SlipDamageCode slipDamageCode)
+        private int ConvertToIntFrom(SlipCode slipCode)
         {
-            return slipDamageCode switch
+            return slipCode switch
             {
                 Burning => 7,
                 Freeze => 8,

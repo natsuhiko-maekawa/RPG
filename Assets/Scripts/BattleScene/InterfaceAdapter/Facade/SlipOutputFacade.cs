@@ -10,12 +10,12 @@ namespace BattleScene.InterfaceAdapter.Facade
 {
     public class SlipOutputFacade
     {
-        private readonly IResource<AilmentViewDto, AilmentCode, SlipDamageCode> _ailmentViewResource;
+        private readonly IResource<AilmentViewDto, AilmentCode, SlipCode> _ailmentViewResource;
         private readonly MessageViewPresenter _messageView;
         private readonly PlayerImageViewPresenter _playerImageView;
 
         public SlipOutputFacade(
-            IResource<AilmentViewDto, AilmentCode, SlipDamageCode> ailmentViewResource,
+            IResource<AilmentViewDto, AilmentCode, SlipCode> ailmentViewResource,
             MessageViewPresenter messageView, 
             PlayerImageViewPresenter playerImageView)
         {
@@ -39,7 +39,7 @@ namespace BattleScene.InterfaceAdapter.Facade
             var messageAnimation = _messageView.StartAnimationAsync(MessageCode.AilmentMessage);
             animationList.Add(messageAnimation);
 
-            var playerImageCode = _ailmentViewResource.Get(primeSkill.SlipDamageCode).PlayerImageCode;
+            var playerImageCode = _ailmentViewResource.Get(primeSkill.SlipCode).PlayerImageCode;
             var playerImageAnimation = _playerImageView.StartAnimationAsync(playerImageCode);
             animationList.Add(playerImageAnimation);
             

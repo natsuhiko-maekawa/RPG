@@ -5,6 +5,6 @@ namespace BattleScene.InterfaceAdapter.PrimeSkill
 {
     public class BurningSkill : BaseSlip
     {
-        public override SlipDamageCode SlipDamageCode { get; } = SlipDamageCode.Burning;
+        public override SlipCode SlipCode { get; } = SlipCode.Burning;
     }
 }

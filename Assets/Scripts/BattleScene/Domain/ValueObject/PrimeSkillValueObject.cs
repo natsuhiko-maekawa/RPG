@@ -12,7 +12,7 @@ namespace BattleScene.Domain.ValueObject
         public AilmentCode AilmentCode { get; protected init; } = AilmentCode.NoAilment;
         public BodyPartCode BodyPartCode { get; protected init; } = BodyPartCode.NoBodyPart;
         public BuffCode BuffCode { get; protected init; } = BuffCode.NoBuff;
-        public SlipDamageCode SlipDamageCode { get; protected init; } = SlipDamageCode.NoSlipDamage;
+        public SlipCode SlipCode { get; protected init; } = SlipCode.NoSlip;
         public SkillCode SkillCode { get; protected init; } = SkillCode.NoSkill;
         public CharacterId ActorId { get; protected init; }
         public IReadOnlyList<CharacterId> TargetIdList { get; protected init; } = Array.Empty<CharacterId>();

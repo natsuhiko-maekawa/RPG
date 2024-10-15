@@ -14,13 +14,13 @@ namespace BattleScene.InterfaceAdapter.Facade
 {
     public class AilmentOutputFacade
     {
-        private readonly IResource<AilmentViewDto, AilmentCode, SlipDamageCode> _ailmentViewResource;
+        private readonly IResource<AilmentViewDto, AilmentCode, SlipCode> _ailmentViewResource;
         private readonly ICollection<CharacterEntity, CharacterId> _characterCollection;
         private readonly MessageViewPresenter _messageView;
         private readonly PlayerImageViewPresenter _playerImageView;
 
         public AilmentOutputFacade(
-            IResource<AilmentViewDto, AilmentCode, SlipDamageCode> ailmentViewResource,
+            IResource<AilmentViewDto, AilmentCode, SlipCode> ailmentViewResource,
             ICollection<CharacterEntity, CharacterId> characterCollection,
             MessageViewPresenter messageView,
             PlayerImageViewPresenter playerImageView)

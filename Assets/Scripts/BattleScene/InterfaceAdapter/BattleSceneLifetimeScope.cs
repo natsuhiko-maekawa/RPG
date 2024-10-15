@@ -112,7 +112,7 @@ namespace BattleScene.InterfaceAdapter
             
             #region RegisterResource
             builder.RegisterComponentInHierarchy<IResource<AilmentPropertyDto, AilmentCode>>();
-            builder.RegisterComponentInHierarchy<IResource<AilmentViewDto, AilmentCode, SlipDamageCode>>();
+            builder.RegisterComponentInHierarchy<IResource<AilmentViewDto, AilmentCode, SlipCode>>();
             builder.RegisterComponentInHierarchy<IResource<BattlePropertyDto>>();
             builder.RegisterComponentInHierarchy<IResource<BodyPartPropertyDto, BodyPartCode>>();
             builder.Register<IResource<BodyPartViewDto, BodyPartCode>, BodyPartViewResource>(Lifetime.Singleton);
@@ -222,7 +222,7 @@ namespace BattleScene.InterfaceAdapter
             builder.Register<ICollection<CharacterEntity, CharacterId>, Collection<CharacterEntity, CharacterId>>(Lifetime.Singleton);
             builder.Register<ICollection<OrderedItemEntity, OrderId>, Collection<OrderedItemEntity, OrderId>>(
                 Lifetime.Singleton);
-            builder.Register<ICollection<SlipEntity, SlipDamageCode>, Collection<SlipEntity, SlipDamageCode>>(
+            builder.Register<ICollection<SlipEntity, SlipCode>, Collection<SlipEntity, SlipCode>>(
                 Lifetime.Singleton);
             builder.Register<ICollection<TurnEntity, TurnId>, Collection<TurnEntity, TurnId>>(Lifetime.Singleton);
             #endregion

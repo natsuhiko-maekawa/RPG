@@ -13,10 +13,10 @@ namespace BattleScene.InterfaceAdapter.Skill
     /// </summary>
     internal class MurasameSkill : BaseSkill
     {
-        private readonly ICollection<SlipEntity, SlipDamageCode> _slipDamageCollection;
+        private readonly ICollection<SlipEntity, SlipCode> _slipDamageCollection;
 
         public MurasameSkill(
-            ICollection<SlipEntity, SlipDamageCode> slipDamageCollection)
+            ICollection<SlipEntity, SlipCode> slipDamageCollection)
         {
             _slipDamageCollection = slipDamageCollection;
         }
@@ -33,7 +33,7 @@ namespace BattleScene.InterfaceAdapter.Skill
 
         private ImmutableList<BaseReset> GetResetList()
         {
-            return _slipDamageCollection.Get(SlipDamageCode.Burning) == null
+            return _slipDamageCollection.Get(SlipCode.Burning) == null
                 ? ImmutableList<BaseReset>.Empty
                 : ImmutableList.Create<BaseReset>(new BurningReset());
         }

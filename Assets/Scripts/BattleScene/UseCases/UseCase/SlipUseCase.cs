@@ -16,14 +16,14 @@ namespace BattleScene.UseCases.UseCase
         private readonly PlayerDomainService _player;
         private readonly OrderedItemsDomainService _orderedItems;
         private readonly SlipDamageGeneratorService _slipDamageGenerator;
-        private readonly ICollection<SlipEntity, SlipDamageCode> _slipCollection;
+        private readonly ICollection<SlipEntity, SlipCode> _slipCollection;
 
         public SlipUseCase(
             BattleLoggerService battleLogger,
             PlayerDomainService player,
             OrderedItemsDomainService orderedItems,
             SlipDamageGeneratorService slipDamageGenerator,
-            ICollection<SlipEntity, SlipDamageCode> slipCollection)
+            ICollection<SlipEntity, SlipCode> slipCollection)
         {
             _battleLogger = battleLogger;
             _player = player;
@@ -35,18 +35,18 @@ namespace BattleScene.UseCases.UseCase
         public void Commit()
         {
             var slipDamage = _slipDamageGenerator.Generate();
-            _slipCollection.Get(slipDamage.SlipDamageCode).AdvanceTurn();
+            _slipCollection.Get(slipDamage.SlipCode).AdvanceTurn();
             _battleLogger.Log(slipDamage);
         }
 
         public SkillCode GetSkillCode()
         {
             _orderedItems.First().TryGetSlipDamageCode(out var slipCode);
-            MyDebug.Assert(slipCode != SlipDamageCode.NoSlipDamage);
+            MyDebug.Assert(slipCode != SlipCode.NoSlip);
             var skillCode = slipCode switch
             {
-                SlipDamageCode.Poisoning => SkillCode.Poisoning,
-                SlipDamageCode.Suffocation => SkillCode.Suffocation,
+                SlipCode.Poisoning => SkillCode.Poisoning,
+                SlipCode.Suffocation => SkillCode.Suffocation,
                 _ => throw new ArgumentOutOfRangeException()
             };
 

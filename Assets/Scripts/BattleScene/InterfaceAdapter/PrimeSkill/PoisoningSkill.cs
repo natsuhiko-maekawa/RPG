@@ -5,6 +5,6 @@ namespace BattleScene.InterfaceAdapter.PrimeSkill
 {
     public class PoisoningSkill : BaseSlip
     {
-        public override SlipDamageCode SlipDamageCode { get; } = SlipDamageCode.Poisoning;
+        public override SlipCode SlipCode { get; } = SlipCode.Poisoning;
     }
 }

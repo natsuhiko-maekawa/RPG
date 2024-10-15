@@ -5,6 +5,6 @@ namespace BattleScene.InterfaceAdapter.PrimeSkill
 {
     public class BleedingSkill : BaseSlip
     {
-        public override SlipDamageCode SlipDamageCode { get; } = SlipDamageCode.Bleeding;
+        public override SlipCode SlipCode { get; } = SlipCode.Bleeding;
     }
 }

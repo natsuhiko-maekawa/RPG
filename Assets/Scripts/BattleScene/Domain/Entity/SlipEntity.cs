@@ -2,20 +2,20 @@
 
 namespace BattleScene.Domain.Entity
 {
-    public partial class SlipEntity : BaseEntity<SlipDamageCode>
+    public partial class SlipEntity : BaseEntity<SlipCode>
     {
         public SlipEntity(
-            SlipDamageCode slipDamageCode,
+            SlipCode slipCode,
             bool effects,
             int turn)
         {
-            Id = slipDamageCode;
+            Id = slipCode;
             Effects = effects;
             Turn = turn;
             DefaultTurn = turn - 1;
         }
         
-        public override SlipDamageCode Id { get; }
+        public override SlipCode Id { get; }
         public int Turn { get; private set; }
         private int DefaultTurn { get; }
         

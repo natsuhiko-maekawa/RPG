@@ -5,10 +5,10 @@ using BattleScene.Domain.Code;
 namespace BattleScene.DataAccess.Resource
 {
     public class AilmentViewResource
-        : BaseScriptableObjectResource<AilmentViewScriptableObject, AilmentViewDto, (AilmentCode, SlipDamageCode)>,
-            IResource<AilmentViewDto, AilmentCode, SlipDamageCode>
+        : BaseScriptableObjectResource<AilmentViewScriptableObject, AilmentViewDto, (AilmentCode, SlipCode)>,
+            IResource<AilmentViewDto, AilmentCode, SlipCode>
     {
-        public AilmentViewDto Get(AilmentCode key) => Get((key, SlipDamageCode.NoSlipDamage));
-        public AilmentViewDto Get(SlipDamageCode key) => Get((AilmentCode.NoAilment, key));
+        public AilmentViewDto Get(AilmentCode key) => Get((key, SlipCode.NoSlip));
+        public AilmentViewDto Get(SlipCode key) => Get((AilmentCode.NoAilment, key));
     }
 }

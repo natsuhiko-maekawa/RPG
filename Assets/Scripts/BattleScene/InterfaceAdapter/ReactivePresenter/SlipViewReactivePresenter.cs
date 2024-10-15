@@ -26,9 +26,9 @@ namespace BattleScene.InterfaceAdapter.ReactivePresenter
             slip.ReactiveEffects.Subscribe(x => StartPlayerAilmentView(slip.Id, x));
         }
 
-        private void StartPlayerAilmentView(SlipDamageCode slipDamageCode, bool effects)
+        private void StartPlayerAilmentView(SlipCode slipCode, bool effects)
         {
-            var slipId = _toIndex.FromSlipDamage(slipDamageCode);
+            var slipId = _toIndex.FromSlipDamage(slipCode);
             var ailment = new AilmentViewModel(slipId, effects);
             _playerAilmentsView.StartPlayerAilmentsView(ailment);
         }

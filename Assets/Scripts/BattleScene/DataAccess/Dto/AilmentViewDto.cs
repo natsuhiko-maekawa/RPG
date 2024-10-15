@@ -5,15 +5,15 @@ using UnityEngine;
 namespace BattleScene.DataAccess.Dto
 {
     [Serializable]
-    public class AilmentViewDto : IUnique<(AilmentCode, SlipDamageCode)>, ISerializationCallbackReceiver
+    public class AilmentViewDto : IUnique<(AilmentCode, SlipCode)>, ISerializationCallbackReceiver
     {
         [SerializeField] private string code;
         [SerializeField] private string name;
         [SerializeField] private string messageCode;
         [SerializeField] private string playerImageCode;
-        public (AilmentCode, SlipDamageCode) Key { get; private set; }
+        public (AilmentCode, SlipCode) Key { get; private set; }
         public AilmentCode AilmentCode { get; private set; }
-        public SlipDamageCode SlipDamageCode { get; private set; }
+        public SlipCode SlipCode { get; private set; }
         public string Name { get; set; }
         public MessageCode MessageCode { get; private set; }
         public PlayerImageCode PlayerImageCode { get; private set; }
@@ -25,7 +25,7 @@ namespace BattleScene.DataAccess.Dto
         public void OnAfterDeserialize()
         {
             SetCode();
-            Key = (AilmentCode, SlipDamageCode);
+            Key = (AilmentCode, SlipCode);
             Name = name;
             MessageCode = Enum.Parse<MessageCode>(messageCode);
             PlayerImageCode = Enum.Parse<PlayerImageCode>(playerImageCode);
@@ -36,14 +36,14 @@ namespace BattleScene.DataAccess.Dto
             if (Enum.TryParse<AilmentCode>(code, out var ailmentCode))
             {
                 AilmentCode = ailmentCode;
-                SlipDamageCode = SlipDamageCode.NoSlipDamage;
+                SlipCode = SlipCode.NoSlip;
                 return;
             }
 
-            if (Enum.TryParse<SlipDamageCode>(code, out var slipDamageCode))
+            if (Enum.TryParse<SlipCode>(code, out var slipDamageCode))
             {
                 AilmentCode = AilmentCode.NoAilment;
-                SlipDamageCode = slipDamageCode;
+                SlipCode = slipDamageCode;
                 return;
             }
 

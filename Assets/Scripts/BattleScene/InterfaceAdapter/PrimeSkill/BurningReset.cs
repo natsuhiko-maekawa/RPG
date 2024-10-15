@@ -6,6 +6,6 @@ namespace BattleScene.InterfaceAdapter.PrimeSkill
 {
     public class BurningReset : BaseReset
     {
-        public override IReadOnlyList<SlipDamageCode> SlipDamageCodeList { get; } = new[] { SlipDamageCode.Burning };
+        public override IReadOnlyList<SlipCode> SlipDamageCodeList { get; } = new[] { SlipCode.Burning };
     }
 }

@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using BattleScene.Domain.Code;
-using static BattleScene.Domain.Code.SlipDamageCode;
+using static BattleScene.Domain.Code.SlipCode;
 using static BattleScene.Domain.Code.AilmentCode;
 
 namespace BattleScene.InterfaceAdapter.Service
@@ -23,8 +23,8 @@ namespace BattleScene.InterfaceAdapter.Service
             { EnemyParalysis, 3 }
         };
 
-        private readonly IReadOnlyDictionary<SlipDamageCode, int> _slipDamageDictionary
-            = new Dictionary<SlipDamageCode, int>()
+        private readonly IReadOnlyDictionary<SlipCode, int> _slipDamageDictionary
+            = new Dictionary<SlipCode, int>()
             {
                 { Burning, 7 },
                 { Freeze, 8 },
@@ -53,7 +53,7 @@ namespace BattleScene.InterfaceAdapter.Service
             };
 
         public int FromAilment(AilmentCode ailmentCode) => _ailmentDictionary[ailmentCode];
-        public int FromSlipDamage(SlipDamageCode slipDamageCode) => _slipDamageDictionary[slipDamageCode];
+        public int FromSlipDamage(SlipCode slipCode) => _slipDamageDictionary[slipCode];
         public int FromBodyPart(BodyPartCode bodyPartCode) => _bodyPartDictionary[bodyPartCode];
         public int FromBuff(BuffCode buffCode) => _buffDictionary[buffCode];
     }

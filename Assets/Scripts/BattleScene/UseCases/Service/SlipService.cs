@@ -17,10 +17,10 @@ namespace BattleScene.UseCases.Service
         public SkillCode GetSkillCode()
         {
             _orderedItems.First().TryGetSlipDamageCode(out var slipCode);
-            MyDebug.Assert(slipCode != SlipDamageCode.NoSlipDamage);
+            MyDebug.Assert(slipCode != SlipCode.NoSlip);
             var skillCode = slipCode switch
             {
-                SlipDamageCode.Poisoning => SkillCode.Poisoning,
+                SlipCode.Poisoning => SkillCode.Poisoning,
                 _ => throw new ArgumentOutOfRangeException()
             };
 

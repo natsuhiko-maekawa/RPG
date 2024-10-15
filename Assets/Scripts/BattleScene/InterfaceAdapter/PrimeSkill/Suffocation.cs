@@ -5,6 +5,6 @@ namespace BattleScene.InterfaceAdapter.PrimeSkill
 {
     public class Suffocation : BaseSlip
     {
-        public override SlipDamageCode SlipDamageCode { get; } = SlipDamageCode.Suffocation;
+        public override SlipCode SlipCode { get; } = SlipCode.Suffocation;
     }
 }

@@ -152,7 +152,7 @@ namespace BattleScene.InterfaceAdapter
         {
             return slipList
                 .Select(x => new SlipParameterValueObject(
-                    SlipDamageCode: x.SlipDamageCode,
+                    SlipCode: x.SlipCode,
                     DamageRate: x.DamageRate,
                     DamageExpressionCode: DamageExpressionCode.Slip,
                     LuckRate: x.LuckRate))

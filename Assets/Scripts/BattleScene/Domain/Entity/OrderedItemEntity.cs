@@ -15,7 +15,7 @@ namespace BattleScene.Domain.Entity
             OrderNumber = orderNumber;
             CharacterId = orderedItem.CharacterId;
             AilmentCode = orderedItem.AilmentCode;
-            SlipDamageCode = orderedItem.SlipDamageCode;
+            SlipCode = orderedItem.SlipCode;
             OrderedItemType = orderedItem.OrderedItemType;
         }
 
@@ -23,7 +23,7 @@ namespace BattleScene.Domain.Entity
         public int OrderNumber { get; }
         [CanBeNull] private CharacterId CharacterId { get; }
         private AilmentCode AilmentCode { get; }
-        private SlipDamageCode SlipDamageCode { get; }
+        private SlipCode SlipCode { get; }
         public OrderedItemType OrderedItemType { get; }
 
         public bool TryGetCharacterId(out CharacterId characterId)
@@ -38,10 +38,10 @@ namespace BattleScene.Domain.Entity
             return AilmentCode != AilmentCode.NoAilment;
         }
 
-        public bool TryGetSlipDamageCode(out SlipDamageCode slipDamageCode)
+        public bool TryGetSlipDamageCode(out SlipCode slipCode)
         {
-            slipDamageCode = SlipDamageCode;
-            return SlipDamageCode != SlipDamageCode.NoSlipDamage;
+            slipCode = SlipCode;
+            return SlipCode != SlipCode.NoSlip;
         }
 
         public override string ToString()
@@ -50,7 +50,7 @@ namespace BattleScene.Domain.Entity
 OrderNumber: {OrderNumber},
 CharacterId: {CharacterId},
 AilmentCode: {AilmentCode},
-SlipDamageCode: {SlipDamageCode},
+SlipDamageCode: {SlipCode},
 OrderedItemType: {OrderedItemType}";
             return str;
         }
@@ -61,7 +61,7 @@ OrderedItemType: {OrderedItemType}";
         public OrderedItemType OrderedItemType { get; }
         [CanBeNull] public CharacterId CharacterId { get; }
         public AilmentCode AilmentCode { get; } = AilmentCode.NoAilment;
-        public SlipDamageCode SlipDamageCode { get; } = SlipDamageCode.NoSlipDamage;
+        public SlipCode SlipCode { get; } = SlipCode.NoSlip;
 
         public OrderedItem(CharacterId characterId)
         {
@@ -75,9 +75,9 @@ OrderedItemType: {OrderedItemType}";
             OrderedItemType = OrderedItemType.Ailment;
         }
 
-        public OrderedItem(SlipDamageCode slipDamageCode)
+        public OrderedItem(SlipCode slipCode)
         {
-            SlipDamageCode = slipDamageCode;
+            SlipCode = slipCode;
             OrderedItemType = OrderedItemType.Slip;
         }
     }

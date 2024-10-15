@@ -1,8 +1,8 @@
 ﻿namespace BattleScene.Domain.Code
 {
-    public enum SlipDamageCode
+    public enum SlipCode
     {
-        NoSlipDamage,
+        NoSlip,
         Burning,
         Freeze,
         ElectricShock,

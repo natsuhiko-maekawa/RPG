@@ -43,7 +43,7 @@ namespace BattleScene.UseCases.Service
                 var slip = new SlipValueObject(
                     actorId: actorId,
                     skillCode: skillCommon.SkillCode,
-                    slipDamageCode: slipParameter.SlipDamageCode,
+                    slipCode: slipParameter.SlipCode,
                     targetIdList: targetIdList,
                     actualTargetIdList: actualTargetIdList);
                 return slip;

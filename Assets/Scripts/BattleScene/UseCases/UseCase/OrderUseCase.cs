@@ -27,7 +27,7 @@ namespace BattleScene.UseCases.UseCase
             _actionTime.Update();
         }
 
-        public (CharacterId, AilmentCode, SlipDamageCode) First()
+        public (CharacterId, AilmentCode, SlipCode) First()
         {
             var orderedItem = _orderedItems.First();
             orderedItem.TryGetCharacterId(out var actorId);

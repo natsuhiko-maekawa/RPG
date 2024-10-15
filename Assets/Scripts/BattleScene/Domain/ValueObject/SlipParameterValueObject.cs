@@ -3,7 +3,7 @@
 namespace BattleScene.Domain.ValueObject
 {
     public record SlipParameterValueObject(
-        SlipDamageCode SlipDamageCode,
+        SlipCode SlipCode,
         float DamageRate,
         DamageExpressionCode DamageExpressionCode,
         float LuckRate);

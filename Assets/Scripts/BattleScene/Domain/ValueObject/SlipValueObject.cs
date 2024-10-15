@@ -7,13 +7,13 @@ namespace BattleScene.Domain.ValueObject
     public class SlipValueObject : PrimeSkillValueObject
     {
         public SlipValueObject(
-            SlipDamageCode slipDamageCode,
+            SlipCode slipCode,
             SkillCode skillCode,
             CharacterId actorId,
             IReadOnlyList<CharacterId> targetIdList,
             IReadOnlyList<CharacterId> actualTargetIdList)
         {
-            SlipDamageCode = slipDamageCode;
+            SlipCode = slipCode;
             SkillCode = skillCode;
             ActorId = actorId;
             TargetIdList = targetIdList;
