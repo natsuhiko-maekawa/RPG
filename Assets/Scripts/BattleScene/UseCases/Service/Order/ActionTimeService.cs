@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Linq;
 using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.DomainService;
@@ -31,30 +30,14 @@ namespace BattleScene.UseCases.Service.Order
         public void Update()
         {
             if (!_orderedItems.First().TryGetCharacterId(out var actorId)) return;
-
-            var characterIdList = _characterCollection.Get().Select(x => x.Id).ToList();
+            var actionTime = _characterCollection.Get()
+                .Min(x => x.ActionTime);
             foreach (var character in _characterCollection.Get())
             {
-                character.ActionTime = CreateActionTime(
-                    characterIdList: characterIdList,
-                    actorId: actorId,
-                    characterId: character.Id);
+                character.ActionTime -= actionTime;
+                if (!Equals(character.Id, actorId)) continue;
+                character.ActionTime += _battlePropertyFactory.Create().MaxAgility / _speed.Get(character.Id);
             }
-        }
-
-        private int CreateActionTime(IReadOnlyList<CharacterId> characterIdList, CharacterId actorId, CharacterId characterId)
-        {
-            var actionTime = _characterCollection.Get(characterId).ActionTime;
-            var minTime = characterIdList
-                .Select(x => _characterCollection.Get(x).ActionTime)
-                .Min();
-            actionTime -= minTime;
-
-            if (!Equals(characterId, actorId))
-                return actionTime;
-
-            actionTime += _battlePropertyFactory.Create().MaxAgility / _speed.Get(characterId);
-            return actionTime;
         }
     }
 }
