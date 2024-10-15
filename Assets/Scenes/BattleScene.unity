@@ -2603,7 +2603,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   battlePropertyDto:
-    slipDefaultTurn: 2
+    slipDefaultTurn: 5
     slipDefaultDamageRate: 1.2
     isHitThreshold: 20
     ailmentSuccessThreshold: 40
