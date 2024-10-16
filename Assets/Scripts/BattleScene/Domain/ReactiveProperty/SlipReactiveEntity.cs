@@ -5,8 +5,8 @@ namespace BattleScene.Domain.Entity
 {
     public partial class SlipEntity
     {
-        private ReactiveProperty<bool> _reactiveEffects;
+        private readonly ReactiveProperty<bool> _reactiveEffects= new();
         public Observable<bool> ReactiveEffects => _reactiveEffects;
-        partial void EffectsOnChange(bool value) => _reactiveEffects = new ReactiveProperty<bool>(value);
+        partial void EffectsOnChange(bool value) => _reactiveEffects.Value = value ;
     }
 }
