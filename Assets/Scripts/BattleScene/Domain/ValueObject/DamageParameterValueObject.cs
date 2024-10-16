@@ -7,7 +7,7 @@ namespace BattleScene.Domain.ValueObject
         int AttackNumber = 1,
         float DamageRate = 1.0f,
         float HitRate = 1.0f,
-        IReadOnlyList<MatAttrCode> MatAttrCode = null,
+        IReadOnlyList<MatAttrCode>? MatAttrCode = null,
         DamageExpressionCode DamageExpressionCode = DamageExpressionCode.Basic,
         HitEvaluationCode HitEvaluationCode = HitEvaluationCode.Basic,
         AttacksWeakPointEvaluationCode AttacksWeakPointEvaluationCode = AttacksWeakPointEvaluationCode.Basic

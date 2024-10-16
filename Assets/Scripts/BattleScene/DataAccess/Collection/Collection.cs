@@ -13,6 +13,7 @@ namespace BattleScene.DataAccess.Collection
         public TEntity Get(TId id)
         {
             _entityDictionary.TryGetValue(id, out var entity);
+            // ReSharper disable once AssignNullToNotNullAttribute
             return entity;
         }
 
@@ -20,7 +21,6 @@ namespace BattleScene.DataAccess.Collection
 
         public void Add(TEntity entity)
         {
-            if (entity == null) return;
             Observe(entity);
             
             // TODO: TryAddをAddに修正すること

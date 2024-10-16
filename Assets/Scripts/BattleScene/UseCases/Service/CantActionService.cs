@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Id;
-using Utility;
 
 namespace BattleScene.UseCases.Service
 {
@@ -23,10 +22,8 @@ namespace BattleScene.UseCases.Service
         public SkillCode ToSkillCode()
         {
             _orderedItems.First().TryGetCharacterId(out var characterId);
-            MyDebug.Assert(characterId != null);
             var ailmentCode = _ailment.GetHighestPriority(characterId)?.AilmentCode;
-            MyDebug.Assert(ailmentCode.HasValue);
-            // ReSharper disable once PossibleInvalidOperationException
+            if (!ailmentCode.HasValue) throw new InvalidOperationException();
             var skillCode = ailmentCode.Value switch
             {
                 AilmentCode.Confusion => SkillCode.Confusion,
@@ -43,7 +40,6 @@ namespace BattleScene.UseCases.Service
             get
             {
                 _orderedItems.First().TryGetCharacterId(out var characterId);
-                MyDebug.Assert(characterId != null);
                 var targetIdList = new List<CharacterId> { characterId };
                 return targetIdList;
             }

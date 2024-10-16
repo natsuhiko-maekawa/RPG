@@ -8,7 +8,7 @@ namespace BattleScene.InterfaceAdapter
     {
         private readonly Queue<Func<Task>> _taskQueue;
         
-        public event Action OnLastAnimate;
+        public event Action? OnLastAnimate;
 
         public AnimationQueue(Queue<Func<Task>> tasks)
         {

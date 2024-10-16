@@ -26,7 +26,7 @@ namespace BattleScene.InterfaceAdapter.Presenter
             _messageView = messageView;
         }
 
-        public async Task StartAnimationAsync(MessageCode messageCode, Context context = null, bool noWait = false)
+        public async Task StartAnimationAsync(MessageCode messageCode, Context? context = null, bool noWait = false)
         {
             MyDebug.Assert(messageCode != MessageCode.NoMessage);
             _messageView.StopAnimation();

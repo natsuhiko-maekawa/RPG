@@ -20,12 +20,12 @@ namespace BattleScene.Domain.ValueObject
             MessageCode attackMessageCode,
             int technicalPoint,
             IReadOnlyList<BodyPartCode> dependencyList,
-            IReadOnlyList<AilmentParameterValueObject> ailmentList = null,
-            IReadOnlyList<BuffParameterValueObject> buffList = null,
-            IReadOnlyList<DamageParameterValueObject> damageList = null,
-            IReadOnlyList<DestroyParameterValueObject> destroyedPartList = null,
-            IReadOnlyList<RestoreParameterValueObject> restoreParameterList = null,
-            IReadOnlyList<SlipParameterValueObject> slipParameterList = null)
+            IReadOnlyList<AilmentParameterValueObject>? ailmentList = null,
+            IReadOnlyList<BuffParameterValueObject>? buffList = null,
+            IReadOnlyList<DamageParameterValueObject>? damageList = null,
+            IReadOnlyList<DestroyParameterValueObject>? destroyedPartList = null,
+            IReadOnlyList<RestoreParameterValueObject>? restoreParameterList = null,
+            IReadOnlyList<SlipParameterValueObject>? slipParameterList = null)
         {
             SkillCommon = new SkillCommonValueObject(
                 skillCode: skillCode,

@@ -62,7 +62,7 @@ namespace BattleScene.InterfaceAdapter.Service
             _player = player;
         }
 
-        public string Replace(string message, Context context = null)
+        public string Replace(string message, Context? context = null)
         {
             var replacedMessage = new Message(message)
                 .Replace(Actor, ReplaceActor)

@@ -14,7 +14,7 @@ namespace BattleScene.Domain.ValueObject
         public BuffCode BuffCode { get; protected init; } = BuffCode.NoBuff;
         public SlipCode SlipCode { get; protected init; } = SlipCode.NoSlip;
         public SkillCode SkillCode { get; protected init; } = SkillCode.NoSkill;
-        public CharacterId ActorId { get; protected init; }
+        public CharacterId? ActorId { get; protected init; }
         public IReadOnlyList<CharacterId> TargetIdList { get; protected init; } = Array.Empty<CharacterId>();
         public IReadOnlyList<CharacterId> ActualTargetIdList { get; protected init; } = Array.Empty<CharacterId>();
         public bool IsFailure => ActualTargetIdList.Count == 0;

@@ -4,9 +4,9 @@ namespace BattleScene.Domain.Id
 {
     public abstract class BaseId : IComparable<BaseId>
     {
-        public string Id { get; } = Guid.NewGuid().ToString("N");
+        private string Id { get; } = Guid.NewGuid().ToString("N");
 
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             if (obj == null || GetType() != obj.GetType()) return false;
             var idObject = (BaseId)obj;
