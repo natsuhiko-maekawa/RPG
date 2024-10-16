@@ -13,7 +13,17 @@ namespace BattleScene.UseCases.Service
         private readonly CharacterPropertyFactoryService _characterPropertyFactory;
         private readonly ICollection<CharacterEntity, CharacterId> _characterCollection;
         private readonly IMyRandomService _myRandom;
-        
+
+        public CureEvaluatorService(
+            CharacterPropertyFactoryService characterPropertyFactory,
+            ICollection<CharacterEntity, CharacterId> characterCollection,
+            IMyRandomService myRandom)
+        {
+            _characterPropertyFactory = characterPropertyFactory;
+            _characterCollection = characterCollection;
+            _myRandom = myRandom;
+        }
+
         public int Evaluate(CharacterId actorId, CureParameterValueObject cureParameter)
         {
             return cureParameter.CureExpressionCode switch
