@@ -6,7 +6,7 @@ using BattleScene.Framework.View;
 using BattleScene.Framework.ViewModel;
 using BattleScene.InterfaceAdapter.Service;
 using BattleScene.InterfaceAdapter.State.Turn;
-using UnityEngine;
+using Utility;
 
 namespace BattleScene.InterfaceAdapter.Presenter
 {
@@ -28,7 +28,7 @@ namespace BattleScene.InterfaceAdapter.Presenter
 
         public async Task StartAnimationAsync(MessageCode messageCode, Context context = null, bool noWait = false)
         {
-            Debug.Assert(messageCode != MessageCode.NoMessage);
+            MyDebug.Assert(messageCode != MessageCode.NoMessage);
             _messageView.StopAnimation();
             var message = _messageResource.Get(messageCode).Message;
             message = _messageCodeConverter.Replace(message, context);

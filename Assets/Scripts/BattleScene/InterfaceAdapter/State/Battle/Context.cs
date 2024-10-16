@@ -1,6 +1,6 @@
 ﻿using System.Collections.Immutable;
 using BattleScene.Domain.Id;
-using UnityEngine;
+using Utility;
 
 namespace BattleScene.InterfaceAdapter.State.Battle
 {
@@ -15,7 +15,7 @@ namespace BattleScene.InterfaceAdapter.State.Battle
 
         public void TransitionTo(BaseState state)
         {
-            Debug.Log(state.GetType().Name);
+            MyDebug.Log(state.GetType().Name);
             _state = state;
             _state.SetContext(this);
             _state.Start();

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.Id;
-using UnityEngine;
+using Utility;
 
 namespace BattleScene.InterfaceAdapter.State.Turn
 {
@@ -22,7 +22,7 @@ namespace BattleScene.InterfaceAdapter.State.Turn
 
         public void TransitionTo(BaseState state)
         {
-            Debug.Log(state.GetType().Name);
+            MyDebug.Log(state.GetType().Name);
             _state = state;
             _state.SetContext(this);
             _state.Start();
