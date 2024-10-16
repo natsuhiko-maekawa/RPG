@@ -12,6 +12,7 @@ using BattleScene.Domain.IDomainService;
 using BattleScene.Domain.ValueObject;
 using BattleScene.Framework.Input;
 using BattleScene.Framework.View;
+using BattleScene.InterfaceAdapter;
 using BattleScene.InterfaceAdapter.Facade;
 using BattleScene.InterfaceAdapter.Presenter;
 using BattleScene.InterfaceAdapter.PrimeSkill;
@@ -32,7 +33,7 @@ using VContainer;
 using VContainer.Unity;
 using PoisoningSkill = BattleScene.InterfaceAdapter.Skill.PoisoningSkill;
 
-namespace BattleScene.InterfaceAdapter
+namespace BattleScene
 {
     public class BattleSceneLifetimeScope : LifetimeScope
     {
