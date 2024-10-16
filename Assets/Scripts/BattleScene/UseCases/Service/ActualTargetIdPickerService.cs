@@ -29,7 +29,7 @@ namespace BattleScene.UseCases.Service
 
         /// <summary>
         /// 攻撃対象から実際の攻撃対象をランダムに絞り込むメソッド。
-        /// <see cref="BattleScene.UseCases.Service.DebugService.DebugRandomService"/>でメソッド名を利用してリフレクションを行っているため、
+        /// <see cref="BattleScene.Debug.Service.DebugRandomService"/>でメソッド名を利用してリフレクションを行っているため、
         /// NOTE: メソッド名を変更するときは上記クラスも修正すること。
         /// </summary>
         /// <param name="targetIdList">攻撃対象のIDのリスト</param>

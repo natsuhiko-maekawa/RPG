@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using BattleScene.Domain.Code;
@@ -9,11 +10,11 @@ using BattleScene.UseCases.IService;
 using UnityEngine;
 using VContainer;
 
-namespace BattleScene.UseCases.Service.DebugService
+namespace BattleScene.Debug.Service
 {
     public class DebugEnemiesRegistererService : MonoBehaviour, IEnemiesRegistererService
     {
-        [SerializeField] private CharacterTypeCode[] characterTypeCodeArray;
+        [SerializeField] private CharacterTypeCode[] characterTypeCodeArray = Array.Empty<CharacterTypeCode>();
         private IFactory<CharacterPropertyValueObject, CharacterTypeCode> _propertyFactory;
         private ICollection<CharacterEntity, CharacterId> _characterCollection;
 

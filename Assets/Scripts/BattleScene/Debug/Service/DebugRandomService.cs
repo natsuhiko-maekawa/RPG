@@ -2,31 +2,24 @@ using System;
 using System.Collections.Generic;
 using BattleScene.UseCases.IService;
 using UnityEngine;
-using VContainer;
+using Utility;
 
-namespace BattleScene.UseCases.Service.DebugService
+namespace BattleScene.Debug.Service
 {
     public class DebugRandomService : MonoBehaviour, IMyRandomService
     {
         [SerializeField] private ProbabilityDebugMode cantActionBecauseParalysis;
         [SerializeField] private ProbabilityDebugMode isHit;
         [SerializeField] private ProbabilityDebugMode isSuccess;
-        private MyRandomService _myRandom;
-        
-        [Inject]
-        public void Construct(MyRandomService myRandom)
-        {
-            _myRandom = myRandom;
-        }
         
         public T Choice<T>(IEnumerable<T> options, string memberName = "")
         {
-            return _myRandom.Choice(options);
+            return MyRandom.Choice(options);
         }
 
         public T Choice<T>(IEnumerable<T> options, long seed, string memberName = "")
         {
-            return _myRandom.Choice(options, seed);
+            return MyRandom.Choice(options, seed);
         }
 
         public bool Probability(float rate, string memberName = "")
@@ -41,7 +34,7 @@ namespace BattleScene.UseCases.Service.DebugService
 
             var value = debugMode switch
             {
-                ProbabilityDebugMode.Random => _myRandom.Probability(rate),
+                ProbabilityDebugMode.Random => MyRandom.Probability(rate),
                 ProbabilityDebugMode.True => true,
                 ProbabilityDebugMode.False => false,
                 _ => throw new ArgumentOutOfRangeException()
@@ -52,7 +45,7 @@ namespace BattleScene.UseCases.Service.DebugService
 
         public int Range(int min, int max, string memberName = "")
         {
-            return _myRandom.Range(min, max);
+            return MyRandom.Range(min, max);
         }
 
         private enum ProbabilityDebugMode

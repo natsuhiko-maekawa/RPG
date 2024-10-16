@@ -10,7 +10,7 @@ using BattleScene.UseCases.IService;
 using UnityEngine;
 using VContainer;
 
-namespace BattleScene.UseCases.Service.DebugService
+namespace BattleScene.Debug.Service
 {
     public class DebugEnemySkillSelectorService : MonoBehaviour, IEnemySkillSelectorService
     {

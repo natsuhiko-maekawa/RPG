@@ -48,7 +48,7 @@ namespace BattleScene.UseCases.Service
 
         /// <summary>
         /// 命中したかどうかを判定する最も基本的なメソッド。<br/>
-        /// <see cref="BattleScene.UseCases.Service.DebugService.DebugRandomService"/>でメソッド名を利用してリフレクションを行っているため、
+        /// <see cref="BattleScene.Debug.Service.DebugRandomService"/>でメソッド名を利用してリフレクションを行っているため、
         /// NOTE: メソッド名を変更するときは上記クラスも修正すること。
         /// </summary>
         /// <param name="actorId">行動者のID</param>
