@@ -7,7 +7,6 @@ using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
 using BattleScene.UseCases.IService;
-using UnityEngine;
 
 namespace BattleScene.UseCases.Service
 {
@@ -75,9 +74,9 @@ namespace BattleScene.UseCases.Service
             var isTargetDeaf = _ailmentCollection.Get()
                 .FirstOrDefault(x => Equals(x.CharacterId, targetId) && x.AilmentCode == AilmentCode.Deaf) != null;
             var destroyedReduce = _bodyPartDomainService.Count(targetId, BodyPartCode.Leg) * 0.5f;
-            var buff = Mathf.Log(_buffCollection.Get()
+            var buff = (float)Math.Log(_buffCollection.Get()
                 .FirstOrDefault(x => Equals(x.CharacterId, actorId) && x.BuffCode == BuffCode.HitRate)?.Rate ?? 1, 2.0f);
-            var add = Mathf.Log(damageParameter.HitRate, 2.0f);
+            var add = (float)Math.Log(damageParameter.HitRate, 2.0f);
             var actorFixedAgility = actorAgility + (isActorBlind ? -threshold : 0);
             var targetFixedAgility = targetAgility + (isTargetDeaf ? -threshold : 0);
             var hitRate = 1.0f + (actorFixedAgility - targetFixedAgility) / threshold;

@@ -4,7 +4,7 @@ using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
 using BattleScene.UseCases.IService;
-using UnityEngine;
+using Utility;
 
 namespace BattleScene.UseCases.Service
 {
@@ -27,7 +27,7 @@ namespace BattleScene.UseCases.Service
             IReadOnlyList<CharacterId> targetIdList)
         {
             var value = _orderedItems.First().TryGetCharacterId(out var actorId);
-            Debug.Assert(value);
+            MyDebug.Assert(value);
 
             var slipList = slipParameterList
                 .Select(GetSlip)

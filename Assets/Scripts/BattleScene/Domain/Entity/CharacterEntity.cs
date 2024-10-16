@@ -1,6 +1,6 @@
-﻿using BattleScene.Domain.Code;
+﻿using System;
+using BattleScene.Domain.Code;
 using BattleScene.Domain.Id;
-using UnityEngine;
 
 namespace BattleScene.Domain.Entity
 {
@@ -29,7 +29,7 @@ namespace BattleScene.Domain.Entity
         public int CurrentHitPoint
         {
             get => _currentHitPoint;
-            set { _currentHitPoint = Mathf.Max(value, 0); CurrentHitPointOnChange(_currentHitPoint);}
+            set { _currentHitPoint = Math.Max(value, 0); CurrentHitPointOnChange(_currentHitPoint);}
         }
 
         partial void CurrentHitPointOnChange(int value);
@@ -38,7 +38,7 @@ namespace BattleScene.Domain.Entity
         public int CurrentTechnicalPoint
         {
             get => _currentTechnicalPoint;
-            set { _currentTechnicalPoint = Mathf.Max(value, 0); CurrentTechnicalPointOnChange(value);}
+            set { _currentTechnicalPoint = Math.Max(value, 0); CurrentTechnicalPointOnChange(value);}
         }
 
         partial void CurrentTechnicalPointOnChange(int value);

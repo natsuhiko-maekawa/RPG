@@ -1,6 +1,6 @@
-﻿using BattleScene.Domain.Code;
+﻿using System;
+using BattleScene.Domain.Code;
 using BattleScene.Domain.Id;
-using UnityEngine;
 
 namespace BattleScene.Domain.Entity
 {
@@ -28,7 +28,7 @@ namespace BattleScene.Domain.Entity
         public int DestroyedCount
         {
             get => _destroyedCount;
-            private set { _destroyedCount = Mathf.Min(value, _count); DestroyedCountOnChange(_destroyedCount);}
+            private set { _destroyedCount = Math.Min(value, _count); DestroyedCountOnChange(_destroyedCount);}
         }
 
         partial void DestroyedCountOnChange(int value);

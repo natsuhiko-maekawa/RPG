@@ -1,6 +1,6 @@
-﻿using BattleScene.Domain.Code;
+﻿using System;
+using BattleScene.Domain.Code;
 using BattleScene.Domain.Id;
-using UnityEngine;
 
 namespace BattleScene.Domain.Entity
 {
@@ -28,7 +28,7 @@ namespace BattleScene.Domain.Entity
         public int Turn
         {
             get => _turn;
-            private set => _turn = Mathf.Max(value, 0);
+            private set => _turn = Math.Max(value, 0);
         }
         
         public bool IsSelfRecovery { get; }

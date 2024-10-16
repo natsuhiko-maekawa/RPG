@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using BattleScene.Domain.Code;
@@ -6,7 +7,6 @@ using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
-using UnityEngine;
 using Utility;
 
 namespace BattleScene.UseCases.Service
@@ -41,8 +41,8 @@ namespace BattleScene.UseCases.Service
             var battleLog = _battleLogCollection.Get()
                 .Where(x => x.SlipCode == slipCode)
                 .Max();
-            Debug.Assert(battleLog != null);
             var actorId = battleLog.ActorId;
+            if (actorId == null) throw new InvalidOperationException();
 
             var targetId = _player.GetId();
 

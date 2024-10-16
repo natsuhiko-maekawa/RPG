@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DataAccess;
@@ -6,7 +7,7 @@ using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
 using BattleScene.UseCases.IService;
-using UnityEngine;
+using Utility;
 
 namespace BattleScene.UseCases.Service
 {
@@ -31,9 +32,9 @@ namespace BattleScene.UseCases.Service
             IReadOnlyList<RestoreParameterValueObject> restoreParameterList,
             IReadOnlyList<CharacterId> targetIdList)
         {
-            Debug.Assert(restoreParameterList.Count == 1);
+            MyDebug.Assert(restoreParameterList.Count == 1);
             _orderedItems.First().TryGetCharacterId(out var actorId);
-            Debug.Assert(actorId != null);
+            MyDebug.Assert(actorId != null);
             var currentTechnicalPoint = _playerDomainService.Get().CurrentTechnicalPoint;
             var maxTechnicalPoint = _playerPropertyFactory.Create(CharacterTypeCode.Player).TechnicalPoint;
             var restoreList = restoreParameterList.Select(GetRestore).ToList();
@@ -41,7 +42,7 @@ namespace BattleScene.UseCases.Service
             
             RestoreValueObject GetRestore(RestoreParameterValueObject restoreParameter)
             {
-                var technicalPoint = Mathf.Min(restoreParameter.TechnicalPoint, maxTechnicalPoint - currentTechnicalPoint);
+                var technicalPoint = Math.Min(restoreParameter.TechnicalPoint, maxTechnicalPoint - currentTechnicalPoint);
                 var restore =  new RestoreValueObject(
                     actorId: actorId,
                     skillCode: skillCommon.SkillCode,

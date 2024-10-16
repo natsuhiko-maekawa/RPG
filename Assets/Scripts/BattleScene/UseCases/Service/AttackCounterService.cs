@@ -1,9 +1,9 @@
+using System;
 using System.Linq;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
-using UnityEngine;
 
 namespace BattleScene.UseCases.Service
 {
@@ -22,7 +22,7 @@ namespace BattleScene.UseCases.Service
 
         public float GetRate()
         {
-            return Mathf.Min((float)Count() / Constant.AttackCountUpperLimit, 1.0f);
+            return Math.Min((float)Count() / Constant.AttackCountUpperLimit, 1.0f);
         }
 
         public bool IsOverflow()

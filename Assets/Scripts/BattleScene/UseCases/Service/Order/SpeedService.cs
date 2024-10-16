@@ -1,8 +1,8 @@
+using System;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.IDomainService;
 using BattleScene.UseCases.IService;
-using UnityEngine;
 
 namespace BattleScene.UseCases.Service.Order
 {
@@ -23,7 +23,7 @@ namespace BattleScene.UseCases.Service.Order
         {
             var agility = (float)_characterPropertyFactory.Create(characterId).Agility;
             var speedRate = _buff.GetRate(characterId, BuffCode.Speed);
-            var speed = Mathf.CeilToInt(agility * speedRate);
+            var speed = (int)Math.Ceiling(agility * speedRate);
             return speed;
         }
     }

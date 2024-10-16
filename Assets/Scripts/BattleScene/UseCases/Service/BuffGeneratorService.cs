@@ -4,7 +4,7 @@ using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
 using BattleScene.UseCases.IService;
-using UnityEngine;
+using Utility;
 
 namespace BattleScene.UseCases.Service
 {
@@ -23,7 +23,7 @@ namespace BattleScene.UseCases.Service
             IReadOnlyList<BuffParameterValueObject> buffParameterList,
             IReadOnlyList<CharacterId> targetIdList)
         {
-            if(_orderedItems.First().TryGetCharacterId(out var actorId)) Debug.Assert(actorId != null);
+            if(_orderedItems.First().TryGetCharacterId(out var actorId)) MyDebug.Assert(actorId != null);
 
             var buffList = buffParameterList.Select(GetBuff).ToList();
             return buffList;
