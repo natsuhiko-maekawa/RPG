@@ -3,7 +3,7 @@ using BattleScene.UseCases.UseCase;
 
 namespace BattleScene.InterfaceAdapter.State.Turn
 {
-    internal class SlipState : BaseState
+    public class SlipState : BaseState
     {
         private readonly SlipUseCase _slip;
         private readonly SlipDamageOutputFacade _slipDamageOutput;

@@ -4,7 +4,7 @@ using BattleScene.UseCases.Service;
 
 namespace BattleScene.InterfaceAdapter.State.Turn
 {
-    internal class ResetAilmentState : BaseState
+    public class ResetAilmentState : BaseState
     {
         private readonly AilmentResetService _ailmentResetService;
         private readonly ResetAilmentOutputFacade _resetAilmentOutput;

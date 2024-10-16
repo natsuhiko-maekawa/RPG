@@ -10,7 +10,7 @@ namespace BattleScene.InterfaceAdapter.Skill
     /// <summary>
     ///     空蝉
     /// </summary>
-    internal class UtsusemiSkill : BaseSkill
+    public class UtsusemiSkill : BaseSkill
     {
         public override SkillCode SkillCode { get; } = SkillCode.Utsusemi;
         public override int TechnicalPoint { get; } = 5;

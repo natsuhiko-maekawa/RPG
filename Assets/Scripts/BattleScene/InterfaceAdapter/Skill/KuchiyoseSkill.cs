@@ -9,7 +9,7 @@ namespace BattleScene.InterfaceAdapter.Skill
     /// <summary>
     ///     口寄せ
     /// </summary>
-    internal class KuchiyoseSkill : BaseSkill
+    public class KuchiyoseSkill : BaseSkill
     {
         public override SkillCode SkillCode { get; } = SkillCode.Kuchiyose;
         public override int TechnicalPoint { get; } = 10;

@@ -9,7 +9,7 @@ namespace BattleScene.InterfaceAdapter.Skill
     /// <summary>
     ///     スターシェル
     /// </summary>
-    internal class StarShellSkill : BaseSkill
+    public class StarShellSkill : BaseSkill
     {
         public override SkillCode SkillCode { get; } = SkillCode.StarShell;
         public override int TechnicalPoint { get; } = 3;

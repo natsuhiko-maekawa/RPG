@@ -9,7 +9,7 @@ namespace BattleScene.InterfaceAdapter.Skill
     /// <summary>
     ///     七支刀
     /// </summary>
-    internal class ShichishitouSkill : BaseSkill
+    public class ShichishitouSkill : BaseSkill
     {
         public override SkillCode SkillCode { get; } = SkillCode.Shichishitou;
         public override int TechnicalPoint { get; } = 5;

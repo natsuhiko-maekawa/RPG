@@ -11,7 +11,7 @@ namespace BattleScene.InterfaceAdapter.Skill
     /// <summary>
     ///     村雨
     /// </summary>
-    internal class MurasameSkill : BaseSkill
+    public class MurasameSkill : BaseSkill
     {
         private readonly ICollection<SlipEntity, SlipCode> _slipDamageCollection;
 

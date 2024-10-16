@@ -9,7 +9,7 @@ namespace BattleScene.InterfaceAdapter.Skill
     /// <summary>
     ///     力溜め
     /// </summary>
-    internal class MusterStrengthSkill : BaseSkill
+    public class MusterStrengthSkill : BaseSkill
     {
         public override SkillCode SkillCode { get; } = SkillCode.MusterStrength;
         public override int TechnicalPoint { get; } = 3;

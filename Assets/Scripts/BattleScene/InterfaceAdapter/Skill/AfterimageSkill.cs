@@ -9,7 +9,7 @@ namespace BattleScene.InterfaceAdapter.Skill
     /// <summary>
     ///     残像
     /// </summary>
-    internal class AfterimageSkill : BaseSkill
+    public class AfterimageSkill : BaseSkill
     {
         public override SkillCode SkillCode { get; } = SkillCode.Afterimage;
         public override Range Range { get; } = Range.Oneself;

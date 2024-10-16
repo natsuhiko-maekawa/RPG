@@ -9,7 +9,7 @@ namespace BattleScene.InterfaceAdapter.Skill
     /// <summary>
     ///     テーザーガン
     /// </summary>
-    internal class TaserGunSkill : BaseSkill
+    public class TaserGunSkill : BaseSkill
     {
         public override SkillCode SkillCode { get; } = SkillCode.TaserGun;
         public override int TechnicalPoint { get; } = 5;

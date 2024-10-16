@@ -2,7 +2,7 @@
 
 namespace BattleScene.InterfaceAdapter.State.Battle
 {
-    internal class InitializePlayerState : BaseState
+    public class InitializePlayerState : BaseState
     {
         private readonly PlayerDomainService _player;
         private readonly InitializeEnemyState _initializeEnemyState;

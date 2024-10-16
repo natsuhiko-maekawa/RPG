@@ -4,7 +4,7 @@ using BattleScene.UseCases.UseCase;
 
 namespace BattleScene.InterfaceAdapter.State.Turn
 {
-    internal class TurnStartState : BaseState
+    public class TurnStartState : BaseState
     {
         private readonly OrderUseCase _order;
         private readonly ActorService _actor;

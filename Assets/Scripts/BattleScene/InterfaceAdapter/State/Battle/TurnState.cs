@@ -4,7 +4,7 @@ using BattleScene.InterfaceAdapter.State.Turn;
 
 namespace BattleScene.InterfaceAdapter.State.Battle
 {
-    internal class TurnState : BaseState
+    public class TurnState : BaseState
     {
         private readonly TurnStartState _turnStartState;
         private Turn.Context _context;

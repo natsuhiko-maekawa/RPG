@@ -13,7 +13,7 @@ namespace BattleScene.InterfaceAdapter.Skill
     /// <summary>
     ///     切り刻み
     /// </summary>
-    internal class CutUpSkill : BaseSkill
+    public class CutUpSkill : BaseSkill
     {
         private readonly IMyRandomService _myRandom;
         private readonly long _seed;

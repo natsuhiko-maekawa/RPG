@@ -10,7 +10,7 @@ namespace BattleScene.InterfaceAdapter.Skill
     /// <summary>
     ///     粘液
     /// </summary>
-    internal class LiquidSkill : BaseSkill
+    public class LiquidSkill : BaseSkill
     {
         public override SkillCode SkillCode { get; } = SkillCode.Liquid;
         public override Range Range { get; } = Range.Solo;

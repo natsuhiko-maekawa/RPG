@@ -9,7 +9,7 @@ namespace BattleScene.InterfaceAdapter.Skill
     /// <summary>
     ///     スモークボム
     /// </summary>
-    internal class SmokeBombSkill : BaseSkill
+    public class SmokeBombSkill : BaseSkill
     {
         public override SkillCode SkillCode { get; } = SkillCode.SmokeBomb;
         public override int TechnicalPoint { get; } = 5;

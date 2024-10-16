@@ -9,7 +9,7 @@ namespace BattleScene.InterfaceAdapter.Skill
     /// <summary>
     ///     ファーストエイド
     /// </summary>
-    internal class FirstAidSkill : BaseSkill
+    public class FirstAidSkill : BaseSkill
     {
         public override SkillCode SkillCode { get; } = SkillCode.FirstAid;
         public override int TechnicalPoint { get; } = 3;

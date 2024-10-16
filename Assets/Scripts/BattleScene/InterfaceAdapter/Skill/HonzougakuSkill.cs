@@ -9,7 +9,7 @@ namespace BattleScene.InterfaceAdapter.Skill
     /// <summary>
     ///     本草学
     /// </summary>
-    internal class HonzougakuSkill : BaseSkill
+    public class HonzougakuSkill : BaseSkill
     {
         public override SkillCode SkillCode { get; } = SkillCode.Honzougaku;
         public override int TechnicalPoint { get; } = 3;

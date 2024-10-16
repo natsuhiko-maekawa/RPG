@@ -11,7 +11,7 @@ using R3;
 
 namespace BattleScene.InterfaceAdapter.ReactivePresenter
 {
-    internal class AilmentViewReactivePresenter : IReactive<AilmentEntity>
+    public class AilmentViewReactivePresenter : IReactive<AilmentEntity>
     {
         private readonly ICollection<CharacterEntity, CharacterId> _characterCollection;
         private readonly ToIndexService _toIndex;

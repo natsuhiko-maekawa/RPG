@@ -9,7 +9,7 @@ namespace BattleScene.InterfaceAdapter.Skill
     /// <summary>
     ///     雷切
     /// </summary>
-    internal class RaikiriSkill : BaseSkill
+    public class RaikiriSkill : BaseSkill
     {
         public override SkillCode SkillCode { get; } = SkillCode.Raikiri;
         public override int TechnicalPoint { get; } = 5;

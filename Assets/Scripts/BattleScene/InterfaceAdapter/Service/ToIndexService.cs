@@ -5,7 +5,7 @@ using static BattleScene.Domain.Code.AilmentCode;
 
 namespace BattleScene.InterfaceAdapter.Service
 {
-    internal class ToIndexService
+    public class ToIndexService
     {
         private readonly IReadOnlyDictionary<AilmentCode, int> _ailmentDictionary = new Dictionary<AilmentCode, int>()
         {

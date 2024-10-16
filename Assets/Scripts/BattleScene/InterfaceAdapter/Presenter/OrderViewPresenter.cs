@@ -14,7 +14,7 @@ using static BattleScene.Domain.Code.AilmentCode;
 
 namespace BattleScene.InterfaceAdapter.Presenter
 {
-    internal class OrderViewPresenter
+    public class OrderViewPresenter
     {
         private readonly IResource<EnemyViewDto, CharacterTypeCode> _enemyViewInfoResource;
         private readonly OrderView _orderView;

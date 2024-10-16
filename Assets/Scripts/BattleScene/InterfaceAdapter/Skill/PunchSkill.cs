@@ -9,7 +9,7 @@ namespace BattleScene.InterfaceAdapter.Skill
     /// <summary>
     ///     殴りつけ
     /// </summary>
-    internal class PunchSkill : BaseSkill
+    public class PunchSkill : BaseSkill
     {
         public override SkillCode SkillCode { get; } = SkillCode.Punch;
         public override ImmutableList<BodyPartCode> DependencyList { get; } = ImmutableList.Create(BodyPartCode.Arm);

@@ -9,7 +9,7 @@ namespace BattleScene.InterfaceAdapter.Skill
     /// <summary>
     ///     火炎放射
     /// </summary>
-    internal class FlameThrowSkill : BaseSkill
+    public class FlameThrowSkill : BaseSkill
     {
         public override SkillCode SkillCode { get; } = SkillCode.FlameThrow;
         public override Range Range { get; } = Range.Solo;

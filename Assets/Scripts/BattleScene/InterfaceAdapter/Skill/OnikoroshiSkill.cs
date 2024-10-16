@@ -9,7 +9,7 @@ namespace BattleScene.InterfaceAdapter.Skill
     /// <summary>
     ///     鬼殺し
     /// </summary>
-    internal class OnikoroshiSkill : BaseSkill
+    public class OnikoroshiSkill : BaseSkill
     {
         public override SkillCode SkillCode { get; } = SkillCode.Onikoroshi;
         public override ImmutableList<BodyPartCode> DependencyList { get; } = ImmutableList.Create(BodyPartCode.Arm);

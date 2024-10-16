@@ -16,7 +16,7 @@ namespace BattleScene.InterfaceAdapter.Skill
     /// <summary>
     ///     混乱
     /// </summary>
-    internal class ConfusionSkill : BaseSkill
+    public class ConfusionSkill : BaseSkill
     {
         private readonly ICollection<CharacterEntity, CharacterId> _characterCollection;
         private readonly OrderedItemsDomainService _orderedItems;

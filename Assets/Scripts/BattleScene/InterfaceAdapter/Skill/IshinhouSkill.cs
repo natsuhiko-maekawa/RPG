@@ -9,7 +9,7 @@ namespace BattleScene.InterfaceAdapter.Skill
     /// <summary>
     ///     医心方
     /// </summary>
-    internal class IshinhouSkill : BaseSkill
+    public class IshinhouSkill : BaseSkill
     {
         public override SkillCode SkillCode { get; } = SkillCode.Ishinhou;
         public override int TechnicalPoint { get; } = 3;

@@ -9,7 +9,7 @@ namespace BattleScene.InterfaceAdapter.Skill
     /// <summary>
     ///     侘助
     /// </summary>
-    internal class WabisukeSkill : BaseSkill
+    public class WabisukeSkill : BaseSkill
     {
         public override SkillCode SkillCode { get; } = SkillCode.Wabisuke;
         public override int TechnicalPoint { get; } = 10;

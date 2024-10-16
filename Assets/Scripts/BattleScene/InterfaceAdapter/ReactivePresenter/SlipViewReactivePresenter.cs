@@ -8,7 +8,7 @@ using R3;
 
 namespace BattleScene.InterfaceAdapter.ReactivePresenter
 {
-    internal class SlipViewReactivePresenter : IReactive<SlipEntity>
+    public class SlipViewReactivePresenter : IReactive<SlipEntity>
     {
         private readonly ToIndexService _toIndex;
         private readonly PlayerStatusView _playerAilmentsView;

@@ -9,7 +9,7 @@ namespace BattleScene.InterfaceAdapter.Skill
     /// <summary>
     ///     シルバーバレット
     /// </summary>
-    internal class SilverBulletSkill : BaseSkill
+    public class SilverBulletSkill : BaseSkill
     {
         public override SkillCode SkillCode { get; } = SkillCode.SilverBullet;
         public override int TechnicalPoint { get; } = 7;

@@ -9,7 +9,7 @@ namespace BattleScene.InterfaceAdapter.Skill
     /// <summary>
     ///     ランダムショット
     /// </summary>
-    internal class RandomShotsSkill : BaseSkill
+    public class RandomShotsSkill : BaseSkill
     {
         public override SkillCode SkillCode { get; } = SkillCode.RandomShots;
         public override int TechnicalPoint { get; } = 15;

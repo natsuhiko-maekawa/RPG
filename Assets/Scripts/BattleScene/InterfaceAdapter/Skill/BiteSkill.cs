@@ -13,7 +13,7 @@ namespace BattleScene.InterfaceAdapter.Skill
     /// <summary>
     ///     噛みつき
     /// </summary>
-    internal class BiteSkill : BaseSkill
+    public class BiteSkill : BaseSkill
     {
         private readonly IMyRandomService _myRandom;
         private readonly long _seed;

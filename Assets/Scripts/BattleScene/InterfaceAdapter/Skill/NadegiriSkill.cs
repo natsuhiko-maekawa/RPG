@@ -9,7 +9,7 @@ namespace BattleScene.InterfaceAdapter.Skill
     /// <summary>
     ///     撫斬り
     /// </summary>
-    internal class NadegiriSkill : BaseSkill
+    public class NadegiriSkill : BaseSkill
     {
         public override SkillCode SkillCode { get; } = SkillCode.Nadegiri;
         public override int TechnicalPoint { get; } = 7;

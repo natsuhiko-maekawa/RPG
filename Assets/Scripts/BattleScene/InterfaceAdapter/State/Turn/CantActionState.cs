@@ -2,7 +2,7 @@ using BattleScene.UseCases.Service;
 
 namespace BattleScene.InterfaceAdapter.State.Turn
 {
-    internal class CantActionState : BaseState
+    public class CantActionState : BaseState
     {
         private readonly CantActionService _cantAction;
         private readonly SkillState _skillState;

@@ -5,7 +5,7 @@ using BattleScene.InterfaceAdapter.Presenter;
 
 namespace BattleScene.InterfaceAdapter.State.Turn
 {
-    internal class PlayerSelectSkillState : BaseState
+    public class PlayerSelectSkillState : BaseState
     {
         private readonly IResource<CharacterPropertyDto, CharacterTypeCode> _propertyResource;
         private readonly SelectTargetState _selectTargetState;

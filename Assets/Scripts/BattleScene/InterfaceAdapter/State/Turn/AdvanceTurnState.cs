@@ -3,7 +3,7 @@ using BattleScene.UseCases.Service;
 
 namespace BattleScene.InterfaceAdapter.State.Turn
 {
-    internal class AdvanceTurnState : BaseState
+    public class AdvanceTurnState : BaseState
     {
         private readonly AilmentDomainService _ailment;
         private readonly BuffTurnService _buffTurn;

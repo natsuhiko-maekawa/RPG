@@ -9,7 +9,7 @@ namespace BattleScene.InterfaceAdapter.Skill
     /// <summary>
     ///     毒針
     /// </summary>
-    internal class StringerSkill : BaseSkill
+    public class StringerSkill : BaseSkill
     {
         public override SkillCode SkillCode { get; } = SkillCode.Stringer;
         public override Range Range { get; } = Range.Solo;

@@ -10,7 +10,7 @@ namespace BattleScene.InterfaceAdapter.Skill
     /// <summary>
     ///     鏡花水月
     /// </summary>
-    internal class KyoukasuigetsuSkill : BaseSkill
+    public class KyoukasuigetsuSkill : BaseSkill
     {
         public override SkillCode SkillCode { get; } = SkillCode.Kyoukasuigetsu;
         public override ImmutableList<BodyPartCode> DependencyList { get; } = ImmutableList.Create(BodyPartCode.Arm);

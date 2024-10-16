@@ -10,7 +10,7 @@ namespace BattleScene.InterfaceAdapter.Skill
     /// <summary>
     ///     痺れる粘液
     /// </summary>
-    internal class NumbLiquidSkill : BaseSkill
+    public class NumbLiquidSkill : BaseSkill
     {
         public override SkillCode SkillCode { get; } = SkillCode.NumbLiquid;
         public override Range Range { get; } = Range.Solo;

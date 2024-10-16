@@ -4,7 +4,7 @@ using BattleScene.UseCases.Service;
 
 namespace BattleScene.InterfaceAdapter.State.Turn
 {
-    internal class SkillState : BaseState
+    public class SkillState : BaseState
     {
         private readonly SkillExecutorService _skillExecutor;
         private readonly PrimeSkillStateMachine _primeSkillStateMachine;

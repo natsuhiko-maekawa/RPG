@@ -9,7 +9,7 @@ namespace BattleScene.InterfaceAdapter.Skill
     /// <summary>
     ///     レーション
     /// </summary>
-    internal class FieldRationSkill : BaseSkill
+    public class FieldRationSkill : BaseSkill
     {
         public FieldRationSkill(BasicCure basicCure)
         {

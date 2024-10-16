@@ -6,7 +6,7 @@ using BattleScene.InterfaceAdapter.Skill.BaseClass;
 
 namespace BattleScene.InterfaceAdapter.Skill
 {
-    internal class AttackSkill : BaseSkill
+    public class AttackSkill : BaseSkill
     {
         public AttackSkill(BasicDamage basicDamage)
         {

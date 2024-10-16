@@ -9,7 +9,7 @@ namespace BattleScene.InterfaceAdapter.Skill
     /// <summary>
     ///     防御
     /// </summary>
-    internal class DefenceSkill : BaseSkill
+    public class DefenceSkill : BaseSkill
     {
         public override SkillCode SkillCode { get; } = SkillCode.Defence;
         public override Range Range { get; } = Range.Oneself;

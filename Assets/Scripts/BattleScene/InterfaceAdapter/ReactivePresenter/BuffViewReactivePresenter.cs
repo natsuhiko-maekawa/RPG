@@ -10,7 +10,7 @@ using UnityEngine;
 
 namespace BattleScene.InterfaceAdapter.ReactivePresenter
 {
-    internal class BuffViewReactivePresenter : IReactive<BuffEntity>
+    public class BuffViewReactivePresenter : IReactive<BuffEntity>
     {
         private readonly ToIndexService _toIndex;
         private readonly PlayerStatusView _playerStatusView;

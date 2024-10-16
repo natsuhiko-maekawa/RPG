@@ -12,7 +12,7 @@ namespace BattleScene.InterfaceAdapter.Skill
     /// <summary>
     ///     命を刈る鎌
     /// </summary>
-    internal class PutScytheSkill : BaseSkill
+    public class PutScytheSkill : BaseSkill
     {
         private readonly IMyRandomService _myRandom;
         private readonly long _seed;
