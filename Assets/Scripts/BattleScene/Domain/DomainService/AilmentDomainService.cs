@@ -5,7 +5,6 @@ using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
-using JetBrains.Annotations;
 
 namespace BattleScene.Domain.DomainService
 {
@@ -50,8 +49,7 @@ namespace BattleScene.Domain.DomainService
         /// </summary>
         /// <param name="characterId">キャラクターID</param>
         /// <returns>状態異常エンティティ、もしくはnull</returns>
-        [CanBeNull]
-        public AilmentEntity GetHighestPriority(CharacterId characterId)
+        public AilmentEntity? GetHighestPriority(CharacterId characterId)
         {
             var ailment = _ailmentCollection.Get()
                 .Where(x => Equals(x.CharacterId, characterId))

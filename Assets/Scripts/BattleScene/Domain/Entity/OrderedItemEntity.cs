@@ -1,6 +1,6 @@
-﻿using BattleScene.Domain.Code;
+﻿using System.Diagnostics.CodeAnalysis;
+using BattleScene.Domain.Code;
 using BattleScene.Domain.Id;
-using JetBrains.Annotations;
 
 namespace BattleScene.Domain.Entity
 {
@@ -21,7 +21,7 @@ namespace BattleScene.Domain.Entity
 
         public override OrderId Id { get; }
         public int OrderNumber { get; }
-        [CanBeNull] private CharacterId CharacterId { get; }
+        private CharacterId? CharacterId { get; }
         private AilmentCode AilmentCode { get; }
         private SlipCode SlipCode { get; }
         public OrderedItemType OrderedItemType { get; }
@@ -59,7 +59,7 @@ OrderedItemType: {OrderedItemType}";
     public class OrderedItem
     {
         public OrderedItemType OrderedItemType { get; }
-        [CanBeNull] public CharacterId CharacterId { get; }
+        public CharacterId? CharacterId { get; }
         public AilmentCode AilmentCode { get; } = AilmentCode.NoAilment;
         public SlipCode SlipCode { get; } = SlipCode.NoSlip;
 
