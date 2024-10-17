@@ -17,9 +17,9 @@ namespace BattleScene.InterfaceAdapter.Skill
         public override MessageCode AttackMessageCode { get; } = MessageCode.FrameThrowMessage;
 
         public override IReadOnlyList<BaseDamage> DamageList { get; }
-            = new [] { new BasicDamage() };
+            = new[] { new BasicDamage() };
 
         public override IReadOnlyList<BaseSlip> SlipDamageList { get; }
-            = new [] { new BleedingSkill() };
+            = new[] { new BleedingSkill() };
     }
 }

@@ -18,6 +18,6 @@ namespace BattleScene.InterfaceAdapter.Skill
         public override MessageCode AttackMessageCode { get; } = MessageCode.RecoverPartMessage;
 
         public override IReadOnlyList<BaseReset> ResetList { get; }
-            = new [] { new FirstAid() };
+            = new[] { new FirstAid() };
     }
 }

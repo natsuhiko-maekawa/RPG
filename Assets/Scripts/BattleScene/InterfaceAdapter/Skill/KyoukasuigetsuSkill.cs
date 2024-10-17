@@ -14,14 +14,14 @@ namespace BattleScene.InterfaceAdapter.Skill
     public class KyoukasuigetsuSkill : BaseSkill
     {
         public override SkillCode SkillCode { get; } = SkillCode.Kyoukasuigetsu;
-        public override IReadOnlyList<BodyPartCode> DependencyList { get; } = new [] { BodyPartCode.Arm };
+        public override IReadOnlyList<BodyPartCode> DependencyList { get; } = new[] { BodyPartCode.Arm };
         public override Range Range { get; } = Range.Line;
         public override MessageCode AttackMessageCode { get; } = MessageCode.NoMessage;
 
         public override IReadOnlyList<BaseAilment> AilmentList { get; }
-            = new [] { new AbsoluteConfusion() };
+            = new[] { new AbsoluteConfusion() };
 
         public override IReadOnlyList<BaseDamage> DamageList { get; }
-            = new [] { new BasicDamage() };
+            = new[] { new BasicDamage() };
     }
 }

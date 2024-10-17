@@ -31,10 +31,10 @@ namespace BattleScene.InterfaceAdapter.Skill
         public override MessageCode AttackMessageCode => GetAttackMessageCode();
 
         public override IReadOnlyList<BaseDamage> DamageList { get; } =
-new [] { new BasicDamage() };
+            new[] { new BasicDamage() };
 
         public override IReadOnlyList<BaseSlip> SlipDamageList { get; } =
-new [] { new BleedingSkill() };
+            new[] { new BleedingSkill() };
 
         public override IReadOnlyList<BaseDestroy> DestroyList => GetDestroyPartList();
 
@@ -54,7 +54,7 @@ new [] { new BleedingSkill() };
         {
             var destroyList = new List<BaseDestroy>()
                 { new DestroyArm(), new DestroyLeg(), new DestroyStomach() };
-            return new [] { _myRandom.Choice(destroyList, _seed) };
+            return new[] { _myRandom.Choice(destroyList, _seed) };
         }
     }
 }

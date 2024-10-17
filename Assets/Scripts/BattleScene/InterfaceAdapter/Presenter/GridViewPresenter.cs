@@ -36,7 +36,8 @@ namespace BattleScene.InterfaceAdapter.Presenter
 
         public async void StartAnimationAsync()
         {
-            var actionCodeList = new [] { ActionCode.Attack, ActionCode.Skill, ActionCode.Defence, ActionCode.FatalitySkill };
+            var actionCodeList = new[]
+                { ActionCode.Attack, ActionCode.Skill, ActionCode.Defence, ActionCode.FatalitySkill };
 
             var rowList = actionCodeList
                 .Select(x =>

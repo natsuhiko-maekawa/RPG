@@ -8,6 +8,6 @@ namespace BattleScene.InterfaceAdapter.PrimeSkill
     public class LightningDamage : BaseDamage
     {
         public override IReadOnlyList<MatAttrCode> MatAttrCode { get; } =
-new [] { Domain.Code.MatAttrCode.Lightning };
+            new[] { Domain.Code.MatAttrCode.Lightning };
     }
 }

@@ -11,7 +11,7 @@ namespace BattleScene.InterfaceAdapter.Skill
     {
         public AttackSkill(BasicDamage basicDamage)
         {
-            DamageList = new [] { basicDamage };
+            DamageList = new[] { basicDamage };
         }
 
         public override SkillCode SkillCode { get; } = SkillCode.Attack;
@@ -19,6 +19,6 @@ namespace BattleScene.InterfaceAdapter.Skill
         public override MessageCode AttackMessageCode { get; } = MessageCode.AttackMessage;
 
         public override IReadOnlyList<BaseDamage> DamageList { get; } =
-new [] { new BasicDamage() };
+            new[] { new BasicDamage() };
     }
 }

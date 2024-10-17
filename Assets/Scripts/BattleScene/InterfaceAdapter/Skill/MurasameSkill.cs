@@ -28,7 +28,7 @@ namespace BattleScene.InterfaceAdapter.Skill
         public override MessageCode AttackMessageCode { get; } = MessageCode.AttackMessage;
 
         public override IReadOnlyList<BaseDamage> DamageList { get; }
-            = new [] { new BasicDamage() };
+            = new[] { new BasicDamage() };
 
         public override IReadOnlyList<BaseReset> ResetList => GetResetList();
 
@@ -36,7 +36,7 @@ namespace BattleScene.InterfaceAdapter.Skill
         {
             return _slipDamageCollection.Get(SlipCode.Burning) == null
                 ? ImmutableList<BaseReset>.Empty
-                : new [] { new BurningReset() };
+                : new[] { new BurningReset() };
         }
     }
 }

@@ -34,14 +34,16 @@ namespace BattleScene.Domain.DomainService
             {
                 Range.Oneself =>
                     _characterCollection.Get(characterId).IsSurvive
-                        ? new [] { characterId }                        : ImmutableList<CharacterId>.Empty,
+                        ? new[] { characterId }
+                        : ImmutableList<CharacterId>.Empty,
                 Range.Solo =>
                     Equals(characterId, _player.GetId())
-                        ? new [] { GetEnemySolo() }                        : new [] { _player.GetId() },
+                        ? new[] { GetEnemySolo() }
+                        : new[] { _player.GetId() },
                 Range.Line or Range.Random =>
                     Equals(characterId, _player.GetId())
                         ? _enemies.GetIdSurvive()
-                        : new [] { _player.GetId() },
+                        : new[] { _player.GetId() },
                 _ => throw new NotImplementedException()
             };
 

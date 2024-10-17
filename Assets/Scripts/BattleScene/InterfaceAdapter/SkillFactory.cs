@@ -96,7 +96,7 @@ namespace BattleScene.InterfaceAdapter
         }
 
         private IReadOnlyList<AilmentParameterValueObject> CreateAilmentParameterList(
-IReadOnlyList<BaseAilment> ailmentList)
+            IReadOnlyList<BaseAilment> ailmentList)
         {
             if (ailmentList == null) return ImmutableList<AilmentParameterValueObject>.Empty;
             return ailmentList
@@ -117,7 +117,8 @@ IReadOnlyList<BaseAilment> ailmentList)
                 .ToList();
         }
 
-        private IReadOnlyList<DamageParameterValueObject> CreateDamageParameterList(IReadOnlyList<BaseDamage> damageList)
+        private IReadOnlyList<DamageParameterValueObject> CreateDamageParameterList(
+            IReadOnlyList<BaseDamage> damageList)
         {
             if (damageList == null) return ImmutableList<DamageParameterValueObject>.Empty;
             return damageList
@@ -133,7 +134,7 @@ IReadOnlyList<BaseAilment> ailmentList)
         }
 
         private IReadOnlyList<DestroyParameterValueObject> CreateDestroyParameterList(
-IReadOnlyList<BaseDestroy> destroyPartList)
+            IReadOnlyList<BaseDestroy> destroyPartList)
         {
             return destroyPartList
                 .Select(x => new DestroyParameterValueObject(
@@ -144,7 +145,7 @@ IReadOnlyList<BaseDestroy> destroyPartList)
         }
 
         private IReadOnlyList<RestoreParameterValueObject> CreateRestoreParameterList(
-IReadOnlyList<BaseRestore> restoreList)
+            IReadOnlyList<BaseRestore> restoreList)
         {
             return restoreList
                 .Select(x => new RestoreParameterValueObject(

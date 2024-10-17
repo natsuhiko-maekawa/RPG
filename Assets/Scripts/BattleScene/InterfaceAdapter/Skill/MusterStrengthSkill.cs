@@ -18,6 +18,6 @@ namespace BattleScene.InterfaceAdapter.Skill
         public override MessageCode AttackMessageCode { get; } = MessageCode.BuffMessage;
 
         public override IReadOnlyList<BaseBuff> BuffList { get; }
-            = new [] { new MusterStrength() };
+            = new[] { new MusterStrength() };
     }
 }

@@ -18,6 +18,6 @@ namespace BattleScene.InterfaceAdapter.Skill
         public override MessageCode AttackMessageCode { get; } = MessageCode.ResetAilmentMessage;
 
         public override IReadOnlyList<BaseReset> ResetList { get; }
-            = new [] { new Ishinhou() };
+            = new[] { new Ishinhou() };
     }
 }

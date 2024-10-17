@@ -6,5 +6,5 @@ namespace BattleScene.Framework.ViewModel
 {
     public record GridViewDto(
         ActionCode ActionCode,
-IReadOnlyList<RowDto> RowDtoList);
+        IReadOnlyList<RowDto> RowDtoList);
 }

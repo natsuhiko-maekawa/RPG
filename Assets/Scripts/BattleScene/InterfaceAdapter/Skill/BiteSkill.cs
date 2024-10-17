@@ -31,7 +31,7 @@ namespace BattleScene.InterfaceAdapter.Skill
         public override MessageCode AttackMessageCode => GetAttackMessageCode();
 
         public override IReadOnlyList<BaseDamage> DamageList { get; }
-            = new [] { new BasicDamage() };
+            = new[] { new BasicDamage() };
 
         private MessageCode GetAttackMessageCode()
         {

@@ -18,6 +18,6 @@ namespace BattleScene.InterfaceAdapter.Skill
         public override MessageCode AttackMessageCode { get; } = MessageCode.NoMessage;
 
         public override IReadOnlyList<BaseAilment> AilmentList { get; }
-            = new [] { new Confusion() };
+            = new[] { new Confusion() };
     }
 }

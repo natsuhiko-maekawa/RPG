@@ -17,9 +17,9 @@ namespace BattleScene.InterfaceAdapter.Skill
         public override MessageCode AttackMessageCode { get; } = MessageCode.StringerMessage;
 
         public override IReadOnlyList<BaseDamage> DamageList { get; }
-            = new [] { new BasicDamage() };
+            = new[] { new BasicDamage() };
 
         public override IReadOnlyList<BaseSlip> SlipDamageList { get; }
-            = new [] { new PrimeSkill.PoisoningSkill() };
+            = new[] { new PrimeSkill.PoisoningSkill() };
     }
 }

@@ -14,7 +14,7 @@ namespace BattleScene.InterfaceAdapter.Skill
     {
         public FieldRationSkill(BasicCure basicCure)
         {
-            CureList = new [] { basicCure };
+            CureList = new[] { basicCure };
         }
 
         public override SkillCode SkillCode { get; } = SkillCode.FieldRation;

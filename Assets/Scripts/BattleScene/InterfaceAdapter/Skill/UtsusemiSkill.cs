@@ -19,6 +19,6 @@ namespace BattleScene.InterfaceAdapter.Skill
         public override MessageCode AttackMessageCode { get; } = MessageCode.NoMessage;
 
         public override IReadOnlyList<BaseBuff> BuffList { get; }
-            = new [] { new Utsusemi() };
+            = new[] { new Utsusemi() };
     }
 }

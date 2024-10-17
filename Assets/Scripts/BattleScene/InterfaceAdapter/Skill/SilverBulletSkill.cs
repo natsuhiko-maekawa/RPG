@@ -15,10 +15,10 @@ namespace BattleScene.InterfaceAdapter.Skill
         public override SkillCode SkillCode { get; } = SkillCode.SilverBullet;
         public override int TechnicalPoint { get; } = 7;
         public override Range Range { get; } = Range.Solo;
-        public override IReadOnlyList<BodyPartCode> DependencyList { get; } = new [] { BodyPartCode.Arm };
+        public override IReadOnlyList<BodyPartCode> DependencyList { get; } = new[] { BodyPartCode.Arm };
         public override MessageCode AttackMessageCode { get; } = MessageCode.AttackMessage;
 
         public override IReadOnlyList<BaseDamage> DamageList { get; }
-            = new [] { new ConstantDamage() };
+            = new[] { new ConstantDamage() };
     }
 }

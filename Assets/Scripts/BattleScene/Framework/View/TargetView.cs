@@ -110,7 +110,8 @@ namespace BattleScene.Framework.View
         {
             if (_dto == null) return ImmutableList<CharacterDto>.Empty;
             return IsEnemySolo(_dto.CharacterDtoList)
-                ? new [] { new CharacterDto(_enemyPositionList[_index]) }                : _dto.CharacterDtoList;
+                ? new[] { new CharacterDto(_enemyPositionList[_index]) }
+                : _dto.CharacterDtoList;
         }
     }
 }

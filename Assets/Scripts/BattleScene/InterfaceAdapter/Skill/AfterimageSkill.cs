@@ -17,6 +17,6 @@ namespace BattleScene.InterfaceAdapter.Skill
         public override MessageCode AttackMessageCode { get; } = MessageCode.AfterimageMessage;
 
         public override IReadOnlyList<BaseBuff> BuffList { get; }
-            = new [] { new AfterImage() };
+            = new[] { new AfterImage() };
     }
 }

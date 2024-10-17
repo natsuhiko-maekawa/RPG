@@ -14,14 +14,14 @@ namespace BattleScene.InterfaceAdapter.Skill
     {
         public override SkillCode SkillCode { get; } = SkillCode.Wabisuke;
         public override int TechnicalPoint { get; } = 10;
-        public override IReadOnlyList<BodyPartCode> DependencyList { get; } = new [] { BodyPartCode.Arm };
+        public override IReadOnlyList<BodyPartCode> DependencyList { get; } = new[] { BodyPartCode.Arm };
         public override Range Range { get; } = Range.Solo;
         public override MessageCode AttackMessageCode { get; } = MessageCode.AttackMessage;
 
         public override IReadOnlyList<BaseDamage> DamageList { get; }
-            = new [] { new BasicDamage() };
+            = new[] { new BasicDamage() };
 
         public override IReadOnlyList<BaseBuff> BuffList { get; }
-            = new [] { new Wabisuke() };
+            = new[] { new Wabisuke() };
     }
 }

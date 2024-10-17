@@ -14,11 +14,11 @@ namespace BattleScene.InterfaceAdapter.Skill
     {
         public override SkillCode SkillCode { get; } = SkillCode.Nadegiri;
         public override int TechnicalPoint { get; } = 7;
-        public override IReadOnlyList<BodyPartCode> DependencyList { get; } = new [] { BodyPartCode.Arm };
+        public override IReadOnlyList<BodyPartCode> DependencyList { get; } = new[] { BodyPartCode.Arm };
         public override Range Range { get; } = Range.Line;
         public override MessageCode AttackMessageCode { get; } = MessageCode.AttackMessage;
 
         public override IReadOnlyList<BaseDamage> DamageList { get; }
-            = new [] { new Nadegiri() };
+            = new[] { new Nadegiri() };
     }
 }

@@ -11,7 +11,7 @@ namespace BattleScene.Domain.ValueObject
         public CureValueObject(
             CharacterId actorId,
             SkillCode skillCode,
-IReadOnlyList<RecoveryValueObject> cureList)
+            IReadOnlyList<RecoveryValueObject> cureList)
         {
             ActorId = actorId;
             SkillCode = skillCode;

@@ -18,9 +18,9 @@ namespace BattleScene.InterfaceAdapter.Skill
         public override MessageCode AttackMessageCode { get; } = MessageCode.InvasiveMouthMessage;
 
         public override IReadOnlyList<BaseDamage> DamageList { get; }
-            = new [] { new BasicDamage() };
+            = new[] { new BasicDamage() };
 
         public override IReadOnlyList<BaseSlip> SlipDamageList { get; }
-            = new [] { new Suffocation() };
+            = new[] { new Suffocation() };
     }
 }

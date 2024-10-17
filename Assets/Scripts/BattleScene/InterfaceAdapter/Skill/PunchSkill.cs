@@ -13,11 +13,11 @@ namespace BattleScene.InterfaceAdapter.Skill
     public class PunchSkill : BaseSkill
     {
         public override SkillCode SkillCode { get; } = SkillCode.Punch;
-        public override IReadOnlyList<BodyPartCode> DependencyList { get; } = new [] { BodyPartCode.Arm };
+        public override IReadOnlyList<BodyPartCode> DependencyList { get; } = new[] { BodyPartCode.Arm };
         public override Range Range { get; } = Range.Solo;
         public override MessageCode AttackMessageCode { get; } = MessageCode.PunchStomachMessage;
 
         public override IReadOnlyList<BaseDamage> DamageList { get; }
-            = new [] { new BasicDamage() };
+            = new[] { new BasicDamage() };
     }
 }

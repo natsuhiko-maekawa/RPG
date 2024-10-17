@@ -24,7 +24,7 @@ namespace BattleScene.InterfaceAdapter.State.Turn
         public override void Start()
         {
             Context.SkillCode = _enemySkillSelector.Select();
-            Context.TargetIdList = new [] { _player.GetId() };
+            Context.TargetIdList = new[] { _player.GetId() };
             Context.TransitionTo(_skillState);
         }
     }

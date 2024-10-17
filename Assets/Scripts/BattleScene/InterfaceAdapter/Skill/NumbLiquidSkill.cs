@@ -18,9 +18,9 @@ namespace BattleScene.InterfaceAdapter.Skill
         public override MessageCode AttackMessageCode { get; } = MessageCode.NumbLiquidMessage;
 
         public override IReadOnlyList<BaseDamage> DamageList { get; }
-            = new [] { new BasicDamage() };
+            = new[] { new BasicDamage() };
 
         public override IReadOnlyList<BaseAilment> AilmentList { get; }
-            = new [] { new Paralysis() };
+            = new[] { new Paralysis() };
     }
 }

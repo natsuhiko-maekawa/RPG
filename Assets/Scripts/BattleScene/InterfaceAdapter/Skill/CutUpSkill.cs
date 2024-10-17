@@ -28,11 +28,11 @@ namespace BattleScene.InterfaceAdapter.Skill
 
         public override SkillCode SkillCode { get; } = SkillCode.CutUp;
         public override Range Range { get; } = Range.Solo;
-        public override IReadOnlyList<BodyPartCode> DependencyList { get; } = new [] { BodyPartCode.Arm };
+        public override IReadOnlyList<BodyPartCode> DependencyList { get; } = new[] { BodyPartCode.Arm };
         public override MessageCode AttackMessageCode => GetAttackMessageCode();
 
         public override IReadOnlyList<BaseDamage> DamageList { get; }
-            = new [] { new FiveTimeDamage() };
+            = new[] { new FiveTimeDamage() };
 
         private MessageCode GetAttackMessageCode()
         {

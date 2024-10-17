@@ -14,6 +14,6 @@ namespace BattleScene.InterfaceAdapter.Skill
         public override MessageCode AttackMessageCode { get; } = MessageCode.PoisoningMessage;
 
         public override IReadOnlyList<BaseDamage> DamageList { get; }
-            = new [] { new SlipDamage() };
+            = new[] { new SlipDamage() };
     }
 }

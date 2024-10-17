@@ -49,7 +49,7 @@ namespace BattleScene.InterfaceAdapter.State.Turn
 
             if (actionCode == ActionCode.Defence)
             {
-                var oneself = new [] { _player.GetId() };
+                var oneself = new[] { _player.GetId() };
                 Context.TargetIdList = oneself;
             }
 

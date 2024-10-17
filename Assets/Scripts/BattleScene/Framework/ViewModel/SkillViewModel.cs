@@ -4,5 +4,5 @@ using System.Collections.Immutable;
 namespace BattleScene.Framework.ViewModel
 {
     public record SkillViewModel(
-IReadOnlyList<SkillRowDto> SkillRowDtoList);
+        IReadOnlyList<SkillRowDto> SkillRowDtoList);
 }
