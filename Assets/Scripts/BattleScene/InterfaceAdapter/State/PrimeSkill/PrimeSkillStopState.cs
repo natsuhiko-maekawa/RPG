@@ -3,6 +3,5 @@
     public class PrimeSkillStopState<TPrimeSkillParameter, TPrimeSkill>
         : BaseState<TPrimeSkillParameter, TPrimeSkill>, IPrimeSkillStopState
     {
-        
     }
 }

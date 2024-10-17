@@ -40,7 +40,7 @@ namespace BattleScene.InterfaceAdapter.Presenter
                 ActionCode.Skill,
                 ActionCode.Defence,
                 ActionCode.FatalitySkill);
-            
+
             var rowList = actionCodeList
                 .Select(x =>
                 {

@@ -31,7 +31,7 @@ namespace BattleScene.UseCases.Service
                 AilmentCode.EnemyParalysis => SkillCode.Paralysis,
                 _ => throw new ArgumentOutOfRangeException(nameof(ailmentCode.Value), ailmentCode.Value, null)
             };
-            
+
             return skillCode;
         }
 

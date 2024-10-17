@@ -15,12 +15,13 @@ namespace BattleScene.Framework.GameObjects
         }
 
         public void Set(Sprite sprite) => _image.sprite = sprite;
+
         public void Show()
         {
             _image.enabled = true;
             _text.enabled = false;
         }
-        
+
         public void Hide() => _image.enabled = false;
         public void SetText(string text) => _text.text = text;
         public void ShowText() => _text.enabled = true;

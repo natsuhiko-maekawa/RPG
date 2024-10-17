@@ -14,7 +14,7 @@ namespace BattleScene.Domain.Entity
             Id = id;
             Turn = turn;
         }
-        
+
         public void Increment()
         {
             Turn++;

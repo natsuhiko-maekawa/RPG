@@ -11,7 +11,7 @@ namespace BattleScene.Framework.GameObjects
         {
             _text = GetComponent<Text>();
         }
-        
+
         public void Set(int currentPoint, int maxPoint) => _text.text = currentPoint + "/" + maxPoint;
     }
 }

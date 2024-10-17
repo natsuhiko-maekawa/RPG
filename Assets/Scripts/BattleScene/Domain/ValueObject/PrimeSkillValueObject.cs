@@ -23,7 +23,8 @@ namespace BattleScene.Domain.ValueObject
         public LifetimeCode LifetimeCode { get; protected init; } = LifetimeCode.NoLifetime;
         public int DestroyCount { get; protected init; }
         public IReadOnlyList<AttackValueObject> AttackList { get; protected init; } = Array.Empty<AttackValueObject>();
-        public IReadOnlyDictionary<CharacterId, int> DamageDictionary => 
+
+        public IReadOnlyDictionary<CharacterId, int> DamageDictionary =>
             AttackList
                 .Where(x => x.IsHit)
                 .GroupBy(x => x.TargetId)
@@ -31,12 +32,15 @@ namespace BattleScene.Domain.ValueObject
                     .Select(y => (targetId: y.TargetId, amount: y.Amount))
                     .Aggregate((y, z) => (y.targetId, y.amount + z.amount)))
                 .ToDictionary(x => x.targetId, x => x.amount);
-        public bool IsAvoid => 
+
+        public bool IsAvoid =>
             AttackList
                 .All(x => !x.IsHit);
+
         public bool AttacksWeakPoint =>
             AttackList
                 .Any(x => x.AttacksWeakPoint);
+
         public int TechnicalPoint { get; protected init; }
     }
 }

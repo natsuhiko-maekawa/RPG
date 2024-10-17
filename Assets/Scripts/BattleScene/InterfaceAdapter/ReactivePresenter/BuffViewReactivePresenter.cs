@@ -27,7 +27,7 @@ namespace BattleScene.InterfaceAdapter.ReactivePresenter
         {
             buff.ReactiveRate.Subscribe(x => StartPlayerBuffView(buff.BuffCode, x));
         }
-        
+
         private void StartPlayerBuffView(BuffCode buffCode, float rate)
         {
             var index = _toIndex.FromBuff(buffCode);

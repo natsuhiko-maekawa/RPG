@@ -25,10 +25,15 @@ namespace BattleScene.Domain.Entity
         public BodyPartCode BodyPartCode { get; }
 
         private int _destroyedCount;
+
         public int DestroyedCount
         {
             get => _destroyedCount;
-            private set { _destroyedCount = Math.Min(value, _count); DestroyedCountOnChange(_destroyedCount);}
+            private set
+            {
+                _destroyedCount = Math.Min(value, _count);
+                DestroyedCountOnChange(_destroyedCount);
+            }
         }
 
         partial void DestroyedCountOnChange(int value);

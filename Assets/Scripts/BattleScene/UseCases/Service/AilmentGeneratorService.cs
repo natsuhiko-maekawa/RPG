@@ -27,17 +27,17 @@ namespace BattleScene.UseCases.Service
             IReadOnlyList<CharacterId> targetIdList)
         {
             if (!_orderedItems.First().TryGetCharacterId(out var actorId)) throw new InvalidOperationException();
-            
+
             var ailmentList = primeSkillParameterList.Select(GetAilment).ToList();
-            
+
             return ailmentList;
-            
+
             AilmentValueObject GetAilment(AilmentParameterValueObject ailmentParameter)
             {
                 var actualTargetIdList = _actualTargetIdPicker.Pick(
                     targetIdList: targetIdList,
                     luckRate: ailmentParameter.LuckRate);
-            
+
                 var ailment = new AilmentValueObject(
                     actorId: actorId,
                     skillCode: skillCommon.SkillCode,

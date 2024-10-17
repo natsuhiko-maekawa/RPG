@@ -11,6 +11,7 @@ namespace BattleScene.InterfaceAdapter.Skill
         public override SkillCode SkillCode { get; } = SkillCode.Suffocation;
         public override Range Range { get; } = Range.Player;
         public override MessageCode AttackMessageCode { get; } = MessageCode.SuffocationMessage;
+
         public override ImmutableList<BaseDamage> DamageList { get; }
             = ImmutableList.Create<BaseDamage>(new SlipDamage());
     }

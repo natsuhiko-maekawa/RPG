@@ -51,14 +51,14 @@ namespace BattleScene.InterfaceAdapter.State.Turn
                 var oneself = ImmutableList.Create(_player.GetId());
                 Context.TargetIdList = oneself;
             }
-            
+
             Context.SkillCode = actionCode switch
             {
                 ActionCode.Attack => SkillCode.Attack,
                 ActionCode.Defence => SkillCode.Defence,
                 _ => SkillCode.NoSkill
             };
-            
+
             BaseState nextState = actionCode switch
             {
                 ActionCode.Attack => _selectTargetState,
@@ -66,7 +66,7 @@ namespace BattleScene.InterfaceAdapter.State.Turn
                 ActionCode.Defence => _skillState,
                 _ => throw new ArgumentOutOfRangeException()
             };
-            
+
             _gridView.Stop();
             Context.TransitionTo(nextState);
         }

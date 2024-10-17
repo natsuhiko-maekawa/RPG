@@ -14,6 +14,7 @@ namespace BattleScene.InterfaceAdapter.Skill
         public override SkillCode SkillCode { get; } = SkillCode.Afterimage;
         public override Range Range { get; } = Range.Oneself;
         public override MessageCode AttackMessageCode { get; } = MessageCode.AfterimageMessage;
+
         public override ImmutableList<BaseBuff> BuffList { get; }
             = ImmutableList.Create<BaseBuff>(new AfterImage());
     }

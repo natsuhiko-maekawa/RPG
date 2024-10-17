@@ -8,7 +8,7 @@ namespace BattleScene.DataAccess.ScriptableObjects
     {
         [SerializeField] private List<TItem> itemList = new();
         public IReadOnlyList<TItem> ItemList { get; private set; }
-        
+
         public void OnBeforeSerialize()
         {
         }

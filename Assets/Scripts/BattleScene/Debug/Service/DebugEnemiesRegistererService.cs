@@ -26,7 +26,7 @@ namespace BattleScene.Debug.Service
             _propertyFactory = propertyFactory;
             _characterCollection = characterCollection;
         }
-        
+
         public void Register(IList<CharacterTypeCode> characterTypeIdList)
         {
             var characterList = characterTypeCodeArray

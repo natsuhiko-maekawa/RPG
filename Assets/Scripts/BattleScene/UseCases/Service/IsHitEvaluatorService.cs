@@ -61,12 +61,12 @@ namespace BattleScene.UseCases.Service
         {
             // 両脚損傷時、必ず命中する
             if (!_bodyPartDomainService.IsAvailable(targetId, BodyPartCode.Leg)) return true;
-            
+
             // 空蝉状態の時、必ず回避する
             if (_buffCollection.Get((targetId, BuffCode.UtsusemiSkill)) != null) return false;
 
             // 大きいほど命中しやすくなる
-            var threshold = _battlePropertyFactory.Create().IsHitThreshold; 
+            var threshold = _battlePropertyFactory.Create().IsHitThreshold;
             var actorAgility = _characterPropertyFactory.Create(actorId).Agility;
             var targetAgility = _characterPropertyFactory.Create(targetId).Agility;
             var isActorBlind = _ailmentCollection.Get()
@@ -75,7 +75,8 @@ namespace BattleScene.UseCases.Service
                 .FirstOrDefault(x => Equals(x.CharacterId, targetId) && x.AilmentCode == AilmentCode.Deaf) != null;
             var destroyedReduce = _bodyPartDomainService.Count(targetId, BodyPartCode.Leg) * 0.5f;
             var buff = (float)Math.Log(_buffCollection.Get()
-                .FirstOrDefault(x => Equals(x.CharacterId, actorId) && x.BuffCode == BuffCode.HitRate)?.Rate ?? 1, 2.0f);
+                    .FirstOrDefault(x => Equals(x.CharacterId, actorId) && x.BuffCode == BuffCode.HitRate)?.Rate ?? 1,
+                2.0f);
             var add = (float)Math.Log(damageParameter.HitRate, 2.0f);
             var actorFixedAgility = actorAgility + (isActorBlind ? -threshold : 0);
             var targetFixedAgility = targetAgility + (isTargetDeaf ? -threshold : 0);

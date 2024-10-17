@@ -4,7 +4,7 @@ using BattleScene.Domain.Code;
 
 namespace BattleScene.DataAccess.Resource
 {
-    public class BodyPartPropertyResource 
+    public class BodyPartPropertyResource
         : BaseScriptableObjectResource<BodyPartPropertyScriptableObject, BodyPartPropertyDto, BodyPartCode>
     {
     }

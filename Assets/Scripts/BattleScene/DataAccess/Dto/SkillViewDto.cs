@@ -15,7 +15,7 @@ namespace BattleScene.DataAccess.Dto
         public string SkillName { get; private set; }
         public PlayerImageCode PlayerImageCode { get; private set; }
         public MessageCode Description { get; private set; }
-        
+
         public void OnBeforeSerialize()
         {
         }
@@ -28,7 +28,7 @@ namespace BattleScene.DataAccess.Dto
                 ? PlayerImageCode.NoImage
                 : Enum.Parse<PlayerImageCode>(playerImageCode);
             Description = description.Length == 0
-                ? MessageCode.NoMessage 
+                ? MessageCode.NoMessage
                 : Enum.Parse<MessageCode>(description);
         }
     }

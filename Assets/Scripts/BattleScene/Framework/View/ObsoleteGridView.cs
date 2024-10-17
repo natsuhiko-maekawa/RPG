@@ -62,12 +62,12 @@ namespace BattleScene.Framework.View
                     itemCount: dto.RowDtoList.Count);
                 _gridStateDictionary.Add(dto.ActionCode, gridState);
             }
-            
-            _rightArrow.rectTransform.localPosition 
+
+            _rightArrow.rectTransform.localPosition
                 = new Vector3(rightArrowX, -gridState.SelectedRow * slotHeight + rightArrowY, 0);
             _upArrow.enabled = gridState.IsHiddenUpper;
             _downArrow.enabled = gridState.IsHiddenLower;
-            
+
             SetText(Math.Min(dto.RowDtoList.Count, maxGridSize));
             foreach (var index in Enumerable.Range(0, maxGridSize))
             {
@@ -84,7 +84,7 @@ namespace BattleScene.Framework.View
             }
 
             var message = dto.RowDtoList[gridState.SelectedIndex].RowDescription;
-            var messageViewDto = new MessageViewDto(message, NoWait:true);
+            var messageViewDto = new MessageViewDto(message, NoWait: true);
             await messageView.StartAnimationAsync(messageViewDto);
         }
 
@@ -132,7 +132,7 @@ namespace BattleScene.Framework.View
         private async Task MoveArrow(Vector2 vector2)
         {
             if (vector2.y == 0) return;
-            
+
             if (vector2.y > 0)
                 _gridStateDictionary[_dto.ActionCode].Up();
             else
@@ -141,13 +141,13 @@ namespace BattleScene.Framework.View
             _id = _dto?.RowDtoList[selectedRow].RowId ?? 0;
             await StartAnimationAsync(_dto);
         }
-        
+
         private void SetMoveAction(Func<Vector2, Task> func)
         {
             moveAction.performed += x => func.Invoke(x.ReadValue<Vector2>());
             moveAction?.Enable();
         }
-        
+
         public void SetSelectAction(Action<int> action)
         {
             selectAction.performed += _ => action.Invoke(_id);

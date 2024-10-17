@@ -37,13 +37,12 @@ namespace BattleScene
 {
     public class BattleSceneLifetimeScope : LifetimeScope
     {
-        
 #if UNITY_EDITOR
         [SerializeField] private bool debugMode;
 #else
         private bool debugMode = false;
 #endif
-        
+
         protected override void Configure(IContainerBuilder builder)
         {
             if (debugMode)
@@ -57,13 +56,16 @@ namespace BattleScene
             else
             {
                 #region RegisterService
+
                 builder.Register<IEnemiesRegistererService, EnemiesRegistererService>(Lifetime.Singleton);
                 builder.Register<IEnemySkillSelectorService, EnemySkillSelectorService>(Lifetime.Singleton);
                 builder.Register<IMyRandomService, MyRandomService>(Lifetime.Singleton);
+
                 #endregion
             }
-            
+
             #region RegisterView
+
             builder.RegisterComponentInHierarchy<EnemiesView>();
             builder.RegisterComponentInHierarchy<InfoView>();
             builder.RegisterComponentInHierarchy<BattleSceneInput>();
@@ -75,9 +77,11 @@ namespace BattleScene
             builder.RegisterComponentInHierarchy<PlayerStatusView>();
             builder.RegisterComponentInHierarchy<SelectSkillView>();
             builder.RegisterComponentInHierarchy<TargetView>();
+
             #endregion
 
             #region RegisterPresenter
+
             builder.Register<AttackCountViewPresenter>(Lifetime.Singleton);
             builder.Register<DamageViewPresenter>(Lifetime.Singleton);
             builder.Register<EnemyImagePresenter>(Lifetime.Singleton);
@@ -89,18 +93,22 @@ namespace BattleScene
             builder.Register<SkillViewPresenter>(Lifetime.Singleton);
             builder.Register<TargetViewPresenter>(Lifetime.Singleton);
             builder.Register<VibrationViewPresenter>(Lifetime.Singleton);
+
             #endregion
 
             #region RegisterReactivePresenter
+
             builder.Register<IReactive<AilmentEntity>, AilmentViewReactivePresenter>(Lifetime.Singleton);
             builder.Register<IReactive<BodyPartEntity>, BodyPartViewReactivePresenter>(Lifetime.Singleton);
             builder.Register<IReactive<BuffEntity>, BuffViewReactivePresenter>(Lifetime.Singleton);
             builder.Register<IReactive<CharacterEntity>, HitPointBarViewReactivePresenter>(Lifetime.Singleton);
             builder.Register<IReactive<CharacterEntity>, TechnicalPointBarViewReactivePresenter>(Lifetime.Singleton);
             builder.Register<IReactive<SlipEntity>, SlipViewReactivePresenter>(Lifetime.Singleton);
+
             #endregion
 
             #region RegisterFacade
+
             builder.Register<AilmentOutputFacade>(Lifetime.Singleton);
             builder.Register<ResetAilmentOutputFacade>(Lifetime.Singleton);
             builder.Register<DamageOutputFacade>(Lifetime.Singleton);
@@ -109,9 +117,11 @@ namespace BattleScene
             builder.Register<SkillOutputFacade>(Lifetime.Singleton);
             builder.Register<SlipDamageOutputFacade>(Lifetime.Singleton);
             builder.Register<SlipOutputFacade>(Lifetime.Singleton);
+
             #endregion
-            
+
             #region RegisterResource
+
             builder.RegisterComponentInHierarchy<IResource<AilmentPropertyDto, AilmentCode>>();
             builder.RegisterComponentInHierarchy<IResource<AilmentViewDto, AilmentCode, SlipCode>>();
             builder.RegisterComponentInHierarchy<IResource<BattlePropertyDto>>();
@@ -125,9 +135,11 @@ namespace BattleScene
             builder.RegisterComponentInHierarchy<IResource<PlayerPropertyDto, CharacterTypeCode>>();
             builder.RegisterComponentInHierarchy<IResource<PlayerImagePathDto, PlayerImageCode>>();
             builder.RegisterComponentInHierarchy<IResource<SkillViewDto, SkillCode>>();
+
             #endregion
 
             #region RegisterSkill
+
             builder.Register<AfterimageSkill>(Lifetime.Transient);
             builder.Register<AttackSkill>(Lifetime.Transient);
             builder.Register<BiteSkill>(Lifetime.Transient);
@@ -163,9 +175,11 @@ namespace BattleScene
             builder.Register<TaserGunSkill>(Lifetime.Transient);
             builder.Register<UtsusemiSkill>(Lifetime.Transient);
             builder.Register<WabisukeSkill>(Lifetime.Transient);
+
             #endregion
-            
+
             #region RegisterSkillElement
+
             builder.Register<AbsoluteConfusion>(Lifetime.Singleton);
             builder.Register<AfterImage>(Lifetime.Singleton);
             builder.Register<AlwaysHitDamage>(Lifetime.Singleton);
@@ -197,45 +211,61 @@ namespace BattleScene
             builder.Register<SuffocationSkill>(Lifetime.Singleton);
             builder.Register<Utsusemi>(Lifetime.Singleton);
             builder.Register<Wabisuke>(Lifetime.Singleton);
+
             #endregion
-            
+
             #region RegisterFactory
+
             builder.Register<IFactory<AilmentPropertyValueObject, AilmentCode>, AilmentPropertyFactory>(
                 Lifetime.Singleton);
             builder.Register<IFactory<BattlePropertyValueObject>, BattlePropertyFactory>(Lifetime.Singleton);
             builder.Register<IFactory<BodyPartPropertyValueObject, BodyPartCode>, BodyPartPropertyFactory>(
                 Lifetime.Singleton);
-            builder.Register<IFactory<CharacterPropertyValueObject, CharacterTypeCode>, CharacterPropertyFactory>(Lifetime.Singleton);
+            builder.Register<IFactory<CharacterPropertyValueObject, CharacterTypeCode>, CharacterPropertyFactory>(
+                Lifetime.Singleton);
             builder.Register<IFactory<PlayerPropertyValueObject, CharacterTypeCode>, PlayerPropertyFactory>
                 (Lifetime.Singleton);
             builder.Register<IFactory<SkillValueObject, SkillCode>, SkillFactory>(Lifetime.Singleton);
+
             #endregion
-            
+
             #region RegisterRepository
-            builder.Register<ICollection<AilmentEntity, (CharacterId, AilmentCode)>, Collection<AilmentEntity, (CharacterId, AilmentCode)>>(
-                Lifetime.Singleton);
+
+            builder
+                .Register<ICollection<AilmentEntity, (CharacterId, AilmentCode)>,
+                    Collection<AilmentEntity, (CharacterId, AilmentCode)>>(
+                    Lifetime.Singleton);
             builder.Register<ICollection<BattleLogEntity, BattleLogId>, Collection<BattleLogEntity, BattleLogId>>(
                 Lifetime.Singleton);
-            builder.Register<ICollection<BodyPartEntity, (CharacterId, BodyPartCode)>, Collection<BodyPartEntity, (CharacterId, BodyPartCode)>>(
+            builder
+                .Register<ICollection<BodyPartEntity, (CharacterId, BodyPartCode)>,
+                    Collection<BodyPartEntity, (CharacterId, BodyPartCode)>>(
+                    Lifetime.Singleton);
+            builder
+                .Register<ICollection<BuffEntity, (CharacterId, BuffCode)>,
+                    Collection<BuffEntity, (CharacterId, BuffCode)>>(
+                    Lifetime.Singleton);
+            builder.Register<ICollection<CharacterEntity, CharacterId>, Collection<CharacterEntity, CharacterId>>(
                 Lifetime.Singleton);
-            builder.Register<ICollection<BuffEntity, (CharacterId, BuffCode)>, Collection<BuffEntity, (CharacterId, BuffCode)>>(
-                Lifetime.Singleton);
-            builder.Register<ICollection<CharacterEntity, CharacterId>, Collection<CharacterEntity, CharacterId>>(Lifetime.Singleton);
             builder.Register<ICollection<OrderedItemEntity, OrderId>, Collection<OrderedItemEntity, OrderId>>(
                 Lifetime.Singleton);
             builder.Register<ICollection<SlipEntity, SlipCode>, Collection<SlipEntity, SlipCode>>(
                 Lifetime.Singleton);
             builder.Register<ICollection<TurnEntity, TurnId>, Collection<TurnEntity, TurnId>>(Lifetime.Singleton);
+
             #endregion
 
             #region RegisterInterfaceAdapterService
+
             builder.Register<ActorService>(Lifetime.Singleton);
             builder.Register<MessageCodeConverterService>(Lifetime.Singleton);
             builder.Register<PrimeSkillStateMachine>(Lifetime.Singleton);
             builder.Register<ToIndexService>(Lifetime.Singleton);
+
             #endregion
 
             #region RegisterState
+
             // BattleState
             builder.Register<InitializeBattleState>(Lifetime.Singleton);
             builder.Register<InitializePlayerState>(Lifetime.Singleton);
@@ -260,12 +290,21 @@ namespace BattleScene
             builder.Register<PrimeSkillStartState<BuffParameterValueObject, BuffValueObject>>(Lifetime.Singleton);
             builder.Register<PrimeSkillStartState<RestoreParameterValueObject, RestoreValueObject>>(Lifetime.Singleton);
             builder.Register<PrimeSkillStartState<SlipParameterValueObject, SlipValueObject>>(Lifetime.Singleton);
-            builder.Register<PrimeSkillOutputState<AilmentParameterValueObject, AilmentValueObject>, AilmentOutputState>(Lifetime.Singleton);
-            builder.Register<PrimeSkillOutputState<BuffParameterValueObject, BuffValueObject>, BuffOutputState>(Lifetime.Singleton);
-            builder.Register<PrimeSkillOutputState<DamageParameterValueObject, DamageValueObject>, DamageOutputState>(Lifetime.Singleton);
-            builder.Register<PrimeSkillOutputState<DestroyParameterValueObject, DestroyValueObject>, DestroyOutputState>(Lifetime.Singleton);
-            builder.Register<PrimeSkillOutputState<RestoreParameterValueObject, RestoreValueObject>, RestoreOutputState>(Lifetime.Singleton);
-            builder.Register<PrimeSkillOutputState<SlipParameterValueObject, SlipValueObject>, SlipOutputState>(Lifetime.Singleton);
+            builder
+                .Register<PrimeSkillOutputState<AilmentParameterValueObject, AilmentValueObject>, AilmentOutputState>(
+                    Lifetime.Singleton);
+            builder.Register<PrimeSkillOutputState<BuffParameterValueObject, BuffValueObject>, BuffOutputState>(
+                Lifetime.Singleton);
+            builder.Register<PrimeSkillOutputState<DamageParameterValueObject, DamageValueObject>, DamageOutputState>(
+                Lifetime.Singleton);
+            builder
+                .Register<PrimeSkillOutputState<DestroyParameterValueObject, DestroyValueObject>, DestroyOutputState>(
+                    Lifetime.Singleton);
+            builder
+                .Register<PrimeSkillOutputState<RestoreParameterValueObject, RestoreValueObject>, RestoreOutputState>(
+                    Lifetime.Singleton);
+            builder.Register<PrimeSkillOutputState<SlipParameterValueObject, SlipValueObject>, SlipOutputState>(
+                Lifetime.Singleton);
             builder.Register<PrimeSkillStopState<AilmentParameterValueObject, AilmentValueObject>>(Lifetime.Singleton);
             builder.Register<PrimeSkillStopState<DestroyParameterValueObject, DestroyValueObject>>(Lifetime.Singleton);
             builder.Register<PrimeSkillStopState<DamageParameterValueObject, DamageValueObject>>(Lifetime.Singleton);
@@ -273,26 +312,30 @@ namespace BattleScene
             builder.Register<PrimeSkillStopState<RestoreParameterValueObject, RestoreValueObject>>(Lifetime.Singleton);
             builder.Register<PrimeSkillStopState<SlipParameterValueObject, SlipValueObject>>(Lifetime.Singleton);
             builder.Register<PrimeSkillBreakState<DamageParameterValueObject, DamageValueObject>>(Lifetime.Singleton);
+
             #endregion
 
             #region RegisterUseCase
-            builder.Register<IPrimeSkillUseCase<DamageParameterValueObject, DamageValueObject>, 
+
+            builder.Register<IPrimeSkillUseCase<DamageParameterValueObject, DamageValueObject>,
                 PrimeSkillUseCase<DamageParameterValueObject, DamageValueObject>>(Lifetime.Singleton);
-            builder.Register<IPrimeSkillUseCase<AilmentParameterValueObject, AilmentValueObject>, 
+            builder.Register<IPrimeSkillUseCase<AilmentParameterValueObject, AilmentValueObject>,
                 PrimeSkillUseCase<AilmentParameterValueObject, AilmentValueObject>>(Lifetime.Singleton);
-            builder.Register<IPrimeSkillUseCase<DestroyParameterValueObject, DestroyValueObject>, 
+            builder.Register<IPrimeSkillUseCase<DestroyParameterValueObject, DestroyValueObject>,
                 PrimeSkillUseCase<DestroyParameterValueObject, DestroyValueObject>>(Lifetime.Singleton);
-            builder.Register<IPrimeSkillUseCase<BuffParameterValueObject, BuffValueObject>, 
+            builder.Register<IPrimeSkillUseCase<BuffParameterValueObject, BuffValueObject>,
                 PrimeSkillUseCase<BuffParameterValueObject, BuffValueObject>>(Lifetime.Singleton);
-            builder.Register<IPrimeSkillUseCase<SlipParameterValueObject, SlipValueObject>, 
+            builder.Register<IPrimeSkillUseCase<SlipParameterValueObject, SlipValueObject>,
                 PrimeSkillUseCase<SlipParameterValueObject, SlipValueObject>>(Lifetime.Singleton);
-            builder.Register<IPrimeSkillUseCase<RestoreParameterValueObject, RestoreValueObject>, 
+            builder.Register<IPrimeSkillUseCase<RestoreParameterValueObject, RestoreValueObject>,
                 PrimeSkillUseCase<RestoreParameterValueObject, RestoreValueObject>>(Lifetime.Singleton);
             builder.Register<OrderUseCase>(Lifetime.Singleton);
             builder.Register<SlipUseCase>(Lifetime.Singleton);
+
             #endregion
 
             #region RegisterService
+
             builder.Register<ActionTimeService>(Lifetime.Singleton);
             builder.Register<ActualTargetIdPickerService>(Lifetime.Singleton);
             builder.Register<AilmentGeneratorService>(Lifetime.Singleton);
@@ -316,22 +359,39 @@ namespace BattleScene
             builder.Register<SlipService>(Lifetime.Singleton);
             builder.Register<ISpeedService, SpeedService>(Lifetime.Singleton);
             builder.Register<TurnInitializerService>(Lifetime.Singleton);
-            builder.Register<IPrimeSkillGeneratorService<AilmentParameterValueObject, AilmentValueObject>, AilmentGeneratorService>(Lifetime.Singleton);
-            builder.Register<IPrimeSkillRegistererService<AilmentValueObject>, AilmentRegistererService>(Lifetime.Singleton);
-            builder.Register<IPrimeSkillGeneratorService<DamageParameterValueObject, DamageValueObject>, DamageGeneratorService>(Lifetime.Singleton);
-            builder.Register<IPrimeSkillRegistererService<DamageValueObject>, DamageRegistererService>(Lifetime.Singleton);
-            builder.Register<IPrimeSkillGeneratorService<DestroyParameterValueObject, DestroyValueObject>, DestroyGeneratorService>(Lifetime.Singleton);
-            builder.Register<IPrimeSkillRegistererService<DestroyValueObject>, DestroyRegistererService>(Lifetime.Singleton);
-            builder.Register<IPrimeSkillGeneratorService<BuffParameterValueObject, BuffValueObject>, BuffGeneratorService>(Lifetime.Singleton);
+            builder
+                .Register<IPrimeSkillGeneratorService<AilmentParameterValueObject, AilmentValueObject>,
+                    AilmentGeneratorService>(Lifetime.Singleton);
+            builder.Register<IPrimeSkillRegistererService<AilmentValueObject>, AilmentRegistererService>(
+                Lifetime.Singleton);
+            builder
+                .Register<IPrimeSkillGeneratorService<DamageParameterValueObject, DamageValueObject>,
+                    DamageGeneratorService>(Lifetime.Singleton);
+            builder.Register<IPrimeSkillRegistererService<DamageValueObject>, DamageRegistererService>(
+                Lifetime.Singleton);
+            builder
+                .Register<IPrimeSkillGeneratorService<DestroyParameterValueObject, DestroyValueObject>,
+                    DestroyGeneratorService>(Lifetime.Singleton);
+            builder.Register<IPrimeSkillRegistererService<DestroyValueObject>, DestroyRegistererService>(
+                Lifetime.Singleton);
+            builder
+                .Register<IPrimeSkillGeneratorService<BuffParameterValueObject, BuffValueObject>, BuffGeneratorService>(
+                    Lifetime.Singleton);
             builder.Register<IPrimeSkillRegistererService<BuffValueObject>, BuffRegistererService>(Lifetime.Singleton);
-            builder.Register<IPrimeSkillGeneratorService<SlipParameterValueObject, SlipValueObject>, SlipGeneratorService>(Lifetime.Singleton);
+            builder
+                .Register<IPrimeSkillGeneratorService<SlipParameterValueObject, SlipValueObject>, SlipGeneratorService>(
+                    Lifetime.Singleton);
             builder.Register<IPrimeSkillRegistererService<SlipValueObject>, SlipRegistererService>(Lifetime.Singleton);
-            builder.Register<IPrimeSkillGeneratorService<RestoreParameterValueObject, RestoreValueObject>, RestoreGeneratorService>(Lifetime.Singleton);
-            builder.Register<IPrimeSkillRegistererService<RestoreValueObject>, RestoreRegistererService>(Lifetime.Singleton);
+            builder
+                .Register<IPrimeSkillGeneratorService<RestoreParameterValueObject, RestoreValueObject>,
+                    RestoreGeneratorService>(Lifetime.Singleton);
+            builder.Register<IPrimeSkillRegistererService<RestoreValueObject>, RestoreRegistererService>(
+                Lifetime.Singleton);
 
             #endregion
 
             #region RegisterDomainService
+
             builder.Register<AilmentDomainService>(Lifetime.Singleton);
             builder.Register<BattleLogDomainService>(Lifetime.Singleton);
             builder.Register<BattleLoggerService>(Lifetime.Singleton);
@@ -342,10 +402,13 @@ namespace BattleScene
             builder.Register<PlayerDomainService>(Lifetime.Singleton);
             builder.Register<SlipDomainService>(Lifetime.Singleton);
             builder.Register<TargetDomainService>(Lifetime.Singleton);
+
             #endregion
 
             #region RegisterEntryPoint
+
             builder.RegisterEntryPoint<BattleStateMachine>();
+
             #endregion
         }
     }

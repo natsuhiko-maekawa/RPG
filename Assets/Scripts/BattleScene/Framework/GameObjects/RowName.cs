@@ -16,6 +16,5 @@ namespace BattleScene.Framework.GameObjects
         public void Set(string rowName) => _rowName.text = rowName;
         public void Show() => _rowName.enabled = true;
         public void Hide() => _rowName.enabled = false;
-        
     }
 }

@@ -29,6 +29,7 @@ namespace BattleScene.InterfaceAdapter.Service
         public bool IsResetAilment => _orderedItems.First().OrderedItemType == OrderedItemType.Ailment;
         public bool IsSlipDamage => _orderedItems.First().OrderedItemType == OrderedItemType.Slip;
         public bool CantAction => CantCharacterAction();
+
         public bool IsPlayer
         {
             get
@@ -38,19 +39,19 @@ namespace BattleScene.InterfaceAdapter.Service
                 return isPlayer;
             }
         }
-        
+
         private bool CantCharacterAction()
         {
             var actorIsCharacter = _orderedItems.First().TryGetCharacterId(out var characterId);
             if (!actorIsCharacter) return false;
-            
+
             var ailmentCode = _ailment.GetHighestPriority(characterId)?.AilmentCode;
             if (!ailmentCode.HasValue) return false;
 
             var absoluteCantAction = ailmentCode.Value is not (AilmentCode.Paralysis or AilmentCode.EnemyParalysis);
             return absoluteCantAction || CantActionBecauseParalysis;
         }
-        
+
         /// <summary>
         /// 麻痺によって行動不能になったかを表すプロパティ。<br/>
         /// <see cref="BattleScene.Debug.Service.DebugRandomService"/>でプロパティ名を利用してリフレクションを行っているため、

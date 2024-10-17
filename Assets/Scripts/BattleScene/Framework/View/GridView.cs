@@ -44,7 +44,7 @@ namespace BattleScene.Framework.View
         {
             _window.Show();
             selectAction.Enable();
-            
+
             _dto = dto;
             if (!_gridStateDictionary.TryGetValue(dto.ActionCode, out var gridState))
             {
@@ -53,19 +53,20 @@ namespace BattleScene.Framework.View
                     itemCount: dto.RowDtoList.Count);
                 _gridStateDictionary.Add(dto.ActionCode, gridState);
             }
-            
+
             _grid.SetActive();
-            
-            foreach (var (row, rowDto) in _grid.Zip(dto.RowDtoList.Skip(gridState.TopItemIndex), (row, rowDto) => (row, rowDto)))
+
+            foreach (var (row, rowDto) in _grid.Zip(dto.RowDtoList.Skip(gridState.TopItemIndex),
+                         (row, rowDto) => (row, rowDto)))
             {
                 row.SetName(rowDto.RowName);
                 row.ShowName();
-                
+
                 if (dto.ActionCode != ActionCode.Skill) continue;
                 row.SetTechnicalPoint(rowDto.TechnicalPoint);
                 row.ShowTechnicalPoint();
             }
-            
+
             _arrowRight.Move(gridState.SelectedRow);
             _arrowUp.Show(gridState.IsHiddenUpper);
             _arrowDown.Show(gridState.IsHiddenLower);
@@ -89,18 +90,18 @@ namespace BattleScene.Framework.View
             _arrowDown.Hide();
             selectAction.Disable();
         }
-        
+
         private async Task MoveArrow(Vector2 vector2)
         {
             if (vector2.y == 0) return;
-            
+
             if (vector2.y > 0)
                 _gridStateDictionary[_dto.ActionCode].Up();
             else
                 _gridStateDictionary[_dto.ActionCode].Down();
             await StartAnimationAsync(_dto);
         }
-        
+
         private void SetMoveAction(Func<Vector2, Task> func)
         {
             moveAction.performed += x => func.Invoke(x.ReadValue<Vector2>());

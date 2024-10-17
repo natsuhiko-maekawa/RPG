@@ -17,8 +17,8 @@ namespace BattleScene.InterfaceAdapter.Presenter
         private readonly MessageView _messageView;
 
         public MessageViewPresenter(
-            IResource<MessageDto, MessageCode> messageResource, 
-            MessageCodeConverterService messageCodeConverter, 
+            IResource<MessageDto, MessageCode> messageResource,
+            MessageCodeConverterService messageCodeConverter,
             MessageView messageView)
         {
             _messageResource = messageResource;

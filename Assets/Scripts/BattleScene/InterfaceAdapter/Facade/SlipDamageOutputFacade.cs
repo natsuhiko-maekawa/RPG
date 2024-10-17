@@ -42,7 +42,7 @@ namespace BattleScene.InterfaceAdapter.Facade
             outputQueue.Enqueue(() => Output2());
             return outputQueue;
         }
-        
+
         public Task Output1(SkillCode skillCode)
         {
             var animationList = new List<Task>();
@@ -54,23 +54,23 @@ namespace BattleScene.InterfaceAdapter.Facade
             var messageCode = _skillFactory.Create(skillCode).SkillCommon.AttackMessageCode;
             var messageAnimation = _messageView.StartAnimationAsync(messageCode);
             animationList.Add(messageAnimation);
-            
+
             return Task.WhenAll(animationList);
         }
 
         public Task Output2()
         {
             var animationList = new List<Task>();
-            
+
             var messageAnimation = _messageView.StartAnimationAsync(MessageCode.SlipDamageMessage);
             animationList.Add(messageAnimation);
-            
+
             var damageAnimation = _damageView.StartAnimationAsync();
             animationList.Add(damageAnimation);
 
             var vibrationAnimation = _vibrationView.StartAnimationAsync();
             animationList.Add(vibrationAnimation);
-            
+
             return Task.WhenAll(animationList);
         }
     }

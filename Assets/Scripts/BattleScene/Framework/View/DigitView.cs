@@ -15,6 +15,7 @@ namespace BattleScene.Framework.View
         [SerializeField] private int frame = 20;
         [SerializeField] private float moveRange = 20.0f;
         [SerializeField] private float randomRange = 80.0f;
+
         // ReSharper disable once RedundantDefaultMemberInitializer
         [SerializeField] private float alphaRate = 0.0f;
         [SerializeField] private int waitTime = 70;

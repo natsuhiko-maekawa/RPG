@@ -4,7 +4,6 @@ using UnityEngine;
 
 namespace BattleScene.DataAccess.Dto
 {
-
     [Serializable]
     public class PlayerViewDto : IUnique<CharacterTypeCode>, ISerializationCallbackReceiver
     {
@@ -12,7 +11,7 @@ namespace BattleScene.DataAccess.Dto
         [SerializeField] private string playerName;
         public CharacterTypeCode Key { get; private set; }
         public string PlayerName { get; private set; }
-    
+
         public void OnBeforeSerialize()
         {
         }

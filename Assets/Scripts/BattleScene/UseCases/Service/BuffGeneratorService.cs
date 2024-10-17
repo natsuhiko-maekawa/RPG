@@ -23,11 +23,11 @@ namespace BattleScene.UseCases.Service
             IReadOnlyList<BuffParameterValueObject> buffParameterList,
             IReadOnlyList<CharacterId> targetIdList)
         {
-            if(_orderedItems.First().TryGetCharacterId(out var actorId)) MyDebug.Assert(actorId != null);
+            if (_orderedItems.First().TryGetCharacterId(out var actorId)) MyDebug.Assert(actorId != null);
 
             var buffList = buffParameterList.Select(GetBuff).ToList();
             return buffList;
-            
+
             BuffValueObject GetBuff(BuffParameterValueObject buffParameter)
             {
                 return new BuffValueObject(

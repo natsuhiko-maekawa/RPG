@@ -14,19 +14,23 @@ namespace BattleScene.Domain.Entity
             Turn = turn;
             DefaultTurn = turn - 1;
         }
-        
+
         public override SlipCode Id { get; }
         public int Turn { get; private set; }
         private int DefaultTurn { get; }
-        
+
         private bool _effects;
 
         public bool Effects
         {
             get => _effects;
-            set { _effects = value; EffectsOnChange(value); }
+            set
+            {
+                _effects = value;
+                EffectsOnChange(value);
+            }
         }
-        
+
         partial void EffectsOnChange(bool value);
 
         public void AdvanceTurn()

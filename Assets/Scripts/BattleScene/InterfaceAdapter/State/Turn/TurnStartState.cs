@@ -49,8 +49,8 @@ namespace BattleScene.InterfaceAdapter.State.Turn
             if (_actor.IsResetAilment) return _resetAilmentState;
             if (_actor.IsSlipDamage) return _slipState;
             if (_actor.CantAction) return _cantActionState;
-            return _actor.IsPlayer 
-                ? _playerSelectActionState 
+            return _actor.IsPlayer
+                ? _playerSelectActionState
                 : _enemySelectSkillState;
         }
     }

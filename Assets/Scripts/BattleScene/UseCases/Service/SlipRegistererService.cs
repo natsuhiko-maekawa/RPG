@@ -7,7 +7,7 @@ using BattleScene.UseCases.IService;
 
 namespace BattleScene.UseCases.Service
 {
-    public class SlipRegistererService: IPrimeSkillRegistererService<SlipValueObject>
+    public class SlipRegistererService : IPrimeSkillRegistererService<SlipValueObject>
     {
         private readonly IFactory<BattlePropertyValueObject> _battlePropertyFactory;
         private readonly ICollection<SlipEntity, SlipCode> _slipDamageCollection;

@@ -29,7 +29,7 @@ namespace BattleScene.InterfaceAdapter.State.PrimeSkill
                 await _ailmentOutput.OutputThenAilmentSuccessAsync(ailment);
             }
         }
-        
+
         public override void Select()
         {
             Context.TransitionTo(_primeSkillStopState);

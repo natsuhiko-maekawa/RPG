@@ -18,7 +18,7 @@ namespace BattleScene.InterfaceAdapter.Presenter
         private readonly EnemiesView _enemiesView;
 
         public EnemyImagePresenter(
-            EnemiesDomainService enemies, 
+            EnemiesDomainService enemies,
             IResource<DataAccess.Dto.EnemyViewDto, CharacterTypeCode> enemyViewInfoResource,
             EnemiesView enemiesView)
         {
@@ -39,7 +39,7 @@ namespace BattleScene.InterfaceAdapter.Presenter
 
         private KeyValuePair<int, EnemyViewDto> GetDto(CharacterEntity characterEntity)
         {
-            var characterTypeId = characterEntity.CharacterTypeCode; 
+            var characterTypeId = characterEntity.CharacterTypeCode;
             var enemyNumber = characterEntity.Position;
             var enemyImagePath = _enemyViewInfoResource.Get(characterTypeId).EnemyImagePath;
             var dto = new EnemyViewDto(

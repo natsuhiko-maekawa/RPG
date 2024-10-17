@@ -33,10 +33,10 @@ namespace BattleScene.InterfaceAdapter.Facade
             var animationList = new List<Task>();
             var messageAnimation = _messageView.StartAnimationAsync(MessageCode.NoMessage);
             animationList.Add(messageAnimation);
-            
+
             var playerImageAnimation = _playerImageView.StartAnimationAsync(PlayerImageCode.NoImage);
             animationList.Add(playerImageAnimation);
-            
+
             await Task.WhenAll(animationList);
         }
     }

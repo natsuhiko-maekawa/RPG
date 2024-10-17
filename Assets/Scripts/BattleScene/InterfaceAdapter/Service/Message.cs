@@ -7,7 +7,7 @@ namespace BattleScene.InterfaceAdapter.Service
     {
         private readonly string _message;
         private readonly StringBuilder _sbMessage;
-        
+
         public Message(
             string message)
         {
@@ -18,7 +18,7 @@ namespace BattleScene.InterfaceAdapter.Service
         public Message Replace(string old, Action<StringBuilder> messageReplacer)
         {
             if (!_message.Contains(old)) return this;
-            
+
             messageReplacer(_sbMessage);
             return this;
         }

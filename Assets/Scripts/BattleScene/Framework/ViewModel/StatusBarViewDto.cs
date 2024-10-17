@@ -2,7 +2,7 @@
 {
     public record PlayerHpBarViewDto(
         StatusBarViewDto StatusBarViewDto);
-    
+
     public record PlayerTpBarViewDto(
         StatusBarViewDto StatusBarViewDto);
 

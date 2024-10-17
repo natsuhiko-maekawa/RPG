@@ -27,7 +27,7 @@ namespace BattleScene.UseCases.Service
         {
             foreach (var buff in _buffCollection.Get()
                          .Where(x => x.LifetimeCode == LifetimeCode.ToEndTurn || IsNextAction(x.LifetimeCode)))
-            { 
+            {
                 buff.AdvanceTurn();
             }
         }

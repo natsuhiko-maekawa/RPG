@@ -11,6 +11,7 @@ namespace BattleScene.InterfaceAdapter.PrimeSkill.BaseClass
         public virtual DamageExpressionCode DamageExpressionCode { get; } = DamageExpressionCode.Basic;
         public virtual float HitRate { get; } = 1.0f;
         public virtual HitEvaluationCode HitEvaluationCode { get; } = HitEvaluationCode.Basic;
+
         public virtual AttacksWeakPointEvaluationCode AttacksWeakPointEvaluationCode { get; } =
             AttacksWeakPointEvaluationCode.Basic;
     }

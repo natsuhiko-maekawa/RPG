@@ -31,11 +31,11 @@ namespace BattleScene.InterfaceAdapter.State.PrimeSkill
                 await _slipOutput.OutputThenSlipSuccessAsync(primeSkill);
             }
         }
-        
+
         public override void Select()
         {
-            BaseState<SlipParameterValueObject, SlipValueObject> nextState = Context.PrimeSkillQueue.Count == 0 
-                ? _primeSkillStopState 
+            BaseState<SlipParameterValueObject, SlipValueObject> nextState = Context.PrimeSkillQueue.Count == 0
+                ? _primeSkillStopState
                 : this;
             Context.TransitionTo(nextState);
         }

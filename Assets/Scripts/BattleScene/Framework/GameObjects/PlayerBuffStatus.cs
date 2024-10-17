@@ -14,7 +14,7 @@ namespace BattleScene.Framework.GameObjects
             _playerStatusText = GetComponentInChildren<PlayerStatusText>();
             _playerStatusIcon = GetComponentInChildren<PlayerStatusIcon>();
         }
-        
+
         public void Activate()
         {
             _playerStatusText.Activate();

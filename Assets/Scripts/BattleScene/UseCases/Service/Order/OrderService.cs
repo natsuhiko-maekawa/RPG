@@ -21,10 +21,10 @@ namespace BattleScene.UseCases.Service.Order
 
         public OrderService(
             IFactory<BattlePropertyValueObject> battlePropertyFactory,
-            CharacterPropertyFactoryService characterPropertyFactory, 
-            ICollection<AilmentEntity, (CharacterId, AilmentCode)> ailmentCollection, 
+            CharacterPropertyFactoryService characterPropertyFactory,
+            ICollection<AilmentEntity, (CharacterId, AilmentCode)> ailmentCollection,
             ICollection<CharacterEntity, CharacterId> characterCollection,
-            ICollection<OrderedItemEntity, OrderId> orderedItemCollection, 
+            ICollection<OrderedItemEntity, OrderId> orderedItemCollection,
             ICollection<SlipEntity, SlipCode> slipDamageCollection,
             ISpeedService speed)
         {
@@ -61,14 +61,14 @@ namespace BattleScene.UseCases.Service.Order
             var slipDamages = _slipDamageCollection.Get();
             InsertAilmentEnd(ailments, ref orderedItemList);
             InsertSlipDamage(slipDamages, ref orderedItemList);
-            
+
             var orderedItemEntityList = orderedItemList
                 .Select((x, i) => new OrderedItemEntity(
                     orderId: new OrderId(),
                     orderNumber: i,
                     orderedItem: x))
                 .ToList();
-            
+
             _orderedItemCollection.Remove();
             _orderedItemCollection.Add(orderedItemEntityList);
         }
@@ -102,7 +102,7 @@ namespace BattleScene.UseCases.Service.Order
                     if (slip.Turn != characterTypeCount % slipDefaultTurn) continue;
                     var orderedSlip
                         = new OrderedItem(slip.Id);
-                    order.Insert(i, orderedSlip); 
+                    order.Insert(i, orderedSlip);
                     order.RemoveAt(order.Count - 1);
                     ++i;
                 }

@@ -5,7 +5,7 @@ namespace BattleScene.DataAccess.Collection
     public partial class Collection<TEntity, TId>
     {
         private readonly IEnumerable<IReactive<TEntity>> _observers;
-        
+
         public Collection(
             IEnumerable<IReactive<TEntity>> observers)
         {

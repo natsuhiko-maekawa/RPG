@@ -25,7 +25,7 @@ namespace BattleScene.UseCases.Service
             IBuffDomainService buff,
             CharacterPropertyFactoryService characterPropertyFactoryFactory,
             IFactory<BattlePropertyValueObject> battlePropertyFactory,
-            ICollection<BuffEntity, (CharacterId, BuffCode)> buffCollection, 
+            ICollection<BuffEntity, (CharacterId, BuffCode)> buffCollection,
             IMyRandomService myRandom)
         {
             _bodyPartDomainService = bodyPartDomainService;
@@ -62,7 +62,7 @@ namespace BattleScene.UseCases.Service
             return (int)(actorStrength * actorStrength / (float)targetVitality * weekPointRate * actorBuffRate
                 / targetBuffRate * destroyedRate * targetDefence * rate * 1.5f) + _myRandom.Range(1, 3);
         }
-        
+
         private int ConstantEvaluate(CharacterId actorId, DamageParameterValueObject damageParameter)
         {
             var actorStrength = _characterPropertyFactory.Create(actorId).Strength;

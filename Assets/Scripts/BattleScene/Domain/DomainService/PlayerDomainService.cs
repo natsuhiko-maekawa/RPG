@@ -17,7 +17,7 @@ namespace BattleScene.Domain.DomainService
             IFactory<CharacterPropertyValueObject, CharacterTypeCode> propertyFactory,
             IFactory<PlayerPropertyValueObject, CharacterTypeCode> playerPropertyFactory,
             ICollection<CharacterEntity, CharacterId> characterCollection
-            )
+        )
         {
             _propertyFactory = propertyFactory;
             _playerPropertyFactory = playerPropertyFactory;
@@ -29,16 +29,16 @@ namespace BattleScene.Domain.DomainService
             var characterId = new CharacterId();
             CharacterPropertyValueObject characterProperty = _propertyFactory.Create(CharacterTypeCode.Player);
             var playerProperty = _playerPropertyFactory.Create(CharacterTypeCode.Player);
-            
+
             var player = new CharacterEntity(
                 id: characterId,
                 characterTypeCode: characterProperty.CharacterTypeCode,
                 currentHitPoint: characterProperty.HitPoint,
                 currentTechnicalPoint: playerProperty.TechnicalPoint);
-            
+
             _characterCollection.Add(player);
         }
-        
+
         public CharacterEntity Get()
         {
             return _characterCollection.Get().First(x => x.CharacterTypeCode == CharacterTypeCode.Player);

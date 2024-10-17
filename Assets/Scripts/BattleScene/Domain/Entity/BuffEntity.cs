@@ -26,14 +26,19 @@ namespace BattleScene.Domain.Entity
         public LifetimeCode LifetimeCode { get; }
 
         private float _rate;
+
         public float Rate
         {
             get => _rate;
-            private set { _rate = value; RateOnChange(_rate); }
+            private set
+            {
+                _rate = value;
+                RateOnChange(_rate);
+            }
         }
-        
+
         partial void RateOnChange(float value);
-        
+
         public bool TurnIsEnd => Turn < 0;
 
         public void AdvanceTurn()

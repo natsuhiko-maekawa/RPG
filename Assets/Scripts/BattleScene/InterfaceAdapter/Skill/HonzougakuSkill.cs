@@ -16,7 +16,7 @@ namespace BattleScene.InterfaceAdapter.Skill
         public override Range Range { get; } = Range.Oneself;
         public override MessageCode AttackMessageCode { get; } = MessageCode.ResetAilmentMessage;
 
-        public override ImmutableList<BaseReset> ResetList { get; } 
+        public override ImmutableList<BaseReset> ResetList { get; }
             = ImmutableList.Create<BaseReset>(new Honzougaku());
     }
 }

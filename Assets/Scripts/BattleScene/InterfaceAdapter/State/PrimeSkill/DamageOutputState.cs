@@ -23,7 +23,7 @@ namespace BattleScene.InterfaceAdapter.State.PrimeSkill
         {
             await _damageOutput.Output(Context.PrimeSkillQueue.Peek());
         }
-        
+
         public override void Select()
         {
             BaseState<DamageParameterValueObject, DamageValueObject> nextState = Context.PrimeSkillQueue.Peek().IsAvoid

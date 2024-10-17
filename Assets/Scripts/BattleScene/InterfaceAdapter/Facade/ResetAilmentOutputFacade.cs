@@ -28,11 +28,11 @@ namespace BattleScene.InterfaceAdapter.Facade
             var animationList = new List<Task>();
             var messageAnimation = _messageView.StartAnimationAsync(MessageCode.ResetAilmentMessage);
             animationList.Add(messageAnimation);
-            
+
             var playerImageCode = _skillViewResource.Get(skillCode).PlayerImageCode;
             var playerImageAnimation = _playerImageView.StartAnimationAsync(playerImageCode);
             animationList.Add(playerImageAnimation);
-            
+
             await Task.WhenAll(animationList);
         }
     }

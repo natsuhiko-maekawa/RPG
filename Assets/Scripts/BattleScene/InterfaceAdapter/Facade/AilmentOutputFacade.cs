@@ -39,20 +39,20 @@ namespace BattleScene.InterfaceAdapter.Facade
 
             await Task.WhenAll(animationList);
         }
-        
+
         public async Task OutputThenAilmentSuccessAsync(PrimeSkillValueObject ailment)
         {
             var animationList = new List<Task>();
             var messageAnimation = _messageView.StartAnimationAsync(MessageCode.AilmentMessage);
             animationList.Add(messageAnimation);
-            
+
             if (ailment.ActualTargetIdList.Any(x => _characterCollection.Get(x).IsPlayer))
             {
                 var playerImageCode = _ailmentViewResource.Get(ailment.AilmentCode).PlayerImageCode;
                 var playerImageAnimation = _playerImageView.StartAnimationAsync(playerImageCode);
                 animationList.Add(playerImageAnimation);
             }
-            
+
             await Task.WhenAll(animationList);
         }
     }

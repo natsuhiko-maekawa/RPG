@@ -28,10 +28,11 @@ namespace BattleScene.InterfaceAdapter.Skill
             _characterCollection = characterCollection;
             _orderedItems = orderedItems;
         }
-        
+
         public override SkillCode SkillCode { get; } = SkillCode.Confusion;
         public override Range Range { get; } = Oneself;
         public override MessageCode AttackMessageCode => GetAttackMessageCode();
+
         public override ImmutableList<BaseDamage> DamageList { get; }
             = ImmutableList.Create<BaseDamage>(new AlwaysHitDamage());
 

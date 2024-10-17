@@ -49,7 +49,7 @@ namespace BattleScene.Debug.Service
                 skillCode = _myRandom.Choice(skillCodeList);
                 return skillCode;
             }
-            
+
             skillCode = skillCodeList
                 .FirstOrDefault(IsSpecificPrimeSkill);
             skillCode = skillCode == SkillCode.NoSkill

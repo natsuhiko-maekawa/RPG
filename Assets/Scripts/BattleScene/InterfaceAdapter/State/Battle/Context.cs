@@ -24,7 +24,7 @@ namespace BattleScene.InterfaceAdapter.State.Battle
         public void Select() => _state.Select();
 
         public void Select(int id) => _state.Select(id);
-        
+
         public void Select(ImmutableList<CharacterId> targetIdList) => _state.Select(targetIdList);
     }
 }

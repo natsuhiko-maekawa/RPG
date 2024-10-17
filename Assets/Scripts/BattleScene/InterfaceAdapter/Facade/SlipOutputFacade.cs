@@ -16,7 +16,7 @@ namespace BattleScene.InterfaceAdapter.Facade
 
         public SlipOutputFacade(
             IResource<AilmentViewDto, AilmentCode, SlipCode> ailmentViewResource,
-            MessageViewPresenter messageView, 
+            MessageViewPresenter messageView,
             PlayerImageViewPresenter playerImageView)
         {
             _ailmentViewResource = ailmentViewResource;
@@ -42,7 +42,7 @@ namespace BattleScene.InterfaceAdapter.Facade
             var playerImageCode = _ailmentViewResource.Get(primeSkill.SlipCode).PlayerImageCode;
             var playerImageAnimation = _playerImageView.StartAnimationAsync(playerImageCode);
             animationList.Add(playerImageAnimation);
-            
+
             await Task.WhenAll(animationList);
         }
     }

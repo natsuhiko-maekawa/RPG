@@ -31,7 +31,7 @@ namespace BattleScene.Domain.DomainService
                 .ToImmutableList();
             return surviveEnemyList;
         }
-        
+
         public ImmutableList<CharacterId> GetIdSurvive()
         {
             return _characterCollection.Get()

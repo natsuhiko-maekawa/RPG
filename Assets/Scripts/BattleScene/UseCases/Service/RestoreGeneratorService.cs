@@ -39,11 +39,12 @@ namespace BattleScene.UseCases.Service
             var maxTechnicalPoint = _playerPropertyFactory.Create(CharacterTypeCode.Player).TechnicalPoint;
             var restoreList = restoreParameterList.Select(GetRestore).ToList();
             return restoreList;
-            
+
             RestoreValueObject GetRestore(RestoreParameterValueObject restoreParameter)
             {
-                var technicalPoint = Math.Min(restoreParameter.TechnicalPoint, maxTechnicalPoint - currentTechnicalPoint);
-                var restore =  new RestoreValueObject(
+                var technicalPoint = Math.Min(restoreParameter.TechnicalPoint,
+                    maxTechnicalPoint - currentTechnicalPoint);
+                var restore = new RestoreValueObject(
                     actorId: actorId,
                     skillCode: skillCommon.SkillCode,
                     targetIdList: targetIdList,

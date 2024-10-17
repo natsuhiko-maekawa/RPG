@@ -23,7 +23,7 @@ namespace BattleScene.Framework
             // https://docs.unity3d.com/Packages/com.unity.addressables@1.15/manual/ExceptionHandler.html
             ResourceManager.ExceptionHandler = ExceptionHandler;
         }
-        
+
         /// <summary>
         /// AddressableのパスからSpriteを取得する
         /// </summary>
@@ -35,10 +35,10 @@ namespace BattleScene.Framework
             {
                 return valueTask;
             }
-            
+
             return LoadAsync(path);
         }
-        
+
         private async ValueTask<Sprite> LoadAsync(string path)
         {
             Task<Sprite> task;
@@ -51,7 +51,7 @@ namespace BattleScene.Framework
                     throw new ArgumentException();
                 }
             }
-            
+
             _spriteCache.Add(path, new ValueTask<Sprite>(task));
             var sprite = await task;
             _spriteCache[path] = new ValueTask<Sprite>(sprite);

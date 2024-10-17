@@ -26,7 +26,7 @@ namespace BattleScene.Domain.Entity
         private SlipCode SlipCode { get; }
         public OrderedItemType OrderedItemType { get; }
 
-        public bool TryGetCharacterId([MaybeNullWhen(false)]out CharacterId characterId)
+        public bool TryGetCharacterId([MaybeNullWhen(false)] out CharacterId characterId)
         {
             characterId = CharacterId;
             return CharacterId != null;

@@ -8,7 +8,7 @@ namespace BattleScene.InterfaceAdapter.State.Turn
     public class Context
     {
         private BaseState _state;
-        
+
         public CharacterId? ActorId { get; set; }
         public AilmentCode AilmentCode { get; set; }
         public SlipCode SlipCode { get; set; }
@@ -31,9 +31,9 @@ namespace BattleScene.InterfaceAdapter.State.Turn
         public void Select() => _state.Select();
 
         public void Select(int id) => _state.Select(id);
-        
+
         public void Select(IReadOnlyList<CharacterId> targetIdList) => _state.Select(targetIdList);
-        
+
         public bool IsContinue => _state is not TurnStopState;
     }
 }

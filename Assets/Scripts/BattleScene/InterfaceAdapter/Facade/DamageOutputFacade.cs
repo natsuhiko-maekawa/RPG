@@ -38,19 +38,19 @@ namespace BattleScene.InterfaceAdapter.Facade
         public async Task Output(DamageValueObject damage)
         {
             var animationList = new List<Task>();
-            
+
             var isActorPlayer = _characterCollection.Get(damage.ActorId).IsPlayer;
             if (isActorPlayer)
             {
                 var attackCountAnimation = _attackCountView.Start();
                 animationList.Add(attackCountAnimation);
             }
-            
+
             if (damage.ActualTargetIdList.Any(x => _characterCollection.Get(x).IsPlayer))
             {
                 var playerImageCode = damage.AttackList
-                        .Where(x => _characterCollection.Get(x.TargetId).IsPlayer)
-                        .All(x => !x.IsHit)
+                    .Where(x => _characterCollection.Get(x.TargetId).IsPlayer)
+                    .All(x => !x.IsHit)
                     ? PlayerImageCode.Avoidance
                     : PlayerImageCode.Damaged;
                 var playerImageAnimation = _playerImageView.StartAnimationAsync(playerImageCode);
@@ -66,10 +66,10 @@ namespace BattleScene.InterfaceAdapter.Facade
 
             var vibrationAnimation = _vibrationView.StartAnimationAsync();
             animationList.Add(vibrationAnimation);
-            
+
             await Task.WhenAll(animationList);
         }
-        
+
         private MessageCode GetMessageCode(DamageValueObject damage)
         {
             if (damage.IsAvoid) return MessageCode.AvoidMessage;
@@ -78,7 +78,7 @@ namespace BattleScene.InterfaceAdapter.Facade
                 ? MessageCode.WeakPointMessage
                 : MessageCode.DamageMessage;
         }
-        
+
         private bool DamagesOneself(DamageValueObject damage)
         {
             var value = damage.AttackList

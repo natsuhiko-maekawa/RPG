@@ -15,7 +15,7 @@
         {
             EnemyIndex = enemyIndex;
         }
-        
+
         public static CharacterDto CreatePlayer()
         {
             return new CharacterDto();

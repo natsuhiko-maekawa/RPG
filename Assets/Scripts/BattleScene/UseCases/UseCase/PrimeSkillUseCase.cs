@@ -7,7 +7,8 @@ using BattleScene.UseCases.Service;
 
 namespace BattleScene.UseCases.UseCase
 {
-    public class PrimeSkillUseCase<TPrimeSkillParameter, TPrimeSkill> : IPrimeSkillUseCase<TPrimeSkillParameter, TPrimeSkill>
+    public class
+        PrimeSkillUseCase<TPrimeSkillParameter, TPrimeSkill> : IPrimeSkillUseCase<TPrimeSkillParameter, TPrimeSkill>
         where TPrimeSkill : PrimeSkillValueObject
     {
         private readonly IPrimeSkillGeneratorService<TPrimeSkillParameter, TPrimeSkill> _primeSkillGenerator;

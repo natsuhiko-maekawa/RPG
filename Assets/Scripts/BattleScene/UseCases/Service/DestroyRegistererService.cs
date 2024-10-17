@@ -29,7 +29,7 @@ namespace BattleScene.UseCases.Service
                 .ToList();
             _bodyPartCollection.Add(bodyPartEntityList);
             return;
-            
+
             BodyPartEntity CreateBodyPartEntity(CharacterId targetId)
             {
                 var bodyPartProperty = _bodyPartPropertyFactory.Create(destroy.BodyPartCode);

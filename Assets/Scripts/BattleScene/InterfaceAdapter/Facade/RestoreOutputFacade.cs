@@ -21,13 +21,13 @@ namespace BattleScene.InterfaceAdapter.Facade
         public async Task Output()
         {
             var animationList = new List<Task>();
-            
+
             var messageAnimation = _messageView.StartAnimationAsync(MessageCode.RestoreMessage);
             animationList.Add(messageAnimation);
 
             var restoreAnimation = _restoreView.StartAnimationAsync();
             animationList.Add(restoreAnimation);
-            
+
             await Task.WhenAll(animationList);
         }
     }

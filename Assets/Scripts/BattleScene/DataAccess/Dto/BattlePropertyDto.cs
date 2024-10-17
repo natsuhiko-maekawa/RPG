@@ -14,11 +14,11 @@ namespace BattleScene.DataAccess.Dto
         [SerializeField] private int maxOrderCount = 14;
         public int SlipDefaultTurn { get; private set; }
         public float SlipDefaultDamageRate { get; private set; }
-        public float IsHitThreshold { get; private set;}
+        public float IsHitThreshold { get; private set; }
         public float AilmentSuccessThreshold { get; private set; }
         public int MaxAgility { get; private set; }
         public int MaxOrderCount { get; private set; }
-        
+
         public void OnBeforeSerialize()
         {
         }

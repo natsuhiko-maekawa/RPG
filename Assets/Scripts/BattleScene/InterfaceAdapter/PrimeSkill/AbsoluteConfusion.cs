@@ -7,7 +7,5 @@ namespace BattleScene.InterfaceAdapter.PrimeSkill
     {
         public override AilmentCode AilmentCode { get; } = AilmentCode.Confusion;
         public override float LuckRate { get; } = 1.0f;
-
-
     }
 }

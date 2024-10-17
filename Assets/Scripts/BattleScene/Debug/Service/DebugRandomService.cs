@@ -11,7 +11,7 @@ namespace BattleScene.Debug.Service
         [SerializeField] private ProbabilityDebugMode cantActionBecauseParalysis;
         [SerializeField] private ProbabilityDebugMode isHit;
         [SerializeField] private ProbabilityDebugMode isSuccess;
-        
+
         public T Choice<T>(IEnumerable<T> options, string memberName = "")
         {
             return MyRandom.Choice(options);

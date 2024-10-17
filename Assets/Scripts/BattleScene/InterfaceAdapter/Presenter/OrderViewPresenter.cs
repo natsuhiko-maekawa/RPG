@@ -23,7 +23,7 @@ namespace BattleScene.InterfaceAdapter.Presenter
 
         public OrderViewPresenter(
             IResource<EnemyViewDto, CharacterTypeCode> enemyViewInfoResource,
-            OrderView orderView, 
+            OrderView orderView,
             ICollection<CharacterEntity, CharacterId> characterCollection,
             ICollection<OrderedItemEntity, OrderId> orderedItemCollection)
         {
@@ -64,14 +64,14 @@ namespace BattleScene.InterfaceAdapter.Presenter
                 : CreateEnemyOrderViewDto(characterId);
             return dto;
         }
-        
+
         private OrderViewDto CreatePlayerOrderViewDto()
         {
             var playerOrderViewDto = new OrderViewDto(
                 ItemType: ItemType.Player);
             return playerOrderViewDto;
         }
-        
+
         private OrderViewDto CreateEnemyOrderViewDto(CharacterId characterId)
         {
             var characterTypeId = _characterCollection.Get(characterId).CharacterTypeCode;
@@ -86,7 +86,7 @@ namespace BattleScene.InterfaceAdapter.Presenter
             var dto = new OrderViewDto(ItemType.Ailment, AilmentNumber: ailmentNumber);
             return dto;
         }
-        
+
         private OrderViewDto CreateSlipOrderViewDto(OrderedItemEntity orderedItem)
         {
             orderedItem.TryGetSlipDamageCode(out var slipCode);
@@ -94,7 +94,7 @@ namespace BattleScene.InterfaceAdapter.Presenter
             var dto = new OrderViewDto(ItemType.Ailment, AilmentNumber: ailmentNumber);
             return dto;
         }
-        
+
         private int ConvertToIntFrom(AilmentCode ailmentCode)
         {
             return ailmentCode switch

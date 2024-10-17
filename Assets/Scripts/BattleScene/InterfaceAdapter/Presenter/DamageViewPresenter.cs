@@ -29,7 +29,7 @@ namespace BattleScene.InterfaceAdapter.Presenter
             _enemiesView = enemiesView;
             _playerView = playerView;
         }
-        
+
         // public void StartDmgView(int slipDamage, ICharacter character)
         // {
         //     var tuple = (Character: character, DigitDto: new DigitDto(0, slipDamage, false));
@@ -67,7 +67,7 @@ namespace BattleScene.InterfaceAdapter.Presenter
         public async Task StartAnimationAsync()
         {
             var taskList = new List<Task>();
-            
+
             var attackList = _battleLog.GetLast().AttackList;
             var characterDigitList = attackList
                 .GroupBy(x => x.TargetId)

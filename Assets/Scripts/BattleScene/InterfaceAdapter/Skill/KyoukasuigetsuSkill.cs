@@ -17,7 +17,7 @@ namespace BattleScene.InterfaceAdapter.Skill
         public override Range Range { get; } = Range.Line;
         public override MessageCode AttackMessageCode { get; } = MessageCode.NoMessage;
 
-        public override ImmutableList<BaseAilment> AilmentList { get; } 
+        public override ImmutableList<BaseAilment> AilmentList { get; }
             = ImmutableList.Create<BaseAilment>(new AbsoluteConfusion());
 
         public override ImmutableList<BaseDamage> DamageList { get; }

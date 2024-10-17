@@ -12,7 +12,7 @@ namespace BattleScene.DataAccess.Dto
         public CharacterTypeCode Key { get; private set; }
         public string EnemyName { get; private set; }
         public string EnemyImagePath { get; private set; }
-        
+
         public void OnBeforeSerialize()
         {
         }

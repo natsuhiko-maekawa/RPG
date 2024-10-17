@@ -15,7 +15,7 @@ namespace BattleScene.InterfaceAdapter.State.PrimeSkill
     public class Context<TPrimeSkillParameter, TPrimeSkill> : IContext
     {
         private BaseState<TPrimeSkillParameter, TPrimeSkill> _state;
-        
+
         public SkillCommonValueObject SkillCommon { get; }
         public IReadOnlyList<CharacterId> TargetIdList { get; }
         public IReadOnlyList<TPrimeSkillParameter> PrimeSkillParameterList { get; }
@@ -24,8 +24,8 @@ namespace BattleScene.InterfaceAdapter.State.PrimeSkill
 
         public Context(
             BaseState<TPrimeSkillParameter, TPrimeSkill> primeSkillState,
-            SkillCommonValueObject skillCommon ,
-            IReadOnlyList<CharacterId> targetIdList ,
+            SkillCommonValueObject skillCommon,
+            IReadOnlyList<CharacterId> targetIdList,
             IReadOnlyList<TPrimeSkillParameter> primeSkillParameterList,
             IReadOnlyList<PrimeSkillCode> executedPrimeSkillCodeList)
         {
@@ -58,16 +58,16 @@ namespace BattleScene.InterfaceAdapter.State.PrimeSkill
             return genericClassName;
         }
 
-        private bool TryGetMatchedText(string input, [RegexPattern]string pattern, out string matchedText)
+        private bool TryGetMatchedText(string input, [RegexPattern] string pattern, out string matchedText)
         {
             var match = Regex.Match(input, pattern);
             matchedText = match.Success
-                ? match.Groups[1].Value 
+                ? match.Groups[1].Value
                 : null;
             return match.Success;
         }
 #endif
-        
+
 
         public void Select() => _state.Select();
 

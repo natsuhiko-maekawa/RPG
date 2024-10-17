@@ -4,7 +4,7 @@ using BattleScene.Domain.Code;
 
 namespace BattleScene.DataAccess.Resource
 {
-    public class EnemyViewResource 
+    public class EnemyViewResource
         : BaseScriptableObjectResource<EnemyViewScriptableObject, EnemyViewDto, CharacterTypeCode>
     {
     }

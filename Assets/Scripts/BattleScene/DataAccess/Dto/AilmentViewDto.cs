@@ -17,7 +17,7 @@ namespace BattleScene.DataAccess.Dto
         public string Name { get; set; }
         public MessageCode MessageCode { get; private set; }
         public PlayerImageCode PlayerImageCode { get; private set; }
-        
+
         public void OnBeforeSerialize()
         {
         }

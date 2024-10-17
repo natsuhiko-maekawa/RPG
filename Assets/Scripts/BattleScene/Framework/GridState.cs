@@ -20,7 +20,7 @@ namespace BattleScene.Framework
         public int SelectedIndex => TopItemIndex + SelectedRow;
         public bool IsHiddenUpper => TopItemIndex > 0;
         public bool IsHiddenLower => TopItemIndex < MaxIndex;
-        
+
         public void Reset()
         {
             SelectedRow = 0;
@@ -28,14 +28,14 @@ namespace BattleScene.Framework
 
         public void Up()
         {
-            TopItemIndex = 0 < SelectedRow 
+            TopItemIndex = 0 < SelectedRow
                 ? TopItemIndex
                 : --TopItemIndex;
-            TopItemIndex = TopItemIndex <= 0 
-                ? 0 
+            TopItemIndex = TopItemIndex <= 0
+                ? 0
                 : TopItemIndex;
-            SelectedRow = SelectedRow <= 0 
-                ? 0 
+            SelectedRow = SelectedRow <= 0
+                ? 0
                 : --SelectedRow;
         }
 

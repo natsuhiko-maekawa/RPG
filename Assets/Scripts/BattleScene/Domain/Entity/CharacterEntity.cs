@@ -21,28 +21,38 @@ namespace BattleScene.Domain.Entity
             ActionTime = actionTime;
             Position = position;
         }
-        
+
         public override CharacterId Id { get; }
         public CharacterTypeCode CharacterTypeCode { get; }
-        
+
         private int _currentHitPoint;
+
         public int CurrentHitPoint
         {
             get => _currentHitPoint;
-            set { _currentHitPoint = Math.Max(value, 0); CurrentHitPointOnChange(_currentHitPoint);}
+            set
+            {
+                _currentHitPoint = Math.Max(value, 0);
+                CurrentHitPointOnChange(_currentHitPoint);
+            }
         }
 
         partial void CurrentHitPointOnChange(int value);
 
         private int _currentTechnicalPoint;
+
         public int CurrentTechnicalPoint
         {
             get => _currentTechnicalPoint;
-            set { _currentTechnicalPoint = Math.Max(value, 0); CurrentTechnicalPointOnChange(value);}
+            set
+            {
+                _currentTechnicalPoint = Math.Max(value, 0);
+                CurrentTechnicalPointOnChange(value);
+            }
         }
 
         partial void CurrentTechnicalPointOnChange(int value);
-        
+
         public int ActionTime { get; set; }
         public int Position { get; }
         public bool IsSurvive => 0 < CurrentHitPoint;

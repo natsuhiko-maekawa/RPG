@@ -47,7 +47,7 @@ namespace BattleScene.UseCases.Service
                 .ToList();
 
             return actualTargetList;
-            
+
             bool Picks(CharacterId characterId)
             {
                 var targetLuck = _characterPropertyFactory.Create(characterId).Luck;

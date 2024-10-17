@@ -52,10 +52,10 @@ namespace BattleScene.InterfaceAdapter.Facade
             var messageCode = isActorPlayer
                 ? MessageCode.SkillMessage
                 : _skillFactory.Create(context.SkillCode).SkillCommon.AttackMessageCode;
-            
+
             var messageAnimation = _messageView.StartAnimationAsync(messageCode, context);
             animationList.Add(messageAnimation);
-            
+
             var playerSkillCode = isActorPlayer
                 ? context.SkillCode
                 : _battleLogCollection.Get()

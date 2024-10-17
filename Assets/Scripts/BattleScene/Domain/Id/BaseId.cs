@@ -17,7 +17,7 @@ namespace BattleScene.Domain.Id
         {
             return Id.GetHashCode();
         }
-        
+
         public int CompareTo(BaseId other)
         {
             return GetHashCode() - other.GetHashCode();

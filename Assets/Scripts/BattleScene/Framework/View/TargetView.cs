@@ -30,18 +30,18 @@ namespace BattleScene.Framework.View
         {
             moveAction?.Enable();
             selectAction?.Enable();
-            
+
             _dto = dto;
             var frameViewDto = new FrameViewDto(Color.red);
 
             if (IsEnemySolo(dto.CharacterDtoList))
             {
                 if (_index == -1) SetIndex(dto);
-                
+
                 _enemiesView[_enemyPositionList[_index]].StartFrameAnimationAsync(frameViewDto);
                 return Task.CompletedTask;
             }
-            
+
             foreach (var character in dto.CharacterDtoList)
             {
                 if (character.IsPlayer)
@@ -49,10 +49,10 @@ namespace BattleScene.Framework.View
                     _playerView.StartFrameView(frameViewDto);
                     continue;
                 }
-                
+
                 _enemiesView[character.EnemyIndex].StartFrameAnimationAsync(frameViewDto);
             }
-            
+
             return Task.CompletedTask;
         }
 
@@ -71,7 +71,7 @@ namespace BattleScene.Framework.View
         {
             return characterDtoList.Count == 1 && !characterDtoList.First().IsPlayer;
         }
-        
+
         private void SetIndex(TargetViewDto dto)
         {
             _enemyPositionList = _enemiesView
@@ -88,18 +88,18 @@ namespace BattleScene.Framework.View
             if (vector2.x == 0) return;
 
             _enemiesView[_index].StopFrameAnimation();
-            _index = vector2.x > 0 
-                ? Math.Min(_index + 1, _enemyPositionList.Count - 1) 
+            _index = vector2.x > 0
+                ? Math.Min(_index + 1, _enemyPositionList.Count - 1)
                 : Math.Max(_index - 1, 0);
-            
+
             await StartAnimation(_dto);
         }
-        
+
         private void SetMoveAction(Func<Vector2, Task> func)
         {
             moveAction.performed += x => func.Invoke(x.ReadValue<Vector2>());
         }
-        
+
         public void SetSelectAction(Action<ImmutableList<CharacterDto>> action)
         {
             selectAction.performed += _ => action.Invoke(GetTargetDtoList());

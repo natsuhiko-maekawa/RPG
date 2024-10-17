@@ -18,7 +18,7 @@ namespace BattleScene.InterfaceAdapter.Presenter
             _battleLog = battleLog;
             _playerView = playerView;
         }
-        
+
         public async Task StartAnimationAsync()
         {
             var technicalPoint = _battleLog.GetLast().TechnicalPoint;

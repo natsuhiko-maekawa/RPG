@@ -32,7 +32,7 @@ namespace BattleScene.UseCases.Service
                 _ => throw new ArgumentOutOfRangeException()
             };
         }
-        
+
         private int BasicEvaluate(CharacterId actorId)
         {
             var wisdom = _characterPropertyFactory.Create(actorId).Wisdom;

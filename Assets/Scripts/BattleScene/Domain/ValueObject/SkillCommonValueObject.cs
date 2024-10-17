@@ -10,7 +10,7 @@ namespace BattleScene.Domain.ValueObject
         public IReadOnlyList<BodyPartCode> DependencyList { get; }
         public Range Range { get; }
         public MessageCode AttackMessageCode { get; }
-        
+
         public SkillCommonValueObject(
             SkillCode skillCode,
             int technicalPoint,

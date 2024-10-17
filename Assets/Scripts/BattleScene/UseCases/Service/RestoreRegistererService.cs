@@ -16,7 +16,7 @@ namespace BattleScene.UseCases.Service
         {
             _characterCollection = characterCollection;
         }
-        
+
         public void Register(IReadOnlyList<RestoreValueObject> restoreList)
         {
             foreach (var restore in restoreList) AddTechnicalPoint(restore);

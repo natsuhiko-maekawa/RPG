@@ -23,7 +23,7 @@ namespace BattleScene.Framework.View
         {
             _statusBarText.Set(dto.CurrentPoint, dto.MaxPoint);
             _statusBarMeter.Set(dto.CurrentPoint, dto.MaxPoint);
-            
+
             return Task.CompletedTask;
         }
     }

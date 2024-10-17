@@ -15,7 +15,7 @@ namespace BattleScene.Domain.DomainService
         {
             _buffCollection = buffCollection;
         }
-        
+
         public float GetRate(CharacterId characterId, BuffCode buffCode)
         {
             var buffEntity = _buffCollection.Get((characterId, buffCode));

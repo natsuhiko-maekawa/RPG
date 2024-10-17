@@ -82,7 +82,7 @@ namespace BattleScene.InterfaceAdapter.Service
         private void ReplaceActor(StringBuilder message)
         {
             if (!_orderedItems.First().TryGetCharacterId(out var characterId)) throw new InvalidOperationException();
-            
+
             var actorName = _characterCollection.Get(characterId).IsPlayer
                 ? _playerViewInfoResource.Get(CharacterTypeCode.Player).PlayerName
                 : _enemyViewInfoResource.Get(_characterCollection.Get(characterId).CharacterTypeCode).EnemyName;
@@ -116,7 +116,9 @@ namespace BattleScene.InterfaceAdapter.Service
         private void ReplaceDamage(StringBuilder message)
         {
             var totalPrefix = _battleLogCollection.Get()
-                .Max().AttackList.Count(x => x.IsHit) == 1 ? "" : "計";
+                .Max().AttackList.Count(x => x.IsHit) == 1
+                ? ""
+                : "計";
             var damage = _battleLogCollection.Get()
                 .Max().AttackList
                 .Where(x => x.IsHit)
@@ -125,7 +127,7 @@ namespace BattleScene.InterfaceAdapter.Service
                 .ToString();
             message.Replace(Damage, totalPrefix + damage);
         }
-        
+
         // private void ReplaceCure(StringBuilder message)
         // {
         // }
@@ -139,7 +141,7 @@ namespace BattleScene.InterfaceAdapter.Service
 
         private void ReplacePlayer(StringBuilder message)
         {
-            var playerName = _playerViewInfoResource.Get(CharacterTypeCode.Player).PlayerName; 
+            var playerName = _playerViewInfoResource.Get(CharacterTypeCode.Player).PlayerName;
             message.Replace(Player, playerName);
         }
 

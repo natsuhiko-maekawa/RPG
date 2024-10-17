@@ -11,7 +11,7 @@ namespace BattleScene.DataAccess.Dto
         [SerializeField] private string message;
         public MessageCode Key { get; private set; }
         public string Message { get; private set; }
-        
+
         public void OnBeforeSerialize()
         {
         }

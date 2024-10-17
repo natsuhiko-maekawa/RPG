@@ -10,7 +10,7 @@ namespace BattleScene.DataAccess.Dto
         [SerializeField] private string playerImageCode;
         public PlayerImageCode Key { get; private set; }
         public string PlayerImagePath { get; private set; }
-        
+
         public void OnBeforeSerialize()
         {
         }

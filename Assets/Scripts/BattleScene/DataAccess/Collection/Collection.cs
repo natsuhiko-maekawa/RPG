@@ -9,7 +9,7 @@ namespace BattleScene.DataAccess.Collection
         where TEntity : BaseEntity<TId>
     {
         private readonly Dictionary<TId, TEntity> _entityDictionary = new();
-        
+
         public TEntity Get(TId id)
         {
             _entityDictionary.TryGetValue(id, out var entity);
@@ -22,7 +22,7 @@ namespace BattleScene.DataAccess.Collection
         public void Add(TEntity entity)
         {
             Observe(entity);
-            
+
             // TODO: TryAddをAddに修正すること
             if (_entityDictionary.TryAdd(entity.Id, entity)) return;
             _entityDictionary.Remove(entity.Id);
@@ -40,7 +40,7 @@ namespace BattleScene.DataAccess.Collection
         {
             _entityDictionary.Clear();
         }
-        
+
         public void Remove(TId id)
         {
             _entityDictionary.Remove(id);

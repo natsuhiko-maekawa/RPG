@@ -9,11 +9,11 @@
         {
             Context = context;
         }
-        
+
         public virtual void Start()
         {
         }
-        
+
         public virtual void Select()
         {
         }

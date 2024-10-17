@@ -51,6 +51,7 @@ namespace BattleScene.InterfaceAdapter
             return skillCode switch
             {
                 #region Resolve Skills.
+
                 Afterimage => _container.Resolve<AfterimageSkill>(),
                 Attack => _container.Resolve<AttackSkill>(),
                 Bite => _container.Resolve<BiteSkill>(),
@@ -86,7 +87,9 @@ namespace BattleScene.InterfaceAdapter
                 TaserGun => _container.Resolve<TaserGunSkill>(),
                 Utsusemi => _container.Resolve<UtsusemiSkill>(),
                 Wabisuke => _container.Resolve<WabisukeSkill>(),
+
                 #endregion
+
                 _ => throw new ArgumentOutOfRangeException(nameof(skillCode), skillCode, null)
             };
         }

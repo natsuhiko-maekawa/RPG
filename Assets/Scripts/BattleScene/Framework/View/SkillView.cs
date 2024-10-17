@@ -19,6 +19,7 @@ namespace BattleScene.Framework.View
         [SerializeField] private Color lightBlue = new(0.5215687f, 0.9215686f, 0.9803922f);
         [SerializeField] private Color red = new(0.9803922f, 0.5215687f, 0.5215687f);
         [SerializeField] private Color lightRed = new(0.9803922f, 0.9215686f, 0.5215687f);
+
         // ReSharper disable once CollectionNeverUpdated.Local
         private readonly List<TextMeshProUGUI> _technicalPointList = new();
         private ObsoleteGridView _obsoleteGridView;
@@ -43,6 +44,7 @@ namespace BattleScene.Framework.View
                     _technicalPointList[index].colorGradient = new VertexGradient(lightBlue, lightBlue, blue, blue);
                 _technicalPointList[index].enabled = true;
             }
+
             return Task.CompletedTask;
         }
 

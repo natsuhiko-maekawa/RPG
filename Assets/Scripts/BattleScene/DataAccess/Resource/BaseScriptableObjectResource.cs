@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace BattleScene.DataAccess.Resource
 {
-    public abstract class BaseScriptableObjectResource<TScriptableObject, TItem, TId> 
+    public abstract class BaseScriptableObjectResource<TScriptableObject, TItem, TId>
         : MonoBehaviour, IResource<TItem, TId>
         where TScriptableObject : BaseScriptableObject<TItem, TId>
         where TItem : IUnique<TId>

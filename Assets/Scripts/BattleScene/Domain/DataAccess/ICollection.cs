@@ -3,7 +3,7 @@ using BattleScene.Domain.Entity;
 
 namespace BattleScene.Domain.DataAccess
 {
-    public interface ICollection<TEntity, TId> 
+    public interface ICollection<TEntity, TId>
         where TEntity : BaseEntity<TId>
     {
         public TEntity Get(TId id);

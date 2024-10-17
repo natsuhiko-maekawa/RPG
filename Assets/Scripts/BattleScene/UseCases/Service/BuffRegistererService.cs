@@ -25,9 +25,9 @@ namespace BattleScene.UseCases.Service
                 .Select(CreateBuffEntity)
                 .ToList();
             _buffCollection.Add(buffEntityList);
-            
+
             return;
-            
+
             BuffEntity CreateBuffEntity(CharacterId characterId)
             {
                 var buffEntity = new BuffEntity(

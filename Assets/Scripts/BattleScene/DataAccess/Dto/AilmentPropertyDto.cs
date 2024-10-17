@@ -14,7 +14,7 @@ namespace BattleScene.DataAccess.Dto
         public int Turn { get; private set; }
         public bool IsSelfRecovery { get; private set; }
         public int? Priority { get; private set; }
-        
+
         public void OnBeforeSerialize()
         {
         }

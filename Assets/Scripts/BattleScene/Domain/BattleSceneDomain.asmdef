@@ -1,17 +1,17 @@
 {
-    "name": "Domain.BattleScene",
-    "rootNamespace": "",
-    "references": [
-        "GUID:a5ef4021daea9114cb5dcce50d96f987",
-        "GUID:77221876cc6b8244180b96e320b1bcd4"
-    ],
-    "includePlatforms": [],
-    "excludePlatforms": [],
-    "allowUnsafeCode": false,
-    "overrideReferences": false,
-    "precompiledReferences": [],
-    "autoReferenced": true,
-    "defineConstraints": [],
-    "versionDefines": [],
-    "noEngineReferences": true
+  "name": "Domain.BattleScene",
+  "rootNamespace": "",
+  "references": [
+    "GUID:a5ef4021daea9114cb5dcce50d96f987",
+    "GUID:77221876cc6b8244180b96e320b1bcd4"
+  ],
+  "includePlatforms": [],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": true,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "noEngineReferences": true
 }

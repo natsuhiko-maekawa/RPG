@@ -7,7 +7,7 @@ namespace BattleScene.Framework.View
 {
     public class EnemyView : MonoBehaviour
     {
-        public Image Image { get;  set; }
+        public Image Image { get; set; }
         private EnemyAilmentView _enemyAilmentView;
         private DigitView _digitView;
         private FrameView _frameView;

@@ -6,7 +6,7 @@ namespace BattleScene.Framework.GameObjects
     public class ArrowUp : MonoBehaviour
     {
         private Image _upArrow;
-        
+
         private void Awake()
         {
             _upArrow = GetComponent<Image>();

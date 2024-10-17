@@ -25,21 +25,27 @@ namespace BattleScene.Domain.Entity
         public AilmentCode AilmentCode { get; }
 
         private int _turn;
+
         public int Turn
         {
             get => _turn;
             private set => _turn = Math.Max(value, 0);
         }
-        
+
         public bool IsSelfRecovery { get; }
 
         private bool _effects;
+
         public bool Effects
         {
             get => _effects;
-            set { _effects = value; EffectsOnChange(value); }
+            set
+            {
+                _effects = value;
+                EffectsOnChange(value);
+            }
         }
-        
+
         partial void EffectsOnChange(bool value);
 
         public void AdvanceTurn()
