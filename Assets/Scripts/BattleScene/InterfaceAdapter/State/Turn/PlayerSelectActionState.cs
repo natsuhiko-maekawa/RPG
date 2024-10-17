@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.Generic;
-using System.Collections.Immutable;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DomainService;
 using BattleScene.InterfaceAdapter.Presenter;

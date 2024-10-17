@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Collections.Immutable;
 using BattleScene.Framework.Code;
 
 namespace BattleScene.Framework.ViewModel

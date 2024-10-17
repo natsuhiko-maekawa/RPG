@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Collections.Immutable;
-using BattleScene.Domain.DomainService;
+﻿using BattleScene.Domain.DomainService;
 using BattleScene.UseCases.IService;
 
 namespace BattleScene.InterfaceAdapter.State.Turn
