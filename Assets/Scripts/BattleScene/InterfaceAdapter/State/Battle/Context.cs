@@ -1,4 +1,5 @@
-﻿using System.Collections.Immutable;
+﻿using System.Collections.Generic;
+using System.Collections.Immutable;
 using BattleScene.Domain.Id;
 using Utility;
 
@@ -25,6 +26,6 @@ namespace BattleScene.InterfaceAdapter.State.Battle
 
         public void Select(int id) => _state.Select(id);
 
-        public void Select(ImmutableList<CharacterId> targetIdList) => _state.Select(targetIdList);
+        public void Select(IReadOnlyList<CharacterId> targetIdList) => _state.Select(targetIdList);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 using BattleScene.DataAccess;
@@ -35,11 +36,7 @@ namespace BattleScene.InterfaceAdapter.Presenter
 
         public async void StartAnimationAsync()
         {
-            var actionCodeList = ImmutableList.Create(
-                ActionCode.Attack,
-                ActionCode.Skill,
-                ActionCode.Defence,
-                ActionCode.FatalitySkill);
+            var actionCodeList = new [] { ActionCode.Attack, ActionCode.Skill, ActionCode.Defence, ActionCode.FatalitySkill };
 
             var rowList = actionCodeList
                 .Select(x =>
@@ -55,7 +52,7 @@ namespace BattleScene.InterfaceAdapter.Presenter
                         PlayerImagePath: _playerImagePathResource.Get(PlayerImageCode.Katana).PlayerImagePath,
                         Enabled: enabled);
                 })
-                .ToImmutableList();
+                .ToList();
             var dto = new GridViewDto(
                 ActionCode: Framework.Code.ActionCode.Action,
                 rowList);

@@ -1,3 +1,4 @@
+﻿using System.Collections.Generic;
 using System.Collections.Immutable;
 using BattleScene.Domain.Code;
 using BattleScene.InterfaceAdapter.PrimeSkill;
@@ -12,7 +13,7 @@ namespace BattleScene.InterfaceAdapter.Skill
         public override Range Range { get; } = Range.Player;
         public override MessageCode AttackMessageCode { get; } = MessageCode.PoisoningMessage;
 
-        public override ImmutableList<BaseDamage> DamageList { get; }
-            = ImmutableList.Create<BaseDamage>(new SlipDamage());
+        public override IReadOnlyList<BaseDamage> DamageList { get; }
+            = new [] { new SlipDamage() };
     }
 }

@@ -5,6 +5,6 @@ namespace BattleScene.UseCases.IService
 {
     public interface IEnemiesRegistererService
     {
-        public void Register(IList<CharacterTypeCode> characterTypeIdList);
+        public void Register(IReadOnlyList<CharacterTypeCode> characterTypeIdList);
     }
 }

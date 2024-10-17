@@ -26,7 +26,7 @@ namespace BattleScene.UseCases.Service
             _characterCollection = characterCollection;
         }
 
-        public void Register(IList<CharacterTypeCode> characterTypeIdList)
+        public void Register(IReadOnlyList<CharacterTypeCode> characterTypeIdList)
         {
             var options = characterTypeIdList
                 .Select(x =>

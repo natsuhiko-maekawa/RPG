@@ -1,3 +1,4 @@
+﻿using System.Collections.Generic;
 using System.Collections.Immutable;
 using BattleScene.Domain.Code;
 using BattleScene.InterfaceAdapter.PrimeSkill;
@@ -12,11 +13,11 @@ namespace BattleScene.InterfaceAdapter.Skill
     public class OnikoroshiSkill : BaseSkill
     {
         public override SkillCode SkillCode { get; } = SkillCode.Onikoroshi;
-        public override ImmutableList<BodyPartCode> DependencyList { get; } = ImmutableList.Create(BodyPartCode.Arm);
+        public override IReadOnlyList<BodyPartCode> DependencyList { get; } = new [] { BodyPartCode.Arm };
         public override Range Range { get; } = Range.Solo;
         public override MessageCode AttackMessageCode { get; } = MessageCode.OnikoroshiMessage;
 
-        public override ImmutableList<BaseAilment> AilmentList { get; }
-            = ImmutableList.Create<BaseAilment>(new Confusion());
+        public override IReadOnlyList<BaseAilment> AilmentList { get; }
+            = new [] { new Confusion() };
     }
 }

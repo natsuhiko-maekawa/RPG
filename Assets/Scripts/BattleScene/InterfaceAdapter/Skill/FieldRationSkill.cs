@@ -1,3 +1,4 @@
+﻿using System.Collections.Generic;
 using System.Collections.Immutable;
 using BattleScene.Domain.Code;
 using BattleScene.InterfaceAdapter.PrimeSkill;
@@ -13,7 +14,7 @@ namespace BattleScene.InterfaceAdapter.Skill
     {
         public FieldRationSkill(BasicCure basicCure)
         {
-            CureList = ImmutableList.Create<BaseCure>(basicCure);
+            CureList = new [] { basicCure };
         }
 
         public override SkillCode SkillCode { get; } = SkillCode.FieldRation;
@@ -21,6 +22,6 @@ namespace BattleScene.InterfaceAdapter.Skill
         public override Range Range { get; } = Range.Oneself;
         public override MessageCode AttackMessageCode { get; } = MessageCode.CureMessage;
 
-        public override ImmutableList<BaseCure> CureList { get; }
+        public override IReadOnlyList<BaseCure> CureList { get; }
     }
 }

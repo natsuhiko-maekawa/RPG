@@ -1,3 +1,4 @@
+﻿using System.Collections.Generic;
 using System.Collections.Immutable;
 using BattleScene.Domain.Code;
 using BattleScene.InterfaceAdapter.PrimeSkill;
@@ -16,7 +17,7 @@ namespace BattleScene.InterfaceAdapter.Skill
         public override Range Range { get; } = Range.Oneself;
         public override MessageCode AttackMessageCode { get; } = MessageCode.RecoverPartMessage;
 
-        public override ImmutableList<BaseReset> ResetList { get; }
-            = ImmutableList.Create<BaseReset>(new FirstAid());
+        public override IReadOnlyList<BaseReset> ResetList { get; }
+            = new [] { new FirstAid() };
     }
 }

@@ -1,4 +1,5 @@
-using System;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.Immutable;
 using BattleScene.Domain.Code;
 using BattleScene.InterfaceAdapter.PrimeSkill;
@@ -29,8 +30,8 @@ namespace BattleScene.InterfaceAdapter.Skill
         public override Range Range { get; } = Range.Solo;
         public override MessageCode AttackMessageCode => GetAttackMessageCode();
 
-        public override ImmutableList<BaseDamage> DamageList { get; }
-            = ImmutableList.Create<BaseDamage>(new BasicDamage());
+        public override IReadOnlyList<BaseDamage> DamageList { get; }
+            = new [] { new BasicDamage() };
 
         private MessageCode GetAttackMessageCode()
         {

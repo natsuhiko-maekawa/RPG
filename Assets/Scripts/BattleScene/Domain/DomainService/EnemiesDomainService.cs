@@ -1,4 +1,5 @@
-﻿using System.Collections.Immutable;
+﻿using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DataAccess;
@@ -16,29 +17,29 @@ namespace BattleScene.Domain.DomainService
             _characterCollection = characterCollection;
         }
 
-        public ImmutableList<CharacterEntity> Get()
+        public IReadOnlyList<CharacterEntity> Get()
         {
             return _characterCollection.Get()
                 .Where(x => x.CharacterTypeCode != CharacterTypeCode.Player)
-                .ToImmutableList();
+                .ToList();
         }
 
-        public ImmutableList<CharacterEntity> GetSurvive()
+        public IReadOnlyList<CharacterEntity> GetSurvive()
         {
             var surviveEnemyList = _characterCollection.Get()
                 .Where(x => x.CharacterTypeCode != CharacterTypeCode.Player)
                 .Where(x => x.IsSurvive)
-                .ToImmutableList();
+                .ToList();
             return surviveEnemyList;
         }
 
-        public ImmutableList<CharacterId> GetIdSurvive()
+        public IReadOnlyList<CharacterId> GetIdSurvive()
         {
             return _characterCollection.Get()
                 .Where(x => x.CharacterTypeCode != CharacterTypeCode.Player)
                 .Where(x => x.IsSurvive)
                 .Select(x => x.Id)
-                .ToImmutableList();
+                .ToList();
         }
 
         public CharacterId GetIdByPosition(int position)

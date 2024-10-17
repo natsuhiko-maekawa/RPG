@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 using BattleScene.DataAccess;
@@ -38,7 +39,7 @@ namespace BattleScene.InterfaceAdapter.Presenter
             var orderViewDtoList = _orderedItemCollection.Get()
                 .OrderBy(x => x.OrderNumber)
                 .Select(CreateOrderViewDto)
-                .ToImmutableList();
+                .ToList();
 
             await _orderView.StartAnimationAsync(orderViewDtoList);
         }

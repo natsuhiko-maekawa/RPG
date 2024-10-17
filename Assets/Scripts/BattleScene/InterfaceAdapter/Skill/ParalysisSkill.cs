@@ -1,4 +1,4 @@
-using BattleScene.Domain.Code;
+﻿using BattleScene.Domain.Code;
 using BattleScene.InterfaceAdapter.Skill.BaseClass;
 
 namespace BattleScene.InterfaceAdapter.Skill

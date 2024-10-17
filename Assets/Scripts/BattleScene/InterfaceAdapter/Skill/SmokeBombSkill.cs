@@ -1,3 +1,4 @@
+﻿using System.Collections.Generic;
 using System.Collections.Immutable;
 using BattleScene.Domain.Code;
 using BattleScene.InterfaceAdapter.PrimeSkill;
@@ -14,10 +15,10 @@ namespace BattleScene.InterfaceAdapter.Skill
         public override SkillCode SkillCode { get; } = SkillCode.SmokeBomb;
         public override int TechnicalPoint { get; } = 5;
         public override Range Range { get; } = Range.Line;
-        public override ImmutableList<BodyPartCode> DependencyList { get; } = ImmutableList.Create(BodyPartCode.Arm);
+        public override IReadOnlyList<BodyPartCode> DependencyList { get; } = new [] { BodyPartCode.Arm };
         public override MessageCode AttackMessageCode { get; } = MessageCode.AttackMessage;
 
-        public override ImmutableList<BaseAilment> AilmentList { get; }
-            = ImmutableList.Create<BaseAilment>(new EnemyBlind());
+        public override IReadOnlyList<BaseAilment> AilmentList { get; }
+            = new [] { new EnemyBlind() };
     }
 }

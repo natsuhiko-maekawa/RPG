@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Collections.Immutable;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DomainService;
@@ -48,7 +49,7 @@ namespace BattleScene.InterfaceAdapter.State.Turn
 
             if (actionCode == ActionCode.Defence)
             {
-                var oneself = ImmutableList.Create(_player.GetId());
+                var oneself = new [] { _player.GetId() };
                 Context.TargetIdList = oneself;
             }
 

@@ -1,4 +1,4 @@
-using BattleScene.Domain.DataAccess;
+﻿using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 

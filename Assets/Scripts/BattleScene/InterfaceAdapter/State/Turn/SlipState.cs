@@ -1,4 +1,4 @@
-using BattleScene.InterfaceAdapter.Facade;
+﻿using BattleScene.InterfaceAdapter.Facade;
 using BattleScene.UseCases.UseCase;
 
 namespace BattleScene.InterfaceAdapter.State.Turn

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 using BattleScene.Domain.Code;
@@ -94,18 +95,18 @@ namespace BattleScene.InterfaceAdapter
             };
         }
 
-        private ImmutableList<AilmentParameterValueObject> CreateAilmentParameterList(
-            IList<BaseAilment> ailmentList)
+        private IReadOnlyList<AilmentParameterValueObject> CreateAilmentParameterList(
+IReadOnlyList<BaseAilment> ailmentList)
         {
             if (ailmentList == null) return ImmutableList<AilmentParameterValueObject>.Empty;
             return ailmentList
                 .Select(x => new AilmentParameterValueObject(
                     AilmentCode: x.AilmentCode,
                     LuckRate: x.LuckRate))
-                .ToImmutableList();
+                .ToList();
         }
 
-        private ImmutableList<BuffParameterValueObject> CreateBuffParameterList(IList<BaseBuff> buffList)
+        private IReadOnlyList<BuffParameterValueObject> CreateBuffParameterList(IReadOnlyList<BaseBuff> buffList)
         {
             return buffList
                 .Select(x => new BuffParameterValueObject(
@@ -113,10 +114,10 @@ namespace BattleScene.InterfaceAdapter
                     Rate: x.Rate,
                     Turn: x.Turn,
                     LifetimeCode: x.LifetimeCode))
-                .ToImmutableList();
+                .ToList();
         }
 
-        private ImmutableList<DamageParameterValueObject> CreateDamageParameterList(IList<BaseDamage> damageList)
+        private IReadOnlyList<DamageParameterValueObject> CreateDamageParameterList(IReadOnlyList<BaseDamage> damageList)
         {
             if (damageList == null) return ImmutableList<DamageParameterValueObject>.Empty;
             return damageList
@@ -128,30 +129,30 @@ namespace BattleScene.InterfaceAdapter
                     DamageExpressionCode: x.DamageExpressionCode,
                     HitEvaluationCode: x.HitEvaluationCode,
                     AttacksWeakPointEvaluationCode: x.AttacksWeakPointEvaluationCode))
-                .ToImmutableList();
+                .ToList();
         }
 
-        private ImmutableList<DestroyParameterValueObject> CreateDestroyParameterList(
-            IList<BaseDestroy> destroyPartList)
+        private IReadOnlyList<DestroyParameterValueObject> CreateDestroyParameterList(
+IReadOnlyList<BaseDestroy> destroyPartList)
         {
             return destroyPartList
                 .Select(x => new DestroyParameterValueObject(
                     BodyPartCode: x.BodyPartCode,
                     LuckRate: x.LuckRate,
                     Count: x.Count))
-                .ToImmutableList();
+                .ToList();
         }
 
-        private ImmutableList<RestoreParameterValueObject> CreateRestoreParameterList(
-            IList<BaseRestore> restoreList)
+        private IReadOnlyList<RestoreParameterValueObject> CreateRestoreParameterList(
+IReadOnlyList<BaseRestore> restoreList)
         {
             return restoreList
                 .Select(x => new RestoreParameterValueObject(
                     TechnicalPoint: x.TechnicalPoint))
-                .ToImmutableList();
+                .ToList();
         }
 
-        private ImmutableList<SlipParameterValueObject> CreateSlipParameterList(IList<BaseSlip> slipList)
+        private IReadOnlyList<SlipParameterValueObject> CreateSlipParameterList(IReadOnlyList<BaseSlip> slipList)
         {
             return slipList
                 .Select(x => new SlipParameterValueObject(
@@ -159,7 +160,7 @@ namespace BattleScene.InterfaceAdapter
                     DamageRate: x.DamageRate,
                     DamageExpressionCode: DamageExpressionCode.Slip,
                     LuckRate: x.LuckRate))
-                .ToImmutableList();
+                .ToList();
         }
     }
 }

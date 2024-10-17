@@ -1,3 +1,4 @@
+﻿using System.Collections.Generic;
 using System.Collections.Immutable;
 using BattleScene.Domain.Code;
 using BattleScene.InterfaceAdapter.PrimeSkill;
@@ -13,11 +14,11 @@ namespace BattleScene.InterfaceAdapter.Skill
     {
         public override SkillCode SkillCode { get; } = SkillCode.Nadegiri;
         public override int TechnicalPoint { get; } = 7;
-        public override ImmutableList<BodyPartCode> DependencyList { get; } = ImmutableList.Create(BodyPartCode.Arm);
+        public override IReadOnlyList<BodyPartCode> DependencyList { get; } = new [] { BodyPartCode.Arm };
         public override Range Range { get; } = Range.Line;
         public override MessageCode AttackMessageCode { get; } = MessageCode.AttackMessage;
 
-        public override ImmutableList<BaseDamage> DamageList { get; }
-            = ImmutableList.Create<BaseDamage>(new Nadegiri());
+        public override IReadOnlyList<BaseDamage> DamageList { get; }
+            = new [] { new Nadegiri() };
     }
 }

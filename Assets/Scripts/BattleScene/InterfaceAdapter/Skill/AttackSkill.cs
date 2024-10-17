@@ -1,3 +1,4 @@
+﻿using System.Collections.Generic;
 using System.Collections.Immutable;
 using BattleScene.Domain.Code;
 using BattleScene.InterfaceAdapter.PrimeSkill;
@@ -10,14 +11,14 @@ namespace BattleScene.InterfaceAdapter.Skill
     {
         public AttackSkill(BasicDamage basicDamage)
         {
-            DamageList = ImmutableList.Create<BaseDamage>(basicDamage);
+            DamageList = new [] { basicDamage };
         }
 
         public override SkillCode SkillCode { get; } = SkillCode.Attack;
         public override Range Range { get; } = Range.Solo;
         public override MessageCode AttackMessageCode { get; } = MessageCode.AttackMessage;
 
-        public override ImmutableList<BaseDamage> DamageList { get; } =
-            ImmutableList.Create<BaseDamage>(new BasicDamage());
+        public override IReadOnlyList<BaseDamage> DamageList { get; } =
+new [] { new BasicDamage() };
     }
 }

@@ -1,4 +1,5 @@
-using System;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.Immutable;
 using BattleScene.Domain.Code;
 using BattleScene.InterfaceAdapter.PrimeSkill;
@@ -27,11 +28,11 @@ namespace BattleScene.InterfaceAdapter.Skill
 
         public override SkillCode SkillCode { get; } = SkillCode.CutUp;
         public override Range Range { get; } = Range.Solo;
-        public override ImmutableList<BodyPartCode> DependencyList { get; } = ImmutableList.Create(BodyPartCode.Arm);
+        public override IReadOnlyList<BodyPartCode> DependencyList { get; } = new [] { BodyPartCode.Arm };
         public override MessageCode AttackMessageCode => GetAttackMessageCode();
 
-        public override ImmutableList<BaseDamage> DamageList { get; }
-            = ImmutableList.Create<BaseDamage>(new FiveTimeDamage());
+        public override IReadOnlyList<BaseDamage> DamageList { get; }
+            = new [] { new FiveTimeDamage() };
 
         private MessageCode GetAttackMessageCode()
         {

@@ -1,4 +1,5 @@
-﻿using System.Collections.Immutable;
+﻿using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
 using BattleScene.DataAccess;
 using BattleScene.DataAccess.Dto;
@@ -49,7 +50,7 @@ namespace BattleScene.InterfaceAdapter.Presenter
             var actionCode = ActionCode.Skill;
             var rowDtoList = _propertyFactory.Create(CharacterTypeCode.Player).SkillCodeList
                 .Select(GetRowDto)
-                .ToImmutableList();
+                .ToList();
             var dto = new GridViewDto(
                 ActionCode: actionCode,
                 RowDtoList: rowDtoList);

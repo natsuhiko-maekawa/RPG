@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 using BattleScene.Domain.Code;
@@ -33,7 +34,7 @@ namespace BattleScene.UseCases.Service
                     effects: true,
                     turn: ailmentProperty.Turn,
                     isSelfRecovery: ailmentProperty.IsSelfRecovery))
-                .ToImmutableList();
+                .ToList();
             _ailmentCollection.Add(ailmentEntityList);
         }
 

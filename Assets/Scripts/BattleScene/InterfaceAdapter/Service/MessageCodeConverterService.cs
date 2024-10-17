@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 using System.Text;
@@ -157,8 +158,8 @@ namespace BattleScene.InterfaceAdapter.Service
                 .Max().TargetIdList
                 .Distinct()
                 .Select(GetCharacterName)
-                .ToImmutableList();
-            if (targetNameList.IsEmpty) throw new InvalidOperationException();
+                .ToList();
+            if (targetNameList.Count == 0) throw new InvalidOperationException();
             var totalSuffix = targetNameList.Count == 1 ? "" : "たち";
             message.Replace(Target, targetNameList.First() + totalSuffix);
         }

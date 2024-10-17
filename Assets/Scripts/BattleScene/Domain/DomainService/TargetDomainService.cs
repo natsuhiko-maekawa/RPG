@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 using BattleScene.Domain.DataAccess;
@@ -27,22 +28,20 @@ namespace BattleScene.Domain.DomainService
             _characterCollection = characterCollection;
         }
 
-        public ImmutableList<CharacterId> Get(CharacterId characterId, Range range)
+        public IReadOnlyList<CharacterId> Get(CharacterId characterId, Range range)
         {
             var targetList = range switch
             {
                 Range.Oneself =>
                     _characterCollection.Get(characterId).IsSurvive
-                        ? ImmutableList.Create(characterId)
-                        : ImmutableList<CharacterId>.Empty,
+                        ? new [] { characterId }                        : ImmutableList<CharacterId>.Empty,
                 Range.Solo =>
                     Equals(characterId, _player.GetId())
-                        ? ImmutableList.Create(GetEnemySolo())
-                        : ImmutableList.Create(_player.GetId()),
+                        ? new [] { GetEnemySolo() }                        : new [] { _player.GetId() },
                 Range.Line or Range.Random =>
                     Equals(characterId, _player.GetId())
                         ? _enemies.GetIdSurvive()
-                        : ImmutableList.Create(_player.GetId()),
+                        : new [] { _player.GetId() },
                 _ => throw new NotImplementedException()
             };
 

@@ -1,4 +1,5 @@
-using System;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using BattleScene.Domain.Code;
@@ -29,13 +30,13 @@ namespace BattleScene.InterfaceAdapter.Skill
         public override Range Range { get; } = Range.Solo;
         public override MessageCode AttackMessageCode => GetAttackMessageCode();
 
-        public override ImmutableList<BaseDamage> DamageList { get; } =
-            ImmutableList.Create<BaseDamage>(new BasicDamage());
+        public override IReadOnlyList<BaseDamage> DamageList { get; } =
+new [] { new BasicDamage() };
 
-        public override ImmutableList<BaseSlip> SlipDamageList { get; } =
-            ImmutableList.Create<BaseSlip>(new BleedingSkill());
+        public override IReadOnlyList<BaseSlip> SlipDamageList { get; } =
+new [] { new BleedingSkill() };
 
-        public override ImmutableList<BaseDestroy> DestroyList => GetDestroyPartList();
+        public override IReadOnlyList<BaseDestroy> DestroyList => GetDestroyPartList();
 
         private MessageCode GetAttackMessageCode()
         {
@@ -49,11 +50,11 @@ namespace BattleScene.InterfaceAdapter.Skill
             return _myRandom.Choice(attackMessageList, _seed);
         }
 
-        private ImmutableList<BaseDestroy> GetDestroyPartList()
+        private IReadOnlyList<BaseDestroy> GetDestroyPartList()
         {
             var destroyList = new List<BaseDestroy>()
                 { new DestroyArm(), new DestroyLeg(), new DestroyStomach() };
-            return ImmutableList.Create(_myRandom.Choice(destroyList, _seed));
+            return new [] { _myRandom.Choice(destroyList, _seed) };
         }
     }
 }

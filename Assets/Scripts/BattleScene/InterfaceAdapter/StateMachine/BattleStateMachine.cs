@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 using BattleScene.Domain.DomainService;
@@ -47,13 +48,13 @@ namespace BattleScene.InterfaceAdapter.StateMachine
             _targetView.SetSelectAction(x => _context.Select(ToCharacterIdList(x)));
         }
 
-        private ImmutableList<CharacterId> ToCharacterIdList(IList<CharacterDto> characterDtoList)
+        private IReadOnlyList<CharacterId> ToCharacterIdList(IReadOnlyList<CharacterDto> characterDtoList)
         {
             return characterDtoList
                 .Select(x => x.IsPlayer
                     ? _player.GetId()
                     : _enemies.GetIdByPosition(x.EnemyIndex))
-                .ToImmutableList();
+                .ToList();
         }
     }
 }

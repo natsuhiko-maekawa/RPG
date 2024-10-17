@@ -3,7 +3,7 @@
 namespace BattleScene.Framework.ViewModel
 {
     public record SelectSkillViewDto(
-        IList<SkillDto> SkillDtoList,
+IReadOnlyList<SkillDto> SkillDtoList,
         int HighlightRow,
         bool ViewUpArrow,
         bool ViewDownArrow);

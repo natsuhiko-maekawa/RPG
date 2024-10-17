@@ -1,4 +1,4 @@
-using System.Linq;
+﻿using System.Linq;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.DomainService;

@@ -1,7 +1,8 @@
-﻿using System.Collections.Immutable;
+﻿using System.Collections.Generic;
+using System.Collections.Immutable;
 
 namespace BattleScene.Framework.ViewModel
 {
     public record TargetViewDto(
-        ImmutableList<CharacterDto> CharacterDtoList);
+IReadOnlyList<CharacterDto> CharacterDtoList);
 }

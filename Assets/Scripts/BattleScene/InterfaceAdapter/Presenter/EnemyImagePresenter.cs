@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 using System.Threading.Tasks;
@@ -32,7 +33,7 @@ namespace BattleScene.InterfaceAdapter.Presenter
             var taskList = _enemies.GetSurvive()
                 .Select(GetDto)
                 .Select(GetTask)
-                .ToImmutableList();
+                .ToList();
 
             await Task.WhenAll(taskList);
         }

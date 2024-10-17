@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using BattleScene.Domain.Code;
@@ -27,7 +27,7 @@ namespace BattleScene.Debug.Service
             _characterCollection = characterCollection;
         }
 
-        public void Register(IList<CharacterTypeCode> characterTypeIdList)
+        public void Register(IReadOnlyList<CharacterTypeCode> characterTypeIdList)
         {
             var characterList = characterTypeCodeArray
                 .Select(GetCharacter)

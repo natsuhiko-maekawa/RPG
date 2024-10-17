@@ -1,4 +1,4 @@
-using BattleScene.Domain.Code;
+﻿using BattleScene.Domain.Code;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Id;
 using BattleScene.UseCases.Service.Order;

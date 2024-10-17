@@ -1,4 +1,5 @@
-﻿using System.Collections.Immutable;
+﻿using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DataAccess;
@@ -24,7 +25,7 @@ namespace BattleScene.Domain.DomainService
                     x.AdvanceTurn();
                     return x;
                 })
-                .ToImmutableList();
+                .ToList();
             _slipCollection.Add(slip);
         }
     }

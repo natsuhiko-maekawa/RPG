@@ -1,3 +1,4 @@
+﻿using System.Collections.Generic;
 using System.Collections.Immutable;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DataAccess;
@@ -26,16 +27,16 @@ namespace BattleScene.InterfaceAdapter.Skill
         public override Range Range { get; } = Range.Solo;
         public override MessageCode AttackMessageCode { get; } = MessageCode.AttackMessage;
 
-        public override ImmutableList<BaseDamage> DamageList { get; }
-            = ImmutableList.Create<BaseDamage>(new BasicDamage());
+        public override IReadOnlyList<BaseDamage> DamageList { get; }
+            = new [] { new BasicDamage() };
 
-        public override ImmutableList<BaseReset> ResetList => GetResetList();
+        public override IReadOnlyList<BaseReset> ResetList => GetResetList();
 
-        private ImmutableList<BaseReset> GetResetList()
+        private IReadOnlyList<BaseReset> GetResetList()
         {
             return _slipDamageCollection.Get(SlipCode.Burning) == null
                 ? ImmutableList<BaseReset>.Empty
-                : ImmutableList.Create<BaseReset>(new BurningReset());
+                : new [] { new BurningReset() };
         }
     }
 }

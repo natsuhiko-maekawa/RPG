@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DomainService;
 using Utility;

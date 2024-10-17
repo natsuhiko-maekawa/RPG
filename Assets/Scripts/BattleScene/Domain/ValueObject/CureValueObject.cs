@@ -1,4 +1,5 @@
-﻿using System.Collections.Immutable;
+﻿using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.Id;
@@ -10,20 +11,20 @@ namespace BattleScene.Domain.ValueObject
         public CureValueObject(
             CharacterId actorId,
             SkillCode skillCode,
-            ImmutableList<RecoveryValueObject> cureList)
+IReadOnlyList<RecoveryValueObject> cureList)
         {
             ActorId = actorId;
             SkillCode = skillCode;
             TargetIdList = cureList
                 .Select(x => x.TargetId)
-                .ToImmutableList();
+                .ToList();
             CureList = cureList;
         }
 
-        public ImmutableList<RecoveryValueObject> CureList { get; }
+        public IReadOnlyList<RecoveryValueObject> CureList { get; }
         public CharacterId ActorId { get; }
         public SkillCode SkillCode { get; }
-        public ImmutableList<CharacterId> TargetIdList { get; }
+        public IReadOnlyList<CharacterId> TargetIdList { get; }
 
         public bool Success()
         {

@@ -1,3 +1,4 @@
+﻿using System.Collections.Generic;
 using System.Collections.Immutable;
 using BattleScene.Domain.Code;
 using BattleScene.InterfaceAdapter.PrimeSkill;
@@ -15,10 +16,10 @@ namespace BattleScene.InterfaceAdapter.Skill
         public override Range Range { get; } = Range.Oneself;
         public override MessageCode AttackMessageCode { get; } = MessageCode.DefenceMessage;
 
-        public override ImmutableList<BaseBuff> BuffList { get; }
-            = ImmutableList.Create<BaseBuff>(new Defence());
+        public override IReadOnlyList<BaseBuff> BuffList { get; }
+            = new [] { new Defence() };
 
-        public override ImmutableList<BaseRestore> RestoreList { get; }
-            = ImmutableList.Create<BaseRestore>(new BasicRestore());
+        public override IReadOnlyList<BaseRestore> RestoreList { get; }
+            = new [] { new BasicRestore() };
     }
 }

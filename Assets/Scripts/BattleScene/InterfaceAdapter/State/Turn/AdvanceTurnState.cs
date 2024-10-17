@@ -1,4 +1,4 @@
-using BattleScene.Domain.DomainService;
+﻿using BattleScene.Domain.DomainService;
 using BattleScene.UseCases.Service;
 
 namespace BattleScene.InterfaceAdapter.State.Turn

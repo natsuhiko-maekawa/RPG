@@ -1,4 +1,5 @@
-﻿using System.Collections.Immutable;
+﻿using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DataAccess;
@@ -45,7 +46,7 @@ namespace BattleScene.InterfaceAdapter.Presenter
                 range);
             var characterDtoList = targetIdList
                 .Select(CreateCharacterDto)
-                .ToImmutableList();
+                .ToList();
             var targetViewDto = new TargetViewDto(characterDtoList);
             _targetView.StartAnimation(targetViewDto);
         }

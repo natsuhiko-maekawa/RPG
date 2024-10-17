@@ -1,4 +1,4 @@
-using BattleScene.UseCases.Service;
+﻿using BattleScene.UseCases.Service;
 
 namespace BattleScene.InterfaceAdapter.State.Turn
 {

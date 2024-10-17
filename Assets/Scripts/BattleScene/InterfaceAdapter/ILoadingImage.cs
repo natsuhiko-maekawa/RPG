@@ -4,6 +4,6 @@ namespace BattleScene.InterfaceAdapter
 {
     public interface ILoadingImage
     {
-        public IList<string> GetImageNameList();
+        public IReadOnlyList<string> GetImageNameList();
     }
 }

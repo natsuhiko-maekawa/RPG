@@ -1,4 +1,5 @@
-﻿using System.Collections.Immutable;
+﻿using System.Collections.Generic;
+using System.Collections.Immutable;
 using BattleScene.Domain.DomainService;
 using BattleScene.UseCases.IService;
 
@@ -23,7 +24,7 @@ namespace BattleScene.InterfaceAdapter.State.Turn
         public override void Start()
         {
             Context.SkillCode = _enemySkillSelector.Select();
-            Context.TargetIdList = ImmutableList.Create(_player.GetId());
+            Context.TargetIdList = new [] { _player.GetId() };
             Context.TransitionTo(_skillState);
         }
     }

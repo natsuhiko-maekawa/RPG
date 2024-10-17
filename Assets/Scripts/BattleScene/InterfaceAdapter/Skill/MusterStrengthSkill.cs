@@ -1,3 +1,4 @@
+﻿using System.Collections.Generic;
 using System.Collections.Immutable;
 using BattleScene.Domain.Code;
 using BattleScene.InterfaceAdapter.PrimeSkill;
@@ -16,7 +17,7 @@ namespace BattleScene.InterfaceAdapter.Skill
         public override Range Range { get; } = Range.Oneself;
         public override MessageCode AttackMessageCode { get; } = MessageCode.BuffMessage;
 
-        public override ImmutableList<BaseBuff> BuffList { get; }
-            = ImmutableList.Create<BaseBuff>(new MusterStrength());
+        public override IReadOnlyList<BaseBuff> BuffList { get; }
+            = new [] { new MusterStrength() };
     }
 }

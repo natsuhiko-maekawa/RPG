@@ -1,3 +1,4 @@
+﻿using System.Collections.Generic;
 using System.Collections.Immutable;
 using BattleScene.Domain.Code;
 using BattleScene.InterfaceAdapter.PrimeSkill;
@@ -14,13 +15,13 @@ namespace BattleScene.InterfaceAdapter.Skill
         public override SkillCode SkillCode { get; } = SkillCode.TaserGun;
         public override int TechnicalPoint { get; } = 5;
         public override Range Range { get; } = Range.Solo;
-        public override ImmutableList<BodyPartCode> DependencyList { get; } = ImmutableList.Create(BodyPartCode.Arm);
+        public override IReadOnlyList<BodyPartCode> DependencyList { get; } = new [] { BodyPartCode.Arm };
         public override MessageCode AttackMessageCode { get; } = MessageCode.AttackMessage;
 
-        public override ImmutableList<BaseDamage> DamageList { get; }
-            = ImmutableList.Create<BaseDamage>(new BasicDamage());
+        public override IReadOnlyList<BaseDamage> DamageList { get; }
+            = new [] { new BasicDamage() };
 
-        public override ImmutableList<BaseAilment> AilmentList { get; }
-            = ImmutableList.Create<BaseAilment>(new EnemyParalysis());
+        public override IReadOnlyList<BaseAilment> AilmentList { get; }
+            = new [] { new EnemyParalysis() };
     }
 }

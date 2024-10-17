@@ -31,7 +31,7 @@ namespace BattleScene.Domain.DomainService
             return bodyPartEntity?.IsAvailable() ?? true;
         }
 
-        public bool IsAvailable(CharacterId characterId, IList<BodyPartCode> bodyPartCodeList)
+        public bool IsAvailable(CharacterId characterId, IReadOnlyList<BodyPartCode> bodyPartCodeList)
         {
             if (bodyPartCodeList.Count == 0) return true;
             return bodyPartCodeList

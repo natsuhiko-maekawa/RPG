@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 using System.Threading.Tasks;
@@ -17,7 +18,7 @@ namespace BattleScene.Framework.View
         private PlayerView _playerView;
         private TargetViewDto _dto;
         private int _index = -1;
-        private ImmutableList<int> _enemyPositionList;
+        private IReadOnlyList<int> _enemyPositionList;
 
         private void Start()
         {
@@ -67,7 +68,7 @@ namespace BattleScene.Framework.View
             }
         }
 
-        private bool IsEnemySolo(IList<CharacterDto> characterDtoList)
+        private bool IsEnemySolo(IReadOnlyList<CharacterDto> characterDtoList)
         {
             return characterDtoList.Count == 1 && !characterDtoList.First().IsPlayer;
         }
@@ -77,9 +78,9 @@ namespace BattleScene.Framework.View
             _enemyPositionList = _enemiesView
                 .Where(x => x.enabled)
                 .Select((_, i) => i)
-                .ToImmutableList();
+                .ToList();
             var position = dto.CharacterDtoList.First().EnemyIndex;
-            _index = _enemyPositionList.FindIndex(x => x == position);
+            _index = _enemyPositionList.First(x => x == position);
             Debug.Assert(_index != -1);
         }
 
@@ -100,17 +101,16 @@ namespace BattleScene.Framework.View
             moveAction.performed += x => func.Invoke(x.ReadValue<Vector2>());
         }
 
-        public void SetSelectAction(Action<ImmutableList<CharacterDto>> action)
+        public void SetSelectAction(Action<IReadOnlyList<CharacterDto>> action)
         {
             selectAction.performed += _ => action.Invoke(GetTargetDtoList());
         }
 
-        private ImmutableList<CharacterDto> GetTargetDtoList()
+        private IReadOnlyList<CharacterDto> GetTargetDtoList()
         {
             if (_dto == null) return ImmutableList<CharacterDto>.Empty;
             return IsEnemySolo(_dto.CharacterDtoList)
-                ? ImmutableList.Create(new CharacterDto(_enemyPositionList[_index]))
-                : _dto.CharacterDtoList;
+                ? new [] { new CharacterDto(_enemyPositionList[_index]) }                : _dto.CharacterDtoList;
         }
     }
 }

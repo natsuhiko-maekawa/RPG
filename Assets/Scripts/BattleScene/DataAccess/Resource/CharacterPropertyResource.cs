@@ -1,4 +1,4 @@
-using BattleScene.DataAccess.Dto;
+﻿using BattleScene.DataAccess.Dto;
 using BattleScene.DataAccess.ScriptableObjects;
 using BattleScene.Domain.Code;
 

@@ -1,4 +1,4 @@
-using R3;
+﻿using R3;
 
 // ReSharper disable once CheckNamespace
 namespace BattleScene.Domain.Entity
