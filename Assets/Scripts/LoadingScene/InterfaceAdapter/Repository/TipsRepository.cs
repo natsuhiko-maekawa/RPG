@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 using LoadingScene.InterfaceAdapter.Repository.IScriptableObject;
@@ -16,9 +17,9 @@ namespace LoadingScene.InterfaceAdapter.Repository
             _loadingSceneScriptableObject = loadingSceneScriptableObject;
         }
 
-        public IList<string> GetTips()
+        public IReadOnlyList<string> GetTips()
         {
-            return _loadingSceneScriptableObject.GetTipsScriptableObject().Select(x => x.tips).ToImmutableList();
+            return _loadingSceneScriptableObject.GetTipsScriptableObject().Select(x => x.tips).ToList();
         }
     }
 }

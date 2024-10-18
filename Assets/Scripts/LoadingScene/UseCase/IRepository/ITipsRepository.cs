@@ -4,6 +4,6 @@ namespace LoadingScene.UseCase.IRepository
 {
     public interface ITipsRepository
     {
-        public IList<string> GetTips();
+        public IReadOnlyList<string> GetTips();
     }
 }

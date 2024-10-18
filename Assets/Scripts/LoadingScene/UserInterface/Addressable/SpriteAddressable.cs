@@ -27,7 +27,7 @@ namespace LoadingScene.UserInterface.Addressable
                 .Sum(x => x.PercentComplete) / addressableCount;
         }
 
-        public Task Load(IList<string> imageNameList)
+        public Task Load(IReadOnlyList<string> imageNameList)
         {
             var taskList = new List<Task>();
             foreach (var imageName in imageNameList)

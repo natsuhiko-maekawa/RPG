@@ -6,6 +6,6 @@ namespace LoadingScene.InterfaceAdapter.Repository.IAddressable
     public interface ISpriteAddressable
     {
         public float GetProgress(int addressableCount);
-        public Task Load(IList<string> imageNameList);
+        public Task Load(IReadOnlyList<string> imageNameList);
     }
 }

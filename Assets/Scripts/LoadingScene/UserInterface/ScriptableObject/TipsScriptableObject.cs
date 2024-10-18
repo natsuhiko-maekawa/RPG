@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using LoadingScene.InterfaceAdapter.Repository.Dto;
 using UnityEngine;
 
