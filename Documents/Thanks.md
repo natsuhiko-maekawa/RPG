@@ -1,58 +1,43 @@
 ﻿# 謝辞
 
-## ツール
+## 使用したツール
 
-### Rider
-優良で有料のIDE。C#を書くならVisual Studioよりも快適。<br>
+| ツール               | 概要                               |
+|-------------------|----------------------------------|
+| Rider             | 有料。C#及びRoslynでのコーディングに使用         |
+| PyCharm           | データの変換及び画像の加工を行うスクリプトのコーディングに使用  |
+| git               | バージョン管理に使用                       |
+| sourceTree        | 主にgitのリベースを行う目的で使用               |
+| PlantUML          | UMLの作画に使用                        |
+| Excel             | PlanTextでは管理しづらいデータの管理に使用        |
+| DeepL翻訳           | 英語のwebページや例外メッセージを読む際の補助ツールとして使用 |
+| CLIP STUDIO PAINT | イラストの作画及び画像の加工に使用                |
+| Cubase 12 PRO     | BGMの作曲及び効果音の加工に使用                |
 
-### PyCharm
-Riderと同じ開発元が制作したPython用のIDE。こちらは無料だったはず。<br>
-画像の加工やデータの変換などで何かとPythonを書く機会も多い。<br>
+## 参考にしたサイト
 
-### サクラエディタ
-国産のテキストエディタの一つ。プレーンテキストを加工するのに便利。<br>
+| サイト                                           | 概要 |
+|-----------------------------------------------|----|
+| [ねこじゃらシティ](https://nekojara.city/)            |    |
+| [LIGHT11](https://light11.hatenadiary.com/)   |    |
+| [はなちるのマイノート](https://www.hanachiru-blog.com/) |    |
+| [テラシュールブログ](https://tsubakit1.hateblo.jp/) 　  |    |
+| [コガネブログ](https://baba-s.hatenablog.com/)      |    |
 
-### Git, Github, SourceTree
-バージョン管理システムとそれに付随するツール。<br>
+## 参考にした書籍
 
-### Excel, Googleスプレッドシート
+| 書籍                                                                                              | 読了   | 概要                                                                           |
+|-------------------------------------------------------------------------------------------------|------|------------------------------------------------------------------------------|
+| [Pythonでつくるゲーム開発入門講座](https://www.books.or.jp/book-details/9784800712394)                       | 2022 | Unityでゲームを作るにあたっては何の参考にもなっていないが、<br/>自分がゲームプログラミングを始めるきっかけとなった書籍。            |
+| [リーダブルコード](https://www.books.or.jp/book-details/9784873115658)                                  | 2022 | Pythonでコーディングしていた頃に「きれいな」コードを書きたくなり<br/>手に取った書籍。今でも命名の方法に関して影響を受けている。        |
+| Unity Test Framework 完全攻略ガイド 第2版                                                                | 2022 | 同人誌。Unityのユニットテストの方法のすべてをこの書籍で学んだ。                                           |
+| [スッキリわかるJava入門 第3版 実践編](https://www.books.or.jp/book-details/2950112411000000000w)              | 2023 | JavaとC#には類似する箇所がある。この書籍はJavaの入門書ではあるが、<br/>内容はオブジェクト指向プログラミングの解説書に近く、参考になった。 |
+| [良いコード／悪いコードで学ぶ設計入門](https://www.books.or.jp/book-details/9784297127831)                        | 2023 | この本が設計の入門書であるかといえば首をかしげるとこもあるが、<br/>読みやすいコードを書くための指針を示してくれた。                 |
+| [ちょうぜつソフトウェア設計入門](https://www.books.or.jp/book-details/9784297132347)　                          | 2023 | 初心者向けの書籍と上級者向けの書籍の間を埋めてくれる。カプセル化、<br/>多態性、継承、SOLID原則など必要最低限の知識を知ることができた。     |
+| [Good Code, Bad Code](https://www.books.or.jp/book-details/9784798068169)                       | 2024 | 「良いコード／悪いコードで学ぶ設計入門」を読んでいれば、この書籍は<br/>読まなくてもよかった。                            |
+| [プログラマが知るべき97のこと](https://www.books.or.jp/book-details/9784873114798)                         　 | 2024 |                                                                              |
+| [プリンシプルオブプログラミング](https://www.books.or.jp/book-details/9784798046143)                           | 2024 |                                                                              |
+| [ソフトウェア開発現場の「失敗」集めてみた](https://www.books.or.jp/book-details/9784798185187)                      | 2024 |                                                                              |
+| [Clean Architecture](https://www.books.or.jp/book-details/9784048930659)                        | 2024 |                                                                              |
+| [読みやすいコードのガイドライン](https://www.books.or.jp/book-details/9784297130367)                           | 2024 |                                                                              |
 
-### DeepL翻訳
-
-### CLIP STUDIO PAINT
-
-### AviUtl
-
-### PlantUML
-
-## サイト
-
-[ねこじゃらシティ](https://nekojara.city/)
-
-[LIGHT11](https://light11.hatenadiary.com/)
-
-[はなちるのマイノート](https://www.hanachiru-blog.com/)
-
-[テラシュールブログ](https://tsubakit1.hateblo.jp/)
-
-[コガネブログ](https://baba-s.hatenablog.com/)
-
-## 書籍
-
-### [良いコード／悪いコードで学ぶ設計入門](https://honto.jp/netstore/pd-book_31552403.html)
-
-設計を学んで初心者を脱せよ。<br>
-
-### [リーダブルコード](https://honto.jp/netstore/pd-book_25229509.html)
-
-定番書。<br>
-
-### [スッキリわかるJava入門 第3版 実践編](https://honto.jp/netstore/pd-book_30850126.html)
-
-Javaの技術書を名乗っているが内容の半分はJavaに限らずプログラミング全般に関するもの。<br>
-C#とJava自体が親戚にあたるのでJavaの知識の応用は利く。<br>
-
-### [Pythonでつくるゲーム開発入門講座](https://honto.jp/netstore/pd-book_29767040.html)
-
-自身がプログラミングを始めるきっかけとなった本であり、ゲームのアーキテクチャを学んだ本。<br>
-今になって思うがPythonでゲームを作るのはベストプラクティスではないので参考程度に。<br>
