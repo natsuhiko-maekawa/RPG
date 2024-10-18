@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Collections.Generic;
 using Utility;
-using System.Collections.Immutable;
 using BattleScene.Domain.Code;
 
 namespace BattleScene.InterfaceAdapter.PrimeSkill.BaseClass

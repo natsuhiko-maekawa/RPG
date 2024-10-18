@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Collections.Generic;
 using Utility;
-using System.Collections.Immutable;
 using BattleScene.Domain.Code;
 using BattleScene.InterfaceAdapter.PrimeSkill.BaseClass;
 using Range = BattleScene.Domain.Code.Range;
@@ -19,10 +17,10 @@ namespace BattleScene.InterfaceAdapter.Skill.BaseClass
         public virtual IReadOnlyList<BaseAilment> AilmentList { get; } = MyList<BaseAilment>.Empty;
 
         public virtual IReadOnlyList<BaseSlip> SlipDamageList { get; } =
-MyList<BaseSlip>.Empty;
+            MyList<BaseSlip>.Empty;
 
         public virtual IReadOnlyList<BaseDestroy> DestroyList { get; } =
-MyList<BaseDestroy>.Empty;
+            MyList<BaseDestroy>.Empty;
 
         public virtual IReadOnlyList<BaseDamage> DamageList { get; } = MyList<BaseDamage>.Empty;
         public virtual IReadOnlyList<BaseBuff> BuffList { get; } = MyList<BaseBuff>.Empty;
