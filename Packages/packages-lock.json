@@ -7,7 +7,7 @@
       "dependencies": {
         "com.unity.modules.imgui": "1.0.0"
       },
-      "hash": "2eaf201aabbbcb8d84c447cdd29201e457a4472a"
+      "hash": "9b18209448c5e1f4572a4191b1f4f530a1d26c01"
     },
     "com.github-glitchenzo.nugetforunity": {
       "version": "https://github.com/GlitchEnzo/NuGetForUnity.git?path=/src/NuGetForUnity",
