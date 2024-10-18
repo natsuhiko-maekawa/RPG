@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Collections.Generic;
+using Utility;
 using System.Collections.Immutable;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DataAccess;
@@ -35,7 +37,7 @@ namespace BattleScene.InterfaceAdapter.Skill
         private IReadOnlyList<BaseReset> GetResetList()
         {
             return _slipDamageCollection.Get(SlipCode.Burning) == null
-                ? ImmutableList<BaseReset>.Empty
+                ? MyList<BaseReset>.Empty
                 : new[] { new BurningReset() };
         }
     }

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Generic;
+using Utility;
 using System.Collections.Immutable;
 using System.Linq;
 using BattleScene.Domain.DataAccess;
@@ -36,7 +38,7 @@ namespace BattleScene.UseCases.Service
                 Range.Oneself =>
                     _characterCollection.Get(characterId).IsSurvive
                         ? new[] { characterId }
-                        : ImmutableList<CharacterId>.Empty,
+                        : MyList<CharacterId>.Empty,
                 Range.Solo =>
                     Equals(characterId, _player.GetId())
                         ? new[] { GetEnemySolo() }

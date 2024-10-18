@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Generic;
+using Utility;
 using System.Collections.Immutable;
 using System.Linq;
 using System.Threading.Tasks;
@@ -107,7 +109,7 @@ namespace BattleScene.Framework.View
 
         private IReadOnlyList<CharacterDto> GetTargetDtoList()
         {
-            if (_dto == null) return ImmutableList<CharacterDto>.Empty;
+            if (_dto == null) return MyList<CharacterDto>.Empty;
             return IsEnemySolo(_dto.CharacterDtoList)
                 ? new[] { new CharacterDto(_enemyPositionList[_index]) }
                 : _dto.CharacterDtoList;
