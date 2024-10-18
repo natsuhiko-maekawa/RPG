@@ -401,7 +401,7 @@ namespace BattleScene
             builder.Register<OrderedItemsDomainService>(Lifetime.Singleton);
             builder.Register<PlayerDomainService>(Lifetime.Singleton);
             builder.Register<SlipDomainService>(Lifetime.Singleton);
-            builder.Register<TargetDomainService>(Lifetime.Singleton);
+            builder.Register<TargetService>(Lifetime.Singleton);
 
             #endregion
 

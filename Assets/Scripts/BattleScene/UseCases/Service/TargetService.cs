@@ -3,20 +3,21 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 using BattleScene.Domain.DataAccess;
+using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using Range = BattleScene.Domain.Code.Range;
 
-namespace BattleScene.Domain.DomainService
+namespace BattleScene.UseCases.Service
 {
-    public class TargetDomainService
+    public class TargetService
     {
         private readonly ICollection<BattleLogEntity, BattleLogId> _battleLogCollection;
         private readonly EnemiesDomainService _enemies;
         private readonly ICollection<CharacterEntity, CharacterId> _characterCollection;
         private readonly PlayerDomainService _player;
 
-        public TargetDomainService(
+        public TargetService(
             EnemiesDomainService enemies,
             PlayerDomainService player,
             ICollection<BattleLogEntity, BattleLogId> battleLogCollection,

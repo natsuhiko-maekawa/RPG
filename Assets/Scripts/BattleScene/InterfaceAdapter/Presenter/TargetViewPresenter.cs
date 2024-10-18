@@ -7,6 +7,7 @@ using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
 using BattleScene.Framework.View;
 using BattleScene.Framework.ViewModel;
+using BattleScene.UseCases.Service;
 
 namespace BattleScene.InterfaceAdapter.Presenter
 {
@@ -16,13 +17,13 @@ namespace BattleScene.InterfaceAdapter.Presenter
         private readonly OrderedItemsDomainService _orderedItems;
         private readonly PlayerDomainService _player;
         private readonly IFactory<SkillValueObject, SkillCode> _skillFactory;
-        private readonly TargetDomainService _target;
+        private readonly TargetService _target;
         private readonly TargetView _targetView;
 
         public TargetViewPresenter(
             IFactory<SkillValueObject, SkillCode> skillFactory,
             OrderedItemsDomainService orderedItems,
-            TargetDomainService target,
+            TargetService target,
             PlayerDomainService player,
             ICollection<CharacterEntity, CharacterId> characterCollection,
             TargetView targetView)
