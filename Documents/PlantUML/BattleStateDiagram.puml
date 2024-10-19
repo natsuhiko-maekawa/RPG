@@ -1,87 +1,18 @@
 @startuml
-start
-:Initialization]
-repeat :OrderDecision]
+'https://plantuml.com/ja/state-diagram
 
-switch()
-    case(状態異常)
-    :AilmentsMsg]
-    
-    if(スリップダメージか) then(yes)
-    :AilmentsDmg]
-    else(no)
-    endif
+<style>
+stateDiagram {
+  arrow {
+    FontSize 10
+  }
+}
+</style>
 
-    case(行動)
-    switch()
-        case(プレイヤー)
-        :SelectAction]
-        
-        switch()
-        case(スキル)
-        :SelectSkill]
-        
-        case(FATALITYスキル)
-        :SelectFatalitySkill]
-        endswitch
-        
-        :SelectTarget]
-        :PlayerAtk]
-        
-        case(敵)
-        :EnemySelectSkill]
-        :EnemyAtk]
-    endswitch
-    switch()
-        case(プレイヤー攻撃)
-        :PlayerDmg]
-        
-        if(敵が死亡したか) then(yes)
-            :PlayerBeatEnemy]
-        else(no)
-        endif
-        
-        case(敵攻撃)
-        :EnemyDmg]
-        
-        case(状態異常)
-        :PlayerAilments]
-
-        case(バフ)
-        :PlayerBuff]
-
-        case(回復)
-        :PlayerCure]
-        
-        case(デバフ)
-        :PlayerDebuff]
-    endswitch
-
-    case(プレイヤー混乱)
-    :PlayerConfusion]
-    :PlayerDmg]
-
-    case(敵混乱)
-    :EnemyConfusion]
-    
-    if(敵が死亡したか) then(yes)
-      :EnemySuicide]
-    else(no)
-    endif
-
-    case(行動不能)
-    :CantAction]
-endswitch
-
-:LoopEnd]
-
-repeat while (戦闘が終了したか) is (no) not (yes)
-    switch()
-        case(勝利)
-        :PlayerWin]
-        
-        case(敗北)
-        :PlayerDead]
-    endswitch
-stop
+[*] --> BattleStartState
+BattleStartState --> InitializeEnemyState
+InitializeEnemyState --> TurnState
+TurnState --> TurnState
+TurnState --> BattleStopState
+BattleStopState --> [*]
 @enduml
