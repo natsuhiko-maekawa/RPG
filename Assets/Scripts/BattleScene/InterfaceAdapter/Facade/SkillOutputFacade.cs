@@ -59,8 +59,13 @@ namespace BattleScene.InterfaceAdapter.Facade
             var playerSkillCode = isActorPlayer
                 ? context.SkillCode
                 : _battleLogCollection.Get()
-                    .Last(x => x.ActorId != null && _characterCollection.Get(x.ActorId).IsPlayer)
-                    .SkillCode;
+                    // 敵に先手を撃たれ混乱した状態で敵の攻撃を受ける場合、
+                    // プレイヤーはまだスキルを一度も発動していないので、
+                    // LastOrDefaultメソッドで戦闘履歴を取得する必要がある
+                    .LastOrDefault(x => x.ActorId != null
+                               && _characterCollection.Get(x.ActorId).IsPlayer
+                               && !SkillCodeList.AilmentSkillCodeList.Contains(x.SkillCode))
+                    ?.SkillCode ?? SkillCode.Attack;
             var playerImageCode = _skillViewResource.Get(playerSkillCode).PlayerImageCode;
             var playerImageAnimation = _playerImageView.StartAnimationAsync(playerImageCode);
             animationList.Add(playerImageAnimation);

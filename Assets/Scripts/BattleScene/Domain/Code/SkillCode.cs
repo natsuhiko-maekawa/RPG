@@ -1,4 +1,6 @@
-﻿namespace BattleScene.Domain.Code
+﻿using System.Collections.Generic;
+
+namespace BattleScene.Domain.Code
 {
     public enum SkillCode
     {
@@ -38,5 +40,16 @@
         TaserGun,
         Utsusemi,
         Wabisuke
+    }
+
+    public static class SkillCodeList
+    {
+        public static IReadOnlyList<SkillCode> AilmentSkillCodeList => new[]
+        {
+            SkillCode.Confusion,
+            SkillCode.Paralysis,
+            SkillCode.Poisoning,
+            SkillCode.Suffocation
+        };
     }
 }
