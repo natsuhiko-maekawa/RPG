@@ -12,7 +12,7 @@ namespace BattleScene.InterfaceAdapter.State.Turn
         private readonly PlayerSelectActionState _playerSelectActionState;
         private readonly EnemySelectSkillState _enemySelectSkillState;
         private readonly CantActionState _cantActionState;
-        private readonly SlipState _slipState;
+        private readonly SlipDamageState _slipDamageState;
         private readonly ResetAilmentState _resetAilmentState;
 
         public TurnStartState(
@@ -22,7 +22,7 @@ namespace BattleScene.InterfaceAdapter.State.Turn
             PlayerSelectActionState playerSelectActionState,
             EnemySelectSkillState enemySelectSkillState,
             CantActionState cantActionState,
-            SlipState slipState,
+            SlipDamageState slipDamageState,
             ResetAilmentState resetAilmentState)
         {
             _order = order;
@@ -31,7 +31,7 @@ namespace BattleScene.InterfaceAdapter.State.Turn
             _playerSelectActionState = playerSelectActionState;
             _enemySelectSkillState = enemySelectSkillState;
             _cantActionState = cantActionState;
-            _slipState = slipState;
+            _slipDamageState = slipDamageState;
             _resetAilmentState = resetAilmentState;
         }
 
@@ -47,7 +47,7 @@ namespace BattleScene.InterfaceAdapter.State.Turn
         private BaseState GetNextState()
         {
             if (_actor.IsResetAilment) return _resetAilmentState;
-            if (_actor.IsSlipDamage) return _slipState;
+            if (_actor.IsSlipDamage) return _slipDamageState;
             if (_actor.CantAction) return _cantActionState;
             return _actor.IsPlayer
                 ? _playerSelectActionState

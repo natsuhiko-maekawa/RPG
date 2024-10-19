@@ -3,14 +3,14 @@ using BattleScene.UseCases.UseCase;
 
 namespace BattleScene.InterfaceAdapter.State.Turn
 {
-    public class SlipState : BaseState
+    public class SlipDamageState : BaseState
     {
         private readonly SlipUseCase _slip;
         private readonly SlipDamageOutputFacade _slipDamageOutput;
         private readonly TurnStopState _turnStopState;
         private AnimationQueue? _animationQueue;
 
-        public SlipState(
+        public SlipDamageState(
             SlipUseCase slip,
             SlipDamageOutputFacade slipDamageOutput,
             TurnStopState turnStopState)
