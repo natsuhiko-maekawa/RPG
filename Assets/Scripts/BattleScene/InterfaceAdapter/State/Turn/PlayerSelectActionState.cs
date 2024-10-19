@@ -10,7 +10,7 @@ namespace BattleScene.InterfaceAdapter.State.Turn
     {
         private readonly PlayerDomainService _player;
         private readonly PlayerSelectSkillState _playerSelectSkillState;
-        private readonly SelectTargetState _selectTargetState;
+        private readonly PlayerSelectTargetState _playerSelectTargetState;
         private readonly SkillState _skillState;
         private readonly GridViewPresenter _gridView;
 
@@ -25,13 +25,13 @@ namespace BattleScene.InterfaceAdapter.State.Turn
         public PlayerSelectActionState(
             PlayerDomainService player,
             PlayerSelectSkillState playerSelectSkillState,
-            SelectTargetState selectTargetState,
+            PlayerSelectTargetState playerSelectTargetState,
             SkillState skillState,
             GridViewPresenter gridView)
         {
             _player = player;
             _playerSelectSkillState = playerSelectSkillState;
-            _selectTargetState = selectTargetState;
+            _playerSelectTargetState = playerSelectTargetState;
             _skillState = skillState;
             _gridView = gridView;
         }
@@ -60,7 +60,7 @@ namespace BattleScene.InterfaceAdapter.State.Turn
 
             BaseState nextState = actionCode switch
             {
-                ActionCode.Attack => _selectTargetState,
+                ActionCode.Attack => _playerSelectTargetState,
                 ActionCode.Skill => _playerSelectSkillState,
                 ActionCode.Defence => _skillState,
                 _ => throw new ArgumentOutOfRangeException()

@@ -8,16 +8,16 @@ namespace BattleScene.InterfaceAdapter.State.Turn
     public class PlayerSelectSkillState : BaseState
     {
         private readonly IResource<CharacterPropertyDto, CharacterTypeCode> _propertyResource;
-        private readonly SelectTargetState _selectTargetState;
+        private readonly PlayerSelectTargetState _playerSelectTargetState;
         private readonly SkillViewPresenter _skillView;
 
         public PlayerSelectSkillState(
             IResource<CharacterPropertyDto, CharacterTypeCode> propertyResource,
-            SelectTargetState selectTargetState,
+            PlayerSelectTargetState playerSelectTargetState,
             SkillViewPresenter skillView)
         {
             _propertyResource = propertyResource;
-            _selectTargetState = selectTargetState;
+            _playerSelectTargetState = playerSelectTargetState;
             _skillView = skillView;
         }
 
@@ -30,7 +30,7 @@ namespace BattleScene.InterfaceAdapter.State.Turn
         {
             _skillView.StopAnimation();
             Context.SkillCode = _propertyResource.Get(CharacterTypeCode.Player).SkillCodeList[id];
-            Context.TransitionTo(_selectTargetState);
+            Context.TransitionTo(_playerSelectTargetState);
         }
     }
 }

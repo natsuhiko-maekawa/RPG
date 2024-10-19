@@ -4,12 +4,12 @@ using BattleScene.InterfaceAdapter.Presenter;
 
 namespace BattleScene.InterfaceAdapter.State.Turn
 {
-    public class SelectTargetState : BaseState
+    public class PlayerSelectTargetState : BaseState
     {
         private readonly SkillState _skillState;
         private readonly TargetViewPresenter _targetView;
 
-        public SelectTargetState(
+        public PlayerSelectTargetState(
             SkillState skillState,
             TargetViewPresenter targetView)
         {
