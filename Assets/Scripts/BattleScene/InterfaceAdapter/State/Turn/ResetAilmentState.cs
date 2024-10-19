@@ -4,6 +4,11 @@ using BattleScene.UseCases.Service;
 
 namespace BattleScene.InterfaceAdapter.State.Turn
 {
+    /// <summary>
+    /// 特定の状態異常を回復するステート。<br/>
+    /// prev : <see cref="TurnStartState"/><br/>
+    /// next : <see cref="TurnStopState"/>
+    /// </summary>
     public class ResetAilmentState : BaseState
     {
         private readonly AilmentResetService _ailmentResetService;
