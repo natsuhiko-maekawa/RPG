@@ -24,12 +24,15 @@ namespace BattleScene.Domain.Entity
         public CharacterId CharacterId { get; }
         public AilmentCode AilmentCode { get; }
 
-        private int _turn;
+        private int _turn = -1;
 
+        /// <summary>
+        /// 状態異常の残りターン数を表す。-1のとき状態異常は無効。
+        /// </summary>
         public int Turn
         {
             get => _turn;
-            private set => _turn = Math.Max(value, 0);
+            private set => _turn = Math.Max(value, -1);
         }
 
         public bool IsSelfRecovery { get; }
