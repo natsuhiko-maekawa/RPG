@@ -1,32 +1,44 @@
 ﻿@startuml
-[*] --> TurnStartState
-TurnStartState --> OrderState
-OrderState --> PlayerSelectActionState
-PlayerSelectActionState --> SkillState : DEFENCEを選択
-PlayerSelectActionState --> PlayerSelectTargetState : ATTACKを選択
-PlayerSelectActionState --> PlayerSelectSkillState : SKILLを選択
-PlayerSelectSkillState --> PlayerSelectTargetState
-PlayerSelectTargetState --> SkillState
-OrderState --> EnemySelectSkillState
-EnemySelectSkillState --> SkillState
-OrderState --> SkillState
-SkillState --> SkillState
-SkillState --> TurnStopState
-OrderState --> ResetAilmentState
-ResetState --> TurnStopState
-OrderState --> SlipDamageState
-SlipDamageState --> TurnStopState
+'https://plantuml.com/ja/state-diagram
 
-PlayerSelectActionState : 選択された行動によって遷移先を変更
-State SkillState {
-[*] --> PrimeSkillStartState
-    PrimeSkillStartState --> PrimeSkillStopState : プレイヤーに対し状態異常を失敗
-    PrimeSkillStartState --> PrimeSkillOutputState
-    PrimeSkillOutputState --> PrimeSkillOutputState : 表示するメッセージが残っている
-    PrimeSkillOutputState --> PrimeSkillStopState : すべてのメッセージを表示した
-    PrimeSkillStopState --> [*]
-    
-    PrimeSkillStartState : PrimeSkillを実行した結果をCollectionに登録
-    PrimeSkillOutputState : PrimeSkillを実行した結果を画面に表示
+<style>
+stateDiagram {
+  arrow {
+    FontSize 10
+  }
 }
+</style>
+
+[*] --> TurnStartState
+TurnStartState --> PlayerSelectActionState : 行動者がプレイヤー\nかつ状態異常でない
+PlayerSelectActionState --> PlayerSelectSkillState : SKILLを\n選択
+PlayerSelectActionState --> PlayerSelectTargetState : ATTACKを\n選択
+PlayerSelectActionState --> SkillState : DEFENCEを\n選択
+PlayerSelectSkillState -> PlayerSelectTargetState
+PlayerSelectTargetState -> SkillState
+TurnStartState --> EnemySelectSkillState : 行動者が敵\nかつ状態異常でない
+EnemySelectSkillState --> SkillState
+TurnStartState --> CantActionState : 行動者が\n行動不能
+CantActionState --> SkillState
+SkillState --> SkillState : 実行していない\nスキルが残っている
+SkillState --> AdvanceTurnState : すべての\nスキルを\n実行した
+SkillState --> TurnStopState : すべての敵が\n死亡した\nまたは\nプレイヤーが\n死亡した
+AdvanceTurnState -> TurnStopState
+TurnStartState --> ResetAilmentState : 状態異常回復\nイベント
+ResetAilmentState ---> TurnStopState
+TurnStartState --> SlipDamageState : スリップダメージ\nイベント
+SlipDamageState ---> TurnStopState
+TurnStopState --> [*]
+
+TurnStartState : このターンの\nイベントを決定する\nターンのイベントによって\n遷移先を変更する
+PlayerSelectActionState : プレイヤーが行動を選択する\n選択された行動によって\n遷移先を変更する
+PlayerSelectSkillState : プレイヤーがスキルを選択する
+PlayerSelectTargetState : プレイヤーが攻撃対象を\n選択する
+EnemySelectSkillState : 敵がスキルを選択する
+CantActionState : 行動不能スキルを\n選択する
+SkillState : スキルを実行する
+AdvanceTurnState : 状態異常のターンを進める
+ResetAilmentState : 状態異常を回復する
+SlipDamageState : スリップダメージを与える
+TurnStopState : ターンを終了する
 @enduml
