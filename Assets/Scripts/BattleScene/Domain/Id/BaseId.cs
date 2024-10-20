@@ -27,5 +27,12 @@ namespace BattleScene.Domain.Id
         {
             return Id;
         }
+
+        public static bool operator ==(BaseId? a, BaseId? b)
+        {
+            if (a is null || b is null) return !(a is null ^ b is null);
+            return a.Equals(b);
+        }
+        public static bool operator !=(BaseId? a, BaseId? b) => !(a == b);
     }
 }
