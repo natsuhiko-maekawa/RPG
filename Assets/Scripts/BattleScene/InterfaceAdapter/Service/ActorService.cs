@@ -51,7 +51,7 @@ namespace BattleScene.InterfaceAdapter.Service
             var actorIsCharacter = _orderedItems.First().TryGetCharacterId(out var characterId);
             if (!actorIsCharacter) return false;
             
-            var ailmentCodeList = _ailment.GetAilmentCodeListOrdered(characterId);
+            var ailmentCodeList = _ailment.GetAilmentCodeListOrderedByPriority(characterId);
             if (ailmentCodeList.Count == 0) return false;
             
             var ailmentCode = ailmentCodeList.First();

@@ -43,7 +43,12 @@ namespace BattleScene.Domain.DomainService
             foreach (var ailment in _ailmentCollection.Get()) ailment.AdvanceTurn();
         }
 
-        public IReadOnlyList<AilmentCode> GetAilmentCodeListOrdered(CharacterId characterId)
+        /// <summary>
+        ///     状態異常のコードを優先度が高い順にソートして返す。
+        /// </summary>
+        /// <param name="characterId">キャラクターID</param>
+        /// <returns>状態異常のコードのリスト</returns>
+        public IReadOnlyList<AilmentCode> GetAilmentCodeListOrderedByPriority(CharacterId characterId)
         {
             var ailmentCodeList = _ailmentCollection.Get()
                 .Where(x => Equals(x.CharacterId, characterId))
