@@ -56,7 +56,7 @@ namespace BattleScene.UseCases.Service
             var targetId = _battleLogCollection.Get()
                 .Where(x => _characterCollection.Get(x.ActorId)?.IsPlayer ?? false)
                 .Where(x => x.TargetIdList.Count == 1)
-                .Where(x => x.TargetIdList.Contains(_player.GetId()))
+                .Where(x => !x.TargetIdList.Contains(_player.GetId()))
                 .Max()?.TargetIdList
                 .First();
             targetId = targetId == null || !_characterCollection.Get(targetId).IsSurvive
