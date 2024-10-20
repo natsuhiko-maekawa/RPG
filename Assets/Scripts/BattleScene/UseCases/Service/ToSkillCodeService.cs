@@ -3,9 +3,9 @@ using BattleScene.Domain.Code;
 
 namespace BattleScene.UseCases.Service
 {
-    public class CantActionService
+    public class ToSkillCodeService
     {
-        public SkillCode ToSkillCode(AilmentCode ailmentCode)
+        public SkillCode From(AilmentCode ailmentCode)
         {
             var skillCode = ailmentCode switch
             {

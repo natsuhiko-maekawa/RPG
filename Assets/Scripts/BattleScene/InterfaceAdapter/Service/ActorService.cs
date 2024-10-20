@@ -12,20 +12,20 @@ namespace BattleScene.InterfaceAdapter.Service
     public class ActorService
     {
         private readonly AilmentDomainService _ailment;
-        private readonly CantActionService _cantAction;
+        private readonly ToSkillCodeService _toSkillCode;
         private readonly ICollection<CharacterEntity, CharacterId> _characterCollection;
         private readonly OrderedItemsDomainService _orderedItems;
         private readonly IMyRandomService _myRandom;
 
         public ActorService(
             AilmentDomainService ailment,
-            CantActionService cantAction,
+            ToSkillCodeService toSkillCode,
             ICollection<CharacterEntity, CharacterId> characterCollection,
             OrderedItemsDomainService orderedItems,
             IMyRandomService myRandom)
         {
             _ailment = ailment;
-            _cantAction = cantAction;
+            _toSkillCode = toSkillCode;
             _characterCollection = characterCollection;
             _orderedItems = orderedItems;
             _myRandom = myRandom;
@@ -55,14 +55,14 @@ namespace BattleScene.InterfaceAdapter.Service
             if (ailmentCodeList.Count == 0) return false;
             
             var ailmentCode = ailmentCodeList.First();
-            skillCode = _cantAction.ToSkillCode(ailmentCode);
+            skillCode = _toSkillCode.From(ailmentCode);
             if (ailmentCodeList.First() is not (AilmentCode.Paralysis or AilmentCode.EnemyParalysis)) return true;
             if (CantActionByParalysis) return true;
 
             if (ailmentCodeList.Count == 1) return false;
             
             var secondAilmentCode = ailmentCodeList[1];
-            skillCode = _cantAction.ToSkillCode(secondAilmentCode);
+            skillCode = _toSkillCode.From(secondAilmentCode);
             return true;
         }
 

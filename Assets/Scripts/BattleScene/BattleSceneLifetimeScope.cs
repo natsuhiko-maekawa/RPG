@@ -346,7 +346,7 @@ namespace BattleScene
             builder.Register<BuffGeneratorService>(Lifetime.Singleton);
             builder.Register<BuffRegistererService>(Lifetime.Singleton);
             builder.Register<BuffTurnService>(Lifetime.Singleton);
-            builder.Register<CantActionService>(Lifetime.Singleton);
+            builder.Register<ToSkillCodeService>(Lifetime.Singleton);
             builder.Register<CharacterPropertyFactoryService>(Lifetime.Singleton);
             builder.Register<DamageEvaluatorService>(Lifetime.Singleton);
             builder.Register<IsHitEvaluatorService>(Lifetime.Singleton);
