@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using BattleScene.DataAccess;
 using BattleScene.Domain.DataAccess;
@@ -11,8 +12,9 @@ namespace Tests.BattleScene.DataAccess.Repository
     {
         private readonly Dictionary<TId, TEntity> _entityDictionary = new();
         
-        public TEntity Get(TId id)
+        [return: NotNullIfNotNull("id")] public TEntity? Get(TId? id)
         {
+            if (id == null) return null;
             _entityDictionary.TryGetValue(id, out var entity);
             return entity;
         }

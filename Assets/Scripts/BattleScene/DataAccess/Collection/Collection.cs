@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.Entity;
@@ -10,10 +11,10 @@ namespace BattleScene.DataAccess.Collection
     {
         private readonly Dictionary<TId, TEntity> _entityDictionary = new();
 
-        public TEntity Get(TId id)
+        [return: NotNullIfNotNull("id")] public TEntity? Get(TId? id)
         {
+            if (id == null) return null;
             _entityDictionary.TryGetValue(id, out var entity);
-            // ReSharper disable once AssignNullToNotNullAttribute
             return entity;
         }
 
