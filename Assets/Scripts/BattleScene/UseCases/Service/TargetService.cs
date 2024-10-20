@@ -54,7 +54,7 @@ namespace BattleScene.UseCases.Service
         private CharacterId GetEnemySolo()
         {
             var targetId = _battleLogCollection.Get()
-                .Where(x => Equals(x.ActorId, _player.GetId()))
+                .Where(x => _characterCollection.Get(x.ActorId)?.IsPlayer ?? false)
                 .Where(x => x.TargetIdList.Count == 1)
                 .Where(x => x.TargetIdList.Contains(_player.GetId()))
                 .Max()?.TargetIdList
