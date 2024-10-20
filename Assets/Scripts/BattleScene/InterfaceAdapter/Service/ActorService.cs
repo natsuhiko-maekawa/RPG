@@ -48,9 +48,7 @@ namespace BattleScene.InterfaceAdapter.Service
         {
             skillCode = SkillCode.NoSkill;
             
-            var actorIsCharacter = _orderedItems.First().TryGetCharacterId(out var characterId);
-            if (!actorIsCharacter) return false;
-            
+            if (!_orderedItems.First().TryGetCharacterId(out var characterId)) return false;
             var ailmentCodeList = _ailment.GetAilmentCodeListOrderedByPriority(characterId);
             if (ailmentCodeList.Count == 0) return false;
             
