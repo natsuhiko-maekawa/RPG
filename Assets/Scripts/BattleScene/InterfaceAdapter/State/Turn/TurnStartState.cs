@@ -48,7 +48,12 @@ namespace BattleScene.InterfaceAdapter.State.Turn
         {
             if (_actor.IsResetAilment) return _resetAilmentState;
             if (_actor.IsSlipDamage) return _slipDamageState;
-            if (_actor.CantAction) return _cantActionState;
+            if (_actor.CantActionBy(out var skillCode))
+            {
+                Context.SkillCode = skillCode;
+                return _cantActionState;
+            }
+            
             return _actor.IsPlayer
                 ? _playerSelectActionState
                 : _enemySelectSkillState;

@@ -26,7 +26,7 @@ namespace BattleScene.Debug.Service
         {
             var debugMode = memberName switch
             {
-                "CantActionBecauseParalysis" => cantActionBecauseParalysis,
+                "CantActionByParalysis" => cantActionBecauseParalysis,
                 "BasicEvaluate" => isHit,
                 "Pick" => isSuccess,
                 _ => ProbabilityDebugMode.Random

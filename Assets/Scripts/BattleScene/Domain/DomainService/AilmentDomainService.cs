@@ -43,21 +43,16 @@ namespace BattleScene.Domain.DomainService
             foreach (var ailment in _ailmentCollection.Get()) ailment.AdvanceTurn();
         }
 
-        /// <summary>
-        ///     有効な状態異常のうち最も優先度の高いものを返す。
-        ///     該当する状態異常がない場合はnullを返す。
-        /// </summary>
-        /// <param name="characterId">キャラクターID</param>
-        /// <returns>状態異常エンティティ、もしくはnull</returns>
-        public AilmentEntity? GetHighestPriority(CharacterId characterId)
+        public IReadOnlyList<AilmentCode> GetAilmentCodeListOrdered(CharacterId characterId)
         {
-            var ailment = _ailmentCollection.Get()
+            var ailmentCodeList = _ailmentCollection.Get()
                 .Where(x => Equals(x.CharacterId, characterId))
                 .Where(x => x.Effects)
                 .Where(x => _ailmentPropertyFactory.Create(x.AilmentCode).Priority.HasValue)
                 .OrderBy(x => _ailmentPropertyFactory.Create(x.AilmentCode).Priority)
-                .FirstOrDefault();
-            return ailment;
+                .Select(x => x.AilmentCode)
+                .ToList();
+            return ailmentCodeList;
         }
     }
 }

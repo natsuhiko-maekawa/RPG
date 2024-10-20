@@ -1,24 +1,23 @@
-﻿using BattleScene.UseCases.Service;
+﻿using System;
+using System.Collections.Generic;
+using BattleScene.Domain.Id;
 
 namespace BattleScene.InterfaceAdapter.State.Turn
 {
     public class CantActionState : BaseState
     {
-        private readonly CantActionService _cantAction;
         private readonly SkillState _skillState;
 
         public CantActionState(
-            CantActionService cantAction,
             SkillState skillState)
         {
-            _cantAction = cantAction;
             _skillState = skillState;
         }
 
         public override void Start()
         {
-            Context.SkillCode = _cantAction.ToSkillCode();
-            Context.TargetIdList = _cantAction.TargetIdList;
+            if (Context.ActorId == null) throw new InvalidOperationException();
+            Context.TargetIdList = new List<CharacterId> { Context.ActorId };
             Context.TransitionTo(_skillState);
         }
     }
