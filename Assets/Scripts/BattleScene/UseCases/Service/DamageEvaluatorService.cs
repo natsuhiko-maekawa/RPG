@@ -56,6 +56,7 @@ namespace BattleScene.UseCases.Service
             var actorBuffRate = _buff.GetRate(actorId, BuffCode.Attack);
             var targetBuffRate = _buff.GetRate(targetId, BuffCode.Defence);
             var destroyedRate = 1.0f - _bodyPartDomainService.Count(actorId, BodyPartCode.Arm) * 0.5f;
+            // バフから防御、空蝉を切り離し、特殊効果として実装するまで保留
             var targetDefence = _buffCollection.Get((targetId, BuffCode.DefenceSkill)) == null ? 1.0f : 0.5f;
             var rate = damageParameter.DamageRate;
             var weekPointRate = (int)Math.Pow(2, actorMatAttr.Intersect(targetWeekPoint).Count());
