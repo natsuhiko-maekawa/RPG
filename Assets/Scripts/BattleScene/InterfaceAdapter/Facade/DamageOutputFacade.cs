@@ -39,7 +39,7 @@ namespace BattleScene.InterfaceAdapter.Facade
         {
             var animationList = new List<Task>();
 
-            var isActorPlayer = _characterCollection.Get(damage.ActorId).IsPlayer;
+            var isActorPlayer = _characterCollection.Get(damage.ActorId)!.IsPlayer;
             if (isActorPlayer)
             {
                 var attackCountAnimation = _attackCountView.Start();

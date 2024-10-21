@@ -14,7 +14,7 @@ namespace BattleScene.InterfaceAdapter.StateMachine
 {
     public class BattleStateMachine : IStartable
     {
-        private Context _context;
+        private Context _context = null!;
         private readonly EnemiesDomainService _enemies;
         private readonly PlayerDomainService _player;
         private readonly BattleSceneInput _battleSceneInput;

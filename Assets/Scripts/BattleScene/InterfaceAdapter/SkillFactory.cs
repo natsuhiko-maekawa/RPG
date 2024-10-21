@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Utility;
 using System.Linq;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DataAccess;
@@ -97,7 +96,6 @@ namespace BattleScene.InterfaceAdapter
         private IReadOnlyList<AilmentParameterValueObject> CreateAilmentParameterList(
             IReadOnlyList<BaseAilment> ailmentList)
         {
-            if (ailmentList == null) return MyList<AilmentParameterValueObject>.Empty;
             return ailmentList
                 .Select(x => new AilmentParameterValueObject(
                     AilmentCode: x.AilmentCode,
@@ -119,7 +117,6 @@ namespace BattleScene.InterfaceAdapter
         private IReadOnlyList<DamageParameterValueObject> CreateDamageParameterList(
             IReadOnlyList<BaseDamage> damageList)
         {
-            if (damageList == null) return MyList<DamageParameterValueObject>.Empty;
             return damageList
                 .Select(x => new DamageParameterValueObject(
                     AttackNumber: x.AttackNumber,

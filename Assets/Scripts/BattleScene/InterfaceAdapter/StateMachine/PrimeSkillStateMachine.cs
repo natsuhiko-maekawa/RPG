@@ -12,7 +12,7 @@ namespace BattleScene.InterfaceAdapter.StateMachine
     {
         private readonly IFactory<SkillValueObject, SkillCode> _skillFactory;
         private readonly IObjectResolver _container;
-        private IEnumerator<IContext> _primeSkillContextEnumerator;
+        private IEnumerator<IContext>? _primeSkillContextEnumerator;
         private readonly List<PrimeSkillCode> _executedPrimeSkillCodeList = new();
 
         public PrimeSkillStateMachine(
@@ -39,7 +39,7 @@ namespace BattleScene.InterfaceAdapter.StateMachine
 
         private bool MoveNextOrDispose()
         {
-            if (_primeSkillContextEnumerator.Current?.IsContinue ?? false) return true;
+            if (_primeSkillContextEnumerator!.Current?.IsContinue ?? false) return true;
 
             if (_primeSkillContextEnumerator.Current is not { IsBreak: true }
                 && _primeSkillContextEnumerator.MoveNext())

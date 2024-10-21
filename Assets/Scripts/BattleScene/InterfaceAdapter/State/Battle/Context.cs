@@ -6,7 +6,7 @@ namespace BattleScene.InterfaceAdapter.State.Battle
 {
     public class Context
     {
-        private BaseState _state;
+        private BaseState _state = null!;
 
         public Context(BaseState state)
         {

@@ -7,13 +7,13 @@ namespace BattleScene.InterfaceAdapter.State.Turn
 {
     public class Context
     {
-        private BaseState _state;
+        private BaseState _state = null!;
 
         public CharacterId? ActorId { get; set; }
         public AilmentCode AilmentCode { get; set; }
         public SlipCode SlipCode { get; set; }
         public SkillCode SkillCode { get; set; }
-        public IReadOnlyList<CharacterId> TargetIdList { get; set; }
+        public IReadOnlyList<CharacterId> TargetIdList { get; set; } = MyList<CharacterId>.Empty;
 
         public Context(BaseState state)
         {

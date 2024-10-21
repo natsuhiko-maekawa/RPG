@@ -2,7 +2,7 @@
 {
     public abstract class BaseState<TPrimeSkillParameter, TPrimeSkill>
     {
-        protected Context<TPrimeSkillParameter, TPrimeSkill> Context { get; set; }
+        protected Context<TPrimeSkillParameter, TPrimeSkill> Context { get; set; } = null!;
 
         // ReSharper disable once ParameterHidesMember
         public void SetContext(Context<TPrimeSkillParameter, TPrimeSkill> context)

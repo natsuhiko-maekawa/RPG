@@ -34,9 +34,9 @@ namespace BattleScene.InterfaceAdapter.Skill
 
         private IReadOnlyList<BaseReset> GetResetList()
         {
-            return _slipDamageCollection.Get(SlipCode.Burning) == null
-                ? MyList<BaseReset>.Empty
-                : new[] { new BurningReset() };
+            return _slipDamageCollection.Get(SlipCode.Burning).Effects
+                ? new[] { new BurningReset() }
+                : MyList<BaseReset>.Empty;
         }
     }
 }

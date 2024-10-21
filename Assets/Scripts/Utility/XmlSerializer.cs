@@ -11,7 +11,7 @@ namespace Utility
         private const string Key = "6c147f6ddb0943cfb92e4b279bc71dba";
         private const string Iv = "b8d8f4826b854d30bf724cee87fceb55";
 
-        public static void Save<T>(T obj)
+        public static void Save<T>(T obj) where T : notnull
         {
             var path = typeof(T).FullName;
             if (path == null) throw new InvalidOperationException();

@@ -24,7 +24,7 @@ namespace Tests.BattleScene.UseCases.Service
     {
         private BattlePropertyFactory _stubBattlePropertyFactory;
         private CharacterPropertyFactory _stubCharacterPropertyFactory;
-        private CharacterPropertyFactoryService _stubCharacterPropertyFactoryService;
+        private CharacterPropertyFactoryService _stubCharacterPropertyFactoryService = null!;
         private readonly MockCollection<CharacterEntity, CharacterId> _mockCharacterCollection = new();
         
         [SetUp]

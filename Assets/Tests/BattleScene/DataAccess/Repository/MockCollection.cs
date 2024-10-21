@@ -23,7 +23,6 @@ namespace Tests.BattleScene.DataAccess.Repository
 
         public void Add(TEntity entity)
         {
-            if (entity == null) return;
             _entityDictionary.Add(entity.Id, entity);
         }
 

@@ -34,7 +34,7 @@ namespace BattleScene.InterfaceAdapter.Presenter
                 .Select(_characterCollection.Get)
                 .ToList();
             var taskList = characterList
-                .Select(x => x.IsPlayer
+                .Select(x => x!.IsPlayer
                     ? StartPlayerAnimationAsync()
                     : StartEnemyAnimationAsync(x.Position))
                 .ToList();

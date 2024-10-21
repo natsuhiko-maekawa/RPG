@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
@@ -14,13 +15,13 @@ namespace BattleScene.InterfaceAdapter.State.PrimeSkill
 {
     public class Context<TPrimeSkillParameter, TPrimeSkill> : IContext
     {
-        private BaseState<TPrimeSkillParameter, TPrimeSkill> _state;
+        private BaseState<TPrimeSkillParameter, TPrimeSkill> _state = null!;
 
         public SkillCommonValueObject SkillCommon { get; }
         public IReadOnlyList<CharacterId> TargetIdList { get; }
         public IReadOnlyList<TPrimeSkillParameter> PrimeSkillParameterList { get; }
         public IReadOnlyList<PrimeSkillCode> ExecutedPrimeSkillCodeList { get; }
-        public Queue<TPrimeSkill> PrimeSkillQueue { get; set; }
+        public Queue<TPrimeSkill> PrimeSkillQueue { get; set; } = new();
 
         public Context(
             BaseState<TPrimeSkillParameter, TPrimeSkill> primeSkillState,
@@ -58,7 +59,7 @@ namespace BattleScene.InterfaceAdapter.State.PrimeSkill
             return genericClassName;
         }
 
-        private bool TryGetMatchedText(string input, [RegexPattern] string pattern, out string matchedText)
+        private bool TryGetMatchedText(string input, [RegexPattern] string pattern, [NotNullWhen(true)]out string? matchedText)
         {
             var match = Regex.Match(input, pattern);
             matchedText = match.Success

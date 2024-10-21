@@ -8,7 +8,7 @@ namespace BattleScene.InterfaceAdapter.State.Turn
         private readonly SlipUseCase _slip;
         private readonly SlipDamageOutputFacade _slipDamageOutput;
         private readonly TurnStopState _turnStopState;
-        private AnimationQueue? _animationQueue;
+        private AnimationQueue _animationQueue = null!;
 
         public SlipDamageState(
             SlipUseCase slip,

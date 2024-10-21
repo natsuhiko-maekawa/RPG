@@ -7,7 +7,7 @@ namespace BattleScene.InterfaceAdapter.State.Battle
     public class TurnState : BaseState
     {
         private readonly TurnStartState _turnStartState;
-        private Turn.Context _context;
+        private Turn.Context _context = null!;
 
         public TurnState(
             TurnStartState turnStartState)

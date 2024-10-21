@@ -5,7 +5,7 @@ namespace BattleScene.InterfaceAdapter.State.Turn
 {
     public abstract class BaseState
     {
-        protected Context Context { get; private set; }
+        protected Context Context { get; private set; } = null!;
 
         public void SetContext(Context context)
         {

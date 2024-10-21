@@ -24,10 +24,10 @@ namespace BattleScene.UseCases.Service
 
         private void AddTechnicalPoint(RestoreValueObject restore)
         {
-            var currentTechnicalPoint = _characterCollection.Get(restore.ActorId).CurrentTechnicalPoint;
+            var currentTechnicalPoint = _characterCollection.Get(restore.ActorId!).CurrentTechnicalPoint;
             var technicalPoint = restore.TechnicalPoint;
             var newTechnicalPoint = currentTechnicalPoint + technicalPoint;
-            _characterCollection.Get(restore.ActorId).CurrentTechnicalPoint = newTechnicalPoint;
+            _characterCollection.Get(restore.ActorId!).CurrentTechnicalPoint = newTechnicalPoint;
         }
     }
 }
