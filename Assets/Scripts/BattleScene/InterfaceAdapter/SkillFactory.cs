@@ -30,7 +30,7 @@ namespace BattleScene.InterfaceAdapter
             var damageList = CreateDamageParameterList(skill.DamageList);
             var destroyPartList = CreateDestroyParameterList(skill.DestroyList);
             var restoreParameterList = CreateRestoreParameterList(skill.RestoreList);
-            var slipParameterList = CreateSlipParameterList(skill.SlipDamageList);
+            var slipParameterList = CreateSlipParameterList(skill.SlipList);
             return new SkillValueObject(
                 skillCode: key,
                 range: skill.Range,

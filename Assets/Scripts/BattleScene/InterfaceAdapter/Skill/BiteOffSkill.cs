@@ -31,7 +31,7 @@ namespace BattleScene.InterfaceAdapter.Skill
         public override IReadOnlyList<BaseDamage> DamageList { get; } =
             new[] { new BasicDamage() };
 
-        public override IReadOnlyList<BaseSlip> SlipDamageList { get; } =
+        public override IReadOnlyList<BaseSlip> SlipList { get; } =
             new[] { new BleedingSkill() };
 
         public override IReadOnlyList<BaseDestroy> DestroyList => GetDestroyPartList();
