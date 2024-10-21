@@ -39,8 +39,6 @@ namespace BattleScene.Domain.Entity
 
         partial void RateOnChange(float value);
 
-        public bool TurnIsEnd => Turn < 0;
-
         public void AdvanceTurn()
         {
             --Turn;
