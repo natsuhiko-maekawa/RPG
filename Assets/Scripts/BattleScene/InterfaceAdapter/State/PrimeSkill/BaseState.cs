@@ -4,7 +4,6 @@
     {
         protected Context<TPrimeSkillParameter, TPrimeSkill> Context { get; set; } = null!;
 
-        // ReSharper disable once ParameterHidesMember
         public void SetContext(Context<TPrimeSkillParameter, TPrimeSkill> context)
         {
             Context = context;
