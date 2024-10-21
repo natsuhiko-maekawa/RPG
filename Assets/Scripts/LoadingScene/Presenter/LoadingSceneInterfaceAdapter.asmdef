@@ -1,0 +1,19 @@
+{
+    "name": "Presenter.LoadingScene",
+    "rootNamespace": "",
+    "references": [
+        "GUID:87d477660eca3e84b852109b1152cb17",
+        "GUID:b0214a6008ed146ff8f122a6a9c2f6cc",
+        "GUID:a5ef4021daea9114cb5dcce50d96f987",
+        "GUID:7572311969581e145aa9048858fed19f"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

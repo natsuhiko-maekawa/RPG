@@ -12,7 +12,8 @@ public class EnableNullable : AssetPostprocessor
     private static readonly string[] DisableNullableAssemblyNameList = {
         "DataAccess.BattleScene",
         "Debug.BattleScene",
-        "Framework.BattleScene"
+        "Framework.BattleScene",
+        "View.LoadingScene"
     };
         
     /// <summary>
