@@ -346,22 +346,22 @@ namespace BattleScene
             builder.Register<SlipDamageGeneratorService>(Lifetime.Singleton);
             builder.Register<ISpeedService, SpeedService>(Lifetime.Singleton);
             builder.Register<TurnInitializerService>(Lifetime.Singleton);
-            builder.Register<IPrimeSkillGeneratorService<AilmentParameterValueObject>, 
-                AilmentGeneratorService>(Lifetime.Singleton);
-            builder.Register<IPrimeSkillGeneratorService<DamageParameterValueObject>, 
-                DamageGeneratorService>(Lifetime.Singleton);
+            builder.Register<IPrimeSkillService<AilmentParameterValueObject>, 
+                AilmentService>(Lifetime.Singleton);
+            builder.Register<IPrimeSkillService<DamageParameterValueObject>, 
+                DamageService>(Lifetime.Singleton);
             builder
-                .Register<IPrimeSkillGeneratorService<DestroyParameterValueObject>,
-                    DestroyGeneratorService>(Lifetime.Singleton);
+                .Register<IPrimeSkillService<DestroyParameterValueObject>,
+                    DestroyService>(Lifetime.Singleton);
             builder
-                .Register<IPrimeSkillGeneratorService<BuffParameterValueObject>, BuffGeneratorService>(
+                .Register<IPrimeSkillService<BuffParameterValueObject>, BuffService>(
                     Lifetime.Singleton);
             builder
-                .Register<IPrimeSkillGeneratorService<SlipParameterValueObject>, SlipGeneratorService>(
+                .Register<IPrimeSkillService<SlipParameterValueObject>, SlipService>(
                     Lifetime.Singleton);
             builder
-                .Register<IPrimeSkillGeneratorService<RestoreParameterValueObject>,
-                    RestoreGeneratorService>(Lifetime.Singleton);
+                .Register<IPrimeSkillService<RestoreParameterValueObject>,
+                    RestoreService>(Lifetime.Singleton);
 
             #endregion
 

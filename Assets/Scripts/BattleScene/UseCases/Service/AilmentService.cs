@@ -11,14 +11,14 @@ using BattleScene.UseCases.IService;
 
 namespace BattleScene.UseCases.Service
 {
-    public class AilmentGeneratorService : IPrimeSkillGeneratorService<AilmentParameterValueObject>
+    public class AilmentService : IPrimeSkillService<AilmentParameterValueObject>
     {
         private readonly ActualTargetIdPickerService _actualTargetIdPicker;
         private readonly OrderedItemsDomainService _orderedItems;
         private readonly IFactory<AilmentPropertyValueObject, AilmentCode> _ailmentPropertyFactory;
         private readonly ICollection<AilmentEntity, (CharacterId, AilmentCode)> _ailmentCollection;
 
-        public AilmentGeneratorService(
+        public AilmentService(
             ActualTargetIdPickerService actualTargetIdPicker,
             OrderedItemsDomainService orderedItems,
             IFactory<AilmentPropertyValueObject, AilmentCode> ailmentPropertyFactory,

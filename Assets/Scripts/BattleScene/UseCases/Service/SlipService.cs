@@ -11,14 +11,14 @@ using Utility;
 
 namespace BattleScene.UseCases.Service
 {
-    public class SlipGeneratorService : IPrimeSkillGeneratorService<SlipParameterValueObject>
+    public class SlipService : IPrimeSkillService<SlipParameterValueObject>
     {
         private readonly ActualTargetIdPickerService _actualTargetIdPicker;
         private readonly IFactory<BattlePropertyValueObject> _battlePropertyFactory;
         private readonly OrderedItemsDomainService _orderedItems;
         private readonly ICollection<SlipEntity, SlipCode> _slipDamageCollection;
 
-        public SlipGeneratorService(
+        public SlipService(
             ActualTargetIdPickerService actualTargetIdPicker,
             OrderedItemsDomainService orderedItems,
             IFactory<BattlePropertyValueObject> battlePropertyFactory,

@@ -11,12 +11,12 @@ using Utility;
 
 namespace BattleScene.UseCases.Service
 {
-    public class BuffGeneratorService : IPrimeSkillGeneratorService<BuffParameterValueObject>
+    public class BuffService : IPrimeSkillService<BuffParameterValueObject>
     {
         private readonly ICollection<BuffEntity, (CharacterId, BuffCode)> _buffCollection;
         private readonly OrderedItemsDomainService _orderedItems;
 
-        public BuffGeneratorService(
+        public BuffService(
             ICollection<BuffEntity, (CharacterId, BuffCode)> buffCollection,
             OrderedItemsDomainService orderedItems)
         {

@@ -12,14 +12,14 @@ using Utility;
 
 namespace BattleScene.UseCases.Service
 {
-    public class RestoreGeneratorService : IPrimeSkillGeneratorService<RestoreParameterValueObject>
+    public class RestoreService : IPrimeSkillService<RestoreParameterValueObject>
     {
         private readonly ICollection<CharacterEntity, CharacterId> _characterCollection;
         private readonly IFactory<PlayerPropertyValueObject, CharacterTypeCode> _playerPropertyFactory;
         private readonly OrderedItemsDomainService _orderedItems;
         private readonly PlayerDomainService _playerDomainService;
 
-        public RestoreGeneratorService(
+        public RestoreService(
             IFactory<PlayerPropertyValueObject, CharacterTypeCode> playerPropertyFactory,
             OrderedItemsDomainService orderedItems,
             PlayerDomainService playerDomainService,
