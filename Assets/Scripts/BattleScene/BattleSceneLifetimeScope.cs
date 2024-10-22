@@ -344,7 +344,6 @@ namespace BattleScene
             builder.Register<OrderService>(Lifetime.Singleton);
             builder.Register<SkillExecutorService>(Lifetime.Singleton);
             builder.Register<SlipDamageGeneratorService>(Lifetime.Singleton);
-            builder.Register<SlipService>(Lifetime.Singleton);
             builder.Register<ISpeedService, SpeedService>(Lifetime.Singleton);
             builder.Register<TurnInitializerService>(Lifetime.Singleton);
             builder.Register<IPrimeSkillGeneratorService<AilmentParameterValueObject>, 
