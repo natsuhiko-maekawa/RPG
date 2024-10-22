@@ -146,5 +146,24 @@ namespace BattleScene.Domain.ValueObject
 
             return restore;
         }
+        
+        public static PrimeSkillValueObject CreateSlip(
+            SlipCode slipCode,
+            SkillCode skillCode,
+            CharacterId actorId,
+            IReadOnlyList<CharacterId> targetIdList,
+            IReadOnlyList<CharacterId> actualTargetIdList)
+        {
+            var slip = new PrimeSkillValueObject
+            {
+                SlipCode = slipCode,
+                SkillCode = skillCode,
+                ActorId = actorId,
+                TargetIdList = targetIdList,
+                ActualTargetIdList = actualTargetIdList
+            };
+
+            return slip;
+        }
     }
 }

@@ -76,7 +76,7 @@ namespace BattleScene.InterfaceAdapter.StateMachine
             if (skill.SlipParameterList.Count != 0)
             {
                 _executedPrimeSkillCodeList.Add(PrimeSkillCode.Slip);
-                var slipContext = CreateContext<SlipParameterValueObject, SlipValueObject>(skill.SlipParameterList);
+                var slipContext = CreateContext<SlipParameterValueObject, PrimeSkillValueObject>(skill.SlipParameterList);
                 yield return slipContext;
             }
 

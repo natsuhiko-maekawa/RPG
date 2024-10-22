@@ -7,7 +7,8 @@ using BattleScene.UseCases.IService;
 
 namespace BattleScene.UseCases.Service
 {
-    public class SlipRegistererService : IPrimeSkillRegistererService<SlipValueObject>
+    // TODO: 削除すること
+    public class SlipRegistererService : IPrimeSkillRegistererService<PrimeSkillValueObject>
     {
         private readonly IFactory<BattlePropertyValueObject> _battlePropertyFactory;
         private readonly ICollection<SlipEntity, SlipCode> _slipDamageCollection;
@@ -20,7 +21,7 @@ namespace BattleScene.UseCases.Service
             _slipDamageCollection = slipDamageCollection;
         }
 
-        public void Register(SlipValueObject slip)
+        public void Register(PrimeSkillValueObject slip)
         {
             if (slip.ActualTargetIdList.Count == 0) return;
             var slipDefaultTurn = _battlePropertyFactory.Create().SlipDefaultTurn;
@@ -31,7 +32,7 @@ namespace BattleScene.UseCases.Service
             _slipDamageCollection.Add(slipEntity);
         }
 
-        public void Register(IReadOnlyList<SlipValueObject> slipValueObject)
+        public void Register(IReadOnlyList<PrimeSkillValueObject> slipValueObject)
         {
             foreach (var slip in slipValueObject) Register(slip);
         }

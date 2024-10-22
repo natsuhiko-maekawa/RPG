@@ -284,7 +284,7 @@ namespace BattleScene
             builder.Register<PrimeSkillStartState<DamageParameterValueObject, PrimeSkillValueObject>>(Lifetime.Singleton);
             builder.Register<PrimeSkillStartState<BuffParameterValueObject, PrimeSkillValueObject>>(Lifetime.Singleton);
             builder.Register<PrimeSkillStartState<RestoreParameterValueObject, PrimeSkillValueObject>>(Lifetime.Singleton);
-            builder.Register<PrimeSkillStartState<SlipParameterValueObject, SlipValueObject>>(Lifetime.Singleton);
+            builder.Register<PrimeSkillStartState<SlipParameterValueObject, PrimeSkillValueObject>>(Lifetime.Singleton);
             builder
                 .Register<PrimeSkillOutputState<AilmentParameterValueObject, PrimeSkillValueObject>, AilmentOutputState>(
                     Lifetime.Singleton);
@@ -298,14 +298,14 @@ namespace BattleScene
             builder
                 .Register<PrimeSkillOutputState<RestoreParameterValueObject, PrimeSkillValueObject>, RestoreOutputState>(
                     Lifetime.Singleton);
-            builder.Register<PrimeSkillOutputState<SlipParameterValueObject, SlipValueObject>, SlipOutputState>(
+            builder.Register<PrimeSkillOutputState<SlipParameterValueObject, PrimeSkillValueObject>, SlipOutputState>(
                 Lifetime.Singleton);
             builder.Register<PrimeSkillStopState<AilmentParameterValueObject, PrimeSkillValueObject>>(Lifetime.Singleton);
             builder.Register<PrimeSkillStopState<DestroyParameterValueObject, PrimeSkillValueObject>>(Lifetime.Singleton);
             builder.Register<PrimeSkillStopState<DamageParameterValueObject, PrimeSkillValueObject>>(Lifetime.Singleton);
             builder.Register<PrimeSkillStopState<BuffParameterValueObject, PrimeSkillValueObject>>(Lifetime.Singleton);
             builder.Register<PrimeSkillStopState<RestoreParameterValueObject, PrimeSkillValueObject>>(Lifetime.Singleton);
-            builder.Register<PrimeSkillStopState<SlipParameterValueObject, SlipValueObject>>(Lifetime.Singleton);
+            builder.Register<PrimeSkillStopState<SlipParameterValueObject, PrimeSkillValueObject>>(Lifetime.Singleton);
             builder.Register<PrimeSkillBreakState<DamageParameterValueObject, PrimeSkillValueObject>>(Lifetime.Singleton);
 
             #endregion
@@ -320,8 +320,8 @@ namespace BattleScene
                 PrimeSkillUseCase<DestroyParameterValueObject, PrimeSkillValueObject>>(Lifetime.Singleton);
             builder.Register<IPrimeSkillUseCase<BuffParameterValueObject, PrimeSkillValueObject>,
                 PrimeSkillUseCase<BuffParameterValueObject, PrimeSkillValueObject>>(Lifetime.Singleton);
-            builder.Register<IPrimeSkillUseCase<SlipParameterValueObject, SlipValueObject>,
-                PrimeSkillUseCase<SlipParameterValueObject, SlipValueObject>>(Lifetime.Singleton);
+            builder.Register<IPrimeSkillUseCase<SlipParameterValueObject, PrimeSkillValueObject>,
+                PrimeSkillUseCase<SlipParameterValueObject, PrimeSkillValueObject>>(Lifetime.Singleton);
             builder.Register<IPrimeSkillUseCase<RestoreParameterValueObject, PrimeSkillValueObject>,
                 PrimeSkillUseCase<RestoreParameterValueObject, PrimeSkillValueObject>>(Lifetime.Singleton);
             builder.Register<OrderUseCase>(Lifetime.Singleton);
@@ -360,9 +360,8 @@ namespace BattleScene
                 .Register<IPrimeSkillGeneratorService<BuffParameterValueObject, PrimeSkillValueObject>, BuffGeneratorService>(
                     Lifetime.Singleton);
             builder
-                .Register<IPrimeSkillGeneratorService<SlipParameterValueObject, SlipValueObject>, SlipGeneratorService>(
+                .Register<IPrimeSkillGeneratorService<SlipParameterValueObject, PrimeSkillValueObject>, SlipGeneratorService>(
                     Lifetime.Singleton);
-            builder.Register<IPrimeSkillRegistererService<SlipValueObject>, SlipRegistererService>(Lifetime.Singleton);
             builder
                 .Register<IPrimeSkillGeneratorService<RestoreParameterValueObject, PrimeSkillValueObject>,
                     RestoreGeneratorService>(Lifetime.Singleton);
