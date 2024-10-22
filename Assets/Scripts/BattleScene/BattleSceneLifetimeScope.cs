@@ -365,8 +365,6 @@ namespace BattleScene
             builder
                 .Register<IPrimeSkillGeneratorService<RestoreParameterValueObject, PrimeSkillValueObject>,
                     RestoreGeneratorService>(Lifetime.Singleton);
-            builder.Register<IPrimeSkillRegistererService<PrimeSkillValueObject>, TempPrimeSkillRegistererService>(
-                Lifetime.Singleton);
 
             #endregion
 

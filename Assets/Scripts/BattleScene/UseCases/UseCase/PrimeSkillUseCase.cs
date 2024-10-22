@@ -12,16 +12,13 @@ namespace BattleScene.UseCases.UseCase
         where TPrimeSkill : PrimeSkillValueObject
     {
         private readonly IPrimeSkillGeneratorService<TPrimeSkillParameter, TPrimeSkill> _primeSkillGenerator;
-        private readonly IPrimeSkillRegistererService<TPrimeSkill> _primeSkillRegisterer;
         private readonly BattleLoggerService _battleLogger;
 
         public PrimeSkillUseCase(
             IPrimeSkillGeneratorService<TPrimeSkillParameter, TPrimeSkill> primeSkillGenerator,
-            IPrimeSkillRegistererService<TPrimeSkill> primeSkillRegisterer,
             BattleLoggerService battleLogger)
         {
             _primeSkillGenerator = primeSkillGenerator;
-            _primeSkillRegisterer = primeSkillRegisterer;
             _battleLogger = battleLogger;
         }
 
@@ -35,7 +32,6 @@ namespace BattleScene.UseCases.UseCase
                 primeSkillParameterList: primeSkillParameterList,
                 targetIdList: targetIdList);
             _primeSkillGenerator.Register(primeSkillList);
-            _primeSkillRegisterer.Register(primeSkillList);
             _battleLogger.Log(primeSkillList);
             return primeSkillList;
         }
