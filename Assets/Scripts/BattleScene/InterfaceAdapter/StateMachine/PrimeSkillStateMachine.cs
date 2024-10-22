@@ -84,7 +84,7 @@ namespace BattleScene.InterfaceAdapter.StateMachine
             {
                 _executedPrimeSkillCodeList.Add(PrimeSkillCode.Destroy);
                 var destroyContext
-                    = CreateContext<DestroyParameterValueObject, DestroyValueObject>(skill.DestroyedParameterList);
+                    = CreateContext<DestroyParameterValueObject, PrimeSkillValueObject>(skill.DestroyedParameterList);
                 yield return destroyContext;
             }
 

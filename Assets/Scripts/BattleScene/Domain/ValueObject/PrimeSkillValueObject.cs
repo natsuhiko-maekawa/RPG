@@ -107,5 +107,26 @@ namespace BattleScene.Domain.ValueObject
 
             return damage;
         }
+
+        public static PrimeSkillValueObject CreateDestroy(
+            BodyPartCode bodyPartCode,
+            SkillCode skillCode,
+            CharacterId actorId,
+            IReadOnlyList<CharacterId> targetIdList,
+            IReadOnlyList<CharacterId> actualTargetIdList,
+            int destroyCount)
+        {
+            var destroy = new PrimeSkillValueObject
+            {
+                BodyPartCode = bodyPartCode,
+                SkillCode = skillCode,
+                ActorId = actorId,
+                TargetIdList = targetIdList,
+                ActualTargetIdList = actualTargetIdList,
+                DestroyCount = destroyCount
+            };
+
+            return destroy;
+        }
     }
 }

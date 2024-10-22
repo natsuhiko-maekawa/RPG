@@ -4,14 +4,14 @@ using BattleScene.InterfaceAdapter.Facade;
 
 namespace BattleScene.InterfaceAdapter.State.PrimeSkill
 {
-    public class DestroyOutputState : PrimeSkillOutputState<DestroyParameterValueObject, DestroyValueObject>
+    public class DestroyOutputState : PrimeSkillOutputState<DestroyParameterValueObject, PrimeSkillValueObject>
     {
         private readonly DestroyOutputFacade _destroyOutput;
-        private readonly PrimeSkillStopState<DestroyParameterValueObject, DestroyValueObject> _primeSkillStopState;
+        private readonly PrimeSkillStopState<DestroyParameterValueObject, PrimeSkillValueObject> _primeSkillStopState;
 
         public DestroyOutputState(
             DestroyOutputFacade destroyOutput,
-            PrimeSkillStopState<DestroyParameterValueObject, DestroyValueObject> primeSkillStopState)
+            PrimeSkillStopState<DestroyParameterValueObject, PrimeSkillValueObject> primeSkillStopState)
         {
             _destroyOutput = destroyOutput;
             _primeSkillStopState = primeSkillStopState;

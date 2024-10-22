@@ -9,7 +9,8 @@ using BattleScene.UseCases.IService;
 
 namespace BattleScene.UseCases.Service
 {
-    public class DestroyRegistererService : IPrimeSkillRegistererService<DestroyValueObject>
+    // TODO: 削除すること
+    public class DestroyRegistererService : IPrimeSkillRegistererService<PrimeSkillValueObject>
     {
         private readonly IFactory<BodyPartPropertyValueObject, BodyPartCode> _bodyPartPropertyFactory;
         private readonly ICollection<BodyPartEntity, (CharacterId, BodyPartCode)> _bodyPartCollection;
@@ -22,7 +23,7 @@ namespace BattleScene.UseCases.Service
             _bodyPartCollection = bodyPartCollection;
         }
 
-        public void Register(DestroyValueObject destroy)
+        public void Register(PrimeSkillValueObject destroy)
         {
             var bodyPartEntityList = destroy.ActualTargetIdList
                 .Select(CreateBodyPartEntity)
@@ -41,7 +42,7 @@ namespace BattleScene.UseCases.Service
             }
         }
 
-        public void Register(IReadOnlyList<DestroyValueObject> destroyList)
+        public void Register(IReadOnlyList<PrimeSkillValueObject> destroyList)
         {
             foreach (var destroy in destroyList) Register(destroy);
         }
