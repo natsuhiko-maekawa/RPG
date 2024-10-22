@@ -60,46 +60,42 @@ namespace BattleScene.InterfaceAdapter.StateMachine
             if (skill.DamageParameterList.Count != 0)
             {
                 _executedPrimeSkillCodeList.Add(PrimeSkillCode.Damage);
-                var damageContext
-                    = CreateContext<DamageParameterValueObject>(skill.DamageParameterList);
+                var damageContext = CreateContext(skill.DamageParameterList);
                 yield return damageContext;
             }
 
             if (skill.AilmentParameterList.Count != 0)
             {
                 _executedPrimeSkillCodeList.Add(PrimeSkillCode.Ailment);
-                var ailmentContext
-                    = CreateContext<AilmentParameterValueObject>(skill.AilmentParameterList);
+                var ailmentContext = CreateContext(skill.AilmentParameterList);
                 yield return ailmentContext;
             }
 
             if (skill.SlipParameterList.Count != 0)
             {
                 _executedPrimeSkillCodeList.Add(PrimeSkillCode.Slip);
-                var slipContext = CreateContext<SlipParameterValueObject>(skill.SlipParameterList);
+                var slipContext = CreateContext(skill.SlipParameterList);
                 yield return slipContext;
             }
 
             if (skill.DestroyedParameterList.Count != 0)
             {
                 _executedPrimeSkillCodeList.Add(PrimeSkillCode.Destroy);
-                var destroyContext
-                    = CreateContext<DestroyParameterValueObject>(skill.DestroyedParameterList);
+                var destroyContext = CreateContext(skill.DestroyedParameterList);
                 yield return destroyContext;
             }
 
             if (skill.BuffParameterList.Count != 0)
             {
                 _executedPrimeSkillCodeList.Add(PrimeSkillCode.Buff);
-                var buffContext = CreateContext<BuffParameterValueObject>(skill.BuffParameterList);
+                var buffContext = CreateContext(skill.BuffParameterList);
                 yield return buffContext;
             }
 
             if (skill.RestoreParameterList.Count != 0)
             {
                 _executedPrimeSkillCodeList.Add(PrimeSkillCode.Restore);
-                var restoreContext =
-                    CreateContext<RestoreParameterValueObject>(skill.RestoreParameterList);
+                var restoreContext = CreateContext(skill.RestoreParameterList);
                 yield return restoreContext;
             }
 
