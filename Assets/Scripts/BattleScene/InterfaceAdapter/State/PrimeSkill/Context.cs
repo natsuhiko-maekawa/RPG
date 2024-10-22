@@ -13,18 +13,18 @@ using JetBrains.Annotations;
 
 namespace BattleScene.InterfaceAdapter.State.PrimeSkill
 {
-    public class Context<TPrimeSkillParameter, TPrimeSkill> : IContext
+    public class Context<TPrimeSkillParameter> : IContext
     {
-        private BaseState<TPrimeSkillParameter, TPrimeSkill> _state = null!;
+        private BaseState<TPrimeSkillParameter> _state = null!;
 
         public SkillCommonValueObject SkillCommon { get; }
         public IReadOnlyList<CharacterId> TargetIdList { get; }
         public IReadOnlyList<TPrimeSkillParameter> PrimeSkillParameterList { get; }
         public IReadOnlyList<PrimeSkillCode> ExecutedPrimeSkillCodeList { get; }
-        public Queue<TPrimeSkill> PrimeSkillQueue { get; set; } = new();
+        public Queue<PrimeSkillValueObject> PrimeSkillQueue { get; set; } = new();
 
         public Context(
-            BaseState<TPrimeSkillParameter, TPrimeSkill> primeSkillState,
+            BaseState<TPrimeSkillParameter> primeSkillState,
             SkillCommonValueObject skillCommon,
             IReadOnlyList<CharacterId> targetIdList,
             IReadOnlyList<TPrimeSkillParameter> primeSkillParameterList,
@@ -37,7 +37,7 @@ namespace BattleScene.InterfaceAdapter.State.PrimeSkill
             TransitionTo(primeSkillState);
         }
 
-        public void TransitionTo(BaseState<TPrimeSkillParameter, TPrimeSkill> skill)
+        public void TransitionTo(BaseState<TPrimeSkillParameter> skill)
         {
             _state = skill;
             MyDebug.Log(GetClassName());

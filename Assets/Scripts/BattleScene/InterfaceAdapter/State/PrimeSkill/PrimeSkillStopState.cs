@@ -1,7 +1,6 @@
 ﻿namespace BattleScene.InterfaceAdapter.State.PrimeSkill
 {
-    public class PrimeSkillStopState<TPrimeSkillParameter, TPrimeSkill>
-        : BaseState<TPrimeSkillParameter, TPrimeSkill>, IPrimeSkillStopState
+    public class PrimeSkillStopState<TPrimeSkillParameter> : BaseState<TPrimeSkillParameter>, IPrimeSkillStopState
     {
     }
 }

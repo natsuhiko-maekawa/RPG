@@ -9,19 +9,18 @@ using BattleScene.UseCases.IUseCase;
 
 namespace BattleScene.InterfaceAdapter.State.PrimeSkill
 {
-    public class PrimeSkillStartState<TPrimeSkillParameter, TPrimeSkill>
-        : BaseState<TPrimeSkillParameter, TPrimeSkill> where TPrimeSkill : PrimeSkillValueObject
+    public class PrimeSkillStartState<TPrimeSkillParameter> : BaseState<TPrimeSkillParameter>
     {
-        private readonly IPrimeSkillUseCase<TPrimeSkillParameter, TPrimeSkill> _primeSkillUseCase;
+        private readonly IPrimeSkillUseCase<TPrimeSkillParameter> _primeSkillUseCase;
         private readonly ICollection<CharacterEntity, CharacterId> _characterCollection;
-        private readonly PrimeSkillOutputState<TPrimeSkillParameter, TPrimeSkill> _primeSkillOutputState;
-        private readonly PrimeSkillStopState<TPrimeSkillParameter, TPrimeSkill> _primeSkillStopState;
+        private readonly PrimeSkillOutputState<TPrimeSkillParameter> _primeSkillOutputState;
+        private readonly PrimeSkillStopState<TPrimeSkillParameter> _primeSkillStopState;
 
         public PrimeSkillStartState(
-            IPrimeSkillUseCase<TPrimeSkillParameter, TPrimeSkill> primeSkillUseCase,
+            IPrimeSkillUseCase<TPrimeSkillParameter> primeSkillUseCase,
             ICollection<CharacterEntity, CharacterId> characterCollection,
-            PrimeSkillOutputState<TPrimeSkillParameter, TPrimeSkill> primeSkillOutputState,
-            PrimeSkillStopState<TPrimeSkillParameter, TPrimeSkill> primeSkillStopState)
+            PrimeSkillOutputState<TPrimeSkillParameter> primeSkillOutputState,
+            PrimeSkillStopState<TPrimeSkillParameter> primeSkillStopState)
         {
             _primeSkillUseCase = primeSkillUseCase;
             _characterCollection = characterCollection;
@@ -41,9 +40,9 @@ namespace BattleScene.InterfaceAdapter.State.PrimeSkill
                 targetIdList: Context.TargetIdList);
             var primeSkillListExceptFailure = primeSkillList
                 .Where(x => !x.IsFailure);
-            Context.PrimeSkillQueue = new Queue<TPrimeSkill>(primeSkillListExceptFailure);
+            Context.PrimeSkillQueue = new Queue<PrimeSkillValueObject>(primeSkillListExceptFailure);
 
-            BaseState<TPrimeSkillParameter, TPrimeSkill> nextState =
+            BaseState<TPrimeSkillParameter> nextState =
                 Context.PrimeSkillQueue.Count == 0
                 && Context.TargetIdList.All(x => _characterCollection.Get(x).IsPlayer)
                 && Context.ExecutedPrimeSkillCodeList.Contains(PrimeSkillCode.Damage)

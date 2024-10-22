@@ -8,21 +8,20 @@ using BattleScene.UseCases.Service;
 namespace BattleScene.UseCases.UseCase
 {
     public class
-        PrimeSkillUseCase<TPrimeSkillParameter, TPrimeSkill> : IPrimeSkillUseCase<TPrimeSkillParameter, TPrimeSkill>
-        where TPrimeSkill : PrimeSkillValueObject
+        PrimeSkillUseCase<TPrimeSkillParameter> : IPrimeSkillUseCase<TPrimeSkillParameter>
     {
-        private readonly IPrimeSkillGeneratorService<TPrimeSkillParameter, TPrimeSkill> _primeSkillGenerator;
+        private readonly IPrimeSkillGeneratorService<TPrimeSkillParameter> _primeSkillGenerator;
         private readonly BattleLoggerService _battleLogger;
 
         public PrimeSkillUseCase(
-            IPrimeSkillGeneratorService<TPrimeSkillParameter, TPrimeSkill> primeSkillGenerator,
+            IPrimeSkillGeneratorService<TPrimeSkillParameter> primeSkillGenerator,
             BattleLoggerService battleLogger)
         {
             _primeSkillGenerator = primeSkillGenerator;
             _battleLogger = battleLogger;
         }
 
-        public IReadOnlyList<TPrimeSkill> Commit(
+        public IReadOnlyList<PrimeSkillValueObject> Commit(
             SkillCommonValueObject skillCommon,
             IReadOnlyList<TPrimeSkillParameter> primeSkillParameterList,
             IReadOnlyList<CharacterId> targetIdList)

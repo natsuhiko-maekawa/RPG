@@ -1,7 +1,6 @@
 ﻿namespace BattleScene.InterfaceAdapter.State.PrimeSkill
 {
-    public class PrimeSkillBreakState<TPrimeSkillParameter, TPrimeSkill>
-        : BaseState<TPrimeSkillParameter, TPrimeSkill>, IPrimeSkillBreakState
+    public class PrimeSkillBreakState<TPrimeSkillParameter> : BaseState<TPrimeSkillParameter>, IPrimeSkillBreakState
     {
     }
 }

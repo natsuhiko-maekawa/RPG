@@ -11,7 +11,7 @@ using Utility;
 
 namespace BattleScene.UseCases.Service
 {
-    public class SlipGeneratorService : IPrimeSkillGeneratorService<SlipParameterValueObject, PrimeSkillValueObject>
+    public class SlipGeneratorService : IPrimeSkillGeneratorService<SlipParameterValueObject>
     {
         private readonly ActualTargetIdPickerService _actualTargetIdPicker;
         private readonly IFactory<BattlePropertyValueObject> _battlePropertyFactory;

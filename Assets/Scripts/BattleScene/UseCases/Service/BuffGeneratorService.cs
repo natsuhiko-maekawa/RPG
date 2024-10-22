@@ -11,7 +11,7 @@ using Utility;
 
 namespace BattleScene.UseCases.Service
 {
-    public class BuffGeneratorService : IPrimeSkillGeneratorService<BuffParameterValueObject, PrimeSkillValueObject>
+    public class BuffGeneratorService : IPrimeSkillGeneratorService<BuffParameterValueObject>
     {
         private readonly ICollection<BuffEntity, (CharacterId, BuffCode)> _buffCollection;
         private readonly OrderedItemsDomainService _orderedItems;

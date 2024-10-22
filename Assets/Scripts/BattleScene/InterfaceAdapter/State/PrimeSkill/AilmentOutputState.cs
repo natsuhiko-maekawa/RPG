@@ -3,14 +3,14 @@ using BattleScene.InterfaceAdapter.Facade;
 
 namespace BattleScene.InterfaceAdapter.State.PrimeSkill
 {
-    public class AilmentOutputState : PrimeSkillOutputState<AilmentParameterValueObject, PrimeSkillValueObject>
+    public class AilmentOutputState : PrimeSkillOutputState<AilmentParameterValueObject>
     {
         private readonly AilmentOutputFacade _ailmentOutput;
-        private readonly PrimeSkillStopState<AilmentParameterValueObject, PrimeSkillValueObject> _primeSkillStopState;
+        private readonly PrimeSkillStopState<AilmentParameterValueObject> _primeSkillStopState;
 
         public AilmentOutputState(
             AilmentOutputFacade ailmentOutput,
-            PrimeSkillStopState<AilmentParameterValueObject, PrimeSkillValueObject> primeSkillStopState)
+            PrimeSkillStopState<AilmentParameterValueObject> primeSkillStopState)
         {
             _ailmentOutput = ailmentOutput;
             _primeSkillStopState = primeSkillStopState;

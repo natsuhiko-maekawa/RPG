@@ -4,9 +4,9 @@ using BattleScene.Domain.ValueObject;
 
 namespace BattleScene.UseCases.IUseCase
 {
-    public interface IPrimeSkillUseCase<in TPrimeSkillParameter, out TPrimeSkill>
+    public interface IPrimeSkillUseCase<in TPrimeSkillParameter>
     {
-        public IReadOnlyList<TPrimeSkill> Commit(
+        public IReadOnlyList<PrimeSkillValueObject> Commit(
             SkillCommonValueObject skillCommon,
             IReadOnlyList<TPrimeSkillParameter> primeSkillParameterList,
             IReadOnlyList<CharacterId> targetIdList);

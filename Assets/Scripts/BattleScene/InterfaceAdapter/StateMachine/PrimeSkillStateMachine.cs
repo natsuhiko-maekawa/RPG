@@ -61,7 +61,7 @@ namespace BattleScene.InterfaceAdapter.StateMachine
             {
                 _executedPrimeSkillCodeList.Add(PrimeSkillCode.Damage);
                 var damageContext
-                    = CreateContext<DamageParameterValueObject, PrimeSkillValueObject>(skill.DamageParameterList);
+                    = CreateContext<DamageParameterValueObject>(skill.DamageParameterList);
                 yield return damageContext;
             }
 
@@ -69,14 +69,14 @@ namespace BattleScene.InterfaceAdapter.StateMachine
             {
                 _executedPrimeSkillCodeList.Add(PrimeSkillCode.Ailment);
                 var ailmentContext
-                    = CreateContext<AilmentParameterValueObject, PrimeSkillValueObject>(skill.AilmentParameterList);
+                    = CreateContext<AilmentParameterValueObject>(skill.AilmentParameterList);
                 yield return ailmentContext;
             }
 
             if (skill.SlipParameterList.Count != 0)
             {
                 _executedPrimeSkillCodeList.Add(PrimeSkillCode.Slip);
-                var slipContext = CreateContext<SlipParameterValueObject, PrimeSkillValueObject>(skill.SlipParameterList);
+                var slipContext = CreateContext<SlipParameterValueObject>(skill.SlipParameterList);
                 yield return slipContext;
             }
 
@@ -84,14 +84,14 @@ namespace BattleScene.InterfaceAdapter.StateMachine
             {
                 _executedPrimeSkillCodeList.Add(PrimeSkillCode.Destroy);
                 var destroyContext
-                    = CreateContext<DestroyParameterValueObject, PrimeSkillValueObject>(skill.DestroyedParameterList);
+                    = CreateContext<DestroyParameterValueObject>(skill.DestroyedParameterList);
                 yield return destroyContext;
             }
 
             if (skill.BuffParameterList.Count != 0)
             {
                 _executedPrimeSkillCodeList.Add(PrimeSkillCode.Buff);
-                var buffContext = CreateContext<BuffParameterValueObject, PrimeSkillValueObject>(skill.BuffParameterList);
+                var buffContext = CreateContext<BuffParameterValueObject>(skill.BuffParameterList);
                 yield return buffContext;
             }
 
@@ -99,18 +99,18 @@ namespace BattleScene.InterfaceAdapter.StateMachine
             {
                 _executedPrimeSkillCodeList.Add(PrimeSkillCode.Restore);
                 var restoreContext =
-                    CreateContext<RestoreParameterValueObject, PrimeSkillValueObject>(skill.RestoreParameterList);
+                    CreateContext<RestoreParameterValueObject>(skill.RestoreParameterList);
                 yield return restoreContext;
             }
 
             yield break;
 
-            IContext CreateContext<TPrimeSkillParameter, TPrimeSkill>(
-                IReadOnlyList<TPrimeSkillParameter> primeSkillParameterList) where TPrimeSkill : PrimeSkillValueObject
+            IContext CreateContext<TPrimeSkillParameter>(
+                IReadOnlyList<TPrimeSkillParameter> primeSkillParameterList)
             {
                 var primeSkillStartState =
-                    _container.Resolve<PrimeSkillStartState<TPrimeSkillParameter, TPrimeSkill>>();
-                var skillContext = new Context<TPrimeSkillParameter, TPrimeSkill>(
+                    _container.Resolve<PrimeSkillStartState<TPrimeSkillParameter>>();
+                var skillContext = new Context<TPrimeSkillParameter>(
                     primeSkillState: primeSkillStartState,
                     skillCommon: skill.SkillCommon,
                     primeSkillParameterList: primeSkillParameterList,

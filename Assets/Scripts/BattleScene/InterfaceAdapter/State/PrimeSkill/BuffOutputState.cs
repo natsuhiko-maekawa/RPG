@@ -10,18 +10,18 @@ using BattleScene.InterfaceAdapter.Presenter;
 
 namespace BattleScene.InterfaceAdapter.State.PrimeSkill
 {
-    public class BuffOutputState : PrimeSkillOutputState<BuffParameterValueObject, PrimeSkillValueObject>
+    public class BuffOutputState : PrimeSkillOutputState<BuffParameterValueObject>
     {
         private readonly ICollection<BattleLogEntity, BattleLogId> _battleLogCollection;
         private readonly IResource<BuffViewDto, BuffCode> _buffViewResource;
         private readonly MessageViewPresenter _messageView;
-        private readonly PrimeSkillStopState<BuffParameterValueObject, PrimeSkillValueObject> _primeSkillStopState;
+        private readonly PrimeSkillStopState<BuffParameterValueObject> _primeSkillStopState;
 
         public BuffOutputState(
             ICollection<BattleLogEntity, BattleLogId> battleLogCollection,
             IResource<BuffViewDto, BuffCode> buffViewResource,
             MessageViewPresenter messageView,
-            PrimeSkillStopState<BuffParameterValueObject, PrimeSkillValueObject> primeSkillStopState)
+            PrimeSkillStopState<BuffParameterValueObject> primeSkillStopState)
         {
             _battleLogCollection = battleLogCollection;
             _buffViewResource = buffViewResource;

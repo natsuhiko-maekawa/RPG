@@ -10,7 +10,7 @@ using BattleScene.UseCases.IService;
 
 namespace BattleScene.UseCases.Service
 {
-    public class DestroyGeneratorService : IPrimeSkillGeneratorService<DestroyParameterValueObject, PrimeSkillValueObject>
+    public class DestroyGeneratorService : IPrimeSkillGeneratorService<DestroyParameterValueObject>
     {
         private readonly ActualTargetIdPickerService _actualTargetIdPicker;
         private readonly ICollection<BodyPartEntity, (CharacterId, BodyPartCode)> _bodyPartCollection;

@@ -1,10 +1,10 @@
 ﻿namespace BattleScene.InterfaceAdapter.State.PrimeSkill
 {
-    public abstract class BaseState<TPrimeSkillParameter, TPrimeSkill>
+    public abstract class BaseState<TPrimeSkillParameter>
     {
-        protected Context<TPrimeSkillParameter, TPrimeSkill> Context { get; set; } = null!;
+        protected Context<TPrimeSkillParameter> Context { get; set; } = null!;
 
-        public void SetContext(Context<TPrimeSkillParameter, TPrimeSkill> context)
+        public void SetContext(Context<TPrimeSkillParameter> context)
         {
             Context = context;
         }

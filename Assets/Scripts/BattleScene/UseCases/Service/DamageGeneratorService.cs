@@ -10,7 +10,7 @@ using Range = BattleScene.Domain.Code.Range;
 
 namespace BattleScene.UseCases.Service
 {
-    public class DamageGeneratorService : IPrimeSkillGeneratorService<DamageParameterValueObject, PrimeSkillValueObject>
+    public class DamageGeneratorService : IPrimeSkillGeneratorService<DamageParameterValueObject>
     {
         private readonly OrderedItemsDomainService _orderedItems;
         private readonly DamageEvaluatorService _damageEvaluator;

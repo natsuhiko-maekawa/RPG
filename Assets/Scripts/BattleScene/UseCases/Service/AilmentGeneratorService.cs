@@ -11,7 +11,7 @@ using BattleScene.UseCases.IService;
 
 namespace BattleScene.UseCases.Service
 {
-    public class AilmentGeneratorService : IPrimeSkillGeneratorService<AilmentParameterValueObject, PrimeSkillValueObject>
+    public class AilmentGeneratorService : IPrimeSkillGeneratorService<AilmentParameterValueObject>
     {
         private readonly ActualTargetIdPickerService _actualTargetIdPicker;
         private readonly OrderedItemsDomainService _orderedItems;
