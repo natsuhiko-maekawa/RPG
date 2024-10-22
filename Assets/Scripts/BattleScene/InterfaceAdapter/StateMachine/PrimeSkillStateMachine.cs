@@ -69,7 +69,7 @@ namespace BattleScene.InterfaceAdapter.StateMachine
             {
                 _executedPrimeSkillCodeList.Add(PrimeSkillCode.Ailment);
                 var ailmentContext
-                    = CreateContext<AilmentParameterValueObject, AilmentValueObject>(skill.AilmentParameterList);
+                    = CreateContext<AilmentParameterValueObject, PrimeSkillValueObject>(skill.AilmentParameterList);
                 yield return ailmentContext;
             }
 

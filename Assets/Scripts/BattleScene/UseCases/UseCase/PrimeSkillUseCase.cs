@@ -34,6 +34,7 @@ namespace BattleScene.UseCases.UseCase
                 skillCommon: skillCommon,
                 primeSkillParameterList: primeSkillParameterList,
                 targetIdList: targetIdList);
+            _primeSkillGenerator.Register(primeSkillList);
             _primeSkillRegisterer.Register(primeSkillList);
             _battleLogger.Log(primeSkillList);
             return primeSkillList;

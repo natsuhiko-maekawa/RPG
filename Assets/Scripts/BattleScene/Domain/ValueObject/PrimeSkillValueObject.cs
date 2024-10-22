@@ -43,6 +43,25 @@ namespace BattleScene.Domain.ValueObject
 
         public int TechnicalPoint { get; protected init; }
 
+        public static PrimeSkillValueObject CreateAilment(
+            AilmentCode ailmentCode,
+            SkillCode skillCode,
+            CharacterId actorId,
+            IReadOnlyList<CharacterId> targetIdList,
+            IReadOnlyList<CharacterId> actualTargetIdList)
+        {
+            var ailment = new PrimeSkillValueObject
+            {
+                AilmentCode = ailmentCode,
+                SkillCode = skillCode,
+                ActorId = actorId,
+                TargetIdList = targetIdList,
+                ActualTargetIdList = actualTargetIdList
+            };
+
+            return ailment;
+        }
+        
         public static PrimeSkillValueObject CreateDamage(
             SkillCode skillCode,
             CharacterId actorId,

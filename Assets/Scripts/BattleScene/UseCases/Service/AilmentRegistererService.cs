@@ -9,7 +9,8 @@ using BattleScene.UseCases.IService;
 
 namespace BattleScene.UseCases.Service
 {
-    public class AilmentRegistererService : IPrimeSkillRegistererService<AilmentValueObject>
+    // TODO: 削除すること
+    public class AilmentRegistererService : IPrimeSkillRegistererService<PrimeSkillValueObject>
     {
         private readonly IFactory<AilmentPropertyValueObject, AilmentCode> _ailmentPropertyFactory;
         private readonly ICollection<AilmentEntity, (CharacterId, AilmentCode)> _ailmentCollection;
@@ -22,7 +23,7 @@ namespace BattleScene.UseCases.Service
             _ailmentCollection = ailmentCollection;
         }
 
-        public void Register(AilmentValueObject ailment)
+        public void Register(PrimeSkillValueObject ailment)
         {
             var ailmentProperty = _ailmentPropertyFactory.Create(ailment.AilmentCode);
             var ailmentEntityList = ailment.ActualTargetIdList
@@ -36,7 +37,7 @@ namespace BattleScene.UseCases.Service
             _ailmentCollection.Add(ailmentEntityList);
         }
 
-        public void Register(IReadOnlyList<AilmentValueObject> ailmentList)
+        public void Register(IReadOnlyList<PrimeSkillValueObject> ailmentList)
         {
             foreach (var ailment in ailmentList) Register(ailment);
         }
