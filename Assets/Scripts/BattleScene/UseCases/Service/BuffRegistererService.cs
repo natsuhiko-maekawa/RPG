@@ -9,7 +9,8 @@ using BattleScene.UseCases.IService;
 
 namespace BattleScene.UseCases.Service
 {
-    public class BuffRegistererService : IPrimeSkillRegistererService<BuffValueObject>
+    // TODO: 削除すること
+    public class BuffRegistererService : IPrimeSkillRegistererService<PrimeSkillValueObject>
     {
         private readonly ICollection<BuffEntity, (CharacterId, BuffCode)> _buffCollection;
 
@@ -19,7 +20,7 @@ namespace BattleScene.UseCases.Service
             _buffCollection = buffCollection;
         }
 
-        public void Register(BuffValueObject buff)
+        public void Register(PrimeSkillValueObject buff)
         {
             var buffEntityList = buff.TargetIdList
                 .Select(CreateBuffEntity)
@@ -41,7 +42,7 @@ namespace BattleScene.UseCases.Service
             }
         }
 
-        public void Register(IReadOnlyList<BuffValueObject> buffList)
+        public void Register(IReadOnlyList<PrimeSkillValueObject> buffList)
         {
             foreach (var buff in buffList) Register(buff);
         }

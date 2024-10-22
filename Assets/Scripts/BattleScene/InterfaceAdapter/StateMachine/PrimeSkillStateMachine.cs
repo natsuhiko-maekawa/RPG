@@ -91,7 +91,7 @@ namespace BattleScene.InterfaceAdapter.StateMachine
             if (skill.BuffParameterList.Count != 0)
             {
                 _executedPrimeSkillCodeList.Add(PrimeSkillCode.Buff);
-                var buffContext = CreateContext<BuffParameterValueObject, BuffValueObject>(skill.BuffParameterList);
+                var buffContext = CreateContext<BuffParameterValueObject, PrimeSkillValueObject>(skill.BuffParameterList);
                 yield return buffContext;
             }
 

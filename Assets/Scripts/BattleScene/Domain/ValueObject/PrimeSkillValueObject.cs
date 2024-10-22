@@ -61,6 +61,30 @@ namespace BattleScene.Domain.ValueObject
 
             return ailment;
         }
+
+        public static PrimeSkillValueObject CreateBuff(
+            BuffCode buffCode,
+            SkillCode skillCode,
+            CharacterId actorId,
+            IReadOnlyList<CharacterId> targetIdList,
+            float rate,
+            int turn,
+            LifetimeCode lifetimeCode)
+        {
+            var buff = new PrimeSkillValueObject
+            {
+                BuffCode = buffCode,
+                SkillCode = skillCode,
+                ActorId = actorId,
+                TargetIdList = targetIdList,
+                ActualTargetIdList = targetIdList,
+                Rate = rate,
+                Turn = turn,
+                LifetimeCode = lifetimeCode
+            };
+
+            return buff;
+        }
         
         public static PrimeSkillValueObject CreateDamage(
             SkillCode skillCode,
