@@ -283,7 +283,7 @@ namespace BattleScene
             builder.Register<PrimeSkillStartState<DestroyParameterValueObject, PrimeSkillValueObject>>(Lifetime.Singleton);
             builder.Register<PrimeSkillStartState<DamageParameterValueObject, PrimeSkillValueObject>>(Lifetime.Singleton);
             builder.Register<PrimeSkillStartState<BuffParameterValueObject, PrimeSkillValueObject>>(Lifetime.Singleton);
-            builder.Register<PrimeSkillStartState<RestoreParameterValueObject, RestoreValueObject>>(Lifetime.Singleton);
+            builder.Register<PrimeSkillStartState<RestoreParameterValueObject, PrimeSkillValueObject>>(Lifetime.Singleton);
             builder.Register<PrimeSkillStartState<SlipParameterValueObject, SlipValueObject>>(Lifetime.Singleton);
             builder
                 .Register<PrimeSkillOutputState<AilmentParameterValueObject, PrimeSkillValueObject>, AilmentOutputState>(
@@ -296,7 +296,7 @@ namespace BattleScene
                 .Register<PrimeSkillOutputState<DestroyParameterValueObject, PrimeSkillValueObject>, DestroyOutputState>(
                     Lifetime.Singleton);
             builder
-                .Register<PrimeSkillOutputState<RestoreParameterValueObject, RestoreValueObject>, RestoreOutputState>(
+                .Register<PrimeSkillOutputState<RestoreParameterValueObject, PrimeSkillValueObject>, RestoreOutputState>(
                     Lifetime.Singleton);
             builder.Register<PrimeSkillOutputState<SlipParameterValueObject, SlipValueObject>, SlipOutputState>(
                 Lifetime.Singleton);
@@ -304,7 +304,7 @@ namespace BattleScene
             builder.Register<PrimeSkillStopState<DestroyParameterValueObject, PrimeSkillValueObject>>(Lifetime.Singleton);
             builder.Register<PrimeSkillStopState<DamageParameterValueObject, PrimeSkillValueObject>>(Lifetime.Singleton);
             builder.Register<PrimeSkillStopState<BuffParameterValueObject, PrimeSkillValueObject>>(Lifetime.Singleton);
-            builder.Register<PrimeSkillStopState<RestoreParameterValueObject, RestoreValueObject>>(Lifetime.Singleton);
+            builder.Register<PrimeSkillStopState<RestoreParameterValueObject, PrimeSkillValueObject>>(Lifetime.Singleton);
             builder.Register<PrimeSkillStopState<SlipParameterValueObject, SlipValueObject>>(Lifetime.Singleton);
             builder.Register<PrimeSkillBreakState<DamageParameterValueObject, PrimeSkillValueObject>>(Lifetime.Singleton);
 
@@ -322,8 +322,8 @@ namespace BattleScene
                 PrimeSkillUseCase<BuffParameterValueObject, PrimeSkillValueObject>>(Lifetime.Singleton);
             builder.Register<IPrimeSkillUseCase<SlipParameterValueObject, SlipValueObject>,
                 PrimeSkillUseCase<SlipParameterValueObject, SlipValueObject>>(Lifetime.Singleton);
-            builder.Register<IPrimeSkillUseCase<RestoreParameterValueObject, RestoreValueObject>,
-                PrimeSkillUseCase<RestoreParameterValueObject, RestoreValueObject>>(Lifetime.Singleton);
+            builder.Register<IPrimeSkillUseCase<RestoreParameterValueObject, PrimeSkillValueObject>,
+                PrimeSkillUseCase<RestoreParameterValueObject, PrimeSkillValueObject>>(Lifetime.Singleton);
             builder.Register<OrderUseCase>(Lifetime.Singleton);
             builder.Register<SlipUseCase>(Lifetime.Singleton);
 
@@ -364,10 +364,8 @@ namespace BattleScene
                     Lifetime.Singleton);
             builder.Register<IPrimeSkillRegistererService<SlipValueObject>, SlipRegistererService>(Lifetime.Singleton);
             builder
-                .Register<IPrimeSkillGeneratorService<RestoreParameterValueObject, RestoreValueObject>,
+                .Register<IPrimeSkillGeneratorService<RestoreParameterValueObject, PrimeSkillValueObject>,
                     RestoreGeneratorService>(Lifetime.Singleton);
-            builder.Register<IPrimeSkillRegistererService<RestoreValueObject>, RestoreRegistererService>(
-                Lifetime.Singleton);
             builder.Register<IPrimeSkillRegistererService<PrimeSkillValueObject>, TempPrimeSkillRegistererService>(
                 Lifetime.Singleton);
 

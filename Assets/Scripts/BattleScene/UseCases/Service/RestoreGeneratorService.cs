@@ -4,6 +4,7 @@ using System.Linq;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.DomainService;
+using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
 using BattleScene.UseCases.IService;
@@ -11,8 +12,9 @@ using Utility;
 
 namespace BattleScene.UseCases.Service
 {
-    public class RestoreGeneratorService : IPrimeSkillGeneratorService<RestoreParameterValueObject, RestoreValueObject>
+    public class RestoreGeneratorService : IPrimeSkillGeneratorService<RestoreParameterValueObject, PrimeSkillValueObject>
     {
+        private readonly ICollection<CharacterEntity, CharacterId> _characterCollection;
         private readonly IFactory<PlayerPropertyValueObject, CharacterTypeCode> _playerPropertyFactory;
         private readonly OrderedItemsDomainService _orderedItems;
         private readonly PlayerDomainService _playerDomainService;
@@ -20,14 +22,16 @@ namespace BattleScene.UseCases.Service
         public RestoreGeneratorService(
             IFactory<PlayerPropertyValueObject, CharacterTypeCode> playerPropertyFactory,
             OrderedItemsDomainService orderedItems,
-            PlayerDomainService playerDomainService)
+            PlayerDomainService playerDomainService,
+            ICollection<CharacterEntity, CharacterId> characterCollection)
         {
             _playerPropertyFactory = playerPropertyFactory;
             _orderedItems = orderedItems;
             _playerDomainService = playerDomainService;
+            _characterCollection = characterCollection;
         }
 
-        public IReadOnlyList<RestoreValueObject> Generate(
+        public IReadOnlyList<PrimeSkillValueObject> Generate(
             SkillCommonValueObject skillCommon,
             IReadOnlyList<RestoreParameterValueObject> restoreParameterList,
             IReadOnlyList<CharacterId> targetIdList)
@@ -40,17 +44,30 @@ namespace BattleScene.UseCases.Service
             var restoreList = restoreParameterList.Select(GetRestore).ToList();
             return restoreList;
 
-            RestoreValueObject GetRestore(RestoreParameterValueObject restoreParameter)
+            PrimeSkillValueObject GetRestore(RestoreParameterValueObject restoreParameter)
             {
                 var technicalPoint = Math.Min(restoreParameter.TechnicalPoint,
                     maxTechnicalPoint - currentTechnicalPoint);
-                var restore = new RestoreValueObject(
+                var restore = PrimeSkillValueObject.CreateRestore(
                     actorId: actorId,
                     skillCode: skillCommon.SkillCode,
                     targetIdList: targetIdList,
                     technicalPoint: technicalPoint);
                 return restore;
             }
+        }
+        
+        public void Register(IReadOnlyList<PrimeSkillValueObject> restoreList)
+        {
+            foreach (var restore in restoreList) AddTechnicalPoint(restore);
+        }
+
+        private void AddTechnicalPoint(PrimeSkillValueObject restore)
+        {
+            var currentTechnicalPoint = _characterCollection.Get(restore.ActorId!).CurrentTechnicalPoint;
+            var technicalPoint = restore.TechnicalPoint;
+            var newTechnicalPoint = currentTechnicalPoint + technicalPoint;
+            _characterCollection.Get(restore.ActorId!).CurrentTechnicalPoint = newTechnicalPoint;
         }
     }
 }

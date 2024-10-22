@@ -128,5 +128,23 @@ namespace BattleScene.Domain.ValueObject
 
             return destroy;
         }
+        
+        public static PrimeSkillValueObject CreateRestore(
+            SkillCode skillCode,
+            CharacterId actorId,
+            IReadOnlyList<CharacterId> targetIdList,
+            int technicalPoint)
+        {
+            var restore = new PrimeSkillValueObject
+            {
+                SkillCode = skillCode,
+                ActorId = actorId,
+                TargetIdList = targetIdList,
+                ActualTargetIdList = targetIdList,
+                TechnicalPoint = technicalPoint
+            };
+
+            return restore;
+        }
     }
 }

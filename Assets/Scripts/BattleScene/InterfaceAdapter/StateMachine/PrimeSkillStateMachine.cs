@@ -99,7 +99,7 @@ namespace BattleScene.InterfaceAdapter.StateMachine
             {
                 _executedPrimeSkillCodeList.Add(PrimeSkillCode.Restore);
                 var restoreContext =
-                    CreateContext<RestoreParameterValueObject, RestoreValueObject>(skill.RestoreParameterList);
+                    CreateContext<RestoreParameterValueObject, PrimeSkillValueObject>(skill.RestoreParameterList);
                 yield return restoreContext;
             }
 

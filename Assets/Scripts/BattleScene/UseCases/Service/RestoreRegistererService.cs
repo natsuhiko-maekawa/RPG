@@ -7,7 +7,8 @@ using BattleScene.UseCases.IService;
 
 namespace BattleScene.UseCases.Service
 {
-    public class RestoreRegistererService : IPrimeSkillRegistererService<RestoreValueObject>
+    // TODO: 削除すること
+    public class RestoreRegistererService : IPrimeSkillRegistererService<PrimeSkillValueObject>
     {
         private readonly ICollection<CharacterEntity, CharacterId> _characterCollection;
 
@@ -17,12 +18,12 @@ namespace BattleScene.UseCases.Service
             _characterCollection = characterCollection;
         }
 
-        public void Register(IReadOnlyList<RestoreValueObject> restoreList)
+        public void Register(IReadOnlyList<PrimeSkillValueObject> restoreList)
         {
             foreach (var restore in restoreList) AddTechnicalPoint(restore);
         }
 
-        private void AddTechnicalPoint(RestoreValueObject restore)
+        private void AddTechnicalPoint(PrimeSkillValueObject restore)
         {
             var currentTechnicalPoint = _characterCollection.Get(restore.ActorId!).CurrentTechnicalPoint;
             var technicalPoint = restore.TechnicalPoint;

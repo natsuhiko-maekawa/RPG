@@ -3,14 +3,14 @@ using BattleScene.InterfaceAdapter.Facade;
 
 namespace BattleScene.InterfaceAdapter.State.PrimeSkill
 {
-    public class RestoreOutputState : PrimeSkillOutputState<RestoreParameterValueObject, RestoreValueObject>
+    public class RestoreOutputState : PrimeSkillOutputState<RestoreParameterValueObject, PrimeSkillValueObject>
     {
         private readonly RestoreOutputFacade _restoreOutput;
-        private readonly PrimeSkillStopState<RestoreParameterValueObject, RestoreValueObject> _primeSkillStopState;
+        private readonly PrimeSkillStopState<RestoreParameterValueObject, PrimeSkillValueObject> _primeSkillStopState;
 
         public RestoreOutputState(
             RestoreOutputFacade restoreOutput,
-            PrimeSkillStopState<RestoreParameterValueObject, RestoreValueObject> primeSkillStopState)
+            PrimeSkillStopState<RestoreParameterValueObject, PrimeSkillValueObject> primeSkillStopState)
         {
             _restoreOutput = restoreOutput;
             _primeSkillStopState = primeSkillStopState;
