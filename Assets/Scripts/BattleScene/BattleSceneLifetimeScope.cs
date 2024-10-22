@@ -333,32 +333,23 @@ namespace BattleScene
 
             builder.Register<ActionTimeService>(Lifetime.Singleton);
             builder.Register<ActualTargetIdPickerService>(Lifetime.Singleton);
-            builder.Register<AilmentGeneratorService>(Lifetime.Singleton);
-            builder.Register<AilmentRegistererService>(Lifetime.Singleton);
             builder.Register<AilmentResetService>(Lifetime.Singleton);
             builder.Register<AttackCounterService>(Lifetime.Singleton);
             builder.Register<AttacksWeakPointEvaluatorService>(Lifetime.Singleton);
-            builder.Register<BuffGeneratorService>(Lifetime.Singleton);
-            builder.Register<BuffRegistererService>(Lifetime.Singleton);
             builder.Register<BuffTurnService>(Lifetime.Singleton);
             builder.Register<ToSkillCodeService>(Lifetime.Singleton);
             builder.Register<CharacterPropertyFactoryService>(Lifetime.Singleton);
             builder.Register<DamageEvaluatorService>(Lifetime.Singleton);
             builder.Register<IsHitEvaluatorService>(Lifetime.Singleton);
             builder.Register<OrderService>(Lifetime.Singleton);
-            builder.Register<RestoreGeneratorService>(Lifetime.Singleton);
             builder.Register<SkillExecutorService>(Lifetime.Singleton);
             builder.Register<SlipDamageGeneratorService>(Lifetime.Singleton);
-            builder.Register<SlipGeneratorService>(Lifetime.Singleton);
-            builder.Register<SlipRegistererService>(Lifetime.Singleton);
             builder.Register<SlipService>(Lifetime.Singleton);
             builder.Register<ISpeedService, SpeedService>(Lifetime.Singleton);
             builder.Register<TurnInitializerService>(Lifetime.Singleton);
             builder
                 .Register<IPrimeSkillGeneratorService<AilmentParameterValueObject, PrimeSkillValueObject>,
                     AilmentGeneratorService>(Lifetime.Singleton);
-            builder.Register<IPrimeSkillRegistererService<PrimeSkillValueObject>, AilmentRegistererService>(
-                Lifetime.Singleton);
             builder
                 .Register<IPrimeSkillGeneratorService<DamageParameterValueObject, PrimeSkillValueObject>,
                     DamageGeneratorService>(Lifetime.Singleton);
