@@ -13,11 +13,12 @@ namespace BattleScene.UseCases.Service
 {
     public class DamageEvaluatorService
     {
+        private const float MultiplicationIdentityElement = 1.0f;
         private readonly BodyPartDomainService _bodyPartDomainService;
         private readonly IBuffDomainService _buff;
         private readonly CharacterPropertyFactoryService _characterPropertyFactory;
         private readonly IFactory<BattlePropertyValueObject> _battlePropertyFactory;
-        private readonly ICollection<BuffEntity, (CharacterId, BuffCode)> _buffCollection;
+        private readonly ICollection<EnhanceEntity, (CharacterId, EnhanceCode)> _enhanceCollection;
         private readonly IMyRandomService _myRandom;
 
         public DamageEvaluatorService(
@@ -25,14 +26,14 @@ namespace BattleScene.UseCases.Service
             IBuffDomainService buff,
             CharacterPropertyFactoryService characterPropertyFactoryFactory,
             IFactory<BattlePropertyValueObject> battlePropertyFactory,
-            ICollection<BuffEntity, (CharacterId, BuffCode)> buffCollection,
+            ICollection<EnhanceEntity, (CharacterId, EnhanceCode)> enhanceCollection,
             IMyRandomService myRandom)
         {
             _bodyPartDomainService = bodyPartDomainService;
             _buff = buff;
             _characterPropertyFactory = characterPropertyFactoryFactory;
             _battlePropertyFactory = battlePropertyFactory;
-            _buffCollection = buffCollection;
+            _enhanceCollection = enhanceCollection;
             _myRandom = myRandom;
         }
 
@@ -57,7 +58,10 @@ namespace BattleScene.UseCases.Service
             var targetBuffRate = _buff.GetRate(targetId, BuffCode.Defence);
             var destroyedRate = 1.0f - _bodyPartDomainService.Count(actorId, BodyPartCode.Arm) * 0.5f;
             // バフから防御、空蝉を切り離し、特殊効果として実装するまで保留
-            var targetDefence = _buffCollection.Get((targetId, BuffCode.DefenceSkill)) == null ? 1.0f : 0.5f;
+            var targetDefence
+                = _enhanceCollection.TryGet((targetId, EnhanceCode.Defence), out var enhance) && enhance.Effects
+                    ? 0.5f
+                    : MultiplicationIdentityElement;
             var rate = damageParameter.DamageRate;
             var weekPointRate = (int)Math.Pow(2, actorMatAttr.Intersect(targetWeekPoint).Count());
             return (int)(actorStrength * actorStrength / (float)targetVitality * weekPointRate * actorBuffRate
@@ -70,7 +74,8 @@ namespace BattleScene.UseCases.Service
             const int targetVitality = 1;
             var actorBuffRate = _buff.GetRate(actorId, BuffCode.Attack);
             const int targetBuffRate = 1;
-            var destroyedRate = 1.0f - _bodyPartDomainService.Count(actorId, BodyPartCode.Arm) * 0.5f;
+            var destroyedRate
+                = MultiplicationIdentityElement - _bodyPartDomainService.Count(actorId, BodyPartCode.Arm) * 0.5f;
             var rate = damageParameter.DamageRate;
             return (int)(actorStrength * actorStrength / (float)targetVitality * actorBuffRate / targetBuffRate
                          * destroyedRate * rate * 1.5f) + _myRandom.Range(1, 3);

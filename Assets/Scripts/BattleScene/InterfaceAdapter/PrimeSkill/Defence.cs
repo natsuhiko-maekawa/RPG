@@ -3,10 +3,9 @@ using BattleScene.InterfaceAdapter.PrimeSkill.BaseClass;
 
 namespace BattleScene.InterfaceAdapter.PrimeSkill
 {
-    public class Defence : BaseBuff
+    public class Defence : BaseEnhance
     {
-        public override BuffCode BuffCode { get; } = BuffCode.DefenceSkill;
-        public override float Rate { get; } = 2.0f;
+        public override EnhanceCode EnhanceCode { get; } = EnhanceCode.Defence;
         public override int Turn { get; } = 1;
         public override LifetimeCode LifetimeCode { get; } = LifetimeCode.ToNextAction;
     }

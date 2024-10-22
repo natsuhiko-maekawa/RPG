@@ -15,10 +15,7 @@ namespace BattleScene.InterfaceAdapter.Skill
         public override Range Range { get; } = Range.Oneself;
         public override MessageCode AttackMessageCode { get; } = MessageCode.DefenceMessage;
 
-        public override IReadOnlyList<BaseBuff> BuffList { get; }
-            = new[] { new Defence() };
-
-        public override IReadOnlyList<BaseRestore> RestoreList { get; }
-            = new[] { new BasicRestore() };
+        public override IReadOnlyList<BaseEnhance> EnhanceList { get; } = new[] { new Defence() };
+        public override IReadOnlyList<BaseRestore> RestoreList { get; } = new[] { new BasicRestore() };
     }
 }
