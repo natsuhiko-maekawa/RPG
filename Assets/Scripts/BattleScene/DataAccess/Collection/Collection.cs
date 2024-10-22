@@ -12,6 +12,12 @@ namespace BattleScene.DataAccess.Collection
     {
         private readonly Dictionary<TId, TEntity> _entityDictionary = new();
 
+        public bool TryGet(TId? id, [NotNullWhen(true)] out TEntity? entity)
+        {
+            entity = null;
+            return id != null && _entityDictionary.TryGetValue(id, out entity);
+        }
+
         [return: NotNullIfNotNull("id")] public TEntity? Get(TId? id)
         {
             if (id == null) return null;

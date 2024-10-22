@@ -7,6 +7,7 @@ namespace BattleScene.Domain.DataAccess
     public interface ICollection<TEntity, TId>
         where TEntity : BaseEntity<TId>
     {
+        public bool TryGet(TId? id, [NotNullWhen(true)] out TEntity? entity);
         [return: NotNullIfNotNull("id")] public TEntity? Get(TId? id);
         public IReadOnlyList<TEntity> Get();
         public void Add(TEntity entity);
