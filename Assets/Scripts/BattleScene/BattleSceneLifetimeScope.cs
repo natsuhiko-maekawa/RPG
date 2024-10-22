@@ -229,28 +229,23 @@ namespace BattleScene
 
             #endregion
 
-            #region RegisterRepository
+            #region RegisterCollection
 
-            builder
-                .Register<ICollection<AilmentEntity, (CharacterId, AilmentCode)>,
-                    Collection<AilmentEntity, (CharacterId, AilmentCode)>>(
-                    Lifetime.Singleton);
+            builder.Register<ICollection<AilmentEntity, (CharacterId, AilmentCode)>, 
+                Collection<AilmentEntity, (CharacterId, AilmentCode)>>(Lifetime.Singleton);
             builder.Register<ICollection<BattleLogEntity, BattleLogId>, Collection<BattleLogEntity, BattleLogId>>(
                 Lifetime.Singleton);
-            builder
-                .Register<ICollection<BodyPartEntity, (CharacterId, BodyPartCode)>,
-                    Collection<BodyPartEntity, (CharacterId, BodyPartCode)>>(
-                    Lifetime.Singleton);
-            builder
-                .Register<ICollection<BuffEntity, (CharacterId, BuffCode)>,
-                    Collection<BuffEntity, (CharacterId, BuffCode)>>(
-                    Lifetime.Singleton);
+            builder.Register<ICollection<BodyPartEntity, (CharacterId, BodyPartCode)>, 
+                Collection<BodyPartEntity, (CharacterId, BodyPartCode)>>(Lifetime.Singleton);
+            builder.Register<ICollection<BuffEntity, (CharacterId, BuffCode)>, 
+                Collection<BuffEntity, (CharacterId, BuffCode)>>(Lifetime.Singleton);
             builder.Register<ICollection<CharacterEntity, CharacterId>, Collection<CharacterEntity, CharacterId>>(
                 Lifetime.Singleton);
+            builder.Register<ICollection<EnhanceEntity, (CharacterId, EnhanceCode)>, 
+                Collection<EnhanceEntity, (CharacterId, EnhanceCode)>>(Lifetime.Singleton);
             builder.Register<ICollection<OrderedItemEntity, OrderId>, Collection<OrderedItemEntity, OrderId>>(
                 Lifetime.Singleton);
-            builder.Register<ICollection<SlipEntity, SlipCode>, Collection<SlipEntity, SlipCode>>(
-                Lifetime.Singleton);
+            builder.Register<ICollection<SlipEntity, SlipCode>, Collection<SlipEntity, SlipCode>>(Lifetime.Singleton);
             builder.Register<ICollection<TurnEntity, TurnId>, Collection<TurnEntity, TurnId>>(Lifetime.Singleton);
 
             #endregion
