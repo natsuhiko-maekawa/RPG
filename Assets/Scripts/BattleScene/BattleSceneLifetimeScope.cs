@@ -353,8 +353,6 @@ namespace BattleScene
             builder
                 .Register<IPrimeSkillGeneratorService<DamageParameterValueObject, PrimeSkillValueObject>,
                     DamageGeneratorService>(Lifetime.Singleton);
-            builder.Register<IPrimeSkillRegistererService<PrimeSkillValueObject>, DamageRegistererService>(
-                Lifetime.Singleton);
             builder
                 .Register<IPrimeSkillGeneratorService<DestroyParameterValueObject, DestroyValueObject>,
                     DestroyGeneratorService>(Lifetime.Singleton);
@@ -372,6 +370,8 @@ namespace BattleScene
                 .Register<IPrimeSkillGeneratorService<RestoreParameterValueObject, RestoreValueObject>,
                     RestoreGeneratorService>(Lifetime.Singleton);
             builder.Register<IPrimeSkillRegistererService<RestoreValueObject>, RestoreRegistererService>(
+                Lifetime.Singleton);
+            builder.Register<IPrimeSkillRegistererService<PrimeSkillValueObject>, TempPrimeSkillRegistererService>(
                 Lifetime.Singleton);
 
             #endregion
