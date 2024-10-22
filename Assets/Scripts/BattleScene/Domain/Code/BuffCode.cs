@@ -7,8 +7,6 @@
         Defence,
         HitRate,
         Avoidance,
-        Speed,
-        DefenceSkill,
-        UtsusemiSkill
+        Speed
     }
 }
