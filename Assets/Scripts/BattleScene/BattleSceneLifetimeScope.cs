@@ -281,7 +281,7 @@ namespace BattleScene
             // PrimeSkillState
             builder.Register<PrimeSkillStartState<AilmentParameterValueObject, AilmentValueObject>>(Lifetime.Singleton);
             builder.Register<PrimeSkillStartState<DestroyParameterValueObject, DestroyValueObject>>(Lifetime.Singleton);
-            builder.Register<PrimeSkillStartState<DamageParameterValueObject, DamageValueObject>>(Lifetime.Singleton);
+            builder.Register<PrimeSkillStartState<DamageParameterValueObject, PrimeSkillValueObject>>(Lifetime.Singleton);
             builder.Register<PrimeSkillStartState<BuffParameterValueObject, BuffValueObject>>(Lifetime.Singleton);
             builder.Register<PrimeSkillStartState<RestoreParameterValueObject, RestoreValueObject>>(Lifetime.Singleton);
             builder.Register<PrimeSkillStartState<SlipParameterValueObject, SlipValueObject>>(Lifetime.Singleton);
@@ -290,7 +290,7 @@ namespace BattleScene
                     Lifetime.Singleton);
             builder.Register<PrimeSkillOutputState<BuffParameterValueObject, BuffValueObject>, BuffOutputState>(
                 Lifetime.Singleton);
-            builder.Register<PrimeSkillOutputState<DamageParameterValueObject, DamageValueObject>, DamageOutputState>(
+            builder.Register<PrimeSkillOutputState<DamageParameterValueObject, PrimeSkillValueObject>, DamageOutputState>(
                 Lifetime.Singleton);
             builder
                 .Register<PrimeSkillOutputState<DestroyParameterValueObject, DestroyValueObject>, DestroyOutputState>(
@@ -302,18 +302,18 @@ namespace BattleScene
                 Lifetime.Singleton);
             builder.Register<PrimeSkillStopState<AilmentParameterValueObject, AilmentValueObject>>(Lifetime.Singleton);
             builder.Register<PrimeSkillStopState<DestroyParameterValueObject, DestroyValueObject>>(Lifetime.Singleton);
-            builder.Register<PrimeSkillStopState<DamageParameterValueObject, DamageValueObject>>(Lifetime.Singleton);
+            builder.Register<PrimeSkillStopState<DamageParameterValueObject, PrimeSkillValueObject>>(Lifetime.Singleton);
             builder.Register<PrimeSkillStopState<BuffParameterValueObject, BuffValueObject>>(Lifetime.Singleton);
             builder.Register<PrimeSkillStopState<RestoreParameterValueObject, RestoreValueObject>>(Lifetime.Singleton);
             builder.Register<PrimeSkillStopState<SlipParameterValueObject, SlipValueObject>>(Lifetime.Singleton);
-            builder.Register<PrimeSkillBreakState<DamageParameterValueObject, DamageValueObject>>(Lifetime.Singleton);
+            builder.Register<PrimeSkillBreakState<DamageParameterValueObject, PrimeSkillValueObject>>(Lifetime.Singleton);
 
             #endregion
 
             #region RegisterUseCase
 
-            builder.Register<IPrimeSkillUseCase<DamageParameterValueObject, DamageValueObject>,
-                PrimeSkillUseCase<DamageParameterValueObject, DamageValueObject>>(Lifetime.Singleton);
+            builder.Register<IPrimeSkillUseCase<DamageParameterValueObject, PrimeSkillValueObject>,
+                PrimeSkillUseCase<DamageParameterValueObject, PrimeSkillValueObject>>(Lifetime.Singleton);
             builder.Register<IPrimeSkillUseCase<AilmentParameterValueObject, AilmentValueObject>,
                 PrimeSkillUseCase<AilmentParameterValueObject, AilmentValueObject>>(Lifetime.Singleton);
             builder.Register<IPrimeSkillUseCase<DestroyParameterValueObject, DestroyValueObject>,
@@ -360,9 +360,9 @@ namespace BattleScene
             builder.Register<IPrimeSkillRegistererService<AilmentValueObject>, AilmentRegistererService>(
                 Lifetime.Singleton);
             builder
-                .Register<IPrimeSkillGeneratorService<DamageParameterValueObject, DamageValueObject>,
+                .Register<IPrimeSkillGeneratorService<DamageParameterValueObject, PrimeSkillValueObject>,
                     DamageGeneratorService>(Lifetime.Singleton);
-            builder.Register<IPrimeSkillRegistererService<DamageValueObject>, DamageRegistererService>(
+            builder.Register<IPrimeSkillRegistererService<PrimeSkillValueObject>, DamageRegistererService>(
                 Lifetime.Singleton);
             builder
                 .Register<IPrimeSkillGeneratorService<DestroyParameterValueObject, DestroyValueObject>,

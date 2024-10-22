@@ -8,7 +8,7 @@ using BattleScene.UseCases.IService;
 
 namespace BattleScene.UseCases.Service
 {
-    public class DamageRegistererService : IPrimeSkillRegistererService<DamageValueObject>
+    public class DamageRegistererService : IPrimeSkillRegistererService<PrimeSkillValueObject>
     {
         private readonly ICollection<CharacterEntity, CharacterId> _characterCollection;
 
@@ -18,7 +18,7 @@ namespace BattleScene.UseCases.Service
             _characterCollection = characterCollection;
         }
 
-        public void Register(DamageValueObject damage)
+        public void Register(PrimeSkillValueObject damage)
         {
             var characterList = damage.DamageDictionary
                 .Select(ReduceHitPoint)
@@ -26,7 +26,7 @@ namespace BattleScene.UseCases.Service
             _characterCollection.Add(characterList);
         }
 
-        public void Register(IReadOnlyList<DamageValueObject> damageList)
+        public void Register(IReadOnlyList<PrimeSkillValueObject> damageList)
         {
             foreach (var damage in damageList) Register(damage);
         }

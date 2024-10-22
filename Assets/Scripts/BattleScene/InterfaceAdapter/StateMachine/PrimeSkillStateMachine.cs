@@ -61,7 +61,7 @@ namespace BattleScene.InterfaceAdapter.StateMachine
             {
                 _executedPrimeSkillCodeList.Add(PrimeSkillCode.Damage);
                 var damageContext
-                    = CreateContext<DamageParameterValueObject, DamageValueObject>(skill.DamageParameterList);
+                    = CreateContext<DamageParameterValueObject, PrimeSkillValueObject>(skill.DamageParameterList);
                 yield return damageContext;
             }
 

@@ -10,7 +10,7 @@ using Range = BattleScene.Domain.Code.Range;
 
 namespace BattleScene.UseCases.Service
 {
-    public class DamageGeneratorService : IPrimeSkillGeneratorService<DamageParameterValueObject, DamageValueObject>
+    public class DamageGeneratorService : IPrimeSkillGeneratorService<DamageParameterValueObject, PrimeSkillValueObject>
     {
         private readonly OrderedItemsDomainService _orderedItems;
         private readonly DamageEvaluatorService _damageEvaluator;
@@ -35,7 +35,7 @@ namespace BattleScene.UseCases.Service
             _myRandom = myRandom;
         }
 
-        public DamageValueObject Generate(
+        public PrimeSkillValueObject Generate(
             SkillCommonValueObject skillCommon,
             DamageParameterValueObject damageParameter,
             IReadOnlyList<CharacterId> targetIdList)
@@ -60,13 +60,13 @@ namespace BattleScene.UseCases.Service
 
             attackList.Sort((x, y) => x.Index - y.Index);
 
-            return new DamageValueObject(
+            return PrimeSkillValueObject.CreateDamage(
                 actorId: actorId,
                 skillCode: skillCommon.SkillCode,
                 attackList: attackList.ToList());
         }
 
-        public IReadOnlyList<DamageValueObject> Generate(
+        public IReadOnlyList<PrimeSkillValueObject> Generate(
             SkillCommonValueObject skillCommon,
             IReadOnlyList<DamageParameterValueObject> damageParameterList,
             IReadOnlyList<CharacterId> targetIdList)
