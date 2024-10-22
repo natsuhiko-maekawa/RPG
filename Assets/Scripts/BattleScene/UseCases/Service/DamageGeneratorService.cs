@@ -83,5 +83,29 @@ namespace BattleScene.UseCases.Service
             var attackedTargetId = _myRandom.Choice(surviveTargetIdList);
             return new List<CharacterId> { attackedTargetId };
         }
+        
+        public void Register(PrimeSkillValueObject damage)
+        {
+            var characterList = damage.DamageDictionary
+                .Select(ReduceHitPoint)
+                .ToList();
+            _characterCollection.Add(characterList);
+        }
+
+        public void Register(IReadOnlyList<PrimeSkillValueObject> damageList)
+        {
+            foreach (var damage in damageList) Register(damage);
+        }
+
+        private CharacterEntity ReduceHitPoint(KeyValuePair<CharacterId, int> characterIdDamagePair)
+        {
+            var characterId = characterIdDamagePair.Key;
+            var character = _characterCollection.Get(characterId);
+            var currentHitPoint = character.CurrentHitPoint;
+            var damage = characterIdDamagePair.Value;
+            var reducedHitPoint = currentHitPoint - damage;
+            character.CurrentHitPoint = reducedHitPoint;
+            return character;
+        }
     }
 }
