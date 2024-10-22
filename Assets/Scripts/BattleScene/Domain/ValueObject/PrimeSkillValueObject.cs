@@ -6,23 +6,23 @@ using BattleScene.Domain.Id;
 
 namespace BattleScene.Domain.ValueObject
 {
-    public abstract class PrimeSkillValueObject
+    public class PrimeSkillValueObject
     {
         public ActionCode ActionCode { get; protected init; } = ActionCode.NoAction;
         public AilmentCode AilmentCode { get; protected init; } = AilmentCode.NoAilment;
         public BodyPartCode BodyPartCode { get; protected init; } = BodyPartCode.NoBodyPart;
         public BuffCode BuffCode { get; protected init; } = BuffCode.NoBuff;
         public SlipCode SlipCode { get; protected init; } = SlipCode.NoSlip;
-        public SkillCode SkillCode { get; protected init; } = SkillCode.NoSkill;
-        public CharacterId? ActorId { get; protected init; }
-        public IReadOnlyList<CharacterId> TargetIdList { get; protected init; } = Array.Empty<CharacterId>();
-        public IReadOnlyList<CharacterId> ActualTargetIdList { get; protected init; } = Array.Empty<CharacterId>();
+        public SkillCode SkillCode { get; protected set; } = SkillCode.NoSkill;
+        public CharacterId? ActorId { get; protected set; }
+        public IReadOnlyList<CharacterId> TargetIdList { get; protected set; } = Array.Empty<CharacterId>();
+        public IReadOnlyList<CharacterId> ActualTargetIdList { get; protected set; } = Array.Empty<CharacterId>();
         public bool IsFailure => ActualTargetIdList.Count == 0;
         public float Rate { get; protected init; }
         public int Turn { get; protected init; }
         public LifetimeCode LifetimeCode { get; protected init; } = LifetimeCode.NoLifetime;
         public int DestroyCount { get; protected init; }
-        public IReadOnlyList<AttackValueObject> AttackList { get; protected init; } = Array.Empty<AttackValueObject>();
+        public IReadOnlyList<AttackValueObject> AttackList { get; protected set; } = Array.Empty<AttackValueObject>();
 
         public IReadOnlyDictionary<CharacterId, int> DamageDictionary =>
             AttackList
@@ -42,5 +42,27 @@ namespace BattleScene.Domain.ValueObject
                 .Any(x => x.AttacksWeakPoint);
 
         public int TechnicalPoint { get; protected init; }
+
+        public static PrimeSkillValueObject CreateDamage(
+            SkillCode skillCode,
+            CharacterId actorId,
+            IReadOnlyList<AttackValueObject> attackList)
+        {
+            var targetIdList = attackList
+                .Select(x => x.TargetId)
+                .Distinct()
+                .ToList();
+            
+            var damage = new PrimeSkillValueObject
+            {
+                SkillCode = skillCode,
+                ActorId = actorId,
+                TargetIdList = targetIdList,
+                ActualTargetIdList = targetIdList,
+                AttackList = attackList
+            };
+
+            return damage;
+        }
     }
 }
