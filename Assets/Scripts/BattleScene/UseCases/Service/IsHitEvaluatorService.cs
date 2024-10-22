@@ -16,6 +16,7 @@ namespace BattleScene.UseCases.Service
         private readonly BodyPartDomainService _bodyPartDomainService;
         private readonly CharacterPropertyFactoryService _characterPropertyFactory;
         private readonly ICollection<BuffEntity, (CharacterId, BuffCode)> _buffCollection;
+        private readonly ICollection<EnhanceEntity, (CharacterId, EnhanceCode)> _enhanceCollection;
         private readonly IMyRandomService _myRandom;
         private readonly IFactory<BattlePropertyValueObject> _battlePropertyFactory;
 
@@ -24,6 +25,7 @@ namespace BattleScene.UseCases.Service
             BodyPartDomainService bodyPartDomainService,
             CharacterPropertyFactoryService characterPropertyFactory,
             ICollection<BuffEntity, (CharacterId, BuffCode)> buffCollection,
+            ICollection<EnhanceEntity, (CharacterId, EnhanceCode)> enhanceCollection,
             IMyRandomService myRandom,
             IFactory<BattlePropertyValueObject> battlePropertyFactory)
         {
@@ -31,6 +33,7 @@ namespace BattleScene.UseCases.Service
             _bodyPartDomainService = bodyPartDomainService;
             _characterPropertyFactory = characterPropertyFactory;
             _buffCollection = buffCollection;
+            _enhanceCollection = enhanceCollection;
             _myRandom = myRandom;
             _battlePropertyFactory = battlePropertyFactory;
         }
@@ -63,7 +66,8 @@ namespace BattleScene.UseCases.Service
             if (!_bodyPartDomainService.IsAvailable(targetId, BodyPartCode.Leg)) return true;
 
             // 空蝉状態の時、必ず回避する
-            if (_buffCollection.Get((targetId, BuffCode.UtsusemiSkill)) != null) return false;
+            if (_enhanceCollection.TryGet((targetId, EnhanceCode.Utsusemi), out var enhance) && enhance.Effects) 
+                return false;
 
             // 大きいほど命中しやすくなる
             var threshold = _battlePropertyFactory.Create().IsHitThreshold;

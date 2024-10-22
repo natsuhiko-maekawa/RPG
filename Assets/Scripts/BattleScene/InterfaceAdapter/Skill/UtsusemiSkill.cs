@@ -17,7 +17,6 @@ namespace BattleScene.InterfaceAdapter.Skill
         public override Range Range { get; } = Range.Oneself;
         public override MessageCode AttackMessageCode { get; } = MessageCode.NoMessage;
 
-        public override IReadOnlyList<BaseBuff> BuffList { get; }
-            = new[] { new Utsusemi() };
+        public override IReadOnlyList<BaseEnhance> EnhanceList { get; } = new[] { new Utsusemi() };
     }
 }
