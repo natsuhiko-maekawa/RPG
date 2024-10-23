@@ -12,11 +12,12 @@ namespace BattleScene.Domain.Entity
         public int Sequence { get; }
         public int Turn { get; }
         private readonly PrimeSkillValueObject _primeSkill;
-        public ActionCode ActionCode { get; } = ActionCode.Skill;
+        public ActionCode ActionCode => _primeSkill.ActionCode;
         public CharacterId? ActorId => _primeSkill.ActorId;
         public SkillCode SkillCode => _primeSkill.SkillCode;
         public IReadOnlyList<CharacterId> TargetIdList => _primeSkill.TargetIdList;
         public IReadOnlyList<CharacterId> ActualTargetIdList => _primeSkill.ActualTargetIdList;
+        public bool IsFailure => _primeSkill.IsFailure;
         public AilmentCode AilmentCode => _primeSkill.AilmentCode;
         public BodyPartCode DestroyedPart => _primeSkill.BodyPartCode;
         public int DestroyCount => _primeSkill.DestroyCount;

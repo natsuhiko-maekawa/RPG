@@ -11,6 +11,7 @@ namespace BattleScene.Domain.ValueObject
             IReadOnlyList<CharacterId> targetIdList,
             IReadOnlyList<AttackValueObject> attackList)
         {
+            ActionCode = ActionCode.SlipDamage;
             SlipCode = slipCode;
             TargetIdList = targetIdList;
             ActualTargetIdList = TargetIdList;

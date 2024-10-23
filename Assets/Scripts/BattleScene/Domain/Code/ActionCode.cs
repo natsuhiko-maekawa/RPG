@@ -7,6 +7,8 @@
         Skill,
         Defence,
         FatalitySkill,
+        AilmentReset,
+        SlipDamage,
         Continue,
         Quit
     }

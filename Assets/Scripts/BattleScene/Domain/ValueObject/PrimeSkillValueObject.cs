@@ -52,6 +52,7 @@ namespace BattleScene.Domain.ValueObject
         {
             var ailment = new PrimeSkillValueObject
             {
+                ActionCode = ActionCode.Skill,
                 AilmentCode = ailmentCode,
                 SkillCode = skillCode,
                 ActorId = actorId,
@@ -73,6 +74,7 @@ namespace BattleScene.Domain.ValueObject
         {
             var buff = new PrimeSkillValueObject
             {
+                ActionCode = ActionCode.Skill,
                 BuffCode = buffCode,
                 SkillCode = skillCode,
                 ActorId = actorId,
@@ -98,6 +100,7 @@ namespace BattleScene.Domain.ValueObject
             
             var damage = new PrimeSkillValueObject
             {
+                ActionCode = ActionCode.Skill,
                 SkillCode = skillCode,
                 ActorId = actorId,
                 TargetIdList = targetIdList,
@@ -118,6 +121,7 @@ namespace BattleScene.Domain.ValueObject
         {
             var destroy = new PrimeSkillValueObject
             {
+                ActionCode = ActionCode.Skill,
                 BodyPartCode = bodyPartCode,
                 SkillCode = skillCode,
                 ActorId = actorId,
@@ -137,6 +141,7 @@ namespace BattleScene.Domain.ValueObject
         {
             var restore = new PrimeSkillValueObject
             {
+                ActionCode = ActionCode.Skill,
                 SkillCode = skillCode,
                 ActorId = actorId,
                 TargetIdList = targetIdList,
@@ -156,6 +161,7 @@ namespace BattleScene.Domain.ValueObject
         {
             var slip = new PrimeSkillValueObject
             {
+                ActionCode = ActionCode.Skill,
                 SlipCode = slipCode,
                 SkillCode = skillCode,
                 ActorId = actorId,

@@ -39,7 +39,9 @@ namespace BattleScene.UseCases.Service
             MyDebug.Assert(slipCode != SlipCode.NoSlip);
 
             var battleLog = _battleLogCollection.Get()
+                .Where(x => x.ActionCode is ActionCode.Skill or ActionCode.FatalitySkill)
                 .Where(x => x.SlipCode == slipCode)
+                .Where(x => !x.IsFailure)
                 .Max();
             var actorId = battleLog.ActorId;
             if (actorId == null) throw new InvalidOperationException();
