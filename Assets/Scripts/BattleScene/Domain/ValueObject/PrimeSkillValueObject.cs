@@ -171,5 +171,22 @@ namespace BattleScene.Domain.ValueObject
 
             return slip;
         }
+        
+        public static PrimeSkillValueObject CreateSlipDamage(
+            SlipCode slipCode,
+            IReadOnlyList<CharacterId> targetIdList,
+            IReadOnlyList<AttackValueObject> attackList)
+        {
+            var slipDamage = new PrimeSkillValueObject
+            {
+                ActionCode = ActionCode.SlipDamage,
+                SlipCode = slipCode,
+                TargetIdList = targetIdList,
+                ActualTargetIdList = targetIdList,
+                AttackList = attackList,
+            };
+
+            return slipDamage;
+        }
     }
 }

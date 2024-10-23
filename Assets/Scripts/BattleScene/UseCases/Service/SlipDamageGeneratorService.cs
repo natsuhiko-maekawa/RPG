@@ -33,7 +33,7 @@ namespace BattleScene.UseCases.Service
             _battleLogCollection = battleLogCollection;
         }
 
-        public SlipDamageValueObject Generate()
+        public PrimeSkillValueObject Generate()
         {
             _orderedItems.First().TryGetSlipDamageCode(out var slipCode);
             MyDebug.Assert(slipCode != SlipCode.NoSlip);
@@ -60,7 +60,7 @@ namespace BattleScene.UseCases.Service
                 attacksWeakPoint: false,
                 index: 0);
 
-            var slipDamage = new SlipDamageValueObject(
+            var slipDamage = PrimeSkillValueObject.CreateSlipDamage(
                 targetIdList: new List<CharacterId> { targetId },
                 slipCode: slipCode,
                 attackList: new List<AttackValueObject> { attack });
