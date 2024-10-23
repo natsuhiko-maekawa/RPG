@@ -6,9 +6,9 @@ using BattleScene.Domain.Id;
 
 namespace BattleScene.Domain.ValueObject
 {
-    public class PrimeSkillValueObject
+    public class BattleEventValueObject
     {
-        public ActionCode ActionCode { get; private init; } = ActionCode.NoAction;
+        public BattleEventCode BattleEventCode { get; private init; } = BattleEventCode.NoAction;
         public AilmentCode AilmentCode { get; private init; } = AilmentCode.NoAilment;
         public BodyPartCode BodyPartCode { get; private init; } = BodyPartCode.NoBodyPart;
         public BuffCode BuffCode { get; private init; } = BuffCode.NoBuff;
@@ -43,16 +43,16 @@ namespace BattleScene.Domain.ValueObject
 
         public int TechnicalPoint { get; private init; }
 
-        public static PrimeSkillValueObject CreateAilment(
+        public static BattleEventValueObject CreateAilment(
             AilmentCode ailmentCode,
             SkillCode skillCode,
             CharacterId actorId,
             IReadOnlyList<CharacterId> targetIdList,
             IReadOnlyList<CharacterId> actualTargetIdList)
         {
-            var ailment = new PrimeSkillValueObject
+            var ailment = new BattleEventValueObject
             {
-                ActionCode = ActionCode.Skill,
+                BattleEventCode = BattleEventCode.Skill,
                 AilmentCode = ailmentCode,
                 SkillCode = skillCode,
                 ActorId = actorId,
@@ -63,7 +63,7 @@ namespace BattleScene.Domain.ValueObject
             return ailment;
         }
 
-        public static PrimeSkillValueObject CreateBuff(
+        public static BattleEventValueObject CreateBuff(
             BuffCode buffCode,
             SkillCode skillCode,
             CharacterId actorId,
@@ -72,9 +72,9 @@ namespace BattleScene.Domain.ValueObject
             int turn,
             LifetimeCode lifetimeCode)
         {
-            var buff = new PrimeSkillValueObject
+            var buff = new BattleEventValueObject
             {
-                ActionCode = ActionCode.Skill,
+                BattleEventCode = BattleEventCode.Skill,
                 BuffCode = buffCode,
                 SkillCode = skillCode,
                 ActorId = actorId,
@@ -88,7 +88,7 @@ namespace BattleScene.Domain.ValueObject
             return buff;
         }
         
-        public static PrimeSkillValueObject CreateDamage(
+        public static BattleEventValueObject CreateDamage(
             SkillCode skillCode,
             CharacterId actorId,
             IReadOnlyList<AttackValueObject> attackList)
@@ -98,9 +98,9 @@ namespace BattleScene.Domain.ValueObject
                 .Distinct()
                 .ToList();
             
-            var damage = new PrimeSkillValueObject
+            var damage = new BattleEventValueObject
             {
-                ActionCode = ActionCode.Skill,
+                BattleEventCode = BattleEventCode.Skill,
                 SkillCode = skillCode,
                 ActorId = actorId,
                 TargetIdList = targetIdList,
@@ -111,7 +111,7 @@ namespace BattleScene.Domain.ValueObject
             return damage;
         }
 
-        public static PrimeSkillValueObject CreateDestroy(
+        public static BattleEventValueObject CreateDestroy(
             BodyPartCode bodyPartCode,
             SkillCode skillCode,
             CharacterId actorId,
@@ -119,9 +119,9 @@ namespace BattleScene.Domain.ValueObject
             IReadOnlyList<CharacterId> actualTargetIdList,
             int destroyCount)
         {
-            var destroy = new PrimeSkillValueObject
+            var destroy = new BattleEventValueObject
             {
-                ActionCode = ActionCode.Skill,
+                BattleEventCode = BattleEventCode.Skill,
                 BodyPartCode = bodyPartCode,
                 SkillCode = skillCode,
                 ActorId = actorId,
@@ -133,15 +133,15 @@ namespace BattleScene.Domain.ValueObject
             return destroy;
         }
         
-        public static PrimeSkillValueObject CreateRestore(
+        public static BattleEventValueObject CreateRestore(
             SkillCode skillCode,
             CharacterId actorId,
             IReadOnlyList<CharacterId> targetIdList,
             int technicalPoint)
         {
-            var restore = new PrimeSkillValueObject
+            var restore = new BattleEventValueObject
             {
-                ActionCode = ActionCode.Skill,
+                BattleEventCode = BattleEventCode.Skill,
                 SkillCode = skillCode,
                 ActorId = actorId,
                 TargetIdList = targetIdList,
@@ -152,16 +152,16 @@ namespace BattleScene.Domain.ValueObject
             return restore;
         }
         
-        public static PrimeSkillValueObject CreateSlip(
+        public static BattleEventValueObject CreateSlip(
             SlipCode slipCode,
             SkillCode skillCode,
             CharacterId actorId,
             IReadOnlyList<CharacterId> targetIdList,
             IReadOnlyList<CharacterId> actualTargetIdList)
         {
-            var slip = new PrimeSkillValueObject
+            var slip = new BattleEventValueObject
             {
-                ActionCode = ActionCode.Skill,
+                BattleEventCode = BattleEventCode.Skill,
                 SlipCode = slipCode,
                 SkillCode = skillCode,
                 ActorId = actorId,
@@ -172,14 +172,14 @@ namespace BattleScene.Domain.ValueObject
             return slip;
         }
         
-        public static PrimeSkillValueObject CreateSlipDamage(
+        public static BattleEventValueObject CreateSlipDamage(
             SlipCode slipCode,
             IReadOnlyList<CharacterId> targetIdList,
             IReadOnlyList<AttackValueObject> attackList)
         {
-            var slipDamage = new PrimeSkillValueObject
+            var slipDamage = new BattleEventValueObject
             {
-                ActionCode = ActionCode.SlipDamage,
+                BattleEventCode = BattleEventCode.SlipDamage,
                 SlipCode = slipCode,
                 TargetIdList = targetIdList,
                 ActualTargetIdList = targetIdList,

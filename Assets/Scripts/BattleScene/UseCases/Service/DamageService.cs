@@ -35,7 +35,7 @@ namespace BattleScene.UseCases.Service
             _myRandom = myRandom;
         }
 
-        public PrimeSkillValueObject Generate(
+        public BattleEventValueObject Generate(
             SkillCommonValueObject skillCommon,
             DamageParameterValueObject damageParameter,
             IReadOnlyList<CharacterId> targetIdList)
@@ -60,13 +60,13 @@ namespace BattleScene.UseCases.Service
 
             attackList.Sort((x, y) => x.Index - y.Index);
 
-            return PrimeSkillValueObject.CreateDamage(
+            return BattleEventValueObject.CreateDamage(
                 actorId: actorId,
                 skillCode: skillCommon.SkillCode,
                 attackList: attackList.ToList());
         }
 
-        public IReadOnlyList<PrimeSkillValueObject> Generate(
+        public IReadOnlyList<BattleEventValueObject> Generate(
             SkillCommonValueObject skillCommon,
             IReadOnlyList<DamageParameterValueObject> damageParameterList,
             IReadOnlyList<CharacterId> targetIdList)
@@ -84,7 +84,7 @@ namespace BattleScene.UseCases.Service
             return new List<CharacterId> { attackedTargetId };
         }
         
-        public void Register(PrimeSkillValueObject damage)
+        public void Register(BattleEventValueObject damage)
         {
             var characterList = damage.DamageDictionary
                 .Select(ReduceHitPoint)
@@ -92,7 +92,7 @@ namespace BattleScene.UseCases.Service
             _characterCollection.Add(characterList);
         }
 
-        public void Register(IReadOnlyList<PrimeSkillValueObject> damageList)
+        public void Register(IReadOnlyList<BattleEventValueObject> damageList)
         {
             foreach (var damage in damageList) Register(damage);
         }

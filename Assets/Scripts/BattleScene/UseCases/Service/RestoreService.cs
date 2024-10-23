@@ -31,7 +31,7 @@ namespace BattleScene.UseCases.Service
             _characterCollection = characterCollection;
         }
 
-        public IReadOnlyList<PrimeSkillValueObject> Generate(
+        public IReadOnlyList<BattleEventValueObject> Generate(
             SkillCommonValueObject skillCommon,
             IReadOnlyList<RestoreParameterValueObject> restoreParameterList,
             IReadOnlyList<CharacterId> targetIdList)
@@ -44,11 +44,11 @@ namespace BattleScene.UseCases.Service
             var restoreList = restoreParameterList.Select(GetRestore).ToList();
             return restoreList;
 
-            PrimeSkillValueObject GetRestore(RestoreParameterValueObject restoreParameter)
+            BattleEventValueObject GetRestore(RestoreParameterValueObject restoreParameter)
             {
                 var technicalPoint = Math.Min(restoreParameter.TechnicalPoint,
                     maxTechnicalPoint - currentTechnicalPoint);
-                var restore = PrimeSkillValueObject.CreateRestore(
+                var restore = BattleEventValueObject.CreateRestore(
                     actorId: actorId,
                     skillCode: skillCommon.SkillCode,
                     targetIdList: targetIdList,
@@ -57,12 +57,12 @@ namespace BattleScene.UseCases.Service
             }
         }
         
-        public void Register(IReadOnlyList<PrimeSkillValueObject> restoreList)
+        public void Register(IReadOnlyList<BattleEventValueObject> restoreList)
         {
             foreach (var restore in restoreList) AddTechnicalPoint(restore);
         }
 
-        private void AddTechnicalPoint(PrimeSkillValueObject restore)
+        private void AddTechnicalPoint(BattleEventValueObject restore)
         {
             var currentTechnicalPoint = _characterCollection.Get(restore.ActorId!).CurrentTechnicalPoint;
             var technicalPoint = restore.TechnicalPoint;

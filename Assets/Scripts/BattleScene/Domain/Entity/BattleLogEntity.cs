@@ -11,31 +11,31 @@ namespace BattleScene.Domain.Entity
         public override BattleLogId Id { get; }
         public int Sequence { get; }
         public int Turn { get; }
-        private readonly PrimeSkillValueObject _primeSkill;
-        public ActionCode ActionCode => _primeSkill.ActionCode;
-        public CharacterId? ActorId => _primeSkill.ActorId;
-        public SkillCode SkillCode => _primeSkill.SkillCode;
-        public IReadOnlyList<CharacterId> TargetIdList => _primeSkill.TargetIdList;
-        public IReadOnlyList<CharacterId> ActualTargetIdList => _primeSkill.ActualTargetIdList;
-        public bool IsFailure => _primeSkill.IsFailure;
-        public AilmentCode AilmentCode => _primeSkill.AilmentCode;
-        public BodyPartCode DestroyedPart => _primeSkill.BodyPartCode;
-        public int DestroyCount => _primeSkill.DestroyCount;
-        public BuffCode BuffCode => _primeSkill.BuffCode;
-        public IReadOnlyList<AttackValueObject> AttackList => _primeSkill.AttackList;
-        public int TechnicalPoint => _primeSkill.TechnicalPoint;
-        public SlipCode SlipCode => _primeSkill.SlipCode;
+        private readonly BattleEventValueObject _battleEvent;
+        public BattleEventCode BattleEventCode => _battleEvent.BattleEventCode;
+        public CharacterId? ActorId => _battleEvent.ActorId;
+        public SkillCode SkillCode => _battleEvent.SkillCode;
+        public IReadOnlyList<CharacterId> TargetIdList => _battleEvent.TargetIdList;
+        public IReadOnlyList<CharacterId> ActualTargetIdList => _battleEvent.ActualTargetIdList;
+        public bool IsFailure => _battleEvent.IsFailure;
+        public AilmentCode AilmentCode => _battleEvent.AilmentCode;
+        public BodyPartCode DestroyedPart => _battleEvent.BodyPartCode;
+        public int DestroyCount => _battleEvent.DestroyCount;
+        public BuffCode BuffCode => _battleEvent.BuffCode;
+        public IReadOnlyList<AttackValueObject> AttackList => _battleEvent.AttackList;
+        public int TechnicalPoint => _battleEvent.TechnicalPoint;
+        public SlipCode SlipCode => _battleEvent.SlipCode;
 
         public BattleLogEntity(
             BattleLogId battleLogId,
             int sequence,
             int turn,
-            PrimeSkillValueObject primeSkill)
+            BattleEventValueObject battleEvent)
         {
             Id = battleLogId;
             Sequence = sequence;
             Turn = turn;
-            _primeSkill = primeSkill;
+            _battleEvent = battleEvent;
         }
 
         public int CompareTo(BattleLogEntity other)

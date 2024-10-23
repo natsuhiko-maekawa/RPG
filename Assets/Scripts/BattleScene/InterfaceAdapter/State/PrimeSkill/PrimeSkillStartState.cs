@@ -40,7 +40,7 @@ namespace BattleScene.InterfaceAdapter.State.PrimeSkill
                 targetIdList: Context.TargetIdList);
             var primeSkillListExceptFailure = primeSkillList
                 .Where(x => !x.IsFailure);
-            Context.PrimeSkillQueue = new Queue<PrimeSkillValueObject>(primeSkillListExceptFailure);
+            Context.PrimeSkillQueue = new Queue<BattleEventValueObject>(primeSkillListExceptFailure);
 
             BaseState<TPrimeSkillParameter> nextState =
                 Context.PrimeSkillQueue.Count == 0

@@ -29,7 +29,7 @@ namespace BattleScene.UseCases.Service
             _bodyPartPropertyFactory = bodyPartPropertyFactory;
         }
 
-        public IReadOnlyList<PrimeSkillValueObject> Generate(
+        public IReadOnlyList<BattleEventValueObject> Generate(
             SkillCommonValueObject skillCommon,
             IReadOnlyList<DestroyParameterValueObject> destroyedParameterList,
             IReadOnlyList<CharacterId> targetIdList)
@@ -38,13 +38,13 @@ namespace BattleScene.UseCases.Service
             var destroyList = destroyedParameterList.Select(GetDestroy).ToList();
             return destroyList;
 
-            PrimeSkillValueObject GetDestroy(DestroyParameterValueObject destroyedParameter)
+            BattleEventValueObject GetDestroy(DestroyParameterValueObject destroyedParameter)
             {
                 var actualTargetIdList = _actualTargetIdPicker.Pick(
                     targetIdList: targetIdList,
                     luckRate: destroyedParameter.LuckRate);
 
-                var destroy = PrimeSkillValueObject.CreateDestroy(
+                var destroy = BattleEventValueObject.CreateDestroy(
                     actorId: actorId,
                     targetIdList: targetIdList,
                     actualTargetIdList: actualTargetIdList,
@@ -55,7 +55,7 @@ namespace BattleScene.UseCases.Service
             }
         }
         
-        public void Register(PrimeSkillValueObject destroy)
+        public void Register(BattleEventValueObject destroy)
         {
             var bodyPartEntityList = destroy.ActualTargetIdList
                 .Select(CreateBodyPartEntity)
@@ -74,7 +74,7 @@ namespace BattleScene.UseCases.Service
             }
         }
 
-        public void Register(IReadOnlyList<PrimeSkillValueObject> destroyList)
+        public void Register(IReadOnlyList<BattleEventValueObject> destroyList)
         {
             foreach (var destroy in destroyList) Register(destroy);
         }

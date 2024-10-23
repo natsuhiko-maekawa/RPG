@@ -33,13 +33,13 @@ namespace BattleScene.InterfaceAdapter.Facade
             await Task.WhenAll(animationList);
         }
 
-        public async Task OutputThenSlipSuccessAsync(PrimeSkillValueObject primeSkill)
+        public async Task OutputThenSlipSuccessAsync(BattleEventValueObject battleEvent)
         {
             var animationList = new List<Task>();
             var messageAnimation = _messageView.StartAnimationAsync(MessageCode.AilmentMessage);
             animationList.Add(messageAnimation);
 
-            var playerImageCode = _ailmentViewResource.Get(primeSkill.SlipCode).PlayerImageCode;
+            var playerImageCode = _ailmentViewResource.Get(battleEvent.SlipCode).PlayerImageCode;
             var playerImageAnimation = _playerImageView.StartAnimationAsync(playerImageCode);
             animationList.Add(playerImageAnimation);
 

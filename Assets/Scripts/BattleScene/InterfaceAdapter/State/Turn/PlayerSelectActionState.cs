@@ -14,12 +14,12 @@ namespace BattleScene.InterfaceAdapter.State.Turn
         private readonly SkillState _skillState;
         private readonly GridViewPresenter _gridView;
 
-        private readonly IReadOnlyDictionary<int, ActionCode> _actionCodeDictionary = new Dictionary<int, ActionCode>()
+        private readonly IReadOnlyDictionary<int, BattleEventCode> _actionCodeDictionary = new Dictionary<int, BattleEventCode>()
         {
-            { 0, ActionCode.Attack },
-            { 1, ActionCode.Skill },
-            { 2, ActionCode.Defence },
-            { 3, ActionCode.FatalitySkill }
+            { 0, BattleEventCode.Attack },
+            { 1, BattleEventCode.Skill },
+            { 2, BattleEventCode.Defence },
+            { 3, BattleEventCode.FatalitySkill }
         };
 
         public PlayerSelectActionState(
@@ -45,7 +45,7 @@ namespace BattleScene.InterfaceAdapter.State.Turn
         {
             var actionCode = _actionCodeDictionary[id];
 
-            if (actionCode == ActionCode.Defence)
+            if (actionCode == BattleEventCode.Defence)
             {
                 var oneself = new[] { _player.GetId() };
                 Context.TargetIdList = oneself;
@@ -53,16 +53,16 @@ namespace BattleScene.InterfaceAdapter.State.Turn
 
             Context.SkillCode = actionCode switch
             {
-                ActionCode.Attack => SkillCode.Attack,
-                ActionCode.Defence => SkillCode.Defence,
+                BattleEventCode.Attack => SkillCode.Attack,
+                BattleEventCode.Defence => SkillCode.Defence,
                 _ => SkillCode.NoSkill
             };
 
             BaseState nextState = actionCode switch
             {
-                ActionCode.Attack => _playerSelectTargetState,
-                ActionCode.Skill => _playerSelectSkillState,
-                ActionCode.Defence => _skillState,
+                BattleEventCode.Attack => _playerSelectTargetState,
+                BattleEventCode.Skill => _playerSelectSkillState,
+                BattleEventCode.Defence => _skillState,
                 _ => throw new ArgumentOutOfRangeException()
             };
 

@@ -28,7 +28,7 @@ namespace BattleScene.InterfaceAdapter.Facade
             await Task.WhenAll(animationList);
         }
 
-        public async Task OutputThenDestroySuccessAsync(PrimeSkillValueObject primeSkill)
+        public async Task OutputThenDestroySuccessAsync(BattleEventValueObject battleEvent)
         {
             var animationList = new List<Task>();
             var messageAnimation = _messageView.StartAnimationAsync(MessageCode.NoMessage);

@@ -30,7 +30,7 @@ namespace BattleScene.UseCases.Service
             _ailmentCollection = ailmentCollection;
         }
 
-        public IReadOnlyList<PrimeSkillValueObject> Generate(
+        public IReadOnlyList<BattleEventValueObject> Generate(
             SkillCommonValueObject skillCommon,
             IReadOnlyList<AilmentParameterValueObject> primeSkillParameterList,
             IReadOnlyList<CharacterId> targetIdList)
@@ -41,13 +41,13 @@ namespace BattleScene.UseCases.Service
 
             return ailmentList;
 
-            PrimeSkillValueObject GetAilment(AilmentParameterValueObject ailmentParameter)
+            BattleEventValueObject GetAilment(AilmentParameterValueObject ailmentParameter)
             {
                 var actualTargetIdList = _actualTargetIdPicker.Pick(
                     targetIdList: targetIdList,
                     luckRate: ailmentParameter.LuckRate);
 
-                var ailment = PrimeSkillValueObject.CreateAilment(
+                var ailment = BattleEventValueObject.CreateAilment(
                     actorId: actorId,
                     skillCode: skillCommon.SkillCode,
                     ailmentCode: ailmentParameter.AilmentCode,
@@ -58,7 +58,7 @@ namespace BattleScene.UseCases.Service
             }
         }
         
-        public void Register(PrimeSkillValueObject ailment)
+        public void Register(BattleEventValueObject ailment)
         {
             var ailmentProperty = _ailmentPropertyFactory.Create(ailment.AilmentCode);
             var ailmentEntityList = ailment.ActualTargetIdList
@@ -72,7 +72,7 @@ namespace BattleScene.UseCases.Service
             _ailmentCollection.Add(ailmentEntityList);
         }
 
-        public void Register(IReadOnlyList<PrimeSkillValueObject> ailmentList)
+        public void Register(IReadOnlyList<BattleEventValueObject> ailmentList)
         {
             foreach (var ailment in ailmentList) Register(ailment);
         }

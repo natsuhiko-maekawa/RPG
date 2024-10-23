@@ -21,7 +21,7 @@ namespace BattleScene.InterfaceAdapter.State.PrimeSkill
         public IReadOnlyList<CharacterId> TargetIdList { get; }
         public IReadOnlyList<TPrimeSkillParameter> PrimeSkillParameterList { get; }
         public IReadOnlyList<PrimeSkillCode> ExecutedPrimeSkillCodeList { get; }
-        public Queue<PrimeSkillValueObject> PrimeSkillQueue { get; set; } = new();
+        public Queue<BattleEventValueObject> PrimeSkillQueue { get; set; } = new();
 
         public Context(
             BaseState<TPrimeSkillParameter> primeSkillState,

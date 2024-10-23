@@ -30,7 +30,7 @@ namespace BattleScene.UseCases.Service
             _slipDamageCollection = slipDamageCollection;
         }
 
-        public IReadOnlyList<PrimeSkillValueObject> Generate(
+        public IReadOnlyList<BattleEventValueObject> Generate(
             SkillCommonValueObject skillCommon,
             IReadOnlyList<SlipParameterValueObject> slipParameterList,
             IReadOnlyList<CharacterId> targetIdList)
@@ -43,13 +43,13 @@ namespace BattleScene.UseCases.Service
                 .ToList();
             return slipList;
 
-            PrimeSkillValueObject GetSlip(SlipParameterValueObject slipParameter)
+            BattleEventValueObject GetSlip(SlipParameterValueObject slipParameter)
             {
                 var actualTargetIdList = _actualTargetIdPicker.Pick(
                     targetIdList: targetIdList,
                     luckRate: slipParameter.LuckRate);
 
-                var slip = PrimeSkillValueObject.CreateSlip(
+                var slip = BattleEventValueObject.CreateSlip(
                     actorId: actorId,
                     skillCode: skillCommon.SkillCode,
                     slipCode: slipParameter.SlipCode,
@@ -59,7 +59,7 @@ namespace BattleScene.UseCases.Service
             }
         }
         
-        public void Register(PrimeSkillValueObject slip)
+        public void Register(BattleEventValueObject slip)
         {
             if (slip.ActualTargetIdList.Count == 0) return;
             var slipDefaultTurn = _battlePropertyFactory.Create().SlipDefaultTurn;
@@ -70,7 +70,7 @@ namespace BattleScene.UseCases.Service
             _slipDamageCollection.Add(slipEntity);
         }
 
-        public void Register(IReadOnlyList<PrimeSkillValueObject> slipValueObject)
+        public void Register(IReadOnlyList<BattleEventValueObject> slipValueObject)
         {
             foreach (var slip in slipValueObject) Register(slip);
         }

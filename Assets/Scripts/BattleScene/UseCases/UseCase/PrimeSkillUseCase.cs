@@ -21,7 +21,7 @@ namespace BattleScene.UseCases.UseCase
             _battleLogger = battleLogger;
         }
 
-        public IReadOnlyList<PrimeSkillValueObject> Commit(
+        public IReadOnlyList<BattleEventValueObject> Commit(
             SkillCommonValueObject skillCommon,
             IReadOnlyList<TPrimeSkillParameter> primeSkillParameterList,
             IReadOnlyList<CharacterId> targetIdList)

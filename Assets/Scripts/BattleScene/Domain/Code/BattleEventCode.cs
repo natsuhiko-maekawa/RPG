@@ -1,6 +1,6 @@
 ﻿namespace BattleScene.Domain.Code
 {
-    public enum ActionCode
+    public enum BattleEventCode
     {
         NoAction,
         Attack,

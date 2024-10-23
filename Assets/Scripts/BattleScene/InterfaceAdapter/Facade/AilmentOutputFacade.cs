@@ -40,7 +40,7 @@ namespace BattleScene.InterfaceAdapter.Facade
             await Task.WhenAll(animationList);
         }
 
-        public async Task OutputThenAilmentSuccessAsync(PrimeSkillValueObject ailment)
+        public async Task OutputThenAilmentSuccessAsync(BattleEventValueObject ailment)
         {
             var animationList = new List<Task>();
             var messageAnimation = _messageView.StartAnimationAsync(MessageCode.AilmentMessage);

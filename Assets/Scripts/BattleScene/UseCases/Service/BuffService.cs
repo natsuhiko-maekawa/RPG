@@ -24,7 +24,7 @@ namespace BattleScene.UseCases.Service
             _orderedItems = orderedItems;
         }
 
-        public IReadOnlyList<PrimeSkillValueObject> Generate(
+        public IReadOnlyList<BattleEventValueObject> Generate(
             SkillCommonValueObject skillCommon,
             IReadOnlyList<BuffParameterValueObject> buffParameterList,
             IReadOnlyList<CharacterId> targetIdList)
@@ -34,9 +34,9 @@ namespace BattleScene.UseCases.Service
             var buffList = buffParameterList.Select(GetBuff).ToList();
             return buffList;
 
-            PrimeSkillValueObject GetBuff(BuffParameterValueObject buffParameter)
+            BattleEventValueObject GetBuff(BuffParameterValueObject buffParameter)
             {
-                return PrimeSkillValueObject.CreateBuff(
+                return BattleEventValueObject.CreateBuff(
                     actorId: actorId,
                     targetIdList: targetIdList,
                     skillCode: skillCommon.SkillCode,
@@ -47,7 +47,7 @@ namespace BattleScene.UseCases.Service
             }
         }
         
-        public void Register(PrimeSkillValueObject buff)
+        public void Register(BattleEventValueObject buff)
         {
             var buffEntityList = buff.TargetIdList
                 .Select(CreateBuffEntity)
@@ -69,7 +69,7 @@ namespace BattleScene.UseCases.Service
             }
         }
 
-        public void Register(IReadOnlyList<PrimeSkillValueObject> buffList)
+        public void Register(IReadOnlyList<BattleEventValueObject> buffList)
         {
             foreach (var buff in buffList) Register(buff);
         }

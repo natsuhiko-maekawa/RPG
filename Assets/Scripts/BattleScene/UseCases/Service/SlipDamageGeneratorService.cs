@@ -33,13 +33,13 @@ namespace BattleScene.UseCases.Service
             _battleLogCollection = battleLogCollection;
         }
 
-        public PrimeSkillValueObject Generate()
+        public BattleEventValueObject Generate()
         {
             _orderedItems.First().TryGetSlipDamageCode(out var slipCode);
             MyDebug.Assert(slipCode != SlipCode.NoSlip);
 
             var battleLog = _battleLogCollection.Get()
-                .Where(x => x.ActionCode is ActionCode.Skill or ActionCode.FatalitySkill)
+                .Where(x => x.BattleEventCode is BattleEventCode.Skill or BattleEventCode.FatalitySkill)
                 .Where(x => x.SlipCode == slipCode)
                 .Where(x => !x.IsFailure)
                 .Max();
@@ -60,7 +60,7 @@ namespace BattleScene.UseCases.Service
                 attacksWeakPoint: false,
                 index: 0);
 
-            var slipDamage = PrimeSkillValueObject.CreateSlipDamage(
+            var slipDamage = BattleEventValueObject.CreateSlipDamage(
                 targetIdList: new List<CharacterId> { targetId },
                 slipCode: slipCode,
                 attackList: new List<AttackValueObject> { attack });

@@ -35,7 +35,7 @@ namespace BattleScene.InterfaceAdapter.Presenter
         public async void StartAnimationAsync()
         {
             var actionCodeList = new[]
-                { ActionCode.Attack, ActionCode.Skill, ActionCode.Defence, ActionCode.FatalitySkill };
+                { BattleEventCode.Attack, BattleEventCode.Skill, BattleEventCode.Defence, BattleEventCode.FatalitySkill };
 
             var rowList = actionCodeList
                 .Select(x =>
@@ -63,14 +63,14 @@ namespace BattleScene.InterfaceAdapter.Presenter
             _gridView.StopAnimation();
         }
 
-        private string GetDescription(ActionCode actionCode)
+        private string GetDescription(BattleEventCode battleEventCode)
         {
-            var messageCode = actionCode switch
+            var messageCode = battleEventCode switch
             {
-                ActionCode.Attack => MessageCode.AttackDescription,
-                ActionCode.Skill => MessageCode.SkillDescription,
-                ActionCode.Defence => MessageCode.DefenceDescription,
-                ActionCode.FatalitySkill => MessageCode.FatalitySkillDescription,
+                BattleEventCode.Attack => MessageCode.AttackDescription,
+                BattleEventCode.Skill => MessageCode.SkillDescription,
+                BattleEventCode.Defence => MessageCode.DefenceDescription,
+                BattleEventCode.FatalitySkill => MessageCode.FatalitySkillDescription,
                 _ => MessageCode.NoMessage
             };
 
@@ -79,13 +79,13 @@ namespace BattleScene.InterfaceAdapter.Presenter
             return message;
         }
 
-        private bool GetEnabled(ActionCode actionCode)
+        private bool GetEnabled(BattleEventCode battleEventCode)
         {
-            var enabled = actionCode switch
+            var enabled = battleEventCode switch
             {
-                ActionCode.Attack or ActionCode.Skill or ActionCode.Defence => true,
-                ActionCode.FatalitySkill => _attackCounter.IsOverflow(),
-                _ => throw new ArgumentOutOfRangeException(nameof(actionCode), actionCode, null)
+                BattleEventCode.Attack or BattleEventCode.Skill or BattleEventCode.Defence => true,
+                BattleEventCode.FatalitySkill => _attackCounter.IsOverflow(),
+                _ => throw new ArgumentOutOfRangeException(nameof(battleEventCode), battleEventCode, null)
             };
 
             return enabled;

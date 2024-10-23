@@ -35,7 +35,7 @@ namespace BattleScene.InterfaceAdapter.Facade
             _vibrationView = vibrationView;
         }
 
-        public async Task Output(PrimeSkillValueObject damage)
+        public async Task Output(BattleEventValueObject damage)
         {
             var animationList = new List<Task>();
 
@@ -70,7 +70,7 @@ namespace BattleScene.InterfaceAdapter.Facade
             await Task.WhenAll(animationList);
         }
 
-        private MessageCode GetMessageCode(PrimeSkillValueObject damage)
+        private MessageCode GetMessageCode(BattleEventValueObject damage)
         {
             if (damage.IsAvoid) return MessageCode.AvoidMessage;
             if (DamagesOneself(damage)) return MessageCode.DamageOneselfMessage;
@@ -79,7 +79,7 @@ namespace BattleScene.InterfaceAdapter.Facade
                 : MessageCode.DamageMessage;
         }
 
-        private bool DamagesOneself(PrimeSkillValueObject damage)
+        private bool DamagesOneself(BattleEventValueObject damage)
         {
             var value = damage.AttackList
                 .Any(x => Equals(x.TargetId, damage.ActorId));

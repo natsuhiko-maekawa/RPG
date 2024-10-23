@@ -20,18 +20,18 @@ namespace BattleScene.UseCases.Service
             _turnCollection = turnCollection;
         }
 
-        public void Log(PrimeSkillValueObject primeSkill)
+        public void Log(BattleEventValueObject battleEvent)
         {
             var (battleLogId, sequence, turn) = GetBattleLogCommonArguments();
             var battleLog = new BattleLogEntity(
                 battleLogId: battleLogId,
                 sequence: sequence,
                 turn: turn,
-                primeSkill: primeSkill);
+                battleEvent: battleEvent);
             _battleLogCollection.Add(battleLog);
         }
 
-        public void Log(IReadOnlyList<PrimeSkillValueObject> primeSkillList)
+        public void Log(IReadOnlyList<BattleEventValueObject> primeSkillList)
         {
             var (battleLogId, sequence, turn) = GetBattleLogCommonArguments();
             var battleLogList = primeSkillList
@@ -39,7 +39,7 @@ namespace BattleScene.UseCases.Service
                     battleLogId: battleLogId,
                     sequence: sequence,
                     turn: turn,
-                    primeSkill: x))
+                    battleEvent: x))
                 .ToList();
             _battleLogCollection.Add(battleLogList);
         }
