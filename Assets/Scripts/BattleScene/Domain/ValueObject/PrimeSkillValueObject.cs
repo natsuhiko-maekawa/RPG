@@ -8,21 +8,21 @@ namespace BattleScene.Domain.ValueObject
 {
     public class PrimeSkillValueObject
     {
-        public ActionCode ActionCode { get; protected init; } = ActionCode.NoAction;
-        public AilmentCode AilmentCode { get; protected init; } = AilmentCode.NoAilment;
-        public BodyPartCode BodyPartCode { get; protected init; } = BodyPartCode.NoBodyPart;
-        public BuffCode BuffCode { get; protected init; } = BuffCode.NoBuff;
-        public SlipCode SlipCode { get; protected init; } = SlipCode.NoSlip;
-        public SkillCode SkillCode { get; protected set; } = SkillCode.NoSkill;
-        public CharacterId? ActorId { get; protected set; }
-        public IReadOnlyList<CharacterId> TargetIdList { get; protected set; } = Array.Empty<CharacterId>();
-        public IReadOnlyList<CharacterId> ActualTargetIdList { get; protected set; } = Array.Empty<CharacterId>();
+        public ActionCode ActionCode { get; private init; } = ActionCode.NoAction;
+        public AilmentCode AilmentCode { get; private init; } = AilmentCode.NoAilment;
+        public BodyPartCode BodyPartCode { get; private init; } = BodyPartCode.NoBodyPart;
+        public BuffCode BuffCode { get; private init; } = BuffCode.NoBuff;
+        public SlipCode SlipCode { get; private init; } = SlipCode.NoSlip;
+        public SkillCode SkillCode { get; private set; } = SkillCode.NoSkill;
+        public CharacterId? ActorId { get; private set; }
+        public IReadOnlyList<CharacterId> TargetIdList { get; private set; } = Array.Empty<CharacterId>();
+        public IReadOnlyList<CharacterId> ActualTargetIdList { get; private init; } = Array.Empty<CharacterId>();
         public bool IsFailure => ActualTargetIdList.Count == 0;
-        public float Rate { get; protected init; }
-        public int Turn { get; protected init; }
-        public LifetimeCode LifetimeCode { get; protected init; } = LifetimeCode.NoLifetime;
-        public int DestroyCount { get; protected init; }
-        public IReadOnlyList<AttackValueObject> AttackList { get; protected set; } = Array.Empty<AttackValueObject>();
+        public float Rate { get; private init; }
+        public int Turn { get; private init; }
+        public LifetimeCode LifetimeCode { get; private init; } = LifetimeCode.NoLifetime;
+        public int DestroyCount { get; private init; }
+        public IReadOnlyList<AttackValueObject> AttackList { get; private init; } = Array.Empty<AttackValueObject>();
 
         public IReadOnlyDictionary<CharacterId, int> DamageDictionary =>
             AttackList
@@ -41,7 +41,7 @@ namespace BattleScene.Domain.ValueObject
             AttackList
                 .Any(x => x.AttacksWeakPoint);
 
-        public int TechnicalPoint { get; protected init; }
+        public int TechnicalPoint { get; private init; }
 
         public static PrimeSkillValueObject CreateAilment(
             AilmentCode ailmentCode,
