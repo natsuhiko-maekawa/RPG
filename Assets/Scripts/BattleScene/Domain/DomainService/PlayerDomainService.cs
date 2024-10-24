@@ -41,7 +41,8 @@ namespace BattleScene.Domain.DomainService
 
         public CharacterEntity Get()
         {
-            return _characterCollection.Get().First(x => x.CharacterTypeCode == CharacterTypeCode.Player);
+            return _characterCollection.Get()
+                .Single(x => x.CharacterTypeCode == CharacterTypeCode.Player);
         }
 
         public CharacterId GetId()

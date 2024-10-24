@@ -33,7 +33,7 @@ namespace BattleScene.UseCases.Service
         private int Count()
         {
             var battleLogList = _battleLogCollection.Get();
-            var player = _characterCollection.Get().First(x => x.IsPlayer);
+            var player = _characterCollection.Get().Single(x => x.IsPlayer);
             var playerId = player.Id;
             var count = battleLogList
                 .OrderByDescending(x => x)

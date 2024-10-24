@@ -18,7 +18,7 @@ namespace BattleScene.DataAccess.Resource
             try
             {
                 item = listScriptableObject.ItemList
-                    .First(x => Equals(x.Key, id));
+                    .Single(x => Equals(x.Key, id));
             }
             catch (InvalidOperationException e)
             {

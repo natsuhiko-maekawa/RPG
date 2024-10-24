@@ -45,7 +45,7 @@ namespace BattleScene.Domain.DomainService
         {
             return _characterCollection.Get()
                 .Where(x => x.CharacterTypeCode != CharacterTypeCode.Player)
-                .First(x => x.Position == position)
+                .Single(x => x.Position == position)
                 .Id;
         }
     }

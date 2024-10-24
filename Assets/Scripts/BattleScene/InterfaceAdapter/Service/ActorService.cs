@@ -54,7 +54,7 @@ namespace BattleScene.InterfaceAdapter.Service
             
             var ailmentCode = ailmentCodeList.First();
             skillCode = _toSkillCode.From(ailmentCode);
-            if (ailmentCodeList.First() is not (AilmentCode.Paralysis or AilmentCode.EnemyParalysis)) return true;
+            if (ailmentCode is not (AilmentCode.Paralysis or AilmentCode.EnemyParalysis)) return true;
             if (CantActionByParalysis) return true;
 
             if (ailmentCodeList.Count == 1) return false;

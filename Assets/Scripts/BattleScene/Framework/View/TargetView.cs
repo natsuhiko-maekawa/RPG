@@ -69,7 +69,7 @@ namespace BattleScene.Framework.View
 
         private bool IsEnemySolo(IReadOnlyList<CharacterDto> characterDtoList)
         {
-            return characterDtoList.Count == 1 && !characterDtoList.First().IsPlayer;
+            return characterDtoList.Count == 1 && !characterDtoList.Single().IsPlayer;
         }
 
         private void SetIndex(TargetViewDto dto)
