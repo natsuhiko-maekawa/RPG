@@ -45,7 +45,7 @@ namespace BattleScene.InterfaceAdapter.State.PrimeSkill
             BaseState<TPrimeSkillParameter> nextState =
                 Context.PrimeSkillQueue.Count == 0
                 && Context.TargetIdList.All(x => _characterCollection.Get(x).IsPlayer)
-                && Context.ExecutedPrimeSkillCodeList.Contains(PrimeSkillCode.Damage)
+                && _primeSkillUseCase.IsExecutedDamage()
                     ? _primeSkillStopState
                     : _primeSkillOutputState;
             Context.TransitionTo(nextState);

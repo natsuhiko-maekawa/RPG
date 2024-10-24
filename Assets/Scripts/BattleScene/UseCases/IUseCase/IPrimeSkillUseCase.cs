@@ -10,5 +10,7 @@ namespace BattleScene.UseCases.IUseCase
             SkillCommonValueObject skillCommon,
             IReadOnlyList<TPrimeSkillParameter> primeSkillParameterList,
             IReadOnlyList<CharacterId> targetIdList);
+
+        public bool IsExecutedDamage();
     }
 }

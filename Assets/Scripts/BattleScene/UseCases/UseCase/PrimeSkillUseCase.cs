@@ -1,4 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using BattleScene.Domain.DataAccess;
+using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
 using BattleScene.UseCases.IService;
@@ -12,13 +15,16 @@ namespace BattleScene.UseCases.UseCase
     {
         private readonly IPrimeSkillService<TPrimeSkillParameter> _primeSkill;
         private readonly BattleLoggerService _battleLogger;
+        private readonly ICollection<BattleLogEntity, BattleLogId> _battleLogCollection;
 
         public PrimeSkillUseCase(
             IPrimeSkillService<TPrimeSkillParameter> primeSkill,
-            BattleLoggerService battleLogger)
+            BattleLoggerService battleLogger,
+            ICollection<BattleLogEntity, BattleLogId> battleLogCollection)
         {
             _primeSkill = primeSkill;
             _battleLogger = battleLogger;
+            _battleLogCollection = battleLogCollection;
         }
 
         public IReadOnlyList<BattleEventValueObject> Commit(
@@ -33,6 +39,14 @@ namespace BattleScene.UseCases.UseCase
             _primeSkill.Register(primeSkillList);
             _battleLogger.Log(primeSkillList);
             return primeSkillList;
+        }
+
+        public bool IsExecutedDamage()
+        {
+            var value = _battleLogCollection.Get()
+                .Where(x => x.Turn == _battleLogCollection.Get().Max().Turn)
+                .Any(x => x.AttackList.Count != 0);
+            return value;
         }
     }
 }
