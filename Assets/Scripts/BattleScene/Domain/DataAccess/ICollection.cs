@@ -9,6 +9,7 @@ namespace BattleScene.Domain.DataAccess
     {
         public bool TryGet(TId? id, [NotNullWhen(true)] out TEntity? entity);
         [return: NotNullIfNotNull("id")] public TEntity? Get(TId? id);
+        public bool TryGet([NotNullWhen(true)] out IReadOnlyList<TEntity>? entityList);
         public IReadOnlyList<TEntity> Get();
         public void Add(TEntity entity);
         public void Add(IReadOnlyList<TEntity> entityList);

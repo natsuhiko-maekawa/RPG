@@ -25,6 +25,14 @@ namespace Tests.BattleScene.DataAccess.Repository
             return entity;
         }
 
+        public bool TryGet([NotNullWhen(true)] out IReadOnlyList<TEntity>? entityList)
+        {
+            entityList = null;
+            if (_entityDictionary.Count == 0) return false;
+            entityList = _entityDictionary.Values.ToList();
+            return true;
+        }
+        
         public IReadOnlyList<TEntity> Get() => _entityDictionary.Values.ToList();
 
         public void Add(TEntity entity)
