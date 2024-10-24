@@ -9,7 +9,7 @@ namespace BattleScene.Domain.Entity
 
         public TurnEntity(
             TurnId id,
-            int turn)
+            int turn = 0)
         {
             Id = id;
             Turn = turn;

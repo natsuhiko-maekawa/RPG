@@ -5,19 +5,19 @@ namespace BattleScene.InterfaceAdapter.State.Battle
     public class InitializeBattleState : BaseState
     {
         private readonly InitializePlayerState _initializePlayerState;
-        private readonly TurnInitializerService _turnInitializer;
+        private readonly TurnService _turn;
 
         public InitializeBattleState(
             InitializePlayerState initializePlayerState,
-            TurnInitializerService turnInitializer)
+            TurnService turn)
         {
             _initializePlayerState = initializePlayerState;
-            _turnInitializer = turnInitializer;
+            _turn = turn;
         }
 
         public override void Start()
         {
-            _turnInitializer.Initialize();
+            _turn.Initialize();
             Context.TransitionTo(_initializePlayerState);
         }
     }

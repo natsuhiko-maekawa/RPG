@@ -1,14 +1,15 @@
-﻿using BattleScene.Domain.DataAccess;
+﻿using System.Linq;
+using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 
 namespace BattleScene.UseCases.Service
 {
-    public class TurnInitializerService
+    public class TurnService
     {
         private readonly ICollection<TurnEntity, TurnId> _turnCollection;
 
-        public TurnInitializerService(
+        public TurnService(
             ICollection<TurnEntity, TurnId> turnCollection)
         {
             _turnCollection = turnCollection;
@@ -17,8 +18,15 @@ namespace BattleScene.UseCases.Service
         public void Initialize()
         {
             var turnId = new TurnId();
-            var turn = new TurnEntity(turnId, 0);
+            var turn = new TurnEntity(turnId);
             _turnCollection.Add(turn);
+        }
+
+        public void Increment()
+        {
+            var turn = _turnCollection.Get()
+                .Single();
+            turn.Increment();
         }
     }
 }
