@@ -20,20 +20,17 @@ namespace BattleScene.InterfaceAdapter.State.PrimeSkill
         public SkillCommonValueObject SkillCommon { get; }
         public IReadOnlyList<CharacterId> TargetIdList { get; }
         public IReadOnlyList<TPrimeSkillParameter> PrimeSkillParameterList { get; }
-        public IReadOnlyList<PrimeSkillCode> ExecutedPrimeSkillCodeList { get; }
         public Queue<BattleEventValueObject> PrimeSkillQueue { get; set; } = new();
 
         public Context(
             BaseState<TPrimeSkillParameter> primeSkillState,
             SkillCommonValueObject skillCommon,
             IReadOnlyList<CharacterId> targetIdList,
-            IReadOnlyList<TPrimeSkillParameter> primeSkillParameterList,
-            IReadOnlyList<PrimeSkillCode> executedPrimeSkillCodeList)
+            IReadOnlyList<TPrimeSkillParameter> primeSkillParameterList)
         {
             SkillCommon = skillCommon;
             TargetIdList = targetIdList;
             PrimeSkillParameterList = primeSkillParameterList;
-            ExecutedPrimeSkillCodeList = executedPrimeSkillCodeList;
             TransitionTo(primeSkillState);
         }
 
