@@ -2,6 +2,7 @@
 {
     public enum PrimeSkillCode
     {
+        NoSkill,
         Damage,
         Ailment,
         Slip,

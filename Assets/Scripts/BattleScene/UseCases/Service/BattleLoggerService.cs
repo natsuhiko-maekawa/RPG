@@ -47,13 +47,12 @@ namespace BattleScene.UseCases.Service
         private (BattleLogId battleLogId, int nextSequence, int turn) GetBattleLogCommonArguments()
         {
             var battleLogId = new BattleLogId();
-            var sequence = _battleLogCollection.Get()
-                .Max()
-                ?.Sequence ?? 0;
-            var nextSequence = sequence + 1;
-            var turn = _turnCollection.Get()
-                .First()
-                .Turn;
+            var nextSequence = _battleLogCollection.Get()
+                .Max()?.Sequence + 1 ?? 0;
+            var turn = _turnCollection.TryGet(out var turnList)
+                ? turnList
+                    .Single().Turn
+                : 0;
             return (battleLogId, nextSequence, turn);
         }
     }
