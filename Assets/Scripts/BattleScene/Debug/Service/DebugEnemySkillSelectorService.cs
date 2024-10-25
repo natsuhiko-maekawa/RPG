@@ -14,7 +14,6 @@ namespace BattleScene.Debug.Service
 {
     public class DebugEnemySkillSelectorService : MonoBehaviour, IEnemySkillSelectorService
     {
-        [SerializeField] private bool isActive;
         [SerializeField] private PrimeSkillCode primeSkillCode;
         private ICollection<CharacterEntity, CharacterId> _characterCollection;
         private IFactory<CharacterPropertyValueObject, CharacterTypeCode> _characterPropertyFactory;
@@ -43,18 +42,12 @@ namespace BattleScene.Debug.Service
             var characterTypeCode = _characterCollection.Get(characterId).CharacterTypeCode;
             var skillCodeList = _characterPropertyFactory.Create(characterTypeCode).SkillCodeList;
 
-            SkillCode skillCode;
-            if (!isActive)
-            {
-                skillCode = _myRandom.Choice(skillCodeList);
-                return skillCode;
-            }
-
-            skillCode = skillCodeList
-                .FirstOrDefault(IsSpecificPrimeSkill);
-            skillCode = skillCode == SkillCode.NoSkill
-                ? skillCodeList.First()
-                : skillCode;
+            var specificPrimeSkillCodeList = skillCodeList
+                .Where(IsSpecificPrimeSkill)
+                .ToList();
+            var skillCode = specificPrimeSkillCodeList.Count == 0
+                ? _myRandom.Choice(skillCodeList)
+                : _myRandom.Choice(specificPrimeSkillCodeList);
             return skillCode;
         }
 
@@ -63,6 +56,7 @@ namespace BattleScene.Debug.Service
             var skill = _skillFactory.Create(skillCode);
             var value = primeSkillCode switch
             {
+                PrimeSkillCode.All => true,
                 PrimeSkillCode.Damage => skill.DamageParameterList.Count != 0,
                 PrimeSkillCode.Ailment => skill.AilmentParameterList.Count != 0,
                 PrimeSkillCode.Slip => skill.SlipParameterList.Count != 0,
@@ -77,7 +71,7 @@ namespace BattleScene.Debug.Service
 
         private enum PrimeSkillCode
         {
-            Random,
+            All,
             Damage,
             Ailment,
             Slip,
