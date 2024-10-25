@@ -74,5 +74,16 @@ namespace BattleScene.Debug.Service
 
             return value;
         }
+
+        private enum PrimeSkillCode
+        {
+            Random,
+            Damage,
+            Ailment,
+            Slip,
+            Destroy,
+            Buff,
+            Restore
+        }
     }
 }
