@@ -1,5 +1,4 @@
-﻿using BattleScene.Domain.Code;
-using BattleScene.Domain.DataAccess;
+﻿using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
@@ -10,16 +9,13 @@ namespace BattleScene.UseCases.Service
     public class SkillExecutorService
     {
         private readonly ICollection<CharacterEntity, CharacterId> _characterCollection;
-        private readonly IFactory<SkillValueObject, SkillCode> _skillFactory;
         private readonly OrderedItemsDomainService _orderedItems;
 
         public SkillExecutorService(
             ICollection<CharacterEntity, CharacterId> characterCollection,
-            IFactory<SkillValueObject, SkillCode> skillFactory,
             OrderedItemsDomainService orderedItems)
         {
             _characterCollection = characterCollection;
-            _skillFactory = skillFactory;
             _orderedItems = orderedItems;
         }
 
