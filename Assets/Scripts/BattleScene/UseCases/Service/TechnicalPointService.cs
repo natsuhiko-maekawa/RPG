@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
@@ -31,6 +32,17 @@ namespace BattleScene.UseCases.Service
                 .Single(x => x.IsPlayer);
             var technicalPoint = skill.Common.TechnicalPoint;
             player.CurrentTechnicalPoint -= technicalPoint;
+        }
+
+        public void Restore(IReadOnlyList<BattleEventValueObject> restoreList)
+        {
+            foreach (var restore in restoreList)
+            {
+                var player = _characterCollection.Get()
+                    .Single(x => x.IsPlayer);
+                var technicalPoint = restore.TechnicalPoint;
+                player.CurrentTechnicalPoint += technicalPoint;
+            }
         }
     }
 }
