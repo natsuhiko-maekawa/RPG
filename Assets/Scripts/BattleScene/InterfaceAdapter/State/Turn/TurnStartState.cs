@@ -46,15 +46,16 @@ namespace BattleScene.InterfaceAdapter.State.Turn
 
         private BaseState GetNextState()
         {
-            if (_actor.IsResetAilment) return _resetAilmentState;
-            if (_actor.IsSlipDamage) return _slipDamageState;
-            if (_actor.CantActionBy(out var skillCode))
+            if (_actor.IsResetAilment(Context.AilmentCode)) return _resetAilmentState;
+            if (_actor.IsSlipDamage(Context.SlipCode)) return _slipDamageState;
+            if (_actor.CantActionBy(Context.ActorId, out var skill))
             {
-                Context.SkillCode = skillCode;
+                Context.Skill = skill;
+                Context.SkillCode = Context.Skill.SkillCommon.SkillCode;
                 return _cantActionState;
             }
-            
-            return _actor.IsPlayer
+
+            return _actor.IsPlayer(Context.ActorId)
                 ? _playerSelectActionState
                 : _enemySelectActionState;
         }
