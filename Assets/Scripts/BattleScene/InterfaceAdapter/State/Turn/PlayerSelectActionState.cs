@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DomainService;
 using BattleScene.InterfaceAdapter.Presenter;
+using BattleScene.UseCases.UseCase;
 
 namespace BattleScene.InterfaceAdapter.State.Turn
 {
     public class PlayerSelectActionState : BaseState
     {
-        private readonly PlayerDomainService _player;
+        private readonly PlayerSelectActionUseCase _useCase;
         private readonly PlayerSelectSkillState _playerSelectSkillState;
         private readonly PlayerSelectTargetState _playerSelectTargetState;
         private readonly SkillState _skillState;
@@ -23,17 +24,17 @@ namespace BattleScene.InterfaceAdapter.State.Turn
         };
 
         public PlayerSelectActionState(
-            PlayerDomainService player,
             PlayerSelectSkillState playerSelectSkillState,
             PlayerSelectTargetState playerSelectTargetState,
             SkillState skillState,
-            GridViewPresenter gridView)
+            GridViewPresenter gridView,
+            PlayerSelectActionUseCase useCase)
         {
-            _player = player;
             _playerSelectSkillState = playerSelectSkillState;
             _playerSelectTargetState = playerSelectTargetState;
             _skillState = skillState;
             _gridView = gridView;
+            _useCase = useCase;
         }
 
         public override void Start()
@@ -47,16 +48,13 @@ namespace BattleScene.InterfaceAdapter.State.Turn
 
             if (actionCode == BattleEventCode.Defence)
             {
-                var oneself = new[] { _player.GetId() };
+                if (Context.ActorId == null) throw new InvalidOperationException();
+                var oneself = _useCase.GetOneself(Context.ActorId);
                 Context.TargetIdList = oneself;
             }
 
-            Context.SkillCode = actionCode switch
-            {
-                BattleEventCode.Attack => SkillCode.Attack,
-                BattleEventCode.Defence => SkillCode.Defence,
-                _ => SkillCode.NoSkill
-            };
+            Context.Skill = _useCase.GetSkill(actionCode);
+            Context.SkillCode = Context.Skill?.SkillCommon.SkillCode ?? SkillCode.NoSkill;
 
             BaseState nextState = actionCode switch
             {
