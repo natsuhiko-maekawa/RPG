@@ -1,7 +1,9 @@
 ﻿using System;
 using BattleScene.DataAccess;
 using BattleScene.Domain.Code;
+using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.Entity;
+using BattleScene.Domain.Id;
 using BattleScene.Framework.View;
 using BattleScene.Framework.ViewModel;
 using BattleScene.InterfaceAdapter.Service;
@@ -12,20 +14,24 @@ namespace BattleScene.InterfaceAdapter.ReactivePresenter
 {
     public class BuffViewReactivePresenter : IReactive<BuffEntity>
     {
+        private readonly ICollection<CharacterEntity, CharacterId> _characterCollection;
         private readonly ToIndexService _toIndex;
         private readonly PlayerStatusView _playerStatusView;
 
         public BuffViewReactivePresenter(
             ToIndexService toIndex,
-            PlayerStatusView playerStatusView)
+            PlayerStatusView playerStatusView,
+            ICollection<CharacterEntity, CharacterId> characterCollection)
         {
             _toIndex = toIndex;
             _playerStatusView = playerStatusView;
+            _characterCollection = characterCollection;
         }
 
         public void Observe(BuffEntity buff)
         {
-            buff.ReactiveRate.Subscribe(x => StartPlayerBuffView(buff.BuffCode, x));
+            if (_characterCollection.Get(buff.CharacterId).IsPlayer)
+                buff.ReactiveRate.Subscribe(x => StartPlayerBuffView(buff.BuffCode, x));
         }
 
         private void StartPlayerBuffView(BuffCode buffCode, float rate)
