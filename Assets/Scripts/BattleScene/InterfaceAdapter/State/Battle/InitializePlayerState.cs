@@ -1,23 +1,23 @@
-﻿using BattleScene.Domain.DomainService;
+﻿using BattleScene.UseCases.UseCase;
 
 namespace BattleScene.InterfaceAdapter.State.Battle
 {
     public class InitializePlayerState : BaseState
     {
-        private readonly PlayerDomainService _player;
+        private readonly InitializePlayerUseCase _useCase;
         private readonly InitializeEnemyState _initializeEnemyState;
 
         public InitializePlayerState(
-            PlayerDomainService player,
+            InitializePlayerUseCase useCase,
             InitializeEnemyState initializeEnemyState)
         {
-            _player = player;
+            _useCase = useCase;
             _initializeEnemyState = initializeEnemyState;
         }
 
         public override void Start()
         {
-            _player.Add();
+            _useCase.Initialize();
             Context.TransitionTo(_initializeEnemyState);
         }
     }

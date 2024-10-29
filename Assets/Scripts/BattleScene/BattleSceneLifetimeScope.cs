@@ -319,6 +319,8 @@ namespace BattleScene
                 PrimeSkillUseCase<SlipParameterValueObject>>(Lifetime.Singleton);
             builder.Register<IPrimeSkillUseCase<RestoreParameterValueObject>,
                 PrimeSkillUseCase<RestoreParameterValueObject>>(Lifetime.Singleton);
+            builder.Register<InitializeEnemyUseCase>(Lifetime.Singleton);
+            builder.Register<InitializePlayerUseCase>(Lifetime.Singleton);
             builder.Register<OrderUseCase>(Lifetime.Singleton);
             builder.Register<PlayerSelectActionUseCase>(Lifetime.Singleton);
             builder.Register<PlayerSelectSkillUseCase>(Lifetime.Singleton);

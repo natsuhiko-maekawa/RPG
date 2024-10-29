@@ -1,38 +1,29 @@
-﻿using System.Collections.Generic;
-using BattleScene.Domain.Code;
-using BattleScene.InterfaceAdapter.Presenter;
-using BattleScene.UseCases.IService;
-using static BattleScene.Domain.Code.CharacterTypeCode;
+﻿using BattleScene.InterfaceAdapter.Presenter;
+using BattleScene.UseCases.UseCase;
 
 namespace BattleScene.InterfaceAdapter.State.Battle
 {
     public class InitializeEnemyState : BaseState
     {
-        private readonly IEnemiesRegistererService _enemiesRegisterer;
+        private readonly InitializeEnemyUseCase _useCase;
         private readonly EnemyImagePresenter _enemyImage;
         private readonly TurnState _turnState;
 
         public InitializeEnemyState(
-            IEnemiesRegistererService enemiesRegisterer,
+            InitializeEnemyUseCase useCase,
             EnemyImagePresenter enemyImage,
             TurnState turnState)
         {
-            _enemiesRegisterer = enemiesRegisterer;
+            _useCase = useCase;
             _enemyImage = enemyImage;
             _turnState = turnState;
         }
 
         public override void Start()
         {
-            SetEnemies();
+            _useCase.Initialize();
             _enemyImage.Show();
             Context.TransitionTo(_turnState);
-        }
-
-        private void SetEnemies()
-        {
-            var enemyTypeIdList = new List<CharacterTypeCode> { Bee, Dragon, Mantis, Shuten, Slime };
-            _enemiesRegisterer.Register(enemyTypeIdList);
         }
     }
 }
