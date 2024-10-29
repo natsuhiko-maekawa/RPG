@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BattleScene.DataAccess;
@@ -8,7 +9,6 @@ using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
-using BattleScene.Domain.ValueObject;
 using BattleScene.InterfaceAdapter.Presenter;
 using BattleScene.InterfaceAdapter.State.Turn;
 
@@ -16,7 +16,6 @@ namespace BattleScene.InterfaceAdapter.Facade
 {
     public class SkillOutputFacade
     {
-        private readonly IFactory<SkillValueObject, SkillCode> _skillFactory;
         private readonly IResource<SkillViewDto, SkillCode> _skillViewResource;
         private readonly ICollection<BattleLogEntity, BattleLogId> _battleLogCollection;
         private readonly ICollection<CharacterEntity, CharacterId> _characterCollection;
@@ -25,7 +24,6 @@ namespace BattleScene.InterfaceAdapter.Facade
         private readonly PlayerImageViewPresenter _playerImageView;
 
         public SkillOutputFacade(
-            IFactory<SkillValueObject, SkillCode> skillFactory,
             IResource<SkillViewDto, SkillCode> skillViewResource,
             ICollection<BattleLogEntity, BattleLogId> battleLogCollection,
             ICollection<CharacterEntity, CharacterId> characterCollection,
@@ -33,7 +31,6 @@ namespace BattleScene.InterfaceAdapter.Facade
             MessageViewPresenter messageView,
             PlayerImageViewPresenter playerImageView)
         {
-            _skillFactory = skillFactory;
             _skillViewResource = skillViewResource;
             _battleLogCollection = battleLogCollection;
             _characterCollection = characterCollection;
@@ -44,6 +41,7 @@ namespace BattleScene.InterfaceAdapter.Facade
 
         public async Task Output(Context context)
         {
+            if (context.Skill == null) throw new InvalidOperationException(ExceptionMessage.ContextSkillIsNull);
             var animationList = new List<Task>();
 
             _orderedItems.First().TryGetCharacterId(out var actorId);
@@ -51,13 +49,13 @@ namespace BattleScene.InterfaceAdapter.Facade
 
             var messageCode = isActorPlayer
                 ? MessageCode.SkillMessage
-                : _skillFactory.Create(context.SkillCode).SkillCommon.AttackMessageCode;
+                : context.Skill.SkillCommon.AttackMessageCode;
 
             var messageAnimation = _messageView.StartAnimationAsync(messageCode, context);
             animationList.Add(messageAnimation);
 
             var playerSkillCode = isActorPlayer
-                ? context.SkillCode
+                ? context.Skill.SkillCommon.SkillCode
                 : _battleLogCollection.Get()
                     // 敵に先手を撃たれ混乱した状態で敵の攻撃を受ける場合、
                     // プレイヤーはまだスキルを一度も発動していないので、
