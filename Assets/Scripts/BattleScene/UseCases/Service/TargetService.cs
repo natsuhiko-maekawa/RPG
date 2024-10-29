@@ -16,15 +16,18 @@ namespace BattleScene.UseCases.Service
         private readonly ICollection<BattleLogEntity, BattleLogId> _battleLogCollection;
         private readonly EnemiesDomainService _enemies;
         private readonly ICollection<CharacterEntity, CharacterId> _characterCollection;
+        private readonly PlayerDomainService _player;
 
         public TargetService(
             EnemiesDomainService enemies,
             ICollection<BattleLogEntity, BattleLogId> battleLogCollection,
-            ICollection<CharacterEntity, CharacterId> characterCollection)
+            ICollection<CharacterEntity, CharacterId> characterCollection,
+            PlayerDomainService player)
         {
             _enemies = enemies;
             _battleLogCollection = battleLogCollection;
             _characterCollection = characterCollection;
+            _player = player;
         }
 
         public IReadOnlyList<CharacterId> Get(CharacterId actorId, Range range)
@@ -38,11 +41,11 @@ namespace BattleScene.UseCases.Service
                 Range.Solo =>
                     _characterCollection.Get(actorId).IsPlayer
                         ? new[] { GetEnemySolo() }
-                        : new[] { actorId },
+                        : new[] { _player.GetId() },
                 Range.Line or Range.Random =>
                     _characterCollection.Get(actorId).IsPlayer
                         ? _enemies.GetIdSurvive()
-                        : new[] { actorId },
+                        : new[] { _player.GetId() },
                 _ => throw new NotImplementedException()
             };
 
