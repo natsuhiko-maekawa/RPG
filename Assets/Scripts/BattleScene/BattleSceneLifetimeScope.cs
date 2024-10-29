@@ -271,7 +271,7 @@ namespace BattleScene
             builder.Register<PlayerSelectActionState>(Lifetime.Singleton);
             builder.Register<PlayerSelectSkillState>(Lifetime.Singleton);
             builder.Register<PlayerSelectTargetState>(Lifetime.Singleton);
-            builder.Register<EnemySelectSkillState>(Lifetime.Singleton);
+            builder.Register<EnemySelectActionState>(Lifetime.Singleton);
             builder.Register<CantActionState>(Lifetime.Singleton);
             builder.Register<SlipDamageState>(Lifetime.Singleton);
             builder.Register<ResetAilmentState>(Lifetime.Singleton);

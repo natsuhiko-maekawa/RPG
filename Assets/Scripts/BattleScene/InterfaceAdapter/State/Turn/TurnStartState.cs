@@ -10,7 +10,7 @@ namespace BattleScene.InterfaceAdapter.State.Turn
         private readonly ActorService _actor;
         private readonly OrderViewPresenter _orderView;
         private readonly PlayerSelectActionState _playerSelectActionState;
-        private readonly EnemySelectSkillState _enemySelectSkillState;
+        private readonly EnemySelectActionState _enemySelectActionState;
         private readonly CantActionState _cantActionState;
         private readonly SlipDamageState _slipDamageState;
         private readonly ResetAilmentState _resetAilmentState;
@@ -20,7 +20,7 @@ namespace BattleScene.InterfaceAdapter.State.Turn
             ActorService actor,
             OrderViewPresenter orderView,
             PlayerSelectActionState playerSelectActionState,
-            EnemySelectSkillState enemySelectSkillState,
+            EnemySelectActionState enemySelectActionState,
             CantActionState cantActionState,
             SlipDamageState slipDamageState,
             ResetAilmentState resetAilmentState)
@@ -29,7 +29,7 @@ namespace BattleScene.InterfaceAdapter.State.Turn
             _actor = actor;
             _orderView = orderView;
             _playerSelectActionState = playerSelectActionState;
-            _enemySelectSkillState = enemySelectSkillState;
+            _enemySelectActionState = enemySelectActionState;
             _cantActionState = cantActionState;
             _slipDamageState = slipDamageState;
             _resetAilmentState = resetAilmentState;
@@ -56,7 +56,7 @@ namespace BattleScene.InterfaceAdapter.State.Turn
             
             return _actor.IsPlayer
                 ? _playerSelectActionState
-                : _enemySelectSkillState;
+                : _enemySelectActionState;
         }
     }
 }

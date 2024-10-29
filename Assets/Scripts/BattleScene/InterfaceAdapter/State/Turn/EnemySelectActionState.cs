@@ -3,12 +3,12 @@ using BattleScene.UseCases.IUseCase;
 
 namespace BattleScene.InterfaceAdapter.State.Turn
 {
-    public class EnemySelectSkillState : BaseState
+    public class EnemySelectActionState : BaseState
     {
         private readonly IEnemySelectSkillUseCase _enemySelectSkill;
         private readonly SkillState _skillState;
 
-        public EnemySelectSkillState(
+        public EnemySelectActionState(
             IEnemySelectSkillUseCase enemySelectSkill,
             SkillState skillState)
         {
