@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.ValueObject;
@@ -53,7 +54,8 @@ namespace BattleScene.InterfaceAdapter.StateMachine
 
         private IEnumerable<IContext> GetContext(Context context)
         {
-            var skill = _skillFactory.Create(context.SkillCode);
+            if (context.Skill == null) throw new InvalidOperationException(ExceptionMessage.ContextSkillIsNull);
+            var skill = context.Skill;
 
             if (skill.DamageParameterList.Count != 0)
             {
