@@ -321,6 +321,7 @@ namespace BattleScene
                 PrimeSkillUseCase<RestoreParameterValueObject>>(Lifetime.Singleton);
             builder.Register<OrderUseCase>(Lifetime.Singleton);
             builder.Register<SlipUseCase>(Lifetime.Singleton);
+            builder.Register<ResetAilmentUseCase>(Lifetime.Singleton);
 
             #endregion
 
