@@ -28,8 +28,8 @@ namespace BattleScene.Framework.View
 
         public Task StartAnimation(AilmentViewModel ailment)
         {
-            if (ailment.Effects) _ailmentIdList.Add(ailment.AilmentId);
-            else _ailmentIdList.Remove(ailment.AilmentId);
+            if (ailment.Effects && !_ailmentIdList.Contains(ailment.AilmentId)) _ailmentIdList.Add(ailment.AilmentId);
+            if (!ailment.Effects) _ailmentIdList.Remove(ailment.AilmentId);
 
             foreach (var (enemyAilment, i) in _enemyAilmentGrid.Select((x, i) => (x, i)))
             {
