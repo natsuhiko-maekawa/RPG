@@ -338,6 +338,7 @@ namespace BattleScene
             builder.Register<ToSkillCodeService>(Lifetime.Singleton);
             builder.Register<CharacterPropertyFactoryService>(Lifetime.Singleton);
             builder.Register<DamageEvaluatorService>(Lifetime.Singleton);
+            builder.Register<IHitPointService, HitPointService>(Lifetime.Singleton);
             builder.Register<IsHitEvaluatorService>(Lifetime.Singleton);
             builder.Register<OrderService>(Lifetime.Singleton);
             builder.Register<SkillExecutorService>(Lifetime.Singleton);
