@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using BattleScene.DataAccess;
 using BattleScene.DataAccess.Dto;
 using BattleScene.Domain.Code;
-using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.ValueObject;
 using BattleScene.InterfaceAdapter.Presenter;
 
@@ -12,7 +11,6 @@ namespace BattleScene.InterfaceAdapter.Facade
 {
     public class SlipDamageOutputFacade
     {
-        private readonly IFactory<SkillValueObject, SkillCode> _skillFactory;
         private readonly IResource<SkillViewDto, SkillCode> _skillViewResource;
         private readonly DamageViewPresenter _damageView;
         private readonly MessageViewPresenter _messageView;
@@ -20,14 +18,12 @@ namespace BattleScene.InterfaceAdapter.Facade
         private readonly VibrationViewPresenter _vibrationView;
 
         public SlipDamageOutputFacade(
-            IFactory<SkillValueObject, SkillCode> skillFactory,
             IResource<SkillViewDto, SkillCode> skillViewResource,
             DamageViewPresenter damageView,
             MessageViewPresenter messageView,
             PlayerImageViewPresenter playerImageView,
             VibrationViewPresenter vibrationView)
         {
-            _skillFactory = skillFactory;
             _skillViewResource = skillViewResource;
             _damageView = damageView;
             _messageView = messageView;

@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using BattleScene.Domain.Code;
-using BattleScene.Domain.DataAccess;
-using BattleScene.Domain.ValueObject;
 using BattleScene.InterfaceAdapter.State.PrimeSkill;
 using BattleScene.InterfaceAdapter.State.Turn;
 using VContainer;
@@ -11,15 +8,12 @@ namespace BattleScene.InterfaceAdapter.StateMachine
 {
     public class PrimeSkillStateMachine
     {
-        private readonly IFactory<SkillValueObject, SkillCode> _skillFactory;
         private readonly IObjectResolver _container;
         private IEnumerator<IContext>? _primeSkillContextEnumerator;
 
         public PrimeSkillStateMachine(
-            IFactory<SkillValueObject, SkillCode> skillFactory,
             IObjectResolver container)
         {
-            _skillFactory = skillFactory;
             _container = container;
         }
 

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using BattleScene.Domain.Code;
-using BattleScene.Domain.DomainService;
 using BattleScene.InterfaceAdapter.Presenter;
 using BattleScene.UseCases.UseCase;
 

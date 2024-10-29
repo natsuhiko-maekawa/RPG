@@ -2,7 +2,6 @@
 using System.Linq;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DataAccess;
-using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
@@ -18,7 +17,6 @@ namespace BattleScene.Debug.Service
         private ICollection<CharacterEntity, CharacterId> _characterCollection;
         private IFactory<CharacterPropertyValueObject, CharacterTypeCode> _characterPropertyFactory;
         private IFactory<SkillValueObject, SkillCode> _skillFactory;
-        private OrderedItemsDomainService _orderItems;
         private IMyRandomService _myRandom;
 
         [Inject]
@@ -26,20 +24,12 @@ namespace BattleScene.Debug.Service
             ICollection<CharacterEntity, CharacterId> characterCollection,
             IFactory<CharacterPropertyValueObject, CharacterTypeCode> characterPropertyFactory,
             IFactory<SkillValueObject, SkillCode> skillFactory,
-            OrderedItemsDomainService orderItems,
             IMyRandomService myRandom)
         {
             _characterCollection = characterCollection;
             _characterPropertyFactory = characterPropertyFactory;
             _skillFactory = skillFactory;
-            _orderItems = orderItems;
             _myRandom = myRandom;
-        }
-
-        [Obsolete]
-        public SkillCode Select()
-        {
-            throw new NotImplementedException();
         }
 
         public SkillValueObject Select(CharacterId actorId)

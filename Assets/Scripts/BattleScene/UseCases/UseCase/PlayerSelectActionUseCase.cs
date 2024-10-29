@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DataAccess;

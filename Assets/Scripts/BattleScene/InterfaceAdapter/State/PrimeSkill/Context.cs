@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using BattleScene.Domain.Code;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
 using Utility;

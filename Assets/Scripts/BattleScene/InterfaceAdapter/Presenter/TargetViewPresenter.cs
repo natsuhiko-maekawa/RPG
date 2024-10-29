@@ -7,7 +7,6 @@ using BattleScene.Domain.ValueObject;
 using BattleScene.Framework.View;
 using BattleScene.Framework.ViewModel;
 using BattleScene.UseCases.IService;
-using BattleScene.UseCases.Service;
 
 namespace BattleScene.InterfaceAdapter.Presenter
 {
