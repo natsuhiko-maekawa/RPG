@@ -5,6 +5,7 @@ using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
+using BattleScene.Domain.ValueObject;
 using BattleScene.UseCases.Service;
 using Utility;
 
@@ -17,19 +18,22 @@ namespace BattleScene.UseCases.UseCase
         private readonly OrderedItemsDomainService _orderedItems;
         private readonly SlipDamageGeneratorService _slipDamageGenerator;
         private readonly ICollection<SlipEntity, SlipCode> _slipCollection;
+        private readonly IFactory<SkillValueObject, SkillCode> _skillFactory;
 
         public SlipUseCase(
             BattleLoggerService battleLogger,
             PlayerDomainService player,
             OrderedItemsDomainService orderedItems,
             SlipDamageGeneratorService slipDamageGenerator,
-            ICollection<SlipEntity, SlipCode> slipCollection)
+            ICollection<SlipEntity, SlipCode> slipCollection,
+            IFactory<SkillValueObject, SkillCode> skillFactory)
         {
             _battleLogger = battleLogger;
             _player = player;
             _orderedItems = orderedItems;
             _slipDamageGenerator = slipDamageGenerator;
             _slipCollection = slipCollection;
+            _skillFactory = skillFactory;
         }
 
         public void Commit()
@@ -39,7 +43,7 @@ namespace BattleScene.UseCases.UseCase
             _battleLogger.Log(slipDamage);
         }
 
-        public SkillCode GetSkillCode()
+        public SkillValueObject GetSkillCode()
         {
             _orderedItems.First().TryGetSlipDamageCode(out var slipCode);
             MyDebug.Assert(slipCode != SlipCode.NoSlip);
@@ -50,7 +54,8 @@ namespace BattleScene.UseCases.UseCase
                 _ => throw new ArgumentOutOfRangeException()
             };
 
-            return skillCode;
+            var skill = _skillFactory.Create(skillCode);
+            return skill;
         }
 
         public IReadOnlyList<CharacterId> GetTargetList()
