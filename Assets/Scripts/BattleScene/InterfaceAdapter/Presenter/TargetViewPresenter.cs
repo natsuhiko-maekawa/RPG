@@ -36,7 +36,7 @@ namespace BattleScene.InterfaceAdapter.Presenter
         public void StartAnimation(SkillValueObject skill)
         {
             _orderedItems.First().TryGetCharacterId(out var characterId);
-            var range = skill.SkillCommon.Range;
+            var range = skill.Common.Range;
             var targetIdList = _target.Get(
                 characterId,
                 range);

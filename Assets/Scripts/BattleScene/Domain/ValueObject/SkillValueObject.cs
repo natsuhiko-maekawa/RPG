@@ -6,7 +6,7 @@ namespace BattleScene.Domain.ValueObject
 {
     public class SkillValueObject
     {
-        public SkillCommonValueObject SkillCommon { get; }
+        public SkillCommonValueObject Common { get; }
         public IReadOnlyList<AilmentParameterValueObject> AilmentParameterList { get; }
         public IReadOnlyList<BuffParameterValueObject> BuffParameterList { get; }
         public IReadOnlyList<DamageParameterValueObject> DamageParameterList { get; }
@@ -27,7 +27,7 @@ namespace BattleScene.Domain.ValueObject
             IReadOnlyList<RestoreParameterValueObject>? restoreParameterList = null,
             IReadOnlyList<SlipParameterValueObject>? slipParameterList = null)
         {
-            SkillCommon = new SkillCommonValueObject(
+            Common = new SkillCommonValueObject(
                 skillCode: skillCode,
                 technicalPoint: technicalPoint,
                 dependencyList: dependencyList,

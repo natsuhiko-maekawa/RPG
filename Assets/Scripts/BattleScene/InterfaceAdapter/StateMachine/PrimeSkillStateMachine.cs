@@ -102,7 +102,7 @@ namespace BattleScene.InterfaceAdapter.StateMachine
                     _container.Resolve<PrimeSkillStartState<TPrimeSkillParameter>>();
                 var skillContext = new Context<TPrimeSkillParameter>(
                     primeSkillState: primeSkillStartState,
-                    skillCommon: skill.SkillCommon,
+                    skillCommon: skill.Common,
                     primeSkillParameterList: primeSkillParameterList,
                     targetIdList: context.TargetIdList);
                 return skillContext;

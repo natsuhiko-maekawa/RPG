@@ -29,7 +29,7 @@ namespace BattleScene.InterfaceAdapter.State.Turn
         {
             _useCase.Reset();
             Context.Skill = _useCase.GetAttackSkill();
-            await _output.OutputAsync(Context.Skill.SkillCommon.SkillCode);
+            await _output.OutputAsync(Context.Skill.Common.SkillCode);
         }
 
         public override void Select()

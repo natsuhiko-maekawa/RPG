@@ -47,11 +47,11 @@ namespace BattleScene.InterfaceAdapter.Facade
         {
             var animationList = new List<Task>();
 
-            var playerImageCode = _skillViewResource.Get(skill.SkillCommon.SkillCode).PlayerImageCode;
+            var playerImageCode = _skillViewResource.Get(skill.Common.SkillCode).PlayerImageCode;
             var playerImageAnimation = _playerImageView.StartAnimationAsync(playerImageCode);
             animationList.Add(playerImageAnimation);
 
-            var messageCode = skill.SkillCommon.AttackMessageCode;
+            var messageCode = skill.Common.AttackMessageCode;
             var messageAnimation = _messageView.StartAnimationAsync(messageCode);
             animationList.Add(messageAnimation);
 

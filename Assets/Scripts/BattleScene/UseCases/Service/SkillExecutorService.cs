@@ -28,7 +28,7 @@ namespace BattleScene.UseCases.Service
             if (!_orderedItems.First().TryGetCharacterId(out var actorId)) return;
             if (!_characterCollection.Get(actorId).IsPlayer) return;
 
-            var technicalPoint = skill.SkillCommon.TechnicalPoint;
+            var technicalPoint = skill.Common.TechnicalPoint;
             _characterCollection.Get(actorId).CurrentTechnicalPoint -= technicalPoint;
         }
     }

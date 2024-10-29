@@ -27,7 +27,7 @@ namespace BattleScene.UseCases.UseCase
 
         public IReadOnlyList<CharacterId> SelectTarget(CharacterId actorId, SkillValueObject skill)
         {
-            var targetList = _target.Get(actorId, skill.SkillCommon.Range);
+            var targetList = _target.Get(actorId, skill.Common.Range);
             return targetList;
         }
     }

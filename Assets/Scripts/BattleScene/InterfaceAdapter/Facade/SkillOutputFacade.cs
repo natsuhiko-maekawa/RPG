@@ -49,13 +49,13 @@ namespace BattleScene.InterfaceAdapter.Facade
 
             var messageCode = isActorPlayer
                 ? MessageCode.SkillMessage
-                : context.Skill.SkillCommon.AttackMessageCode;
+                : context.Skill.Common.AttackMessageCode;
 
             var messageAnimation = _messageView.StartAnimationAsync(messageCode, context);
             animationList.Add(messageAnimation);
 
             var playerSkillCode = isActorPlayer
-                ? context.Skill.SkillCommon.SkillCode
+                ? context.Skill.Common.SkillCode
                 : _battleLogCollection.Get()
                     // 敵に先手を撃たれ混乱した状態で敵の攻撃を受ける場合、
                     // プレイヤーはまだスキルを一度も発動していないので、
