@@ -51,7 +51,6 @@ namespace BattleScene.InterfaceAdapter.State.Turn
             if (_actor.CantActionBy(Context.ActorId, out var skill))
             {
                 Context.Skill = skill;
-                Context.SkillCode = Context.Skill.SkillCommon.SkillCode;
                 return _cantActionState;
             }
 

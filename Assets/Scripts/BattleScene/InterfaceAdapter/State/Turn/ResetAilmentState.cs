@@ -29,7 +29,6 @@ namespace BattleScene.InterfaceAdapter.State.Turn
         {
             _useCase.Reset();
             Context.Skill = _useCase.GetAttackSkill();
-            Context.SkillCode = SkillCode.Attack;
             await _output.OutputAsync(Context.Skill.SkillCommon.SkillCode);
         }
 

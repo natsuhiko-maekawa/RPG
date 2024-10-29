@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
@@ -15,7 +14,6 @@ namespace BattleScene.InterfaceAdapter.State.Turn
         public AilmentCode AilmentCode { get; set; }
         public SlipCode SlipCode { get; set; }
         public SkillValueObject? Skill { get; set; }
-        public SkillCode SkillCode { get; [Obsolete] set; }
         public IReadOnlyList<CharacterId> TargetIdList { get; set; } = MyList<CharacterId>.Empty;
 
         public Context(BaseState state)

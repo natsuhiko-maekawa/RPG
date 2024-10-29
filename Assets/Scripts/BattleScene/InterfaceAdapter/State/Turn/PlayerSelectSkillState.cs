@@ -35,7 +35,6 @@ namespace BattleScene.InterfaceAdapter.State.Turn
             _skillView.StopAnimation();
             var skillCode = _propertyResource.Get(CharacterTypeCode.Player).SkillCodeList[id];
             Context.Skill = _useCase.GetSkill(skillCode);
-            Context.SkillCode = Context.Skill.SkillCommon.SkillCode;
             Context.TransitionTo(_playerSelectTargetState);
         }
     }

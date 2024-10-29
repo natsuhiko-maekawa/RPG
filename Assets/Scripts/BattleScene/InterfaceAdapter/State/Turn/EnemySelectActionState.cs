@@ -21,8 +21,6 @@ namespace BattleScene.InterfaceAdapter.State.Turn
             if (Context.ActorId == null)
                 throw new InvalidOperationException(ExceptionMessage.ContextActorIdIsNull);
             Context.Skill = _enemySelectAction.SelectSkill(Context.ActorId);
-            // TODO: SkillCodeをSkillに置き換えた後、以下の一行を削除する
-            Context.SkillCode = Context.Skill.SkillCommon.SkillCode;
             Context.TargetIdList = _enemySelectAction.SelectTarget(Context.ActorId, Context.Skill);
             Context.TransitionTo(_skillState);
         }

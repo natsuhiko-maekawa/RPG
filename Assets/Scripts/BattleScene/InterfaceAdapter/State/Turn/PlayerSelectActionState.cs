@@ -54,7 +54,6 @@ namespace BattleScene.InterfaceAdapter.State.Turn
             }
 
             Context.Skill = _useCase.GetSkill(actionCode);
-            Context.SkillCode = Context.Skill?.SkillCommon.SkillCode ?? SkillCode.NoSkill;
 
             BaseState nextState = actionCode switch
             {
