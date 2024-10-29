@@ -70,7 +70,7 @@ namespace BattleScene.InterfaceAdapter.Service
                 .Replace(Damage, ReplaceDamage)
                 .Replace(Part, ReplaceBodyPart)
                 .Replace(Player, ReplacePlayer)
-                .Replace(Skill, x => ReplaceSkill(x, context?.SkillCode ?? SkillCode.NoSkill))
+                .Replace(Skill, x => ReplaceSkill(x, context?.Skill?.SkillCommon.SkillCode ?? SkillCode.NoSkill))
                 .Replace(Target, ReplaceTarget)
                 .Replace(TechnicalPoint, ReplaceTechnicalPoint)
                 .GetMessage();
