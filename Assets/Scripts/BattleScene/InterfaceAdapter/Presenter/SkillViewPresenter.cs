@@ -3,11 +3,11 @@ using BattleScene.DataAccess;
 using BattleScene.DataAccess.Dto;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DataAccess;
-using BattleScene.Domain.DomainService;
 using BattleScene.Domain.ValueObject;
 using BattleScene.Framework.View;
 using BattleScene.Framework.ViewModel;
 using BattleScene.InterfaceAdapter.Service;
+using BattleScene.UseCases.IService;
 using ActionCode = BattleScene.Framework.Code.ActionCode;
 
 namespace BattleScene.InterfaceAdapter.Presenter
@@ -18,22 +18,21 @@ namespace BattleScene.InterfaceAdapter.Presenter
         private readonly MessageCodeConverterService _messageCodeConverter;
         private readonly IResource<MessageDto, MessageCode> _messageResource;
         private readonly IResource<PlayerImagePathDto, PlayerImageCode> _playerPropertyResource;
-        private readonly PlayerDomainService _player;
         private readonly IFactory<CharacterPropertyValueObject, CharacterTypeCode> _propertyFactory;
         private readonly IFactory<SkillValueObject, SkillCode> _skillFactory;
         private readonly IResource<SkillViewDto, SkillCode> _skillPropertyFactory;
+        private readonly ITechnicalPointService _technicalPoint;
 
         public SkillViewPresenter(
-            PlayerDomainService player,
             IFactory<CharacterPropertyValueObject, CharacterTypeCode> propertyFactory,
             IFactory<SkillValueObject, SkillCode> skillFactory,
             IResource<SkillViewDto, SkillCode> skillPropertyFactory,
             IResource<MessageDto, MessageCode> messageResource,
             IResource<PlayerImagePathDto, PlayerImageCode> playerPropertyResource,
             MessageCodeConverterService messageCodeConverter,
-            GridView gridView)
+            GridView gridView,
+            ITechnicalPointService technicalPoint)
         {
-            _player = player;
             _propertyFactory = propertyFactory;
             _skillFactory = skillFactory;
             _skillPropertyFactory = skillPropertyFactory;
@@ -41,6 +40,7 @@ namespace BattleScene.InterfaceAdapter.Presenter
             _messageCodeConverter = messageCodeConverter;
             _playerPropertyResource = playerPropertyResource;
             _gridView = gridView;
+            _technicalPoint = technicalPoint;
         }
 
         public async void StartAnimationAsync()
@@ -68,7 +68,7 @@ namespace BattleScene.InterfaceAdapter.Presenter
             var description = _messageCodeConverter.Replace(message);
             var playerImagePath = _playerPropertyResource.Get(skillProperty.PlayerImageCode).PlayerImagePath;
             // TODO: スキル使用可否の判断で部位破壊についても考慮する
-            var enabled = skill.Common.TechnicalPoint <= _player.Get().CurrentTechnicalPoint;
+            var enabled = skill.Common.TechnicalPoint <= _technicalPoint.Get();
             var dto = new RowDto(
                 RowId: 0,
                 RowName: skillProperty.SkillName,

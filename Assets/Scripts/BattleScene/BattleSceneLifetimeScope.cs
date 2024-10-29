@@ -342,7 +342,7 @@ namespace BattleScene
             builder.Register<IHitPointService, HitPointService>(Lifetime.Singleton);
             builder.Register<IsHitEvaluatorService>(Lifetime.Singleton);
             builder.Register<OrderService>(Lifetime.Singleton);
-            builder.Register<TechnicalPointService>(Lifetime.Singleton);
+            builder.Register<ITechnicalPointService, TechnicalPointService>(Lifetime.Singleton);
             builder.Register<SlipDamageGeneratorService>(Lifetime.Singleton);
             builder.Register<ISpeedService, SpeedService>(Lifetime.Singleton);
             builder.Register<ITargetService, TargetService>(Lifetime.Singleton);

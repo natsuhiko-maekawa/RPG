@@ -2,17 +2,17 @@ using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
-using BattleScene.UseCases.Service;
+using BattleScene.UseCases.IService;
 
 namespace BattleScene.UseCases.UseCase
 {
     public class SkillUseCase
     {
         private readonly ICollection<CharacterEntity, CharacterId> _characterCollection;
-        private readonly TechnicalPointService _technicalPoint;
+        private readonly ITechnicalPointService _technicalPoint;
 
         public SkillUseCase(
-            TechnicalPointService technicalPoint, 
+            ITechnicalPointService technicalPoint, 
             ICollection<CharacterEntity, CharacterId> characterCollection)
         {
             _technicalPoint = technicalPoint;

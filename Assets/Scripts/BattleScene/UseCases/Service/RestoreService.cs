@@ -17,18 +17,18 @@ namespace BattleScene.UseCases.Service
         private readonly ICollection<CharacterEntity, CharacterId> _characterCollection;
         private readonly IFactory<PlayerPropertyValueObject, CharacterTypeCode> _playerPropertyFactory;
         private readonly OrderedItemsDomainService _orderedItems;
-        private readonly PlayerDomainService _playerDomainService;
+        private readonly ITechnicalPointService _technicalPoint;
 
         public RestoreService(
             IFactory<PlayerPropertyValueObject, CharacterTypeCode> playerPropertyFactory,
             OrderedItemsDomainService orderedItems,
-            PlayerDomainService playerDomainService,
-            ICollection<CharacterEntity, CharacterId> characterCollection)
+            ICollection<CharacterEntity, CharacterId> characterCollection,
+            ITechnicalPointService technicalPoint)
         {
             _playerPropertyFactory = playerPropertyFactory;
             _orderedItems = orderedItems;
-            _playerDomainService = playerDomainService;
             _characterCollection = characterCollection;
+            _technicalPoint = technicalPoint;
         }
 
         public IReadOnlyList<BattleEventValueObject> Generate(
@@ -39,7 +39,7 @@ namespace BattleScene.UseCases.Service
             MyDebug.Assert(restoreParameterList.Count == 1);
             _orderedItems.First().TryGetCharacterId(out var actorId);
             MyDebug.Assert(actorId != null);
-            var currentTechnicalPoint = _playerDomainService.Get().CurrentTechnicalPoint;
+            var currentTechnicalPoint = _technicalPoint.Get();
             var maxTechnicalPoint = _playerPropertyFactory.Create(CharacterTypeCode.Player).TechnicalPoint;
             var restoreList = restoreParameterList.Select(GetRestore).ToList();
             return restoreList;
