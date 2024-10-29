@@ -7,7 +7,6 @@ using BattleScene.Domain.Code;
 using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
-using BattleScene.Domain.IDomainService;
 using BattleScene.UseCases.Service;
 using BattleScene.UseCases.Service.Order;
 using NSubstitute;

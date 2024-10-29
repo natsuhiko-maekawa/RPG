@@ -3,7 +3,6 @@ using BattleScene.Domain.Code;
 using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
-using BattleScene.Domain.IDomainService;
 using BattleScene.UseCases.IService;
 
 namespace BattleScene.UseCases.Service.Order

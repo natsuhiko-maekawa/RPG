@@ -8,7 +8,6 @@ using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
-using BattleScene.Domain.IDomainService;
 using BattleScene.Domain.ValueObject;
 using BattleScene.Framework.Input;
 using BattleScene.Framework.View;
@@ -365,7 +364,6 @@ namespace BattleScene
             builder.Register<BattleLogDomainService>(Lifetime.Singleton);
             builder.Register<BattleLoggerService>(Lifetime.Singleton);
             builder.Register<BodyPartDomainService>(Lifetime.Singleton);
-            builder.Register<IBuffDomainService, BuffDomainService>(Lifetime.Singleton);
             builder.Register<EnemiesDomainService>(Lifetime.Singleton);
             builder.Register<OrderedItemsDomainService>(Lifetime.Singleton);
             builder.Register<PlayerDomainService>(Lifetime.Singleton);
