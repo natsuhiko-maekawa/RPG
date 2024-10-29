@@ -27,7 +27,7 @@ namespace BattleScene.InterfaceAdapter.State.Turn
             Context.TargetIdList = _slip.GetTargetList();
             _slip.Commit();
 
-            var outputQueue = _slipDamageOutput.GetOutputQueue(Context.SkillCode);
+            var outputQueue = _slipDamageOutput.GetOutputQueue(Context.Skill);
             _animationQueue = new AnimationQueue(outputQueue);
             _animationQueue.OnLastAnimate += TransitionState;
             await _animationQueue.Animate();

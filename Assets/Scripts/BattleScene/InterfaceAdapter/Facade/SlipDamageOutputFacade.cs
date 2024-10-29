@@ -35,23 +35,23 @@ namespace BattleScene.InterfaceAdapter.Facade
             _vibrationView = vibrationView;
         }
 
-        public Queue<Func<Task>> GetOutputQueue(SkillCode skillCode)
+        public Queue<Func<Task>> GetOutputQueue(SkillValueObject skill)
         {
             var outputQueue = new Queue<Func<Task>>();
-            outputQueue.Enqueue(() => Output1(skillCode));
+            outputQueue.Enqueue(() => Output1(skill));
             outputQueue.Enqueue(() => Output2());
             return outputQueue;
         }
 
-        public Task Output1(SkillCode skillCode)
+        public Task Output1(SkillValueObject skill)
         {
             var animationList = new List<Task>();
 
-            var playerImageCode = _skillViewResource.Get(skillCode).PlayerImageCode;
+            var playerImageCode = _skillViewResource.Get(skill.SkillCommon.SkillCode).PlayerImageCode;
             var playerImageAnimation = _playerImageView.StartAnimationAsync(playerImageCode);
             animationList.Add(playerImageAnimation);
 
-            var messageCode = _skillFactory.Create(skillCode).SkillCommon.AttackMessageCode;
+            var messageCode = skill.SkillCommon.AttackMessageCode;
             var messageAnimation = _messageView.StartAnimationAsync(messageCode);
             animationList.Add(messageAnimation);
 
