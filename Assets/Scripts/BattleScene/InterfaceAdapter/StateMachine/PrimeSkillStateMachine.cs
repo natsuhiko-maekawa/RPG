@@ -92,10 +92,13 @@ namespace BattleScene.InterfaceAdapter.StateMachine
             IContext CreateContext<TPrimeSkillParameter>(
                 IReadOnlyList<TPrimeSkillParameter> primeSkillParameterList)
             {
+                if (context.ActorId is null) throw new InvalidOperationException(ExceptionMessage.ContextActorIdIsNull);
+
                 var primeSkillStartState =
                     _container.Resolve<PrimeSkillStartState<TPrimeSkillParameter>>();
                 var skillContext = new Context<TPrimeSkillParameter>(
                     primeSkillState: primeSkillStartState,
+                    actorId: context.ActorId,
                     skillCommon: skill.Common,
                     primeSkillParameterList: primeSkillParameterList,
                     targetIdList: context.TargetIdList);

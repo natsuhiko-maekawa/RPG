@@ -16,6 +16,7 @@ namespace BattleScene.InterfaceAdapter.State.PrimeSkill
     {
         private BaseState<TPrimeSkillParameter> _state = null!;
 
+        public CharacterId ActorId { get; }
         public SkillCommonValueObject SkillCommon { get; }
         public IReadOnlyList<CharacterId> TargetIdList { get; }
         public IReadOnlyList<TPrimeSkillParameter> PrimeSkillParameterList { get; }
@@ -23,10 +24,12 @@ namespace BattleScene.InterfaceAdapter.State.PrimeSkill
 
         public Context(
             BaseState<TPrimeSkillParameter> primeSkillState,
+            CharacterId actorId,
             SkillCommonValueObject skillCommon,
             IReadOnlyList<CharacterId> targetIdList,
             IReadOnlyList<TPrimeSkillParameter> primeSkillParameterList)
         {
+            ActorId = actorId;
             SkillCommon = skillCommon;
             TargetIdList = targetIdList;
             PrimeSkillParameterList = primeSkillParameterList;

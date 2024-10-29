@@ -7,6 +7,7 @@ namespace BattleScene.UseCases.IUseCase
     public interface IPrimeSkillUseCase<in TPrimeSkillParameter>
     {
         public IReadOnlyList<BattleEventValueObject> Commit(
+            CharacterId actorId,
             SkillCommonValueObject skillCommon,
             IReadOnlyList<TPrimeSkillParameter> primeSkillParameterList,
             IReadOnlyList<CharacterId> targetIdList);

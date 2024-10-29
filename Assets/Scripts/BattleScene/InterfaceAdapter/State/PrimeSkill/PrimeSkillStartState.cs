@@ -34,6 +34,7 @@ namespace BattleScene.InterfaceAdapter.State.PrimeSkill
         public override void Start()
         {
             var primeSkillList = _primeSkillUseCase.Commit(
+                actorId: Context.ActorId,
                 skillCommon: Context.SkillCommon,
                 primeSkillParameterList: Context.PrimeSkillParameterList,
                 targetIdList: Context.TargetIdList);

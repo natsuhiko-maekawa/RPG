@@ -28,6 +28,7 @@ namespace BattleScene.UseCases.UseCase
         }
 
         public IReadOnlyList<BattleEventValueObject> Commit(
+            CharacterId actorId,
             SkillCommonValueObject skillCommon,
             IReadOnlyList<TPrimeSkillParameter> primeSkillParameterList,
             IReadOnlyList<CharacterId> targetIdList)
