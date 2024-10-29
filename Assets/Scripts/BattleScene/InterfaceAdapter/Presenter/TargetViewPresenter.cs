@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using BattleScene.Domain.Code;
 using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Entity;
@@ -17,19 +16,16 @@ namespace BattleScene.InterfaceAdapter.Presenter
         private readonly ICollection<CharacterEntity, CharacterId> _characterCollection;
         private readonly OrderedItemsDomainService _orderedItems;
         private readonly PlayerDomainService _player;
-        private readonly IFactory<SkillValueObject, SkillCode> _skillFactory;
         private readonly ITargetService _target;
         private readonly TargetView _targetView;
 
         public TargetViewPresenter(
-            IFactory<SkillValueObject, SkillCode> skillFactory,
             OrderedItemsDomainService orderedItems,
             ITargetService target,
             PlayerDomainService player,
             ICollection<CharacterEntity, CharacterId> characterCollection,
             TargetView targetView)
         {
-            _skillFactory = skillFactory;
             _orderedItems = orderedItems;
             _target = target;
             _player = player;
@@ -37,10 +33,10 @@ namespace BattleScene.InterfaceAdapter.Presenter
             _targetView = targetView;
         }
 
-        public void StartAnimation(SkillCode skillCode)
+        public void StartAnimation(SkillValueObject skill)
         {
             _orderedItems.First().TryGetCharacterId(out var characterId);
-            var range = _skillFactory.Create(skillCode).SkillCommon.Range;
+            var range = skill.SkillCommon.Range;
             var targetIdList = _target.Get(
                 characterId,
                 range);

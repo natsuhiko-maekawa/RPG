@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using BattleScene.Domain.Id;
 using BattleScene.InterfaceAdapter.Presenter;
 
@@ -19,7 +20,8 @@ namespace BattleScene.InterfaceAdapter.State.Turn
 
         public override void Start()
         {
-            _targetView.StartAnimation(Context.SkillCode);
+            if (Context.Skill == null) throw new InvalidOperationException(ExceptionMessage.ContextSkillIsNull);
+            _targetView.StartAnimation(Context.Skill);
         }
 
         public override void Select(IReadOnlyList<CharacterId> targetIdList)
