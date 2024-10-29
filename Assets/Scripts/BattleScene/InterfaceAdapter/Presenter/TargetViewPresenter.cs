@@ -15,20 +15,17 @@ namespace BattleScene.InterfaceAdapter.Presenter
     {
         private readonly ICollection<CharacterEntity, CharacterId> _characterCollection;
         private readonly OrderedItemsDomainService _orderedItems;
-        private readonly PlayerDomainService _player;
         private readonly ITargetService _target;
         private readonly TargetView _targetView;
 
         public TargetViewPresenter(
             OrderedItemsDomainService orderedItems,
             ITargetService target,
-            PlayerDomainService player,
             ICollection<CharacterEntity, CharacterId> characterCollection,
             TargetView targetView)
         {
             _orderedItems = orderedItems;
             _target = target;
-            _player = player;
             _characterCollection = characterCollection;
             _targetView = targetView;
         }
@@ -54,7 +51,7 @@ namespace BattleScene.InterfaceAdapter.Presenter
 
         private CharacterDto CreateCharacterDto(CharacterId x)
         {
-            var characterDto = Equals(x, _player.GetId())
+            var characterDto = _characterCollection.Get(x).IsPlayer
                 ? CharacterDto.CreatePlayer()
                 : new CharacterDto(_characterCollection.Get(x).Position);
             return characterDto;

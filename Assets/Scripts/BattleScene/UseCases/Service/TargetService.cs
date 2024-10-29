@@ -16,16 +16,13 @@ namespace BattleScene.UseCases.Service
         private readonly ICollection<BattleLogEntity, BattleLogId> _battleLogCollection;
         private readonly EnemiesDomainService _enemies;
         private readonly ICollection<CharacterEntity, CharacterId> _characterCollection;
-        private readonly PlayerDomainService _player;
 
         public TargetService(
             EnemiesDomainService enemies,
-            PlayerDomainService player,
             ICollection<BattleLogEntity, BattleLogId> battleLogCollection,
             ICollection<CharacterEntity, CharacterId> characterCollection)
         {
             _enemies = enemies;
-            _player = player;
             _battleLogCollection = battleLogCollection;
             _characterCollection = characterCollection;
         }
@@ -39,13 +36,13 @@ namespace BattleScene.UseCases.Service
                         ? new[] { actorId }
                         : MyList<CharacterId>.Empty,
                 Range.Solo =>
-                    Equals(actorId, _player.GetId())
+                    _characterCollection.Get(actorId).IsPlayer
                         ? new[] { GetEnemySolo() }
-                        : new[] { _player.GetId() },
+                        : new[] { actorId },
                 Range.Line or Range.Random =>
-                    Equals(actorId, _player.GetId())
+                    _characterCollection.Get(actorId).IsPlayer
                         ? _enemies.GetIdSurvive()
-                        : new[] { _player.GetId() },
+                        : new[] { actorId },
                 _ => throw new NotImplementedException()
             };
 
@@ -57,7 +54,7 @@ namespace BattleScene.UseCases.Service
             var targetId = _battleLogCollection.Get()
                 .Where(x => _characterCollection.Get(x.ActorId)?.IsPlayer ?? false)
                 .Where(x => x.TargetIdList.Count == 1)
-                .Where(x => !x.TargetIdList.Contains(_player.GetId()))
+                .Where(x => !x.TargetIdList.Any(y => _characterCollection.Get(y).IsPlayer))
                 .Max()?.TargetIdList
                 .Single();
             targetId = targetId == null || !_characterCollection.Get(targetId).IsSurvive

@@ -33,7 +33,6 @@ namespace BattleScene.InterfaceAdapter.Service
         private readonly IResource<SkillViewDto, SkillCode> _skillViewInfoResource;
         private readonly ICollection<BattleLogEntity, BattleLogId> _battleLogCollection;
         private readonly BattleLogDomainService _battleLog;
-        private readonly PlayerDomainService _player;
 
         public MessageCodeConverterService(
             IResource<AilmentViewDto, AilmentCode, SlipCode> ailmentViewResource,
@@ -45,8 +44,7 @@ namespace BattleScene.InterfaceAdapter.Service
             IResource<PlayerViewDto, CharacterTypeCode> playerViewInfoResource,
             IResource<SkillViewDto, SkillCode> skillViewInfoResource,
             ICollection<BattleLogEntity, BattleLogId> battleLogCollection,
-            BattleLogDomainService battleLog,
-            PlayerDomainService player)
+            BattleLogDomainService battleLog)
         {
             _ailmentViewResource = ailmentViewResource;
             _bodyPartViewInfoResource = bodyPartViewInfoResource;
@@ -58,7 +56,6 @@ namespace BattleScene.InterfaceAdapter.Service
             _skillViewInfoResource = skillViewInfoResource;
             _battleLogCollection = battleLogCollection;
             _battleLog = battleLog;
-            _player = player;
         }
 
         public string Replace(string message, Context? context = null)
@@ -164,7 +161,7 @@ namespace BattleScene.InterfaceAdapter.Service
 
         private string GetCharacterName(CharacterId characterId)
         {
-            var characterName = Equals(characterId, _player.GetId())
+            var characterName = _characterCollection.Get(characterId).IsPlayer
                 ? _playerViewInfoResource.Get(CharacterTypeCode.Player).PlayerName
                 : _enemyViewInfoResource.Get(_characterCollection.Get(characterId).CharacterTypeCode).EnemyName;
             return characterName;
