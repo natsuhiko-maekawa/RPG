@@ -1,4 +1,5 @@
-﻿using BattleScene.InterfaceAdapter.Facade;
+﻿using System;
+using BattleScene.InterfaceAdapter.Facade;
 using BattleScene.InterfaceAdapter.StateMachine;
 using BattleScene.UseCases.Service;
 
@@ -25,7 +26,8 @@ namespace BattleScene.InterfaceAdapter.State.Turn
 
         public override async void Start()
         {
-            _skillExecutor.Execute(Context.SkillCode);
+            if (Context.Skill == null) throw new InvalidOperationException(ExceptionMessage.ContextSkillIsNull);
+            _skillExecutor.Execute(Context.Skill);
             await _skillOutput.Output(Context);
         }
 

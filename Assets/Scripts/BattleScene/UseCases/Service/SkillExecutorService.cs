@@ -23,12 +23,11 @@ namespace BattleScene.UseCases.Service
             _orderedItems = orderedItems;
         }
 
-        public void Execute(SkillCode skillCode)
+        public void Execute(SkillValueObject skill)
         {
             if (!_orderedItems.First().TryGetCharacterId(out var actorId)) return;
             if (!_characterCollection.Get(actorId).IsPlayer) return;
 
-            var skill = _skillFactory.Create(skillCode);
             var technicalPoint = skill.SkillCommon.TechnicalPoint;
             _characterCollection.Get(actorId).CurrentTechnicalPoint -= technicalPoint;
         }
