@@ -36,24 +36,31 @@ namespace BattleScene.Debug.Service
             _myRandom = myRandom;
         }
 
+        [Obsolete]
         public SkillCode Select()
         {
-            _orderItems.First().TryGetCharacterId(out var characterId);
-            var characterTypeCode = _characterCollection.Get(characterId).CharacterTypeCode;
-            var skillCodeList = _characterPropertyFactory.Create(characterTypeCode).SkillCodeList;
-
-            var specificPrimeSkillCodeList = skillCodeList
-                .Where(IsSpecificPrimeSkill)
-                .ToList();
-            var skillCode = specificPrimeSkillCodeList.Count == 0
-                ? _myRandom.Choice(skillCodeList)
-                : _myRandom.Choice(specificPrimeSkillCodeList);
-            return skillCode;
+            throw new NotImplementedException();
         }
 
-        private bool IsSpecificPrimeSkill(SkillCode skillCode)
+        public SkillValueObject Select(CharacterId actorId)
         {
-            var skill = _skillFactory.Create(skillCode);
+            var characterTypeCode = _characterCollection.Get(actorId).CharacterTypeCode;
+            var skillCodeList = _characterPropertyFactory.Create(characterTypeCode).SkillCodeList;
+
+            var skillList = skillCodeList
+                .Select(_skillFactory.Create)
+                .ToList();
+            var specificPrimeSkillList = skillList
+                .Where(IsSpecificPrimeSkill)
+                .ToList();
+            var skill = specificPrimeSkillList.Count == 0
+                ? _myRandom.Choice(skillList)
+                : _myRandom.Choice(specificPrimeSkillList);
+            return skill;
+        }
+
+        private bool IsSpecificPrimeSkill(SkillValueObject skill)
+        {
             var value = primeSkillCode switch
             {
                 PrimeSkillCode.All => true,

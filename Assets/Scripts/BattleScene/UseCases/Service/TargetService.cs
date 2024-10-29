@@ -6,11 +6,12 @@ using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
+using BattleScene.UseCases.IService;
 using Range = BattleScene.Domain.Code.Range;
 
 namespace BattleScene.UseCases.Service
 {
-    public class TargetService
+    public class TargetService : ITargetService
     {
         private readonly ICollection<BattleLogEntity, BattleLogId> _battleLogCollection;
         private readonly EnemiesDomainService _enemies;
@@ -29,20 +30,20 @@ namespace BattleScene.UseCases.Service
             _characterCollection = characterCollection;
         }
 
-        public IReadOnlyList<CharacterId> Get(CharacterId characterId, Range range)
+        public IReadOnlyList<CharacterId> Get(CharacterId actorId, Range range)
         {
             var targetList = range switch
             {
                 Range.Oneself =>
-                    _characterCollection.Get(characterId).IsSurvive
-                        ? new[] { characterId }
+                    _characterCollection.Get(actorId).IsSurvive
+                        ? new[] { actorId }
                         : MyList<CharacterId>.Empty,
                 Range.Solo =>
-                    Equals(characterId, _player.GetId())
+                    Equals(actorId, _player.GetId())
                         ? new[] { GetEnemySolo() }
                         : new[] { _player.GetId() },
                 Range.Line or Range.Random =>
-                    Equals(characterId, _player.GetId())
+                    Equals(actorId, _player.GetId())
                         ? _enemies.GetIdSurvive()
                         : new[] { _player.GetId() },
                 _ => throw new NotImplementedException()

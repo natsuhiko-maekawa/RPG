@@ -306,6 +306,7 @@ namespace BattleScene
 
             #region RegisterUseCase
 
+            builder.Register<IEnemySelectSkillUseCase, EnemySelectSelectSkillUseCase>(Lifetime.Singleton);
             builder.Register<IPrimeSkillUseCase<DamageParameterValueObject>, 
                 PrimeSkillUseCase<DamageParameterValueObject>>(Lifetime.Singleton);
             builder.Register<IPrimeSkillUseCase<AilmentParameterValueObject>,
@@ -339,6 +340,7 @@ namespace BattleScene
             builder.Register<SkillExecutorService>(Lifetime.Singleton);
             builder.Register<SlipDamageGeneratorService>(Lifetime.Singleton);
             builder.Register<ISpeedService, SpeedService>(Lifetime.Singleton);
+            builder.Register<ITargetService, TargetService>(Lifetime.Singleton);
             builder.Register<TurnService>(Lifetime.Singleton);
             builder.Register<IPrimeSkillService<AilmentParameterValueObject>, AilmentService>(Lifetime.Singleton);
             builder.Register<IPrimeSkillService<DamageParameterValueObject>, DamageService>(Lifetime.Singleton);
@@ -360,7 +362,6 @@ namespace BattleScene
             builder.Register<OrderedItemsDomainService>(Lifetime.Singleton);
             builder.Register<PlayerDomainService>(Lifetime.Singleton);
             builder.Register<SlipDomainService>(Lifetime.Singleton);
-            builder.Register<TargetService>(Lifetime.Singleton);
 
             #endregion
 

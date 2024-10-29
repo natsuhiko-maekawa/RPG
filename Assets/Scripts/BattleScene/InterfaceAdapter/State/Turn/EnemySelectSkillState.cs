@@ -1,28 +1,29 @@
-﻿using BattleScene.Domain.DomainService;
-using BattleScene.UseCases.IService;
+﻿using System;
+using BattleScene.UseCases.IUseCase;
 
 namespace BattleScene.InterfaceAdapter.State.Turn
 {
     public class EnemySelectSkillState : BaseState
     {
-        private readonly IEnemySkillSelectorService _enemySkillSelector;
-        private readonly PlayerDomainService _player;
+        private readonly IEnemySelectSkillUseCase _enemySelectSkill;
         private readonly SkillState _skillState;
 
         public EnemySelectSkillState(
-            IEnemySkillSelectorService enemySkillSelector,
-            PlayerDomainService player,
+            IEnemySelectSkillUseCase enemySelectSkill,
             SkillState skillState)
         {
-            _enemySkillSelector = enemySkillSelector;
-            _player = player;
+            _enemySelectSkill = enemySelectSkill;
             _skillState = skillState;
         }
 
         public override void Start()
         {
-            Context.SkillCode = _enemySkillSelector.Select();
-            Context.TargetIdList = new[] { _player.GetId() };
+            if (Context.ActorId == null)
+                throw new InvalidOperationException("Context.ActorId expect has id but was null.");
+            Context.Skill = _enemySelectSkill.SelectSkill(Context.ActorId);
+            // TODO: SkillCodeをSkillに置き換えた後、以下の一行を削除する
+            Context.SkillCode = Context.Skill.SkillCommon.SkillCode;
+            Context.TargetIdList = _enemySelectSkill.SelectTarget(Context.ActorId, Context.Skill);
             Context.TransitionTo(_skillState);
         }
     }
