@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using BattleScene.Domain.Code;
 
 namespace BattleScene.Domain.ValueObject
@@ -13,6 +14,6 @@ namespace BattleScene.Domain.ValueObject
         AttacksWeakPointEvaluationCode AttacksWeakPointEvaluationCode = AttacksWeakPointEvaluationCode.Basic
     )
     {
-        public IReadOnlyList<MatAttrCode> MatAttrCode { get; private set; } = MatAttrCode ?? new List<MatAttrCode>();
+        public IReadOnlyList<MatAttrCode> MatAttrCode { get; private set; } = MatAttrCode ?? Array.Empty<MatAttrCode>();
     }
 }
