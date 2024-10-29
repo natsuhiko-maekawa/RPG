@@ -9,13 +9,13 @@ namespace BattleScene.UseCases.UseCase
     public class SkillUseCase
     {
         private readonly ICollection<CharacterEntity, CharacterId> _characterCollection;
-        private readonly SkillExecutorService _skillExecutor;
+        private readonly TechnicalPointService _technicalPoint;
 
         public SkillUseCase(
-            SkillExecutorService skillExecutor, 
+            TechnicalPointService technicalPoint, 
             ICollection<CharacterEntity, CharacterId> characterCollection)
         {
-            _skillExecutor = skillExecutor;
+            _technicalPoint = technicalPoint;
             _characterCollection = characterCollection;
         }
 
@@ -23,7 +23,7 @@ namespace BattleScene.UseCases.UseCase
         {
             if (_characterCollection.Get(actorId).IsPlayer)
             {
-                _skillExecutor.Execute(skill);
+                _technicalPoint.Reduce(skill);
             }
         }
     }
