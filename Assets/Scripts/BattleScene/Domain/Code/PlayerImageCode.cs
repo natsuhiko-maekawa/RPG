@@ -5,7 +5,8 @@
         NoImage,
         Attack, // TODO: 立ち絵を描く
         Avoidance,
-        Bleeding,
+        Bleeding, // TODO: 立ち絵を書く
+        Burning, // TODO: 立ち絵を書く
         Confusion,
         Damaged,
         Defence, // TODO: 立ち絵を書く
