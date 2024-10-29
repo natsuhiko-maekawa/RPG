@@ -12,16 +12,16 @@ namespace BattleScene.InterfaceAdapter.State.Turn
     public class ResetAilmentState : BaseState
     {
         private readonly ResetAilmentUseCase _useCase;
-        private readonly ResetAilmentOutputFacade _resetAilmentOutput;
+        private readonly ResetAilmentOutputFacade _output;
         private readonly TurnStopState _turnStopState;
 
         public ResetAilmentState(
             ResetAilmentUseCase useCase,
-            ResetAilmentOutputFacade resetAilmentOutput,
+            ResetAilmentOutputFacade output,
             TurnStopState turnStopState)
         {
             _useCase = useCase;
-            _resetAilmentOutput = resetAilmentOutput;
+            _output = output;
             _turnStopState = turnStopState;
         }
 
@@ -30,7 +30,7 @@ namespace BattleScene.InterfaceAdapter.State.Turn
             _useCase.Reset();
             Context.Skill = _useCase.GetAttackSkill();
             Context.SkillCode = SkillCode.Attack;
-            await _resetAilmentOutput.OutputAsync(Context.SkillCode);
+            await _output.OutputAsync(Context.SkillCode);
         }
 
         public override void Select()
