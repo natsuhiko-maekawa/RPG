@@ -19,7 +19,7 @@ namespace BattleScene.InterfaceAdapter.State.Turn
         public override void Start()
         {
             if (Context.ActorId == null)
-                throw new InvalidOperationException("Context.ActorId expect has id but was null.");
+                throw new InvalidOperationException(ExceptionMessage.ContextActorIdIsNull);
             Context.Skill = _enemySelectAction.SelectSkill(Context.ActorId);
             // TODO: SkillCodeをSkillに置き換えた後、以下の一行を削除する
             Context.SkillCode = Context.Skill.SkillCommon.SkillCode;
