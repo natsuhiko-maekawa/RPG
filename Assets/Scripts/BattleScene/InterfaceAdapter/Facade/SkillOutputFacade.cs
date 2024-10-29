@@ -6,7 +6,6 @@ using BattleScene.DataAccess;
 using BattleScene.DataAccess.Dto;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DataAccess;
-using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.InterfaceAdapter.Presenter;
@@ -19,7 +18,6 @@ namespace BattleScene.InterfaceAdapter.Facade
         private readonly IResource<SkillViewDto, SkillCode> _skillViewResource;
         private readonly ICollection<BattleLogEntity, BattleLogId> _battleLogCollection;
         private readonly ICollection<CharacterEntity, CharacterId> _characterCollection;
-        private readonly OrderedItemsDomainService _orderedItems;
         private readonly MessageViewPresenter _messageView;
         private readonly PlayerImageViewPresenter _playerImageView;
 
@@ -27,25 +25,23 @@ namespace BattleScene.InterfaceAdapter.Facade
             IResource<SkillViewDto, SkillCode> skillViewResource,
             ICollection<BattleLogEntity, BattleLogId> battleLogCollection,
             ICollection<CharacterEntity, CharacterId> characterCollection,
-            OrderedItemsDomainService orderedItems,
             MessageViewPresenter messageView,
             PlayerImageViewPresenter playerImageView)
         {
             _skillViewResource = skillViewResource;
             _battleLogCollection = battleLogCollection;
             _characterCollection = characterCollection;
-            _orderedItems = orderedItems;
             _messageView = messageView;
             _playerImageView = playerImageView;
         }
 
         public async Task Output(Context context)
         {
+            if (context.ActorId == null) throw new InvalidOperationException(ExceptionMessage.ContextActorIdIsNull);
             if (context.Skill == null) throw new InvalidOperationException(ExceptionMessage.ContextSkillIsNull);
             var animationList = new List<Task>();
 
-            _orderedItems.First().TryGetCharacterId(out var actorId);
-            var isActorPlayer = _characterCollection.Get(actorId).IsPlayer;
+            var isActorPlayer = _characterCollection.Get(context.ActorId).IsPlayer;
 
             var messageCode = isActorPlayer
                 ? MessageCode.SkillMessage
