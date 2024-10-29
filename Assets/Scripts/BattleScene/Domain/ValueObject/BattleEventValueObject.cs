@@ -14,6 +14,9 @@ namespace BattleScene.Domain.ValueObject
         public BuffCode BuffCode { get; private init; } = BuffCode.NoBuff;
         public SlipCode SlipCode { get; private init; } = SlipCode.NoSlip;
         public SkillCode SkillCode { get; private set; } = SkillCode.NoSkill;
+        public IReadOnlyList<AilmentCode> ResetAilmentCodeList { get; private set; } = Array.Empty<AilmentCode>();
+        public IReadOnlyList<SlipCode> ResetSlipCodeList { get; private set; } = Array.Empty<SlipCode>();
+        public IReadOnlyList<BodyPartCode> ResetBodyPartCodeList { get; private set; } = Array.Empty<BodyPartCode>();
         public CharacterId? ActorId { get; private set; }
         public IReadOnlyList<CharacterId> TargetIdList { get; private set; } = Array.Empty<CharacterId>();
         public IReadOnlyList<CharacterId> ActualTargetIdList { get; private init; } = Array.Empty<CharacterId>();
@@ -131,6 +134,28 @@ namespace BattleScene.Domain.ValueObject
             };
 
             return destroy;
+        }
+
+        public static BattleEventValueObject CreateReset(
+            SkillCode skillCode,
+            CharacterId actorId,
+            IReadOnlyList<CharacterId> targetIdList,
+            IReadOnlyList<AilmentCode>? ailmentCodeList = null,
+            IReadOnlyList<SlipCode>? slipCodeList = null,
+            IReadOnlyList<BodyPartCode>? bodyPartCodeList = null)
+        {
+            var reset = new BattleEventValueObject
+            {
+                BattleEventCode = BattleEventCode.Skill,
+                SkillCode = skillCode,
+                ActorId = actorId,
+                TargetIdList = targetIdList,
+                ResetAilmentCodeList = ailmentCodeList ?? Array.Empty<AilmentCode>(),
+                ResetSlipCodeList = slipCodeList ?? Array.Empty<SlipCode>(),
+                ResetBodyPartCodeList = bodyPartCodeList ?? Array.Empty<BodyPartCode>()
+            };
+
+            return reset;
         }
         
         public static BattleEventValueObject CreateRestore(
