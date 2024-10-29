@@ -18,6 +18,7 @@ namespace BattleScene.UseCases.Service
         private readonly AttacksWeakPointEvaluatorService _attacksWeakPointEvaluator;
         private readonly ICollection<CharacterEntity, CharacterId> _characterCollection;
         private readonly IMyRandomService _myRandom;
+        private readonly IHitPointService _hitPoint;
 
         public DamageService(
             OrderedItemsDomainService orderedItems,
@@ -25,7 +26,8 @@ namespace BattleScene.UseCases.Service
             IsHitEvaluatorService isHitEvaluator,
             AttacksWeakPointEvaluatorService attacksWeakPointEvaluator,
             ICollection<CharacterEntity, CharacterId> characterCollection,
-            IMyRandomService myRandom)
+            IMyRandomService myRandom,
+            IHitPointService hitPoint)
         {
             _orderedItems = orderedItems;
             _damageEvaluator = damageEvaluator;
@@ -33,6 +35,7 @@ namespace BattleScene.UseCases.Service
             _attacksWeakPointEvaluator = attacksWeakPointEvaluator;
             _characterCollection = characterCollection;
             _myRandom = myRandom;
+            _hitPoint = hitPoint;
         }
 
         public BattleEventValueObject Generate(
@@ -83,29 +86,10 @@ namespace BattleScene.UseCases.Service
             var attackedTargetId = _myRandom.Choice(surviveTargetIdList);
             return new List<CharacterId> { attackedTargetId };
         }
-        
-        public void Register(BattleEventValueObject damage)
-        {
-            var characterList = damage.DamageDictionary
-                .Select(ReduceHitPoint)
-                .ToList();
-            _characterCollection.Add(characterList);
-        }
 
         public void Register(IReadOnlyList<BattleEventValueObject> damageList)
         {
-            foreach (var damage in damageList) Register(damage);
-        }
-
-        private CharacterEntity ReduceHitPoint(KeyValuePair<CharacterId, int> characterIdDamagePair)
-        {
-            var characterId = characterIdDamagePair.Key;
-            var character = _characterCollection.Get(characterId);
-            var currentHitPoint = character.CurrentHitPoint;
-            var damage = characterIdDamagePair.Value;
-            var reducedHitPoint = currentHitPoint - damage;
-            character.CurrentHitPoint = reducedHitPoint;
-            return character;
+            _hitPoint.Damaged(damageList);
         }
     }
 }
