@@ -3,8 +3,8 @@ using BattleScene.InterfaceAdapter.PrimeSkill.BaseClass;
 
 namespace BattleScene.InterfaceAdapter.PrimeSkill
 {
-    public class BurningSkill : BaseSlip
+    public class Bleeding : BaseSlip
     {
-        public override SlipCode SlipCode { get; } = SlipCode.Burning;
+        public override SlipCode SlipCode { get; } = SlipCode.Bleeding;
     }
 }

@@ -19,6 +19,6 @@ namespace BattleScene.InterfaceAdapter.Skill
             = new[] { new BasicDamage() };
 
         public override IReadOnlyList<BaseSlip> SlipList { get; }
-            = new[] { new BleedingSkill() };
+            = new[] { new Burning() };
     }
 }
