@@ -6,6 +6,7 @@ using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
+using BattleScene.UseCases.IService;
 using BattleScene.UseCases.Service;
 using Utility;
 
@@ -19,6 +20,7 @@ namespace BattleScene.UseCases.UseCase
         private readonly SlipDamageGeneratorService _slipDamageGenerator;
         private readonly ICollection<SlipEntity, SlipCode> _slipCollection;
         private readonly IFactory<SkillValueObject, SkillCode> _skillFactory;
+        private readonly IHitPointService _hitPoint;
 
         public SlipUseCase(
             BattleLoggerService battleLogger,
@@ -26,7 +28,8 @@ namespace BattleScene.UseCases.UseCase
             OrderedItemsDomainService orderedItems,
             SlipDamageGeneratorService slipDamageGenerator,
             ICollection<SlipEntity, SlipCode> slipCollection,
-            IFactory<SkillValueObject, SkillCode> skillFactory)
+            IFactory<SkillValueObject, SkillCode> skillFactory,
+            IHitPointService hitPoint)
         {
             _battleLogger = battleLogger;
             _player = player;
@@ -34,11 +37,13 @@ namespace BattleScene.UseCases.UseCase
             _slipDamageGenerator = slipDamageGenerator;
             _slipCollection = slipCollection;
             _skillFactory = skillFactory;
+            _hitPoint = hitPoint;
         }
 
         public void Commit()
         {
             var slipDamage = _slipDamageGenerator.Generate();
+            _hitPoint.Damaged(slipDamage);
             _slipCollection.Get(slipDamage.SlipCode).AdvanceTurn();
             _battleLogger.Log(slipDamage);
         }
