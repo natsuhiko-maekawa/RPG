@@ -337,6 +337,7 @@ namespace BattleScene
             builder.Register<AttacksWeakPointEvaluatorService>(Lifetime.Singleton);
             builder.Register<BuffTurnService>(Lifetime.Singleton);
             builder.Register<ToSkillCodeService>(Lifetime.Singleton);
+            builder.Register<ICharacterCreatorService, CharacterCreatorService>(Lifetime.Singleton);
             builder.Register<CharacterPropertyFactoryService>(Lifetime.Singleton);
             builder.Register<DamageEvaluatorService>(Lifetime.Singleton);
             builder.Register<IHitPointService, HitPointService>(Lifetime.Singleton);

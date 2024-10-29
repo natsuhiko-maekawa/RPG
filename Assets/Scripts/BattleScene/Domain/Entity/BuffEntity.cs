@@ -8,8 +8,8 @@ namespace BattleScene.Domain.Entity
         public BuffEntity(
             CharacterId characterId,
             BuffCode buffCode,
-            int turn,
-            LifetimeCode lifetimeCode,
+            int turn = 0,
+            LifetimeCode lifetimeCode = LifetimeCode.NoLifetime,
             float rate = 1.0f)
         {
             CharacterId = characterId;
