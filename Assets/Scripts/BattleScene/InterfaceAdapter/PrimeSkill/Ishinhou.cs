@@ -8,7 +8,7 @@ namespace BattleScene.InterfaceAdapter.PrimeSkill
     {
         public override IReadOnlyList<AilmentCode> AilmentCodeList { get; } = new[] { AilmentCode.Deaf };
 
-        public override IReadOnlyList<SlipCode> SlipDamageCodeList { get; } =
+        public override IReadOnlyList<SlipCode> SlipCodeList { get; } =
             new[] { SlipCode.Suffocation, SlipCode.Bleeding };
     }
 }

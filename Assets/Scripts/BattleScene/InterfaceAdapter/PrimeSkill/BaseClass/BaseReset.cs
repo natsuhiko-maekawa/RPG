@@ -7,7 +7,7 @@ namespace BattleScene.InterfaceAdapter.PrimeSkill.BaseClass
     public abstract class BaseReset
     {
         public virtual IReadOnlyList<AilmentCode> AilmentCodeList { get; } = Array.Empty<AilmentCode>();
-        public virtual IReadOnlyList<SlipCode> SlipDamageCodeList { get; } = Array.Empty<SlipCode>();
+        public virtual IReadOnlyList<SlipCode> SlipCodeList { get; } = Array.Empty<SlipCode>();
         public virtual IReadOnlyList<BodyPartCode> BodyPartCodeList { get; } = Array.Empty<BodyPartCode>();
     }
 }

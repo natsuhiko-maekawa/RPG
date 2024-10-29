@@ -1188,8 +1188,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cantActionBecauseParalysis: 2
-  isHit: 1
-  isSuccess: 1
+  isHit: 0
+  isSuccess: 0
 --- !u!114 &809505090
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1215,7 +1215,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4a579ea9dd143c2a263b644193bcfda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  primeSkillCode: 2
+  primeSkillCode: 5
 --- !u!1 &970813123 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4695161141746856340, guid: e5b23f012c6997f47aaa6f525c29fa55, type: 3}
