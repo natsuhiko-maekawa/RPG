@@ -55,6 +55,8 @@ namespace BattleScene.InterfaceAdapter
                 Attack => _container.Resolve<AttackSkill>(),
                 Bite => _container.Resolve<BiteSkill>(),
                 BiteOff => _container.Resolve<BiteOffSkill>(),
+                Bleeding => _container.Resolve<BleedingSkill>(),
+                Burning => _container.Resolve<BurningSkill>(),
                 Confusion => _container.Resolve<ConfusionSkill>(),
                 CutUp => _container.Resolve<CutUpSkill>(),
                 Defence => _container.Resolve<DefenceSkill>(),

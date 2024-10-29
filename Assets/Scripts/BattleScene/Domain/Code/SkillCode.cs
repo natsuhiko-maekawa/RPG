@@ -9,6 +9,8 @@ namespace BattleScene.Domain.Code
         Attack,
         Bite,
         BiteOff,
+        Bleeding,
+        Burning,
         Confusion,
         CutUp,
         Defence,

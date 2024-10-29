@@ -49,7 +49,9 @@ namespace BattleScene.UseCases.UseCase
             MyDebug.Assert(slipCode != SlipCode.NoSlip);
             var skillCode = slipCode switch
             {
+                SlipCode.Burning => SkillCode.Burning,
                 SlipCode.Poisoning => SkillCode.Poisoning,
+                SlipCode.Bleeding => SkillCode.Bleeding,
                 SlipCode.Suffocation => SkillCode.Suffocation,
                 _ => throw new ArgumentOutOfRangeException()
             };
