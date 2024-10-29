@@ -5,14 +5,14 @@ namespace BattleScene.InterfaceAdapter.State.Turn
 {
     public class EnemySelectActionState : BaseState
     {
-        private readonly IEnemySelectSkillUseCase _enemySelectSkill;
+        private readonly IEnemySelectActionUseCase _enemySelectAction;
         private readonly SkillState _skillState;
 
         public EnemySelectActionState(
-            IEnemySelectSkillUseCase enemySelectSkill,
+            IEnemySelectActionUseCase enemySelectAction,
             SkillState skillState)
         {
-            _enemySelectSkill = enemySelectSkill;
+            _enemySelectAction = enemySelectAction;
             _skillState = skillState;
         }
 
@@ -20,10 +20,10 @@ namespace BattleScene.InterfaceAdapter.State.Turn
         {
             if (Context.ActorId == null)
                 throw new InvalidOperationException("Context.ActorId expect has id but was null.");
-            Context.Skill = _enemySelectSkill.SelectSkill(Context.ActorId);
+            Context.Skill = _enemySelectAction.SelectSkill(Context.ActorId);
             // TODO: SkillCodeをSkillに置き換えた後、以下の一行を削除する
             Context.SkillCode = Context.Skill.SkillCommon.SkillCode;
-            Context.TargetIdList = _enemySelectSkill.SelectTarget(Context.ActorId, Context.Skill);
+            Context.TargetIdList = _enemySelectAction.SelectTarget(Context.ActorId, Context.Skill);
             Context.TransitionTo(_skillState);
         }
     }

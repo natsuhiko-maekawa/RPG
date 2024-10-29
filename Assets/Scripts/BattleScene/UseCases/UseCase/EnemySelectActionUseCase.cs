@@ -6,12 +6,12 @@ using BattleScene.UseCases.IUseCase;
 
 namespace BattleScene.UseCases.UseCase
 {
-    public class EnemySelectSelectSkillUseCase : IEnemySelectSkillUseCase
+    public class EnemySelectActionUseCase : IEnemySelectActionUseCase
     {
         private readonly IEnemySkillSelectorService _enemySkillSelector;
         private readonly ITargetService _target;
 
-        public EnemySelectSelectSkillUseCase(
+        public EnemySelectActionUseCase(
             IEnemySkillSelectorService enemySkillSelector,
             ITargetService target)
         {
