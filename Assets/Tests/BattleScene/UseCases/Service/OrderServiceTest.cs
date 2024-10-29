@@ -25,6 +25,7 @@ namespace Tests.BattleScene.UseCases.Service
         private BattlePropertyFactory _stubBattlePropertyFactory;
         private CharacterPropertyFactory _stubCharacterPropertyFactory;
         private CharacterPropertyFactoryService _stubCharacterPropertyFactoryService = null!;
+        private readonly MockCollection<BuffEntity, (CharacterId, BuffCode)> _mockBuffCollection = new();
         private readonly MockCollection<CharacterEntity, CharacterId> _mockCharacterCollection = new();
         
         [SetUp]
@@ -49,9 +50,6 @@ namespace Tests.BattleScene.UseCases.Service
         {
             var stubAilmentRepository = Substitute.For<ICollection<AilmentEntity, (CharacterId, AilmentCode)>>();
             stubAilmentRepository.Get().Returns(new List<AilmentEntity>());
-
-            var stubBuff = Substitute.For<IBuffDomainService>();
-            stubBuff.GetRate(Arg.Any<CharacterId>(), Arg.Any<BuffCode>()).Returns(1.0f);
             
             var playerId = new CharacterId();
             var player = new CharacterEntity(
@@ -74,7 +72,7 @@ namespace Tests.BattleScene.UseCases.Service
                 characterCollection: _mockCharacterCollection);
             
             var mockSpeedService = new SpeedService(
-                buff: stubBuff,
+                buffCollection: _mockBuffCollection,
                 characterPropertyFactory: _stubCharacterPropertyFactoryService);
             
             var mockOrderedItemRepository = new MockCollection<OrderedItemEntity, OrderId>();
