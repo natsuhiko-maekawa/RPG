@@ -81,6 +81,12 @@ namespace BattleScene.InterfaceAdapter.StateMachine
                 yield return buffContext;
             }
 
+            if (skill.ResetParameterList.Count != 0)
+            {
+                var resetContext = CreateContext(skill.ResetParameterList);
+                yield return resetContext;
+            }
+
             if (skill.RestoreParameterList.Count != 0)
             {
                 var restoreContext = CreateContext(skill.RestoreParameterList);

@@ -29,6 +29,7 @@ namespace BattleScene.InterfaceAdapter
             var buffParameterList = CreateBuffParameterList(skill.BuffList);
             var damageList = CreateDamageParameterList(skill.DamageList);
             var destroyPartList = CreateDestroyParameterList(skill.DestroyList);
+            var resetParameterList = CreateResetParameterList(skill.ResetList);
             var restoreParameterList = CreateRestoreParameterList(skill.RestoreList);
             var slipParameterList = CreateSlipParameterList(skill.SlipList);
             return new SkillValueObject(
@@ -41,6 +42,7 @@ namespace BattleScene.InterfaceAdapter
                 buffList: buffParameterList,
                 damageList: damageList,
                 destroyedPartList: destroyPartList,
+                resetParameterList: resetParameterList,
                 restoreParameterList: restoreParameterList,
                 slipParameterList: slipParameterList);
         }
@@ -141,6 +143,13 @@ namespace BattleScene.InterfaceAdapter
                     Count: x.Count))
                 .ToList();
         }
+
+        private IReadOnlyList<ResetParameterValueObject> CreateResetParameterList(IReadOnlyList<BaseReset> resetList)
+            => resetList.Select(x => new ResetParameterValueObject(
+                    AilmentCodeList: x.AilmentCodeList,
+                    SlipCodeList: x.SlipCodeList,
+                    BodyPartCodeList: x.BodyPartCodeList))
+                .ToList();
 
         private IReadOnlyList<RestoreParameterValueObject> CreateRestoreParameterList(
             IReadOnlyList<BaseRestore> restoreList)
