@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DataAccess;
-using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
@@ -14,31 +12,26 @@ namespace BattleScene.UseCases.Service
     public class AilmentService : IPrimeSkillService<AilmentParameterValueObject>
     {
         private readonly ActualTargetIdPickerService _actualTargetIdPicker;
-        private readonly OrderedItemsDomainService _orderedItems;
         private readonly IFactory<AilmentPropertyValueObject, AilmentCode> _ailmentPropertyFactory;
         private readonly ICollection<AilmentEntity, (CharacterId, AilmentCode)> _ailmentCollection;
 
         public AilmentService(
             ActualTargetIdPickerService actualTargetIdPicker,
-            OrderedItemsDomainService orderedItems,
             IFactory<AilmentPropertyValueObject, AilmentCode> ailmentPropertyFactory,
             ICollection<AilmentEntity, (CharacterId, AilmentCode)> ailmentCollection)
         {
             _actualTargetIdPicker = actualTargetIdPicker;
-            _orderedItems = orderedItems;
             _ailmentPropertyFactory = ailmentPropertyFactory;
             _ailmentCollection = ailmentCollection;
         }
 
         public IReadOnlyList<BattleEventValueObject> Generate(
+            CharacterId actorId,
             SkillCommonValueObject skillCommon,
             IReadOnlyList<AilmentParameterValueObject> primeSkillParameterList,
             IReadOnlyList<CharacterId> targetIdList)
         {
-            if (!_orderedItems.First().TryGetCharacterId(out var actorId)) throw new InvalidOperationException();
-
             var ailmentList = primeSkillParameterList.Select(GetAilment).ToList();
-
             return ailmentList;
 
             BattleEventValueObject GetAilment(AilmentParameterValueObject ailmentParameter)
@@ -57,7 +50,7 @@ namespace BattleScene.UseCases.Service
                 return ailment;
             }
         }
-        
+
         public void Register(BattleEventValueObject ailment)
         {
             var ailmentProperty = _ailmentPropertyFactory.Create(ailment.AilmentCode);

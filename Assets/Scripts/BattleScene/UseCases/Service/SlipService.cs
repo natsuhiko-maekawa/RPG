@@ -2,12 +2,10 @@
 using System.Linq;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DataAccess;
-using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
 using BattleScene.UseCases.IService;
-using Utility;
 
 namespace BattleScene.UseCases.Service
 {
@@ -15,29 +13,24 @@ namespace BattleScene.UseCases.Service
     {
         private readonly ActualTargetIdPickerService _actualTargetIdPicker;
         private readonly IFactory<BattlePropertyValueObject> _battlePropertyFactory;
-        private readonly OrderedItemsDomainService _orderedItems;
         private readonly ICollection<SlipEntity, SlipCode> _slipDamageCollection;
 
         public SlipService(
             ActualTargetIdPickerService actualTargetIdPicker,
-            OrderedItemsDomainService orderedItems,
             IFactory<BattlePropertyValueObject> battlePropertyFactory,
             ICollection<SlipEntity, SlipCode> slipDamageCollection)
         {
             _actualTargetIdPicker = actualTargetIdPicker;
-            _orderedItems = orderedItems;
             _battlePropertyFactory = battlePropertyFactory;
             _slipDamageCollection = slipDamageCollection;
         }
 
         public IReadOnlyList<BattleEventValueObject> Generate(
+            CharacterId actorId,
             SkillCommonValueObject skillCommon,
             IReadOnlyList<SlipParameterValueObject> slipParameterList,
             IReadOnlyList<CharacterId> targetIdList)
         {
-            var value = _orderedItems.First().TryGetCharacterId(out var actorId);
-            MyDebug.Assert(value);
-
             var slipList = slipParameterList
                 .Select(GetSlip)
                 .ToList();
@@ -58,7 +51,7 @@ namespace BattleScene.UseCases.Service
                 return slip;
             }
         }
-        
+
         public void Register(BattleEventValueObject slip)
         {
             if (slip.ActualTargetIdList.Count == 0) return;

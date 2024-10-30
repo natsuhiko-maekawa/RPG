@@ -34,6 +34,7 @@ namespace BattleScene.UseCases.UseCase
             IReadOnlyList<CharacterId> targetIdList)
         {
             var primeSkillList = _primeSkill.Generate(
+                actorId: actorId,
                 skillCommon: skillCommon,
                 primeSkillParameterList: primeSkillParameterList,
                 targetIdList: targetIdList);

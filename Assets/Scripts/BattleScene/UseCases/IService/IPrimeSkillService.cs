@@ -7,6 +7,7 @@ namespace BattleScene.UseCases.IService
     public interface IPrimeSkillService<in TPrimeSkillParameter>
     {
         public IReadOnlyList<BattleEventValueObject> Generate(
+            CharacterId actorId,
             SkillCommonValueObject skillCommon,
             IReadOnlyList<TPrimeSkillParameter> primeSkillParameterList,
             IReadOnlyList<CharacterId> targetIdList);

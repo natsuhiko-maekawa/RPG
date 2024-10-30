@@ -2,35 +2,29 @@
 using System.Linq;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DataAccess;
-using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
 using BattleScene.UseCases.IService;
-using Utility;
 
 namespace BattleScene.UseCases.Service
 {
     public class BuffService : IPrimeSkillService<BuffParameterValueObject>
     {
         private readonly ICollection<BuffEntity, (CharacterId, BuffCode)> _buffCollection;
-        private readonly OrderedItemsDomainService _orderedItems;
 
         public BuffService(
-            ICollection<BuffEntity, (CharacterId, BuffCode)> buffCollection,
-            OrderedItemsDomainService orderedItems)
+            ICollection<BuffEntity, (CharacterId, BuffCode)> buffCollection)
         {
             _buffCollection = buffCollection;
-            _orderedItems = orderedItems;
         }
 
         public IReadOnlyList<BattleEventValueObject> Generate(
+            CharacterId actorId,
             SkillCommonValueObject skillCommon,
             IReadOnlyList<BuffParameterValueObject> buffParameterList,
             IReadOnlyList<CharacterId> targetIdList)
         {
-            if (!_orderedItems.First().TryGetCharacterId(out var actorId)) MyDebug.LogAssertion("ActorId is null.");
-
             var buffList = buffParameterList.Select(GetBuff).ToList();
             return buffList;
 
