@@ -2,17 +2,17 @@ using System;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.ValueObject;
-using BattleScene.UseCases.Service;
+using BattleScene.UseCases.IService;
 
 namespace BattleScene.UseCases.UseCase
 {
     public class ResetAilmentUseCase
     {
-        private readonly AilmentResetService _ailmentReset;
+        private readonly IAilmentResetService _ailmentReset;
         private readonly IFactory<SkillValueObject, SkillCode> _skillFactory;
 
         public ResetAilmentUseCase(
-            AilmentResetService ailmentReset,
+            IAilmentResetService ailmentReset,
             IFactory<SkillValueObject, SkillCode> skillFactory)
         {
             _ailmentReset = ailmentReset;

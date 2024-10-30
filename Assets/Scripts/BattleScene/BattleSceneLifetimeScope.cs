@@ -333,7 +333,7 @@ namespace BattleScene
 
             builder.Register<ActionTimeService>(Lifetime.Singleton);
             builder.Register<ActualTargetIdPickerService>(Lifetime.Singleton);
-            builder.Register<AilmentResetService>(Lifetime.Singleton);
+            builder.Register<IAilmentResetService, AilmentResetService>(Lifetime.Singleton);
             builder.Register<AttackCounterService>(Lifetime.Singleton);
             builder.Register<AttacksWeakPointEvaluatorService>(Lifetime.Singleton);
             builder.Register<BuffTurnService>(Lifetime.Singleton);
