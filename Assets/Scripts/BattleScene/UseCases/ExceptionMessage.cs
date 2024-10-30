@@ -2,6 +2,7 @@ namespace BattleScene.UseCases
 {
     public static class ExceptionMessage
     {
+        public const string AilmentCodeIsDefaultValue = "Ailment Code expected any value but was default value.";
         public const string ResetParameterIsNoSingle = "Reset parameter expected single but was multiple or empty.";
         public const string RestoreParameterIsNoSingle = "Restore parameter expected single but was multiple or empty.";
 

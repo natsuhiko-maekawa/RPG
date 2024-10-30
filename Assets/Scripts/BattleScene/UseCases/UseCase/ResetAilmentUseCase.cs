@@ -1,3 +1,4 @@
+using System;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.ValueObject;
@@ -18,9 +19,11 @@ namespace BattleScene.UseCases.UseCase
             _skillFactory = skillFactory;
         }
 
-        public void Reset()
+        public void Reset(AilmentCode ailmentCode)
         {
-            _ailmentReset.Reset();
+            if (ailmentCode == AilmentCode.NoAilment)
+                throw new ArgumentException(ExceptionMessage.AilmentCodeIsDefaultValue);
+            _ailmentReset.Reset(ailmentCode);
         }
 
         public SkillValueObject GetAttackSkill()

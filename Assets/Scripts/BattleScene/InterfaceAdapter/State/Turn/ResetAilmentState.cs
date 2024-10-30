@@ -26,7 +26,7 @@ namespace BattleScene.InterfaceAdapter.State.Turn
 
         public override async void Start()
         {
-            _useCase.Reset();
+            _useCase.Reset(Context.AilmentCode);
             Context.Skill = _useCase.GetAttackSkill();
             await _output.OutputAsync(Context.Skill.Common.SkillCode);
         }
