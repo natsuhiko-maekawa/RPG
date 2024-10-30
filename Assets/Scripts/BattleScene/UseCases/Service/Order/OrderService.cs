@@ -58,7 +58,9 @@ namespace BattleScene.UseCases.Service.Order
             var ailments = _ailmentCollection.Get()
                 .Where(x => _characterCollection.Get(x.CharacterId).IsPlayer)
                 .ToList();
-            var slipDamages = _slipDamageCollection.Get();
+            var slipDamages = _slipDamageCollection.Get()
+                .Where(x => x.Effects)
+                .ToList();
             InsertAilmentEnd(ailments, ref orderedItemList);
             InsertSlipDamage(slipDamages, ref orderedItemList);
 
