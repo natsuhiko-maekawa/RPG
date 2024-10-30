@@ -29,7 +29,8 @@ namespace BattleScene.UseCases.Service
             IReadOnlyList<RestoreParameterValueObject> restoreParameterList,
             IReadOnlyList<CharacterId> targetIdList)
         {
-            MyDebug.Assert(restoreParameterList.Count == 1);
+            if (restoreParameterList.Count != 1)
+                throw new InvalidOperationException(ExceptionMessage.RestoreParameterIsNoSingle);
             var currentTechnicalPoint = _technicalPoint.Get();
             var maxTechnicalPoint = _playerPropertyFactory.Create(CharacterTypeCode.Player).TechnicalPoint;
             var restoreList = restoreParameterList.Select(GetRestore).ToList();
