@@ -5,18 +5,28 @@ using BattleScene.Domain.Code;
 using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
+using BattleScene.Domain.ValueObject;
 using BattleScene.UseCases.IService;
 
 namespace BattleScene.UseCases.Service
 {
     public class CharacterCreatorService : ICharacterCreatorService
     {
+        private readonly ICollection<AilmentEntity, (CharacterId, AilmentCode)> _ailmentCollection;
+        private readonly IFactory<AilmentPropertyValueObject, AilmentCode> _ailmentPropertyFactory;
         private readonly ICollection<BuffEntity, (CharacterId, BuffCode)> _buffCollection;
+        private readonly ICollection<SlipEntity, SlipCode> _slipCollection;
 
         public CharacterCreatorService(
-            ICollection<BuffEntity, (CharacterId, BuffCode)> buffCollection)
+            ICollection<BuffEntity, (CharacterId, BuffCode)> buffCollection,
+            ICollection<SlipEntity, SlipCode> slipCollection,
+            ICollection<AilmentEntity, (CharacterId, AilmentCode)> ailmentCollection,
+            IFactory<AilmentPropertyValueObject, AilmentCode> ailmentPropertyFactory)
         {
             _buffCollection = buffCollection;
+            _slipCollection = slipCollection;
+            _ailmentCollection = ailmentCollection;
+            _ailmentPropertyFactory = ailmentPropertyFactory;
         }
 
         public void Create(CharacterId characterId)
@@ -30,6 +40,29 @@ namespace BattleScene.UseCases.Service
                     characterId: characterId,
                     buffCode: buffCode);
                 _buffCollection.Add(buff);
+            }
+
+            var slipCodes = Enum.GetValues(typeof(SlipCode))
+                .Cast<SlipCode>()
+                .Where(x => x != SlipCode.NoSlip);
+            foreach (var slipCode in slipCodes)
+            {
+                var slip = new SlipEntity(
+                    slipCode: slipCode);
+                _slipCollection.Add(slip);
+            }
+
+            var ailmentCodes = Enum.GetValues(typeof(AilmentCode))
+                .Cast<AilmentCode>()
+                .Where(x => x != AilmentCode.NoAilment);
+            foreach (var ailmentCode in ailmentCodes)
+            {
+                var ailmentProperty = _ailmentPropertyFactory.Create(ailmentCode);
+                var ailment = new AilmentEntity(
+                    characterId: characterId,
+                    ailmentCode: ailmentCode,
+                    isSelfRecovery: ailmentProperty.IsSelfRecovery);
+                _ailmentCollection.Add(ailment);
             }
         }
 

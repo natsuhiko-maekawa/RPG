@@ -6,8 +6,8 @@ namespace BattleScene.Domain.Entity
     {
         public SlipEntity(
             SlipCode slipCode,
-            bool effects,
-            int turn)
+            bool effects = false,
+            int turn = 0)
         {
             Id = slipCode;
             Effects = effects;

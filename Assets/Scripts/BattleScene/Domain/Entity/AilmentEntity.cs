@@ -9,9 +9,9 @@ namespace BattleScene.Domain.Entity
         public AilmentEntity(
             CharacterId characterId,
             AilmentCode ailmentCode,
-            bool effects,
-            int turn,
-            bool isSelfRecovery)
+            bool isSelfRecovery,
+            int turn = 0,
+            bool effects = false)
         {
             CharacterId = characterId;
             AilmentCode = ailmentCode;
