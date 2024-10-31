@@ -1,60 +1,100 @@
 ﻿@startuml
 'https://plantuml.com/class-diagram
 
-package Model{
-    package DataAccess{
-        class Collection
-        class Factory
-        interface IResource
-        class Resource
-        Resource --|> IResource
+!theme mars
+package Views{
+    class View
+    class ViewModel << (R, lightcoral) >>
+    class GameObject
+    ViewModel <-l- View
+    GameObject <-r-o View
+}
+
+package Presenters{
+    abstract class BaseState{
+        # Context {get; private set;}
+        + SetContext(Context context)
+    }
+    class ConcreteState
+    class Context{
+        - _state
+        + TransitionTo(BaseState state)
+        + Save()
+        + Restore(Memento memento)
+    }
+    class Memento{
+        - _state
+        + GetState()
+    }
+    class StateMachine{
+        - _context
+        - _mementoList
+    }
+    class Facade
+    class Presenter
+
+    Facade <-- ConcreteState
+    Presenter <-l-* Facade : contains
+    BaseState <|- ConcreteState
+    BaseState <-- Context
+    BaseState <-- Memento
+    Context <-- BaseState
+    Memento <- Context
+    Memento <-- StateMachine
+    Context <-- StateMachine
+}
+
+package Models{
+    package Domain{
+        class Entity
+        class ValueObject << (R, lightcoral) >>
+        interface IRepository<TEntity, TId>{
+            + Get(TId id)
+            + Add(TEntity entity)
+            + Remove(TId id)
+        }
+        interface IFactory<TItem, TKey>{
+            + Create(TKey key)
+        }
     }
 
     package UseCases{
         class Service
         class UseCase
-        interface ICollection
-        interface IFactory
         interface IService
-        ICollection <-- Service
-        IFactory <-- Service
-        IService <|-- Service
+
+        IService <|- Service
         IService <-- UseCase
+        UseCase *- Service : contains
     }
 
-    package Domain{
-        class Entity
-        class ValueObject
-        ValueObject <-l- Entity
+    package DataAccess{
+        class Repository<TEntity, TId>{
+            - _entityDictionary
+        }
+        class Factory<TItem, TKey>
+        interface IResource<TItem, TKey>{
+            + Get(TKey key)
+        }
+        class Dto << (R, lightcoral) >>
+        class Resource<TItem, TKey>
     }
 
-    ICollection ---> Entity
-    IFactory ---> ValueObject
-    Collection ---|> ICollection
-    Factory ---|> IFactory
+    Domain <-- Service
+    IRepository <|- Repository
+    Entity <--* Repository : provide <
+    IFactory <|- Factory
+    ValueObject <-- Factory : create <
+    IResource <-u- Factory
+    Dto <-u- Factory
+    IResource <|-- Resource
+    Dto <-- Resource
 }
 
-package Presenters{
-    class State
-    class Context
-    class StateMachine
-    class Facade
-    class Presenter
-    UseCase <-- State
-    Facade <-- State
-    Presenter <-- Facade
-    State <-- Context
-    Context <-- StateMachine
-}
-
-package Views{
-    class View
-    class ViewModel
-    ViewModel <- View
-}
-
-IResource <-- Presenter
 View <-- Presenter
 ViewModel <-- Presenter
+Models <- Presenter
+UseCase <- ConcreteState
 
+hide empty members
 @enduml
