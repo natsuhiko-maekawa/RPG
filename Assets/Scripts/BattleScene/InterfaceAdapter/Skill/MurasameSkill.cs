@@ -25,7 +25,7 @@ namespace BattleScene.InterfaceAdapter.Skill
         public override SkillCode SkillCode { get; } = SkillCode.Murasame;
         public override int TechnicalPoint { get; } = 5;
         public override Range Range { get; } = Range.Solo;
-        public override MessageCode AttackMessageCode { get; } = MessageCode.AttackMessage;
+        public override MessageCode AttackMessageCode { get; } = MessageCode.SkillMessage;
 
         public override IReadOnlyList<BaseDamage> DamageList { get; }
             = new[] { new BasicDamage() };

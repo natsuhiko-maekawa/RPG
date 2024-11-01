@@ -14,7 +14,7 @@ namespace BattleScene.InterfaceAdapter.Skill
         public override SkillCode SkillCode { get; } = SkillCode.Kuchiyose;
         public override int TechnicalPoint { get; } = 10;
         public override Range Range { get; } = Range.Solo;
-        public override MessageCode AttackMessageCode { get; } = MessageCode.NoMessage;
+        public override MessageCode AttackMessageCode { get; } = MessageCode.SkillMessage;
 
         public override IReadOnlyList<BaseAilment> AilmentList { get; }
             = new[] { new Confusion() };
