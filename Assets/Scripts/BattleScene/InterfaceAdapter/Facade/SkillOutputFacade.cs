@@ -41,15 +41,11 @@ namespace BattleScene.InterfaceAdapter.Facade
             if (context.Skill == null) throw new InvalidOperationException(ExceptionMessage.ContextSkillIsNull);
             var animationList = new List<Task>();
 
-            var isActorPlayer = _characterCollection.Get(context.ActorId).IsPlayer;
-
-            var messageCode = isActorPlayer
-                ? MessageCode.SkillMessage
-                : context.Skill.Common.AttackMessageCode;
-
+            var messageCode = context.Skill.Common.AttackMessageCode;
             var messageAnimation = _messageView.StartAnimationAsync(messageCode, context);
             animationList.Add(messageAnimation);
 
+            var isActorPlayer = _characterCollection.Get(context.ActorId).IsPlayer;
             var playerSkillCode = isActorPlayer
                 ? context.Skill.Common.SkillCode
                 : _battleLogCollection.Get()
