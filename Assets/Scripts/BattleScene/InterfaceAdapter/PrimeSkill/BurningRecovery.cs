@@ -4,7 +4,7 @@ using BattleScene.InterfaceAdapter.PrimeSkill.BaseClass;
 
 namespace BattleScene.InterfaceAdapter.PrimeSkill
 {
-    public class BurningReset : BaseReset
+    public class BurningRecovery : BaseRecovery
     {
         public override IReadOnlyList<SlipCode> SlipCodeList { get; } = new[] { SlipCode.Burning };
     }

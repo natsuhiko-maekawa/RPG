@@ -4,7 +4,7 @@ using BattleScene.InterfaceAdapter.PrimeSkill.BaseClass;
 
 namespace BattleScene.InterfaceAdapter.PrimeSkill
 {
-    public class Honzougaku : BaseReset
+    public class Honzougaku : BaseRecovery
     {
         public override IReadOnlyList<AilmentCode> AilmentCodeList { get; } =
             new[] { AilmentCode.Blind, AilmentCode.Paralysis };

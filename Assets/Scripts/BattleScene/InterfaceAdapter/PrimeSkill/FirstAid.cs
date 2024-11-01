@@ -4,7 +4,7 @@ using BattleScene.InterfaceAdapter.PrimeSkill.BaseClass;
 
 namespace BattleScene.InterfaceAdapter.PrimeSkill
 {
-    public class FirstAid : BaseReset
+    public class FirstAid : BaseRecovery
     {
         public override IReadOnlyList<BodyPartCode> BodyPartCodeList { get; } =
             new[] { BodyPartCode.Arm, BodyPartCode.Leg, BodyPartCode.Stomach };

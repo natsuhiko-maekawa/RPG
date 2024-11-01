@@ -20,7 +20,7 @@ namespace BattleScene.InterfaceAdapter.Skill.BaseClass
         public virtual IReadOnlyList<BaseDamage> DamageList { get; } = MyList<BaseDamage>.Empty;
         public virtual IReadOnlyList<BaseDestroy> DestroyList { get; } = MyList<BaseDestroy>.Empty;
         public virtual IReadOnlyList<BaseEnhance> EnhanceList { get; } = MyList<BaseEnhance>.Empty;
-        public virtual IReadOnlyList<BaseReset> ResetList { get; } = MyList<BaseReset>.Empty;
+        public virtual IReadOnlyList<BaseRecovery> RecoveryList { get; } = MyList<BaseRecovery>.Empty;
         public virtual IReadOnlyList<BaseRestore> RestoreList { get; } = MyList<BaseRestore>.Empty;
         public virtual IReadOnlyList<BaseSlip> SlipList { get; } = MyList<BaseSlip>.Empty;
     }

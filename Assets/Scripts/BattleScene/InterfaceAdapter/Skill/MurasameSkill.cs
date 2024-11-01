@@ -30,13 +30,13 @@ namespace BattleScene.InterfaceAdapter.Skill
         public override IReadOnlyList<BaseDamage> DamageList { get; }
             = new[] { new BasicDamage() };
 
-        public override IReadOnlyList<BaseReset> ResetList => GetResetList();
+        public override IReadOnlyList<BaseRecovery> RecoveryList => GetResetList();
 
-        private IReadOnlyList<BaseReset> GetResetList()
+        private IReadOnlyList<BaseRecovery> GetResetList()
         {
             return _slipCollection.Get(SlipCode.Burning).Effects
-                ? new[] { new BurningReset() }
-                : MyList<BaseReset>.Empty;
+                ? new[] { new BurningRecovery() }
+                : MyList<BaseRecovery>.Empty;
         }
     }
 }

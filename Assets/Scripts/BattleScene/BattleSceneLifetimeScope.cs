@@ -190,7 +190,7 @@ namespace BattleScene
             builder.Register<BasicDamage>(Lifetime.Singleton);
             builder.Register<BleedingSkill>(Lifetime.Singleton);
             builder.Register<Blind>(Lifetime.Singleton);
-            builder.Register<BurningReset>(Lifetime.Singleton);
+            builder.Register<BurningRecovery>(Lifetime.Singleton);
             builder.Register<BurningSkill>(Lifetime.Singleton);
             builder.Register<Confusion>(Lifetime.Singleton);
             builder.Register<ConstantDamage>(Lifetime.Singleton);

@@ -29,8 +29,8 @@ namespace BattleScene.InterfaceAdapter
             var buffParameterList = CreateBuffParameterList(skill.BuffList);
             var damageList = CreateDamageParameterList(skill.DamageList);
             var destroyPartList = CreateDestroyParameterList(skill.DestroyList);
-            var resetParameterList = CreateResetParameterList(skill.ResetList);
             var enhanceList = CreateEnhanceList(skill.EnhanceList);
+            var recoveryParameterList = CreateResetParameterList(skill.RecoveryList);
             var restoreParameterList = CreateRestoreParameterList(skill.RestoreList);
             var slipParameterList = CreateSlipParameterList(skill.SlipList);
             return new SkillValueObject(
@@ -44,7 +44,7 @@ namespace BattleScene.InterfaceAdapter
                 damageList: damageList,
                 destroyedPartList: destroyPartList,
                 enhanceList: enhanceList,
-                resetParameterList: resetParameterList,
+                resetParameterList: recoveryParameterList,
                 restoreParameterList: restoreParameterList,
                 slipParameterList: slipParameterList);
         }

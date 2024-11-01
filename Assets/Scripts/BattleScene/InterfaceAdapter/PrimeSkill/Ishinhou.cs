@@ -4,7 +4,7 @@ using BattleScene.InterfaceAdapter.PrimeSkill.BaseClass;
 
 namespace BattleScene.InterfaceAdapter.PrimeSkill
 {
-    public class Ishinhou : BaseReset
+    public class Ishinhou : BaseRecovery
     {
         public override IReadOnlyList<AilmentCode> AilmentCodeList { get; } = new[] { AilmentCode.Deaf };
 

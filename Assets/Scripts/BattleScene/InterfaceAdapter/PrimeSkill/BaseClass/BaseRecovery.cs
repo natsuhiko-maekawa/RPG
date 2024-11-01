@@ -4,7 +4,7 @@ using BattleScene.Domain.Code;
 
 namespace BattleScene.InterfaceAdapter.PrimeSkill.BaseClass
 {
-    public abstract class BaseReset
+    public abstract class BaseRecovery
     {
         public virtual IReadOnlyList<AilmentCode> AilmentCodeList { get; } = Array.Empty<AilmentCode>();
         public virtual IReadOnlyList<SlipCode> SlipCodeList { get; } = Array.Empty<SlipCode>();
