@@ -12,15 +12,18 @@ namespace BattleScene.UseCases.Service
         private readonly OrderedItemsDomainService _orderedItems;
         private readonly ICollection<BuffEntity, (CharacterId, BuffCode)> _buffCollection;
         private readonly ICollection<CharacterEntity, CharacterId> _characterCollection;
+        private readonly ICollection<EnhanceEntity, (CharacterId, EnhanceCode)> _enhanceCollection;
 
         public BuffTurnService(
             OrderedItemsDomainService orderedItems,
             ICollection<BuffEntity, (CharacterId, BuffCode)> buffCollection,
-            ICollection<CharacterEntity, CharacterId> characterCollection)
+            ICollection<CharacterEntity, CharacterId> characterCollection,
+            ICollection<EnhanceEntity, (CharacterId, EnhanceCode)> enhanceCollection)
         {
             _orderedItems = orderedItems;
             _buffCollection = buffCollection;
             _characterCollection = characterCollection;
+            _enhanceCollection = enhanceCollection;
         }
 
         public void Advance()
@@ -30,6 +33,18 @@ namespace BattleScene.UseCases.Service
             {
                 buff.AdvanceTurn();
             }
+
+            foreach (var enhance in _enhanceCollection.Get()
+                         .Where(x => x.LifetimeCode == LifetimeCode.ToEndTurn || IsNextAction(x.LifetimeCode)))
+            {
+                enhance.AdvanceTurn();
+            }
+
+            var removeIdList = _enhanceCollection.Get()
+                .Where(x => !x.Effects)
+                .Select(x => x.Id)
+                .ToList();
+            _enhanceCollection.Remove(removeIdList);
         }
 
         private bool IsNextAction(LifetimeCode lifetimeCode)

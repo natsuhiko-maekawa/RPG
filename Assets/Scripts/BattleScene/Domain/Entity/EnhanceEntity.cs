@@ -3,7 +3,7 @@ using BattleScene.Domain.Id;
 
 namespace BattleScene.Domain.Entity
 {
-    public partial class EnhanceEntity : BaseEntity<(CharacterId, EnhanceCode)>
+    public class EnhanceEntity : BaseEntity<(CharacterId, EnhanceCode)>
     {
         public EnhanceEntity(
             CharacterId characterId,
@@ -17,27 +17,14 @@ namespace BattleScene.Domain.Entity
             LifetimeCode = lifetimeCode;
             Effects = true;
         }
-        
+
         public override (CharacterId, EnhanceCode) Id => (CharacterId, EnhanceCode);
         public CharacterId CharacterId { get; }
         public EnhanceCode EnhanceCode { get; }
         public int Turn { get; private set; }
         public LifetimeCode LifetimeCode { get; }
-        
-        private bool _effects;
+        public bool Effects { get; set; }
 
-        public bool Effects
-        {
-            get => _effects;
-            set
-            {
-                _effects = value;
-                EffectsOnChange(value);
-            }
-        }
-
-        partial void EffectsOnChange(bool value);
-        
         public void AdvanceTurn()
         {
             Turn--;

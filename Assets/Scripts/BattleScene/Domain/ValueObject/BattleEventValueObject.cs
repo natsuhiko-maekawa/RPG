@@ -12,6 +12,7 @@ namespace BattleScene.Domain.ValueObject
         public AilmentCode AilmentCode { get; private init; } = AilmentCode.NoAilment;
         public BodyPartCode BodyPartCode { get; private init; } = BodyPartCode.NoBodyPart;
         public BuffCode BuffCode { get; private init; } = BuffCode.NoBuff;
+        public EnhanceCode EnhanceCode { get; private init; } = EnhanceCode.NoEnhance;
         public SlipCode SlipCode { get; private init; } = SlipCode.NoSlip;
         public SkillCode SkillCode { get; private set; } = SkillCode.NoSkill;
         public IReadOnlyList<AilmentCode> ResetAilmentCodeList { get; private set; } = Array.Empty<AilmentCode>();
@@ -134,6 +135,29 @@ namespace BattleScene.Domain.ValueObject
             };
 
             return destroy;
+        }
+
+        public static BattleEventValueObject CreateEnhance(
+            EnhanceCode enhanceCode,
+            SkillCode skillCode,
+            CharacterId actorId,
+            IReadOnlyList<CharacterId> targetIdList,
+            int turn,
+            LifetimeCode lifetimeCode)
+        {
+            var enhance = new BattleEventValueObject
+            {
+                BattleEventCode = BattleEventCode.Skill,
+                EnhanceCode = enhanceCode,
+                SkillCode = skillCode,
+                ActorId = actorId,
+                TargetIdList = targetIdList,
+                ActualTargetIdList = targetIdList,
+                Turn = turn,
+                LifetimeCode = lifetimeCode
+            };
+
+            return enhance;
         }
 
         public static BattleEventValueObject CreateReset(

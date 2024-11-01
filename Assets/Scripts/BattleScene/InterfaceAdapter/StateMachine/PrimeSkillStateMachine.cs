@@ -51,6 +51,8 @@ namespace BattleScene.InterfaceAdapter.StateMachine
             if (context.Skill == null) throw new InvalidOperationException(ExceptionMessage.ContextSkillIsNull);
             var skill = context.Skill;
 
+            // NOTE: 以下のif文の順序を変えないこと。
+            // MoveNextで取得される順序がこの通りでなくてはならない。
             if (skill.DamageParameterList.Count != 0)
             {
                 var damageContext = CreateContext(skill.DamageParameterList);
@@ -79,6 +81,12 @@ namespace BattleScene.InterfaceAdapter.StateMachine
             {
                 var buffContext = CreateContext(skill.BuffParameterList);
                 yield return buffContext;
+            }
+
+            if (skill.EnhanceParameterList.Count != 0)
+            {
+                var enhanceContext = CreateContext(skill.EnhanceParameterList);
+                yield return enhanceContext;
             }
 
             if (skill.ResetParameterList.Count != 0)
