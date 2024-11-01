@@ -127,7 +127,7 @@ namespace BattleScene
             builder.RegisterComponentInHierarchy<IResource<AilmentViewDto, AilmentCode, SlipCode>>();
             builder.RegisterComponentInHierarchy<IResource<BattlePropertyDto>>();
             builder.RegisterComponentInHierarchy<IResource<BodyPartPropertyDto, BodyPartCode>>();
-            builder.Register<IResource<BodyPartViewDto, BodyPartCode>, BodyPartViewResource>(Lifetime.Singleton);
+            builder.RegisterComponentInHierarchy<IResource<BodyPartViewDto, BodyPartCode>>();
             builder.RegisterComponentInHierarchy<IResource<BuffViewDto, BuffCode>>();
             builder.RegisterComponentInHierarchy<IResource<CharacterPropertyDto, CharacterTypeCode>>();
             builder.RegisterComponentInHierarchy<IResource<EnemyViewDto, CharacterTypeCode>>();
@@ -360,6 +360,7 @@ namespace BattleScene
             builder.Register<IPrimeSkillService<DamageParameterValueObject>, DamageService>(Lifetime.Singleton);
             builder.Register<IPrimeSkillService<DestroyParameterValueObject>, DestroyService>(Lifetime.Singleton);
             builder.Register<IPrimeSkillService<BuffParameterValueObject>, BuffService>(Lifetime.Singleton);
+            builder.Register<IPrimeSkillService<EnhanceParameterValueObject>, EnhanceService>(Lifetime.Singleton);
             builder.Register<IPrimeSkillService<SlipParameterValueObject>, SlipService>(Lifetime.Singleton);
             builder.Register<IPrimeSkillService<ResetParameterValueObject>, ResetService>(Lifetime.Singleton);
             builder.Register<IPrimeSkillService<RestoreParameterValueObject>, RestoreService>(Lifetime.Singleton);
