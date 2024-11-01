@@ -16,9 +16,9 @@ namespace BattleScene.InterfaceAdapter.Service
     {
         private const string Actor = "[actor]";
         private const string Ailment = "[ailment]";
+        private const string BodyPart = "[part]";
         private const string Buff = "[buff]";
         private const string Damage = "[damage]";
-        private const string Part = "[part]";
         private const string Player = "[player]";
         private const string Skill = "[skill]";
         private const string Target = "[target]";
@@ -31,7 +31,6 @@ namespace BattleScene.InterfaceAdapter.Service
         private readonly OrderedItemsDomainService _orderedItems;
         private readonly IResource<PlayerViewDto, CharacterTypeCode> _playerViewInfoResource;
         private readonly IResource<SkillViewDto, SkillCode> _skillViewInfoResource;
-        private readonly ICollection<BattleLogEntity, BattleLogId> _battleLogCollection;
         private readonly BattleLogDomainService _battleLog;
 
         public MessageCodeConverterService(
@@ -43,7 +42,6 @@ namespace BattleScene.InterfaceAdapter.Service
             OrderedItemsDomainService orderedItems,
             IResource<PlayerViewDto, CharacterTypeCode> playerViewInfoResource,
             IResource<SkillViewDto, SkillCode> skillViewInfoResource,
-            ICollection<BattleLogEntity, BattleLogId> battleLogCollection,
             BattleLogDomainService battleLog)
         {
             _ailmentViewResource = ailmentViewResource;
@@ -54,34 +52,34 @@ namespace BattleScene.InterfaceAdapter.Service
             _orderedItems = orderedItems;
             _playerViewInfoResource = playerViewInfoResource;
             _skillViewInfoResource = skillViewInfoResource;
-            _battleLogCollection = battleLogCollection;
             _battleLog = battleLog;
         }
 
-        public string Replace(string message, Context? context = null)
+        public string Replace(
+            string message,
+            Context? context = null)
         {
             var replacedMessage = new Message(message)
                 .Replace(Actor, ReplaceActor)
                 .Replace(Ailment, ReplaceAilment)
                 .Replace(Buff, ReplaceBuff)
                 .Replace(Damage, ReplaceDamage)
-                .Replace(Part, ReplaceBodyPart)
+                .Replace(BodyPart, ReplaceBodyPart)
                 .Replace(Player, ReplacePlayer)
                 .Replace(Skill, x => ReplaceSkill(x, context?.Skill?.Common.SkillCode ?? SkillCode.NoSkill))
                 .Replace(Target, ReplaceTarget)
                 .Replace(TechnicalPoint, ReplaceTechnicalPoint)
                 .GetMessage();
-
             return replacedMessage;
         }
 
+
         private void ReplaceActor(StringBuilder message)
         {
-            if (!_orderedItems.First().TryGetCharacterId(out var characterId)) throw new InvalidOperationException();
+            if (!_orderedItems.First().TryGetCharacterId(out var actorId))
+                throw new InvalidOperationException(ExceptionMessage.ContextActorIdIsNull);
 
-            var actorName = _characterCollection.Get(characterId).IsPlayer
-                ? _playerViewInfoResource.Get(CharacterTypeCode.Player).PlayerName
-                : _enemyViewInfoResource.Get(_characterCollection.Get(characterId).CharacterTypeCode).EnemyName;
+            var actorName = GetCharacterName(actorId);
             message.Replace(Actor, actorName);
         }
 
@@ -103,7 +101,7 @@ namespace BattleScene.InterfaceAdapter.Service
 
         private void ReplaceBuff(StringBuilder message)
         {
-            var buffCode = _battleLogCollection.Get().Max()?.BuffCode ?? BuffCode.NoBuff;
+            var buffCode = _battleLog.GetLast().BuffCode;
             if (buffCode == BuffCode.NoBuff) throw new InvalidOperationException();
             var buffName = _buffViewInfoResource.Get(buffCode).BuffName;
             message.Replace(Buff, buffName);
@@ -111,12 +109,11 @@ namespace BattleScene.InterfaceAdapter.Service
 
         private void ReplaceDamage(StringBuilder message)
         {
-            var totalPrefix = _battleLogCollection.Get()
-                .Max().AttackList.Count(x => x.IsHit) == 1
+            var attackList = _battleLog.GetLast().AttackList;
+            var totalPrefix = attackList.Count(x => x.IsHit) == 1
                 ? ""
                 : "計";
-            var damage = _battleLogCollection.Get()
-                .Max().AttackList
+            var damage = attackList
                 .Where(x => x.IsHit)
                 .Select(x => x.Amount)
                 .Sum()
@@ -130,9 +127,9 @@ namespace BattleScene.InterfaceAdapter.Service
 
         private void ReplaceBodyPart(StringBuilder message)
         {
-            var bodyPartCode = _battleLogCollection.Get().Max().DestroyedPart;
+            var bodyPartCode = _battleLog.GetLast().DestroyedPart;
             var bodyPartName = _bodyPartViewInfoResource.Get(bodyPartCode).BodyPartName;
-            message.Replace(Part, bodyPartName);
+            message.Replace(BodyPart, bodyPartName);
         }
 
         private void ReplacePlayer(StringBuilder message)
@@ -149,8 +146,8 @@ namespace BattleScene.InterfaceAdapter.Service
 
         private void ReplaceTarget(StringBuilder message)
         {
-            var targetNameList = _battleLogCollection.Get()
-                .Max().TargetIdList
+            var targetNameList = _battleLog.GetLast()
+                .TargetIdList
                 .Distinct()
                 .Select(GetCharacterName)
                 .ToList();
@@ -161,16 +158,17 @@ namespace BattleScene.InterfaceAdapter.Service
 
         private string GetCharacterName(CharacterId characterId)
         {
-            var characterName = _characterCollection.Get(characterId).IsPlayer
+            var character = _characterCollection.Get(characterId);
+            var characterName = character.IsPlayer
                 ? _playerViewInfoResource.Get(CharacterTypeCode.Player).PlayerName
-                : _enemyViewInfoResource.Get(_characterCollection.Get(characterId).CharacterTypeCode).EnemyName;
+                : _enemyViewInfoResource.Get(character.CharacterTypeCode).EnemyName;
             return characterName;
         }
 
         private void ReplaceTechnicalPoint(StringBuilder message)
         {
-            var technicalPoint = _battleLogCollection.Get()
-                .Max().TechnicalPoint
+            var technicalPoint = _battleLog.GetLast()
+                .TechnicalPoint
                 .ToString();
             message.Replace(TechnicalPoint, technicalPoint);
         }
