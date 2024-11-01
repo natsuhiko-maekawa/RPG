@@ -2,7 +2,7 @@
 {
     public abstract class BaseState<TPrimeSkillParameter>
     {
-        protected Context<TPrimeSkillParameter> Context { get; set; } = null!;
+        protected Context<TPrimeSkillParameter> Context { get; private set; } = null!;
 
         public void SetContext(Context<TPrimeSkillParameter> context)
         {
