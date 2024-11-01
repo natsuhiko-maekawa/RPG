@@ -1,39 +1,28 @@
-﻿using System.Linq;
-using BattleScene.DataAccess;
-using BattleScene.DataAccess.Dto;
-using BattleScene.Domain.Code;
-using BattleScene.Domain.DataAccess;
-using BattleScene.Domain.Entity;
-using BattleScene.Domain.Id;
+﻿using System;
 using BattleScene.Domain.ValueObject;
-using BattleScene.InterfaceAdapter.Presenter;
+using BattleScene.InterfaceAdapter.Facade;
 
 namespace BattleScene.InterfaceAdapter.State.PrimeSkill
 {
     public class BuffOutputState : PrimeSkillOutputState<BuffParameterValueObject>
     {
-        private readonly ICollection<BattleLogEntity, BattleLogId> _battleLogCollection;
-        private readonly IResource<BuffViewDto, BuffCode> _buffViewResource;
-        private readonly MessageViewPresenter _messageView;
+        private readonly BuffOutput _output;
         private readonly PrimeSkillStopState<BuffParameterValueObject> _primeSkillStopState;
 
         public BuffOutputState(
-            ICollection<BattleLogEntity, BattleLogId> battleLogCollection,
-            IResource<BuffViewDto, BuffCode> buffViewResource,
-            MessageViewPresenter messageView,
-            PrimeSkillStopState<BuffParameterValueObject> primeSkillStopState)
+            PrimeSkillStopState<BuffParameterValueObject> primeSkillStopState,
+            BuffOutput output)
         {
-            _battleLogCollection = battleLogCollection;
-            _buffViewResource = buffViewResource;
-            _messageView = messageView;
             _primeSkillStopState = primeSkillStopState;
+            _output = output;
         }
 
         public override async void Start()
         {
-            var buffCode = _battleLogCollection.Get().Max().BuffCode;
-            var messageCode = _buffViewResource.Get(buffCode).MessageCode;
-            await _messageView.StartAnimationAsync(messageCode);
+            if (Context.PrimeSkillQueue.Count == 0)
+                throw new InvalidOperationException(ExceptionMessage.ContextPrimeSkillQueueIsEmpty);
+            var buff = Context.PrimeSkillQueue.Dequeue();
+            await _output.Out(buff);
         }
 
         public override void Select()

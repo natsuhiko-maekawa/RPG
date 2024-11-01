@@ -109,6 +109,7 @@ namespace BattleScene
             #region RegisterFacade
 
             builder.Register<AilmentOutputFacade>(Lifetime.Singleton);
+            builder.Register<BuffOutput>(Lifetime.Singleton);
             builder.Register<ResetAilmentOutputFacade>(Lifetime.Singleton);
             builder.Register<DamageOutputFacade>(Lifetime.Singleton);
             builder.Register<DestroyOutputFacade>(Lifetime.Singleton);
