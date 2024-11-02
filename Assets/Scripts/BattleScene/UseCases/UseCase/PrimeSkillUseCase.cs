@@ -27,20 +27,24 @@ namespace BattleScene.UseCases.UseCase
             _battleLogCollection = battleLogCollection;
         }
 
-        public IReadOnlyList<BattleEventValueObject> Commit(
+        public IReadOnlyList<BattleEventValueObject> GetBattleEventList(
             CharacterId actorId,
             SkillCommonValueObject skillCommon,
             IReadOnlyList<TPrimeSkillParameter> primeSkillParameterList,
             IReadOnlyList<CharacterId> targetIdList)
         {
-            var primeSkillList = _primeSkill.Generate(
+            var battleEventList = _primeSkill.Generate(
                 actorId: actorId,
                 skillCommon: skillCommon,
                 primeSkillParameterList: primeSkillParameterList,
                 targetIdList: targetIdList);
-            _primeSkill.Register(primeSkillList);
-            _battleLogger.Log(primeSkillList);
-            return primeSkillList;
+            return battleEventList;
+        }
+
+        public void RegisterBattleEvent(IReadOnlyList<BattleEventValueObject> battleEventList)
+        {
+            _primeSkill.Register(battleEventList);
+            _battleLogger.Log(battleEventList);
         }
 
         public bool IsExecutedDamage()
