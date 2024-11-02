@@ -19,9 +19,9 @@ namespace BattleScene.InterfaceAdapter.State.PrimeSkill
 
         public override async void Start()
         {
-            if (Context.PrimeSkillQueue.Count == 0)
+            if (Context.BattleEventQueue.Count == 0)
                 throw new InvalidOperationException(ExceptionMessage.ContextPrimeSkillQueueIsEmpty);
-            var enhance = Context.PrimeSkillQueue.Dequeue();
+            var enhance = Context.BattleEventQueue.Dequeue();
             await _output.Out(enhance);
         }
 

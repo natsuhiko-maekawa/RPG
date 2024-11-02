@@ -21,12 +21,12 @@ namespace BattleScene.InterfaceAdapter.State.PrimeSkill
 
         public override async void Start()
         {
-            await _damageOutput.Output(Context.PrimeSkillQueue.Peek());
+            await _damageOutput.Output(Context.BattleEventQueue.Peek());
         }
 
         public override void Select()
         {
-            BaseState<DamageParameterValueObject> nextState = Context.PrimeSkillQueue.Peek().IsAvoid
+            BaseState<DamageParameterValueObject> nextState = Context.BattleEventQueue.Peek().IsAvoid
                 ? _primeSkillBreakState
                 : _primeSkillStopState;
             Context.TransitionTo(nextState);

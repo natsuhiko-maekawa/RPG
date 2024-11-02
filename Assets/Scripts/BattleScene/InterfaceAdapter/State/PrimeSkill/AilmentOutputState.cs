@@ -18,14 +18,14 @@ namespace BattleScene.InterfaceAdapter.State.PrimeSkill
 
         public override async void Start()
         {
-            var isFailure = Context.PrimeSkillQueue.Count == 0;
+            var isFailure = Context.BattleEventQueue.Count == 0;
             if (isFailure)
             {
                 await _ailmentOutput.OutputThenAilmentFailureAsync();
             }
             else
             {
-                var ailment = Context.PrimeSkillQueue.Dequeue();
+                var ailment = Context.BattleEventQueue.Dequeue();
                 await _ailmentOutput.OutputThenAilmentSuccessAsync(ailment);
             }
         }

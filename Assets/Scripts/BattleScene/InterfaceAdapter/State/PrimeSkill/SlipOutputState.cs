@@ -19,22 +19,22 @@ namespace BattleScene.InterfaceAdapter.State.PrimeSkill
 
         public override async void Start()
         {
-            var isFailure = Context.PrimeSkillQueue.All(x => x.IsFailure);
+            var isFailure = Context.BattleEventQueue.All(x => x.IsFailure);
             if (isFailure)
             {
                 await _slipOutput.OutputThenSlipFailureAsync();
-                Context.PrimeSkillQueue.Clear();
+                Context.BattleEventQueue.Clear();
             }
             else
             {
-                var primeSkill = Context.PrimeSkillQueue.Dequeue();
+                var primeSkill = Context.BattleEventQueue.Dequeue();
                 await _slipOutput.OutputThenSlipSuccessAsync(primeSkill);
             }
         }
 
         public override void Select()
         {
-            BaseState<SlipParameterValueObject> nextState = Context.PrimeSkillQueue.Count == 0
+            BaseState<SlipParameterValueObject> nextState = Context.BattleEventQueue.Count == 0
                 ? _primeSkillStopState
                 : this;
             Context.TransitionTo(nextState);

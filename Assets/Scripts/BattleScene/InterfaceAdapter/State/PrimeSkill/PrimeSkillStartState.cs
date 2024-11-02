@@ -33,17 +33,17 @@ namespace BattleScene.InterfaceAdapter.State.PrimeSkill
         /// </summary>
         public override void Start()
         {
-            var primeSkillList = _primeSkillUseCase.Commit(
+            var battleEventList = _primeSkillUseCase.Commit(
                 actorId: Context.ActorId,
                 skillCommon: Context.SkillCommon,
                 primeSkillParameterList: Context.PrimeSkillParameterList,
                 targetIdList: Context.TargetIdList);
-            var primeSkillListExceptFailure = primeSkillList
+            var successBattleEventList = battleEventList
                 .Where(x => !x.IsFailure);
-            Context.PrimeSkillQueue = new Queue<BattleEventValueObject>(primeSkillListExceptFailure);
+            Context.BattleEventQueue = new Queue<BattleEventValueObject>(successBattleEventList);
 
             BaseState<TPrimeSkillParameter> nextState =
-                Context.PrimeSkillQueue.Count == 0
+                Context.BattleEventQueue.Count == 0
                 && Context.TargetIdList.All(x => _characterCollection.Get(x).IsPlayer)
                 && _primeSkillUseCase.IsExecutedDamage()
                     ? _primeSkillStopState
