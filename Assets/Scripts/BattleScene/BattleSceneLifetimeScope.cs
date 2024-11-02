@@ -324,7 +324,7 @@ namespace BattleScene
 
             #region RegisterUseCase
 
-            builder.Register<IEnemySelectActionUseCase, EnemySelectActionUseCase>(Lifetime.Singleton);
+            builder.Register<EnemySelectActionUseCase>(Lifetime.Singleton);
             builder.Register<IPrimeSkillUseCase<DamageParameterValueObject>, 
                 PrimeSkillUseCase<DamageParameterValueObject>>(Lifetime.Singleton);
             builder.Register<IPrimeSkillUseCase<AilmentParameterValueObject>,

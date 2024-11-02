@@ -6,7 +6,7 @@ using BattleScene.UseCases.IUseCase;
 
 namespace BattleScene.UseCases.UseCase
 {
-    public class EnemySelectActionUseCase : IEnemySelectActionUseCase
+    public class EnemySelectActionUseCase
     {
         private readonly IEnemySkillSelectorService _enemySkillSelector;
         private readonly ITargetService _target;

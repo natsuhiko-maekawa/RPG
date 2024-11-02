@@ -1,15 +1,15 @@
 ﻿using System;
-using BattleScene.UseCases.IUseCase;
+using BattleScene.UseCases.UseCase;
 
 namespace BattleScene.InterfaceAdapter.State.Turn
 {
     public class EnemySelectActionState : BaseState
     {
-        private readonly IEnemySelectActionUseCase _enemySelectAction;
+        private readonly EnemySelectActionUseCase _enemySelectAction;
         private readonly SkillState _skillState;
 
         public EnemySelectActionState(
-            IEnemySelectActionUseCase enemySelectAction,
+            EnemySelectActionUseCase enemySelectAction,
             SkillState skillState)
         {
             _enemySelectAction = enemySelectAction;
