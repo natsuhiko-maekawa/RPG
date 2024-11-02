@@ -18,6 +18,7 @@ namespace BattleScene.InterfaceAdapter.Service
         private const string Ailment = "[ailment]";
         private const string BodyPart = "[part]";
         private const string Buff = "[buff]";
+        private const string Cure = "[cure]";
         private const string Damage = "[damage]";
         private const string Player = "[player]";
         private const string Skill = "[skill]";
@@ -63,6 +64,7 @@ namespace BattleScene.InterfaceAdapter.Service
                 .Replace(Actor, ReplaceActor)
                 .Replace(Ailment, ReplaceAilment)
                 .Replace(Buff, ReplaceBuff)
+                .Replace(Cure, ReplaceCure)
                 .Replace(Damage, ReplaceDamage)
                 .Replace(BodyPart, ReplaceBodyPart)
                 .Replace(Player, ReplacePlayer)
@@ -121,9 +123,18 @@ namespace BattleScene.InterfaceAdapter.Service
             message.Replace(Damage, totalPrefix + damage);
         }
 
-        // private void ReplaceCure(StringBuilder message)
-        // {
-        // }
+        private void ReplaceCure(StringBuilder message)
+        {
+            var curingList = _battleLog.GetLast().CuringList;
+            var totalPrefix = curingList.Count <= 1
+                ? ""
+                : "計";
+            var cure = curingList
+                .Select(x => x.Amount)
+                .Sum()
+                .ToString();
+            message.Replace(Cure, totalPrefix + cure);
+        }
 
         private void ReplaceBodyPart(StringBuilder message)
         {

@@ -2,7 +2,7 @@
 
 namespace BattleScene.Domain.ValueObject
 {
-    public record RecoveryValueObject(
+    public record CuringValueObject(
         int Amount,
         CharacterId TargetId);
 }

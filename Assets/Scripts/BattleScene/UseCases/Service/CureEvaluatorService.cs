@@ -28,15 +28,15 @@ namespace BattleScene.UseCases.Service
         {
             return cureParameter.CureExpressionCode switch
             {
-                CureExpressionCode.Basic => BasicEvaluate(actorId),
+                CureExpressionCode.Basic => BasicEvaluate(actorId, cureParameter.Rate),
                 _ => throw new ArgumentOutOfRangeException()
             };
         }
 
-        private int BasicEvaluate(CharacterId actorId)
+        private int BasicEvaluate(CharacterId actorId, float rate)
         {
             var wisdom = _characterPropertyFactory.Create(actorId).Wisdom;
-            var restore = wisdom * 8 + _myRandom.Range(0, 2);
+            var restore = (int)(wisdom * 8 * rate) + _myRandom.Range(0, 2);
             var currentHitPoint = _characterCollection.Get(actorId).CurrentHitPoint;
             var maxHitPoint = _characterPropertyFactory.Create(actorId).HitPoint;
             var actualRestore = Math.Min(restore, maxHitPoint - currentHitPoint);

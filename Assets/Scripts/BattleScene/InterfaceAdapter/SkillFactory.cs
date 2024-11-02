@@ -27,6 +27,7 @@ namespace BattleScene.InterfaceAdapter
             var skill = Resolve(key);
             var ailmentList = CreateAilmentParameterList(skill.AilmentList);
             var buffParameterList = CreateBuffParameterList(skill.BuffList);
+            var cureList = CreateCureList(skill.CureList);
             var damageList = CreateDamageParameterList(skill.DamageList);
             var destroyPartList = CreateDestroyParameterList(skill.DestroyList);
             var enhanceList = CreateEnhanceList(skill.EnhanceList);
@@ -41,6 +42,7 @@ namespace BattleScene.InterfaceAdapter
                 dependencyList: skill.DependencyList,
                 ailmentList: ailmentList,
                 buffList: buffParameterList,
+                cureList: cureList,
                 damageList: damageList,
                 destroyedPartList: destroyPartList,
                 enhanceList: enhanceList,
@@ -119,6 +121,13 @@ namespace BattleScene.InterfaceAdapter
                     LifetimeCode: x.LifetimeCode))
                 .ToList();
         }
+
+        private IReadOnlyList<CureParameterValueObject> CreateCureList(IReadOnlyList<BaseCure> cureList)
+            => cureList
+                .Select(x => new CureParameterValueObject(
+                    CureExpressionCode: x.CureExpressionCode,
+                    Rate: x.Rate))
+                .ToList();
 
         private IReadOnlyList<DamageParameterValueObject> CreateDamageParameterList(
             IReadOnlyList<BaseDamage> damageList)

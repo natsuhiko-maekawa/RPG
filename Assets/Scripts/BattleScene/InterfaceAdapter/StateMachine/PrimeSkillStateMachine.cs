@@ -95,6 +95,12 @@ namespace BattleScene.InterfaceAdapter.StateMachine
                 yield return resetContext;
             }
 
+            if (skill.CureParameterList.Count != 0)
+            {
+                var cureContext = CreateContext(skill.CureParameterList);
+                yield return cureContext;
+            }
+
             if (skill.RestoreParameterList.Count != 0)
             {
                 var restoreContext = CreateContext(skill.RestoreParameterList);

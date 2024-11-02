@@ -10,6 +10,7 @@ namespace BattleScene.Domain.ValueObject
         public SkillCommonValueObject Common { get; }
         public IReadOnlyList<AilmentParameterValueObject> AilmentParameterList { get; }
         public IReadOnlyList<BuffParameterValueObject> BuffParameterList { get; }
+        public IReadOnlyList<CureParameterValueObject> CureParameterList { get; }
         public IReadOnlyList<DamageParameterValueObject> DamageParameterList { get; }
         public IReadOnlyList<DestroyParameterValueObject> DestroyedParameterList { get; }
         public IReadOnlyList<EnhanceParameterValueObject> EnhanceParameterList { get; }
@@ -25,6 +26,7 @@ namespace BattleScene.Domain.ValueObject
             IReadOnlyList<BodyPartCode> dependencyList,
             IReadOnlyList<AilmentParameterValueObject>? ailmentList = null,
             IReadOnlyList<BuffParameterValueObject>? buffList = null,
+            IReadOnlyList<CureParameterValueObject>? cureList = null,
             IReadOnlyList<DamageParameterValueObject>? damageList = null,
             IReadOnlyList<DestroyParameterValueObject>? destroyedPartList = null,
             IReadOnlyList<EnhanceParameterValueObject>? enhanceList = null,
@@ -40,6 +42,7 @@ namespace BattleScene.Domain.ValueObject
                 attackMessageCode: attackMessageCode);
             AilmentParameterList = ailmentList ?? new List<AilmentParameterValueObject>();
             BuffParameterList = buffList ?? new List<BuffParameterValueObject>();
+            CureParameterList = cureList ?? MyList<CureParameterValueObject>.Empty;
             DamageParameterList = damageList ?? new List<DamageParameterValueObject>();
             DestroyedParameterList = destroyedPartList ?? new List<DestroyParameterValueObject>();
             EnhanceParameterList = enhanceList ?? MyList<EnhanceParameterValueObject>.Empty;

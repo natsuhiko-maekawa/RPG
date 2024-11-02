@@ -23,6 +23,7 @@ namespace BattleScene.Domain.Entity
         public int DestroyCount => _battleEvent.DestroyCount;
         public BuffCode BuffCode => _battleEvent.BuffCode;
         public IReadOnlyList<AttackValueObject> AttackList => _battleEvent.AttackList;
+        public IReadOnlyList<CuringValueObject> CuringList => _battleEvent.CuringList;
         public int TechnicalPoint => _battleEvent.TechnicalPoint;
         public SlipCode SlipCode => _battleEvent.SlipCode;
 

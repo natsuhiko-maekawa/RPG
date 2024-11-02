@@ -19,7 +19,7 @@ namespace BattleScene.InterfaceAdapter.Skill
         public override SkillCode SkillCode { get; } = SkillCode.FieldRation;
         public override int TechnicalPoint { get; } = 3;
         public override Range Range { get; } = Range.Oneself;
-        public override MessageCode AttackMessageCode { get; } = MessageCode.CureMessage;
+        public override MessageCode AttackMessageCode { get; } = MessageCode.SkillMessage;
 
         public override IReadOnlyList<BaseCure> CureList { get; }
     }

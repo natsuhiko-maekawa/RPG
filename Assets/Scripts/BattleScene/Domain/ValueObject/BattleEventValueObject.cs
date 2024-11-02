@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.Id;
+using Utility;
 
 namespace BattleScene.Domain.ValueObject
 {
@@ -27,6 +28,7 @@ namespace BattleScene.Domain.ValueObject
         public LifetimeCode LifetimeCode { get; private init; } = LifetimeCode.NoLifetime;
         public int DestroyCount { get; private init; }
         public IReadOnlyList<AttackValueObject> AttackList { get; private init; } = Array.Empty<AttackValueObject>();
+        public IReadOnlyList<CuringValueObject> CuringList { get; private set; } = MyList<CuringValueObject>.Empty;
 
         public IReadOnlyDictionary<CharacterId, int> DamageDictionary =>
             AttackList
@@ -91,7 +93,28 @@ namespace BattleScene.Domain.ValueObject
 
             return buff;
         }
-        
+
+        public static BattleEventValueObject CreateCure(
+            SkillCode skillCode,
+            CharacterId actorId,
+            IReadOnlyList<CuringValueObject> curingList)
+        {
+            var targetIdList = curingList
+                .Select(x => x.TargetId)
+                .ToList();
+
+            var cure = new BattleEventValueObject
+            {
+                ActorId = actorId,
+                SkillCode = skillCode,
+                TargetIdList = targetIdList,
+                ActualTargetIdList = targetIdList,
+                CuringList = curingList
+            };
+
+            return cure;
+        }
+
         public static BattleEventValueObject CreateDamage(
             SkillCode skillCode,
             CharacterId actorId,

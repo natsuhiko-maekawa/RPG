@@ -10,7 +10,7 @@ namespace BattleScene.Domain.ValueObject
         public CureValueObject(
             CharacterId actorId,
             SkillCode skillCode,
-            IReadOnlyList<RecoveryValueObject> cureList)
+            IReadOnlyList<CuringValueObject> cureList)
         {
             ActorId = actorId;
             SkillCode = skillCode;
@@ -20,7 +20,7 @@ namespace BattleScene.Domain.ValueObject
             CureList = cureList;
         }
 
-        public IReadOnlyList<RecoveryValueObject> CureList { get; }
+        public IReadOnlyList<CuringValueObject> CureList { get; }
         public CharacterId ActorId { get; }
         public SkillCode SkillCode { get; }
         public IReadOnlyList<CharacterId> TargetIdList { get; }
