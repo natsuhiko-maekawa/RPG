@@ -1,30 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.ValueObject;
 using BattleScene.InterfaceAdapter.PrimeSkill.BaseClass;
-using BattleScene.InterfaceAdapter.Skill;
-using BattleScene.InterfaceAdapter.Skill.BaseClass;
-using VContainer;
-using static BattleScene.Domain.Code.SkillCode;
 
 namespace BattleScene.InterfaceAdapter
 {
     public class SkillFactory : IFactory<SkillValueObject, SkillCode>
     {
-        private readonly IObjectResolver _container;
+        private readonly SkillServiceLocator _skillServiceLocator;
 
         public SkillFactory(
-            IObjectResolver container)
+            SkillServiceLocator skillServiceLocator)
         {
-            _container = container;
+            _skillServiceLocator = skillServiceLocator;
         }
 
         public SkillValueObject Create(SkillCode key)
         {
-            var skill = Resolve(key);
+            var skill = _skillServiceLocator.Resolve(key);
             var ailmentList = CreateAilmentParameterList(skill.AilmentList);
             var buffParameterList = CreateBuffParameterList(skill.BuffList);
             var cureList = CreateCureList(skill.CureList);
@@ -49,56 +44,6 @@ namespace BattleScene.InterfaceAdapter
                 resetParameterList: recoveryParameterList,
                 restoreParameterList: restoreParameterList,
                 slipParameterList: slipParameterList);
-        }
-
-        private BaseSkill Resolve(SkillCode skillCode)
-        {
-            return skillCode switch
-            {
-                #region Resolve Skills.
-
-                Afterimage => _container.Resolve<AfterimageSkill>(),
-                Attack => _container.Resolve<AttackSkill>(),
-                Bite => _container.Resolve<BiteSkill>(),
-                BiteOff => _container.Resolve<BiteOffSkill>(),
-                Bleeding => _container.Resolve<BleedingSkill>(),
-                Burning => _container.Resolve<BurningSkill>(),
-                Confusion => _container.Resolve<ConfusionSkill>(),
-                CutUp => _container.Resolve<CutUpSkill>(),
-                Defence => _container.Resolve<DefenceSkill>(),
-                FieldRation => _container.Resolve<FieldRationSkill>(),
-                FirstAid => _container.Resolve<FirstAidSkill>(),
-                FlameThrow => _container.Resolve<FlameThrowSkill>(),
-                Honzougaku => _container.Resolve<HonzougakuSkill>(),
-                Ishinhou => _container.Resolve<IshinhouSkill>(),
-                Kuchiyose => _container.Resolve<KuchiyoseSkill>(),
-                Kyoukasuigetsu => _container.Resolve<KyoukasuigetsuSkill>(),
-                Liquid => _container.Resolve<LiquidSkill>(),
-                Murasame => _container.Resolve<MurasameSkill>(),
-                MusterStrength => _container.Resolve<MusterStrengthSkill>(),
-                Nadegiri => _container.Resolve<NadegiriSkill>(),
-                NumbLiquid => _container.Resolve<NumbLiquidSkill>(),
-                Onikoroshi => _container.Resolve<OnikoroshiSkill>(),
-                Paralysis => _container.Resolve<ParalysisSkill>(),
-                Poisoning => _container.Resolve<PoisoningSkill>(),
-                Punch => _container.Resolve<PunchSkill>(),
-                PutScythe => _container.Resolve<PutScytheSkill>(),
-                Raikiri => _container.Resolve<RaikiriSkill>(),
-                RandomShots => _container.Resolve<RandomShotsSkill>(),
-                Shichishitou => _container.Resolve<ShichishitouSkill>(),
-                SilverBullet => _container.Resolve<SilverBulletSkill>(),
-                SmokeBomb => _container.Resolve<SmokeBombSkill>(),
-                StarShell => _container.Resolve<StarShellSkill>(),
-                Stringer => _container.Resolve<StringerSkill>(),
-                Suffocation => _container.Resolve<SuffocationSkill>(),
-                TaserGun => _container.Resolve<TaserGunSkill>(),
-                Utsusemi => _container.Resolve<UtsusemiSkill>(),
-                Wabisuke => _container.Resolve<WabisukeSkill>(),
-
-                #endregion
-
-                _ => throw new ArgumentOutOfRangeException(nameof(skillCode), skillCode, null)
-            };
         }
 
         private IReadOnlyList<AilmentParameterValueObject> CreateAilmentParameterList(

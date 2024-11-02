@@ -62,6 +62,7 @@
         IshinhouDescription, // スキル説明 (医心方)
         KuchiyoseDescription, // スキル説明 (口寄せ)
         KyoukasuigetsuDescription, // スキル説明 (鏡花水月)
+        MetronomeDescription, // スキル説明 (ゆびをふる)
         MurasameDescription, // スキル説明 (村雨)
         MusterStrengthDescription, // スキル説明 (力溜め)
         NadegiriDescription, // スキル説明 (撫斬)

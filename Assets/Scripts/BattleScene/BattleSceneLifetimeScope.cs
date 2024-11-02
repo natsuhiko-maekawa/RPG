@@ -160,6 +160,7 @@ namespace BattleScene
             builder.Register<KuchiyoseSkill>(Lifetime.Transient);
             builder.Register<KyoukasuigetsuSkill>(Lifetime.Transient);
             builder.Register<LiquidSkill>(Lifetime.Transient);
+            builder.Register<MetronomeSkill>(Lifetime.Transient);
             builder.Register<MurasameSkill>(Lifetime.Transient);
             builder.Register<MusterStrengthSkill>(Lifetime.Transient);
             builder.Register<NadegiriSkill>(Lifetime.Transient);
@@ -218,6 +219,8 @@ namespace BattleScene
             builder.Register<Wabisuke>(Lifetime.Singleton);
 
             #endregion
+
+            builder.Register<SkillServiceLocator>(Lifetime.Singleton);
 
             #region RegisterFactory
 

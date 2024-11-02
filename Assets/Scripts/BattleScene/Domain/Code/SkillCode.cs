@@ -22,6 +22,7 @@ namespace BattleScene.Domain.Code
         Kuchiyose,
         Kyoukasuigetsu,
         Liquid,
+        Metronome,
         Murasame,
         MusterStrength,
         Nadegiri,
