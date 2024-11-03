@@ -259,7 +259,7 @@ namespace BattleScene
 
             builder.Register<ActorService>(Singleton);
             builder.Register<MessageCodeConverterService>(Singleton);
-            builder.Register<PrimeSkillStateMachine>(Singleton);
+            builder.Register<SkillElementStateMachine>(Singleton);
             builder.Register<ToIndexService>(Singleton);
 
             #endregion

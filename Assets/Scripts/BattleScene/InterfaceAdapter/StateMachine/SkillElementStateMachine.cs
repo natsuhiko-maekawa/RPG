@@ -6,12 +6,12 @@ using VContainer;
 
 namespace BattleScene.InterfaceAdapter.StateMachine
 {
-    public class PrimeSkillStateMachine
+    public class SkillElementStateMachine
     {
         private readonly IObjectResolver _container;
-        private IEnumerator<IContext>? _primeSkillContextEnumerator;
+        private IEnumerator<IContext>? _skillElementContextEnumerator;
 
-        public PrimeSkillStateMachine(
+        public SkillElementStateMachine(
             IObjectResolver container)
         {
             _container = container;
@@ -19,30 +19,30 @@ namespace BattleScene.InterfaceAdapter.StateMachine
 
         public bool Select(Context context)
         {
-            if (_primeSkillContextEnumerator == null)
+            if (_skillElementContextEnumerator == null)
             {
-                _primeSkillContextEnumerator = GetContext(context).GetEnumerator();
+                _skillElementContextEnumerator = GetContext(context).GetEnumerator();
                 var value = MoveNextOrDispose();
                 return value;
             }
 
-            _primeSkillContextEnumerator.Current?.Select();
+            _skillElementContextEnumerator.Current?.Select();
 
             return MoveNextOrDispose();
         }
 
         private bool MoveNextOrDispose()
         {
-            if (_primeSkillContextEnumerator!.Current?.IsContinue ?? false) return true;
+            if (_skillElementContextEnumerator!.Current?.IsContinue ?? false) return true;
 
-            if (_primeSkillContextEnumerator.Current is not { IsBreak: true }
-                && _primeSkillContextEnumerator.MoveNext())
+            if (_skillElementContextEnumerator.Current is not { IsBreak: true }
+                && _skillElementContextEnumerator.MoveNext())
             {
                 return MoveNextOrDispose();
             }
 
-            _primeSkillContextEnumerator.Dispose();
-            _primeSkillContextEnumerator = null;
+            _skillElementContextEnumerator.Dispose();
+            _skillElementContextEnumerator = null;
             return false;
         }
 
@@ -109,18 +109,18 @@ namespace BattleScene.InterfaceAdapter.StateMachine
 
             yield break;
 
-            IContext CreateContext<TPrimeSkillParameter>(
-                IReadOnlyList<TPrimeSkillParameter> primeSkillParameterList)
+            IContext CreateContext<TSkillElement>(
+                IReadOnlyList<TSkillElement> skillElementList)
             {
                 if (context.ActorId is null) throw new InvalidOperationException(ExceptionMessage.ContextActorIdIsNull);
 
                 var primeSkillStartState =
-                    _container.Resolve<PrimeSkillStartState<TPrimeSkillParameter>>();
-                var skillContext = new Context<TPrimeSkillParameter>(
+                    _container.Resolve<PrimeSkillStartState<TSkillElement>>();
+                var skillContext = new Context<TSkillElement>(
                     primeSkillState: primeSkillStartState,
                     actorId: context.ActorId,
                     skillCommon: skill.Common,
-                    primeSkillParameterList: primeSkillParameterList,
+                    primeSkillParameterList: skillElementList,
                     targetIdList: context.TargetIdList);
                 return skillContext;
             }
