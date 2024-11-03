@@ -1,0 +1,29 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+SkillState -> StateMachine: Select()
+note left: Skillインスタンスを渡し、\nステートをスタートさせる
+StateMachine -> Context: Create
+note left: SkillElementインスタンスを渡し、\nContextインスタンスを生成する
+activate Context
+Context -> SkillElementStartState: TransitionTo()
+Context -> SkillElementStartState: SkillElementList
+note left: SkillElementインスタンスのリストを渡す
+SkillElementStartState -> SkillElementUseCase: GetBattleEventList()
+note left: SkillElementインスタンスのリストを渡し、\nBattleEventインスタンスのリストを要求する
+SkillElementUseCase -> SkillElementService: GenerateBattleEvent()
+SkillElementService --> SkillElementUseCase: battleEventList
+note left: SkillElementインスタンスのリストをもとに生成した\nBattleEventインスタンスのリストを返す
+SkillElementUseCase --> SkillElementStartState: battleEventList
+SkillElementStartState -> SkillElementUseCase: RegisterBattleEvent()
+note left: BattleEventインスタンスのリストを渡し、\nRepositoryの更新を要求する
+SkillElementUseCase -> BattleLoggerService: Log()
+note left: BattleEventインスタンスをRepositoryに登録する
+BattleLoggerService -> Repository: Update()
+SkillElementUseCase -> SkillElementService: RegisterBattleEvent()
+note left: BattleEventインスタンスをもとに各種Repositoryを更新する
+SkillElementService -> Repository: Update()
+SkillElementStartState --> Context: BattleEventQueue
+note left: BattleEventインスタンスのリストを\nキューに変換して返す
+@enduml
