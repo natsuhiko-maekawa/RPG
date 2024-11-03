@@ -9,7 +9,7 @@ using Range = BattleScene.Domain.Code.Range;
 
 namespace BattleScene.UseCases.Service
 {
-    public class DamageService : IPrimeSkillService<DamageValueObject>
+    public class DamageService : ISkillElementService<DamageValueObject>
     {
         private readonly DamageEvaluatorService _damageEvaluator;
         private readonly IsHitEvaluatorService _isHitEvaluator;
@@ -65,7 +65,7 @@ namespace BattleScene.UseCases.Service
                 attackList: attackList.ToList());
         }
 
-        public IReadOnlyList<BattleEventValueObject> Generate(
+        public IReadOnlyList<BattleEventValueObject> GenerateBattleEvent(
             CharacterId actorId,
             SkillCommonValueObject skillCommon,
             IReadOnlyList<DamageValueObject> damageParameterList,
@@ -84,7 +84,7 @@ namespace BattleScene.UseCases.Service
             return new List<CharacterId> { attackedTargetId };
         }
 
-        public void Register(IReadOnlyList<BattleEventValueObject> damageList)
+        public void RegisterBattleEvent(IReadOnlyList<BattleEventValueObject> damageList)
         {
             _hitPoint.Damaged(damageList);
         }

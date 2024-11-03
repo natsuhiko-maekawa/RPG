@@ -9,7 +9,7 @@ using BattleScene.UseCases.IService;
 
 namespace BattleScene.UseCases.Service
 {
-    public class AilmentService : IPrimeSkillService<AilmentValueObject>
+    public class AilmentService : ISkillElementService<AilmentValueObject>
     {
         private readonly ActualTargetIdPickerService _actualTargetIdPicker;
         private readonly IFactory<AilmentPropertyValueObject, AilmentCode> _ailmentPropertyFactory;
@@ -25,7 +25,7 @@ namespace BattleScene.UseCases.Service
             _ailmentCollection = ailmentCollection;
         }
 
-        public IReadOnlyList<BattleEventValueObject> Generate(
+        public IReadOnlyList<BattleEventValueObject> GenerateBattleEvent(
             CharacterId actorId,
             SkillCommonValueObject skillCommon,
             IReadOnlyList<AilmentValueObject> primeSkillParameterList,
@@ -65,7 +65,7 @@ namespace BattleScene.UseCases.Service
             _ailmentCollection.Add(ailmentEntityList);
         }
 
-        public void Register(IReadOnlyList<BattleEventValueObject> ailmentList)
+        public void RegisterBattleEvent(IReadOnlyList<BattleEventValueObject> ailmentList)
         {
             foreach (var ailment in ailmentList) Register(ailment);
         }

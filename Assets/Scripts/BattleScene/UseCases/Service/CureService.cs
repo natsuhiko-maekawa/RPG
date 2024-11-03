@@ -7,7 +7,7 @@ using BattleScene.UseCases.IService;
 
 namespace BattleScene.UseCases.Service
 {
-    public class CureService : IPrimeSkillService<CureValueObject>
+    public class CureService : ISkillElementService<CureValueObject>
     {
         private readonly CureEvaluatorService _cureEvaluator;
         private readonly IHitPointService _hitPoint;
@@ -20,7 +20,7 @@ namespace BattleScene.UseCases.Service
             _hitPoint = hitPoint;
         }
 
-        public IReadOnlyList<BattleEventValueObject> Generate(
+        public IReadOnlyList<BattleEventValueObject> GenerateBattleEvent(
             CharacterId actorId,
             SkillCommonValueObject skillCommon,
             IReadOnlyList<CureValueObject> cureParameterList,
@@ -44,7 +44,7 @@ namespace BattleScene.UseCases.Service
             return cureArray;
         }
 
-        public void Register(IReadOnlyList<BattleEventValueObject> cureList)
+        public void RegisterBattleEvent(IReadOnlyList<BattleEventValueObject> cureList)
         {
             _hitPoint.Cure(cureList);
         }

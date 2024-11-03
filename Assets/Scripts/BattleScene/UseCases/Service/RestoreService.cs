@@ -10,7 +10,7 @@ using Utility;
 
 namespace BattleScene.UseCases.Service
 {
-    public class RestoreService : IPrimeSkillService<RestoreValueObject>
+    public class RestoreService : ISkillElementService<RestoreValueObject>
     {
         private readonly IFactory<PlayerPropertyValueObject, CharacterTypeCode> _playerPropertyFactory;
         private readonly ITechnicalPointService _technicalPoint;
@@ -23,7 +23,7 @@ namespace BattleScene.UseCases.Service
             _technicalPoint = technicalPoint;
         }
 
-        public IReadOnlyList<BattleEventValueObject> Generate(
+        public IReadOnlyList<BattleEventValueObject> GenerateBattleEvent(
             CharacterId actorId,
             SkillCommonValueObject skillCommon,
             IReadOnlyList<RestoreValueObject> restoreParameterList,
@@ -49,7 +49,7 @@ namespace BattleScene.UseCases.Service
             }
         }
 
-        public void Register(IReadOnlyList<BattleEventValueObject> restoreList)
+        public void RegisterBattleEvent(IReadOnlyList<BattleEventValueObject> restoreList)
         {
             _technicalPoint.Restore(restoreList);
         }

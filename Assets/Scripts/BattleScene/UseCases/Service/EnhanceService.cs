@@ -9,7 +9,7 @@ using BattleScene.UseCases.IService;
 
 namespace BattleScene.UseCases.Service
 {
-    public class EnhanceService : IPrimeSkillService<EnhanceValueObject>
+    public class EnhanceService : ISkillElementService<EnhanceValueObject>
     {
         private readonly ICollection<EnhanceEntity, (CharacterId, EnhanceCode)> _enhanceCollection;
 
@@ -19,7 +19,7 @@ namespace BattleScene.UseCases.Service
             _enhanceCollection = enhanceCollection;
         }
 
-        public IReadOnlyList<BattleEventValueObject> Generate(
+        public IReadOnlyList<BattleEventValueObject> GenerateBattleEvent(
             CharacterId actorId,
             SkillCommonValueObject skillCommon,
             IReadOnlyList<EnhanceValueObject> enhanceParameterList,
@@ -37,7 +37,7 @@ namespace BattleScene.UseCases.Service
             return enhanceList;
         }
 
-        public void Register(IReadOnlyList<BattleEventValueObject> enhanceList)
+        public void RegisterBattleEvent(IReadOnlyList<BattleEventValueObject> enhanceList)
         {
             foreach (var enhance in enhanceList) Register(enhance);
         }

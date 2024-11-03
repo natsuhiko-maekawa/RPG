@@ -7,7 +7,7 @@ using BattleScene.UseCases.IService;
 
 namespace BattleScene.UseCases.Service
 {
-    public class ResetService : IPrimeSkillService<RecoveryValueObject>
+    public class ResetService : ISkillElementService<RecoveryValueObject>
     {
         private readonly IAilmentResetService _ailmentReset;
 
@@ -17,7 +17,7 @@ namespace BattleScene.UseCases.Service
             _ailmentReset = ailmentReset;
         }
 
-        public IReadOnlyList<BattleEventValueObject> Generate(
+        public IReadOnlyList<BattleEventValueObject> GenerateBattleEvent(
             CharacterId actorId,
             SkillCommonValueObject skillCommon,
             IReadOnlyList<RecoveryValueObject> resetParameterList,
@@ -37,7 +37,7 @@ namespace BattleScene.UseCases.Service
             return resetArray;
         }
 
-        public void Register(IReadOnlyList<BattleEventValueObject> primeSkillList)
+        public void RegisterBattleEvent(IReadOnlyList<BattleEventValueObject> primeSkillList)
         {
             var ailmentLookup = primeSkillList
                 .SelectMany(battleEvent => battleEvent.TargetIdList

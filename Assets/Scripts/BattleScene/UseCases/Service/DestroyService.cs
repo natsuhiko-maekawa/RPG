@@ -9,7 +9,7 @@ using BattleScene.UseCases.IService;
 
 namespace BattleScene.UseCases.Service
 {
-    public class DestroyService : IPrimeSkillService<DestroyValueObject>
+    public class DestroyService : ISkillElementService<DestroyValueObject>
     {
         private readonly ActualTargetIdPickerService _actualTargetIdPicker;
         private readonly ICollection<BodyPartEntity, (CharacterId, BodyPartCode)> _bodyPartCollection;
@@ -25,7 +25,7 @@ namespace BattleScene.UseCases.Service
             _bodyPartPropertyFactory = bodyPartPropertyFactory;
         }
 
-        public IReadOnlyList<BattleEventValueObject> Generate(
+        public IReadOnlyList<BattleEventValueObject> GenerateBattleEvent(
             CharacterId actorId,
             SkillCommonValueObject skillCommon,
             IReadOnlyList<DestroyValueObject> destroyedParameterList,
@@ -70,7 +70,7 @@ namespace BattleScene.UseCases.Service
             }
         }
 
-        public void Register(IReadOnlyList<BattleEventValueObject> destroyList)
+        public void RegisterBattleEvent(IReadOnlyList<BattleEventValueObject> destroyList)
         {
             foreach (var destroy in destroyList) Register(destroy);
         }

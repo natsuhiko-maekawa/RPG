@@ -13,12 +13,12 @@ namespace BattleScene.UseCases.UseCase
     public class
         PrimeSkillUseCase<TPrimeSkillParameter> : IPrimeSkillUseCase<TPrimeSkillParameter>
     {
-        private readonly IPrimeSkillService<TPrimeSkillParameter> _primeSkill;
+        private readonly ISkillElementService<TPrimeSkillParameter> _primeSkill;
         private readonly BattleLoggerService _battleLogger;
         private readonly ICollection<BattleLogEntity, BattleLogId> _battleLogCollection;
 
         public PrimeSkillUseCase(
-            IPrimeSkillService<TPrimeSkillParameter> primeSkill,
+            ISkillElementService<TPrimeSkillParameter> primeSkill,
             BattleLoggerService battleLogger,
             ICollection<BattleLogEntity, BattleLogId> battleLogCollection)
         {
@@ -33,7 +33,7 @@ namespace BattleScene.UseCases.UseCase
             IReadOnlyList<TPrimeSkillParameter> primeSkillParameterList,
             IReadOnlyList<CharacterId> targetIdList)
         {
-            var battleEventList = _primeSkill.Generate(
+            var battleEventList = _primeSkill.GenerateBattleEvent(
                 actorId: actorId,
                 skillCommon: skillCommon,
                 primeSkillParameterList: primeSkillParameterList,
@@ -43,7 +43,7 @@ namespace BattleScene.UseCases.UseCase
 
         public void RegisterBattleEvent(IReadOnlyList<BattleEventValueObject> battleEventList)
         {
-            _primeSkill.Register(battleEventList);
+            _primeSkill.RegisterBattleEvent(battleEventList);
             _battleLogger.Log(battleEventList);
         }
 

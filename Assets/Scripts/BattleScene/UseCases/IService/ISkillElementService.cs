@@ -4,14 +4,14 @@ using BattleScene.Domain.ValueObject;
 
 namespace BattleScene.UseCases.IService
 {
-    public interface IPrimeSkillService<in TPrimeSkillParameter>
+    public interface ISkillElementService<in TSkillElement>
     {
-        public IReadOnlyList<BattleEventValueObject> Generate(
+        public IReadOnlyList<BattleEventValueObject> GenerateBattleEvent(
             CharacterId actorId,
             SkillCommonValueObject skillCommon,
-            IReadOnlyList<TPrimeSkillParameter> primeSkillParameterList,
+            IReadOnlyList<TSkillElement> primeSkillParameterList,
             IReadOnlyList<CharacterId> targetIdList);
 
-        public void Register(IReadOnlyList<BattleEventValueObject> primeSkillList);
+        public void RegisterBattleEvent(IReadOnlyList<BattleEventValueObject> battleEventList);
     }
 }

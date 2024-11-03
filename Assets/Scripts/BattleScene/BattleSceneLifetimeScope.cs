@@ -360,15 +360,15 @@ namespace BattleScene
             builder.Register<ISpeedService, SpeedService>(Singleton);
             builder.Register<ITargetService, TargetService>(Singleton);
             builder.Register<TurnService>(Singleton);
-            builder.Register<IPrimeSkillService<AilmentValueObject>, AilmentService>(Singleton);
-            builder.Register<IPrimeSkillService<CureValueObject>, CureService>(Singleton);
-            builder.Register<IPrimeSkillService<DamageValueObject>, DamageService>(Singleton);
-            builder.Register<IPrimeSkillService<DestroyValueObject>, DestroyService>(Singleton);
-            builder.Register<IPrimeSkillService<BuffValueObject>, BuffService>(Singleton);
-            builder.Register<IPrimeSkillService<EnhanceValueObject>, EnhanceService>(Singleton);
-            builder.Register<IPrimeSkillService<SlipValueObject>, SlipService>(Singleton);
-            builder.Register<IPrimeSkillService<RecoveryValueObject>, ResetService>(Singleton);
-            builder.Register<IPrimeSkillService<RestoreValueObject>, RestoreService>(Singleton);
+            builder.Register<ISkillElementService<AilmentValueObject>, AilmentService>(Singleton);
+            builder.Register<ISkillElementService<CureValueObject>, CureService>(Singleton);
+            builder.Register<ISkillElementService<DamageValueObject>, DamageService>(Singleton);
+            builder.Register<ISkillElementService<DestroyValueObject>, DestroyService>(Singleton);
+            builder.Register<ISkillElementService<BuffValueObject>, BuffService>(Singleton);
+            builder.Register<ISkillElementService<EnhanceValueObject>, EnhanceService>(Singleton);
+            builder.Register<ISkillElementService<SlipValueObject>, SlipService>(Singleton);
+            builder.Register<ISkillElementService<RecoveryValueObject>, ResetService>(Singleton);
+            builder.Register<ISkillElementService<RestoreValueObject>, RestoreService>(Singleton);
 
             #endregion
 
