@@ -6,7 +6,7 @@ using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
 using BattleScene.UseCases.IUseCase;
 
-namespace BattleScene.InterfaceAdapter.State.PrimeSkill
+namespace BattleScene.InterfaceAdapter.State.SkillElement
 {
     public class PrimeSkillStartState<TPrimeSkillParameter> : BaseState<TPrimeSkillParameter>
     {

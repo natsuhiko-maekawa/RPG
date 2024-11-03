@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using BattleScene.InterfaceAdapter.State.PrimeSkill;
+using BattleScene.InterfaceAdapter.State.SkillElement;
 using BattleScene.InterfaceAdapter.State.Turn;
 using VContainer;
 

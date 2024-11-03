@@ -2,7 +2,7 @@ using System;
 using BattleScene.Domain.ValueObject;
 using BattleScene.InterfaceAdapter.Facade;
 
-namespace BattleScene.InterfaceAdapter.State.PrimeSkill
+namespace BattleScene.InterfaceAdapter.State.SkillElement
 {
     public class EnhanceOutputState: PrimeSkillOutputState<EnhanceValueObject>
     {

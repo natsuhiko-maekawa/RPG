@@ -1,4 +1,4 @@
-﻿namespace BattleScene.InterfaceAdapter.State.PrimeSkill
+﻿namespace BattleScene.InterfaceAdapter.State.SkillElement
 {
     public abstract class BaseState<TPrimeSkillParameter>
     {

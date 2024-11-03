@@ -1,7 +1,7 @@
 using BattleScene.Domain.ValueObject;
 using BattleScene.InterfaceAdapter.Facade;
 
-namespace BattleScene.InterfaceAdapter.State.PrimeSkill
+namespace BattleScene.InterfaceAdapter.State.SkillElement
 {
     public class ResetOutputState : PrimeSkillOutputState<RecoveryValueObject>
     {

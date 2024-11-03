@@ -1,16 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using BattleScene.Domain.Id;
-using BattleScene.Domain.ValueObject;
-using Utility;
-
-#if UNITY_EDITOR
 using System.Linq;
 using System.Text.RegularExpressions;
+using BattleScene.Domain.Id;
+using BattleScene.Domain.ValueObject;
 using JetBrains.Annotations;
-#endif
+using Utility;
 
-namespace BattleScene.InterfaceAdapter.State.PrimeSkill
+namespace BattleScene.InterfaceAdapter.State.SkillElement
 {
     public class Context<TPrimeSkillParameter> : IContext
     {
