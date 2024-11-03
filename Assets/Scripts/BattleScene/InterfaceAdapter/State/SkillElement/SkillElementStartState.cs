@@ -36,7 +36,7 @@ namespace BattleScene.InterfaceAdapter.State.SkillElement
             var battleEventList = _useCase.GetBattleEventList(
                 actorId: Context.ActorId,
                 skillCommon: Context.SkillCommon,
-                skillElementList: Context.PrimeSkillParameterList,
+                skillElementList: Context.SkillElementList,
                 targetIdList: Context.TargetIdList);
             _useCase.RegisterBattleEvent(battleEventList);
             var successBattleEventList = battleEventList

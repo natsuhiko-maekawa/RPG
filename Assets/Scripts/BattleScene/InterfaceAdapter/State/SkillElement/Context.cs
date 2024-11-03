@@ -9,31 +9,31 @@ using Utility;
 
 namespace BattleScene.InterfaceAdapter.State.SkillElement
 {
-    public class Context<TPrimeSkillParameter> : IContext
+    public class Context<TSkillElement> : IContext
     {
-        private BaseState<TPrimeSkillParameter> _state = null!;
+        private BaseState<TSkillElement> _state = null!;
 
         public CharacterId ActorId { get; }
         public SkillCommonValueObject SkillCommon { get; }
         public IReadOnlyList<CharacterId> TargetIdList { get; }
-        public IReadOnlyList<TPrimeSkillParameter> PrimeSkillParameterList { get; }
+        public IReadOnlyList<TSkillElement> SkillElementList { get; }
         public Queue<BattleEventValueObject> BattleEventQueue { get; set; } = new();
 
         public Context(
-            BaseState<TPrimeSkillParameter> primeSkillState,
+            BaseState<TSkillElement> skillElementState,
             CharacterId actorId,
             SkillCommonValueObject skillCommon,
             IReadOnlyList<CharacterId> targetIdList,
-            IReadOnlyList<TPrimeSkillParameter> primeSkillParameterList)
+            IReadOnlyList<TSkillElement> skillElementList)
         {
             ActorId = actorId;
             SkillCommon = skillCommon;
             TargetIdList = targetIdList;
-            PrimeSkillParameterList = primeSkillParameterList;
-            TransitionTo(primeSkillState);
+            SkillElementList = skillElementList;
+            TransitionTo(skillElementState);
         }
 
-        public void TransitionTo(BaseState<TPrimeSkillParameter> skill)
+        public void TransitionTo(BaseState<TSkillElement> skill)
         {
             _state = skill;
             MyDebug.Log(GetClassName());

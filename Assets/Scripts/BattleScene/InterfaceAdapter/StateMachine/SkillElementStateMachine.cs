@@ -114,13 +114,13 @@ namespace BattleScene.InterfaceAdapter.StateMachine
             {
                 if (context.ActorId is null) throw new InvalidOperationException(ExceptionMessage.ContextActorIdIsNull);
 
-                var primeSkillStartState =
+                var skillElementStartState =
                     _container.Resolve<SkillElementStartState<TSkillElement>>();
                 var skillContext = new Context<TSkillElement>(
-                    primeSkillState: primeSkillStartState,
+                    skillElementState: skillElementStartState,
                     actorId: context.ActorId,
                     skillCommon: skill.Common,
-                    primeSkillParameterList: skillElementList,
+                    skillElementList: skillElementList,
                     targetIdList: context.TargetIdList);
                 return skillContext;
             }
