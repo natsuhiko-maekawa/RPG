@@ -2,7 +2,7 @@
 
 namespace BattleScene.Domain.ValueObject
 {
-    public record CureParameterValueObject(
+    public record CureValueObject(
         CureExpressionCode CureExpressionCode,
         float Rate);
 }

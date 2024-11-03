@@ -9,7 +9,7 @@ using BattleScene.UseCases.IService;
 
 namespace BattleScene.UseCases.Service
 {
-    public class SlipService : IPrimeSkillService<SlipParameterValueObject>
+    public class SlipService : IPrimeSkillService<SlipValueObject>
     {
         private readonly ActualTargetIdPickerService _actualTargetIdPicker;
         private readonly IFactory<BattlePropertyValueObject> _battlePropertyFactory;
@@ -28,7 +28,7 @@ namespace BattleScene.UseCases.Service
         public IReadOnlyList<BattleEventValueObject> Generate(
             CharacterId actorId,
             SkillCommonValueObject skillCommon,
-            IReadOnlyList<SlipParameterValueObject> slipParameterList,
+            IReadOnlyList<SlipValueObject> slipParameterList,
             IReadOnlyList<CharacterId> targetIdList)
         {
             var slipList = slipParameterList
@@ -36,7 +36,7 @@ namespace BattleScene.UseCases.Service
                 .ToList();
             return slipList;
 
-            BattleEventValueObject GetSlip(SlipParameterValueObject slipParameter)
+            BattleEventValueObject GetSlip(SlipValueObject slipParameter)
             {
                 var actualTargetIdList = _actualTargetIdPicker.Pick(
                     targetIdList: targetIdList,

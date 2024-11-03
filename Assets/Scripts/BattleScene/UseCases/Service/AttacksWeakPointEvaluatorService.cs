@@ -16,19 +16,19 @@ namespace BattleScene.UseCases.Service
             _characterPropertyFactory = characterPropertyFactoryFactory;
         }
 
-        public bool Evaluate(CharacterId actorId, CharacterId targetId, DamageParameterValueObject damageParameter)
+        public bool Evaluate(CharacterId actorId, CharacterId targetId, DamageValueObject damage)
         {
-            return damageParameter.AttacksWeakPointEvaluationCode switch
+            return damage.AttacksWeakPointEvaluationCode switch
             {
-                AttacksWeakPointEvaluationCode.Basic => BasicEvaluate(targetId, damageParameter),
+                AttacksWeakPointEvaluationCode.Basic => BasicEvaluate(targetId, damage),
                 _ => throw new ArgumentOutOfRangeException()
             };
         }
 
-        private bool BasicEvaluate(CharacterId targetId, DamageParameterValueObject damageParameter)
+        private bool BasicEvaluate(CharacterId targetId, DamageValueObject damage)
         {
             return _characterPropertyFactory.Create(targetId).WeakPointsCodeList
-                .Intersect(damageParameter.MatAttrCode)
+                .Intersect(damage.MatAttrCode)
                 .Any();
         }
     }

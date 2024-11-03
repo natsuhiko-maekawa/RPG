@@ -2,7 +2,7 @@
 
 namespace BattleScene.Domain.ValueObject
 {
-    public record AilmentParameterValueObject(
+    public record AilmentValueObject(
         AilmentCode AilmentCode,
         float LuckRate);
 }

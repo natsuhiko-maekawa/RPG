@@ -49,7 +49,7 @@ namespace BattleScene.UseCases.Service
             var targetId = _player.GetId();
 
             var damageRate = _battlePropertyFactory.Create().SlipDefaultDamageRate;
-            var damageParameter = new DamageParameterValueObject(
+            var damageParameter = new DamageValueObject(
                 DamageRate: damageRate,
                 DamageExpressionCode: DamageExpressionCode.Slip);
 

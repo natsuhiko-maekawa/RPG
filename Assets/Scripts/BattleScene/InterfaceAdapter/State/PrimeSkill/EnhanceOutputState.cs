@@ -4,14 +4,14 @@ using BattleScene.InterfaceAdapter.Facade;
 
 namespace BattleScene.InterfaceAdapter.State.PrimeSkill
 {
-    public class EnhanceOutputState: PrimeSkillOutputState<EnhanceParameterValueObject>
+    public class EnhanceOutputState: PrimeSkillOutputState<EnhanceValueObject>
     {
         private readonly EnhanceOutput _output;
-        private readonly PrimeSkillStopState<EnhanceParameterValueObject> _primeSkillStopState;
+        private readonly PrimeSkillStopState<EnhanceValueObject> _primeSkillStopState;
 
         public EnhanceOutputState(
             EnhanceOutput output,
-            PrimeSkillStopState<EnhanceParameterValueObject> primeSkillStopState)
+            PrimeSkillStopState<EnhanceValueObject> primeSkillStopState)
         {
             _output = output;
             _primeSkillStopState = primeSkillStopState;

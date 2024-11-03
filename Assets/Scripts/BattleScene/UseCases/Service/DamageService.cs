@@ -9,7 +9,7 @@ using Range = BattleScene.Domain.Code.Range;
 
 namespace BattleScene.UseCases.Service
 {
-    public class DamageService : IPrimeSkillService<DamageParameterValueObject>
+    public class DamageService : IPrimeSkillService<DamageValueObject>
     {
         private readonly DamageEvaluatorService _damageEvaluator;
         private readonly IsHitEvaluatorService _isHitEvaluator;
@@ -37,20 +37,20 @@ namespace BattleScene.UseCases.Service
         public BattleEventValueObject Generate(
             CharacterId actorId,
             SkillCommonValueObject skillCommon,
-            DamageParameterValueObject damageParameter,
+            DamageValueObject damage,
             IReadOnlyList<CharacterId> targetIdList)
         {
             var attackList = new List<AttackValueObject>();
-            for (var i = 0; i < damageParameter.AttackNumber; ++i)
+            for (var i = 0; i < damage.AttackNumber; ++i)
             {
                 var attackedTargetIdList = GetAttackedTargetIdList(targetIdList, skillCommon.Range);
                 foreach (var attackedTargetId in attackedTargetIdList)
                 {
                     var attack = new AttackValueObject(
-                        amount: _damageEvaluator.Evaluate(actorId, attackedTargetId, damageParameter),
-                        isHit: _isHitEvaluator.Evaluate(actorId, attackedTargetId, damageParameter),
+                        amount: _damageEvaluator.Evaluate(actorId, attackedTargetId, damage),
+                        isHit: _isHitEvaluator.Evaluate(actorId, attackedTargetId, damage),
                         attacksWeakPoint: _attacksWeakPointEvaluator
-                            .Evaluate(actorId, attackedTargetId, damageParameter),
+                            .Evaluate(actorId, attackedTargetId, damage),
                         targetId: attackedTargetId,
                         index: i);
                     attackList.Add(attack);
@@ -68,7 +68,7 @@ namespace BattleScene.UseCases.Service
         public IReadOnlyList<BattleEventValueObject> Generate(
             CharacterId actorId,
             SkillCommonValueObject skillCommon,
-            IReadOnlyList<DamageParameterValueObject> damageParameterList,
+            IReadOnlyList<DamageValueObject> damageParameterList,
             IReadOnlyList<CharacterId> targetIdList)
         {
             return damageParameterList.Select(x => Generate(actorId, skillCommon, x, targetIdList)).ToList();

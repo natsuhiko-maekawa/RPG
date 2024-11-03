@@ -36,22 +36,22 @@ namespace BattleScene.UseCases.Service
             _myRandom = myRandom;
         }
 
-        public int Evaluate(CharacterId actorId, CharacterId targetId, DamageParameterValueObject damageParameter)
+        public int Evaluate(CharacterId actorId, CharacterId targetId, DamageValueObject damage)
         {
-            return damageParameter.DamageExpressionCode switch
+            return damage.DamageExpressionCode switch
             {
-                DamageExpressionCode.Basic => BasicEvaluate(actorId, targetId, damageParameter),
-                DamageExpressionCode.Constant => ConstantEvaluate(actorId, damageParameter),
+                DamageExpressionCode.Basic => BasicEvaluate(actorId, targetId, damage),
+                DamageExpressionCode.Constant => ConstantEvaluate(actorId, damage),
                 DamageExpressionCode.Slip => SlipEvaluate(actorId, targetId),
                 _ => throw new ArgumentOutOfRangeException()
             };
         }
 
-        private int BasicEvaluate(CharacterId actorId, CharacterId targetId, DamageParameterValueObject damageParameter)
+        private int BasicEvaluate(CharacterId actorId, CharacterId targetId, DamageValueObject damage)
         {
             var actorStrength = _characterPropertyFactory.Create(actorId).Strength;
             var targetVitality = _characterPropertyFactory.Create(targetId).Vitality;
-            var actorMatAttr = damageParameter.MatAttrCode;
+            var actorMatAttr = damage.MatAttrCode;
             var targetWeekPoint = _characterPropertyFactory.Create(targetId).WeakPointsCodeList;
             var actorBuffRate = _buffCollection.Get((actorId, BuffCode.Attack)).Rate;
             var targetBuffRate = _buffCollection.Get((targetId, BuffCode.Defence)).Rate;
@@ -61,13 +61,13 @@ namespace BattleScene.UseCases.Service
                 = _enhanceCollection.TryGet((targetId, EnhanceCode.Defence), out var enhance) && enhance.Effects
                     ? 0.5f
                     : MultiplicationIdentityElement;
-            var rate = damageParameter.DamageRate;
+            var rate = damage.DamageRate;
             var weekPointRate = (int)Math.Pow(2, actorMatAttr.Intersect(targetWeekPoint).Count());
             return (int)(actorStrength * actorStrength / (float)targetVitality * weekPointRate * actorBuffRate
                 / targetBuffRate * destroyedRate * targetDefence * rate * 1.5f) + _myRandom.Range(1, 3);
         }
 
-        private int ConstantEvaluate(CharacterId actorId, DamageParameterValueObject damageParameter)
+        private int ConstantEvaluate(CharacterId actorId, DamageValueObject damage)
         {
             var actorStrength = _characterPropertyFactory.Create(actorId).Strength;
             const int targetVitality = 1;
@@ -75,7 +75,7 @@ namespace BattleScene.UseCases.Service
             const int targetBuffRate = 1;
             var destroyedRate
                 = MultiplicationIdentityElement - _bodyPartDomainService.Count(actorId, BodyPartCode.Arm) * 0.5f;
-            var rate = damageParameter.DamageRate;
+            var rate = damage.DamageRate;
             return (int)(actorStrength * actorStrength / (float)targetVitality * actorBuffRate / targetBuffRate
                          * destroyedRate * rate * 1.5f) + _myRandom.Range(1, 3);
         }

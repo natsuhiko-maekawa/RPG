@@ -38,11 +38,11 @@ namespace BattleScene.UseCases.Service
             _battlePropertyFactory = battlePropertyFactory;
         }
 
-        public bool Evaluate(CharacterId actorId, CharacterId targetId, DamageParameterValueObject damageParameter)
+        public bool Evaluate(CharacterId actorId, CharacterId targetId, DamageValueObject damage)
         {
-            return damageParameter.HitEvaluationCode switch
+            return damage.HitEvaluationCode switch
             {
-                HitEvaluationCode.Basic => BasicEvaluate(actorId, targetId, damageParameter),
+                HitEvaluationCode.Basic => BasicEvaluate(actorId, targetId, damage),
                 HitEvaluationCode.AlwaysHit => AlwaysHitEvaluate(),
                 _ => throw new ArgumentOutOfRangeException()
             };
@@ -55,12 +55,12 @@ namespace BattleScene.UseCases.Service
         /// </summary>
         /// <param name="actorId">行動者のID</param>
         /// <param name="targetId">攻撃対象のID</param>
-        /// <param name="damageParameter">ダメージスキルの実引数</param>
+        /// <param name="damage">ダメージスキルの実引数</param>
         /// <returns>命中した場合、true。それ以外はfalse。</returns>
         private bool BasicEvaluate(
             CharacterId actorId,
             CharacterId targetId,
-            DamageParameterValueObject damageParameter)
+            DamageValueObject damage)
         {
             // 両脚損傷時、必ず命中する
             if (!_bodyPartDomainService.IsAvailable(targetId, BodyPartCode.Leg)) return true;
@@ -81,7 +81,7 @@ namespace BattleScene.UseCases.Service
             var buff = (float)Math.Log(_buffCollection.Get()
                     .FirstOrDefault(x => Equals(x.CharacterId, actorId) && x.BuffCode == BuffCode.HitRate)?.Rate ?? 1,
                 2.0f);
-            var add = (float)Math.Log(damageParameter.HitRate, 2.0f);
+            var add = (float)Math.Log(damage.HitRate, 2.0f);
             var actorFixedAgility = actorAgility + (isActorBlind ? -threshold : 0);
             var targetFixedAgility = targetAgility + (isTargetDeaf ? -threshold : 0);
             var hitRate = 1.0f + (actorFixedAgility - targetFixedAgility) / threshold;

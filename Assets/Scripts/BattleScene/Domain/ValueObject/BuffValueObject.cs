@@ -2,7 +2,7 @@
 
 namespace BattleScene.Domain.ValueObject
 {
-    public record BuffParameterValueObject(
+    public record BuffValueObject(
         BuffCode BuffCode,
         float Rate,
         int Turn,

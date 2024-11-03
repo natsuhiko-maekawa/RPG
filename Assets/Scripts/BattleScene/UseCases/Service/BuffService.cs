@@ -9,7 +9,7 @@ using BattleScene.UseCases.IService;
 
 namespace BattleScene.UseCases.Service
 {
-    public class BuffService : IPrimeSkillService<BuffParameterValueObject>
+    public class BuffService : IPrimeSkillService<BuffValueObject>
     {
         private readonly ICollection<BuffEntity, (CharacterId, BuffCode)> _buffCollection;
 
@@ -22,13 +22,13 @@ namespace BattleScene.UseCases.Service
         public IReadOnlyList<BattleEventValueObject> Generate(
             CharacterId actorId,
             SkillCommonValueObject skillCommon,
-            IReadOnlyList<BuffParameterValueObject> buffParameterList,
+            IReadOnlyList<BuffValueObject> buffParameterList,
             IReadOnlyList<CharacterId> targetIdList)
         {
             var buffList = buffParameterList.Select(GetBuff).ToList();
             return buffList;
 
-            BattleEventValueObject GetBuff(BuffParameterValueObject buffParameter)
+            BattleEventValueObject GetBuff(BuffValueObject buffParameter)
             {
                 return BattleEventValueObject.CreateBuff(
                     actorId: actorId,

@@ -24,11 +24,11 @@ namespace BattleScene.UseCases.Service
             _myRandom = myRandom;
         }
 
-        public int Evaluate(CharacterId actorId, CureParameterValueObject cureParameter)
+        public int Evaluate(CharacterId actorId, CureValueObject cure)
         {
-            return cureParameter.CureExpressionCode switch
+            return cure.CureExpressionCode switch
             {
-                CureExpressionCode.Basic => BasicEvaluate(actorId, cureParameter.Rate),
+                CureExpressionCode.Basic => BasicEvaluate(actorId, cure.Rate),
                 _ => throw new ArgumentOutOfRangeException()
             };
         }

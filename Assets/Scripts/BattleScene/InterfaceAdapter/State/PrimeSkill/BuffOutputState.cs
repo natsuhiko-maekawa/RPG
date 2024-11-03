@@ -4,13 +4,13 @@ using BattleScene.InterfaceAdapter.Facade;
 
 namespace BattleScene.InterfaceAdapter.State.PrimeSkill
 {
-    public class BuffOutputState : PrimeSkillOutputState<BuffParameterValueObject>
+    public class BuffOutputState : PrimeSkillOutputState<BuffValueObject>
     {
         private readonly BuffOutput _output;
-        private readonly PrimeSkillStopState<BuffParameterValueObject> _primeSkillStopState;
+        private readonly PrimeSkillStopState<BuffValueObject> _primeSkillStopState;
 
         public BuffOutputState(
-            PrimeSkillStopState<BuffParameterValueObject> primeSkillStopState,
+            PrimeSkillStopState<BuffValueObject> primeSkillStopState,
             BuffOutput output)
         {
             _primeSkillStopState = primeSkillStopState;

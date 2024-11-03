@@ -4,7 +4,7 @@ using BattleScene.Domain.Code;
 
 namespace BattleScene.Domain.ValueObject
 {
-    public record ResetParameterValueObject(
+    public record RecoveryValueObject(
         IReadOnlyList<AilmentCode>? AilmentCodeList = null,
         IReadOnlyList<SlipCode>? SlipCodeList = null,
         IReadOnlyList<BodyPartCode>? BodyPartCodeList = null)

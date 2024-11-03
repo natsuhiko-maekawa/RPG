@@ -4,7 +4,7 @@ using BattleScene.Domain.Code;
 
 namespace BattleScene.Domain.ValueObject
 {
-    public record DamageParameterValueObject(
+    public record DamageValueObject(
         int AttackNumber = 1,
         float DamageRate = 1.0f,
         float HitRate = 1.0f,

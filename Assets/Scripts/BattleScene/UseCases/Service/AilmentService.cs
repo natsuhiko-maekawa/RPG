@@ -9,7 +9,7 @@ using BattleScene.UseCases.IService;
 
 namespace BattleScene.UseCases.Service
 {
-    public class AilmentService : IPrimeSkillService<AilmentParameterValueObject>
+    public class AilmentService : IPrimeSkillService<AilmentValueObject>
     {
         private readonly ActualTargetIdPickerService _actualTargetIdPicker;
         private readonly IFactory<AilmentPropertyValueObject, AilmentCode> _ailmentPropertyFactory;
@@ -28,13 +28,13 @@ namespace BattleScene.UseCases.Service
         public IReadOnlyList<BattleEventValueObject> Generate(
             CharacterId actorId,
             SkillCommonValueObject skillCommon,
-            IReadOnlyList<AilmentParameterValueObject> primeSkillParameterList,
+            IReadOnlyList<AilmentValueObject> primeSkillParameterList,
             IReadOnlyList<CharacterId> targetIdList)
         {
             var ailmentList = primeSkillParameterList.Select(GetAilment).ToList();
             return ailmentList;
 
-            BattleEventValueObject GetAilment(AilmentParameterValueObject ailmentParameter)
+            BattleEventValueObject GetAilment(AilmentValueObject ailmentParameter)
             {
                 var actualTargetIdList = _actualTargetIdPicker.Pick(
                     targetIdList: targetIdList,

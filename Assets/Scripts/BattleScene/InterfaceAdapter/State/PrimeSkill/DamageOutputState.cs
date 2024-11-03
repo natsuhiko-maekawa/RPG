@@ -3,16 +3,16 @@ using BattleScene.InterfaceAdapter.Facade;
 
 namespace BattleScene.InterfaceAdapter.State.PrimeSkill
 {
-    public class DamageOutputState : PrimeSkillOutputState<DamageParameterValueObject>
+    public class DamageOutputState : PrimeSkillOutputState<DamageValueObject>
     {
         private readonly DamageOutputFacade _damageOutput;
-        private readonly PrimeSkillStopState<DamageParameterValueObject> _primeSkillStopState;
-        private readonly PrimeSkillBreakState<DamageParameterValueObject> _primeSkillBreakState;
+        private readonly PrimeSkillStopState<DamageValueObject> _primeSkillStopState;
+        private readonly PrimeSkillBreakState<DamageValueObject> _primeSkillBreakState;
 
         public DamageOutputState(
             DamageOutputFacade damageOutput,
-            PrimeSkillStopState<DamageParameterValueObject> primeSkillStopState,
-            PrimeSkillBreakState<DamageParameterValueObject> primeSkillBreakState)
+            PrimeSkillStopState<DamageValueObject> primeSkillStopState,
+            PrimeSkillBreakState<DamageValueObject> primeSkillBreakState)
         {
             _damageOutput = damageOutput;
             _primeSkillStopState = primeSkillStopState;
@@ -26,7 +26,7 @@ namespace BattleScene.InterfaceAdapter.State.PrimeSkill
 
         public override void Select()
         {
-            BaseState<DamageParameterValueObject> nextState = Context.BattleEventQueue.Peek().IsAvoid
+            BaseState<DamageValueObject> nextState = Context.BattleEventQueue.Peek().IsAvoid
                 ? _primeSkillBreakState
                 : _primeSkillStopState;
             Context.TransitionTo(nextState);

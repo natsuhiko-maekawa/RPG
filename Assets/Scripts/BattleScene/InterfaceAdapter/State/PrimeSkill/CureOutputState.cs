@@ -3,14 +3,14 @@ using BattleScene.InterfaceAdapter.Facade;
 
 namespace BattleScene.InterfaceAdapter.State.PrimeSkill
 {
-    public class CureOutputState : PrimeSkillOutputState<CureParameterValueObject>
+    public class CureOutputState : PrimeSkillOutputState<CureValueObject>
     {
         private readonly CureOutput _output;
-        private readonly PrimeSkillStopState<CureParameterValueObject> _primeSkillStopState;
+        private readonly PrimeSkillStopState<CureValueObject> _primeSkillStopState;
 
         public CureOutputState(
             CureOutput output,
-            PrimeSkillStopState<CureParameterValueObject> primeSkillStopState)
+            PrimeSkillStopState<CureValueObject> primeSkillStopState)
         {
             _output = output;
             _primeSkillStopState = primeSkillStopState;

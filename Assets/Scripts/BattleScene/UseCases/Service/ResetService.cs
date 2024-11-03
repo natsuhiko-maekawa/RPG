@@ -7,7 +7,7 @@ using BattleScene.UseCases.IService;
 
 namespace BattleScene.UseCases.Service
 {
-    public class ResetService : IPrimeSkillService<ResetParameterValueObject>
+    public class ResetService : IPrimeSkillService<RecoveryValueObject>
     {
         private readonly IAilmentResetService _ailmentReset;
 
@@ -20,7 +20,7 @@ namespace BattleScene.UseCases.Service
         public IReadOnlyList<BattleEventValueObject> Generate(
             CharacterId actorId,
             SkillCommonValueObject skillCommon,
-            IReadOnlyList<ResetParameterValueObject> resetParameterList,
+            IReadOnlyList<RecoveryValueObject> resetParameterList,
             IReadOnlyList<CharacterId> targetIdList)
         {
             if (resetParameterList.Count != 1)
