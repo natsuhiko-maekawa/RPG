@@ -3,17 +3,17 @@ using BattleScene.InterfaceAdapter.Facade;
 
 namespace BattleScene.InterfaceAdapter.State.SkillElement
 {
-    public class RestoreOutputState : PrimeSkillOutputState<RestoreValueObject>
+    public class RestoreOutputState : SkillElementOutputState<RestoreValueObject>
     {
         private readonly RestoreOutputFacade _restoreOutput;
-        private readonly PrimeSkillStopState<RestoreValueObject> _primeSkillStopState;
+        private readonly SkillElementStopState<RestoreValueObject> _skillElementStopState;
 
         public RestoreOutputState(
             RestoreOutputFacade restoreOutput,
-            PrimeSkillStopState<RestoreValueObject> primeSkillStopState)
+            SkillElementStopState<RestoreValueObject> skillElementStopState)
         {
             _restoreOutput = restoreOutput;
-            _primeSkillStopState = primeSkillStopState;
+            _skillElementStopState = skillElementStopState;
         }
 
         public override async void Start()
@@ -23,7 +23,7 @@ namespace BattleScene.InterfaceAdapter.State.SkillElement
 
         public override void Select()
         {
-            Context.TransitionTo(_primeSkillStopState);
+            Context.TransitionTo(_skillElementStopState);
         }
     }
 }

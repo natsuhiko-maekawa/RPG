@@ -4,16 +4,16 @@ using BattleScene.InterfaceAdapter.Facade;
 
 namespace BattleScene.InterfaceAdapter.State.SkillElement
 {
-    public class BuffOutputState : PrimeSkillOutputState<BuffValueObject>
+    public class BuffOutputState : SkillElementOutputState<BuffValueObject>
     {
         private readonly BuffOutput _output;
-        private readonly PrimeSkillStopState<BuffValueObject> _primeSkillStopState;
+        private readonly SkillElementStopState<BuffValueObject> _skillElementStopState;
 
         public BuffOutputState(
-            PrimeSkillStopState<BuffValueObject> primeSkillStopState,
+            SkillElementStopState<BuffValueObject> skillElementStopState,
             BuffOutput output)
         {
-            _primeSkillStopState = primeSkillStopState;
+            _skillElementStopState = skillElementStopState;
             _output = output;
         }
 
@@ -27,7 +27,7 @@ namespace BattleScene.InterfaceAdapter.State.SkillElement
 
         public override void Select()
         {
-            Context.TransitionTo(_primeSkillStopState);
+            Context.TransitionTo(_skillElementStopState);
         }
     }
 }

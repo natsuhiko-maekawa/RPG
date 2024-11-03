@@ -1,6 +1,6 @@
 ﻿namespace BattleScene.InterfaceAdapter.State.SkillElement
 {
-    public interface IPrimeSkillBreakState
+    public interface ISkillElementStopState
     {
     }
 }

@@ -4,17 +4,17 @@ using BattleScene.InterfaceAdapter.Facade;
 
 namespace BattleScene.InterfaceAdapter.State.SkillElement
 {
-    public class EnhanceOutputState: PrimeSkillOutputState<EnhanceValueObject>
+    public class EnhanceOutputState: SkillElementOutputState<EnhanceValueObject>
     {
         private readonly EnhanceOutput _output;
-        private readonly PrimeSkillStopState<EnhanceValueObject> _primeSkillStopState;
+        private readonly SkillElementStopState<EnhanceValueObject> _skillElementStopState;
 
         public EnhanceOutputState(
             EnhanceOutput output,
-            PrimeSkillStopState<EnhanceValueObject> primeSkillStopState)
+            SkillElementStopState<EnhanceValueObject> skillElementStopState)
         {
             _output = output;
-            _primeSkillStopState = primeSkillStopState;
+            _skillElementStopState = skillElementStopState;
         }
 
         public override async void Start()
@@ -27,7 +27,7 @@ namespace BattleScene.InterfaceAdapter.State.SkillElement
 
         public override void Select()
         {
-            Context.TransitionTo(_primeSkillStopState);
+            Context.TransitionTo(_skillElementStopState);
         }
     }
 }

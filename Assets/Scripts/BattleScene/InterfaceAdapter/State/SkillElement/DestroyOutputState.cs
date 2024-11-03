@@ -4,17 +4,17 @@ using BattleScene.InterfaceAdapter.Facade;
 
 namespace BattleScene.InterfaceAdapter.State.SkillElement
 {
-    public class DestroyOutputState : PrimeSkillOutputState<DestroyValueObject>
+    public class DestroyOutputState : SkillElementOutputState<DestroyValueObject>
     {
         private readonly DestroyOutputFacade _destroyOutput;
-        private readonly PrimeSkillStopState<DestroyValueObject> _primeSkillStopState;
+        private readonly SkillElementStopState<DestroyValueObject> _skillElementStopState;
 
         public DestroyOutputState(
             DestroyOutputFacade destroyOutput,
-            PrimeSkillStopState<DestroyValueObject> primeSkillStopState)
+            SkillElementStopState<DestroyValueObject> skillElementStopState)
         {
             _destroyOutput = destroyOutput;
-            _primeSkillStopState = primeSkillStopState;
+            _skillElementStopState = skillElementStopState;
         }
 
         public override async void Start()
@@ -34,7 +34,7 @@ namespace BattleScene.InterfaceAdapter.State.SkillElement
 
         public override void Select()
         {
-            Context.TransitionTo(_primeSkillStopState);
+            Context.TransitionTo(_skillElementStopState);
         }
     }
 }

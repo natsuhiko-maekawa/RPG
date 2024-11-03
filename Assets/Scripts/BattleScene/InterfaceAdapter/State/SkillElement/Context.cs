@@ -68,8 +68,8 @@ namespace BattleScene.InterfaceAdapter.State.SkillElement
 
         public void Select() => _state.Select();
 
-        public bool IsContinue => _state is not IPrimeSkillStopState and not IPrimeSkillBreakState;
+        public bool IsContinue => _state is not ISkillElementStopState and not ISkillElementBreakState;
 
-        public bool IsBreak => _state is IPrimeSkillBreakState;
+        public bool IsBreak => _state is ISkillElementBreakState;
     }
 }

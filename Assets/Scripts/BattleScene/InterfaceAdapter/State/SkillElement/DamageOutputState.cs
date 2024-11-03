@@ -3,20 +3,20 @@ using BattleScene.InterfaceAdapter.Facade;
 
 namespace BattleScene.InterfaceAdapter.State.SkillElement
 {
-    public class DamageOutputState : PrimeSkillOutputState<DamageValueObject>
+    public class DamageOutputState : SkillElementOutputState<DamageValueObject>
     {
         private readonly DamageOutputFacade _damageOutput;
-        private readonly PrimeSkillStopState<DamageValueObject> _primeSkillStopState;
-        private readonly PrimeSkillBreakState<DamageValueObject> _primeSkillBreakState;
+        private readonly SkillElementStopState<DamageValueObject> _skillElementStopState;
+        private readonly SkillElementBreakState<DamageValueObject> _skillElementBreakState;
 
         public DamageOutputState(
             DamageOutputFacade damageOutput,
-            PrimeSkillStopState<DamageValueObject> primeSkillStopState,
-            PrimeSkillBreakState<DamageValueObject> primeSkillBreakState)
+            SkillElementStopState<DamageValueObject> skillElementStopState,
+            SkillElementBreakState<DamageValueObject> skillElementBreakState)
         {
             _damageOutput = damageOutput;
-            _primeSkillStopState = primeSkillStopState;
-            _primeSkillBreakState = primeSkillBreakState;
+            _skillElementStopState = skillElementStopState;
+            _skillElementBreakState = skillElementBreakState;
         }
 
         public override async void Start()
@@ -27,8 +27,8 @@ namespace BattleScene.InterfaceAdapter.State.SkillElement
         public override void Select()
         {
             BaseState<DamageValueObject> nextState = Context.BattleEventQueue.Peek().IsAvoid
-                ? _primeSkillBreakState
-                : _primeSkillStopState;
+                ? _skillElementBreakState
+                : _skillElementStopState;
             Context.TransitionTo(nextState);
         }
     }

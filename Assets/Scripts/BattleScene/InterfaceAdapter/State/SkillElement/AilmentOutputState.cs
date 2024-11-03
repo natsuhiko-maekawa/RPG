@@ -3,17 +3,17 @@ using BattleScene.InterfaceAdapter.Facade;
 
 namespace BattleScene.InterfaceAdapter.State.SkillElement
 {
-    public class AilmentOutputState : PrimeSkillOutputState<AilmentValueObject>
+    public class AilmentOutputState : SkillElementOutputState<AilmentValueObject>
     {
         private readonly AilmentOutputFacade _ailmentOutput;
-        private readonly PrimeSkillStopState<AilmentValueObject> _primeSkillStopState;
+        private readonly SkillElementStopState<AilmentValueObject> _skillElementStopState;
 
         public AilmentOutputState(
             AilmentOutputFacade ailmentOutput,
-            PrimeSkillStopState<AilmentValueObject> primeSkillStopState)
+            SkillElementStopState<AilmentValueObject> skillElementStopState)
         {
             _ailmentOutput = ailmentOutput;
-            _primeSkillStopState = primeSkillStopState;
+            _skillElementStopState = skillElementStopState;
         }
 
         public override async void Start()
@@ -32,7 +32,7 @@ namespace BattleScene.InterfaceAdapter.State.SkillElement
 
         public override void Select()
         {
-            Context.TransitionTo(_primeSkillStopState);
+            Context.TransitionTo(_skillElementStopState);
         }
     }
 }

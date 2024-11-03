@@ -4,16 +4,16 @@ using BattleScene.InterfaceAdapter.Facade;
 
 namespace BattleScene.InterfaceAdapter.State.SkillElement
 {
-    public class SlipOutputState : PrimeSkillOutputState<SlipValueObject>
+    public class SlipOutputState : SkillElementOutputState<SlipValueObject>
     {
-        private readonly PrimeSkillStopState<SlipValueObject> _primeSkillStopState;
+        private readonly SkillElementStopState<SlipValueObject> _skillElementStopState;
         private readonly SlipOutputFacade _slipOutput;
 
         public SlipOutputState(
-            PrimeSkillStopState<SlipValueObject> primeSkillStopState,
+            SkillElementStopState<SlipValueObject> skillElementStopState,
             SlipOutputFacade slipOutput)
         {
-            _primeSkillStopState = primeSkillStopState;
+            _skillElementStopState = skillElementStopState;
             _slipOutput = slipOutput;
         }
 
@@ -35,7 +35,7 @@ namespace BattleScene.InterfaceAdapter.State.SkillElement
         public override void Select()
         {
             BaseState<SlipValueObject> nextState = Context.BattleEventQueue.Count == 0
-                ? _primeSkillStopState
+                ? _skillElementStopState
                 : this;
             Context.TransitionTo(nextState);
         }

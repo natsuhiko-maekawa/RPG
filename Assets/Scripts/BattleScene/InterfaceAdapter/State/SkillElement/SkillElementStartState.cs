@@ -8,23 +8,23 @@ using BattleScene.UseCases.IUseCase;
 
 namespace BattleScene.InterfaceAdapter.State.SkillElement
 {
-    public class PrimeSkillStartState<TPrimeSkillParameter> : BaseState<TPrimeSkillParameter>
+    public class SkillElementStartState<TSkillElement> : BaseState<TSkillElement>
     {
-        private readonly ISkillElementUseCase<TPrimeSkillParameter> _useCase;
+        private readonly ISkillElementUseCase<TSkillElement> _useCase;
         private readonly ICollection<CharacterEntity, CharacterId> _characterCollection;
-        private readonly PrimeSkillOutputState<TPrimeSkillParameter> _primeSkillOutputState;
-        private readonly PrimeSkillStopState<TPrimeSkillParameter> _primeSkillStopState;
+        private readonly SkillElementOutputState<TSkillElement> _skillElementOutputState;
+        private readonly SkillElementStopState<TSkillElement> _skillElementStopState;
 
-        public PrimeSkillStartState(
-            ISkillElementUseCase<TPrimeSkillParameter> useCase,
+        public SkillElementStartState(
+            ISkillElementUseCase<TSkillElement> useCase,
             ICollection<CharacterEntity, CharacterId> characterCollection,
-            PrimeSkillOutputState<TPrimeSkillParameter> primeSkillOutputState,
-            PrimeSkillStopState<TPrimeSkillParameter> primeSkillStopState)
+            SkillElementOutputState<TSkillElement> skillElementOutputState,
+            SkillElementStopState<TSkillElement> skillElementStopState)
         {
             _useCase = useCase;
             _characterCollection = characterCollection;
-            _primeSkillOutputState = primeSkillOutputState;
-            _primeSkillStopState = primeSkillStopState;
+            _skillElementOutputState = skillElementOutputState;
+            _skillElementStopState = skillElementStopState;
         }
 
         /// <summary>
@@ -43,12 +43,12 @@ namespace BattleScene.InterfaceAdapter.State.SkillElement
                 .Where(x => !x.IsFailure);
             Context.BattleEventQueue = new Queue<BattleEventValueObject>(successBattleEventList);
 
-            BaseState<TPrimeSkillParameter> nextState =
+            BaseState<TSkillElement> nextState =
                 Context.BattleEventQueue.Count == 0
                 && Context.TargetIdList.All(x => _characterCollection.Get(x).IsPlayer)
                 && _useCase.IsExecutedDamage()
-                    ? _primeSkillStopState
-                    : _primeSkillOutputState;
+                    ? _skillElementStopState
+                    : _skillElementOutputState;
             Context.TransitionTo(nextState);
         }
     }

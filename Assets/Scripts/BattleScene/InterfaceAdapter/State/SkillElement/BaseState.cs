@@ -1,10 +1,10 @@
 ﻿namespace BattleScene.InterfaceAdapter.State.SkillElement
 {
-    public abstract class BaseState<TPrimeSkillParameter>
+    public abstract class BaseState<TSkillElement>
     {
-        protected Context<TPrimeSkillParameter> Context { get; private set; } = null!;
+        protected Context<TSkillElement> Context { get; private set; } = null!;
 
-        public void SetContext(Context<TPrimeSkillParameter> context)
+        public void SetContext(Context<TSkillElement> context)
         {
             Context = context;
         }
