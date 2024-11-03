@@ -19,7 +19,7 @@ SkillElementUseCase --> SkillElementStartState: battleEventList
 SkillElementStartState -> SkillElementUseCase: RegisterBattleEvent()
 note left: BattleEventインスタンスのリストを渡し、\nRepositoryの更新を要求する
 SkillElementUseCase -> BattleLoggerService: Log()
-note left: BattleEventインスタンスをRepositoryに登録する
+note left: BattleEventインスタンスからBattleLogインスタンスを生成し、\nRepositoryに登録する
 BattleLoggerService -> Repository: Update()
 SkillElementUseCase -> SkillElementService: RegisterBattleEvent()
 note left: BattleEventインスタンスをもとに各種Repositoryを更新する
