@@ -11,18 +11,18 @@ using BattleScene.UseCases.Service;
 namespace BattleScene.UseCases.UseCase
 {
     public class
-        PrimeSkillUseCase<TPrimeSkillParameter> : IPrimeSkillUseCase<TPrimeSkillParameter>
+        SkillElementUseCase<TSkillElement> : ISkillElementUseCase<TSkillElement>
     {
-        private readonly ISkillElementService<TPrimeSkillParameter> _primeSkill;
+        private readonly ISkillElementService<TSkillElement> _skillElement;
         private readonly BattleLoggerService _battleLogger;
         private readonly ICollection<BattleLogEntity, BattleLogId> _battleLogCollection;
 
-        public PrimeSkillUseCase(
-            ISkillElementService<TPrimeSkillParameter> primeSkill,
+        public SkillElementUseCase(
+            ISkillElementService<TSkillElement> skillElement,
             BattleLoggerService battleLogger,
             ICollection<BattleLogEntity, BattleLogId> battleLogCollection)
         {
-            _primeSkill = primeSkill;
+            _skillElement = skillElement;
             _battleLogger = battleLogger;
             _battleLogCollection = battleLogCollection;
         }
@@ -30,20 +30,20 @@ namespace BattleScene.UseCases.UseCase
         public IReadOnlyList<BattleEventValueObject> GetBattleEventList(
             CharacterId actorId,
             SkillCommonValueObject skillCommon,
-            IReadOnlyList<TPrimeSkillParameter> primeSkillParameterList,
+            IReadOnlyList<TSkillElement> skillElementList,
             IReadOnlyList<CharacterId> targetIdList)
         {
-            var battleEventList = _primeSkill.GenerateBattleEvent(
+            var battleEventList = _skillElement.GenerateBattleEvent(
                 actorId: actorId,
                 skillCommon: skillCommon,
-                primeSkillParameterList: primeSkillParameterList,
+                primeSkillParameterList: skillElementList,
                 targetIdList: targetIdList);
             return battleEventList;
         }
 
         public void RegisterBattleEvent(IReadOnlyList<BattleEventValueObject> battleEventList)
         {
-            _primeSkill.RegisterBattleEvent(battleEventList);
+            _skillElement.RegisterBattleEvent(battleEventList);
             _battleLogger.Log(battleEventList);
         }
 

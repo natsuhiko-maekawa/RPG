@@ -10,13 +10,13 @@ namespace BattleScene.InterfaceAdapter.State.PrimeSkill
 {
     public class PrimeSkillStartState<TPrimeSkillParameter> : BaseState<TPrimeSkillParameter>
     {
-        private readonly IPrimeSkillUseCase<TPrimeSkillParameter> _useCase;
+        private readonly ISkillElementUseCase<TPrimeSkillParameter> _useCase;
         private readonly ICollection<CharacterEntity, CharacterId> _characterCollection;
         private readonly PrimeSkillOutputState<TPrimeSkillParameter> _primeSkillOutputState;
         private readonly PrimeSkillStopState<TPrimeSkillParameter> _primeSkillStopState;
 
         public PrimeSkillStartState(
-            IPrimeSkillUseCase<TPrimeSkillParameter> useCase,
+            ISkillElementUseCase<TPrimeSkillParameter> useCase,
             ICollection<CharacterEntity, CharacterId> characterCollection,
             PrimeSkillOutputState<TPrimeSkillParameter> primeSkillOutputState,
             PrimeSkillStopState<TPrimeSkillParameter> primeSkillStopState)
@@ -36,7 +36,7 @@ namespace BattleScene.InterfaceAdapter.State.PrimeSkill
             var battleEventList = _useCase.GetBattleEventList(
                 actorId: Context.ActorId,
                 skillCommon: Context.SkillCommon,
-                primeSkillParameterList: Context.PrimeSkillParameterList,
+                skillElementList: Context.PrimeSkillParameterList,
                 targetIdList: Context.TargetIdList);
             _useCase.RegisterBattleEvent(battleEventList);
             var successBattleEventList = battleEventList
