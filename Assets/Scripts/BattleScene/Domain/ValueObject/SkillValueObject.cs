@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using BattleScene.Domain.Code;
-using Utility;
 using Range = BattleScene.Domain.Code.Range;
 
 namespace BattleScene.Domain.ValueObject
@@ -40,15 +40,15 @@ namespace BattleScene.Domain.ValueObject
                 dependencyList: dependencyList,
                 range: range,
                 attackMessageCode: attackMessageCode);
-            AilmentParameterList = ailmentList ?? new List<AilmentValueObject>();
-            BuffParameterList = buffList ?? new List<BuffValueObject>();
-            CureParameterList = cureList ?? MyList<CureValueObject>.Empty;
-            DamageParameterList = damageList ?? new List<DamageValueObject>();
-            DestroyedParameterList = destroyedPartList ?? new List<DestroyValueObject>();
-            EnhanceParameterList = enhanceList ?? MyList<EnhanceValueObject>.Empty;
-            ResetParameterList = resetParameterList ?? new List<RecoveryValueObject>();
-            RestoreParameterList = restoreParameterList ?? new List<RestoreValueObject>();
-            SlipParameterList = slipParameterList ?? new List<SlipValueObject>();
+            AilmentParameterList = ailmentList ?? Array.Empty<AilmentValueObject>();
+            BuffParameterList = buffList ?? Array.Empty<BuffValueObject>();
+            CureParameterList = cureList ?? Array.Empty<CureValueObject>();
+            DamageParameterList = damageList ?? Array.Empty<DamageValueObject>();
+            DestroyedParameterList = destroyedPartList ?? Array.Empty<DestroyValueObject>();
+            EnhanceParameterList = enhanceList ?? Array.Empty<EnhanceValueObject>();
+            ResetParameterList = resetParameterList ?? Array.Empty<RecoveryValueObject>();
+            RestoreParameterList = restoreParameterList ?? Array.Empty<RestoreValueObject>();
+            SlipParameterList = slipParameterList ?? Array.Empty<SlipValueObject>();
         }
     }
 }

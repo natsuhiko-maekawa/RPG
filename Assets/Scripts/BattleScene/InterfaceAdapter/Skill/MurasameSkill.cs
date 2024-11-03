@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
-using Utility;
+﻿using System;
+using System.Collections.Generic;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.Entity;
 using BattleScene.InterfaceAdapter.PrimeSkill;
 using BattleScene.InterfaceAdapter.PrimeSkill.BaseClass;
 using BattleScene.InterfaceAdapter.Skill.BaseClass;
+using Range = BattleScene.Domain.Code.Range;
 
 namespace BattleScene.InterfaceAdapter.Skill
 {
@@ -36,7 +37,7 @@ namespace BattleScene.InterfaceAdapter.Skill
         {
             return _slipCollection.Get(SlipCode.Burning).Effects
                 ? new[] { new BurningRecovery() }
-                : MyList<BaseRecovery>.Empty;
+                : Array.Empty<BaseRecovery>();
         }
     }
 }

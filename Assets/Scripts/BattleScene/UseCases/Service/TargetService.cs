@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Utility;
 using System.Linq;
 using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.DomainService;
@@ -37,7 +36,7 @@ namespace BattleScene.UseCases.Service
                 Range.Oneself =>
                     _characterCollection.Get(actorId).IsSurvive
                         ? new[] { actorId }
-                        : MyList<CharacterId>.Empty,
+                        : Array.Empty<CharacterId>(),
                 Range.Solo =>
                     _characterCollection.Get(actorId).IsPlayer
                         ? new[] { GetEnemySolo() }

@@ -28,7 +28,7 @@ namespace BattleScene.Domain.ValueObject
         public LifetimeCode LifetimeCode { get; private init; } = LifetimeCode.NoLifetime;
         public int DestroyCount { get; private init; }
         public IReadOnlyList<AttackValueObject> AttackList { get; private init; } = Array.Empty<AttackValueObject>();
-        public IReadOnlyList<CuringValueObject> CuringList { get; private set; } = MyList<CuringValueObject>.Empty;
+        public IReadOnlyList<CuringValueObject> CuringList { get; private set; } = Array.Empty<CuringValueObject>();
 
         public IReadOnlyDictionary<CharacterId, int> DamageDictionary =>
             AttackList
