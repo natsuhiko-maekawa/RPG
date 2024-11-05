@@ -34,6 +34,7 @@ namespace BattleScene.UseCases.Service
                     var property = _propertyFactory.Create(x);
                     return (Id: property.CharacterTypeCode, Parameter: property.SumParameter);
                 })
+                .ToList()
                 .Combination(1, 4)
                 .Where(x =>
                 {
