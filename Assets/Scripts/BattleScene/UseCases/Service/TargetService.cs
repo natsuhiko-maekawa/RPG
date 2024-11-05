@@ -16,20 +16,23 @@ namespace BattleScene.UseCases.Service
         private readonly EnemiesDomainService _enemies;
         private readonly ICollection<CharacterEntity, CharacterId> _characterCollection;
         private readonly PlayerDomainService _player;
+        private readonly IMyRandomService _myRandom;
 
         public TargetService(
             EnemiesDomainService enemies,
             ICollection<BattleLogEntity, BattleLogId> battleLogCollection,
             ICollection<CharacterEntity, CharacterId> characterCollection,
-            PlayerDomainService player)
+            PlayerDomainService player,
+            IMyRandomService myRandom)
         {
             _enemies = enemies;
             _battleLogCollection = battleLogCollection;
             _characterCollection = characterCollection;
             _player = player;
+            _myRandom = myRandom;
         }
 
-        public IReadOnlyList<CharacterId> Get(CharacterId actorId, Range range)
+        public IReadOnlyList<CharacterId> Get(CharacterId actorId, Range range, bool isAutoTarget=false)
         {
             var targetList = range switch
             {
@@ -37,7 +40,11 @@ namespace BattleScene.UseCases.Service
                     _characterCollection.Get(actorId).IsSurvive
                         ? new[] { actorId }
                         : Array.Empty<CharacterId>(),
-                Range.Solo =>
+                Range.Solo when isAutoTarget =>
+                    _characterCollection.Get(actorId).IsPlayer
+                        ? new[] { GetEnemySoloRandom() }
+                        : new[] { _player.GetId() },
+                Range.Solo when !isAutoTarget =>
                     _characterCollection.Get(actorId).IsPlayer
                         ? new[] { GetEnemySolo() }
                         : new[] { _player.GetId() },
@@ -66,6 +73,16 @@ namespace BattleScene.UseCases.Service
                     .First(x => _characterCollection.Get(x).IsSurvive)
                 : targetId;
             return targetId;
+        }
+
+        private CharacterId GetEnemySoloRandom()
+        {
+            var enemyIdList = _enemies.Get()
+                .Where(x => x.IsSurvive)
+                .Select(x => x.Id)
+                .ToList();
+            var enemyId = _myRandom.Choice(enemyIdList);
+            return enemyId;
         }
     }
 }

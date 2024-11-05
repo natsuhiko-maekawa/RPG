@@ -21,6 +21,7 @@ namespace BattleScene.Domain.ValueObject
         public SkillValueObject(
             SkillCode skillCode,
             Range range,
+            bool isAutoTarget,
             MessageCode attackMessageCode,
             int technicalPoint,
             IReadOnlyList<BodyPartCode> dependencyList,
@@ -35,11 +36,12 @@ namespace BattleScene.Domain.ValueObject
             IReadOnlyList<SlipValueObject>? slipParameterList = null)
         {
             Common = new SkillCommonValueObject(
-                skillCode: skillCode,
-                technicalPoint: technicalPoint,
-                dependencyList: dependencyList,
-                range: range,
-                attackMessageCode: attackMessageCode);
+                SkillCode: skillCode,
+                TechnicalPoint: technicalPoint,
+                DependencyList: dependencyList,
+                Range: range,
+                IsAutoTarget: isAutoTarget,
+                AttackMessageCode: attackMessageCode);
             AilmentParameterList = ailmentList ?? Array.Empty<AilmentValueObject>();
             BuffParameterList = buffList ?? Array.Empty<BuffValueObject>();
             CureParameterList = cureList ?? Array.Empty<CureValueObject>();

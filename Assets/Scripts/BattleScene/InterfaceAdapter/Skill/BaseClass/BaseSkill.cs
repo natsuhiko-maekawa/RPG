@@ -12,6 +12,7 @@ namespace BattleScene.InterfaceAdapter.Skill.BaseClass
         public virtual int TechnicalPoint { get; } = 0;
         public virtual IReadOnlyList<BodyPartCode> DependencyList { get; } = Array.Empty<BodyPartCode>();
         public abstract Range Range { get; }
+        public virtual bool isAutoTarget { get; } = false;
         public abstract MessageCode AttackMessageCode { get; }
 
         public virtual IReadOnlyList<BaseAilment> AilmentList { get; } = Array.Empty<BaseAilment>();

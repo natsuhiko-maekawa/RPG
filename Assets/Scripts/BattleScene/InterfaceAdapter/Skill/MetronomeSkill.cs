@@ -35,6 +35,7 @@ namespace BattleScene.InterfaceAdapter.Skill
         public override SkillCode SkillCode { get; } = SkillCode.Metronome;
         public override int TechnicalPoint { get; } = 1;
         public override Range Range => GetSkill().Range;
+        public override bool isAutoTarget { get; } = true;
         public override MessageCode AttackMessageCode => GetSkill().AttackMessageCode;
         public override IReadOnlyList<BaseAilment> AilmentList => GetSkill().AilmentList;
         public override IReadOnlyList<BaseBuff> BuffList => GetSkill().BuffList;

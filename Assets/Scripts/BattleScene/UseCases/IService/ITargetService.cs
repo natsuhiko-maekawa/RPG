@@ -6,6 +6,6 @@ namespace BattleScene.UseCases.IService
 {
     public interface ITargetService
     {
-        public IReadOnlyList<CharacterId> Get(CharacterId actorId, Range range);
+        public IReadOnlyList<CharacterId> Get(CharacterId actorId, Range range, bool isAutoTarget=false);
     }
 }
