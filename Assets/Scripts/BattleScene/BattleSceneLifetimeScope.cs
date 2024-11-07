@@ -8,7 +8,9 @@ using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
+using BattleScene.Framework;
 using BattleScene.Framework.Input;
+using BattleScene.Framework.InputActions;
 using BattleScene.Framework.View;
 using BattleScene.InterfaceAdapter;
 using BattleScene.InterfaceAdapter.Facade;
@@ -67,7 +69,7 @@ namespace BattleScene
 
             builder.RegisterComponentInHierarchy<EnemiesView>();
             builder.RegisterComponentInHierarchy<InfoView>();
-            builder.RegisterComponentInHierarchy<BattleSceneInput>();
+            // builder.RegisterComponentInHierarchy<BattleSceneInput>();
             builder.RegisterComponentInHierarchy<GridView>();
             builder.RegisterComponentInHierarchy<MessageView>();
             builder.RegisterComponentInHierarchy<OrderView>();
@@ -78,6 +80,9 @@ namespace BattleScene
             builder.RegisterComponentInHierarchy<TargetView>();
 
             #endregion
+
+            builder.RegisterComponentInHierarchy<EntryPoint>();
+            builder.RegisterComponentInHierarchy<BattleSceneInput>();
 
             #region RegisterPresenter
 
@@ -387,7 +392,8 @@ namespace BattleScene
 
             #region RegisterEntryPoint
 
-            builder.RegisterEntryPoint<BattleStateMachine>();
+            builder.Register<BattleStateMachine>(Singleton)
+                .AsImplementedInterfaces();
 
             #endregion
         }

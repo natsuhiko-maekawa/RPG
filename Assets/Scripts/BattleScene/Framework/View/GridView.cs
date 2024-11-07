@@ -1,20 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BattleScene.Framework.Code;
 using BattleScene.Framework.GameObjects;
+using BattleScene.Framework.InputActions;
 using BattleScene.Framework.ViewModel;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using VContainer;
 
 namespace BattleScene.Framework.View
 {
-    public class GridView : MonoBehaviour
+    public class GridView : MonoBehaviour, BattleSceneInputAction.IBattleSceneActions
     {
         [SerializeField] private int maxGridSize;
-        [SerializeField] private InputAction moveAction;
-        [SerializeField] private InputAction selectAction;
         private Window _window;
         private Table _grid;
         private ArrowRight _arrowRight;
@@ -24,6 +23,14 @@ namespace BattleScene.Framework.View
         private PlayerView _playerView;
         private GridViewDto _dto;
         private readonly Dictionary<ActionCode, GridState> _gridStateDictionary = new();
+        private BattleSceneInputAction _inputAction;
+        private ISelectRowAction _selectRowAction;
+
+        [Inject]
+        public void Construct(ISelectRowAction selectRowAction)
+        {
+            _selectRowAction = selectRowAction;
+        }
 
         private void Awake()
         {
@@ -37,13 +44,14 @@ namespace BattleScene.Framework.View
             var root = transform.root;
             _messageView = root.GetComponentInChildren<MessageView>();
             _playerView = root.GetComponentInChildren<PlayerView>();
-            SetMoveAction(MoveArrow);
+            _inputAction = new BattleSceneInputAction();
+            _inputAction.BattleScene.AddCallbacks(this);
         }
 
         public async Task StartAnimationAsync(GridViewDto dto)
         {
             _window.Show();
-            selectAction.Enable();
+            _inputAction.Enable();
 
             _dto = dto;
             if (!_gridStateDictionary.TryGetValue(dto.ActionCode, out var gridState))
@@ -88,7 +96,7 @@ namespace BattleScene.Framework.View
             _arrowRight.Hide();
             _arrowUp.Hide();
             _arrowDown.Hide();
-            selectAction.Disable();
+            _inputAction.Disable();
         }
 
         private async Task MoveArrow(Vector2 vector2)
@@ -102,16 +110,24 @@ namespace BattleScene.Framework.View
             await StartAnimationAsync(_dto);
         }
 
-        private void SetMoveAction(Func<Vector2, Task> func)
+        public void OnSelect(InputAction.CallbackContext context)
         {
-            moveAction.performed += x => func.Invoke(x.ReadValue<Vector2>());
-            moveAction?.Enable();
+            if (context.performed)
+            {
+                var row = _gridStateDictionary[_dto.ActionCode].SelectedIndex;
+                _selectRowAction.OnSelect(row);
+            }
         }
 
-        public void SetSelectAction(Action<int> action)
+        public void OnCancel(InputAction.CallbackContext context) { }
+
+        public void OnMoveCursor(InputAction.CallbackContext context)
         {
-            selectAction.performed += _ => action.Invoke(_gridStateDictionary[_dto.ActionCode].SelectedIndex);
-            selectAction?.Enable();
+            if (context.performed)
+            {
+                var vector2 = context.ReadValue<Vector2>();
+                var _ = MoveArrow(vector2);
+            }
         }
     }
 }

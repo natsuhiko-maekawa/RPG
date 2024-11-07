@@ -1,24 +1,39 @@
-﻿using System;
+﻿using BattleScene.Framework.InputActions;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using VContainer;
+using static BattleScene.Framework.InputActions.BattleSceneInputAction;
 
 namespace BattleScene.Framework.Input
 {
-    public class BattleSceneInput : MonoBehaviour
+    public class BattleSceneInput : MonoBehaviour, IBattleSceneActions
     {
-        [SerializeField] private InputAction selectAction;
-        [SerializeField] private InputAction cancelAction;
+        private BattleSceneInputAction _inputAction;
+        private INoArgumentActions _noArgumentActions;
 
-        public void SetSelectAction(Action action)
+        [Inject]
+        public void Construct(INoArgumentActions noArgumentActions)
         {
-            selectAction.performed += _ => action.Invoke();
-            selectAction?.Enable();
+            _noArgumentActions = noArgumentActions;
         }
 
-        public void SetCancelAction(Action action)
+        private void Awake()
         {
-            cancelAction.performed += _ => action.Invoke();
-            cancelAction?.Enable();
+            _inputAction = new BattleSceneInputAction();
+            _inputAction.BattleScene.AddCallbacks(this);
+            _inputAction.Enable();
         }
+
+        public void OnSelect(InputAction.CallbackContext context)
+        {
+            if (context.performed) _noArgumentActions.OnSelect();
+        }
+
+        public void OnCancel(InputAction.CallbackContext context)
+        {
+            if (context.performed) _noArgumentActions.OnCancel();
+        }
+
+        public void OnMoveCursor(InputAction.CallbackContext context) { }
     }
 }

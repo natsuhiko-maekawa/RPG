@@ -2,33 +2,41 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BattleScene.Framework.InputActions;
 using BattleScene.Framework.ViewModel;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using VContainer;
 
 namespace BattleScene.Framework.View
 {
-    public class TargetView : MonoBehaviour
+    public class TargetView : MonoBehaviour, BattleSceneInputAction.IBattleSceneActions
     {
-        [SerializeField] private InputAction moveAction;
-        [SerializeField] private InputAction selectAction;
         private EnemiesView _enemiesView;
         private PlayerView _playerView;
         private TargetViewDto _dto;
         private int _index = -1;
         private IReadOnlyList<int> _enemyPositionList;
+        private BattleSceneInputAction _inputAction;
+        private ISelectTargetAction _selectTargetAction;
+
+        [Inject]
+        public void Construct(ISelectTargetAction selectTargetAction)
+        {
+            _selectTargetAction = selectTargetAction;
+        }
 
         private void Start()
         {
             _enemiesView = GetComponentInChildren<EnemiesView>();
             _playerView = GetComponentInChildren<PlayerView>();
-            SetMoveAction(MoveFrame);
+            _inputAction = new BattleSceneInputAction();
+            _inputAction.BattleScene.AddCallbacks(this);
         }
 
         public Task StartAnimation(TargetViewDto dto)
         {
-            moveAction?.Enable();
-            selectAction?.Enable();
+            _inputAction.Enable();
 
             _dto = dto;
             var frameViewDto = new FrameViewDto(Color.red);
@@ -57,8 +65,7 @@ namespace BattleScene.Framework.View
 
         public void StopAnimation()
         {
-            moveAction?.Disable();
-            selectAction?.Disable();
+            _inputAction.Disable();
             _playerView.StopPlayerFrameView();
             foreach (var enemyView in _enemiesView)
             {
@@ -94,22 +101,32 @@ namespace BattleScene.Framework.View
             await StartAnimation(_dto);
         }
 
-        private void SetMoveAction(Func<Vector2, Task> func)
-        {
-            moveAction.performed += x => func.Invoke(x.ReadValue<Vector2>());
-        }
-
-        public void SetSelectAction(Action<IReadOnlyList<CharacterDto>> action)
-        {
-            selectAction.performed += _ => action.Invoke(GetTargetDtoList());
-        }
-
         private IReadOnlyList<CharacterDto> GetTargetDtoList()
         {
             if (_dto == null) return Array.Empty<CharacterDto>();
             return IsEnemySolo(_dto.CharacterDtoList)
                 ? new[] { new CharacterDto(_enemyPositionList[_index]) }
                 : _dto.CharacterDtoList;
+        }
+
+        public void OnSelect(InputAction.CallbackContext context)
+        {
+            if (context.performed)
+            {
+                var targetDtoList = GetTargetDtoList();
+                _selectTargetAction.OnSelect(targetDtoList);
+            }
+        }
+
+        public void OnCancel(InputAction.CallbackContext context) { }
+
+        public void OnMoveCursor(InputAction.CallbackContext context)
+        {
+            if (context.performed)
+            {
+                var vector2 = context.ReadValue<Vector2>();
+                var _ = MoveFrame(vector2);
+            }
         }
     }
 }

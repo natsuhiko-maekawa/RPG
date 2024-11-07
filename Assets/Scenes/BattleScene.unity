@@ -1848,6 +1848,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1588216062}
   - component: {fileID: 1588216061}
+  - component: {fileID: 1588216063}
   m_Layer: 0
   m_Name: Input
   m_TagString: Untagged
@@ -1867,56 +1868,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e38aafbf41c045f29214a395b1827f86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectAction:
-    m_Name: Ok
-    m_Type: 1
-    m_ExpectedControlType: Button
-    m_Id: c4ba95c9-4bef-4c7a-9484-c14977364fd9
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 435861d1-d661-4ee4-841a-17999c300bfa
-      m_Path: <XInputController>/buttonSouth
-      m_Interactions: Press
-      m_Processors: 
-      m_Groups: 
-      m_Action: Ok
-      m_Flags: 0
-    - m_Name: 
-      m_Id: 75068b29-a0c1-4f29-ad20-fd0c8e714e93
-      m_Path: <Keyboard>/space
-      m_Interactions: Press
-      m_Processors: 
-      m_Groups: 
-      m_Action: Ok
-      m_Flags: 0
-    m_Flags: 0
-  cancelAction:
-    m_Name: Cancel
-    m_Type: 1
-    m_ExpectedControlType: Button
-    m_Id: 5f371ba6-f0c3-4f59-8005-61ef0c05e67c
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: ad778077-9f5e-4f1f-b3c7-93d5163cd2d3
-      m_Path: <XInputController>/buttonEast
-      m_Interactions: Press
-      m_Processors: 
-      m_Groups: 
-      m_Action: Cancel
-      m_Flags: 0
-    - m_Name: 
-      m_Id: 59e7e891-88c2-476c-993c-3111de8269b6
-      m_Path: <Keyboard>/c
-      m_Interactions: Press
-      m_Processors: 
-      m_Groups: 
-      m_Action: Cancel
-      m_Flags: 0
-    m_Flags: 0
 --- !u!4 &1588216062
 Transform:
   m_ObjectHideFlags: 0
@@ -1932,6 +1883,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1588216063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1588216060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ebff35a7f8148caab9f16f0da7aec03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1734088800
 GameObject:
   m_ObjectHideFlags: 0
@@ -2390,120 +2353,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4f5311b3b6f4c909f0299c1db0c4688, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveAction:
-    m_Name: Direction
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 07f8030f-1c81-41c1-bd3f-a30468890248
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 2D Vector
-      m_Id: 7b0c6fc4-010e-42e9-b79f-973ba2773b38
-      m_Path: 2DVector
-      m_Interactions: Press
-      m_Processors: 
-      m_Groups: 
-      m_Action: Direction
-      m_Flags: 4
-    - m_Name: up
-      m_Id: 472019f3-f96d-443f-994e-d4144d39a53e
-      m_Path: <Gamepad>/dpad/up
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Direction
-      m_Flags: 8
-    - m_Name: down
-      m_Id: b1e0decb-ae3b-4eef-ac0b-8f6193d19c09
-      m_Path: <Gamepad>/dpad/down
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Direction
-      m_Flags: 8
-    - m_Name: left
-      m_Id: ee0f5619-4f86-4c0a-95ec-9a7dac81420c
-      m_Path: <Gamepad>/dpad/left
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Direction
-      m_Flags: 8
-    - m_Name: right
-      m_Id: b2f53996-9b7a-4dc5-b912-acac9c8dfabf
-      m_Path: <Gamepad>/dpad/right
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Direction
-      m_Flags: 8
-    - m_Name: 2D Vector
-      m_Id: 5427920f-6ad0-46ff-90a5-4bf66bdba5f2
-      m_Path: 2DVector
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Direction
-      m_Flags: 4
-    - m_Name: up
-      m_Id: ecab74ed-d824-47dd-9eb0-81e4496139fe
-      m_Path: <Keyboard>/upArrow
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Direction
-      m_Flags: 8
-    - m_Name: down
-      m_Id: 8b06998c-193b-484c-b9d6-462af98822b7
-      m_Path: <Keyboard>/downArrow
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Direction
-      m_Flags: 8
-    - m_Name: left
-      m_Id: 20a7d5a9-bffb-4246-8d1d-1ebf0f70e09e
-      m_Path: <Keyboard>/leftArrow
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Direction
-      m_Flags: 8
-    - m_Name: right
-      m_Id: 2c59217f-ef37-4df6-8bca-27bb82d1483f
-      m_Path: <Keyboard>/rightArrow
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Direction
-      m_Flags: 8
-    m_Flags: 0
-  selectAction:
-    m_Name: Ok
-    m_Type: 1
-    m_ExpectedControlType: Button
-    m_Id: c4ba95c9-4bef-4c7a-9484-c14977364fd9
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 435861d1-d661-4ee4-841a-17999c300bfa
-      m_Path: <XInputController>/buttonSouth
-      m_Interactions: Press
-      m_Processors: 
-      m_Groups: 
-      m_Action: Ok
-      m_Flags: 0
-    - m_Name: 
-      m_Id: 75068b29-a0c1-4f29-ad20-fd0c8e714e93
-      m_Path: <Keyboard>/space
-      m_Interactions: Press
-      m_Processors: 
-      m_Groups: 
-      m_Action: Ok
-      m_Flags: 0
-    m_Flags: 0
 --- !u!1 &2116391215
 GameObject:
   m_ObjectHideFlags: 0

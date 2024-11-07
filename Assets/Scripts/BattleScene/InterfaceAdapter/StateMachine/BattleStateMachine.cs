@@ -2,50 +2,44 @@
 using System.Linq;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Id;
-using BattleScene.Framework.Input;
-using BattleScene.Framework.View;
+using BattleScene.Framework.InputActions;
 using BattleScene.Framework.ViewModel;
 using BattleScene.InterfaceAdapter.State.Battle;
 using VContainer;
-using VContainer.Unity;
 using Context = BattleScene.InterfaceAdapter.State.Battle.Context;
+
 
 namespace BattleScene.InterfaceAdapter.StateMachine
 {
-    public class BattleStateMachine : IStartable
+    public class BattleStateMachine : IEntryPoint, INoArgumentActions, ISelectRowAction, ISelectTargetAction
     {
         private Context _context = null!;
         private readonly EnemiesDomainService _enemies;
         private readonly PlayerDomainService _player;
-        private readonly BattleSceneInput _battleSceneInput;
-        private readonly GridView _gridView;
-        private readonly TargetView _targetView;
         private readonly IObjectResolver _container;
 
         public BattleStateMachine(
             EnemiesDomainService enemies,
             PlayerDomainService player,
-            BattleSceneInput battleSceneInput,
-            GridView gridView,
-            TargetView targetView,
             IObjectResolver container)
         {
             _enemies = enemies;
             _player = player;
-            _battleSceneInput = battleSceneInput;
-            _gridView = gridView;
-            _targetView = targetView;
             _container = container;
         }
 
-        void IStartable.Start()
+        public void Start()
         {
             _context = new Context(_container.Resolve<InitializeBattleState>());
-            _battleSceneInput.SetSelectAction(_context.Select);
-            _gridView.SetSelectAction(x => _context.Select(x));
-            _targetView.SetSelectAction(x => _context.Select(ToCharacterIdList(x)));
         }
 
+        public void OnSelect() => _context.Select();
+        public void OnSelect(int id) => _context.Select(id);
+        public void OnSelect(IReadOnlyList<CharacterDto> targetDtoList) 
+            => _context.Select(ToCharacterIdList(targetDtoList));
+
+        public void OnCancel() { }
+        
         private IReadOnlyList<CharacterId> ToCharacterIdList(IReadOnlyList<CharacterDto> characterDtoList)
         {
             return characterDtoList
