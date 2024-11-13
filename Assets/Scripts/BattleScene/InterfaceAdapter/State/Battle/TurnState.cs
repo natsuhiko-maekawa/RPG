@@ -21,8 +21,8 @@ namespace BattleScene.InterfaceAdapter.State.Battle
 
         public override void Select()
         {
-            var isContinue = _turnStateMachine.OnSelect();
-            if (!isContinue) Start();
+            var isStop = _turnStateMachine.OnSelect();
+            if (isStop) Start();
         }
 
         public override void Select(int id)

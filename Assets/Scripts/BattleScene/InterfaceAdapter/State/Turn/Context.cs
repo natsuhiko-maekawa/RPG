@@ -49,7 +49,7 @@ namespace BattleScene.InterfaceAdapter.State.Turn
             _state = memento.GetState();
         }
 
-        public bool IsContinue => _state is not TurnStopState;
+        public bool HasStopState => _state is TurnStopState;
         public bool HasCancelableState => _state is ICancelable;
 
         public bool TryCancel()

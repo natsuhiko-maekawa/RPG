@@ -23,11 +23,16 @@ namespace BattleScene.InterfaceAdapter.StateMachine
             _context = new Context(_turnStartState);
         }
 
+        /// <summary>
+        /// 引数のない「決定」のアクションがあったときに、次の状態に遷移する。<br/>
+        /// ステートマシンが終了した場合(これ以上遷移先のない状態に遷移した場合)、trueを返す。
+        /// </summary>
+        /// <returns>ステートマシンが終了した場合、true。それ以外の場合、false。</returns>
         public bool OnSelect()
         {
             Backup();
             _context.Select();
-            return _context.IsContinue;
+            return _context.HasStopState;
         }
 
         public void OnSelect(int id)
