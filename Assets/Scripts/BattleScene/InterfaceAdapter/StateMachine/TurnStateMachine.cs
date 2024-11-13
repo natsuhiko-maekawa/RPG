@@ -1,14 +1,14 @@
 using System.Collections.Generic;
-using System.Linq;
 using BattleScene.Domain.Id;
 using BattleScene.InterfaceAdapter.State.Turn;
+using Utility;
 
 namespace BattleScene.InterfaceAdapter.StateMachine
 {
     public class TurnStateMachine
     {
         private Context _context = null!;
-        private readonly List<Memento> _mementoList = new();
+        private readonly Stack<Memento> _mementoStack = new();
         private readonly TurnStartState _turnStartState;
 
         public TurnStateMachine(
@@ -19,6 +19,7 @@ namespace BattleScene.InterfaceAdapter.StateMachine
 
         public void Start()
         {
+            _mementoStack.Clear();
             _context = new Context(_turnStartState);
         }
 
@@ -50,15 +51,19 @@ namespace BattleScene.InterfaceAdapter.StateMachine
 
         private void Backup()
         {
-            _mementoList.Add(_context.Save());
+            // contextが保持しているステートがキャンセルできない場合、
+            // 前回BackupしたMementoはUndoされる可能性がないため、Popする。
+            // StateMachineを初期化してすぐの場合mementoStackは空なので、
+            // PopメソッドではなくTryPopメソッドを用いる。
+            if (!_context.HasCancelableState) _mementoStack.TryPop(out _);
+            _mementoStack.Push(_context.Save());
+            // 現状の状態遷移だとmementoStackのsizeが4を超えることはない。
+            MyDebug.Assert(_mementoStack.Count < 4);
         }
 
         private void Undo()
         {
-            if (_mementoList.Count == 0) return;
-
-            var memento = _mementoList.Last();
-            _mementoList.Remove(memento);
+            if (!_mementoStack.TryPop(out var memento)) return;
             _context.Restore(memento);
         }
     }
