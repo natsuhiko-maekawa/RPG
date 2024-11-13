@@ -37,9 +37,8 @@ namespace BattleScene.InterfaceAdapter.StateMachine
         public void OnSelect(int id) => _context.Select(id);
         public void OnSelect(IReadOnlyList<CharacterDto> targetDtoList) 
             => _context.Select(ToCharacterIdList(targetDtoList));
+        public void OnCancel() => _context.Cancel();
 
-        public void OnCancel() { }
-        
         private IReadOnlyList<CharacterId> ToCharacterIdList(IReadOnlyList<CharacterDto> characterDtoList)
         {
             return characterDtoList

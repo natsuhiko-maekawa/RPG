@@ -1,46 +1,43 @@
 ﻿using System.Collections.Generic;
 using BattleScene.Domain.Id;
-using BattleScene.InterfaceAdapter.State.Turn;
+using BattleScene.InterfaceAdapter.StateMachine;
 
 namespace BattleScene.InterfaceAdapter.State.Battle
 {
     public class TurnState : BaseState
     {
-        private readonly TurnStartState _turnStartState;
-        private Turn.Context _context = null!;
+        private readonly TurnStateMachine _turnStateMachine;
 
         public TurnState(
-            TurnStartState turnStartState)
+            TurnStateMachine turnStateMachine)
         {
-            _turnStartState = turnStartState;
+            _turnStateMachine = turnStateMachine;
         }
 
         public override void Start()
         {
-            _context = new Turn.Context(_turnStartState);
+            _turnStateMachine.Start();
         }
 
         public override void Select()
         {
-            _context.Select();
-            Transition();
+            var isContinue = _turnStateMachine.OnSelect();
+            if (!isContinue) Start();
         }
 
         public override void Select(int id)
         {
-            _context.Select(id);
-            Transition();
+            _turnStateMachine.OnSelect(id);
         }
 
         public override void Select(IReadOnlyList<CharacterId> targetIdList)
         {
-            _context.Select(targetIdList);
-            Transition();
+            _turnStateMachine.OnSelect(targetIdList);
         }
 
-        private void Transition()
+        public override void Cancel()
         {
-            if (!_context.IsContinue) Start();
+            _turnStateMachine.OnCancel();
         }
     }
 }

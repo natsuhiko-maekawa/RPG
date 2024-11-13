@@ -1,4 +1,5 @@
 ﻿using BattleScene.Framework.InputActions;
+using BattleScene.Framework.View;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using VContainer;
@@ -9,11 +10,18 @@ namespace BattleScene.Framework.Input
     public class BattleSceneInput : MonoBehaviour, IBattleSceneActions
     {
         private BattleSceneInputAction _inputAction;
+        private GridView _gridView;
+        private TargetView _targetView;
         private INoArgumentActions _noArgumentActions;
 
         [Inject]
-        public void Construct(INoArgumentActions noArgumentActions)
+        public void Construct(
+            GridView gridView,
+            TargetView targetView,
+            INoArgumentActions noArgumentActions)
         {
+            _gridView = gridView;
+            _targetView = targetView;
             _noArgumentActions = noArgumentActions;
         }
 
@@ -26,6 +34,8 @@ namespace BattleScene.Framework.Input
 
         public void OnSelect(InputAction.CallbackContext context)
         {
+            if (_gridView.enabled) return;
+            if (_targetView.enabled) return;
             if (context.performed) _noArgumentActions.OnSelect();
         }
 

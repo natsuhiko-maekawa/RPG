@@ -32,10 +32,12 @@ namespace BattleScene.Framework.View
             _playerView = GetComponentInChildren<PlayerView>();
             _inputAction = new BattleSceneInputAction();
             _inputAction.BattleScene.AddCallbacks(this);
+            enabled = false;
         }
 
         public Task StartAnimation(TargetViewDto dto)
         {
+            enabled = true;
             _inputAction.Enable();
 
             _dto = dto;
@@ -71,6 +73,8 @@ namespace BattleScene.Framework.View
             {
                 enemyView.StopFrameAnimation();
             }
+
+            enabled = false;
         }
 
         private bool IsEnemySolo(IReadOnlyList<CharacterDto> characterDtoList)

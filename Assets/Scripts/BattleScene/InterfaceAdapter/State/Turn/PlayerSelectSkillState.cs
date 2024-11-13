@@ -7,7 +7,7 @@ using BattleScene.UseCases.UseCase;
 
 namespace BattleScene.InterfaceAdapter.State.Turn
 {
-    public class PlayerSelectSkillState : BaseState
+    public class PlayerSelectSkillState : BaseState, ICancelable
     {
         private readonly IResource<CharacterPropertyDto, CharacterTypeCode> _propertyResource;
         private readonly PlayerSelectSkillUseCase _useCase;
@@ -49,6 +49,11 @@ namespace BattleScene.InterfaceAdapter.State.Turn
             {
                 Context.TransitionTo(_playerSelectTargetState);
             }
+        }
+
+        public void OnCancel()
+        {
+            _skillView.StopAnimation();
         }
     }
 }

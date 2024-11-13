@@ -46,10 +46,12 @@ namespace BattleScene.Framework.View
             _playerView = root.GetComponentInChildren<PlayerView>();
             _inputAction = new BattleSceneInputAction();
             _inputAction.BattleScene.AddCallbacks(this);
+            enabled = false;
         }
 
         public async Task StartAnimationAsync(GridViewDto dto)
         {
+            enabled = true;
             _window.Show();
             _inputAction.Enable();
 
@@ -97,6 +99,7 @@ namespace BattleScene.Framework.View
             _arrowUp.Hide();
             _arrowDown.Hide();
             _inputAction.Disable();
+            enabled = false;
         }
 
         private async Task MoveArrow(Vector2 vector2)

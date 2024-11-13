@@ -5,7 +5,7 @@ using BattleScene.InterfaceAdapter.Presenter;
 
 namespace BattleScene.InterfaceAdapter.State.Turn
 {
-    public class PlayerSelectTargetState : BaseState
+    public class PlayerSelectTargetState : BaseState, ICancelable
     {
         private readonly SkillState _skillState;
         private readonly TargetViewPresenter _targetView;
@@ -29,6 +29,11 @@ namespace BattleScene.InterfaceAdapter.State.Turn
             _targetView.StopAnimation();
             Context.TargetIdList = targetIdList;
             Context.TransitionTo(_skillState);
+        }
+
+        public void OnCancel()
+        {
+            _targetView.StopAnimation();
         }
     }
 }

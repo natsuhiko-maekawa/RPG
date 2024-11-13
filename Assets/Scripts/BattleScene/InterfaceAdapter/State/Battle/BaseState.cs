@@ -12,20 +12,10 @@ namespace BattleScene.InterfaceAdapter.State.Battle
             Context = context;
         }
 
-        public virtual void Start()
-        {
-        }
-
-        public virtual void Select()
-        {
-        }
-
-        public virtual void Select(int id)
-        {
-        }
-
-        public virtual void Select(IReadOnlyList<CharacterId> targetIdList)
-        {
-        }
+        public virtual void Start() { }
+        public virtual void Select() { }
+        public virtual void Select(int id) { }
+        public virtual void Select(IReadOnlyList<CharacterId> targetIdList) { }
+        public virtual void Cancel() { }
     }
 }

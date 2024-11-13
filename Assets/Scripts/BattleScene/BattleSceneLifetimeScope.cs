@@ -264,10 +264,12 @@ namespace BattleScene
 
             builder.Register<ActorService>(Singleton);
             builder.Register<MessageCodeConverterService>(Singleton);
-            builder.Register<SkillElementStateMachine>(Singleton);
             builder.Register<ToIndexService>(Singleton);
 
             #endregion
+
+            builder.Register<TurnStateMachine>(Singleton);
+            builder.Register<SkillElementStateMachine>(Singleton);
 
             #region RegisterState
 

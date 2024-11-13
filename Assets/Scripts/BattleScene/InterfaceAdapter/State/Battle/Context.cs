@@ -22,9 +22,8 @@ namespace BattleScene.InterfaceAdapter.State.Battle
         }
 
         public void Select() => _state.Select();
-
         public void Select(int id) => _state.Select(id);
-
         public void Select(IReadOnlyList<CharacterId> targetIdList) => _state.Select(targetIdList);
+        public void Cancel() => _state.Cancel();
     }
 }
