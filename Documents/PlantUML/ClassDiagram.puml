@@ -30,6 +30,7 @@ package Presenters{
         - _context
         - _mementoList
     }
+    interface IActions
     class Facade
     class Presenter
 
@@ -42,6 +43,7 @@ package Presenters{
     Memento <- Context
     Memento <-- StateMachine
     Context <-- StateMachine
+    IActions <|--- StateMachine
 }
 
 package Models{
