@@ -15,11 +15,11 @@ namespace BattleScene.Framework.View
             _text = Instantiate(infoText, transform);
         }
 
-        public Task StartAnimation(InfoViewDto dto)
+        public Task StartAnimationAsync(InfoViewModel info)
         {
-            if (string.IsNullOrEmpty(dto.Info)) return Task.CompletedTask;
+            if (string.IsNullOrEmpty(info.Info)) return Task.CompletedTask;
             _text.enabled = true;
-            _text.text = dto.Info;
+            _text.text = info.Info;
             return Task.CompletedTask;
         }
 

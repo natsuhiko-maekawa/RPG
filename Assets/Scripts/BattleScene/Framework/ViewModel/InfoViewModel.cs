@@ -1,5 +1,5 @@
 ﻿namespace BattleScene.Framework.ViewModel
 {
-    public record InfoViewDto(
+    public record InfoViewModel(
         string Info);
 }

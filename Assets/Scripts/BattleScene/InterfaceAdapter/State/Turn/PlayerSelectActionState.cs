@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using BattleScene.Domain.Code;
+using BattleScene.InterfaceAdapter.Facade;
 using BattleScene.InterfaceAdapter.Presenter;
 using BattleScene.UseCases.UseCase;
 
@@ -12,6 +14,7 @@ namespace BattleScene.InterfaceAdapter.State.Turn
         private readonly PlayerSelectSkillState _playerSelectSkillState;
         private readonly PlayerSelectTargetState _playerSelectTargetState;
         private readonly SkillState _skillState;
+        private readonly PlayerSelectActionOutput _output;
         private readonly GridViewPresenter _gridView;
 
         private readonly IReadOnlyDictionary<int, BattleEventCode> _actionCodeDictionary = new Dictionary<int, BattleEventCode>()
@@ -27,18 +30,20 @@ namespace BattleScene.InterfaceAdapter.State.Turn
             PlayerSelectTargetState playerSelectTargetState,
             SkillState skillState,
             GridViewPresenter gridView,
-            PlayerSelectActionUseCase useCase)
+            PlayerSelectActionUseCase useCase,
+            PlayerSelectActionOutput output)
         {
             _playerSelectSkillState = playerSelectSkillState;
             _playerSelectTargetState = playerSelectTargetState;
             _skillState = skillState;
             _gridView = gridView;
             _useCase = useCase;
+            _output = output;
         }
 
-        public override void Start()
+        public override async void Start()
         {
-            _gridView.StartAnimationAsync();
+            await _output.StartAsync();
         }
 
         public override void Select(int id)
@@ -62,7 +67,7 @@ namespace BattleScene.InterfaceAdapter.State.Turn
                 _ => throw new ArgumentOutOfRangeException()
             };
 
-            _gridView.Stop();
+            _output.Stop();
             Context.TransitionTo(nextState);
         }
     }

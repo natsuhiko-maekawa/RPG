@@ -91,6 +91,7 @@ namespace BattleScene
             builder.Register<DamageViewPresenter>(Singleton);
             builder.Register<EnemyImagePresenter>(Singleton);
             builder.Register<GridViewPresenter>(Singleton);
+            builder.Register<InfoViewPresenter>(Singleton);
             builder.Register<MessageViewPresenter>(Singleton);
             builder.Register<OrderViewPresenter>(Singleton);
             builder.Register<PlayerImageViewPresenter>(Singleton);
@@ -121,6 +122,7 @@ namespace BattleScene
             builder.Register<ResetAilmentOutputFacade>(Singleton);
             builder.Register<DamageOutputFacade>(Singleton);
             builder.Register<DestroyOutputFacade>(Singleton);
+            builder.Register<PlayerSelectActionOutput>(Singleton);
             builder.Register<ResetOutputFacade>(Singleton);
             builder.Register<RestoreOutputFacade>(Singleton);
             builder.Register<SkillOutputFacade>(Singleton);

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 using BattleScene.DataAccess;
 using BattleScene.DataAccess.Dto;
 using BattleScene.Domain.Code;
@@ -32,7 +33,7 @@ namespace BattleScene.InterfaceAdapter.Presenter
             _gridView = gridView;
         }
 
-        public async void StartAnimationAsync()
+        public async Task StartAnimationAsync()
         {
             var actionCodeList = new[]
                 { BattleEventCode.Attack, BattleEventCode.Skill, BattleEventCode.Defence, BattleEventCode.FatalitySkill };
