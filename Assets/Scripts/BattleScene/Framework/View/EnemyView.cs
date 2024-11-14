@@ -38,10 +38,9 @@ namespace BattleScene.Framework.View
             Image.sprite = sprite;
         }
 
-        public Task StartAilmentAnimationAsync(AilmentViewModel dto)
+        public void StartAilmentAnimationAsync(AilmentViewModel dto)
         {
             _enemyAilmentView.StartAnimation(dto);
-            return Task.CompletedTask;
         }
 
         public async Task StartDigitAnimationAsync(DigitListViewModel model)
@@ -49,16 +48,14 @@ namespace BattleScene.Framework.View
             await _digitView.StartAnimationAsync(model);
         }
 
-        public Task StartHitPointBarAnimationAsync(EnemyHpBarViewDto dto)
+        public void StartHitPointBarAnimationAsync(EnemyHpBarViewDto dto)
         {
             _hitPointBarView.StartAnimation(dto.StatusBarViewDto);
-            return Task.CompletedTask;
         }
 
-        public Task StartFrameAnimationAsync(FrameViewDto dto)
+        public void StartFrameAnimationAsync(FrameViewDto dto)
         {
             _frameView.StartAnimation(dto);
-            return Task.CompletedTask;
         }
 
         public void StopFrameAnimation()

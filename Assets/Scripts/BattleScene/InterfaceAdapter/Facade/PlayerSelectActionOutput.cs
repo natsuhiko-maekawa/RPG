@@ -19,9 +19,9 @@ namespace BattleScene.InterfaceAdapter.Facade
 
         public async Task StartAsync()
         {
-            var infoAnimation = _infoView.StartAnimationAsync(MessageCode.VerticalSelect);
+            _infoView.StartAnimationAsync(MessageCode.VerticalSelect);
             var gridAnimation = _gridView.StartAnimationAsync();
-            await Task.WhenAll(infoAnimation, gridAnimation);
+            await Task.WhenAll(gridAnimation);
         }
 
         public void Stop()

@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using BattleScene.Framework.ViewModel;
+﻿using BattleScene.Framework.ViewModel;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,12 +14,11 @@ namespace BattleScene.Framework.View
             _text = Instantiate(infoText, transform);
         }
 
-        public Task StartAnimationAsync(InfoViewModel info)
+        public void StartAnimation(InfoViewModel info)
         {
-            if (string.IsNullOrEmpty(info.Info)) return Task.CompletedTask;
+            if (string.IsNullOrEmpty(info.Info)) return;
             _text.enabled = true;
             _text.text = info.Info;
-            return Task.CompletedTask;
         }
 
         public void StopAnimation()

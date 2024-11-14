@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using BattleScene.Framework.GameObjects;
+﻿using BattleScene.Framework.GameObjects;
 using BattleScene.Framework.ViewModel;
 using UnityEngine;
 using UnityEngine.UI;
@@ -19,12 +18,10 @@ namespace BattleScene.Framework.View
             _statusBarText = GetComponentInChildren<StatusBarText>();
         }
 
-        public Task StartAnimation(StatusBarViewDto dto)
+        public void StartAnimation(StatusBarViewDto dto)
         {
             _statusBarText.Set(dto.CurrentPoint, dto.MaxPoint);
             _statusBarMeter.Set(dto.CurrentPoint, dto.MaxPoint);
-
-            return Task.CompletedTask;
         }
     }
 }

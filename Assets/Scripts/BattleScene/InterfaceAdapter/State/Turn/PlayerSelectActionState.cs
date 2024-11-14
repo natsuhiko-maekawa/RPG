@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using BattleScene.Domain.Code;
 using BattleScene.InterfaceAdapter.Facade;
 using BattleScene.InterfaceAdapter.Presenter;

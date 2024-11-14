@@ -1,4 +1,3 @@
-using System.Threading.Tasks;
 using BattleScene.DataAccess;
 using BattleScene.DataAccess.Dto;
 using BattleScene.Domain.Code;
@@ -25,12 +24,12 @@ namespace BattleScene.InterfaceAdapter.Presenter
             _infoView = infoView;
         }
 
-        public async Task StartAnimationAsync(MessageCode messageCode)
+        public void StartAnimationAsync(MessageCode messageCode)
         {
             MyDebug.Assert(messageCode != MessageCode.NoMessage);
             var message = _messageResource.Get(messageCode).Message;
             message = _messageCodeConverter.Replace(message);
-            await _infoView.StartAnimationAsync(new InfoViewModel(message));
+            _infoView.StartAnimation(new InfoViewModel(message));
         }
 
         public void StopAnimation()

@@ -61,10 +61,9 @@ namespace BattleScene.Framework.View
             await _playerDigitView.StartAnimationAsync(model);
         }
 
-        public Task StartFrameView(FrameViewDto dto)
+        public void StartFrameView(FrameViewDto dto)
         {
             _playerFrameView.StartAnimation(dto);
-            return Task.CompletedTask;
         }
 
         public void StopPlayerFrameView()
@@ -72,10 +71,9 @@ namespace BattleScene.Framework.View
             _playerFrameView.StopAnimation();
         }
 
-        public Task StartPlayerHpBarView(PlayerHpBarViewDto dto)
+        public void StartPlayerHpBarView(PlayerHpBarViewDto dto)
         {
             _playerHpBarView.StartAnimation(dto.StatusBarViewDto);
-            return Task.CompletedTask;
         }
 
         public Task StartPlayerTpBarView(PlayerTpBarViewDto dto)
@@ -84,10 +82,9 @@ namespace BattleScene.Framework.View
             return Task.CompletedTask;
         }
 
-        public Task StartTechnicalPointBarView(TechnicalPointBarViewDto dto)
+        public void StartTechnicalPointBarView(TechnicalPointBarViewDto dto)
         {
             _playerTpBarView.StartAnimation(dto);
-            return Task.CompletedTask;
         }
 
         public async Task StartPlayerVibesView()

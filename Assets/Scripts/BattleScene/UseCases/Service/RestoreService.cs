@@ -6,7 +6,6 @@ using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
 using BattleScene.UseCases.IService;
-using Utility;
 
 namespace BattleScene.UseCases.Service
 {

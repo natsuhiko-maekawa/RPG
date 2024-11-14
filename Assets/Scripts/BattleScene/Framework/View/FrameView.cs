@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using BattleScene.Framework.ViewModel;
+﻿using BattleScene.Framework.ViewModel;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,11 +15,10 @@ namespace BattleScene.Framework.View
             _frame.enabled = false;
         }
 
-        public Task StartAnimation(FrameViewDto dto)
+        public void StartAnimation(FrameViewDto dto)
         {
             _frame.color = dto.Color;
             _frame.enabled = true;
-            return Task.CompletedTask;
         }
 
         public void StopAnimation()

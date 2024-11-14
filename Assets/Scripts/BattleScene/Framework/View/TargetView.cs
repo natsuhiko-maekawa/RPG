@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using BattleScene.Framework.InputActions;
 using BattleScene.Framework.ViewModel;
 using UnityEngine;
@@ -35,7 +34,7 @@ namespace BattleScene.Framework.View
             enabled = false;
         }
 
-        public Task StartAnimation(TargetViewDto dto)
+        public void StartAnimation(TargetViewDto dto)
         {
             enabled = true;
             _inputAction.Enable();
@@ -48,7 +47,7 @@ namespace BattleScene.Framework.View
                 if (_index == -1) SetIndex(dto);
 
                 _enemiesView[_enemyPositionList[_index]].StartFrameAnimationAsync(frameViewDto);
-                return Task.CompletedTask;
+                return;
             }
 
             foreach (var character in dto.CharacterDtoList)
@@ -61,8 +60,6 @@ namespace BattleScene.Framework.View
 
                 _enemiesView[character.EnemyIndex].StartFrameAnimationAsync(frameViewDto);
             }
-
-            return Task.CompletedTask;
         }
 
         public void StopAnimation()
@@ -93,7 +90,7 @@ namespace BattleScene.Framework.View
             Debug.Assert(_index != -1);
         }
 
-        private async Task MoveFrame(Vector2 vector2)
+        private void MoveFrame(Vector2 vector2)
         {
             if (vector2.x == 0) return;
 
@@ -102,7 +99,7 @@ namespace BattleScene.Framework.View
                 ? Math.Min(_index + 1, _enemyPositionList.Count - 1)
                 : Math.Max(_index - 1, 0);
 
-            await StartAnimation(_dto);
+            StartAnimation(_dto);
         }
 
         private IReadOnlyList<CharacterDto> GetTargetDtoList()
@@ -129,7 +126,7 @@ namespace BattleScene.Framework.View
             if (context.performed)
             {
                 var vector2 = context.ReadValue<Vector2>();
-                var _ = MoveFrame(vector2);
+                MoveFrame(vector2);
             }
         }
     }

@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using BattleScene.Framework.GameObjects;
 using BattleScene.Framework.Utility;
 using BattleScene.Framework.ViewModel;
@@ -26,7 +25,7 @@ namespace BattleScene.Framework.View
             _iconArray = MySprite.CreateByGrid(icons, 4, 4);
         }
 
-        public Task StartAnimation(AilmentViewModel ailment)
+        public void StartAnimation(AilmentViewModel ailment)
         {
             if (ailment.Effects && !_ailmentIdList.Contains(ailment.AilmentId)) _ailmentIdList.Add(ailment.AilmentId);
             if (!ailment.Effects) _ailmentIdList.Remove(ailment.AilmentId);
@@ -44,8 +43,6 @@ namespace BattleScene.Framework.View
                     enemyAilment.ResetIcon();
                 }
             }
-
-            return Task.CompletedTask;
         }
     }
 }

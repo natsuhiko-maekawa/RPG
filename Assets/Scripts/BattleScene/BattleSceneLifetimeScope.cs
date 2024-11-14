@@ -10,7 +10,6 @@ using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
 using BattleScene.Framework;
 using BattleScene.Framework.Input;
-using BattleScene.Framework.InputActions;
 using BattleScene.Framework.View;
 using BattleScene.InterfaceAdapter;
 using BattleScene.InterfaceAdapter.Facade;
