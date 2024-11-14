@@ -1,5 +1,6 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
+using BattleScene.Framework.GameObjects;
 using BattleScene.Framework.ViewModel;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,18 +8,20 @@ using static BattleScene.Framework.Constant;
 
 namespace BattleScene.Framework.View
 {
+    // 以下のページを参考にTextMeshProを使用するよう修正する
+    // https://nekojara.city/unity-textmesh-pro-typewriter-effect
+    // .maxVisibleCharactersプロパティを使用してゼロアロケーションの文字表示を実現すること
     public class MessageView : MonoBehaviour
     {
-        [SerializeField] private Text messageBoxText;
-        [SerializeField] private Image window;
         private CancellationTokenSource _cancellationTokenSource;
         private Text _text;
 
         private void Awake()
         {
             _cancellationTokenSource = new CancellationTokenSource();
-            Instantiate(window, transform);
-            _text = Instantiate(messageBoxText, transform);
+            _text = GetComponentInChildren<Text>();
+            var window = GetComponentInChildren<Window>();
+            window.Show();
         }
 
         public async Task StartAnimationAsync(MessageViewDto dto)
