@@ -11,12 +11,12 @@ namespace BattleScene.UseCases.Service
 {
     public class AilmentService : ISkillElementService<AilmentValueObject>
     {
-        private readonly ActualTargetIdPickerService _actualTargetIdPicker;
+        private readonly IActualTargetIdPickerService _actualTargetIdPicker;
         private readonly IFactory<AilmentPropertyValueObject, AilmentCode> _ailmentPropertyFactory;
         private readonly ICollection<AilmentEntity, (CharacterId, AilmentCode)> _ailmentCollection;
 
         public AilmentService(
-            ActualTargetIdPickerService actualTargetIdPicker,
+            IActualTargetIdPickerService actualTargetIdPicker,
             IFactory<AilmentPropertyValueObject, AilmentCode> ailmentPropertyFactory,
             ICollection<AilmentEntity, (CharacterId, AilmentCode)> ailmentCollection)
         {

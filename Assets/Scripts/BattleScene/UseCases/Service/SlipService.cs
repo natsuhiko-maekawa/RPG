@@ -11,12 +11,12 @@ namespace BattleScene.UseCases.Service
 {
     public class SlipService : ISkillElementService<SlipValueObject>
     {
-        private readonly ActualTargetIdPickerService _actualTargetIdPicker;
+        private readonly IActualTargetIdPickerService _actualTargetIdPicker;
         private readonly IFactory<BattlePropertyValueObject> _battlePropertyFactory;
         private readonly ICollection<SlipEntity, SlipCode> _slipDamageCollection;
 
         public SlipService(
-            ActualTargetIdPickerService actualTargetIdPicker,
+            IActualTargetIdPickerService actualTargetIdPicker,
             IFactory<BattlePropertyValueObject> battlePropertyFactory,
             ICollection<SlipEntity, SlipCode> slipDamageCollection)
         {

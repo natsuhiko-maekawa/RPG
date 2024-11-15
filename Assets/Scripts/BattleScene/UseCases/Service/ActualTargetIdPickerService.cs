@@ -8,7 +8,7 @@ using BattleScene.UseCases.IService;
 
 namespace BattleScene.UseCases.Service
 {
-    public class ActualTargetIdPickerService
+    public class ActualTargetIdPickerService : IActualTargetIdPickerService
     {
         private readonly IFactory<BattlePropertyValueObject> _battlePropertyFactory;
         private readonly CharacterPropertyFactoryService _characterPropertyFactory;

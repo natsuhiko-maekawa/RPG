@@ -11,12 +11,12 @@ namespace BattleScene.UseCases.Service
 {
     public class DestroyService : ISkillElementService<DestroyValueObject>
     {
-        private readonly ActualTargetIdPickerService _actualTargetIdPicker;
+        private readonly IActualTargetIdPickerService _actualTargetIdPicker;
         private readonly ICollection<BodyPartEntity, (CharacterId, BodyPartCode)> _bodyPartCollection;
         private readonly IFactory<BodyPartPropertyValueObject, BodyPartCode> _bodyPartPropertyFactory;
 
         public DestroyService(
-            ActualTargetIdPickerService actualTargetIdPicker,
+            IActualTargetIdPickerService actualTargetIdPicker,
             ICollection<BodyPartEntity, (CharacterId, BodyPartCode)> bodyPartCollection,
             IFactory<BodyPartPropertyValueObject, BodyPartCode> bodyPartPropertyFactory)
         {

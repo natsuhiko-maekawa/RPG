@@ -350,7 +350,7 @@ namespace BattleScene
             #region RegisterService
 
             builder.Register<ActionTimeService>(Singleton);
-            builder.Register<ActualTargetIdPickerService>(Singleton);
+            builder.Register<IActualTargetIdPickerService, ActualTargetIdPickerService>(Singleton);
             builder.Register<IAilmentResetService, AilmentResetService>(Singleton);
             builder.Register<AttackCounterService>(Singleton);
             builder.Register<AttacksWeakPointEvaluatorService>(Singleton);
