@@ -6,8 +6,12 @@ package Views{
     class View
     class ViewModel << (R, lightcoral) >>
     class GameObject
-    ViewModel <-l- View
-    GameObject <-r-o View
+'    class InputAction
+    interface IActions
+'    IActions <-u- InputAction
+    ViewModel <-r View
+    GameObject <-lo View
+    IActions -[hidden] GameObject
 }
 
 package Presenters{
@@ -30,12 +34,12 @@ package Presenters{
         - _context
         - _mementoList
     }
-    interface IActions
     class Facade
     class Presenter
+    class DummyClass
 
     Facade <-- ConcreteState
-    Presenter <-l-* Facade : contains
+    Presenter <-l* Facade : contains
     BaseState <|- ConcreteState
     BaseState <-- Context
     BaseState <-- Memento
@@ -43,7 +47,10 @@ package Presenters{
     Memento <- Context
     Memento <-- StateMachine
     Context <-- StateMachine
-    IActions <|--- StateMachine
+
+    hide DummyClass
+    DummyClass ---- StateMachine
+    DummyClass - Facade
 }
 
 package Models{
@@ -93,10 +100,13 @@ package Models{
     Dto <-- Resource
 }
 
+'IActions --- StateMachine
+'IActions --- DummyClass
 View <-- Presenter
 ViewModel <-- Presenter
 Models <- Presenter
 UseCase <- ConcreteState
+
 
 hide empty members
 @enduml
