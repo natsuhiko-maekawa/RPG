@@ -31,8 +31,7 @@ namespace BattleScene.InterfaceAdapter.Facade
         {
             var animationList = new List<Task>();
 
-            var messageAnimation = _messageView.StartAnimationAsync(MessageCode.CureMessage);
-            animationList.Add(messageAnimation);
+            _messageView.StartAnimation(MessageCode.CureMessage);
 
             var playerImageCode = _skillViewResource.Get(cure.SkillCode).PlayerImageCode;
             var playerImageAnimation = _playerImageView.StartAnimationAsync(playerImageCode);

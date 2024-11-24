@@ -1,4 +1,3 @@
-using System.Threading.Tasks;
 using BattleScene.DataAccess;
 using BattleScene.DataAccess.Dto;
 using BattleScene.Domain.Code;
@@ -20,10 +19,10 @@ namespace BattleScene.InterfaceAdapter.Facade
             _enhanceViewResource = enhanceViewResource;
         }
 
-        public async Task Out(BattleEventValueObject enhance)
+        public void Out(BattleEventValueObject enhance)
         {
             var messageCode = _enhanceViewResource.Get(enhance.EnhanceCode).MessageCode;
-            await _messageView.StartAnimationAsync(messageCode);
+            _messageView.StartAnimation(messageCode);
         }
     }
 }

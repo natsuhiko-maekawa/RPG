@@ -22,8 +22,7 @@ namespace BattleScene.InterfaceAdapter.Facade
         {
             var animationList = new List<Task>();
 
-            var messageAnimation = _messageView.StartAnimationAsync(MessageCode.RestoreMessage);
-            animationList.Add(messageAnimation);
+            _messageView.StartAnimation(MessageCode.RestoreMessage);
 
             var restoreAnimation = _restoreView.StartAnimationAsync();
             animationList.Add(restoreAnimation);

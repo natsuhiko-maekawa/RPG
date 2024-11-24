@@ -21,7 +21,7 @@ namespace BattleScene.InterfaceAdapter.State.SkillElement
             var isFailure = Context.BattleEventQueue.Count == 0;
             if (isFailure)
             {
-                await _ailmentOutput.OutputThenAilmentFailureAsync();
+                _ailmentOutput.OutputThenAilmentFailureAsync();
             }
             else
             {

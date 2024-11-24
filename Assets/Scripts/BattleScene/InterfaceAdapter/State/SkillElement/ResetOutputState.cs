@@ -18,7 +18,7 @@ namespace BattleScene.InterfaceAdapter.State.SkillElement
 
         public override async void Start()
         {
-            await _resetOutput.Output();
+            _resetOutput.Output();
         }
 
         public override void Select()

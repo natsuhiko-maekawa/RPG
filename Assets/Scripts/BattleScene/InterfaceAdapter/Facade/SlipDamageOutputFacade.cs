@@ -48,8 +48,7 @@ namespace BattleScene.InterfaceAdapter.Facade
             animationList.Add(playerImageAnimation);
 
             var messageCode = skill.Common.AttackMessageCode;
-            var messageAnimation = _messageView.StartAnimationAsync(messageCode);
-            animationList.Add(messageAnimation);
+            _messageView.StartAnimation(messageCode);
 
             return Task.WhenAll(animationList);
         }
@@ -58,8 +57,7 @@ namespace BattleScene.InterfaceAdapter.Facade
         {
             var animationList = new List<Task>();
 
-            var messageAnimation = _messageView.StartAnimationAsync(MessageCode.SlipDamageMessage);
-            animationList.Add(messageAnimation);
+            _messageView.StartAnimation(MessageCode.SlipDamageMessage);
 
             var damageAnimation = _damageView.StartAnimationAsync();
             animationList.Add(damageAnimation);

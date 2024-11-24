@@ -22,7 +22,7 @@ namespace BattleScene.InterfaceAdapter.State.SkillElement
             var isFailure = Context.BattleEventQueue.All(x => x.IsFailure);
             if (isFailure)
             {
-                await _slipOutput.OutputThenSlipFailureAsync();
+                _slipOutput.OutputThenSlipFailureAsync();
                 Context.BattleEventQueue.Clear();
             }
             else

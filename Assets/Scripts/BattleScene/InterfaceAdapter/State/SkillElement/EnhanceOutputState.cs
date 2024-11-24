@@ -22,7 +22,7 @@ namespace BattleScene.InterfaceAdapter.State.SkillElement
             if (Context.BattleEventQueue.Count == 0)
                 throw new InvalidOperationException(ExceptionMessage.ContextPrimeSkillQueueIsEmpty);
             var enhance = Context.BattleEventQueue.Dequeue();
-            await _output.Out(enhance);
+            _output.Out(enhance);
         }
 
         public override void Select()

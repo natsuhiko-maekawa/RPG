@@ -42,8 +42,7 @@ namespace BattleScene.InterfaceAdapter.Facade
             var animationList = new List<Task>();
 
             var messageCode = context.Skill.Common.AttackMessageCode;
-            var messageAnimation = _messageView.StartAnimationAsync(messageCode, context);
-            animationList.Add(messageAnimation);
+            _messageView.StartAnimation(messageCode, context);
 
             var isActorPlayer = _characterCollection.Get(context.ActorId).IsPlayer;
             var playerSkillCode = isActorPlayer

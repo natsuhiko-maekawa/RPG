@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using BattleScene.DataAccess;
+﻿using BattleScene.DataAccess;
 using BattleScene.DataAccess.Dto;
 using BattleScene.Domain.Code;
 using BattleScene.Framework.View;
@@ -26,13 +25,13 @@ namespace BattleScene.InterfaceAdapter.Presenter
             _messageView = messageView;
         }
 
-        public async Task StartAnimationAsync(MessageCode messageCode, Context? context = null, bool noWait = false)
+        public void StartAnimation(MessageCode messageCode, Context? context = null, bool noWait = false)
         {
             MyDebug.Assert(messageCode != MessageCode.NoMessage);
             _messageView.StopAnimation();
             var message = _messageResource.Get(messageCode).Message;
             message = _messageCodeConverter.Replace(message, context);
-            await _messageView.StartAnimationAsync(new MessageViewDto(message, noWait));
+            var _ = _messageView.StartAnimationAsync(new MessageViewDto(message, noWait));
         }
     }
 }

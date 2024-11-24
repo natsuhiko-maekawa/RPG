@@ -17,12 +17,12 @@ namespace BattleScene.InterfaceAdapter.State.SkillElement
             _output = output;
         }
 
-        public override async void Start()
+        public override void Start()
         {
             if (Context.BattleEventQueue.Count == 0)
                 throw new InvalidOperationException(ExceptionMessage.ContextPrimeSkillQueueIsEmpty);
             var buff = Context.BattleEventQueue.Dequeue();
-            await _output.Out(buff);
+            _output.Out(buff);
         }
 
         public override void Select()
