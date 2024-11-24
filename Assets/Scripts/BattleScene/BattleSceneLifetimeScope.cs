@@ -17,6 +17,7 @@ using BattleScene.InterfaceAdapter.Presenter;
 using BattleScene.InterfaceAdapter.PrimeSkill;
 using BattleScene.InterfaceAdapter.ReactivePresenter;
 using BattleScene.InterfaceAdapter.Service;
+using BattleScene.InterfaceAdapter.Service.Replacement;
 using BattleScene.InterfaceAdapter.Skill;
 using BattleScene.InterfaceAdapter.State.Battle;
 using BattleScene.InterfaceAdapter.State.SkillElement;
@@ -265,6 +266,17 @@ namespace BattleScene
 
             builder.Register<ActorService>(Singleton);
             builder.Register<MessageCodeConverterService>(Singleton);
+            builder.Register<IReplacementService, ActorReplacementService>(Singleton);
+            builder.Register<IReplacementService, AilmentReplacementService>(Singleton);
+            builder.Register<IReplacementService, BuffReplacementService>(Singleton);
+            builder.Register<IReplacementService, CureReplacementService>(Singleton);
+            builder.Register<IReplacementService, DamageReplacementService>(Singleton);
+            builder.Register<IReplacementService, PlayerReplacementService>(Singleton);
+            builder.Register<IReplacementService, SkillReplacementService>(Singleton);
+            builder.Register<IReplacementService, SlipReplacementService>(Singleton);
+            builder.Register<IReplacementService, TargetReplacementService>(Singleton);
+            builder.Register<IReplacementService, TechnicalPointReplacementService>(Singleton);
+            builder.Register<ReplacementCommonService>(Singleton);
             builder.Register<ToIndexService>(Singleton);
 
             #endregion
