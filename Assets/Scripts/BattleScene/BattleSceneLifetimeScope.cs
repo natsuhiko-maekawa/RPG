@@ -145,7 +145,7 @@ namespace BattleScene
             builder.RegisterComponentInHierarchy<IResource<MessageDto, MessageCode>>();
             builder.RegisterComponentInHierarchy<IResource<PlayerViewDto, CharacterTypeCode>>();
             builder.RegisterComponentInHierarchy<IResource<PlayerPropertyDto, CharacterTypeCode>>();
-            builder.RegisterComponentInHierarchy<IResource<PlayerImagePathDto, PlayerImageCode>>();
+            builder.RegisterComponentInHierarchy<IResource<PlayerImageDto, PlayerImageCode>>();
             builder.RegisterComponentInHierarchy<IResource<SkillViewDto, SkillCode>>();
 
             #endregion

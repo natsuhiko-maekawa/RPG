@@ -4,8 +4,8 @@ using BattleScene.Domain.Code;
 
 namespace BattleScene.DataAccess.Resource
 {
-    public class PlayerImagePathResource
-        : BaseScriptableObjectResource<PlayerImagePathScriptableObject, PlayerImagePathDto, PlayerImageCode>
+    public class PlayerImageResource
+        : BaseScriptableObjectResource<PlayerImageScriptableObject, PlayerImageDto, PlayerImageCode>
     {
     }
 }

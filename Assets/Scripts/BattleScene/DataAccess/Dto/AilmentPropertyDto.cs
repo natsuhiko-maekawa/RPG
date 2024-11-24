@@ -7,7 +7,7 @@ namespace BattleScene.DataAccess.Dto
     [Serializable]
     public class AilmentPropertyDto : IUnique<AilmentCode>, ISerializationCallbackReceiver
     {
-        [SerializeField] private string ailmentCode;
+        [SerializeField] private string key;
         [SerializeField] private int turn;
         [SerializeField] private bool isSelfRecovery;
         public AilmentCode Key { get; private set; }
@@ -21,10 +21,10 @@ namespace BattleScene.DataAccess.Dto
 
         public void OnAfterDeserialize()
         {
-            Key = Enum.Parse<AilmentCode>(ailmentCode);
+            Key = Enum.Parse<AilmentCode>(key);
             Turn = turn;
             IsSelfRecovery = isSelfRecovery;
-            Priority = Enum.TryParse<Priority>(ailmentCode, out var priority)
+            Priority = Enum.TryParse<Priority>(key, out var priority)
                 ? (int?)priority
                 : null;
         }

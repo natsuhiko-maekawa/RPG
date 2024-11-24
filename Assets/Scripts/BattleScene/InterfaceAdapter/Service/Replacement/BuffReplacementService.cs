@@ -27,7 +27,7 @@ namespace BattleScene.InterfaceAdapter.Service.Replacement
             var buffCode = _battleLog.GetLast().BuffCode;
             MyDebug.Assert(buffCode != BuffCode.NoBuff);
             if (buffCode == BuffCode.NoBuff) return string.Empty;
-            var buffName = _buffViewInfoResource.Get(buffCode).BuffName;
+            var buffName = _buffViewInfoResource.Get(buffCode).Name;
             return buffName;
         }
     }

@@ -9,7 +9,7 @@ namespace BattleScene.DataAccess.Dto
     [Serializable]
     public class CharacterPropertyDto : IUnique<CharacterTypeCode>, ISerializationCallbackReceiver
     {
-        [SerializeField] private string characterTypeCode;
+        [SerializeField] private string key;
         [SerializeField] private int hitPoint;
         [SerializeField] private int strength;
         [SerializeField] private int vitality;
@@ -36,7 +36,7 @@ namespace BattleScene.DataAccess.Dto
 
         public void OnAfterDeserialize()
         {
-            Key = Enum.Parse<CharacterTypeCode>(characterTypeCode);
+            Key = Enum.Parse<CharacterTypeCode>(key);
             HitPoint = hitPoint;
             Strength = strength;
             Vitality = vitality;

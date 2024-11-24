@@ -8,7 +8,7 @@ namespace BattleScene.DataAccess.Dto
     public class SkillViewDto : IUnique<SkillCode>, ISerializationCallbackReceiver
     {
         [SerializeField] private string key;
-        [SerializeField] private string skillName;
+        [SerializeField] private string name;
         [SerializeField] private string playerImageCode;
         [SerializeField] private string description;
         public SkillCode Key { get; private set; }
@@ -23,7 +23,7 @@ namespace BattleScene.DataAccess.Dto
         public void OnAfterDeserialize()
         {
             Key = Enum.Parse<SkillCode>(key);
-            SkillName = skillName;
+            SkillName = name;
             PlayerImageCode = playerImageCode.Length == 0
                 ? PlayerImageCode.NoImage
                 : Enum.Parse<PlayerImageCode>(playerImageCode);

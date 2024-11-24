@@ -15,14 +15,14 @@ namespace BattleScene.InterfaceAdapter.Presenter
     {
         private readonly AttackCounterService _attackCounter;
         private readonly IResource<MessageDto, MessageCode> _messageResource;
-        private readonly IResource<PlayerImagePathDto, PlayerImageCode> _playerImagePathResource;
+        private readonly IResource<PlayerImageDto, PlayerImageCode> _playerImagePathResource;
         private readonly MessageCodeConverterService _messageCodeConverter;
         private readonly GridView _gridView;
 
         public GridViewPresenter(
             AttackCounterService attackCounter,
             IResource<MessageDto, MessageCode> messageResource,
-            IResource<PlayerImagePathDto, PlayerImageCode> playerImagePathResource,
+            IResource<PlayerImageDto, PlayerImageCode> playerImagePathResource,
             MessageCodeConverterService messageCodeConverter,
             GridView gridView)
         {
@@ -49,7 +49,7 @@ namespace BattleScene.InterfaceAdapter.Presenter
                         RowName: rowName,
                         RowDescription: rowDescription,
                         // TODO: 仮で刀のイラストを設定している
-                        PlayerImagePath: _playerImagePathResource.Get(PlayerImageCode.Katana).PlayerImagePath,
+                        PlayerImagePath: _playerImagePathResource.Get(PlayerImageCode.Katana).Path,
                         Enabled: enabled);
                 })
                 .ToList();

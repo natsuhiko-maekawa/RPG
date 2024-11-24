@@ -19,7 +19,7 @@ namespace BattleScene.InterfaceAdapter.Service.Replacement
         public bool IsMatch(string value) => value == Replacement;
         public ReadOnlySpan<char> GetNewCharSpan()
         {
-            var playerName = _playerViewInfoResource.Get(CharacterTypeCode.Player).PlayerName;
+            var playerName = _playerViewInfoResource.Get(CharacterTypeCode.Player).Name;
             return playerName;
         }
     }

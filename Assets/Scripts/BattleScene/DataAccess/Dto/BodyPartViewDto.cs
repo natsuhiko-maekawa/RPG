@@ -7,18 +7,18 @@ namespace BattleScene.DataAccess.Dto
     [Serializable]
     public class BodyPartViewDto : IUnique<BodyPartCode>, ISerializationCallbackReceiver
     {
-        [SerializeField] private string bodyPartCode;
-        [SerializeField] private string bodyPartName;
+        [SerializeField] private string key;
+        [SerializeField] private string name;
         public BodyPartCode Key { get; private set; }
-        public string BodyPartName { get; private set; }
+        public string Name { get; private set; }
         public void OnBeforeSerialize()
         {
         }
 
         public void OnAfterDeserialize()
         {
-            Key = Enum.Parse<BodyPartCode>(bodyPartCode);
-            BodyPartName = bodyPartName;
+            Key = Enum.Parse<BodyPartCode>(key);
+            Name = name;
         }
     }
 }

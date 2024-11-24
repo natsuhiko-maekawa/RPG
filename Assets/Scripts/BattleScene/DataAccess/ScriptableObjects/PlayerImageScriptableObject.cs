@@ -5,7 +5,7 @@ using UnityEngine;
 namespace BattleScene.DataAccess.ScriptableObjects
 {
     [CreateAssetMenu(menuName = "ScriptableObjects/PlayerImagePath")]
-    public class PlayerImagePathScriptableObject : BaseScriptableObject<PlayerImagePathDto, PlayerImageCode>
+    public class PlayerImageScriptableObject : BaseScriptableObject<PlayerImageDto, PlayerImageCode>
     {
     }
 }

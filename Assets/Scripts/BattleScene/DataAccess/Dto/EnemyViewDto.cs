@@ -7,11 +7,11 @@ namespace BattleScene.DataAccess.Dto
     [Serializable]
     public class EnemyViewDto : IUnique<CharacterTypeCode>, ISerializationCallbackReceiver
     {
-        [SerializeField] private string id;
-        [SerializeField] private string enemyName;
+        [SerializeField] private string key;
+        [SerializeField] private string name;
         public CharacterTypeCode Key { get; private set; }
-        public string EnemyName { get; private set; }
-        public string EnemyImagePath { get; private set; }
+        public string Name { get; private set; }
+        public string ImagePath { get; private set; }
 
         public void OnBeforeSerialize()
         {
@@ -19,9 +19,9 @@ namespace BattleScene.DataAccess.Dto
 
         public void OnAfterDeserialize()
         {
-            Key = Enum.Parse<CharacterTypeCode>(id);
-            EnemyName = enemyName;
-            EnemyImagePath = $"{id}[{id}]";
+            Key = Enum.Parse<CharacterTypeCode>(key);
+            Name = name;
+            ImagePath = $"{key}[{key}]";
         }
     }
 }

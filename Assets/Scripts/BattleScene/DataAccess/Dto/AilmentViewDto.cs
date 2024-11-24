@@ -7,7 +7,7 @@ namespace BattleScene.DataAccess.Dto
     [Serializable]
     public class AilmentViewDto : IUnique<(AilmentCode, SlipCode)>, ISerializationCallbackReceiver
     {
-        [SerializeField] private string code;
+        [SerializeField] private string key;
         [SerializeField] private string name;
         [SerializeField] private string messageCode;
         [SerializeField] private string playerImageCode;
@@ -33,14 +33,14 @@ namespace BattleScene.DataAccess.Dto
 
         private void SetCode()
         {
-            if (Enum.TryParse<AilmentCode>(code, out var ailmentCode))
+            if (Enum.TryParse<AilmentCode>(key, out var ailmentCode))
             {
                 AilmentCode = ailmentCode;
                 SlipCode = SlipCode.NoSlip;
                 return;
             }
 
-            if (Enum.TryParse<SlipCode>(code, out var slipDamageCode))
+            if (Enum.TryParse<SlipCode>(key, out var slipDamageCode))
             {
                 AilmentCode = AilmentCode.NoAilment;
                 SlipCode = slipDamageCode;

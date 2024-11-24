@@ -29,8 +29,8 @@ namespace BattleScene.InterfaceAdapter.Service.Replacement
         {
             var character = _characterCollection.Get(characterId);
             var characterName = character.IsPlayer
-                ? _playerViewInfoResource.Get(CharacterTypeCode.Player).PlayerName
-                : _enemyViewInfoResource.Get(character.CharacterTypeCode).EnemyName;
+                ? _playerViewInfoResource.Get(CharacterTypeCode.Player).Name
+                : _enemyViewInfoResource.Get(character.CharacterTypeCode).Name;
             return characterName;
         }
     }

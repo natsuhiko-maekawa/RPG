@@ -40,7 +40,7 @@ namespace BattleScene.InterfaceAdapter.Presenter
         {
             var characterTypeId = characterEntity.CharacterTypeCode;
             var enemyNumber = characterEntity.Position;
-            var enemyImagePath = _enemyViewInfoResource.Get(characterTypeId).EnemyImagePath;
+            var enemyImagePath = _enemyViewInfoResource.Get(characterTypeId).ImagePath;
             var dto = new EnemyViewDto(
                 EnemyImagePath: enemyImagePath);
             var indexDtoPair = new KeyValuePair<int, EnemyViewDto>(enemyNumber, dto);

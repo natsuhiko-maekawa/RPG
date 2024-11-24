@@ -8,10 +8,10 @@ namespace BattleScene.DataAccess.Dto
     public class BuffViewDto : IUnique<BuffCode>, ISerializationCallbackReceiver
     {
         [SerializeField] private string key;
-        [SerializeField] private string buffName;
+        [SerializeField] private string name;
         [SerializeField] private string messageCode;
         public BuffCode Key { get; private set; }
-        public string BuffName { get; private set; }
+        public string Name { get; private set; }
         public MessageCode MessageCode { get; private set; }
 
         public void OnBeforeSerialize()
@@ -21,7 +21,7 @@ namespace BattleScene.DataAccess.Dto
         public void OnAfterDeserialize()
         {
             Key = Enum.Parse<BuffCode>(key);
-            BuffName = buffName;
+            Name = name;
             MessageCode = Enum.Parse<MessageCode>(messageCode);
         }
     }

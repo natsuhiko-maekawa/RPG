@@ -7,10 +7,10 @@ namespace BattleScene.DataAccess.Dto
     [Serializable]
     public class PlayerViewDto : IUnique<CharacterTypeCode>, ISerializationCallbackReceiver
     {
-        [SerializeField] private string characterTypeCode;
-        [SerializeField] private string playerName;
+        [SerializeField] private string key;
+        [SerializeField] private string name;
         public CharacterTypeCode Key { get; private set; }
-        public string PlayerName { get; private set; }
+        public string Name { get; private set; }
 
         public void OnBeforeSerialize()
         {
@@ -18,8 +18,8 @@ namespace BattleScene.DataAccess.Dto
 
         public void OnAfterDeserialize()
         {
-            Key = Enum.Parse<CharacterTypeCode>(characterTypeCode);
-            PlayerName = playerName;
+            Key = Enum.Parse<CharacterTypeCode>(key);
+            Name = name;
         }
     }
 }

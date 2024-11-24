@@ -17,7 +17,7 @@ namespace BattleScene.InterfaceAdapter.Presenter
         private readonly GridView _gridView;
         private readonly MessageCodeConverterService _messageCodeConverter;
         private readonly IResource<MessageDto, MessageCode> _messageResource;
-        private readonly IResource<PlayerImagePathDto, PlayerImageCode> _playerPropertyResource;
+        private readonly IResource<PlayerImageDto, PlayerImageCode> _playerPropertyResource;
         private readonly IFactory<CharacterPropertyValueObject, CharacterTypeCode> _propertyFactory;
         private readonly IFactory<SkillValueObject, SkillCode> _skillFactory;
         private readonly IResource<SkillViewDto, SkillCode> _skillPropertyFactory;
@@ -28,7 +28,7 @@ namespace BattleScene.InterfaceAdapter.Presenter
             IFactory<SkillValueObject, SkillCode> skillFactory,
             IResource<SkillViewDto, SkillCode> skillPropertyFactory,
             IResource<MessageDto, MessageCode> messageResource,
-            IResource<PlayerImagePathDto, PlayerImageCode> playerPropertyResource,
+            IResource<PlayerImageDto, PlayerImageCode> playerPropertyResource,
             MessageCodeConverterService messageCodeConverter,
             GridView gridView,
             ITechnicalPointService technicalPoint)
@@ -66,7 +66,7 @@ namespace BattleScene.InterfaceAdapter.Presenter
             var skillProperty = _skillPropertyFactory.Get(x);
             var message = _messageResource.Get(skillProperty.Description).Message;
             var description = _messageCodeConverter.Replace(message);
-            var playerImagePath = _playerPropertyResource.Get(skillProperty.PlayerImageCode).PlayerImagePath;
+            var playerImagePath = _playerPropertyResource.Get(skillProperty.PlayerImageCode).Path;
             // TODO: スキル使用可否の判断で部位破壊についても考慮する
             var enabled = skill.Common.TechnicalPoint <= _technicalPoint.Get();
             var dto = new RowDto(

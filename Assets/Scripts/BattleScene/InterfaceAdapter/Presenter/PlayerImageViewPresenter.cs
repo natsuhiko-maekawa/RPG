@@ -9,11 +9,11 @@ namespace BattleScene.InterfaceAdapter.Presenter
 {
     public class PlayerImageViewPresenter
     {
-        private readonly IResource<PlayerImagePathDto, PlayerImageCode> _playerImagePathResource;
+        private readonly IResource<PlayerImageDto, PlayerImageCode> _playerImagePathResource;
         private readonly PlayerView _playerView;
 
         public PlayerImageViewPresenter(
-            IResource<PlayerImagePathDto, PlayerImageCode> playerImagePathResource,
+            IResource<PlayerImageDto, PlayerImageCode> playerImagePathResource,
             PlayerView playerView)
         {
             _playerImagePathResource = playerImagePathResource;
@@ -22,7 +22,7 @@ namespace BattleScene.InterfaceAdapter.Presenter
 
         public async Task StartAnimationAsync(PlayerImageCode playerImageCode)
         {
-            var playerImagePath = _playerImagePathResource.Get(playerImageCode).PlayerImagePath;
+            var playerImagePath = _playerImagePathResource.Get(playerImageCode).Path;
             var dto = new PlayerViewDto(playerImagePath);
             await _playerView.StartAnimation(dto);
         }
