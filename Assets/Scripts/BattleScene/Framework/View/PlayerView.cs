@@ -27,11 +27,11 @@ namespace BattleScene.Framework.View
             _spriteFlyweight = SpriteFlyweight.Instance;
         }
 
-        public async Task StartAnimation(PlayerViewDto dto)
+        public async Task StartAnimation(PlayerViewModel model)
         {
             try
             {
-                var sprite = await _spriteFlyweight.GetAsync(dto.PlayerImage);
+                var sprite = await _spriteFlyweight.GetAsync(model.PlayerImage);
                 _playerImage.Set(sprite);
                 _playerImage.Show();
             }

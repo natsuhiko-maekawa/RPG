@@ -5,6 +5,7 @@ using BattleScene.DataAccess.Dto;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.ValueObject;
 using BattleScene.InterfaceAdapter.Presenter;
+using static BattleScene.InterfaceAdapter.Presenter.PlayerImageViewPresenter.AnimationMode;
 
 namespace BattleScene.InterfaceAdapter.Facade
 {
@@ -34,7 +35,7 @@ namespace BattleScene.InterfaceAdapter.Facade
             _messageView.StartAnimation(MessageCode.CureMessage);
 
             var playerImageCode = _skillViewResource.Get(cure.SkillCode).PlayerImageCode;
-            var playerImageAnimation = _playerImageView.StartAnimationAsync(playerImageCode);
+            var playerImageAnimation = _playerImageView.StartAnimationAsync(playerImageCode, Slide);
             animationList.Add(playerImageAnimation);
 
             var cureAnimation = _cureView.StartAnimationAsync(cure);

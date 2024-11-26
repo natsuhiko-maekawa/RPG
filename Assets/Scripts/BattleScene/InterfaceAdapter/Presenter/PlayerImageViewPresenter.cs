@@ -3,7 +3,7 @@ using BattleScene.DataAccess;
 using BattleScene.DataAccess.Dto;
 using BattleScene.Domain.Code;
 using BattleScene.Framework.View;
-using PlayerViewDto = BattleScene.Framework.ViewModel.PlayerViewDto;
+using BattleScene.Framework.ViewModel;
 
 namespace BattleScene.InterfaceAdapter.Presenter
 {
@@ -20,11 +20,26 @@ namespace BattleScene.InterfaceAdapter.Presenter
             _playerView = playerView;
         }
 
-        public async Task StartAnimationAsync(PlayerImageCode playerImageCode)
+        public async Task StartAnimationAsync(PlayerImageCode playerImageCode, AnimationMode animationMode)
         {
             var playerImagePath = _playerImagePathResource.Get(playerImageCode).Path;
-            var dto = new PlayerViewDto(playerImagePath);
+            var dto = new PlayerViewModel(playerImagePath);
             await _playerView.StartAnimation(dto);
+            switch (animationMode)
+            {
+                case AnimationMode.Slide:
+                    _playerView.StartPlayerSlideView();
+                    break;
+                case AnimationMode.Vibe:
+                    _playerView.StartPlayerVibeView();
+                    break;
+            }
+        }
+
+        public enum AnimationMode
+        {
+            Slide,
+            Vibe
         }
     }
 }

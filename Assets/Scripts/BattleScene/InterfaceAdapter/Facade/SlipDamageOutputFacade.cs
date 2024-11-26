@@ -6,6 +6,7 @@ using BattleScene.DataAccess.Dto;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.ValueObject;
 using BattleScene.InterfaceAdapter.Presenter;
+using static BattleScene.InterfaceAdapter.Presenter.PlayerImageViewPresenter.AnimationMode;
 
 namespace BattleScene.InterfaceAdapter.Facade
 {
@@ -44,7 +45,7 @@ namespace BattleScene.InterfaceAdapter.Facade
             var animationList = new List<Task>();
 
             var playerImageCode = _skillViewResource.Get(skill.Common.SkillCode).PlayerImageCode;
-            var playerImageAnimation = _playerImageView.StartAnimationAsync(playerImageCode);
+            var playerImageAnimation = _playerImageView.StartAnimationAsync(playerImageCode, Vibe);
             animationList.Add(playerImageAnimation);
 
             var messageCode = skill.Common.AttackMessageCode;

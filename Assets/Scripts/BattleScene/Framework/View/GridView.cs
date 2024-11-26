@@ -87,8 +87,9 @@ namespace BattleScene.Framework.View
                 noWait: true));
 
             _playerView.enabled = true;
-            await _playerView.StartAnimation(new PlayerViewDto(
-                PlayerImage: dto.RowDtoList[gridState.SelectedIndex].PlayerImagePath));
+            await _playerView.StartAnimation(new PlayerViewModel(
+                playerImage: dto.RowDtoList[gridState.SelectedIndex].PlayerImagePath));
+            _playerView.StartPlayerSlideView();
         }
 
         public void StopAnimation()

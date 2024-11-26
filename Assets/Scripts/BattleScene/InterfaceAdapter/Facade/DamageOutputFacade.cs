@@ -7,6 +7,7 @@ using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
 using BattleScene.InterfaceAdapter.Presenter;
+using static BattleScene.InterfaceAdapter.Presenter.PlayerImageViewPresenter.AnimationMode;
 
 namespace BattleScene.InterfaceAdapter.Facade
 {
@@ -52,7 +53,7 @@ namespace BattleScene.InterfaceAdapter.Facade
                     .All(x => !x.IsHit)
                     ? PlayerImageCode.Avoidance
                     : PlayerImageCode.Damaged;
-                var playerImageAnimation = _playerImageView.StartAnimationAsync(playerImageCode);
+                var playerImageAnimation = _playerImageView.StartAnimationAsync(playerImageCode, Vibe);
                 animationList.Add(playerImageAnimation);
             }
 

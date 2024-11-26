@@ -10,6 +10,7 @@ using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.InterfaceAdapter.Presenter;
 using BattleScene.InterfaceAdapter.State.Turn;
+using static BattleScene.InterfaceAdapter.Presenter.PlayerImageViewPresenter.AnimationMode;
 
 namespace BattleScene.InterfaceAdapter.Facade
 {
@@ -56,7 +57,7 @@ namespace BattleScene.InterfaceAdapter.Facade
                                && !SkillCodeList.AilmentSkillCodeList.Contains(x.SkillCode))
                     ?.SkillCode ?? SkillCode.Attack;
             var playerImageCode = _skillViewResource.Get(playerSkillCode).PlayerImageCode;
-            var playerImageAnimation = _playerImageView.StartAnimationAsync(playerImageCode);
+            var playerImageAnimation = _playerImageView.StartAnimationAsync(playerImageCode, Slide);
             animationList.Add(playerImageAnimation);
 
             await Task.WhenAll(animationList);

@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.ValueObject;
 using BattleScene.InterfaceAdapter.Presenter;
+using static BattleScene.InterfaceAdapter.Presenter.PlayerImageViewPresenter.AnimationMode;
 
 namespace BattleScene.InterfaceAdapter.Facade
 {
@@ -29,7 +30,7 @@ namespace BattleScene.InterfaceAdapter.Facade
             var animationList = new List<Task>();
             _messageView.StartAnimation(MessageCode.NoMessage);
 
-            var playerImageAnimation = _playerImageView.StartAnimationAsync(PlayerImageCode.NoImage);
+            var playerImageAnimation = _playerImageView.StartAnimationAsync(PlayerImageCode.NoImage, Slide);
             animationList.Add(playerImageAnimation);
 
             await Task.WhenAll(animationList);

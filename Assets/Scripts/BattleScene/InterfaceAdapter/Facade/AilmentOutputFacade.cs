@@ -9,6 +9,7 @@ using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
 using BattleScene.InterfaceAdapter.Presenter;
+using static BattleScene.InterfaceAdapter.Presenter.PlayerImageViewPresenter.AnimationMode;
 
 namespace BattleScene.InterfaceAdapter.Facade
 {
@@ -44,7 +45,7 @@ namespace BattleScene.InterfaceAdapter.Facade
             if (ailment.ActualTargetIdList.Any(x => _characterCollection.Get(x).IsPlayer))
             {
                 var playerImageCode = _ailmentViewResource.Get(ailment.AilmentCode).PlayerImageCode;
-                var playerImageAnimation = _playerImageView.StartAnimationAsync(playerImageCode);
+                var playerImageAnimation = _playerImageView.StartAnimationAsync(playerImageCode, Slide);
                 animationList.Add(playerImageAnimation);
             }
 
