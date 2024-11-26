@@ -8,6 +8,7 @@ namespace BattleScene.Framework.GameObjects
         private Image _image;
         private Text _text;
         private Animator _animator;
+        private static readonly int SlideTrigger = Animator.StringToHash("Slide");
         private static readonly int VibeTrigger = Animator.StringToHash("Vibe");
 
         private void Awake()
@@ -28,6 +29,7 @@ namespace BattleScene.Framework.GameObjects
         public void Hide() => _image.enabled = false;
         public void SetText(string text) => _text.text = text;
         public void ShowText() => _text.enabled = true;
+        public void Slide() => _animator.SetTrigger(SlideTrigger);
         public void Vibe() => _animator.SetTrigger(VibeTrigger);
     }
 }

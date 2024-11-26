@@ -46,14 +46,7 @@ namespace BattleScene.Framework.View
                 _playerImage.ShowText();
             }
 
-            var originalPosition = new Vector3(0 - MoveRange, 0);
-
-            for (var frame = 0; frame < Frame; ++frame)
-            {
-                var sin = Mathf.Sin(frame / (float)Frame * 90 * Mathf.Deg2Rad);
-                _playerImage.transform.localPosition = originalPosition + new Vector3(MoveRange * sin, 0, 0);
-                await Task.Delay(WaitTime);
-            }
+            _playerImage.Slide();
         }
 
         public async Task StartPlayerDigitView(DigitListViewModel model)
