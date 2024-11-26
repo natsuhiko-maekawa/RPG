@@ -4,7 +4,7 @@
 !theme mars
 package Views{
     class View
-    class ViewModel << (R, lightcoral) >>
+    struct ViewModel
     class GameObject
 '    class InputAction
     interface IActions
@@ -56,7 +56,7 @@ package Presenters{
 package Models{
     package Domain{
         class Entity
-        class ValueObject << (R, lightcoral) >>
+        struct ValueObject
         interface IRepository<TEntity, TId>{
             + Get(TId id)
             + Add(TEntity entity)
@@ -85,7 +85,7 @@ package Models{
         interface IResource<TItem, TKey>{
             + Get(TKey key)
         }
-        class Dto << (R, lightcoral) >>
+        struct Dto
         class Resource<TItem, TKey>
     }
 
