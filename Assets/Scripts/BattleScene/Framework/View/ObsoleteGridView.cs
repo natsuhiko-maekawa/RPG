@@ -85,7 +85,7 @@ namespace BattleScene.Framework.View
 
             var message = dto.RowDtoList[gridState.SelectedIndex].RowDescription;
             var messageViewDto = new MessageViewDto(message, NoWait: true);
-            await messageView.StartAnimationAsync(messageViewDto);
+            messageView.StartAnimation(messageViewDto);
         }
 
         public void StopAnimation()

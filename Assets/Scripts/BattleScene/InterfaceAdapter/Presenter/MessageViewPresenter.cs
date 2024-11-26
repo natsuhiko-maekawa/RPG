@@ -26,7 +26,7 @@ namespace BattleScene.InterfaceAdapter.Presenter
             MyDebug.Assert(messageCode != MessageCode.NoMessage);
             _messageView.StopAnimation();
             var message = _messageResource.Get(messageCode).Message;
-            var _ = _messageView.StartAnimationAsync(new MessageViewDto(message, noWait));
+            _messageView.StartAnimation(new MessageViewDto(message, noWait));
         }
     }
 }

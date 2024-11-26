@@ -36,7 +36,7 @@ namespace BattleScene.Framework.View
             window.Show();
         }
 
-        public async Task StartAnimationAsync(MessageViewDto dto)
+        public void StartAnimation(MessageViewDto dto)
         {
             _myTextMeshPro.SetTextZeroAlloc(ref _tmpText, dto.Message);
             _tmpText.enabled = true;
