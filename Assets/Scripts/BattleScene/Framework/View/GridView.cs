@@ -82,9 +82,9 @@ namespace BattleScene.Framework.View
             _arrowDown.Show(gridState.IsHiddenLower);
 
             _messageView.enabled = true;
-            _messageView.StartAnimation(new MessageViewDto(
-                Message: dto.RowDtoList[gridState.SelectedIndex].RowDescription,
-                NoWait: true));
+            _messageView.StartAnimation(new MessageViewModel(
+                message: dto.RowDtoList[gridState.SelectedIndex].RowDescription,
+                noWait: true));
 
             _playerView.enabled = true;
             await _playerView.StartAnimation(new PlayerViewDto(

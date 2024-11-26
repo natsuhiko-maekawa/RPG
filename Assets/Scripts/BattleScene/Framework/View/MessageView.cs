@@ -36,11 +36,11 @@ namespace BattleScene.Framework.View
             window.Show();
         }
 
-        public void StartAnimation(MessageViewDto dto)
+        public void StartAnimation(MessageViewModel model)
         {
-            _myTextMeshPro.SetTextZeroAlloc(ref _tmpText, dto.Message);
+            _myTextMeshPro.SetTextZeroAlloc(ref _tmpText, model.Message);
             _tmpText.enabled = true;
-            if (dto.NoWait)
+            if (model.NoWait)
             {
                 maxVisibleCharacters = maxCharacters;
             }
