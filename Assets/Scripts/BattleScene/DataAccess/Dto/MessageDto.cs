@@ -8,9 +8,9 @@ namespace BattleScene.DataAccess.Dto
     public class MessageDto : IUnique<MessageCode>, ISerializationCallbackReceiver
     {
         [SerializeField] private string key;
-        [SerializeField] private string message;
+        [SerializeField] private string[] message;
         public MessageCode Key { get; private set; }
-        public string Message { get; private set; }
+        public string[] Message { get; private set; }
 
         public void OnBeforeSerialize()
         {

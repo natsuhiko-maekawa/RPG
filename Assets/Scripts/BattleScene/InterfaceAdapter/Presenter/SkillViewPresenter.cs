@@ -6,7 +6,6 @@ using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.ValueObject;
 using BattleScene.Framework.View;
 using BattleScene.Framework.ViewModel;
-using BattleScene.InterfaceAdapter.Service;
 using BattleScene.UseCases.IService;
 using ActionCode = BattleScene.Framework.Code.ActionCode;
 
@@ -15,7 +14,6 @@ namespace BattleScene.InterfaceAdapter.Presenter
     public class SkillViewPresenter
     {
         private readonly GridView _gridView;
-        private readonly MessageCodeConverterService _messageCodeConverter;
         private readonly IResource<MessageDto, MessageCode> _messageResource;
         private readonly IResource<PlayerImageDto, PlayerImageCode> _playerPropertyResource;
         private readonly IFactory<CharacterPropertyValueObject, CharacterTypeCode> _propertyFactory;
@@ -29,7 +27,6 @@ namespace BattleScene.InterfaceAdapter.Presenter
             IResource<SkillViewDto, SkillCode> skillPropertyFactory,
             IResource<MessageDto, MessageCode> messageResource,
             IResource<PlayerImageDto, PlayerImageCode> playerPropertyResource,
-            MessageCodeConverterService messageCodeConverter,
             GridView gridView,
             ITechnicalPointService technicalPoint)
         {
@@ -37,7 +34,6 @@ namespace BattleScene.InterfaceAdapter.Presenter
             _skillFactory = skillFactory;
             _skillPropertyFactory = skillPropertyFactory;
             _messageResource = messageResource;
-            _messageCodeConverter = messageCodeConverter;
             _playerPropertyResource = playerPropertyResource;
             _gridView = gridView;
             _technicalPoint = technicalPoint;
@@ -64,8 +60,7 @@ namespace BattleScene.InterfaceAdapter.Presenter
         {
             var skill = _skillFactory.Create(x);
             var skillProperty = _skillPropertyFactory.Get(x);
-            var message = _messageResource.Get(skillProperty.Description).Message;
-            var description = _messageCodeConverter.Replace(message);
+            var description = _messageResource.Get(skillProperty.Description).Message;
             var playerImagePath = _playerPropertyResource.Get(skillProperty.PlayerImageCode).Path;
             // TODO: スキル使用可否の判断で部位破壊についても考慮する
             var enabled = skill.Common.TechnicalPoint <= _technicalPoint.Get();

@@ -10,6 +10,7 @@ using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
 using BattleScene.Framework;
 using BattleScene.Framework.Input;
+using BattleScene.Framework.IService;
 using BattleScene.Framework.View;
 using BattleScene.InterfaceAdapter;
 using BattleScene.InterfaceAdapter.Facade;
@@ -265,7 +266,7 @@ namespace BattleScene
             #region RegisterInterfaceAdapterService
 
             builder.Register<ActorService>(Singleton);
-            builder.Register<MessageCodeConverterService>(Singleton);
+            builder.Register<IMyTextMeshProService, MyTextMeshProService>(Singleton);
             builder.Register<IReplacementService, ActorReplacementService>(Singleton);
             builder.Register<IReplacementService, AilmentReplacementService>(Singleton);
             builder.Register<IReplacementService, BuffReplacementService>(Singleton);

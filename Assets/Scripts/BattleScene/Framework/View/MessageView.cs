@@ -1,10 +1,11 @@
-﻿using System.Threading;
+﻿using System;
 using System.Threading.Tasks;
 using BattleScene.Framework.GameObjects;
+using BattleScene.Framework.IService;
 using BattleScene.Framework.ViewModel;
+using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
-using static BattleScene.Framework.Constant;
+using VContainer;
 
 namespace BattleScene.Framework.View
 {
@@ -13,46 +14,53 @@ namespace BattleScene.Framework.View
     // .maxVisibleCharactersプロパティを使用してゼロアロケーションの文字表示を実現すること
     public class MessageView : MonoBehaviour
     {
-        private CancellationTokenSource _cancellationTokenSource;
-        private Text _text;
+        public int maxVisibleCharacters;
+        public int maxCharacters = 100;
+        private TMP_Text _tmpText;
+        private Animator _animator;
+        private IMyTextMeshProService _myTextMeshPro;
+        private static readonly int ShowTrigger = Animator.StringToHash("Show");
+
+        [Inject]
+        private void Construct(
+            IMyTextMeshProService myTextMeshPro)
+        {
+            _myTextMeshPro = myTextMeshPro;
+        }
 
         private void Awake()
         {
-            _cancellationTokenSource = new CancellationTokenSource();
-            _text = GetComponentInChildren<Text>();
+            _tmpText = GetComponentInChildren<TMP_Text>();
+            _animator = GetComponent<Animator>();
             var window = GetComponentInChildren<Window>();
             window.Show();
         }
 
         public async Task StartAnimationAsync(MessageViewDto dto)
         {
-            if (string.IsNullOrEmpty(dto.Message)) return;
-            _text.enabled = true;
+            _myTextMeshPro.SetTextZeroAlloc(ref _tmpText, dto.Message);
+            _tmpText.enabled = true;
             if (dto.NoWait)
             {
-                _text.text = dto.Message;
-                return;
+                maxVisibleCharacters = maxCharacters;
             }
-
-            for (var i = 1; i < dto.Message.Length + 1; ++i)
+            else
             {
-                _text.text = dto.Message.Substring(0, i);
-                try
-                {
-                    await Task.Delay(WaitTime, _cancellationTokenSource.Token);
-                }
-                catch (TaskCanceledException)
-                {
-                }
+                _animator.SetTrigger(ShowTrigger);
             }
+        }
+
+        private void Update()
+        {
+            _tmpText.maxVisibleCharacters = maxVisibleCharacters;
         }
 
         public void StopAnimation()
         {
-            _cancellationTokenSource.Cancel();
-            _cancellationTokenSource = new CancellationTokenSource();
-            _text.text = "";
-            _text.enabled = false;
+            _tmpText.enabled = false;
+            // SetText("")とすると空文字列の分アロケーションが発生してしまうためSetText(Array.Empty<char>())としているが、
+            // この認識は間違っているかもしれない。
+            _tmpText.SetText(Array.Empty<char>());
         }
     }
 }

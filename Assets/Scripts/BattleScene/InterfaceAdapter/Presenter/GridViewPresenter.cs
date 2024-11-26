@@ -6,7 +6,6 @@ using BattleScene.DataAccess.Dto;
 using BattleScene.Domain.Code;
 using BattleScene.Framework.View;
 using BattleScene.Framework.ViewModel;
-using BattleScene.InterfaceAdapter.Service;
 using BattleScene.UseCases.Service;
 
 namespace BattleScene.InterfaceAdapter.Presenter
@@ -16,20 +15,17 @@ namespace BattleScene.InterfaceAdapter.Presenter
         private readonly AttackCounterService _attackCounter;
         private readonly IResource<MessageDto, MessageCode> _messageResource;
         private readonly IResource<PlayerImageDto, PlayerImageCode> _playerImagePathResource;
-        private readonly MessageCodeConverterService _messageCodeConverter;
         private readonly GridView _gridView;
 
         public GridViewPresenter(
             AttackCounterService attackCounter,
             IResource<MessageDto, MessageCode> messageResource,
             IResource<PlayerImageDto, PlayerImageCode> playerImagePathResource,
-            MessageCodeConverterService messageCodeConverter,
             GridView gridView)
         {
             _attackCounter = attackCounter;
             _messageResource = messageResource;
             _playerImagePathResource = playerImagePathResource;
-            _messageCodeConverter = messageCodeConverter;
             _gridView = gridView;
         }
 
@@ -64,7 +60,7 @@ namespace BattleScene.InterfaceAdapter.Presenter
             _gridView.StopAnimation();
         }
 
-        private string GetDescription(BattleEventCode battleEventCode)
+        private string[] GetDescription(BattleEventCode battleEventCode)
         {
             var messageCode = battleEventCode switch
             {
@@ -76,7 +72,6 @@ namespace BattleScene.InterfaceAdapter.Presenter
             };
 
             var message = _messageResource.Get(messageCode).Message;
-            message = _messageCodeConverter.Replace(message);
             return message;
         }
 

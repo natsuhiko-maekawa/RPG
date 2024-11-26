@@ -1,6 +1,6 @@
 ﻿namespace BattleScene.Framework.ViewModel
 {
     public record MessageViewDto(
-        string Message,
+        string[] Message,
         bool NoWait = false);
 }

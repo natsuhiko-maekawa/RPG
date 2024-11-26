@@ -1,30 +1,40 @@
-﻿using BattleScene.Framework.ViewModel;
+﻿using System;
+using BattleScene.Framework.IService;
+using BattleScene.Framework.ViewModel;
+using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
+using VContainer;
 
 namespace BattleScene.Framework.View
 {
     public class InfoView : MonoBehaviour
     {
-        [SerializeField] private Text infoText;
-        private Text _text;
+        private TMP_Text _tmpText;
+        private IMyTextMeshProService _myTextMeshPro;
+
+        [Inject]
+        private void Construct(
+            IMyTextMeshProService myTextMeshPro)
+        {
+            _myTextMeshPro = myTextMeshPro;
+        }
 
         private void Awake()
         {
-            _text = Instantiate(infoText, transform);
+            _tmpText = GetComponentInChildren<TextMeshProUGUI>();
         }
 
         public void StartAnimation(InfoViewModel info)
         {
-            if (string.IsNullOrEmpty(info.Info)) return;
-            _text.enabled = true;
-            _text.text = info.Info;
+            if (info.Info.Length == 0) return;
+            _myTextMeshPro.SetTextZeroAlloc(ref _tmpText, info.Info);
+            _tmpText.enabled = true;
         }
 
         public void StopAnimation()
         {
-            _text.text = "";
-            _text.enabled = false;
+            _tmpText.enabled = false;
+            _tmpText.SetText(Array.Empty<char>());
         }
     }
 }
