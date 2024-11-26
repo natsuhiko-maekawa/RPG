@@ -16,7 +16,7 @@ namespace BattleScene.Framework.View
         private FrameView _playerFrameView;
         private StatusBarView _playerHpBarView;
         private StatusBarView _playerTpBarView;
-        private PlayerVibesView _playerVibesView;
+        private PlayerVibeView _playerVibeView;
         private SpriteFlyweight _spriteFlyweight;
 
         private void Awake()
@@ -27,7 +27,7 @@ namespace BattleScene.Framework.View
             var statusBarViews = GetComponentsInChildren<StatusBarView>();
             _playerHpBarView = statusBarViews[0];
             _playerTpBarView = statusBarViews[1];
-            _playerVibesView = GetComponentInChildren<PlayerVibesView>();
+            _playerVibeView = GetComponentInChildren<PlayerVibeView>();
             _spriteFlyweight = SpriteFlyweight.Instance;
         }
 
@@ -87,9 +87,9 @@ namespace BattleScene.Framework.View
             _playerTpBarView.StartAnimation(dto);
         }
 
-        public async Task StartPlayerVibesView()
+        public void StartPlayerVibeView()
         {
-            await _playerVibesView.StartAnimation();
+            _playerImage.Vibe();
         }
     }
 }

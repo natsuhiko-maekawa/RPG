@@ -35,15 +35,15 @@ namespace BattleScene.InterfaceAdapter.Presenter
                 .ToList();
             var taskList = characterList
                 .Select(x => x!.IsPlayer
-                    ? StartPlayerAnimationAsync()
+                    ? StartPlayerAnimation()
                     : StartEnemyAnimationAsync(x.Position))
                 .ToList();
             await Task.WhenAll(taskList);
         }
 
-        private async Task StartPlayerAnimationAsync()
+        private async Task StartPlayerAnimation()
         {
-            await _playerView.StartPlayerVibesView();
+            _playerView.StartPlayerVibeView();
         }
 
         private async Task StartEnemyAnimationAsync(int position)

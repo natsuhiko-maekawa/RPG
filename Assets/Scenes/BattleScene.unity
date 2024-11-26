@@ -1973,6 +1973,7 @@ GameObject:
   - component: {fileID: 1511295550}
   - component: {fileID: 1511295549}
   - component: {fileID: 1511295547}
+  - component: {fileID: 1511295551}
   m_Layer: 0
   m_Name: PlayerImageView
   m_TagString: Untagged
@@ -2050,6 +2051,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ac9b434f8bdc5e4a9cba983cd26ec9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  seed: 0
+  vibesIntervalSecond: 0.03
+  vibesRangePx: 5
 --- !u!114 &1511295550
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2062,6 +2066,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e17f7f38eace428f91ac133dbc4aa4f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &1511295551
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1511295545}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 95804f72886229f459432dd44d2bd432, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1554560969
 GameObject:
   m_ObjectHideFlags: 0
