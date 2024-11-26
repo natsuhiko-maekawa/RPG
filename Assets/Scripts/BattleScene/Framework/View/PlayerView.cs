@@ -3,20 +3,16 @@ using System.Threading.Tasks;
 using BattleScene.Framework.GameObjects;
 using BattleScene.Framework.ViewModel;
 using UnityEngine;
-using static BattleScene.Framework.Constant;
 
 namespace BattleScene.Framework.View
 {
     public class PlayerView : MonoBehaviour
     {
-        private const int Frame = 10;
-        private const float MoveRange = -20.0f;
         private PlayerImage _playerImage;
         private DigitView _playerDigitView;
         private FrameView _playerFrameView;
         private StatusBarView _playerHpBarView;
         private StatusBarView _playerTpBarView;
-        private PlayerVibeView _playerVibeView;
         private SpriteFlyweight _spriteFlyweight;
 
         private void Awake()
@@ -27,7 +23,7 @@ namespace BattleScene.Framework.View
             var statusBarViews = GetComponentsInChildren<StatusBarView>();
             _playerHpBarView = statusBarViews[0];
             _playerTpBarView = statusBarViews[1];
-            _playerVibeView = GetComponentInChildren<PlayerVibeView>();
+            GetComponentInChildren<PlayerVibeView>();
             _spriteFlyweight = SpriteFlyweight.Instance;
         }
 
@@ -45,9 +41,9 @@ namespace BattleScene.Framework.View
                 _playerImage.SetText("NoImage");
                 _playerImage.ShowText();
             }
-
-            _playerImage.Slide();
         }
+
+        public void StartPlayerSlideView() => _playerImage.Slide();
 
         public async Task StartPlayerDigitView(DigitListViewModel model)
         {
