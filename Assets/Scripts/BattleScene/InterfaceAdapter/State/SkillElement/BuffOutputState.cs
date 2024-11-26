@@ -20,7 +20,7 @@ namespace BattleScene.InterfaceAdapter.State.SkillElement
         public override void Start()
         {
             if (Context.BattleEventQueue.Count == 0)
-                throw new InvalidOperationException(ExceptionMessage.ContextPrimeSkillQueueIsEmpty);
+                throw new InvalidOperationException(ExceptionMessage.ContextBattleEventQueueIsEmpty);
             var buff = Context.BattleEventQueue.Dequeue();
             _output.Out(buff);
         }
