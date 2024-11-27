@@ -8,20 +8,14 @@ namespace BattleScene.Framework.View
     public class DigitView : MonoBehaviour
     {
         private const int PoolSize = 10;
-        [SerializeField] private int frame = 20;
-        [SerializeField] private float moveRange = 20.0f;
-        [SerializeField] private float randomRange = 80.0f;
-        public float digitsIntervalSecond = 0.15f;
+        public float digitsIntervalSecond;
 
-        // ReSharper disable once RedundantDefaultMemberInitializer
-        [SerializeField] private float alphaRate = 0.0f;
-        [SerializeField] private int waitTime = 70;
-        [SerializeField] private string avoidText = "avoid";
+        // TODO: 以下のフィールドは子コンポーネントとして分離する。
+        // [SerializeField] private float randomRange = 80.0f;
+        // [SerializeField] private bool isPlayer;
 
-        [SerializeField] private bool isPlayer;
         private Digit _digit;
         private readonly Digit[] _digitPool = new Digit[PoolSize];
-        private DigitListViewModel _model;
         private bool _animation;
         private float _frameRate;
         private int _frame = -1;
@@ -50,6 +44,8 @@ namespace BattleScene.Framework.View
 
         public void StartAnimation(DigitListViewModel model)
         {
+            if (model.DigitList.Count == 0) return;
+
             foreach (var digit in _digitPool)
             {
                 digit.ResetDigit();
@@ -65,29 +61,6 @@ namespace BattleScene.Framework.View
             _animation = true;
         }
 
-        private void Update()
-        {
-            if (!_animation) return;
-
-            ++_frame;
-            if (_frame + 1 > _frameRate * digitsIntervalSecond)
-            {
-                ++_index;
-                _digitPool[_index].enabled = true;
-
-                var rand = isPlayer ? Mathf.Floor(Random.Range(-randomRange, randomRange) / 10) * 10.0f : 0;
-                _digitPool[_index].SetPosition(new Vector3(rand, rand, 0));
-
-                if (_index + 1 >= _digitPool.Length)
-                {
-                    _index = -1;
-                    _animation = false;
-                }
-
-                _frame = -1;
-            }
-        }
-
         private static void SetDigit(Digit[] digitPool, DigitViewModel model)
         {
             var digit = digitPool[model.Index];
@@ -98,6 +71,30 @@ namespace BattleScene.Framework.View
             else
             {
                 digit.SetDigit(model.Digit, model.DigitType);
+            }
+        }
+
+        private void Update()
+        {
+            if (!_animation) return;
+
+            ++_frame;
+            if (_frame + 1 > _frameRate * digitsIntervalSecond)
+            {
+                ++_index;
+                _digitPool[_index].enabled = true;
+
+                // TODO: 以下の処理は子コンポーネントとして分離する。
+                // var rand = isPlayer ? Mathf.Floor(Random.Range(-randomRange, randomRange) / 10) * 10.0f : 0;
+                // _digitPool[_index].SetPosition(new Vector3(rand, rand, 0));
+
+                if (_index + 1 >= _digitPool.Length)
+                {
+                    _index = -1;
+                    _animation = false;
+                }
+
+                _frame = -1;
             }
         }
     }
