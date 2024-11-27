@@ -45,9 +45,9 @@ namespace BattleScene.Framework.View
 
         public void StartPlayerSlideView() => _playerImage.Slide();
 
-        public async Task StartPlayerDigitView(DigitListViewModel model)
+        public void StartPlayerDigitView(DigitListViewModel model)
         {
-            await _playerDigitView.StartAnimationAsync(model);
+            _playerDigitView.StartAnimation(model);
         }
 
         public void StartFrameView(FrameViewDto dto)

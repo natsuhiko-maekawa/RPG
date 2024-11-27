@@ -59,9 +59,7 @@ namespace BattleScene.InterfaceAdapter.Facade
             var animationList = new List<Task>();
 
             _messageView.StartAnimation(MessageCode.SlipDamageMessage);
-
-            var damageAnimation = _damageView.StartAnimationAsync();
-            animationList.Add(damageAnimation);
+            _damageView.StartAnimation();
 
             var vibrationAnimation = _vibrationView.StartAnimationAsync();
             animationList.Add(vibrationAnimation);

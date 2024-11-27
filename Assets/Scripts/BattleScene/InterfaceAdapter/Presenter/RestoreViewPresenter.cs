@@ -19,7 +19,7 @@ namespace BattleScene.InterfaceAdapter.Presenter
             _playerView = playerView;
         }
 
-        public async Task StartAnimationAsync()
+        public void StartAnimation()
         {
             var technicalPoint = _battleLog.GetLast().TechnicalPoint;
             var digit = new DigitViewModel(
@@ -27,7 +27,7 @@ namespace BattleScene.InterfaceAdapter.Presenter
                 Digit: technicalPoint);
             var digitList = new List<DigitViewModel> { digit };
             var digitViewModel = new DigitListViewModel(digitList);
-            await _playerView.StartPlayerDigitView(digitViewModel);
+            _playerView.StartPlayerDigitView(digitViewModel);
         }
     }
 }

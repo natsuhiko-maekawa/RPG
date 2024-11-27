@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using System.Threading.Tasks;
 using BattleScene.Framework.GameObjects;
 using BattleScene.Framework.ViewModel;
 using UnityEngine;
@@ -49,7 +48,7 @@ namespace BattleScene.Framework.View
             _frameRate = Application.targetFrameRate;
         }
 
-        public async Task StartAnimationAsync(DigitListViewModel model)
+        public void StartAnimation(DigitListViewModel model)
         {
             foreach (var digit in _digitPool)
             {
@@ -100,22 +99,6 @@ namespace BattleScene.Framework.View
             {
                 digit.SetDigit(model.Digit, model.DigitType);
             }
-        }
-
-        private void StartDigitAnimation(DigitViewModel model)
-        {
-            var digit = _digitPool.First(x => !x.enabled);
-
-            if (model.IsAvoid)
-            {
-                digit.SetAvoid();
-            }
-            else
-            {
-                digit.SetDigit(model.Digit, model.DigitType);
-            }
-
-            digit.enabled = true;
         }
     }
 }

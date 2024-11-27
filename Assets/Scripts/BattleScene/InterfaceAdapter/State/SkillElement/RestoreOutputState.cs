@@ -16,9 +16,9 @@ namespace BattleScene.InterfaceAdapter.State.SkillElement
             _skillElementStopState = skillElementStopState;
         }
 
-        public override async void Start()
+        public override void Start()
         {
-            await _restoreOutput.Output();
+            _restoreOutput.Output();
         }
 
         public override void Select()

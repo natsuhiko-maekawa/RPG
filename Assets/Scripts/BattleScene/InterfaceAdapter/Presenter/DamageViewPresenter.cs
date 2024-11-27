@@ -64,10 +64,8 @@ namespace BattleScene.InterfaceAdapter.Presenter
         //     }
         // }
 
-        public async Task StartAnimationAsync()
+        public void StartAnimation()
         {
-            var taskList = new List<Task>();
-
             var attackList = _battleLog.GetLast().AttackList;
             var characterDigitList = attackList
                 .GroupBy(x => x.TargetId)
@@ -79,8 +77,7 @@ namespace BattleScene.InterfaceAdapter.Presenter
                 .SelectMany(x => x.Model)
                 .ToList();
             var playerModel = new DigitListViewModel(playerDigitList);
-            var startPlayerView = _playerView.StartPlayerDigitView(playerModel);
-            taskList.Add(startPlayerView);
+            _playerView.StartPlayerDigitView(playerModel);
 
             var enemyDigitDict = characterDigitList
                 .Where(x => !IsPlayer(x.CharacterId))
@@ -88,11 +85,8 @@ namespace BattleScene.InterfaceAdapter.Presenter
             foreach (var (position, digitList) in enemyDigitDict)
             {
                 var enemyModel = new DigitListViewModel(digitList);
-                var startEnemyView = _enemiesView[position].StartDigitAnimationAsync(enemyModel);
-                taskList.Add(startEnemyView);
+                _enemiesView[position].StartDigitAnimation(enemyModel);
             }
-
-            await Task.WhenAll(taskList);
         }
 
         private bool IsPlayer(CharacterId characterId) => _characterCollection.Get(characterId).IsPlayer;

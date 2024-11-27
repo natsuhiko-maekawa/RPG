@@ -18,16 +18,10 @@ namespace BattleScene.InterfaceAdapter.Facade
             _restoreView = restoreView;
         }
 
-        public async Task Output()
+        public void Output()
         {
-            var animationList = new List<Task>();
-
             _messageView.StartAnimation(MessageCode.RestoreMessage);
-
-            var restoreAnimation = _restoreView.StartAnimationAsync();
-            animationList.Add(restoreAnimation);
-
-            await Task.WhenAll(animationList);
+            _restoreView.StartAnimation();
         }
     }
 }

@@ -26,10 +26,8 @@ namespace BattleScene.InterfaceAdapter.Presenter
             _playerView = playerView;
         }
 
-        public async Task StartAnimationAsync(BattleEventValueObject cure)
+        public void StartAnimation(BattleEventValueObject cure)
         {
-            var taskList = new List<Task>();
-
             var curingList = cure.CuringList;
             var characterDigitList = curingList
                 .GroupBy(x => x.TargetId)
@@ -41,8 +39,7 @@ namespace BattleScene.InterfaceAdapter.Presenter
                 .SelectMany(x => x.Model)
                 .ToList();
             var playerModel = new DigitListViewModel(playerDigitList);
-            var startPlayerView = _playerView.StartPlayerDigitView(playerModel);
-            taskList.Add(startPlayerView);
+            _playerView.StartPlayerDigitView(playerModel);
 
             var enemyDigitDict = characterDigitList
                 .Where(x => !IsPlayer(x.CharacterId))
@@ -50,11 +47,8 @@ namespace BattleScene.InterfaceAdapter.Presenter
             foreach (var (position, digitList) in enemyDigitDict)
             {
                 var enemyModel = new DigitListViewModel(digitList);
-                var startEnemyView = _enemiesView[position].StartDigitAnimationAsync(enemyModel);
-                taskList.Add(startEnemyView);
+                _enemiesView[position].StartDigitAnimation(enemyModel);
             }
-
-            await Task.WhenAll(taskList);
         }
 
         private bool IsPlayer(CharacterId characterId) => _characterCollection.Get(characterId).IsPlayer;

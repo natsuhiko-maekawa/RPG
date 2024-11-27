@@ -38,8 +38,7 @@ namespace BattleScene.InterfaceAdapter.Facade
             var playerImageAnimation = _playerImageView.StartAnimationAsync(playerImageCode, Slide);
             animationList.Add(playerImageAnimation);
 
-            var cureAnimation = _cureView.StartAnimationAsync(cure);
-            animationList.Add(cureAnimation);
+            _cureView.StartAnimation(cure);
 
             await Task.WhenAll(animationList);
         }

@@ -43,9 +43,9 @@ namespace BattleScene.Framework.View
             _enemyAilmentView.StartAnimation(dto);
         }
 
-        public async Task StartDigitAnimationAsync(DigitListViewModel model)
+        public void StartDigitAnimation(DigitListViewModel model)
         {
-            await _digitView.StartAnimationAsync(model);
+            _digitView.StartAnimation(model);
         }
 
         public void StartHitPointBarAnimationAsync(EnemyHpBarViewDto dto)
