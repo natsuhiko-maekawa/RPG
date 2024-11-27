@@ -24,7 +24,6 @@ namespace BattleScene.InterfaceAdapter.Presenter
         public void StartAnimation(MessageCode messageCode, Context? context = null, bool noWait = false)
         {
             MyDebug.Assert(messageCode != MessageCode.NoMessage);
-            _messageView.StopAnimation();
             var message = _messageResource.Get(messageCode).Message;
             _messageView.StartAnimation(new MessageViewModel(message, noWait));
         }
