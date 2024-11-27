@@ -61,7 +61,12 @@ namespace BattleScene.Framework.GameObjects
             transform.localPosition = _originalPosition + new Vector3(x, 0, 0);
         }
 
-        public void OnDisable()
+        public void OnAnimationExit()
+        {
+            enabled = false;
+        }
+
+        private void OnDisable()
         {
             _tmpText.enabled = false;
         }
