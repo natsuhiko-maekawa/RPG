@@ -8,7 +8,6 @@ namespace BattleScene.Framework.GameObjects
 {
     public class Digit : MonoBehaviour
     {
-        public float x;
         [SerializeField] private string avoidMessage = "AVOID!";
         [SerializeField] private VertexGradient damageColor = new(Color.yellow, Color.yellow, Color.red, Color.red);
         [SerializeField] private VertexGradient cureColor = new(Color.green, Color.green, Color.cyan, Color.cyan);
@@ -50,15 +49,21 @@ namespace BattleScene.Framework.GameObjects
             };
         }
 
+        public void ResetDigit()
+        {
+            _tmpText.SetText(Array.Empty<char>());
+        }
+
+        public void SetPosition(Vector3 vector3)
+        {
+            _originalPosition = transform.localPosition + vector3;
+            transform.localPosition = _originalPosition;
+        }
+
         private void OnEnable()
         {
             _animator.SetTrigger(ShowTrigger);
             _tmpText.enabled = true;
-        }
-
-        private void Update()
-        {
-            transform.localPosition = _originalPosition + new Vector3(x, 0, 0);
         }
 
         public void OnAnimationExit()

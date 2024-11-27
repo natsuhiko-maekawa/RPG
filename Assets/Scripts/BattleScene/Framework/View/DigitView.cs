@@ -12,6 +12,7 @@ namespace BattleScene.Framework.View
         [SerializeField] private int frame = 20;
         [SerializeField] private float moveRange = 20.0f;
         [SerializeField] private float randomRange = 80.0f;
+        public float digitsIntervalSecond = 0.15f;
 
         // ReSharper disable once RedundantDefaultMemberInitializer
         [SerializeField] private float alphaRate = 0.0f;
@@ -21,6 +22,11 @@ namespace BattleScene.Framework.View
         [SerializeField] private bool isPlayer;
         private Digit _digit;
         private readonly Digit[] _digitPool = new Digit[PoolSize];
+        private DigitListViewModel _model;
+        private bool _animation;
+        private float _frameRate;
+        private int _frame = -1;
+        private int _index = -1;
 
         private void Awake()
         {
@@ -39,19 +45,60 @@ namespace BattleScene.Framework.View
 
                 _digitPool[i].enabled = false;
             }
+
+            _frameRate = Application.targetFrameRate;
         }
 
-        public async Task StartAnimationAsync(DigitListViewModel digitList)
+        public async Task StartAnimationAsync(DigitListViewModel model)
         {
-            for (var i = 0; i < PoolSize; ++i)
+            foreach (var digit in _digitPool)
             {
-                if (digitList.DigitList.Any(x => x.Index == i))
+                digit.ResetDigit();
+            }
+
+            model.DigitList
+                .Aggregate(_digitPool, (digitPool, digit) =>
                 {
-                    var digit = digitList.DigitList.First(x => x.Index == i);
-                    StartDigitAnimation(digit);
+                    SetDigit(digitPool, digit);
+                    return digitPool;
+                });
+
+            _animation = true;
+        }
+
+        private void Update()
+        {
+            if (!_animation) return;
+
+            ++_frame;
+            if (_frame + 1 > _frameRate * digitsIntervalSecond)
+            {
+                ++_index;
+                _digitPool[_index].enabled = true;
+
+                var rand = isPlayer ? Mathf.Floor(Random.Range(-randomRange, randomRange) / 10) * 10.0f : 0;
+                _digitPool[_index].SetPosition(new Vector3(rand, rand, 0));
+
+                if (_index + 1 >= _digitPool.Length)
+                {
+                    _index = -1;
+                    _animation = false;
                 }
 
-                await Task.Delay(waitTime);
+                _frame = -1;
+            }
+        }
+
+        private static void SetDigit(Digit[] digitPool, DigitViewModel model)
+        {
+            var digit = digitPool[model.Index];
+            if (model.IsAvoid)
+            {
+                digit.SetAvoid();
+            }
+            else
+            {
+                digit.SetDigit(model.Digit, model.DigitType);
             }
         }
 

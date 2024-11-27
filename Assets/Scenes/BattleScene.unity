@@ -822,6 +822,7 @@ MonoBehaviour:
   frame: 20
   moveRange: 20
   randomRange: 80
+  digitsIntervalSecond: 0.15
   alphaRate: 0
   waitTime: 70
   avoidText: avoid
