@@ -52,7 +52,7 @@ namespace BattleScene.Framework.View
         public async Task StartAnimationAsync(GridViewDto dto)
         {
             enabled = true;
-            _window.Show();
+            _window.enabled = true;
             _inputAction.Enable();
 
             _dto = dto;
@@ -94,7 +94,7 @@ namespace BattleScene.Framework.View
 
         public void StopAnimation()
         {
-            _window.Hide();
+            _window.enabled = false;
             _grid.SetInActive();
             _arrowRight.Hide();
             _arrowUp.Hide();

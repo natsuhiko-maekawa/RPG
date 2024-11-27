@@ -19,6 +19,7 @@ namespace BattleScene.Framework.View
         public int maxVisibleCharacters;
         public int maxCharacters = 100;
         private TMP_Text _tmpText;
+        private Window _window;
         private Animator _animator;
         private IMyTextMeshProService _myTextMeshPro;
         private static readonly int ShowTrigger = Animator.StringToHash("Show");
@@ -34,8 +35,8 @@ namespace BattleScene.Framework.View
         {
             _tmpText = GetComponentInChildren<TMP_Text>();
             _animator = GetComponent<Animator>();
-            var window = GetComponentInChildren<Window>();
-            window.Show();
+            _window = GetComponentInChildren<Window>();
+            _window.enabled = true;
         }
 
         /// <summary>

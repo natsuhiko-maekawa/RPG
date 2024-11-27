@@ -16,13 +16,13 @@ namespace BattleScene.Framework.GameObjects
             _window.enabled = false;
         }
 
-        public void Show()
+        private void OnEnable()
         {
-            _window.enabled = true;
             _animator.SetTrigger(ShowTrigger);
+            _window.enabled = true;
         }
 
-        public void Hide()
+        private void OnDisable()
         {
             _window.enabled = false;
         }
