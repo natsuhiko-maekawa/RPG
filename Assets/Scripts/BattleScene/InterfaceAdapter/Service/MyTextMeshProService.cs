@@ -56,6 +56,9 @@ namespace BattleScene.InterfaceAdapter.Service
                     }
                 }
 
+                // QUESTION: stringBuilderをSetTextに渡し、tmpTextインスタンスをrefで戻しているため、
+                // QUESTION: stringBuilderが正しくDisposeされたとしてもtmpTextに参照が残ってしまうように思える。
+                // QUESTION: この場合でもZStringを用いたことによるゼロアロケーションが達成できているのか。
                 tmpText.SetText(stringBuilder);
             }
         }
