@@ -24,9 +24,29 @@ namespace BattleScene.Framework.View
         [SerializeField] private VertexGradient cureColor = new(Color.green, Color.green, Color.cyan, Color.cyan);
         [SerializeField] private VertexGradient restoreColor = new(Color.cyan, Color.cyan, Color.blue, Color.blue);
         private const int PoolSize = 10;
-        [SerializeField] private TextMeshProUGUI damageText;
+        // [SerializeField] private TextMeshProUGUI damageText;
         [SerializeField] private bool isPlayer;
-        private readonly List<TextMeshProUGUI> _textPool = new();
+        private TextMeshProUGUI _text;
+        private readonly TextMeshProUGUI[] _textPool = new TextMeshProUGUI[10];
+
+        private void Awake()
+        {
+            for (var i = 0; i < _textPool.Length; ++i)
+            {
+                if (_text is null)
+                {
+                    _text = GetComponentInChildren<TextMeshProUGUI>();
+                    _textPool[i] = _text;
+                }
+                else
+                {
+                    var text = Instantiate(_text, transform);
+                    _textPool[i] = text;
+                }
+
+                _textPool[i].enabled = false;
+            }
+        }
 
         public async Task StartAnimationAsync(DigitListViewModel digitList)
         {
@@ -47,14 +67,6 @@ namespace BattleScene.Framework.View
 
         private async Task StartDigitAnimationAsync(DigitViewModel digit)
         {
-            if (_textPool.All(x => x.enabled))
-            {
-                // TODO: UpdateでInstantiateしている
-                var tmpText = Instantiate(damageText, transform);
-                tmpText.enabled = false;
-                _textPool.Add(tmpText);
-            }
-
             var text = _textPool.First(x => !x.enabled);
 
             if (digit.IsAvoid)
