@@ -33,7 +33,7 @@ namespace BattleScene.InterfaceAdapter.Facade
         public async Task OutputThenSlipSuccessAsync(BattleEventValueObject battleEvent)
         {
             var animationList = new List<Task>();
-            _messageView.StartAnimation(MessageCode.AilmentMessage);
+            _messageView.StartAnimation(MessageCode.SlipMessage);
 
             var playerImageCode = _ailmentViewResource.Get(battleEvent.SlipCode).PlayerImageCode;
             var playerImageAnimation = _playerImageView.StartAnimationAsync(playerImageCode, Slide);
