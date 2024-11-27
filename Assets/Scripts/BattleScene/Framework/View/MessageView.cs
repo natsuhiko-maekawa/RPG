@@ -67,7 +67,7 @@ namespace BattleScene.Framework.View
         {
             // QUESTION: ここではif文でアニメーションが動く時だけプロパティを更新しているが、
             // QUESTION: パフォーマンスの観点から見て正しいコーディングと言えるか自分では判断できない。
-            if (_tmpText.maxVisibleCharacters == 0 && maxVisibleCharacters == 0) return;
+            if (_tmpText.maxVisibleCharacters == maxVisibleCharacters) return;
             _tmpText.maxVisibleCharacters = maxVisibleCharacters;
         }
 
