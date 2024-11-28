@@ -14,6 +14,7 @@
 [BattleState状態遷移図](PlantUML/BattleStateDiagram.puml)  
 [TurnState状態遷移図](PlantUML/TurnStateDiagram.puml)  
 [PrimeSkillState状態遷移図](PlantUML/PrimeSkillStateDiagram.puml)  
+[アロケーション](Allocation.md)  
 
 ### 実装関連
 

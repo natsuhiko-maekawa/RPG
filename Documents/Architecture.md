@@ -25,6 +25,7 @@
 　からなる。  
 　コントローラの入力をPresenterを介さずに即時画面に出力するために、
 InputActionクラスとViewクラスの両方の性質を持つクラスも存在する。  
+　アニメーションはUnityのAnimation機能で実装し、コルーチンやasync/awaitを使用しない。  
 
 ### Presenter
 
@@ -38,4 +39,5 @@ Repositoryの変更に応じてPresenterクラスのFacadeであるOutputクラ�
 
 ## 有限オートマトン
 
-　StateMachineは自身に対する巡回をのぞき、非巡回となっている。  
+　StateMachineは自身に対する巡回をのぞき、非巡回となっている。
+(Stateの循環参照がおこらないようになっている)  
