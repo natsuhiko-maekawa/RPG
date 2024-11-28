@@ -11,17 +11,18 @@ namespace BattleScene.Framework.GameObjects
         {
             _rowName = GetComponentInChildren<RowName>();
             _technicalPoint = GetComponentInChildren<TechnicalPoint>();
+            enabled = false;
         }
 
         public void SetName(string rowName) => _rowName.Set(rowName);
-        public void ShowName() => _rowName.Show();
+        public void ShowName() => _rowName.enabled = true;
         public void SetTechnicalPoint(int technicalPoint) => _technicalPoint.Set(technicalPoint);
-        public void ShowTechnicalPoint() => _technicalPoint.Show();
+        public void ShowTechnicalPoint() => _technicalPoint.enabled = true;
 
-        public void Hide()
+        private void OnDisable()
         {
-            _rowName.Hide();
-            _technicalPoint.Hide();
+            _rowName.enabled = false;
+            _technicalPoint.enabled = false;
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BattleScene.Framework.Code;
@@ -22,7 +23,7 @@ namespace BattleScene.Framework.View
         private MessageView _messageView;
         private PlayerView _playerView;
         private GridViewDto _dto;
-        private readonly Dictionary<ActionCode, RowState> _gridStateDictionary = new();
+        private Dictionary<ActionCode, RowState> _rowStateDictionary;
         private BattleSceneInputAction _inputAction;
         private ISelectRowAction _selectRowAction;
 
@@ -46,25 +47,26 @@ namespace BattleScene.Framework.View
             _playerView = root.GetComponentInChildren<PlayerView>();
             _inputAction = new BattleSceneInputAction();
             _inputAction.BattleScene.AddCallbacks(this);
-            enabled = false;
+
+            var actionCount = Enum.GetValues(typeof(ActionCode)).Length;
+            _rowStateDictionary = new Dictionary<ActionCode, RowState>(actionCount);
         }
 
         public async Task StartAnimationAsync(GridViewDto dto)
         {
-            enabled = true;
             _window.enabled = true;
             _inputAction.Enable();
 
             _dto = dto;
-            if (!_gridStateDictionary.TryGetValue(dto.ActionCode, out var gridState))
+            if (!_rowStateDictionary.TryGetValue(dto.ActionCode, out var gridState))
             {
                 gridState = new RowState(
                     maxTableSize: maxGridSize,
                     itemCount: dto.RowDtoList.Count);
-                _gridStateDictionary.Add(dto.ActionCode, gridState);
+                _rowStateDictionary.Add(dto.ActionCode, gridState);
             }
 
-            _grid.SetActive();
+            _grid.enabled = true;
 
             foreach (var (row, rowDto) in _grid.Zip(dto.RowDtoList.Skip(gridState.TopItemIndex),
                          (row, rowDto) => (row, rowDto)))
@@ -95,12 +97,11 @@ namespace BattleScene.Framework.View
         public void StopAnimation()
         {
             _window.enabled = false;
-            _grid.SetInActive();
+            _grid.enabled = false;
             _arrowRight.Hide();
             _arrowUp.Hide();
             _arrowDown.Hide();
             _inputAction.Disable();
-            enabled = false;
         }
 
         private async Task MoveArrow(Vector2 vector2)
@@ -108,9 +109,9 @@ namespace BattleScene.Framework.View
             if (vector2.y == 0) return;
 
             if (vector2.y > 0)
-                _gridStateDictionary[_dto.ActionCode].Up();
+                _rowStateDictionary[_dto.ActionCode].Up();
             else
-                _gridStateDictionary[_dto.ActionCode].Down();
+                _rowStateDictionary[_dto.ActionCode].Down();
             await StartAnimationAsync(_dto);
         }
 
@@ -118,7 +119,7 @@ namespace BattleScene.Framework.View
         {
             if (context.performed)
             {
-                var row = _gridStateDictionary[_dto.ActionCode].SelectedIndex;
+                var row = _rowStateDictionary[_dto.ActionCode].SelectedIndex;
                 _selectRowAction.OnSelect(row);
             }
         }

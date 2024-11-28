@@ -10,11 +10,19 @@ namespace BattleScene.Framework.GameObjects
         private void Awake()
         {
             _rowName = GetComponent<Text>();
-            Hide();
+            enabled = false;
+        }
+
+        private void OnEnable()
+        {
+            _rowName.enabled = true;
         }
 
         public void Set(string rowName) => _rowName.text = rowName;
-        public void Show() => _rowName.enabled = true;
-        public void Hide() => _rowName.enabled = false;
+
+        private void OnDisable()
+        {
+            _rowName.enabled = false;
+        }
     }
 }

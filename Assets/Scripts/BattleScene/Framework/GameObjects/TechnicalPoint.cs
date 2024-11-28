@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using Cysharp.Text;
+using TMPro;
 using UnityEngine;
 
 namespace BattleScene.Framework.GameObjects
@@ -10,11 +11,26 @@ namespace BattleScene.Framework.GameObjects
         private void Awake()
         {
             _technicalPoint = GetComponent<TextMeshProUGUI>();
-            Hide();
+            enabled = false;
         }
 
-        public void Set(int technicalPoint) => _technicalPoint.text = technicalPoint.ToString();
-        public void Show() => _technicalPoint.enabled = true;
-        public void Hide() => _technicalPoint.enabled = false;
+        private void OnEnable()
+        {
+            _technicalPoint.enabled = true;
+        }
+
+        public void Set(int technicalPoint)
+        {
+            using (var stringBuilder = ZString.CreateStringBuilder())
+            {
+                stringBuilder.Append(technicalPoint);
+                _technicalPoint.SetText(stringBuilder);
+            }
+        }
+
+        private void OnDisable()
+        {
+            _technicalPoint.enabled = false;
+        }
     }
 }

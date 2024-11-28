@@ -2,7 +2,7 @@
 
 namespace BattleScene.Framework.GameObjects
 {
-    public class EnemyGrid : Grid<EnemyView>
+    public class EnemyGrid : Column<EnemyView>
     {
     }
 }

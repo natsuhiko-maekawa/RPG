@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace BattleScene.Framework.GameObjects
 {
-    public class Grid<TGameObject> : MonoBehaviour, IEnumerable<TGameObject> where TGameObject : MonoBehaviour
+    public class Column<TGameObject> : MonoBehaviour, IEnumerable<TGameObject> where TGameObject : MonoBehaviour
     {
         private TGameObject _gameObject;
         private readonly List<TGameObject> _gameObjectList = new();
@@ -32,9 +32,6 @@ namespace BattleScene.Framework.GameObjects
             RemoveItem(_gameObjectList.Count - 1);
         }
 
-        public void SetActive() => gameObject.SetActive(true);
-        public void SetInActive() => gameObject.SetActive(false);
-
         private void AddItem(int itemCount)
         {
             for (var i = 0; i < itemCount; ++i)
@@ -52,6 +49,22 @@ namespace BattleScene.Framework.GameObjects
             {
                 Destroy(_gameObjectList.Last().gameObject);
                 _gameObjectList.RemoveAt(_gameObjectList.Count - 1);
+            }
+        }
+
+        private void OnEnable()
+        {
+            foreach (var obj in _gameObjectList)
+            {
+                obj.enabled = true;
+            }
+        }
+
+        private void OnDisable()
+        {
+            foreach (var obj in _gameObjectList)
+            {
+                obj.enabled = false;
             }
         }
 

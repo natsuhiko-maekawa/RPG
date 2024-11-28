@@ -1,6 +1,6 @@
 ﻿namespace BattleScene.Framework.GameObjects
 {
-    public class EnemyAilmentGrid : Grid<EnemyAilment>
+    public class EnemyAilmentGrid : Column<EnemyAilment>
     {
     }
 }
