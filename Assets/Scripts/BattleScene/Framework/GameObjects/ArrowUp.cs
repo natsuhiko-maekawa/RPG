@@ -13,7 +13,14 @@ namespace BattleScene.Framework.GameObjects
             _upArrow.enabled = false;
         }
 
-        public void Show(bool value) => _upArrow.enabled = value;
-        public void Hide() => _upArrow.enabled = false;
+        private void OnEnable()
+        {
+            _upArrow.enabled = true;
+        }
+
+        private void OnDisable()
+        {
+            _upArrow.enabled = false;
+        }
     }
 }

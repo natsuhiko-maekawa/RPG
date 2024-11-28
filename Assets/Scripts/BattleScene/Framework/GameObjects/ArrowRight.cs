@@ -6,26 +6,27 @@ namespace BattleScene.Framework.GameObjects
     public class ArrowRight : MonoBehaviour
     {
         [SerializeField] private int rowHeight;
-        private Image _rightArrow;
-        private Vector3 _defaultPosition;
+        private Image _image;
+        private Vector3 _originalPosition;
 
         private void Awake()
         {
-            _rightArrow = GetComponent<Image>();
-            _defaultPosition = _rightArrow.rectTransform.localPosition;
-            _rightArrow.enabled = false;
+            _image = GetComponent<Image>();
+            _originalPosition = _image.rectTransform.localPosition;
+            _image.enabled = false;
         }
 
         public void Move(int row)
         {
-            _rightArrow.enabled = true;
-            var newPosition = _defaultPosition + new Vector3(0, -rowHeight * row);
-            _rightArrow.rectTransform.localPosition = newPosition;
+            enabled = true;
+            _image.enabled = true;
+            var newPosition = _originalPosition + new Vector3(0, -rowHeight * row);
+            _image.rectTransform.localPosition = newPosition;
         }
 
-        public void Hide()
+        private void OnDisable()
         {
-            _rightArrow.enabled = false;
+            _image.enabled = false;
         }
     }
 }

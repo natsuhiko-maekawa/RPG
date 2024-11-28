@@ -80,8 +80,8 @@ namespace BattleScene.Framework.View
             }
 
             _arrowRight.Move(gridState.SelectedRow);
-            _arrowUp.Show(gridState.IsHiddenUpper);
-            _arrowDown.Show(gridState.IsHiddenLower);
+            _arrowUp.enabled = gridState.IsHiddenUpper;
+            _arrowDown.enabled = gridState.IsHiddenLower;
 
             _messageView.enabled = true;
             _messageView.StartAnimation(new MessageViewModel(
@@ -98,10 +98,11 @@ namespace BattleScene.Framework.View
         {
             _window.enabled = false;
             _grid.enabled = false;
-            _arrowRight.Hide();
-            _arrowUp.Hide();
-            _arrowDown.Hide();
+            _arrowRight.enabled = false;
+            _arrowUp.enabled = false;
+            _arrowDown.enabled = false;
             _inputAction.Disable();
+            enabled = false;
         }
 
         private async Task MoveArrow(Vector2 vector2)
