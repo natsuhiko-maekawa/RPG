@@ -2,30 +2,26 @@
 
 namespace BattleScene.Framework
 {
-    public class GridState
+    public class RowState
     {
-        public GridState(
-            int maxGridSize,
+        public RowState(
+            int maxTableSize,
             int itemCount)
         {
-            GridSize = Math.Min(maxGridSize, itemCount);
-            MaxIndex = itemCount - GridSize;
+            _tableSize = Math.Min(maxTableSize, itemCount);
+            _maxIndex = itemCount - _tableSize;
         }
 
-        public int GridSize { get; private set; }
-        public int MaxIndex { get; private set; }
+        private readonly int _tableSize;
+        private readonly int _maxIndex;
         public int SelectedRow { get; private set; }
         public int TopItemIndex { get; private set; }
 
         public int SelectedIndex => TopItemIndex + SelectedRow;
         public bool IsHiddenUpper => TopItemIndex > 0;
-        public bool IsHiddenLower => TopItemIndex < MaxIndex;
+        public bool IsHiddenLower => TopItemIndex < _maxIndex;
 
-        public void Reset()
-        {
-            SelectedRow = 0;
-        }
-
+        // TODO: 三項演算子である意味がない。可読性を上げるため、if文に書き換えること。
         public void Up()
         {
             TopItemIndex = 0 < SelectedRow
@@ -41,14 +37,14 @@ namespace BattleScene.Framework
 
         public void Down()
         {
-            TopItemIndex = SelectedRow < GridSize - 1
+            TopItemIndex = SelectedRow < _tableSize - 1
                 ? TopItemIndex
                 : ++TopItemIndex;
-            TopItemIndex = MaxIndex <= TopItemIndex
-                ? MaxIndex
+            TopItemIndex = _maxIndex <= TopItemIndex
+                ? _maxIndex
                 : TopItemIndex;
-            SelectedRow = GridSize - 1 <= SelectedRow
-                ? GridSize - 1
+            SelectedRow = _tableSize - 1 <= SelectedRow
+                ? _tableSize - 1
                 : ++SelectedRow;
         }
     }

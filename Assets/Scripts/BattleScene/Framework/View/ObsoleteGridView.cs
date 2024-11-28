@@ -32,9 +32,9 @@ namespace BattleScene.Framework.View
         private Image _window;
         private GridViewDto _dto;
         private int _id;
-        private readonly Dictionary<ActionCode, GridState> _gridStateDictionary = new();
+        private readonly Dictionary<ActionCode, RowState> _gridStateDictionary = new();
         public int MaxGridSize => maxGridSize;
-        public IReadOnlyDictionary<ActionCode, GridState> GridStateDictionary => _gridStateDictionary;
+        public IReadOnlyDictionary<ActionCode, RowState> GridStateDictionary => _gridStateDictionary;
 
         private void Awake()
         {
@@ -57,8 +57,8 @@ namespace BattleScene.Framework.View
             _dto = dto;
             if (!_gridStateDictionary.TryGetValue(dto.ActionCode, out var gridState))
             {
-                gridState = new GridState(
-                    maxGridSize: maxGridSize,
+                gridState = new RowState(
+                    maxTableSize: maxGridSize,
                     itemCount: dto.RowDtoList.Count);
                 _gridStateDictionary.Add(dto.ActionCode, gridState);
             }
