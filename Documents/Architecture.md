@@ -26,6 +26,7 @@
 　コントローラの入力をPresenterを介さずに即時画面に出力するために、
 InputActionクラスとViewクラスの両方の性質を持つクラスも存在する。  
 　アニメーションはUnityのAnimation機能で実装し、コルーチンやasync/awaitを使用しない。  
+　ViewはGameObjectのコンポジションによって実装する。  
 
 ### Presenter
 
