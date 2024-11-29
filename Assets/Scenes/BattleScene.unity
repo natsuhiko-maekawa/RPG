@@ -1840,6 +1840,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3384419232352017990, guid: 7e0776941d7366b4abd9bddea87fd14f, type: 3}
+      propertyPath: avoidMessage
+      value: AVOID!
+      objectReference: {fileID: 0}
     - target: {fileID: 4463324142508910455, guid: 7e0776941d7366b4abd9bddea87fd14f, type: 3}
       propertyPath: m_fontSize
       value: 54

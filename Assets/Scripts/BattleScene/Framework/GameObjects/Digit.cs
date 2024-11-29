@@ -3,15 +3,16 @@ using BattleScene.Framework.ViewModel;
 using Cysharp.Text;
 using TMPro;
 using UnityEngine;
+using Utility;
 
 namespace BattleScene.Framework.GameObjects
 {
     public class Digit : MonoBehaviour
     {
-        [SerializeField] private string avoidMessage = "AVOID!";
-        [SerializeField] private VertexGradient damageColor = new(Color.yellow, Color.yellow, Color.red, Color.red);
-        [SerializeField] private VertexGradient cureColor = new(Color.green, Color.green, Color.cyan, Color.cyan);
-        [SerializeField] private VertexGradient restoreColor = new(Color.cyan, Color.cyan, Color.blue, Color.blue);
+        public string avoidMessage;
+        public VertexGradient damageColor;
+        public VertexGradient cureColor;
+        public VertexGradient restoreColor;
         private TMP_Text _tmpText;
         private Animator _animator;
         private Vector3 _originalPosition;
@@ -24,6 +25,25 @@ namespace BattleScene.Framework.GameObjects
             _animator = GetComponent<Animator>();
             enabled = false;
         }
+
+        // QUESTION: このディレクティブはいらないかもしれないが、わからない。
+#if UNITY_EDITOR
+        private void Reset()
+        {
+            avoidMessage = "AVOID!";
+            damageColor = new VertexGradient(Color.yellow, Color.yellow, Color.red, Color.red);
+            cureColor = new VertexGradient(Color.green, Color.green, Color.cyan, Color.cyan);
+            restoreColor = new VertexGradient(Color.cyan, Color.cyan, Color.blue, Color.blue);
+        }
+
+        public void OnValidate()
+        {
+            if (string.IsNullOrWhiteSpace(avoidMessage))
+            {
+                MyDebug.LogAssertion(ExceptionMessage.AvoidMessageIsEmpty);
+            }
+        }
+#endif
 
         public void SetAvoid()
         {
@@ -66,6 +86,8 @@ namespace BattleScene.Framework.GameObjects
             _tmpText.enabled = true;
         }
 
+        // QUESTION: 実質アニメーションの遷移が終了した際に呼び出されるため、
+        // QUESTION: OnStateMachineExitイベント関数に置き換えたいが、方法がわからない。
         public void OnAnimationExit()
         {
             enabled = false;
