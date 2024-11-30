@@ -11,7 +11,7 @@ namespace BattleScene.Framework.Utility
             get
             {
                 if (_instance != null) return _instance;
-                _instance = (T)FindObjectOfType(typeof(T));
+                _instance = (T)FindAnyObjectByType(typeof(T));
 
                 if (_instance == null)
                 {
