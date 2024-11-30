@@ -5,6 +5,6 @@ namespace BattleScene.Framework.InputActions
 {
     public interface ISelectTargetAction
     {
-        public void OnSelect(IReadOnlyList<CharacterDto> targetDtoList);
+        public void OnSelect(IReadOnlyList<CharacterStruct> targetDtoList);
     }
 }

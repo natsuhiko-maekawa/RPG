@@ -1,6 +1,5 @@
 ﻿using System.Linq;
 using BattleScene.Domain.DataAccess;
-using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
@@ -13,33 +12,31 @@ namespace BattleScene.InterfaceAdapter.Presenter
     public class TargetViewPresenter
     {
         private readonly ICollection<CharacterEntity, CharacterId> _characterCollection;
-        private readonly OrderedItemsDomainService _orderedItems;
         private readonly ITargetService _target;
         private readonly TargetView _targetView;
 
         public TargetViewPresenter(
-            OrderedItemsDomainService orderedItems,
             ITargetService target,
             ICollection<CharacterEntity, CharacterId> characterCollection,
             TargetView targetView)
         {
-            _orderedItems = orderedItems;
             _target = target;
             _characterCollection = characterCollection;
             _targetView = targetView;
         }
 
-        public void StartAnimation(SkillValueObject skill)
+        public void StartAnimation(CharacterId actorId, SkillValueObject skill)
         {
-            _orderedItems.First().TryGetCharacterId(out var characterId);
             var range = skill.Common.Range;
-            var targetIdList = _target.Get(
-                characterId,
-                range);
-            var characterDtoList = targetIdList
-                .Select(CreateCharacterDto)
-                .ToList();
-            var targetViewDto = new TargetViewDto(characterDtoList);
+            var targetIdList = _target.Get(actorId, range);
+
+            var characterList = _characterCollection.Get(targetIdList);
+            var characterStructList = characterList
+                // C#11以前で静的メソッドグループをデリゲート化するとアロケーションが発生するため、
+                // メソッドグループは使用しない。
+                .Select(x => CreateCharacterStruct(x))
+                .ToArray();
+            var targetViewDto = new TargetViewDto(characterStructList);
             _targetView.StartAnimation(targetViewDto);
         }
 
@@ -48,12 +45,12 @@ namespace BattleScene.InterfaceAdapter.Presenter
             _targetView.StopAnimation();
         }
 
-        private CharacterDto CreateCharacterDto(CharacterId x)
+        private static CharacterStruct CreateCharacterStruct(CharacterEntity character)
         {
-            var characterDto = _characterCollection.Get(x).IsPlayer
-                ? CharacterDto.CreatePlayer()
-                : new CharacterDto(_characterCollection.Get(x).Position);
-            return characterDto;
+            var characterStruct = character.IsPlayer
+                ? CharacterStruct.CreatePlayer()
+                : CharacterStruct.CreateEnemy(character.Position);
+            return characterStruct;
         }
     }
 }

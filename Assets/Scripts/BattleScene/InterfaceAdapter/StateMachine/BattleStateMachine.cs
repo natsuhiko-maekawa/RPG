@@ -35,16 +35,16 @@ namespace BattleScene.InterfaceAdapter.StateMachine
 
         public void OnSelect() => _context.Select();
         public void OnSelect(int id) => _context.Select(id);
-        public void OnSelect(IReadOnlyList<CharacterDto> targetDtoList) 
+        public void OnSelect(IReadOnlyList<CharacterStruct> targetDtoList) 
             => _context.Select(ToCharacterIdList(targetDtoList));
         public void OnCancel() => _context.Cancel();
 
-        private IReadOnlyList<CharacterId> ToCharacterIdList(IReadOnlyList<CharacterDto> characterDtoList)
+        private IReadOnlyList<CharacterId> ToCharacterIdList(IReadOnlyList<CharacterStruct> characterDtoList)
         {
             return characterDtoList
                 .Select(x => x.IsPlayer
                     ? _player.GetId()
-                    : _enemies.GetIdByPosition(x.EnemyIndex))
+                    : _enemies.GetIdByPosition(x.Position))
                 .ToList();
         }
     }

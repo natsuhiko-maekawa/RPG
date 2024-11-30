@@ -58,7 +58,7 @@ namespace BattleScene.Framework.View
                     continue;
                 }
 
-                _enemiesView[character.EnemyIndex].StartFrameAnimationAsync(frameViewDto);
+                _enemiesView[character.Position].StartFrameAnimationAsync(frameViewDto);
             }
         }
 
@@ -74,7 +74,7 @@ namespace BattleScene.Framework.View
             enabled = false;
         }
 
-        private bool IsEnemySolo(IReadOnlyList<CharacterDto> characterDtoList)
+        private bool IsEnemySolo(IReadOnlyList<CharacterStruct> characterDtoList)
         {
             return characterDtoList.Count == 1 && !characterDtoList.Single().IsPlayer;
         }
@@ -85,7 +85,7 @@ namespace BattleScene.Framework.View
                 .Where(x => x.enabled)
                 .Select((_, i) => i)
                 .ToList();
-            var position = dto.CharacterDtoList.First().EnemyIndex;
+            var position = dto.CharacterDtoList.First().Position;
             _index = _enemyPositionList.First(x => x == position);
             Debug.Assert(_index != -1);
         }
@@ -102,11 +102,11 @@ namespace BattleScene.Framework.View
             StartAnimation(_dto);
         }
 
-        private IReadOnlyList<CharacterDto> GetTargetDtoList()
+        private IReadOnlyList<CharacterStruct> GetTargetDtoList()
         {
-            if (_dto == null) return Array.Empty<CharacterDto>();
+            // if (_dto == null) return Array.Empty<CharacterStruct>();
             return IsEnemySolo(_dto.CharacterDtoList)
-                ? new[] { new CharacterDto(_enemyPositionList[_index]) }
+                ? new[] { CharacterStruct.CreateEnemy(_enemyPositionList[_index]) }
                 : _dto.CharacterDtoList;
         }
 

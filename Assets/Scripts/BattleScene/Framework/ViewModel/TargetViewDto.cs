@@ -2,6 +2,13 @@
 
 namespace BattleScene.Framework.ViewModel
 {
-    public record TargetViewDto(
-        IReadOnlyList<CharacterDto> CharacterDtoList);
+    public struct TargetViewDto
+    {
+        public IReadOnlyList<CharacterStruct> CharacterDtoList { get; }
+
+        public TargetViewDto(IReadOnlyList<CharacterStruct> characterStructList)
+        {
+            CharacterDtoList = characterStructList;
+        }
+    }
 }
