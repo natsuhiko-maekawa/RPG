@@ -17,7 +17,7 @@ namespace BattleScene.InterfaceAdapter.State.SkillElement
             _skillElementStopState = skillElementStopState;
         }
 
-        public override async void Start()
+        public override void Start()
         {
             if (Context.BattleEventQueue.Count == 0)
                 throw new InvalidOperationException(ExceptionMessage.ContextBattleEventQueueIsEmpty);
