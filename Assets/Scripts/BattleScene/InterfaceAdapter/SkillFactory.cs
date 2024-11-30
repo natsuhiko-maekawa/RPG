@@ -32,7 +32,7 @@ namespace BattleScene.InterfaceAdapter
             return new SkillValueObject(
                 skillCode: key,
                 range: skill.Range,
-                isAutoTarget: skill.isAutoTarget,
+                isAutoTarget: skill.IsAutoTarget,
                 attackMessageCode: skill.AttackMessageCode,
                 technicalPoint: skill.TechnicalPoint,
                 dependencyList: skill.DependencyList,
