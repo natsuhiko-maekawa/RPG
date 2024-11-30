@@ -33,6 +33,20 @@ namespace BattleScene.DataAccess.Collection
             return true;
         }
 
+        public IReadOnlyList<TEntity> Get(IReadOnlyList<TId> idList)
+        {
+            // QUESTION: アロケーションを起こさずに辞書型から条件に一致するキーの値の配列を生成したいが方法がわからない
+            var entityArray = new TEntity[idList.Count];
+            for (var i = 0; i < idList.Count; ++i)
+            {
+                var key = idList[i];
+                var value = _entityDictionary[key];
+                entityArray[i] = value;
+            }
+
+            return entityArray;
+        }
+
         public IReadOnlyList<TEntity> Get() => _entityDictionary.Values.ToList();
 
         public void Add(TEntity entity)

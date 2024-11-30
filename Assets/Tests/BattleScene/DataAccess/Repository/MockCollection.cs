@@ -32,7 +32,20 @@ namespace Tests.BattleScene.DataAccess.Repository
             entityList = _entityDictionary.Values.ToList();
             return true;
         }
-        
+
+        public IReadOnlyList<TEntity> Get(IReadOnlyList<TId> idList)
+        {
+            var entityArray = new TEntity[idList.Count];
+            for (var i = 0; i < idList.Count; ++i)
+            {
+                var key = idList[i];
+                var value = _entityDictionary[key];
+                entityArray[i] = value;
+            }
+
+            return entityArray;
+        }
+
         public IReadOnlyList<TEntity> Get() => _entityDictionary.Values.ToList();
 
         public void Add(TEntity entity)
