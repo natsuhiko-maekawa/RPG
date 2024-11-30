@@ -8,7 +8,9 @@ namespace BattleScene.InterfaceAdapter.StateMachine
     public class TurnStateMachine
     {
         private Context _context = null!;
-        private readonly Stack<Memento> _mementoStack = new();
+        // NOTE: _mementoStackのキャパシティは保持する画面数(4)にする。
+        // 現在は不具合があるため、5にしている。
+        private readonly Stack<Memento> _mementoStack = new(10);
         private readonly TurnStartState _turnStartState;
 
         public TurnStateMachine(
@@ -63,7 +65,7 @@ namespace BattleScene.InterfaceAdapter.StateMachine
             if (!_context.HasCancelableState) _mementoStack.TryPop(out _);
             _mementoStack.Push(_context.Save());
             // 現状の状態遷移だとmementoStackのsizeが4を超えることはない。
-            MyDebug.Assert(_mementoStack.Count < 4);
+            if (_mementoStack.Count > 4) MyDebug.LogAssertion(ExceptionMessage.MementoStackSizeIsOver);
         }
 
         private void Undo()
