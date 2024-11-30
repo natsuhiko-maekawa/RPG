@@ -16,9 +16,11 @@ using Tests.BattleScene.DataAccess.Repository;
 using Tests.BattleScene.DataAccess.Resource;
 using UnityEditor;
 using UnityEngine;
+// ReSharper disable UnusedMember.Local
 
 namespace Tests.BattleScene.UseCases.Service
 {
+    // TODO: wip
     [TestFixture]
     public class OrderServiceTest
     {
@@ -30,7 +32,9 @@ namespace Tests.BattleScene.UseCases.Service
         private readonly MockCollection<AilmentEntity, (CharacterId, AilmentCode)> _ailmentCollection = new();
         private readonly MockCollection<OrderedItemEntity, OrderId> _orderedItemCollection = new();
         private readonly MockCollection<SlipEntity, SlipCode> _slipDamageCollection = new();
-        private readonly ISpeedService _speed;
+#pragma warning disable CS0414 // Field is assigned but its value is never used
+        private readonly ISpeedService _speed = null!;
+#pragma warning restore CS0414 // Field is assigned but its value is never used
 
         [SetUp]
         public void SetUp()
