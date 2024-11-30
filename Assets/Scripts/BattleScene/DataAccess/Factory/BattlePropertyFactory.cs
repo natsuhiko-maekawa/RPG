@@ -23,7 +23,8 @@ namespace BattleScene.DataAccess.Factory
                 IsHitThreshold: battleProperty.IsHitThreshold,
                 AilmentSuccessThreshold: battleProperty.AilmentSuccessThreshold,
                 MaxAgility: battleProperty.MaxAgility,
-                MaxOrderCount: battleProperty.MaxOrderCount);
+                MaxOrderCount: battleProperty.MaxOrderCount,
+                AttackCountLimit: battleProperty.AttackCountLimit);
             return battlePropertyValueObject;
         }
     }

@@ -12,12 +12,14 @@ namespace BattleScene.DataAccess.Dto
         [SerializeField] private float ailmentSuccessThreshold = 40.0f;
         [SerializeField] private int maxAgility = 256;
         [SerializeField] private int maxOrderCount = 14;
+        [SerializeField] private int attackCountLimit = 25;
         public int SlipDefaultTurn { get; private set; }
         public float SlipDefaultDamageRate { get; private set; }
         public float IsHitThreshold { get; private set; }
         public float AilmentSuccessThreshold { get; private set; }
         public int MaxAgility { get; private set; }
         public int MaxOrderCount { get; private set; }
+        public int AttackCountLimit { get; private set; }
 
         public void OnBeforeSerialize()
         {
@@ -31,6 +33,7 @@ namespace BattleScene.DataAccess.Dto
             AilmentSuccessThreshold = ailmentSuccessThreshold;
             MaxAgility = maxAgility;
             MaxOrderCount = maxOrderCount;
+            AttackCountLimit = attackCountLimit;
         }
     }
 }

@@ -4,6 +4,7 @@ using BattleScene.Domain.Code;
 using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
+using BattleScene.Domain.ValueObject;
 
 namespace BattleScene.UseCases.Service
 {
@@ -11,23 +12,27 @@ namespace BattleScene.UseCases.Service
     {
         private readonly ICollection<CharacterEntity, CharacterId> _characterCollection;
         private readonly ICollection<BattleLogEntity, BattleLogId> _battleLogCollection;
+        private readonly IFactory<BattlePropertyValueObject> _battlePropertyFactory;
 
         public AttackCounterService(
             ICollection<CharacterEntity, CharacterId> characterCollection,
-            ICollection<BattleLogEntity, BattleLogId> battleLogCollection)
+            ICollection<BattleLogEntity, BattleLogId> battleLogCollection,
+            IFactory<BattlePropertyValueObject> battlePropertyFactory)
         {
             _characterCollection = characterCollection;
             _battleLogCollection = battleLogCollection;
+            _battlePropertyFactory = battlePropertyFactory;
         }
 
         public float GetRate()
         {
-            return Math.Min((float)Count() / Constant.AttackCountUpperLimit, 1.0f);
+            var rate = (float)Count() / _battlePropertyFactory.Create().AttackCountLimit;
+            return Math.Min(rate, 1.0f);
         }
 
         public bool IsOverflow()
         {
-            return Constant.AttackCountUpperLimit < Count();
+            return _battlePropertyFactory.Create().AttackCountLimit < Count();
         }
 
         private int Count()
