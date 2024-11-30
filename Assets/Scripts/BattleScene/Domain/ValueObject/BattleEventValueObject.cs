@@ -123,11 +123,6 @@ namespace BattleScene.Domain.ValueObject
                 .Select(x => x.TargetId)
                 .Distinct()
                 .ToList();
-            var actualTargetIdList = attackList
-                .Where(x => x.IsHit)
-                .Select(x => x.TargetId)
-                .Distinct()
-                .ToList();
             var damage = new BattleEventValueObject
             {
                 BattleEventCode = BattleEventCode.Skill,
