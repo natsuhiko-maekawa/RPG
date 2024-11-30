@@ -27,6 +27,7 @@ namespace BattleScene.UseCases.Service
             _myRandom = myRandom;
         }
 
+        // ReSharper disable once InvalidXmlDocComment
         /// <summary>
         /// 攻撃対象から実際の攻撃対象をランダムに絞り込むメソッド。
         /// <see cref="BattleScene.Debug.Service.DebugRandomService"/>でメソッド名を利用してリフレクションを行っているため、

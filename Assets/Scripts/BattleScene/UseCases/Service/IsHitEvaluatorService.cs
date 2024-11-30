@@ -48,6 +48,7 @@ namespace BattleScene.UseCases.Service
             };
         }
 
+        // ReSharper disable once InvalidXmlDocComment
         /// <summary>
         /// 命中したかどうかを判定する最も基本的なメソッド。<br/>
         /// <see cref="BattleScene.Debug.Service.DebugRandomService"/>でメソッド名を利用してリフレクションを行っているため、

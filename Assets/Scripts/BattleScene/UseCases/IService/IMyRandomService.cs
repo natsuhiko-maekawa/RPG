@@ -3,9 +3,10 @@ using System.Runtime.CompilerServices;
 
 namespace BattleScene.UseCases.IService
 {
+    // ReSharper disable once InvalidXmlDocComment
     /// <summary>
     /// UnityのRandomクラスの拡張クラスを定義するインタフェース。<br/>
-    /// <see cref="BattleScene.UseCases.Service.DebugService.DebugRandomService"/>のために、
+    /// <see cref="BattleScene.Debug.Service.DebugRandomService"/>のために、
     /// 各メソッドにCallerMemberName属性を付与した省略可能引数がある。この引数はMyRandomServiceでは使用しない。
     /// </summary>
     public interface IMyRandomService
