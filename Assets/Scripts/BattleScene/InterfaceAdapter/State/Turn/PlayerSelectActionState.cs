@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using BattleScene.Domain.Code;
 using BattleScene.InterfaceAdapter.Facade;
-using BattleScene.InterfaceAdapter.Presenter;
 using BattleScene.UseCases.UseCase;
 
 namespace BattleScene.InterfaceAdapter.State.Turn
@@ -14,7 +13,6 @@ namespace BattleScene.InterfaceAdapter.State.Turn
         private readonly PlayerSelectTargetState _playerSelectTargetState;
         private readonly SkillState _skillState;
         private readonly PlayerSelectActionOutput _output;
-        private readonly GridViewPresenter _gridView;
 
         private readonly IReadOnlyDictionary<int, BattleEventCode> _actionCodeDictionary = new Dictionary<int, BattleEventCode>()
         {
@@ -28,14 +26,12 @@ namespace BattleScene.InterfaceAdapter.State.Turn
             PlayerSelectSkillState playerSelectSkillState,
             PlayerSelectTargetState playerSelectTargetState,
             SkillState skillState,
-            GridViewPresenter gridView,
             PlayerSelectActionUseCase useCase,
             PlayerSelectActionOutput output)
         {
             _playerSelectSkillState = playerSelectSkillState;
             _playerSelectTargetState = playerSelectTargetState;
             _skillState = skillState;
-            _gridView = gridView;
             _useCase = useCase;
             _output = output;
         }
