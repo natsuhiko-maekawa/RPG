@@ -29,7 +29,7 @@ namespace BattleScene.InterfaceAdapter.Service.Replacement
             if (targetIdList.Count == 0) return ReadOnlySpan<char>.Empty;
             using (var stringBuilder = ZString.CreateStringBuilder())
             {
-                var firstTargetId = targetIdList.First(); ;
+                var firstTargetId = targetIdList.First();
                 var targetName = _replacementCommon.GetCharacterName(firstTargetId);
                 stringBuilder.Append(targetName);
                 if (targetIdList.Count > 1) stringBuilder.Append(ReplacementCommonService.TotalSuffix);
