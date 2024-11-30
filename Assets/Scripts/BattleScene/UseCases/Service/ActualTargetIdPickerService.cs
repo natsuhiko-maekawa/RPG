@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using BattleScene.Domain.DataAccess;
-using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
 using BattleScene.UseCases.IService;
@@ -12,18 +11,15 @@ namespace BattleScene.UseCases.Service
     {
         private readonly IFactory<BattlePropertyValueObject> _battlePropertyFactory;
         private readonly CharacterPropertyFactoryService _characterPropertyFactory;
-        private readonly OrderedItemsDomainService _orderedItems;
         private readonly IMyRandomService _myRandom;
 
         public ActualTargetIdPickerService(
             IFactory<BattlePropertyValueObject> battlePropertyFactory,
             CharacterPropertyFactoryService characterPropertyFactory,
-            OrderedItemsDomainService orderedItems,
             IMyRandomService myRandom)
         {
             _battlePropertyFactory = battlePropertyFactory;
             _characterPropertyFactory = characterPropertyFactory;
-            _orderedItems = orderedItems;
             _myRandom = myRandom;
         }
 
@@ -37,10 +33,10 @@ namespace BattleScene.UseCases.Service
         /// <param name="luckRate">成功率</param>
         /// <returns>実際の攻撃対象のIDのリスト</returns>
         public IReadOnlyList<CharacterId> Pick(
+            CharacterId actorId,
             IReadOnlyList<CharacterId> targetIdList,
             float luckRate = 1.0f)
         {
-            _orderedItems.First().TryGetCharacterId(out var actorId);
             var actorLuck = _characterPropertyFactory.Create(actorId).Luck;
 
             var actualTargetList = targetIdList

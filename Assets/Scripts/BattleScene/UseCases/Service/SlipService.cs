@@ -39,6 +39,7 @@ namespace BattleScene.UseCases.Service
             BattleEventValueObject GetSlip(SlipValueObject slipParameter)
             {
                 var actualTargetIdList = _actualTargetIdPicker.Pick(
+                    actorId: actorId,
                     targetIdList: targetIdList,
                     luckRate: slipParameter.LuckRate);
 

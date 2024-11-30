@@ -37,6 +37,7 @@ namespace BattleScene.UseCases.Service
             BattleEventValueObject GetAilment(AilmentValueObject ailmentParameter)
             {
                 var actualTargetIdList = _actualTargetIdPicker.Pick(
+                    actorId: actorId,
                     targetIdList: targetIdList,
                     luckRate: ailmentParameter.LuckRate);
 

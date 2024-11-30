@@ -37,6 +37,7 @@ namespace BattleScene.UseCases.Service
             BattleEventValueObject GetDestroy(DestroyValueObject destroyedParameter)
             {
                 var actualTargetIdList = _actualTargetIdPicker.Pick(
+                    actorId: actorId,
                     targetIdList: targetIdList,
                     luckRate: destroyedParameter.LuckRate);
 
