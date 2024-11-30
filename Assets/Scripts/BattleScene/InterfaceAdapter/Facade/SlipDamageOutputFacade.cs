@@ -36,7 +36,7 @@ namespace BattleScene.InterfaceAdapter.Facade
         {
             var outputQueue = new Queue<Func<Task>>();
             outputQueue.Enqueue(() => Output1(skill));
-            outputQueue.Enqueue(() => Output2());
+            outputQueue.Enqueue(() => Task.Run(Output2));
             return outputQueue;
         }
 
@@ -54,17 +54,11 @@ namespace BattleScene.InterfaceAdapter.Facade
             return Task.WhenAll(animationList);
         }
 
-        public Task Output2()
+        public void Output2()
         {
-            var animationList = new List<Task>();
-
             _messageView.StartAnimation(MessageCode.SlipDamageMessage);
             _damageView.StartAnimation();
-
-            var vibrationAnimation = _vibrationView.StartAnimationAsync();
-            animationList.Add(vibrationAnimation);
-
-            return Task.WhenAll(animationList);
+            _vibrationView.StartAnimation();
         }
     }
 }

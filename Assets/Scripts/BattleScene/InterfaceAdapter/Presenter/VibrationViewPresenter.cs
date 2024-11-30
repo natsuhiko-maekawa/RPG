@@ -1,6 +1,4 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
-using BattleScene.Domain.DataAccess;
+﻿using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
@@ -27,28 +25,31 @@ namespace BattleScene.InterfaceAdapter.Presenter
             _playerView = playerView;
         }
 
-        public async Task StartAnimationAsync()
+        public void StartAnimation()
         {
             var characterIdList = _battleLog.GetLast().ActualTargetIdList;
-            var characterList = characterIdList
-                .Select(_characterCollection.Get)
-                .ToList();
-            var taskList = characterList
-                .Select(x => x!.IsPlayer
-                    ? StartPlayerAnimation()
-                    : StartEnemyAnimationAsync(x.Position))
-                .ToList();
-            await Task.WhenAll(taskList);
+            var characterList = _characterCollection.Get(characterIdList);
+            foreach (var character in characterList)
+            {
+                if (character.IsPlayer)
+                {
+                    StartPlayerAnimation();
+                }
+                else
+                {
+                    StartEnemyAnimation(character.Position);
+                }
+            }
         }
 
-        private async Task StartPlayerAnimation()
+        private void StartPlayerAnimation()
         {
             _playerView.StartPlayerVibeView();
         }
 
-        private async Task StartEnemyAnimationAsync(int position)
+        private void StartEnemyAnimation(int position)
         {
-            await _enemiesView[position].StartVibesAnimationAsync();
+            _enemiesView[position].StartVibeAnimation();
         }
     }
 }

@@ -18,29 +18,29 @@ namespace BattleScene.Framework.View
         private void Awake()
         {
             _playerImage = GetComponentInChildren<PlayerImage>();
+            _playerImage.enabled = false;
             _playerDigitView = GetComponentInChildren<DigitView>();
             _playerFrameView = GetComponentInChildren<FrameView>();
             var statusBarViews = GetComponentsInChildren<StatusBarView>();
             _playerHpBarView = statusBarViews[0];
             _playerTpBarView = statusBarViews[1];
-            GetComponentInChildren<PlayerVibeView>();
             _spriteFlyweight = SpriteFlyweight.Instance;
         }
 
         public async Task StartAnimation(PlayerViewModel model)
         {
+            _playerImage.enabled = false;
             try
             {
                 var sprite = await _spriteFlyweight.GetAsync(model.PlayerImage);
                 _playerImage.Set(sprite);
-                _playerImage.Show();
             }
             catch (ArgumentException)
             {
-                _playerImage.Hide();
-                _playerImage.SetText("NoImage");
-                _playerImage.ShowText();
+                _playerImage.IsNothing();
             }
+
+            _playerImage.enabled = true;
         }
 
         public void StartPlayerSlideView() => _playerImage.Slide();

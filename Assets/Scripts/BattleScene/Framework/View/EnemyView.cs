@@ -1,28 +1,26 @@
 ﻿using System.Threading.Tasks;
+using BattleScene.Framework.GameObjects;
 using BattleScene.Framework.ViewModel;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace BattleScene.Framework.View
 {
     public class EnemyView : MonoBehaviour
     {
-        public Image Image { get; set; }
+        private EnemyImage _enemyImage;
         private EnemyAilmentView _enemyAilmentView;
         private DigitView _digitView;
         private FrameView _frameView;
         private StatusBarView _hitPointBarView;
-        private EnemyVibesView _enemyVibesView;
         private SpriteFlyweight _spriteFlyweight;
 
         private void Awake()
         {
-            Image = GetComponent<Image>();
+            _enemyImage = GetComponentInChildren<EnemyImage>();
             _enemyAilmentView = GetComponentInChildren<EnemyAilmentView>();
             _digitView = GetComponentInChildren<DigitView>();
             _frameView = GetComponentInChildren<FrameView>();
             _hitPointBarView = GetComponentInChildren<StatusBarView>();
-            _enemyVibesView = GetComponentInChildren<EnemyVibesView>();
             _spriteFlyweight = SpriteFlyweight.Instance;
         }
 
@@ -35,7 +33,8 @@ namespace BattleScene.Framework.View
         {
             var enemyImagePath = dto.EnemyImagePath;
             var sprite = await _spriteFlyweight.GetAsync(enemyImagePath);
-            Image.sprite = sprite;
+            _enemyImage.Set(sprite);
+            _enemyImage.enabled = true;
         }
 
         public void StartAilmentAnimationAsync(AilmentViewModel dto)
@@ -63,9 +62,9 @@ namespace BattleScene.Framework.View
             _frameView.StopAnimation();
         }
 
-        public async Task StartVibesAnimationAsync()
+        public void StartVibeAnimation()
         {
-            await _enemyVibesView.StartAnimationAsync();
+            _enemyImage.Vibe();
         }
     }
 }

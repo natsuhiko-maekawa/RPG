@@ -59,11 +59,8 @@ namespace BattleScene.InterfaceAdapter.Facade
 
             var messageCode = GetMessageCode(damage);
             _messageView.StartAnimation(messageCode);
-
             _damageView.StartAnimation();
-
-            var vibrationAnimation = _vibrationView.StartAnimationAsync();
-            animationList.Add(vibrationAnimation);
+            _vibrationView.StartAnimation();
 
             await Task.WhenAll(animationList);
         }
