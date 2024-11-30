@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Threading.Tasks;
 using BattleScene.Domain.DomainService;
 using BattleScene.Framework.View;
 using BattleScene.Framework.ViewModel;
