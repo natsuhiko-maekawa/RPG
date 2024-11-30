@@ -57,7 +57,8 @@ namespace BattleScene.InterfaceAdapter.Presenter
 
         private OrderViewDto CreateCharacterOrderViewDto(OrderedItemEntity orderedItem)
         {
-            orderedItem.TryGetCharacterId(out var characterId);
+            if (!orderedItem.TryGetCharacterId(out var characterId))
+                throw new InvalidOperationException();
             var dto = _characterCollection.Get(characterId).IsPlayer
                 ? CreatePlayerOrderViewDto()
                 : CreateEnemyOrderViewDto(characterId);
