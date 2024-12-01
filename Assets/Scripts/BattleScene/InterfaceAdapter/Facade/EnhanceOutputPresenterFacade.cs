@@ -6,12 +6,12 @@ using BattleScene.InterfaceAdapter.Presenter;
 
 namespace BattleScene.InterfaceAdapter.Facade
 {
-    public class EnhanceOutput
+    public class EnhanceOutputPresenterFacade
     {
         private readonly IResource<EnhanceViewDto, EnhanceCode> _enhanceViewResource;
         private readonly MessageViewPresenter _messageView;
 
-        public EnhanceOutput(
+        public EnhanceOutputPresenterFacade(
             MessageViewPresenter messageView,
             IResource<EnhanceViewDto, EnhanceCode> enhanceViewResource)
         {
@@ -19,7 +19,7 @@ namespace BattleScene.InterfaceAdapter.Facade
             _enhanceViewResource = enhanceViewResource;
         }
 
-        public void Out(BattleEventValueObject enhance)
+        public void Output(BattleEventValueObject enhance)
         {
             var messageCode = _enhanceViewResource.Get(enhance.EnhanceCode).MessageCode;
             _messageView.StartAnimation(messageCode);

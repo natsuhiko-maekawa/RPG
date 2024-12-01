@@ -1,39 +1,33 @@
-using BattleScene.DataAccess;
+﻿using BattleScene.DataAccess;
 using BattleScene.DataAccess.Dto;
 using BattleScene.Domain.Code;
-using BattleScene.Domain.ValueObject;
 using BattleScene.InterfaceAdapter.Presenter;
 using static BattleScene.InterfaceAdapter.Presenter.PlayerImageViewPresenter.AnimationMode;
 
 namespace BattleScene.InterfaceAdapter.Facade
 {
-    public class CureOutput
+    public class ResetAilmentPresenterFacade
     {
-        private readonly CureViewPresenter _cureView;
         private readonly MessageViewPresenter _messageView;
         private readonly PlayerImageViewPresenter _playerImageView;
         private readonly IResource<SkillViewDto, SkillCode> _skillViewResource;
 
-        public CureOutput(
+        public ResetAilmentPresenterFacade(
             MessageViewPresenter messageView,
             PlayerImageViewPresenter playerImageView,
-            IResource<SkillViewDto, SkillCode> skillViewResource,
-            CureViewPresenter cureView)
+            IResource<SkillViewDto, SkillCode> skillViewResource)
         {
             _messageView = messageView;
             _playerImageView = playerImageView;
             _skillViewResource = skillViewResource;
-            _cureView = cureView;
         }
 
-        public void Output(BattleEventValueObject cure)
+        public void Output(SkillCode skillCode)
         {
-            _messageView.StartAnimation(MessageCode.CureMessage);
+            _messageView.StartAnimation(MessageCode.ResetAilmentMessage);
 
-            var playerImageCode = _skillViewResource.Get(cure.SkillCode).PlayerImageCode;
+            var playerImageCode = _skillViewResource.Get(skillCode).PlayerImageCode; 
             _playerImageView.StartAnimation(playerImageCode, Slide);
-
-            _cureView.StartAnimation(cure);
         }
     }
 }

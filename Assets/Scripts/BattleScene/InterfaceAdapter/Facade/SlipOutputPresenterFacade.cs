@@ -7,13 +7,13 @@ using static BattleScene.InterfaceAdapter.Presenter.PlayerImageViewPresenter.Ani
 
 namespace BattleScene.InterfaceAdapter.Facade
 {
-    public class SlipOutputFacade
+    public class SlipOutputPresenterFacade
     {
         private readonly IResource<AilmentViewDto, AilmentCode, SlipCode> _ailmentViewResource;
         private readonly MessageViewPresenter _messageView;
         private readonly PlayerImageViewPresenter _playerImageView;
 
-        public SlipOutputFacade(
+        public SlipOutputPresenterFacade(
             IResource<AilmentViewDto, AilmentCode, SlipCode> ailmentViewResource,
             MessageViewPresenter messageView,
             PlayerImageViewPresenter playerImageView)

@@ -9,7 +9,7 @@ using static BattleScene.InterfaceAdapter.Presenter.PlayerImageViewPresenter.Ani
 
 namespace BattleScene.InterfaceAdapter.Facade
 {
-    public class SlipDamageOutputFacade
+    public class SlipDamagePresenterFacade
     {
         private readonly IResource<SkillViewDto, SkillCode> _skillViewResource;
         private readonly DamageViewPresenter _damageView;
@@ -17,7 +17,7 @@ namespace BattleScene.InterfaceAdapter.Facade
         private readonly PlayerImageViewPresenter _playerImageView;
         private readonly VibrationViewPresenter _vibrationView;
 
-        public SlipDamageOutputFacade(
+        public SlipDamagePresenterFacade(
             IResource<SkillViewDto, SkillCode> skillViewResource,
             DamageViewPresenter damageView,
             MessageViewPresenter messageView,
@@ -39,7 +39,7 @@ namespace BattleScene.InterfaceAdapter.Facade
             return outputQueue;
         }
 
-        public void Output1(SkillValueObject skill)
+        private void Output1(SkillValueObject skill)
         {
             var playerImageCode = _skillViewResource.Get(skill.Common.SkillCode).PlayerImageCode;
             _playerImageView.StartAnimation(playerImageCode, Vibe);
@@ -48,7 +48,7 @@ namespace BattleScene.InterfaceAdapter.Facade
             _messageView.StartAnimation(messageCode);
         }
 
-        public void Output2()
+        private void Output2()
         {
             _messageView.StartAnimation(MessageCode.SlipDamageMessage);
             _damageView.StartAnimation();

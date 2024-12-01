@@ -12,7 +12,7 @@ namespace BattleScene.InterfaceAdapter.State.Turn
         private readonly PlayerSelectSkillState _playerSelectSkillState;
         private readonly PlayerSelectTargetState _playerSelectTargetState;
         private readonly SkillState _skillState;
-        private readonly PlayerSelectActionOutput _output;
+        private readonly PlayerSelectActionPresenterFacade _facade;
 
         private readonly IReadOnlyDictionary<int, BattleEventCode> _actionCodeDictionary = new Dictionary<int, BattleEventCode>()
         {
@@ -27,18 +27,18 @@ namespace BattleScene.InterfaceAdapter.State.Turn
             PlayerSelectTargetState playerSelectTargetState,
             SkillState skillState,
             PlayerSelectActionUseCase useCase,
-            PlayerSelectActionOutput output)
+            PlayerSelectActionPresenterFacade facade)
         {
             _playerSelectSkillState = playerSelectSkillState;
             _playerSelectTargetState = playerSelectTargetState;
             _skillState = skillState;
             _useCase = useCase;
-            _output = output;
+            _facade = facade;
         }
 
         public override void Start()
         {
-            _output.StartAsync();
+            _facade.Output();
         }
 
         public override void Select(int id)
@@ -62,7 +62,7 @@ namespace BattleScene.InterfaceAdapter.State.Turn
                 _ => throw new ArgumentOutOfRangeException()
             };
 
-            _output.Stop();
+            _facade.Stop();
             Context.TransitionTo(nextState);
         }
     }

@@ -6,14 +6,14 @@ namespace BattleScene.InterfaceAdapter.State.SkillElement
 {
     public class EnhanceOutputState: SkillElementOutputState<EnhanceValueObject>
     {
-        private readonly EnhanceOutput _output;
+        private readonly EnhanceOutputPresenterFacade _facade;
         private readonly SkillElementStopState<EnhanceValueObject> _skillElementStopState;
 
         public EnhanceOutputState(
-            EnhanceOutput output,
+            EnhanceOutputPresenterFacade facade,
             SkillElementStopState<EnhanceValueObject> skillElementStopState)
         {
-            _output = output;
+            _facade = facade;
             _skillElementStopState = skillElementStopState;
         }
 
@@ -22,7 +22,7 @@ namespace BattleScene.InterfaceAdapter.State.SkillElement
             if (Context.BattleEventQueue.Count == 0)
                 throw new InvalidOperationException(ExceptionMessage.ContextBattleEventQueueIsEmpty);
             var enhance = Context.BattleEventQueue.Dequeue();
-            _output.Out(enhance);
+            _facade.Output(enhance);
         }
 
         public override void Select()

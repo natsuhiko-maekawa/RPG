@@ -5,20 +5,20 @@ namespace BattleScene.InterfaceAdapter.State.SkillElement
 {
     public class ResetOutputState : SkillElementOutputState<RecoveryValueObject>
     {
-        private readonly ResetOutputFacade _resetOutput;
+        private readonly ResetOutputPresenterFacade _facade;
         private readonly SkillElementStopState<RecoveryValueObject> _skillElementStopState;
 
         public ResetOutputState(
-            ResetOutputFacade resetOutput,
+            ResetOutputPresenterFacade facade,
             SkillElementStopState<RecoveryValueObject> skillElementStopState)
         {
-            _resetOutput = resetOutput;
+            _facade = facade;
             _skillElementStopState = skillElementStopState;
         }
 
         public override void Start()
         {
-            _resetOutput.Output();
+            _facade.Output();
         }
 
         public override void Select()

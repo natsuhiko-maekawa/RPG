@@ -5,12 +5,12 @@ using static BattleScene.InterfaceAdapter.Presenter.PlayerImageViewPresenter.Ani
 
 namespace BattleScene.InterfaceAdapter.Facade
 {
-    public class DestroyOutputFacade
+    public class DestroyOutputPresenterFacade
     {
         private readonly MessageViewPresenter _messageView;
         private readonly PlayerImageViewPresenter _playerImageView;
 
-        public DestroyOutputFacade(
+        public DestroyOutputPresenterFacade(
             MessageViewPresenter messageView,
             PlayerImageViewPresenter playerImageView)
         {
@@ -18,12 +18,12 @@ namespace BattleScene.InterfaceAdapter.Facade
             _playerImageView = playerImageView;
         }
 
-        public void OutputThenDestroyFailureAsync()
+        public void OutputThenDestroyFailure()
         {
             _messageView.StartAnimation(MessageCode.NoMessage);
         }
 
-        public void OutputThenDestroySuccessAsync(BattleEventValueObject battleEvent)
+        public void OutputThenDestroySuccess(BattleEventValueObject battleEvent)
         {
             // TODO: メッセージを設定する
             _messageView.StartAnimation(MessageCode.NoMessage);

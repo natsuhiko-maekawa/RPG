@@ -12,7 +12,7 @@ using static BattleScene.InterfaceAdapter.Presenter.PlayerImageViewPresenter.Ani
 
 namespace BattleScene.InterfaceAdapter.Facade
 {
-    public class SkillOutputFacade
+    public class SkillPresenterFacade
     {
         private readonly IResource<SkillViewDto, SkillCode> _skillViewResource;
         private readonly ICollection<BattleLogEntity, BattleLogId> _battleLogCollection;
@@ -20,7 +20,7 @@ namespace BattleScene.InterfaceAdapter.Facade
         private readonly MessageViewPresenter _messageView;
         private readonly PlayerImageViewPresenter _playerImageView;
 
-        public SkillOutputFacade(
+        public SkillPresenterFacade(
             IResource<SkillViewDto, SkillCode> skillViewResource,
             ICollection<BattleLogEntity, BattleLogId> battleLogCollection,
             ICollection<CharacterEntity, CharacterId> characterCollection,

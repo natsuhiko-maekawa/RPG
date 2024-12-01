@@ -5,23 +5,23 @@ namespace BattleScene.InterfaceAdapter.State.SkillElement
 {
     public class DamageOutputState : SkillElementOutputState<DamageValueObject>
     {
-        private readonly DamageOutputFacade _damageOutput;
+        private readonly DamageOutputPresenterFacade _facade;
         private readonly SkillElementStopState<DamageValueObject> _skillElementStopState;
         private readonly SkillElementBreakState<DamageValueObject> _skillElementBreakState;
 
         public DamageOutputState(
-            DamageOutputFacade damageOutput,
+            DamageOutputPresenterFacade facade,
             SkillElementStopState<DamageValueObject> skillElementStopState,
             SkillElementBreakState<DamageValueObject> skillElementBreakState)
         {
-            _damageOutput = damageOutput;
+            _facade = facade;
             _skillElementStopState = skillElementStopState;
             _skillElementBreakState = skillElementBreakState;
         }
 
         public override void Start()
         {
-            _damageOutput.Output(Context.BattleEventQueue.Peek());
+            _facade.Output(Context.BattleEventQueue.Peek());
         }
 
         public override void Select()

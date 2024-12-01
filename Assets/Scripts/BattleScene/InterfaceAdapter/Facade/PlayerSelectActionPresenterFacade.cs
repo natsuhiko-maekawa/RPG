@@ -3,12 +3,12 @@ using BattleScene.InterfaceAdapter.Presenter;
 
 namespace BattleScene.InterfaceAdapter.Facade
 {
-    public class PlayerSelectActionOutput
+    public class PlayerSelectActionPresenterFacade
     {
         private readonly InfoViewPresenter _infoView;
         private readonly GridViewPresenter _gridView;
 
-        public PlayerSelectActionOutput(
+        public PlayerSelectActionPresenterFacade(
             InfoViewPresenter infoView,
             GridViewPresenter gridView)
         {
@@ -16,10 +16,10 @@ namespace BattleScene.InterfaceAdapter.Facade
             _gridView = gridView;
         }
 
-        public void StartAsync()
+        public void Output()
         {
-            _infoView.StartAnimationAsync(MessageCode.VerticalSelect);
-            _gridView.StartAnimationAsync();
+            _infoView.StartAnimation(MessageCode.VerticalSelect);
+            _gridView.StartAnimation();
         }
 
         public void Stop()

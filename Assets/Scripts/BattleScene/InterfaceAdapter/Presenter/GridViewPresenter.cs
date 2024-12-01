@@ -31,7 +31,7 @@ namespace BattleScene.InterfaceAdapter.Presenter
             _gridView = gridView;
         }
 
-        public void StartAnimationAsync()
+        public void StartAnimation()
         {
             var rowList = BattleEventCodeList
                 .Select(x =>

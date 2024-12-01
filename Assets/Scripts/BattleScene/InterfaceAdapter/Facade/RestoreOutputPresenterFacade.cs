@@ -3,12 +3,12 @@ using BattleScene.InterfaceAdapter.Presenter;
 
 namespace BattleScene.InterfaceAdapter.Facade
 {
-    public class RestoreOutputFacade
+    public class RestoreOutputPresenterFacade
     {
         private readonly MessageViewPresenter _messageView;
         private readonly RestoreViewPresenter _restoreView;
 
-        public RestoreOutputFacade(
+        public RestoreOutputPresenterFacade(
             MessageViewPresenter messageView,
             RestoreViewPresenter restoreView)
         {

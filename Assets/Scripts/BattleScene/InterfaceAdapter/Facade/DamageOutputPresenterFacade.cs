@@ -9,7 +9,7 @@ using static BattleScene.InterfaceAdapter.Presenter.PlayerImageViewPresenter.Ani
 
 namespace BattleScene.InterfaceAdapter.Facade
 {
-    public class DamageOutputFacade
+    public class DamageOutputPresenterFacade
     {
         private readonly ICollection<CharacterEntity, CharacterId> _characterCollection;
         private readonly AttackCountViewPresenter _attackCountView;
@@ -18,7 +18,7 @@ namespace BattleScene.InterfaceAdapter.Facade
         private readonly PlayerImageViewPresenter _playerImageView;
         private readonly VibrationViewPresenter _vibrationView;
 
-        public DamageOutputFacade(
+        public DamageOutputPresenterFacade(
             ICollection<CharacterEntity, CharacterId> characterCollection,
             AttackCountViewPresenter attackCountView,
             DamageViewPresenter damageView,

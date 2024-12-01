@@ -6,14 +6,14 @@ namespace BattleScene.InterfaceAdapter.State.SkillElement
 {
     public class DestroyOutputState : SkillElementOutputState<DestroyValueObject>
     {
-        private readonly DestroyOutputFacade _destroyOutput;
+        private readonly DestroyOutputPresenterFacade _facade;
         private readonly SkillElementStopState<DestroyValueObject> _skillElementStopState;
 
         public DestroyOutputState(
-            DestroyOutputFacade destroyOutput,
+            DestroyOutputPresenterFacade facade,
             SkillElementStopState<DestroyValueObject> skillElementStopState)
         {
-            _destroyOutput = destroyOutput;
+            _facade = facade;
             _skillElementStopState = skillElementStopState;
         }
 
@@ -22,13 +22,13 @@ namespace BattleScene.InterfaceAdapter.State.SkillElement
             var isFailure = Context.BattleEventQueue.All(x => x.IsFailure);
             if (isFailure)
             {
-                _destroyOutput.OutputThenDestroyFailureAsync();
+                _facade.OutputThenDestroyFailure();
                 Context.BattleEventQueue.Clear();
             }
             else
             {
                 var primeSkill = Context.BattleEventQueue.Dequeue();
-                _destroyOutput.OutputThenDestroySuccessAsync(primeSkill);
+                _facade.OutputThenDestroySuccess(primeSkill);
             }
         }
 

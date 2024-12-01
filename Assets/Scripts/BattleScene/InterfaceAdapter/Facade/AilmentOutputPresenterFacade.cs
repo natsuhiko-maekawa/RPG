@@ -11,14 +11,14 @@ using static BattleScene.InterfaceAdapter.Presenter.PlayerImageViewPresenter.Ani
 
 namespace BattleScene.InterfaceAdapter.Facade
 {
-    public class AilmentOutputFacade
+    public class AilmentOutputPresenterFacade
     {
         private readonly IResource<AilmentViewDto, AilmentCode, SlipCode> _ailmentViewResource;
         private readonly ICollection<CharacterEntity, CharacterId> _characterCollection;
         private readonly MessageViewPresenter _messageView;
         private readonly PlayerImageViewPresenter _playerImageView;
 
-        public AilmentOutputFacade(
+        public AilmentOutputPresenterFacade(
             IResource<AilmentViewDto, AilmentCode, SlipCode> ailmentViewResource,
             ICollection<CharacterEntity, CharacterId> characterCollection,
             MessageViewPresenter messageView,
@@ -30,12 +30,12 @@ namespace BattleScene.InterfaceAdapter.Facade
             _playerImageView = playerImageView;
         }
 
-        public void OutputThenAilmentFailureAsync()
+        public void OutputThenAilmentFailure()
         {
             _messageView.StartAnimation(MessageCode.FailAilmentMessage);
         }
 
-        public void OutputThenAilmentSuccessAsync(BattleEventValueObject ailment)
+        public void OutputThenAilmentSuccess(BattleEventValueObject ailment)
         {
             _messageView.StartAnimation(MessageCode.AilmentMessage);
 

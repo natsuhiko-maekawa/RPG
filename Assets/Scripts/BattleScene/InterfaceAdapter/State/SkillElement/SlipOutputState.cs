@@ -7,14 +7,14 @@ namespace BattleScene.InterfaceAdapter.State.SkillElement
     public class SlipOutputState : SkillElementOutputState<SlipValueObject>
     {
         private readonly SkillElementStopState<SlipValueObject> _skillElementStopState;
-        private readonly SlipOutputFacade _slipOutput;
+        private readonly SlipOutputPresenterFacade _facade;
 
         public SlipOutputState(
             SkillElementStopState<SlipValueObject> skillElementStopState,
-            SlipOutputFacade slipOutput)
+            SlipOutputPresenterFacade facade)
         {
             _skillElementStopState = skillElementStopState;
-            _slipOutput = slipOutput;
+            _facade = facade;
         }
 
         public override void Start()
@@ -22,13 +22,13 @@ namespace BattleScene.InterfaceAdapter.State.SkillElement
             var isFailure = Context.BattleEventQueue.All(x => x.IsFailure);
             if (isFailure)
             {
-                _slipOutput.OutputThenSlipFailure();
+                _facade.OutputThenSlipFailure();
                 Context.BattleEventQueue.Clear();
             }
             else
             {
                 var primeSkill = Context.BattleEventQueue.Dequeue();
-                _slipOutput.OutputThenSlipSuccess(primeSkill);
+                _facade.OutputThenSlipSuccess(primeSkill);
             }
         }
 

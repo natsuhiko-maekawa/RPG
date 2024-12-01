@@ -5,14 +5,14 @@ namespace BattleScene.InterfaceAdapter.State.SkillElement
 {
     public class AilmentOutputState : SkillElementOutputState<AilmentValueObject>
     {
-        private readonly AilmentOutputFacade _ailmentOutput;
+        private readonly AilmentOutputPresenterFacade _facade;
         private readonly SkillElementStopState<AilmentValueObject> _skillElementStopState;
 
         public AilmentOutputState(
-            AilmentOutputFacade ailmentOutput,
+            AilmentOutputPresenterFacade facade,
             SkillElementStopState<AilmentValueObject> skillElementStopState)
         {
-            _ailmentOutput = ailmentOutput;
+            _facade = facade;
             _skillElementStopState = skillElementStopState;
         }
 
@@ -21,12 +21,12 @@ namespace BattleScene.InterfaceAdapter.State.SkillElement
             var isFailure = Context.BattleEventQueue.Count == 0;
             if (isFailure)
             {
-                _ailmentOutput.OutputThenAilmentFailureAsync();
+                _facade.OutputThenAilmentFailure();
             }
             else
             {
                 var ailment = Context.BattleEventQueue.Dequeue();
-                _ailmentOutput.OutputThenAilmentSuccessAsync(ailment);
+                _facade.OutputThenAilmentSuccess(ailment);
             }
         }
 

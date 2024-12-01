@@ -116,19 +116,19 @@ namespace BattleScene
 
             #region RegisterFacade
 
-            builder.Register<AilmentOutputFacade>(Singleton);
-            builder.Register<BuffOutput>(Singleton);
-            builder.Register<CureOutput>(Singleton);
-            builder.Register<EnhanceOutput>(Singleton);
-            builder.Register<ResetAilmentOutputFacade>(Singleton);
-            builder.Register<DamageOutputFacade>(Singleton);
-            builder.Register<DestroyOutputFacade>(Singleton);
-            builder.Register<PlayerSelectActionOutput>(Singleton);
-            builder.Register<ResetOutputFacade>(Singleton);
-            builder.Register<RestoreOutputFacade>(Singleton);
-            builder.Register<SkillOutputFacade>(Singleton);
-            builder.Register<SlipDamageOutputFacade>(Singleton);
-            builder.Register<SlipOutputFacade>(Singleton);
+            builder.Register<AilmentOutputPresenterFacade>(Singleton);
+            builder.Register<BuffOutputPresenterFacade>(Singleton);
+            builder.Register<CureOutputPresenterFacade>(Singleton);
+            builder.Register<EnhanceOutputPresenterFacade>(Singleton);
+            builder.Register<ResetAilmentPresenterFacade>(Singleton);
+            builder.Register<DamageOutputPresenterFacade>(Singleton);
+            builder.Register<DestroyOutputPresenterFacade>(Singleton);
+            builder.Register<PlayerSelectActionPresenterFacade>(Singleton);
+            builder.Register<ResetOutputPresenterFacade>(Singleton);
+            builder.Register<RestoreOutputPresenterFacade>(Singleton);
+            builder.Register<SkillPresenterFacade>(Singleton);
+            builder.Register<SlipDamagePresenterFacade>(Singleton);
+            builder.Register<SlipOutputPresenterFacade>(Singleton);
 
             #endregion
 

@@ -20,7 +20,7 @@ namespace BattleScene.InterfaceAdapter.Presenter
             _infoView = infoView;
         }
 
-        public void StartAnimationAsync(MessageCode messageCode)
+        public void StartAnimation(MessageCode messageCode)
         {
             MyDebug.Assert(messageCode != MessageCode.NoMessage);
             var message = _messageResource.Get(messageCode).Message;

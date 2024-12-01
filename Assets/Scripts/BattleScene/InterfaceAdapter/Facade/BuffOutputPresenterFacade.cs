@@ -5,17 +5,17 @@ using BattleScene.InterfaceAdapter.Presenter;
 
 namespace BattleScene.InterfaceAdapter.Facade
 {
-    public class BuffOutput
+    public class BuffOutputPresenterFacade
     {
         private readonly MessageViewPresenter _messageView;
 
-        public BuffOutput(
+        public BuffOutputPresenterFacade(
             MessageViewPresenter messageView)
         {
             _messageView = messageView;
         }
 
-        public void Out(BattleEventValueObject buff)
+        public void Output(BattleEventValueObject buff)
         {
             var isBuff = Math.Sign(Math.Log(buff.Rate)) > 0;
             var messageCode = isBuff

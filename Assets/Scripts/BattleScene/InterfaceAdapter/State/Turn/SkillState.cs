@@ -9,18 +9,18 @@ namespace BattleScene.InterfaceAdapter.State.Turn
     {
         private readonly SkillUseCase _useCase;
         private readonly SkillElementStateMachine _skillElementStateMachine;
-        private readonly SkillOutputFacade _skillOutput;
+        private readonly SkillPresenterFacade _facade;
         private readonly AdvanceTurnState _advanceTurnState;
 
         public SkillState(
             SkillUseCase useCase,
             SkillElementStateMachine skillElementStateMachine,
-            SkillOutputFacade skillOutput,
+            SkillPresenterFacade facade,
             AdvanceTurnState advanceTurnState)
         {
             _useCase = useCase;
             _skillElementStateMachine = skillElementStateMachine;
-            _skillOutput = skillOutput;
+            _facade = facade;
             _advanceTurnState = advanceTurnState;
         }
 
@@ -29,7 +29,7 @@ namespace BattleScene.InterfaceAdapter.State.Turn
             if (Context.ActorId == null) throw new InvalidOperationException(ExceptionMessage.ContextActorIdIsNull);
             if (Context.Skill == null) throw new InvalidOperationException(ExceptionMessage.ContextSkillIsNull);
             _useCase.ExecuteSkill(Context.ActorId, Context.Skill);
-            _skillOutput.Output(Context);
+            _facade.Output(Context);
         }
 
         public override void Select()

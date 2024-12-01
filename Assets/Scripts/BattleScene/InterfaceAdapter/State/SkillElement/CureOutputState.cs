@@ -5,20 +5,20 @@ namespace BattleScene.InterfaceAdapter.State.SkillElement
 {
     public class CureOutputState : SkillElementOutputState<CureValueObject>
     {
-        private readonly CureOutput _output;
+        private readonly CureOutputPresenterFacade _facade;
         private readonly SkillElementStopState<CureValueObject> _skillElementStopState;
 
         public CureOutputState(
-            CureOutput output,
+            CureOutputPresenterFacade facade,
             SkillElementStopState<CureValueObject> skillElementStopState)
         {
-            _output = output;
+            _facade = facade;
             _skillElementStopState = skillElementStopState;
         }
 
         public override void Start()
         {
-            _output.Output(Context.BattleEventQueue.Peek());
+            _facade.Output(Context.BattleEventQueue.Peek());
         }
 
         public override void Select()
