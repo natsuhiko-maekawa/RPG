@@ -1,4 +1,3 @@
-using System.Threading.Tasks;
 using BattleScene.Domain.Code;
 using BattleScene.InterfaceAdapter.Presenter;
 

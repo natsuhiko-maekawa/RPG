@@ -7,7 +7,6 @@ using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
-using Utility;
 
 namespace BattleScene.UseCases.Service
 {
