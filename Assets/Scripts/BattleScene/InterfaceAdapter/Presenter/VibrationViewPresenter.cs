@@ -1,4 +1,5 @@
-﻿using BattleScene.Domain.DataAccess;
+﻿using System.Linq;
+using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
@@ -27,13 +28,17 @@ namespace BattleScene.InterfaceAdapter.Presenter
 
         public void StartAnimation()
         {
-            var characterIdList = _battleLog.GetLast().ActualTargetIdList;
-            var characterList = _characterCollection.Get(characterIdList);
+            var characterIdArray = _battleLog.GetLast().AttackList
+                .Where(x => x.IsHit)
+                .Select(x => x.TargetId)
+                .Distinct()
+                .ToArray();
+            var characterList = _characterCollection.Get(characterIdArray);
             foreach (var character in characterList)
             {
                 if (character.IsPlayer)
                 {
-                    StartPlayerAnimation();
+                    // StartPlayerAnimation();
                 }
                 else
                 {

@@ -44,12 +44,12 @@ namespace BattleScene.InterfaceAdapter.Facade
 
             if (damage.ActualTargetIdList.Any(x => _characterCollection.Get(x).IsPlayer))
             {
-                var playerImageCode = damage.AttackList
+                var (playerImageCode, animationMode) = damage.AttackList
                     .Where(x => _characterCollection.Get(x.TargetId).IsPlayer)
                     .All(x => !x.IsHit)
-                    ? PlayerImageCode.Avoidance
-                    : PlayerImageCode.Damaged;
-                _playerImageView.StartAnimation(playerImageCode, Vibe);
+                    ? (PlayerImageCode.Avoidance, Slide)
+                    : (PlayerImageCode.Damaged, Vibe);
+                _playerImageView.StartAnimation(playerImageCode, animationMode);
             }
 
             var messageCode = GetMessageCode(damage);
