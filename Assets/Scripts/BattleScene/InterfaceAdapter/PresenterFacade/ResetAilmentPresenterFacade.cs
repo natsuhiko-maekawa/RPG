@@ -4,7 +4,7 @@ using BattleScene.Domain.Code;
 using BattleScene.InterfaceAdapter.Presenter;
 using static BattleScene.InterfaceAdapter.Presenter.PlayerImageViewPresenter.AnimationMode;
 
-namespace BattleScene.InterfaceAdapter.Facade
+namespace BattleScene.InterfaceAdapter.PresenterFacade
 {
     public class ResetAilmentPresenterFacade
     {

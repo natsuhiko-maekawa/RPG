@@ -1,5 +1,5 @@
 using BattleScene.Domain.ValueObject;
-using BattleScene.InterfaceAdapter.Facade;
+using BattleScene.InterfaceAdapter.PresenterFacade;
 
 namespace BattleScene.InterfaceAdapter.State.SkillElement
 {

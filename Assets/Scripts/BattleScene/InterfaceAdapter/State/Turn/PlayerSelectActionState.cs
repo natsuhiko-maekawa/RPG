@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using BattleScene.Domain.Code;
-using BattleScene.InterfaceAdapter.Facade;
+using BattleScene.InterfaceAdapter.PresenterFacade;
 using BattleScene.UseCases.UseCase;
 
 namespace BattleScene.InterfaceAdapter.State.Turn

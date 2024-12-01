@@ -1,7 +1,7 @@
 ﻿using BattleScene.Domain.Code;
 using BattleScene.InterfaceAdapter.Presenter;
 
-namespace BattleScene.InterfaceAdapter.Facade
+namespace BattleScene.InterfaceAdapter.PresenterFacade
 {
     public class RestoreOutputPresenterFacade
     {

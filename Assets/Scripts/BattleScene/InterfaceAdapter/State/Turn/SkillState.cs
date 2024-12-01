@@ -1,5 +1,5 @@
 ﻿using System;
-using BattleScene.InterfaceAdapter.Facade;
+using BattleScene.InterfaceAdapter.PresenterFacade;
 using BattleScene.InterfaceAdapter.StateMachine;
 using BattleScene.UseCases.UseCase;
 
