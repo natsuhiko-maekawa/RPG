@@ -24,12 +24,12 @@ namespace BattleScene.InterfaceAdapter.State.Turn
             _advanceTurnState = advanceTurnState;
         }
 
-        public override async void Start()
+        public override void Start()
         {
             if (Context.ActorId == null) throw new InvalidOperationException(ExceptionMessage.ContextActorIdIsNull);
             if (Context.Skill == null) throw new InvalidOperationException(ExceptionMessage.ContextSkillIsNull);
             _useCase.ExecuteSkill(Context.ActorId, Context.Skill);
-            await _skillOutput.Output(Context);
+            _skillOutput.Output(Context);
         }
 
         public override void Select()

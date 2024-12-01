@@ -12,20 +12,17 @@ namespace BattleScene.UseCases.Service
 {
     public class SlipDamageGeneratorService
     {
-        private readonly OrderedItemsDomainService _orderedItems;
         private readonly PlayerDomainService _player;
         private readonly DamageEvaluatorService _damageEvaluator;
         private readonly IFactory<BattlePropertyValueObject> _battlePropertyFactory;
         private readonly ICollection<BattleLogEntity, BattleLogId> _battleLogCollection;
 
         public SlipDamageGeneratorService(
-            OrderedItemsDomainService orderedItems,
             PlayerDomainService player,
             DamageEvaluatorService damageEvaluator,
             IFactory<BattlePropertyValueObject> battlePropertyFactory,
             ICollection<BattleLogEntity, BattleLogId> battleLogCollection)
         {
-            _orderedItems = orderedItems;
             _player = player;
             _damageEvaluator = damageEvaluator;
             _battlePropertyFactory = battlePropertyFactory;

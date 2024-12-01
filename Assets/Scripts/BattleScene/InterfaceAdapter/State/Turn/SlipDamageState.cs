@@ -20,7 +20,7 @@ namespace BattleScene.InterfaceAdapter.State.Turn
             _turnStopState = turnStopState;
         }
 
-        public override async void Start()
+        public override void Start()
         {
             Context.Skill = _slip.GetSkillCode();
             Context.TargetIdList = _slip.GetTargetList();
@@ -32,7 +32,7 @@ namespace BattleScene.InterfaceAdapter.State.Turn
             _animationQueue.Animate();
         }
 
-        public override async void Select()
+        public override void Select()
         {
             _animationQueue.Animate();
         }

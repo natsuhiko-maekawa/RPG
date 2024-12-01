@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.Threading.Tasks;
 using BattleScene.DataAccess;
 using BattleScene.DataAccess.Dto;
 using BattleScene.Domain.Code;
@@ -35,7 +34,7 @@ namespace BattleScene.InterfaceAdapter.Facade
             _playerImageView = playerImageView;
         }
 
-        public async Task Output(Context context)
+        public void Output(Context context)
         {
             if (context.ActorId == null) throw new InvalidOperationException(ExceptionMessage.ContextActorIdIsNull);
             if (context.Skill == null) throw new InvalidOperationException(ExceptionMessage.ContextSkillIsNull);
