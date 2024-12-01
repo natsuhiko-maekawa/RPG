@@ -6,9 +6,10 @@ package Views{
     class View
     struct ViewModel
     class GameObject
-'    class InputAction
+    class InputAction
     interface IActions
-'    IActions <-u- InputAction
+    IActions <-- InputAction
+    IActions <-- View
     ViewModel <-r View
     GameObject <-lo View
     IActions -[hidden] GameObject
@@ -34,12 +35,11 @@ package Presenters{
         - _context
         - _mementoList
     }
-    class Facade
+    class PresenterFacade
     class Presenter
-    class DummyClass
 
-    Facade <-- ConcreteState
-    Presenter <-l* Facade : contains
+    PresenterFacade <-- ConcreteState
+    Presenter <-l* PresenterFacade : contains
     BaseState <|- ConcreteState
     BaseState <-- Context
     BaseState <-- Memento
@@ -48,9 +48,10 @@ package Presenters{
     Memento <-- StateMachine
     Context <-- StateMachine
 
+'レイアウトをきれいにするためのダミークラス
     hide DummyClass
     DummyClass ---- StateMachine
-    DummyClass - Facade
+    DummyClass - PresenterFacade
 }
 
 package Models{
@@ -100,8 +101,8 @@ package Models{
     Dto <-- Resource
 }
 
-'IActions --- StateMachine
-'IActions --- DummyClass
+'以下を矢印で結ぶとかなりレイアウトが崩れるので、SVGに書き出してから手動で書き足す
+'StateMachine <-- IActions
 View <-- Presenter
 ViewModel <-- Presenter
 Models <- Presenter

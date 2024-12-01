@@ -10,7 +10,7 @@
 ### 設計関連
 
 [アーキテクチャ](Architecture.md)  
-[クラス図](PlantUML/ClassDiagram.puml)  
+[クラス図](Image/ClassDiagram.png)  
 [BattleState状態遷移図](PlantUML/BattleStateDiagram.puml)  
 [TurnState状態遷移図](PlantUML/TurnStateDiagram.puml)  
 [PrimeSkillState状態遷移図](PlantUML/PrimeSkillStateDiagram.puml)  
