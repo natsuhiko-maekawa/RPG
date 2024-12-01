@@ -6,7 +6,7 @@ using BattleScene.InterfaceAdapter.Presenter;
 using UnityEngine;
 using VContainer;
 
-namespace BattleScene.InterfaceAdapter
+namespace BattleScene
 {
     public class BattleSceneInitializer : MonoBehaviour
     {
