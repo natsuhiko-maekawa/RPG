@@ -18,6 +18,12 @@ namespace Utility
         }
 
         [Conditional("UNITY_EDITOR")]
+        public static void LogWarning(object message)
+        {
+            Debug.LogWarning(message);
+        }
+
+        [Conditional("UNITY_EDITOR")]
         public static void Assert(bool condition)
         {
             Debug.Assert(condition);

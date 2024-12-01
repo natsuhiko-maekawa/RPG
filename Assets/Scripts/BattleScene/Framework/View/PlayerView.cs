@@ -45,7 +45,7 @@ namespace BattleScene.Framework.View
                 }
                 catch (ArgumentException)
                 {
-                    MyDebug.LogAssertion(ExceptionMessage.ImageNotFound);
+                    MyDebug.LogWarning($"Image {playerImagePath} is not found.");
                 }
             }
         }
