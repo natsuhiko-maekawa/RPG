@@ -24,16 +24,12 @@ namespace BattleScene.InterfaceAdapter.Facade
             _skillViewResource = skillViewResource;
         }
 
-        public async Task OutputAsync(SkillCode skillCode)
+        public void Output(SkillCode skillCode)
         {
-            var animationList = new List<Task>();
             _messageView.StartAnimation(MessageCode.ResetAilmentMessage);
 
-            var playerImageCode = _skillViewResource.Get(skillCode).PlayerImageCode;
-            var playerImageAnimation = _playerImageView.StartAnimationAsync(playerImageCode, Slide);
-            animationList.Add(playerImageAnimation);
-
-            await Task.WhenAll(animationList);
+            var playerImageCode = _skillViewResource.Get(skillCode).PlayerImageCode; 
+            _playerImageView.StartAnimation(playerImageCode, Slide);
         }
     }
 }

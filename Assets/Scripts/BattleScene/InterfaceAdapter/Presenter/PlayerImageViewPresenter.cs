@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using BattleScene.DataAccess;
 using BattleScene.DataAccess.Dto;
 using BattleScene.Domain.Code;
@@ -9,22 +11,31 @@ namespace BattleScene.InterfaceAdapter.Presenter
 {
     public class PlayerImageViewPresenter
     {
-        private readonly IResource<PlayerImageDto, PlayerImageCode> _playerImagePathResource;
+        private readonly IResource<PlayerImageDto, PlayerImageCode> _playerImageResource;
         private readonly PlayerView _playerView;
 
         public PlayerImageViewPresenter(
-            IResource<PlayerImageDto, PlayerImageCode> playerImagePathResource,
+            IResource<PlayerImageDto, PlayerImageCode> playerImageResource,
             PlayerView playerView)
         {
-            _playerImagePathResource = playerImagePathResource;
+            _playerImageResource = playerImageResource;
             _playerView = playerView;
         }
 
-        public async Task StartAnimationAsync(PlayerImageCode playerImageCode, AnimationMode animationMode)
+        public async Task SetImage(IReadOnlyList<PlayerImageCode> playerImageCodeList)
         {
-            var playerImagePath = _playerImagePathResource.Get(playerImageCode).Path;
+            var playerImagePathList = playerImageCodeList
+                // 毎フレーム呼ばれるような処理ではないため、デリゲートによるアロケーションは気にしない
+                .Select(x => _playerImageResource.Get(x).Path)
+                .ToArray();
+            await _playerView.SetImage(playerImagePathList);
+        }
+
+        public void StartAnimation(PlayerImageCode playerImageCode, AnimationMode animationMode)
+        {
+            var playerImagePath = _playerImageResource.Get(playerImageCode).Path;
             var dto = new PlayerViewModel(playerImagePath);
-            await _playerView.StartAnimation(dto);
+            _playerView.StartAnimation(dto);
             switch (animationMode)
             {
                 case AnimationMode.Slide:

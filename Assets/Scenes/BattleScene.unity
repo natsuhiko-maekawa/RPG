@@ -2648,6 +2648,7 @@ GameObject:
   - component: {fileID: 1588216062}
   - component: {fileID: 1588216061}
   - component: {fileID: 1588216063}
+  - component: {fileID: 1588216064}
   m_Layer: 0
   m_Name: Input
   m_TagString: Untagged
@@ -2692,6 +2693,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ebff35a7f8148caab9f16f0da7aec03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1588216064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1588216060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7be48a7de3b4940b85738653ff402fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1692493002
@@ -3524,6 +3537,7 @@ MonoBehaviour:
     ailmentSuccessThreshold: 40
     maxAgility: 256
     maxOrderCount: 14
+    attackCountLimit: 25
 --- !u!1001 &130856577308979065
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -25,21 +25,17 @@ namespace BattleScene.InterfaceAdapter.Facade
             _playerImageView = playerImageView;
         }
 
-        public void OutputThenSlipFailureAsync()
+        public void OutputThenSlipFailure()
         {
             _messageView.StartAnimation(MessageCode.FailAilmentMessage);
         }
 
-        public async Task OutputThenSlipSuccessAsync(BattleEventValueObject battleEvent)
+        public void OutputThenSlipSuccess(BattleEventValueObject battleEvent)
         {
-            var animationList = new List<Task>();
             _messageView.StartAnimation(MessageCode.SlipMessage);
 
             var playerImageCode = _ailmentViewResource.Get(battleEvent.SlipCode).PlayerImageCode;
-            var playerImageAnimation = _playerImageView.StartAnimationAsync(playerImageCode, Slide);
-            animationList.Add(playerImageAnimation);
-
-            await Task.WhenAll(animationList);
+            _playerImageView.StartAnimation(playerImageCode, Slide);
         }
     }
 }

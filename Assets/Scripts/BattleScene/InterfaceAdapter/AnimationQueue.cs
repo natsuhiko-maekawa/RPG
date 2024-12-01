@@ -6,27 +6,27 @@ namespace BattleScene.InterfaceAdapter
 {
     public class AnimationQueue
     {
-        private readonly Queue<Func<Task>> _taskQueue;
+        private readonly Queue<Action> _queue;
 
         public event Action? OnLastAnimate;
 
-        public AnimationQueue(Queue<Func<Task>> tasks)
+        public AnimationQueue(Queue<Action> tasks)
         {
             if (tasks.Count == 0)
                 throw new ArgumentException("Argument tasks size must be bigger than 1 but it was 0.");
-            _taskQueue = new Queue<Func<Task>>(tasks);
+            _queue = new Queue<Action>(tasks);
         }
 
-        public async Task Animate()
+        public void Animate()
         {
-            if (_taskQueue.Count == 0)
+            if (_queue.Count == 0)
             {
                 OnLastAnimate?.Invoke();
                 return;
             }
 
-            var task = _taskQueue.Dequeue();
-            await task.Invoke();
+            var action = _queue.Dequeue();
+            action.Invoke();
         }
     }
 }

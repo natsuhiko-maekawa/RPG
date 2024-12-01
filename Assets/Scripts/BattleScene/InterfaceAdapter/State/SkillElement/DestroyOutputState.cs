@@ -17,7 +17,7 @@ namespace BattleScene.InterfaceAdapter.State.SkillElement
             _skillElementStopState = skillElementStopState;
         }
 
-        public override async void Start()
+        public override void Start()
         {
             var isFailure = Context.BattleEventQueue.All(x => x.IsFailure);
             if (isFailure)
@@ -28,7 +28,7 @@ namespace BattleScene.InterfaceAdapter.State.SkillElement
             else
             {
                 var primeSkill = Context.BattleEventQueue.Dequeue();
-                await _destroyOutput.OutputThenDestroySuccessAsync(primeSkill);
+                _destroyOutput.OutputThenDestroySuccessAsync(primeSkill);
             }
         }
 

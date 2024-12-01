@@ -28,19 +28,14 @@ namespace BattleScene.InterfaceAdapter.Facade
             _cureView = cureView;
         }
 
-        public async Task Output(BattleEventValueObject cure)
+        public void Output(BattleEventValueObject cure)
         {
-            var animationList = new List<Task>();
-
             _messageView.StartAnimation(MessageCode.CureMessage);
 
             var playerImageCode = _skillViewResource.Get(cure.SkillCode).PlayerImageCode;
-            var playerImageAnimation = _playerImageView.StartAnimationAsync(playerImageCode, Slide);
-            animationList.Add(playerImageAnimation);
+            _playerImageView.StartAnimation(playerImageCode, Slide);
 
             _cureView.StartAnimation(cure);
-
-            await Task.WhenAll(animationList);
         }
     }
 }

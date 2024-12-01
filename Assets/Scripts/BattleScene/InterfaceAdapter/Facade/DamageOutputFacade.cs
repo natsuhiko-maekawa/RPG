@@ -36,10 +36,8 @@ namespace BattleScene.InterfaceAdapter.Facade
             _vibrationView = vibrationView;
         }
 
-        public async Task Output(BattleEventValueObject damage)
+        public void Output(BattleEventValueObject damage)
         {
-            var animationList = new List<Task>();
-
             var isActorPlayer = _characterCollection.Get(damage.ActorId)!.IsPlayer;
             if (isActorPlayer)
             {
@@ -53,16 +51,13 @@ namespace BattleScene.InterfaceAdapter.Facade
                     .All(x => !x.IsHit)
                     ? PlayerImageCode.Avoidance
                     : PlayerImageCode.Damaged;
-                var playerImageAnimation = _playerImageView.StartAnimationAsync(playerImageCode, Vibe);
-                animationList.Add(playerImageAnimation);
+                _playerImageView.StartAnimation(playerImageCode, Vibe);
             }
 
             var messageCode = GetMessageCode(damage);
             _messageView.StartAnimation(messageCode);
             _damageView.StartAnimation();
             _vibrationView.StartAnimation();
-
-            await Task.WhenAll(animationList);
         }
 
         private MessageCode GetMessageCode(BattleEventValueObject damage)

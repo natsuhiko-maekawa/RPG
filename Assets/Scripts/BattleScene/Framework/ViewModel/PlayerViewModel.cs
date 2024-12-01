@@ -3,11 +3,11 @@
     public struct PlayerViewModel
     {
         public PlayerViewModel(
-            string playerImage)
+            string playerImagePath)
         {
-            PlayerImage = playerImage;
+            PlayerImagePath = playerImagePath;
         }
 
-        public string PlayerImage { get; }
+        public string PlayerImagePath { get; }
     }
 }

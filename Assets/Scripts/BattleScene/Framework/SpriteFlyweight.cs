@@ -18,7 +18,7 @@ namespace BattleScene.Framework
         private readonly object _syncObject = new();
         private bool _throwsInvalidKeyException;
 
-        private void Start()
+        private void Awake()
         {
             // https://docs.unity3d.com/Packages/com.unity.addressables@1.15/manual/ExceptionHandler.html
             ResourceManager.ExceptionHandler = ExceptionHandler;

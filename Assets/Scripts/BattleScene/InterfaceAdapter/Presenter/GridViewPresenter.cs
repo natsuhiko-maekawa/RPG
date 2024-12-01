@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
-using System.Threading.Tasks;
 using BattleScene.DataAccess;
 using BattleScene.DataAccess.Dto;
 using BattleScene.Domain.Code;
+using BattleScene.Framework.Code;
 using BattleScene.Framework.View;
 using BattleScene.Framework.ViewModel;
 using BattleScene.UseCases.Service;
@@ -16,6 +16,8 @@ namespace BattleScene.InterfaceAdapter.Presenter
         private readonly IResource<MessageDto, MessageCode> _messageResource;
         private readonly IResource<PlayerImageDto, PlayerImageCode> _playerImagePathResource;
         private readonly GridView _gridView;
+        private static readonly BattleEventCode[] BattleEventCodeList
+            = { BattleEventCode.Attack, BattleEventCode.Skill, BattleEventCode.Defence, BattleEventCode.FatalitySkill };
 
         public GridViewPresenter(
             AttackCounterService attackCounter,
@@ -29,12 +31,9 @@ namespace BattleScene.InterfaceAdapter.Presenter
             _gridView = gridView;
         }
 
-        public async Task StartAnimationAsync()
+        public void StartAnimationAsync()
         {
-            var actionCodeList = new[]
-                { BattleEventCode.Attack, BattleEventCode.Skill, BattleEventCode.Defence, BattleEventCode.FatalitySkill };
-
-            var rowList = actionCodeList
+            var rowList = BattleEventCodeList
                 .Select(x =>
                 {
                     var rowName = x.ToString();
@@ -50,9 +49,9 @@ namespace BattleScene.InterfaceAdapter.Presenter
                 })
                 .ToList();
             var dto = new GridViewDto(
-                ActionCode: Framework.Code.ActionCode.Action,
+                ActionCode: ActionCode.Action,
                 rowList);
-            await _gridView.StartAnimationAsync(dto);
+            _gridView.StartAnimationAsync(dto);
         }
 
         public void Stop()

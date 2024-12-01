@@ -17,11 +17,10 @@ namespace BattleScene.InterfaceAdapter.Facade
             _gridView = gridView;
         }
 
-        public async Task StartAsync()
+        public void StartAsync()
         {
             _infoView.StartAnimationAsync(MessageCode.VerticalSelect);
-            var gridAnimation = _gridView.StartAnimationAsync();
-            await Task.WhenAll(gridAnimation);
+            _gridView.StartAnimationAsync();
         }
 
         public void Stop()

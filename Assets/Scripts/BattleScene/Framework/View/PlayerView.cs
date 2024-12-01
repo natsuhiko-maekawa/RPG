@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using BattleScene.Framework.GameObjects;
 using BattleScene.Framework.ViewModel;
 using UnityEngine;
+using Utility;
 
 namespace BattleScene.Framework.View
 {
@@ -14,6 +16,7 @@ namespace BattleScene.Framework.View
         private StatusBarView _playerHpBarView;
         private StatusBarView _playerTpBarView;
         private SpriteFlyweight _spriteFlyweight;
+        private Dictionary<string, Sprite> _imagePool;
 
         private void Awake()
         {
@@ -24,23 +27,47 @@ namespace BattleScene.Framework.View
             var statusBarViews = GetComponentsInChildren<StatusBarView>();
             _playerHpBarView = statusBarViews[0];
             _playerTpBarView = statusBarViews[1];
-            _spriteFlyweight = SpriteFlyweight.Instance;
         }
 
-        public async Task StartAnimation(PlayerViewModel model)
+        public async Task SetImage(IReadOnlyList<string> playerImagePathList)
         {
-            _playerImage.enabled = false;
-            try
+            _spriteFlyweight = SpriteFlyweight.Instance;
+            var capacity = playerImagePathList.Count;
+            _imagePool = new Dictionary<string, Sprite>(capacity);
+            foreach (var playerImagePath in playerImagePathList)
             {
-                var sprite = await _spriteFlyweight.GetAsync(model.PlayerImage);
+                if (_imagePool.ContainsKey(playerImagePath)) return;
+
+                try
+                {
+                    var sprite = await _spriteFlyweight.GetAsync(playerImagePath);
+                    _imagePool.Add(playerImagePath, sprite);
+                }
+                catch (ArgumentException)
+                {
+                    MyDebug.LogAssertion(ExceptionMessage.ImageNotFound);
+                }
+            }
+        }
+
+        public void StartAnimation(PlayerViewModel model)
+        {
+            StopAnimation();
+            if (_imagePool.TryGetValue(model.PlayerImagePath, out var sprite))
+            {
                 _playerImage.Set(sprite);
             }
-            catch (ArgumentException)
+            else
             {
                 _playerImage.IsNothing();
             }
 
             _playerImage.enabled = true;
+        }
+
+        public void StopAnimation()
+        {
+            _playerImage.enabled = false;
         }
 
         public void StartPlayerSlideView() => _playerImage.Slide();

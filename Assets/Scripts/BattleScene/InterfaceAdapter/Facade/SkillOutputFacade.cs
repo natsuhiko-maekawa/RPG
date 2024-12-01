@@ -40,7 +40,6 @@ namespace BattleScene.InterfaceAdapter.Facade
         {
             if (context.ActorId == null) throw new InvalidOperationException(ExceptionMessage.ContextActorIdIsNull);
             if (context.Skill == null) throw new InvalidOperationException(ExceptionMessage.ContextSkillIsNull);
-            var animationList = new List<Task>();
 
             var messageCode = context.Skill.Common.AttackMessageCode;
             _messageView.StartAnimation(messageCode, context);
@@ -57,10 +56,7 @@ namespace BattleScene.InterfaceAdapter.Facade
                                && !SkillCodeList.AilmentSkillCodeList.Contains(x.SkillCode))
                     ?.SkillCode ?? SkillCode.Attack;
             var playerImageCode = _skillViewResource.Get(playerSkillCode).PlayerImageCode;
-            var playerImageAnimation = _playerImageView.StartAnimationAsync(playerImageCode, Slide);
-            animationList.Add(playerImageAnimation);
-
-            await Task.WhenAll(animationList);
+            _playerImageView.StartAnimation(playerImageCode, Slide);
         }
     }
 }

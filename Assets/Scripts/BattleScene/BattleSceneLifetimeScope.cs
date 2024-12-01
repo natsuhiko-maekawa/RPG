@@ -412,6 +412,8 @@ namespace BattleScene
                 .AsImplementedInterfaces();
 
             #endregion
+
+            builder.RegisterComponentInHierarchy<BattleSceneInitializer>();
         }
     }
 }

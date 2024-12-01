@@ -16,7 +16,7 @@ namespace BattleScene.InterfaceAdapter.State.SkillElement
             _skillElementStopState = skillElementStopState;
         }
 
-        public override async void Start()
+        public override void Start()
         {
             var isFailure = Context.BattleEventQueue.Count == 0;
             if (isFailure)
@@ -26,7 +26,7 @@ namespace BattleScene.InterfaceAdapter.State.SkillElement
             else
             {
                 var ailment = Context.BattleEventQueue.Dequeue();
-                await _ailmentOutput.OutputThenAilmentSuccessAsync(ailment);
+                _ailmentOutput.OutputThenAilmentSuccessAsync(ailment);
             }
         }
 

@@ -40,9 +40,9 @@ namespace BattleScene.UseCases.UseCase
             _hitPoint = hitPoint;
         }
 
-        public void Commit()
+        public void Commit(SlipCode slipCode)
         {
-            var slipDamage = _slipDamageGenerator.Generate();
+            var slipDamage = _slipDamageGenerator.Generate(slipCode);
             _hitPoint.Damaged(slipDamage);
             _slipCollection.Get(slipDamage.SlipCode).AdvanceTurn();
             _battleLogger.Log(slipDamage);

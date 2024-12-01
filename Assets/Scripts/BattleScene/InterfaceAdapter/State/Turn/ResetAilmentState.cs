@@ -24,11 +24,11 @@ namespace BattleScene.InterfaceAdapter.State.Turn
             _turnStopState = turnStopState;
         }
 
-        public override async void Start()
+        public override void Start()
         {
             _useCase.Reset(Context.AilmentCode);
             Context.Skill = _useCase.GetAttackSkill();
-            await _output.OutputAsync(Context.Skill.Common.SkillCode);
+            _output.Output(Context.Skill.Common.SkillCode);
         }
 
         public override void Select()

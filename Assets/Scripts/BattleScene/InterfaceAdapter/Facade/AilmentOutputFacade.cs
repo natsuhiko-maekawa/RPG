@@ -37,19 +37,15 @@ namespace BattleScene.InterfaceAdapter.Facade
             _messageView.StartAnimation(MessageCode.FailAilmentMessage);
         }
 
-        public async Task OutputThenAilmentSuccessAsync(BattleEventValueObject ailment)
+        public void OutputThenAilmentSuccessAsync(BattleEventValueObject ailment)
         {
-            var animationList = new List<Task>();
             _messageView.StartAnimation(MessageCode.AilmentMessage);
 
             if (ailment.ActualTargetIdList.Any(x => _characterCollection.Get(x).IsPlayer))
             {
                 var playerImageCode = _ailmentViewResource.Get(ailment.AilmentCode).PlayerImageCode;
-                var playerImageAnimation = _playerImageView.StartAnimationAsync(playerImageCode, Slide);
-                animationList.Add(playerImageAnimation);
+                _playerImageView.StartAnimation(playerImageCode, Slide);
             }
-
-            await Task.WhenAll(animationList);
         }
     }
 }

@@ -33,11 +33,10 @@ namespace BattleScene.UseCases.Service
             _battleLogCollection = battleLogCollection;
         }
 
-        public BattleEventValueObject Generate()
+        public BattleEventValueObject Generate(SlipCode slipCode)
         {
-            _orderedItems.First().TryGetSlipDamageCode(out var slipCode);
-            MyDebug.Assert(slipCode != SlipCode.NoSlip);
-
+            // 現在のスリップコードから直近に罹ったスリップのログを取得する
+            // TODO: 稀にNullReferenceExceptionが発生する
             var battleLog = _battleLogCollection.Get()
                 .Where(x => x.BattleEventCode is BattleEventCode.Skill or BattleEventCode.FatalitySkill)
                 .Where(x => x.SlipCode == slipCode)

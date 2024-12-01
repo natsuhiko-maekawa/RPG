@@ -19,9 +19,9 @@ namespace BattleScene.InterfaceAdapter.State.SkillElement
             _skillElementBreakState = skillElementBreakState;
         }
 
-        public override async void Start()
+        public override void Start()
         {
-            await _damageOutput.Output(Context.BattleEventQueue.Peek());
+            _damageOutput.Output(Context.BattleEventQueue.Peek());
         }
 
         public override void Select()

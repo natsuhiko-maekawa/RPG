@@ -52,8 +52,9 @@ namespace BattleScene.Framework.View
             _rowStateDictionary = new Dictionary<ActionCode, RowState>(actionCount);
         }
 
-        public async Task StartAnimationAsync(GridViewDto dto)
+        public void StartAnimationAsync(GridViewDto dto)
         {
+            enabled = true;
             _window.enabled = true;
             _inputAction.Enable();
 
@@ -89,8 +90,8 @@ namespace BattleScene.Framework.View
                 noWait: true));
 
             _playerView.enabled = true;
-            await _playerView.StartAnimation(new PlayerViewModel(
-                playerImage: dto.RowDtoList[gridState.SelectedIndex].PlayerImagePath));
+            _playerView.StartAnimation(new PlayerViewModel(
+                playerImagePath: dto.RowDtoList[gridState.SelectedIndex].PlayerImagePath));
             _playerView.StartPlayerSlideView();
         }
 
@@ -105,7 +106,7 @@ namespace BattleScene.Framework.View
             enabled = false;
         }
 
-        private async Task MoveArrow(Vector2 vector2)
+        private void MoveArrow(Vector2 vector2)
         {
             if (vector2.y == 0) return;
 
@@ -113,7 +114,7 @@ namespace BattleScene.Framework.View
                 _rowStateDictionary[_dto.ActionCode].Up();
             else
                 _rowStateDictionary[_dto.ActionCode].Down();
-            await StartAnimationAsync(_dto);
+            StartAnimationAsync(_dto);
         }
 
         public void OnSelect(InputAction.CallbackContext context)
@@ -132,7 +133,7 @@ namespace BattleScene.Framework.View
             if (context.performed)
             {
                 var vector2 = context.ReadValue<Vector2>();
-                var _ = MoveArrow(vector2);
+                MoveArrow(vector2);
             }
         }
     }

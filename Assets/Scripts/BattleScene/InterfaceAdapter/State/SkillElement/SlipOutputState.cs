@@ -17,18 +17,18 @@ namespace BattleScene.InterfaceAdapter.State.SkillElement
             _slipOutput = slipOutput;
         }
 
-        public override async void Start()
+        public override void Start()
         {
             var isFailure = Context.BattleEventQueue.All(x => x.IsFailure);
             if (isFailure)
             {
-                _slipOutput.OutputThenSlipFailureAsync();
+                _slipOutput.OutputThenSlipFailure();
                 Context.BattleEventQueue.Clear();
             }
             else
             {
                 var primeSkill = Context.BattleEventQueue.Dequeue();
-                await _slipOutput.OutputThenSlipSuccessAsync(primeSkill);
+                _slipOutput.OutputThenSlipSuccess(primeSkill);
             }
         }
 

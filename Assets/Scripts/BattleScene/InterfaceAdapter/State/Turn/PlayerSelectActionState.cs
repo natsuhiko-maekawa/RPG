@@ -36,9 +36,9 @@ namespace BattleScene.InterfaceAdapter.State.Turn
             _output = output;
         }
 
-        public override async void Start()
+        public override void Start()
         {
-            await _output.StartAsync();
+            _output.StartAsync();
         }
 
         public override void Select(int id)

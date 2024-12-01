@@ -39,7 +39,7 @@ namespace BattleScene.InterfaceAdapter.Presenter
             _technicalPoint = technicalPoint;
         }
 
-        public async void StartAnimationAsync()
+        public void StartAnimationAsync()
         {
             var actionCode = ActionCode.Skill;
             var rowDtoList = _propertyFactory.Create(CharacterTypeCode.Player).SkillCodeList
@@ -48,7 +48,7 @@ namespace BattleScene.InterfaceAdapter.Presenter
             var dto = new GridViewDto(
                 ActionCode: actionCode,
                 RowDtoList: rowDtoList);
-            await _gridView.StartAnimationAsync(dto);
+            _gridView.StartAnimationAsync(dto);
         }
 
         public void StopAnimation()

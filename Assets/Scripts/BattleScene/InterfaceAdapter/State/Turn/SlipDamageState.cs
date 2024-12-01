@@ -24,17 +24,17 @@ namespace BattleScene.InterfaceAdapter.State.Turn
         {
             Context.Skill = _slip.GetSkillCode();
             Context.TargetIdList = _slip.GetTargetList();
-            _slip.Commit();
+            _slip.Commit(Context.SlipCode);
 
             var outputQueue = _slipDamageOutput.GetOutputQueue(Context.Skill);
             _animationQueue = new AnimationQueue(outputQueue);
             _animationQueue.OnLastAnimate += TransitionState;
-            await _animationQueue.Animate();
+            _animationQueue.Animate();
         }
 
         public override async void Select()
         {
-            await _animationQueue.Animate();
+            _animationQueue.Animate();
         }
 
         private void TransitionState() => Context.TransitionTo(_turnStopState);

@@ -25,15 +25,11 @@ namespace BattleScene.InterfaceAdapter.Facade
             _messageView.StartAnimation(MessageCode.NoMessage);
         }
 
-        public async Task OutputThenDestroySuccessAsync(BattleEventValueObject battleEvent)
+        public void OutputThenDestroySuccessAsync(BattleEventValueObject battleEvent)
         {
-            var animationList = new List<Task>();
+            // TODO: メッセージを設定する
             _messageView.StartAnimation(MessageCode.NoMessage);
-
-            var playerImageAnimation = _playerImageView.StartAnimationAsync(PlayerImageCode.NoImage, Slide);
-            animationList.Add(playerImageAnimation);
-
-            await Task.WhenAll(animationList);
+            _playerImageView.StartAnimation(PlayerImageCode.NoImage, Slide);
         }
     }
 }
