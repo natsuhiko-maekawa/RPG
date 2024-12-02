@@ -4,23 +4,23 @@ using R3;
 
 namespace BattleScene.InterfaceAdapter
 {
-    public class AnimationQueue : IDisposable
+    public class ActionQueue : IDisposable
     {
         private Queue<Action>? _queue;
-        public ReactiveCommand OnLastAnimate { get; } = new();
+        public ReactiveCommand OnLastAction { get; } = new();
 
-        public AnimationQueue(Queue<Action> queue)
+        public ActionQueue(Queue<Action> queue)
         {
             if (queue.Count == 0)
                 throw new ArgumentException("Argument queue size must be bigger than 1 but it was 0.");
             _queue = queue;
         }
 
-        public void Animate()
+        public void Invoke()
         {
             if (_queue!.Count == 0)
             {
-                OnLastAnimate.Execute(Unit.Default);
+                OnLastAction.Execute(Unit.Default);
                 return;
             }
 
@@ -31,7 +31,7 @@ namespace BattleScene.InterfaceAdapter
         public void Dispose()
         {
             _queue = null;
-            OnLastAnimate.Dispose();
+            OnLastAction.Dispose();
         }
     }
 }
