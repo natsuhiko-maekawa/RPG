@@ -5,13 +5,12 @@ using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
 using BattleScene.UseCases.IService;
-using BattleScene.UseCases.IUseCase;
 using BattleScene.UseCases.Service;
 
 namespace BattleScene.UseCases.UseCase
 {
     public class
-        SkillElementUseCase<TSkillElement> : ISkillElementUseCase<TSkillElement>
+        SkillElementUseCase<TSkillElement>
     {
         private readonly ISkillElementService<TSkillElement> _skillElement;
         private readonly BattleLoggerService _battleLogger;

@@ -4,19 +4,19 @@ using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
-using BattleScene.UseCases.IUseCase;
+using BattleScene.UseCases.UseCase;
 
 namespace BattleScene.InterfaceAdapter.State.SkillElement
 {
     public class SkillElementStartState<TSkillElement> : BaseState<TSkillElement>
     {
-        private readonly ISkillElementUseCase<TSkillElement> _useCase;
+        private readonly SkillElementUseCase<TSkillElement> _useCase;
         private readonly ICollection<CharacterEntity, CharacterId> _characterCollection;
         private readonly SkillElementOutputState<TSkillElement> _skillElementOutputState;
         private readonly SkillElementStopState<TSkillElement> _skillElementStopState;
 
         public SkillElementStartState(
-            ISkillElementUseCase<TSkillElement> useCase,
+            SkillElementUseCase<TSkillElement> useCase,
             ICollection<CharacterEntity, CharacterId> characterCollection,
             SkillElementOutputState<TSkillElement> skillElementOutputState,
             SkillElementStopState<TSkillElement> skillElementStopState)

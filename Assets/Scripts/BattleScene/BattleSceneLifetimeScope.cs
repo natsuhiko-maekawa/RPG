@@ -25,7 +25,6 @@ using BattleScene.InterfaceAdapter.State.SkillElement;
 using BattleScene.InterfaceAdapter.State.Turn;
 using BattleScene.InterfaceAdapter.StateMachine;
 using BattleScene.UseCases.IService;
-using BattleScene.UseCases.IUseCase;
 using BattleScene.UseCases.Service;
 using BattleScene.UseCases.Service.Order;
 using BattleScene.UseCases.UseCase;
@@ -339,16 +338,15 @@ namespace BattleScene
             #region RegisterUseCase
 
             builder.Register<EnemySelectActionUseCase>(Singleton);
-            builder.Register<ISkillElementUseCase<DamageValueObject>, SkillElementUseCase<DamageValueObject>>(Singleton);
-            builder.Register<ISkillElementUseCase<AilmentValueObject>, SkillElementUseCase<AilmentValueObject>>(Singleton);
-            builder.Register<ISkillElementUseCase<DestroyValueObject>, SkillElementUseCase<DestroyValueObject>>(Singleton);
-            builder.Register<ISkillElementUseCase<BuffValueObject>, SkillElementUseCase<BuffValueObject>>(Singleton);
-            builder.Register<ISkillElementUseCase<CureValueObject>, SkillElementUseCase<CureValueObject>>(Singleton);
-            builder.Register<ISkillElementUseCase<EnhanceValueObject>, SkillElementUseCase<EnhanceValueObject>>(Singleton);
-            builder.Register<ISkillElementUseCase<SlipValueObject>, SkillElementUseCase<SlipValueObject>>(Singleton);
-            builder.Register<ISkillElementUseCase<RecoveryValueObject>, 
-                SkillElementUseCase<RecoveryValueObject>>(Singleton);
-            builder.Register<ISkillElementUseCase<RestoreValueObject>, SkillElementUseCase<RestoreValueObject>>(Singleton);
+            builder.Register<SkillElementUseCase<DamageValueObject>, SkillElementUseCase<DamageValueObject>>(Singleton);
+            builder.Register<SkillElementUseCase<AilmentValueObject>, SkillElementUseCase<AilmentValueObject>>(Singleton);
+            builder.Register<SkillElementUseCase<DestroyValueObject>, SkillElementUseCase<DestroyValueObject>>(Singleton);
+            builder.Register<SkillElementUseCase<BuffValueObject>, SkillElementUseCase<BuffValueObject>>(Singleton);
+            builder.Register<SkillElementUseCase<CureValueObject>, SkillElementUseCase<CureValueObject>>(Singleton);
+            builder.Register<SkillElementUseCase<EnhanceValueObject>, SkillElementUseCase<EnhanceValueObject>>(Singleton);
+            builder.Register<SkillElementUseCase<SlipValueObject>, SkillElementUseCase<SlipValueObject>>(Singleton);
+            builder.Register<SkillElementUseCase<RecoveryValueObject>, SkillElementUseCase<RecoveryValueObject>>(Singleton);
+            builder.Register<SkillElementUseCase<RestoreValueObject>, SkillElementUseCase<RestoreValueObject>>(Singleton);
             builder.Register<InitializeEnemyUseCase>(Singleton);
             builder.Register<InitializePlayerUseCase>(Singleton);
             builder.Register<OrderUseCase>(Singleton);
