@@ -39,7 +39,7 @@ namespace BattleScene.InterfaceAdapter.Presenter
             _technicalPoint = technicalPoint;
         }
 
-        public void StartAnimationAsync()
+        public void StartAnimation()
         {
             var actionCode = ActionCode.Skill;
             var rowDtoList = _propertyFactory.Create(CharacterTypeCode.Player).SkillCodeList
