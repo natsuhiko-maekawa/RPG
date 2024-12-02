@@ -13,7 +13,7 @@ namespace BattleScene.InterfaceAdapter.Presenter
 {
     public class SkillViewPresenter
     {
-        private readonly GridView _gridView;
+        private readonly TableView _tableView;
         private readonly IResource<MessageDto, MessageCode> _messageResource;
         private readonly IResource<PlayerImageDto, PlayerImageCode> _playerPropertyResource;
         private readonly IFactory<CharacterPropertyValueObject, CharacterTypeCode> _propertyFactory;
@@ -27,7 +27,7 @@ namespace BattleScene.InterfaceAdapter.Presenter
             IResource<SkillViewDto, SkillCode> skillPropertyFactory,
             IResource<MessageDto, MessageCode> messageResource,
             IResource<PlayerImageDto, PlayerImageCode> playerPropertyResource,
-            GridView gridView,
+            TableView tableView,
             ITechnicalPointService technicalPoint)
         {
             _propertyFactory = propertyFactory;
@@ -35,28 +35,28 @@ namespace BattleScene.InterfaceAdapter.Presenter
             _skillPropertyFactory = skillPropertyFactory;
             _messageResource = messageResource;
             _playerPropertyResource = playerPropertyResource;
-            _gridView = gridView;
+            _tableView = tableView;
             _technicalPoint = technicalPoint;
         }
 
         public void StartAnimation()
         {
             var actionCode = ActionCode.Skill;
-            var rowDtoList = _propertyFactory.Create(CharacterTypeCode.Player).SkillCodeList
-                .Select(GetRowDto)
+            var rowList = _propertyFactory.Create(CharacterTypeCode.Player).SkillCodeList
+                .Select(GetRow)
                 .ToList();
-            var dto = new GridViewDto(
-                ActionCode: actionCode,
-                RowDtoList: rowDtoList);
-            _gridView.StartAnimationAsync(dto);
+            var dto = new TableViewModel(
+                actionCode: actionCode,
+                rowList: rowList);
+            _tableView.StartAnimationAsync(dto);
         }
 
         public void StopAnimation()
         {
-            _gridView.StopAnimation();
+            _tableView.StopAnimation();
         }
 
-        private RowDto GetRowDto(SkillCode x)
+        private Row GetRow(SkillCode x)
         {
             var skill = _skillFactory.Create(x);
             var skillProperty = _skillPropertyFactory.Get(x);
@@ -64,13 +64,12 @@ namespace BattleScene.InterfaceAdapter.Presenter
             var playerImagePath = _playerPropertyResource.Get(skillProperty.PlayerImageCode).Path;
             // TODO: スキル使用可否の判断で部位破壊についても考慮する
             var enabled = skill.Common.TechnicalPoint <= _technicalPoint.Get();
-            var dto = new RowDto(
-                RowId: 0,
-                RowName: skillProperty.SkillName,
-                RowDescription: description,
-                PlayerImagePath: playerImagePath,
-                Enabled: enabled,
-                TechnicalPoint: skill.Common.TechnicalPoint);
+            var dto = new Row(
+                rowName: skillProperty.SkillName,
+                rowDescription: description,
+                playerImagePath: playerImagePath,
+                enabled: enabled,
+                technicalPoint: skill.Common.TechnicalPoint);
             return dto;
         }
     }

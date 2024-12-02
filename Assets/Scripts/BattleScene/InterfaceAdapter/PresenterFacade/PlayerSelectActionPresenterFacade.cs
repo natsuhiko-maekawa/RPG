@@ -6,26 +6,26 @@ namespace BattleScene.InterfaceAdapter.PresenterFacade
     public class PlayerSelectActionPresenterFacade
     {
         private readonly InfoViewPresenter _infoView;
-        private readonly GridViewPresenter _gridView;
+        private readonly TableViewPresenter _tableView;
 
         public PlayerSelectActionPresenterFacade(
             InfoViewPresenter infoView,
-            GridViewPresenter gridView)
+            TableViewPresenter tableView)
         {
             _infoView = infoView;
-            _gridView = gridView;
+            _tableView = tableView;
         }
 
         public void Output()
         {
             _infoView.StartAnimation(MessageCode.VerticalSelect);
-            _gridView.StartAnimation();
+            _tableView.StartAnimation();
         }
 
         public void Stop()
         {
             _infoView.StopAnimation();
-            _gridView.Stop();
+            _tableView.Stop();
         }
     }
 }

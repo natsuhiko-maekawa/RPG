@@ -70,7 +70,7 @@ namespace BattleScene
             builder.RegisterComponentInHierarchy<EnemiesView>();
             builder.RegisterComponentInHierarchy<InfoView>();
             // builder.RegisterComponentInHierarchy<BattleSceneInput>();
-            builder.RegisterComponentInHierarchy<GridView>();
+            builder.RegisterComponentInHierarchy<TableView>();
             builder.RegisterComponentInHierarchy<MessageView>();
             builder.RegisterComponentInHierarchy<OrderView>();
             builder.RegisterComponentInHierarchy<PlayerAttackCountView>();
@@ -90,7 +90,7 @@ namespace BattleScene
             builder.Register<CureViewPresenter>(Singleton);
             builder.Register<DamageViewPresenter>(Singleton);
             builder.Register<EnemyImagePresenter>(Singleton);
-            builder.Register<GridViewPresenter>(Singleton);
+            builder.Register<TableViewPresenter>(Singleton);
             builder.Register<InfoViewPresenter>(Singleton);
             builder.Register<MessageViewPresenter>(Singleton);
             builder.Register<OrderViewPresenter>(Singleton);

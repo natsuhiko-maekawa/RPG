@@ -1,16 +1,24 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
+﻿using TMPro;
+using UnityEngine;
 
 namespace BattleScene.Framework.GameObjects
 {
     public class RowName : MonoBehaviour
     {
-        private Text _rowName;
+        public Color defaultColor;
+        public Color highlightColor;
+        private TMP_Text _rowName;
 
         private void Awake()
         {
-            _rowName = GetComponent<Text>();
+            _rowName = GetComponent<TextMeshProUGUI>();
             enabled = false;
+        }
+
+        private void Reset()
+        {
+            defaultColor = Color.white;
+            highlightColor = Color.red;
         }
 
         private void OnEnable()
@@ -19,6 +27,8 @@ namespace BattleScene.Framework.GameObjects
         }
 
         public void Set(string rowName) => _rowName.text = rowName;
+        public void Highlight() => _rowName.color = highlightColor;
+        public void Unhighlight() => _rowName.color = defaultColor;
 
         private void OnDisable()
         {

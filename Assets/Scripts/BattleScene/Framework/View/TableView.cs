@@ -11,17 +11,17 @@ using VContainer;
 
 namespace BattleScene.Framework.View
 {
-    public class GridView : MonoBehaviour, BattleSceneInputAction.IBattleSceneActions
+    public class TableView : MonoBehaviour, BattleSceneInputAction.IBattleSceneActions
     {
         [SerializeField] private int maxGridSize;
         private Window _window;
-        private Table _grid;
+        private Table _table;
         private ArrowRight _arrowRight;
         private ArrowUp _arrowUp;
         private ArrowDown _arrowDown;
         private MessageView _messageView;
         private PlayerView _playerView;
-        private GridViewDto _dto;
+        private TableViewModel _model;
         private Dictionary<ActionCode, RowState> _rowStateDictionary;
         private BattleSceneInputAction _inputAction;
         private ISelectRowAction _selectRowAction;
@@ -35,8 +35,8 @@ namespace BattleScene.Framework.View
         private void Awake()
         {
             _window = GetComponentInChildren<Window>();
-            _grid = GetComponentInChildren<Table>();
-            _grid.SetItem(maxGridSize);
+            _table = GetComponentInChildren<Table>();
+            _table.SetItem(maxGridSize);
             _arrowRight = GetComponentInChildren<ArrowRight>();
             _arrowUp = GetComponentInChildren<ArrowUp>();
             _arrowDown = GetComponentInChildren<ArrowDown>();
@@ -51,31 +51,45 @@ namespace BattleScene.Framework.View
             _rowStateDictionary = new Dictionary<ActionCode, RowState>(actionCount);
         }
 
-        public void StartAnimationAsync(GridViewDto dto)
+        public void StartAnimationAsync(TableViewModel model)
         {
             enabled = true;
             _window.enabled = true;
             _inputAction.Enable();
 
-            _dto = dto;
-            if (!_rowStateDictionary.TryGetValue(dto.ActionCode, out var gridState))
+            _model = model;
+            if (!_rowStateDictionary.TryGetValue(model.ActionCode, out var gridState))
             {
                 gridState = new RowState(
                     maxTableSize: maxGridSize,
-                    itemCount: dto.RowDtoList.Count);
-                _rowStateDictionary.Add(dto.ActionCode, gridState);
+                    itemCount: model.RowList.Count);
+                _rowStateDictionary.Add(model.ActionCode, gridState);
             }
 
-            _grid.enabled = true;
+            _table.enabled = true;
 
-            foreach (var (row, rowDto) in _grid.Zip(dto.RowDtoList.Skip(gridState.TopItemIndex),
-                         (row, rowDto) => (row, rowDto)))
+            var rows = _table
+                .Zip(model.RowList
+                    .Select((rowModel, index) => (rowModel, index))
+                    .Skip(gridState.TopItemIndex), (row, rowAndIndex) => (row, rowAndIndex.rowModel, rowAndIndex.index))
+                .ToArray();
+
+            foreach (var (row, rowModel, index) in rows)
             {
-                row.SetName(rowDto.RowName);
+                row.SetName(rowModel.RowName);
                 row.ShowName();
 
-                if (dto.ActionCode != ActionCode.Skill) continue;
-                row.SetTechnicalPoint(rowDto.TechnicalPoint);
+                if (index == _rowStateDictionary[_model.ActionCode].SelectedIndex)
+                {
+                    row.HighlightName();
+                }
+                else
+                {
+                    row.UnhighlightName();
+                }
+
+                if (model.ActionCode != ActionCode.Skill) continue;
+                row.SetTechnicalPoint(rowModel.TechnicalPoint);
                 row.ShowTechnicalPoint();
             }
 
@@ -85,19 +99,19 @@ namespace BattleScene.Framework.View
 
             _messageView.enabled = true;
             _messageView.StartAnimation(new MessageViewModel(
-                message: dto.RowDtoList[gridState.SelectedIndex].RowDescription,
+                message: model.RowList[gridState.SelectedIndex].RowDescription,
                 noWait: true));
 
             _playerView.enabled = true;
             _playerView.StartAnimation(new PlayerViewModel(
-                playerImagePath: dto.RowDtoList[gridState.SelectedIndex].PlayerImagePath));
+                playerImagePath: model.RowList[gridState.SelectedIndex].PlayerImagePath));
             _playerView.StartPlayerSlideView();
         }
 
         public void StopAnimation()
         {
             _window.enabled = false;
-            _grid.enabled = false;
+            _table.enabled = false;
             _arrowRight.enabled = false;
             _arrowUp.enabled = false;
             _arrowDown.enabled = false;
@@ -110,17 +124,17 @@ namespace BattleScene.Framework.View
             if (vector2.y == 0) return;
 
             if (vector2.y > 0)
-                _rowStateDictionary[_dto.ActionCode].Up();
+                _rowStateDictionary[_model.ActionCode].Up();
             else
-                _rowStateDictionary[_dto.ActionCode].Down();
-            StartAnimationAsync(_dto);
+                _rowStateDictionary[_model.ActionCode].Down();
+            StartAnimationAsync(_model);
         }
 
         public void OnSelect(InputAction.CallbackContext context)
         {
             if (context.performed)
             {
-                var row = _rowStateDictionary[_dto.ActionCode].SelectedIndex;
+                var row = _rowStateDictionary[_model.ActionCode].SelectedIndex;
                 _selectRowAction.OnSelect(row);
             }
         }

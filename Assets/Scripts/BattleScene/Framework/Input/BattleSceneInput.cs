@@ -10,17 +10,17 @@ namespace BattleScene.Framework.Input
     public class BattleSceneInput : MonoBehaviour, IBattleSceneActions
     {
         private BattleSceneInputAction _inputAction;
-        private GridView _gridView;
+        private TableView _tableView;
         private TargetView _targetView;
         private INoArgumentActions _noArgumentActions;
 
         [Inject]
         public void Construct(
-            GridView gridView,
+            TableView tableView,
             TargetView targetView,
             INoArgumentActions noArgumentActions)
         {
-            _gridView = gridView;
+            _tableView = tableView;
             _targetView = targetView;
             _noArgumentActions = noArgumentActions;
         }
@@ -34,7 +34,7 @@ namespace BattleScene.Framework.Input
 
         public void OnSelect(InputAction.CallbackContext context)
         {
-            if (_gridView.enabled) return;
+            if (_tableView.enabled) return;
             if (_targetView.enabled) return;
             if (context.performed) _noArgumentActions.OnSelect();
         }

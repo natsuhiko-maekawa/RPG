@@ -10,25 +10,25 @@ using BattleScene.UseCases.Service;
 
 namespace BattleScene.InterfaceAdapter.Presenter
 {
-    public class GridViewPresenter
+    public class TableViewPresenter
     {
         private readonly AttackCounterService _attackCounter;
         private readonly IResource<MessageDto, MessageCode> _messageResource;
         private readonly IResource<PlayerImageDto, PlayerImageCode> _playerImagePathResource;
-        private readonly GridView _gridView;
+        private readonly TableView _tableView;
         private static readonly BattleEventCode[] BattleEventCodeList
             = { BattleEventCode.Attack, BattleEventCode.Skill, BattleEventCode.Defence, BattleEventCode.FatalitySkill };
 
-        public GridViewPresenter(
+        public TableViewPresenter(
             AttackCounterService attackCounter,
             IResource<MessageDto, MessageCode> messageResource,
             IResource<PlayerImageDto, PlayerImageCode> playerImagePathResource,
-            GridView gridView)
+            TableView tableView)
         {
             _attackCounter = attackCounter;
             _messageResource = messageResource;
             _playerImagePathResource = playerImagePathResource;
-            _gridView = gridView;
+            _tableView = tableView;
         }
 
         public void StartAnimation()
@@ -39,24 +39,24 @@ namespace BattleScene.InterfaceAdapter.Presenter
                     var rowName = x.ToString();
                     var rowDescription = GetDescription(x);
                     var enabled = GetEnabled(x);
-                    return new RowDto(
-                        RowId: (int)x,
-                        RowName: rowName,
-                        RowDescription: rowDescription,
+                    return new Row(
+                        rowName: rowName,
+                        rowDescription: rowDescription,
                         // TODO: 仮で刀のイラストを設定している
-                        PlayerImagePath: _playerImagePathResource.Get(PlayerImageCode.Katana).Path,
-                        Enabled: enabled);
+                        playerImagePath: _playerImagePathResource.Get(PlayerImageCode.Katana).Path,
+                        enabled: enabled,
+                        technicalPoint: 0);
                 })
                 .ToList();
-            var dto = new GridViewDto(
-                ActionCode: ActionCode.Action,
-                rowList);
-            _gridView.StartAnimationAsync(dto);
+            var dto = new TableViewModel(
+                actionCode: ActionCode.Action,
+                rowList: rowList);
+            _tableView.StartAnimationAsync(dto);
         }
 
         public void Stop()
         {
-            _gridView.StopAnimation();
+            _tableView.StopAnimation();
         }
 
         private string[] GetDescription(BattleEventCode battleEventCode)
