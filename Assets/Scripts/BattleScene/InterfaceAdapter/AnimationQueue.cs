@@ -1,31 +1,37 @@
 ﻿using System;
 using System.Collections.Generic;
+using R3;
 
 namespace BattleScene.InterfaceAdapter
 {
-    public class AnimationQueue
+    public class AnimationQueue : IDisposable
     {
-        private readonly Queue<Action> _queue;
+        private Queue<Action>? _queue;
+        public ReactiveCommand OnLastAnimate { get; } = new();
 
-        public event Action? OnLastAnimate;
-
-        public AnimationQueue(Queue<Action> tasks)
+        public AnimationQueue(Queue<Action> queue)
         {
-            if (tasks.Count == 0)
-                throw new ArgumentException("Argument tasks size must be bigger than 1 but it was 0.");
-            _queue = new Queue<Action>(tasks);
+            if (queue.Count == 0)
+                throw new ArgumentException("Argument queue size must be bigger than 1 but it was 0.");
+            _queue = queue;
         }
 
         public void Animate()
         {
-            if (_queue.Count == 0)
+            if (_queue!.Count == 0)
             {
-                OnLastAnimate?.Invoke();
+                OnLastAnimate.Execute(Unit.Default);
                 return;
             }
 
             var action = _queue.Dequeue();
             action.Invoke();
+        }
+
+        public void Dispose()
+        {
+            _queue = null;
+            OnLastAnimate.Dispose();
         }
     }
 }
