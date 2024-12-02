@@ -35,21 +35,24 @@ namespace BattleScene.InterfaceAdapter.PresenterFacade
         {
             var outputQueue = new Queue<Action>();
             outputQueue.Enqueue(() => Output1(skill));
-            outputQueue.Enqueue(() => Output2());
+            outputQueue.Enqueue(() => Output2(skill));
             return outputQueue;
         }
 
         private void Output1(SkillValueObject skill)
         {
             var playerImageCode = _skillViewResource.Get(skill.Common.SkillCode).PlayerImageCode;
-            _playerImageView.StartAnimation(playerImageCode, Vibe);
+            _playerImageView.StartAnimation(playerImageCode, Slide);
 
             var messageCode = skill.Common.AttackMessageCode;
             _messageView.StartAnimation(messageCode);
         }
 
-        private void Output2()
+        private void Output2(SkillValueObject skill)
         {
+            var playerImageCode = _skillViewResource.Get(skill.Common.SkillCode).PlayerImageCode;
+            _playerImageView.StartAnimation(playerImageCode, Vibe);
+
             _messageView.StartAnimation(MessageCode.SlipDamageMessage);
             _damageView.StartAnimation();
             _vibrationView.StartAnimation();
