@@ -29,7 +29,7 @@
         DamageOneselfMessage, // 共通 (自身に与ダメージ)
         DebuffMessage, // 共通 (デバフ)
         DefenceDescription, // スキル説明 (DEFENCE)
-        DefenceMessage, // 共通 (防御)
+        DefenceActionMessage, // 共通 (防御)
         EnemyConfusionActMessage, // 状態異常 (敵混乱)
         EnemySuicideMessage, // 共通 (敵自滅)
         FailAilmentMessage, // 共通 (状態異常失敗)
@@ -82,5 +82,8 @@
         VerticalSelect, // 共通 (上下選択)
         VerticalSelectAndCancel, // 共通 (上下選択/キャンセル)
         HorizontalSelectAndCancel, // 共通 (左右選択/キャンセル)
+        BattleContinue,
+        BattleQuit,
+        DefenceMessage,
     }
 }

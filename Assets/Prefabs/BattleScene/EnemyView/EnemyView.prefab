@@ -152,29 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4d0c7e6a190fc7439b5b6d9674cf326, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  frame: 20
-  moveRange: 20
-  randomRange: 80
-  alphaRate: 0
-  waitTime: 70
-  avoidText: avoid
-  damageColor:
-    topLeft: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-    topRight: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-    bottomLeft: {r: 1, g: 0, b: 0, a: 1}
-    bottomRight: {r: 1, g: 0, b: 0, a: 1}
-  cureColor:
-    topLeft: {r: 0, g: 1, b: 0, a: 1}
-    topRight: {r: 0, g: 1, b: 0, a: 1}
-    bottomLeft: {r: 0, g: 1, b: 1, a: 1}
-    bottomRight: {r: 0, g: 1, b: 1, a: 1}
-  restoreColor:
-    topLeft: {r: 0, g: 1, b: 1, a: 1}
-    topRight: {r: 0, g: 1, b: 1, a: 1}
-    bottomLeft: {r: 0, g: 0, b: 1, a: 1}
-    bottomRight: {r: 0, g: 0, b: 1, a: 1}
-  damageText: {fileID: 4463324142508910455, guid: 1fa3b0682121eeb4ca52bca27494c994, type: 3}
-  isPlayer: 0
+  digitsIntervalSecond: 0.1
 --- !u!1 &2553027807651883426
 GameObject:
   m_ObjectHideFlags: 0

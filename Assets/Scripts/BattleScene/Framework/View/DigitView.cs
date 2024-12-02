@@ -42,6 +42,11 @@ namespace BattleScene.Framework.View
             _frameRate = Application.targetFrameRate;
         }
 
+        private void Reset()
+        {
+            digitsIntervalSecond = 0.1f;
+        }
+
         public void StartAnimation(DigitListViewModel model)
         {
             if (model.DigitList.Count == 0) return;

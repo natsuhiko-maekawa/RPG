@@ -13,7 +13,7 @@ namespace BattleScene.InterfaceAdapter.Skill
     {
         public override SkillCode SkillCode { get; } = SkillCode.Defence;
         public override Range Range { get; } = Range.Oneself;
-        public override MessageCode AttackMessageCode { get; } = MessageCode.DefenceMessage;
+        public override MessageCode AttackMessageCode { get; } = MessageCode.DefenceActionMessage;
 
         public override IReadOnlyList<BaseEnhance> EnhanceList { get; } = new[] { new Defence() };
         public override IReadOnlyList<BaseRestore> RestoreList { get; } = new[] { new BasicRestore() };

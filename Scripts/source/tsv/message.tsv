@@ -27,7 +27,7 @@ DamageOneselfMessage	[actor]は自分自身に[damage]ダメージを与えた�
 DebuffMessage	[target]の[buff]が低下した！
 DefenceDescription	"攻撃を行わず防御を行う。
 同時にTPが回復する。"
-DefenceMessage	[actor]は身を守っている...
+DefenceActionMessage	[actor]は身を守っている...
 EnemyConfusionActMessage	[actor]は混乱して自分自身にを攻撃した！
 EnemySuicideMessage	[actor]は倒れた！
 FailAilmentMessage	[target]は状態異常にはかからなかった...
@@ -86,3 +86,6 @@ MetronomeDescription	全スキルの中からランダムに一つを発動す�
 VerticalSelect	⇅で選択 / Aで決定
 VerticalSelectAndCancel	⇅で選択 / Aで決定 / Bで戻る
 HorizontalSelectAndCancel	⇆で選択 / Aで決定 / Bで戻る
+BattleContinue	戦闘を続ける
+BattleQuit	戦闘をやめる
+DefenceMessage	[target]の防御が上昇した！
