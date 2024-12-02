@@ -8,7 +8,6 @@ using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
 using BattleScene.UseCases.IService;
 using BattleScene.UseCases.Service;
-using Utility;
 
 namespace BattleScene.UseCases.UseCase
 {
@@ -16,7 +15,6 @@ namespace BattleScene.UseCases.UseCase
     {
         private readonly BattleLoggerService _battleLogger;
         private readonly PlayerDomainService _player;
-        private readonly OrderedItemsDomainService _orderedItems;
         private readonly SlipDamageGeneratorService _slipDamageGenerator;
         private readonly ICollection<SlipEntity, SlipCode> _slipCollection;
         private readonly IFactory<SkillValueObject, SkillCode> _skillFactory;
@@ -25,7 +23,6 @@ namespace BattleScene.UseCases.UseCase
         public SlipUseCase(
             BattleLoggerService battleLogger,
             PlayerDomainService player,
-            OrderedItemsDomainService orderedItems,
             SlipDamageGeneratorService slipDamageGenerator,
             ICollection<SlipEntity, SlipCode> slipCollection,
             IFactory<SkillValueObject, SkillCode> skillFactory,
@@ -33,7 +30,6 @@ namespace BattleScene.UseCases.UseCase
         {
             _battleLogger = battleLogger;
             _player = player;
-            _orderedItems = orderedItems;
             _slipDamageGenerator = slipDamageGenerator;
             _slipCollection = slipCollection;
             _skillFactory = skillFactory;
