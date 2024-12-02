@@ -48,10 +48,8 @@ namespace BattleScene.UseCases.UseCase
             _battleLogger.Log(slipDamage);
         }
 
-        public SkillValueObject GetSkillCode()
+        public SkillValueObject GetSkillCode(SlipCode slipCode)
         {
-            _orderedItems.First().TryGetSlipDamageCode(out var slipCode);
-            MyDebug.Assert(slipCode != SlipCode.NoSlip);
             var skillCode = slipCode switch
             {
                 SlipCode.Burning => SkillCode.Burning,
