@@ -32,9 +32,7 @@ namespace Tests.BattleScene.UseCases.Service
         private readonly MockCollection<AilmentEntity, (CharacterId, AilmentCode)> _ailmentCollection = new();
         private readonly MockCollection<OrderedItemEntity, OrderId> _orderedItemCollection = new();
         private readonly MockCollection<SlipEntity, SlipCode> _slipDamageCollection = new();
-#pragma warning disable CS0414 // Field is assigned but its value is never used
-        private readonly ISpeedService _speed = null!;
-#pragma warning restore CS0414 // Field is assigned but its value is never used
+        private ISpeedService _mockSpeedService = null!;
 
         [SetUp]
         public void SetUp()
@@ -51,6 +49,14 @@ namespace Tests.BattleScene.UseCases.Service
                     itemList: characterPropertyScriptableObject.ItemList);
             _stubCharacterPropertyFactory = new CharacterPropertyFactory(
                 propertyResource: stubCharacterPropertyResource);
+
+            _stubCharacterPropertyFactoryService = new CharacterPropertyFactoryService(
+                characterPropertyFactory: _stubCharacterPropertyFactory,
+                characterCollection: _mockCharacterCollection);
+
+            _mockSpeedService = new SpeedService(
+                buffCollection: _mockBuffCollection,
+                characterPropertyFactory: _stubCharacterPropertyFactoryService);
         }
 
         [Test]
@@ -75,14 +81,6 @@ namespace Tests.BattleScene.UseCases.Service
             _mockCharacterCollection.Add(player);
             _mockCharacterCollection.Add(bee);
 
-            _stubCharacterPropertyFactoryService = new CharacterPropertyFactoryService(
-                characterPropertyFactory: _stubCharacterPropertyFactory,
-                characterCollection: _mockCharacterCollection);
-
-            var mockSpeedService = new SpeedService(
-                buffCollection: _mockBuffCollection,
-                characterPropertyFactory: _stubCharacterPropertyFactoryService);
-
             var mockOrderedItemRepository = new MockCollection<OrderedItemEntity, OrderId>();
 
             var stubSlipDamageRepository = Substitute.For<ICollection<SlipEntity, SlipCode>>();
@@ -96,7 +94,7 @@ namespace Tests.BattleScene.UseCases.Service
                 characterCollection: _mockCharacterCollection,
                 orderedItemCollection: mockOrderedItemRepository,
                 slipDamageCollection: stubSlipDamageRepository,
-                speed: mockSpeedService);
+                speed: _mockSpeedService);
 
             orderService.Update();
             var orderedItemRepositoryToString = mockOrderedItemRepository.ToString();
