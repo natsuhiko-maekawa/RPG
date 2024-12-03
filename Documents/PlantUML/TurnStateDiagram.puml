@@ -38,7 +38,7 @@ EnemySelectActionState : 敵がスキルと\n攻撃対象を選択する
 CantActionState : 行動不能スキルを\n選択する
 SkillState : スキルを実行する
 AdvanceTurnState : 状態異常のターンを進める
-ResetAilmentState : 状態異常を回復する
+ResetAilmentState : 状態異常を回復する\n攻撃スキルをセットする
 SlipDamageState : スリップダメージを与える
 TurnStopState : ターンを終了する
 @enduml

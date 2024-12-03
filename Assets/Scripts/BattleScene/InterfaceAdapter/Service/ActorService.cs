@@ -38,7 +38,7 @@ namespace BattleScene.InterfaceAdapter.Service
 
         public bool IsPlayer(CharacterId? actorId)
         {
-            var isPlayer = actorId != null && _characterCollection.Get(actorId).IsPlayer;
+            var isPlayer = actorId is not null && _characterCollection.Get(actorId).IsPlayer;
             return isPlayer;
         }
 
@@ -49,18 +49,28 @@ namespace BattleScene.InterfaceAdapter.Service
         /// </summary>
         private bool CantActionByParalysis => _myRandom.Probability(0.5f);
 
-        public bool CantActionBy(CharacterId? actorId, [NotNullWhen(true)]out SkillValueObject? skill)
+        /// <summary>
+        /// キャラクターが行動不能かを判定し、行動不能の場合、true。それ以外の場合、falseを返す。<br/>
+        /// 行動不能の場合、out引数で状態異常のスキルを返す。
+        /// </summary>
+        /// <param name="actorId">行動不能か判定するキャラクターのID。</param>
+        /// <param name="skill">行動不能だった場合、状態異常のスキルValueObject。それ以外の場合、null。</param>
+        /// <returns>行動不能の場合、true。それ以外の場合、false。</returns>
+        public bool CantAction(CharacterId? actorId, [NotNullWhen(true)] out SkillValueObject? skill)
         {
             skill = null;
 
-            if (actorId == null) return false;
-            var ailmentCodeList = _ailment.GetAilmentCodeListOrderedByPriority(actorId);
+            if (actorId is null) return false;
+            var ailmentCodeList = _ailment.GetCantActionAilmentCodeList(actorId);
             if (ailmentCodeList.Count == 0) return false;
 
             var ailmentCode = ailmentCodeList.First();
             var skillCode = _toSkillCode.From(ailmentCode);
             skill = _skillFactory.Create(skillCode);
-            
+
+            // もし最も優先度の高い状態異常が麻痺だった場合、麻痺によって行動不能になるかを判定し、
+            // 麻痺によって行動不能にならなかった場合、次に優先度の高い状態異常を返す。
+            // 麻痺以外の状態異常がなかった場合、行動できるため、falseを返す。
             if (ailmentCode is not (AilmentCode.Paralysis or AilmentCode.EnemyParalysis)) return true;
             if (CantActionByParalysis) return true;
             if (ailmentCodeList.Count == 1) return false;

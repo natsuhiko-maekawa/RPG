@@ -19,6 +19,7 @@ namespace BattleScene.DataAccess.Factory
         {
             var dto = _ailmentPropertyResource.Get(key);
             var ailmentProperty = new AilmentPropertyValueObject(
+                ailmentCode: dto.Key,
                 turn: dto.Turn,
                 isSelfRecovery: dto.IsSelfRecovery,
                 priority: dto.Priority);
