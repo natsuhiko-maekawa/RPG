@@ -18,13 +18,13 @@ namespace BattleScene.InterfaceAdapter.Presenter
         private readonly IResource<EnemyViewDto, CharacterTypeCode> _enemyViewInfoResource;
         private readonly OrderView _orderView;
         private readonly ICollection<CharacterEntity, CharacterId> _characterCollection;
-        private readonly ICollection<OrderedItemEntity, OrderId> _orderedItemCollection;
+        private readonly ICollection<OrderedItemEntity, OrderedItemId> _orderedItemCollection;
 
         public OrderViewPresenter(
             IResource<EnemyViewDto, CharacterTypeCode> enemyViewInfoResource,
             OrderView orderView,
             ICollection<CharacterEntity, CharacterId> characterCollection,
-            ICollection<OrderedItemEntity, OrderId> orderedItemCollection)
+            ICollection<OrderedItemEntity, OrderedItemId> orderedItemCollection)
         {
             _enemyViewInfoResource = enemyViewInfoResource;
             _orderView = orderView;

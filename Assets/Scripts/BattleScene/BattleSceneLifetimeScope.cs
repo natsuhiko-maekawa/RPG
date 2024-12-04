@@ -32,7 +32,6 @@ using UnityEngine;
 using VContainer;
 using VContainer.Unity;
 using static VContainer.Lifetime;
-using PoisoningSkill = BattleScene.InterfaceAdapter.Skill.PoisoningSkill;
 
 namespace BattleScene
 {
@@ -257,7 +256,7 @@ namespace BattleScene
                 Singleton);
             builder.Register<ICollection<EnhanceEntity, (CharacterId, EnhanceCode)>, 
                 Collection<EnhanceEntity, (CharacterId, EnhanceCode)>>(Singleton);
-            builder.Register<ICollection<OrderedItemEntity, OrderId>, Collection<OrderedItemEntity, OrderId>>(
+            builder.Register<ICollection<OrderedItemEntity, OrderedItemId>, Collection<OrderedItemEntity, OrderedItemId>>(
                 Singleton);
             builder.Register<ICollection<SlipEntity, SlipCode>, Collection<SlipEntity, SlipCode>>(Singleton);
             builder.Register<ICollection<TurnEntity, TurnId>, Collection<TurnEntity, TurnId>>(Singleton);
@@ -349,6 +348,7 @@ namespace BattleScene
             builder.Register<SkillElementUseCase<SlipValueObject>, SkillElementUseCase<SlipValueObject>>(Singleton);
             builder.Register<SkillElementUseCase<RecoveryValueObject>, SkillElementUseCase<RecoveryValueObject>>(Singleton);
             builder.Register<SkillElementUseCase<RestoreValueObject>, SkillElementUseCase<RestoreValueObject>>(Singleton);
+            builder.Register<InitializeBattleUseCase>(Singleton);
             builder.Register<InitializeEnemyUseCase>(Singleton);
             builder.Register<InitializePlayerUseCase>(Singleton);
             builder.Register<OrderUseCase>(Singleton);

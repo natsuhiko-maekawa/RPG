@@ -14,7 +14,7 @@ namespace BattleScene.UseCases.Service.Order
         private readonly IFactory<BattlePropertyValueObject> _battlePropertyFactory;
         private readonly ICollection<AilmentEntity, (CharacterId, AilmentCode)> _ailmentCollection;
         private readonly ICollection<CharacterEntity, CharacterId> _characterCollection;
-        private readonly ICollection<OrderedItemEntity, OrderId> _orderedItemCollection;
+        private readonly ICollection<OrderedItemEntity, OrderedItemId> _orderedItemCollection;
         private readonly ICollection<SlipEntity, SlipCode> _slipDamageCollection;
         private readonly ISpeedService _speed;
 
@@ -22,7 +22,7 @@ namespace BattleScene.UseCases.Service.Order
             IFactory<BattlePropertyValueObject> battlePropertyFactory,
             ICollection<AilmentEntity, (CharacterId, AilmentCode)> ailmentCollection,
             ICollection<CharacterEntity, CharacterId> characterCollection,
-            ICollection<OrderedItemEntity, OrderId> orderedItemCollection,
+            ICollection<OrderedItemEntity, OrderedItemId> orderedItemCollection,
             ICollection<SlipEntity, SlipCode> slipDamageCollection,
             ISpeedService speed)
         {
@@ -32,6 +32,16 @@ namespace BattleScene.UseCases.Service.Order
             _orderedItemCollection = orderedItemCollection;
             _slipDamageCollection = slipDamageCollection;
             _speed = speed;
+        }
+
+        public void Initialize()
+        {
+            for (var i = 0; i < _battlePropertyFactory.Create().MaxOrderCount; ++i)
+            {
+                var orderedItemId = new OrderedItemId();
+                var orderedItem = new OrderedItemEntity(orderedItemId, i);
+                _orderedItemCollection.Add(orderedItem);
+            }
         }
 
         public void Update()
@@ -61,15 +71,14 @@ namespace BattleScene.UseCases.Service.Order
             InsertAilmentEnd(ailments, ref orderedItemList);
             InsertSlipDamage(slipDamages, ref orderedItemList);
 
-            var orderedItemEntityList = orderedItemList
-                .Select((x, i) => new OrderedItemEntity(
-                    orderId: new OrderId(),
-                    order: i,
-                    orderedItem: x))
-                .ToList();
-
-            _orderedItemCollection.Remove();
-            _orderedItemCollection.Add(orderedItemEntityList);
+            // QUESTION: IEnumeratorを渡した場合とToArrayして配列を渡した場合、アロケーションが少ないのはどちらか
+            foreach (var (orderedItemEntity, orderedItem) in _orderedItemCollection.Get()
+                         .OrderBy(x => x.Order)
+                         .Zip(orderedItemList, (orderedItemEntity, orderedItem) => (orderedItemEntity, orderedItem))
+                         .ToArray())
+            {
+                orderedItemEntity.SetOrderedItem(orderedItem);
+            }
         }
 
         private void InsertAilmentEnd(

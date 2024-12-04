@@ -1,23 +1,23 @@
-﻿using BattleScene.UseCases.Service;
+﻿using BattleScene.UseCases.UseCase;
 
 namespace BattleScene.InterfaceAdapter.State.Battle
 {
     public class InitializeBattleState : BaseState
     {
+        private readonly InitializeBattleUseCase _useCase;
         private readonly InitializePlayerState _initializePlayerState;
-        private readonly TurnService _turn;
 
         public InitializeBattleState(
-            InitializePlayerState initializePlayerState,
-            TurnService turn)
+            InitializeBattleUseCase useCase,
+            InitializePlayerState initializePlayerState)
         {
+            _useCase = useCase;
             _initializePlayerState = initializePlayerState;
-            _turn = turn;
         }
 
         public override void Start()
         {
-            _turn.Initialize();
+            _useCase.Initialize();
             Context.TransitionTo(_initializePlayerState);
         }
     }

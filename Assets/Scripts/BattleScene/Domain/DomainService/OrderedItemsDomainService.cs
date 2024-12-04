@@ -7,10 +7,10 @@ namespace BattleScene.Domain.DomainService
 {
     public class OrderedItemsDomainService
     {
-        private readonly ICollection<OrderedItemEntity, OrderId> _orderedItemCollection;
+        private readonly ICollection<OrderedItemEntity, OrderedItemId> _orderedItemCollection;
 
         public OrderedItemsDomainService(
-            ICollection<OrderedItemEntity, OrderId> orderedItemCollection)
+            ICollection<OrderedItemEntity, OrderedItemId> orderedItemCollection)
         {
             _orderedItemCollection = orderedItemCollection;
         }

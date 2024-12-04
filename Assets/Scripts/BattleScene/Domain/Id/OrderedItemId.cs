@@ -1,6 +1,6 @@
 ﻿namespace BattleScene.Domain.Id
 {
-    public class OrderId : BaseId
+    public class OrderedItemId : BaseId
     {
     }
 }

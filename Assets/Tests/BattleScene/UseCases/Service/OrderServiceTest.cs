@@ -29,8 +29,8 @@ namespace Tests.BattleScene.UseCases.Service
             = new MockCollection<BuffEntity, (CharacterId, BuffCode)>();
         private readonly ICollection<CharacterEntity, CharacterId> _mockCharacterCollection
             = new MockCollection<CharacterEntity, CharacterId>();
-        private readonly ICollection<OrderedItemEntity, OrderId> _mockOrderedItemCollection
-            = new MockCollection<OrderedItemEntity, OrderId>();
+        private readonly ICollection<OrderedItemEntity, OrderedItemId> _mockOrderedItemCollection
+            = new MockCollection<OrderedItemEntity, OrderedItemId>();
         private readonly ICollection<SlipEntity, SlipCode> _mockSlipCollection
             = new MockCollection<SlipEntity, SlipCode>();
         private OrderService _orderService = null!;
@@ -40,14 +40,16 @@ namespace Tests.BattleScene.UseCases.Service
         [SetUp]
         public void SetUp()
         {
-            _mockCharacterCollection.Remove();
             _mockAilmentCollection.Remove();
             _mockBuffCollection.Remove();
+            _mockCharacterCollection.Remove();
+            _mockOrderedItemCollection.Remove();
             _mockSlipCollection.Remove();
             _stubBattlePropertyFactory = GetStubBattlePropertyFactory();
             _stubSpeedService = GetStubSpeedService();
             _stubCharacterCreatorService = GetStubCharacterCreatorService();
             _orderService = GetOrderService();
+            _orderService.Initialize();
         }
 
         #region ForSetUp
@@ -118,13 +120,29 @@ namespace Tests.BattleScene.UseCases.Service
 
         private static OrderedItemEntity GetOrderedItem(object expected, int i)
         {
-            if (expected is CharacterId characterId)
-                return new OrderedItemEntity(new OrderId(), i, new OrderedItem(characterId));
-            if (expected is AilmentCode ailmentCode)
-                return new OrderedItemEntity(new OrderId(), i, new OrderedItem(ailmentCode));
-            if (expected is SlipCode slipCode)
-                return new OrderedItemEntity(new OrderId(), i, new OrderedItem(slipCode));
-            throw new InvalidCastException();
+            switch (expected)
+            {
+                case CharacterId characterId:
+                {
+                    var orderedItem = new OrderedItemEntity(new OrderedItemId(), i);
+                    orderedItem.SetOrderedItem(new OrderedItem(characterId));
+                    return orderedItem;
+                }
+                case AilmentCode ailmentCode:
+                {
+                    var orderedItem = new OrderedItemEntity(new OrderedItemId(), i);
+                    orderedItem.SetOrderedItem(new OrderedItem(ailmentCode));
+                    return orderedItem;
+                }
+                case SlipCode slipCode:
+                {
+                    var orderedItem = new OrderedItemEntity(new OrderedItemId(), i);
+                    orderedItem.SetOrderedItem(new OrderedItem(slipCode));
+                    return orderedItem;
+                }
+                default:
+                    throw new InvalidCastException();
+            }
         }
 
         private CharacterId AddPlayer()
