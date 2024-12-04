@@ -1,6 +1,7 @@
 ﻿namespace BattleScene.Domain.Code
 {
-    public enum AilmentCode
+    // QUESTION: byteを指定してデータサイズを抑えた方がよいか
+    public enum AilmentCode : byte
     {
         NoAilment,
         Blind,

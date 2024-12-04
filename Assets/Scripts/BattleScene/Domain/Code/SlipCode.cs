@@ -1,6 +1,6 @@
 ﻿namespace BattleScene.Domain.Code
 {
-    public enum SlipCode
+    public enum SlipCode : byte
     {
         NoSlip,
         Burning,

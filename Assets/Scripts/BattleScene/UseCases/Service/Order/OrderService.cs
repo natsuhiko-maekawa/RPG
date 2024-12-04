@@ -36,19 +36,19 @@ namespace BattleScene.UseCases.Service.Order
 
         public void Update()
         {
-            var characterList = _characterCollection.Get().Select(x => x.Id);
+            var characters = _characterCollection.Get();
             var orderedItemList = Enumerable
-                .Repeat(characterList, _battlePropertyFactory.Create().MaxOrderCount)
-                .Select((x, i) => x
-                    .Select(y => (characterId: y,
-                        speed: _characterCollection.Get(y).ActionTime +
-                               _battlePropertyFactory.Create().MaxAgility / _speed.GetSpeed(y) * i)))
+                .Repeat(characters, _battlePropertyFactory.Create().MaxOrderCount)
+                .Select((charactersRepeat, i) => charactersRepeat
+                    .Select(character => (character,
+                        speed: character.ActionTime +
+                               _battlePropertyFactory.Create().MaxAgility / _speed.GetSpeed(character.Id) * i)))
                 .SelectMany(x => x)
                 .OrderBy(x => x.speed)
-                .ThenByDescending(x => _speed.GetAgility(x.characterId))
-                .ThenBy(x => _characterCollection.Get(x.characterId).CharacterTypeCode)
-                .ThenBy(x => _characterCollection.Get(x.characterId).Id)
-                .Select(x => new OrderedItem(x.characterId))
+                .ThenByDescending(x => _speed.GetAgility(x.character.Id))
+                .ThenBy(x => x.character.CharacterTypeCode)
+                .ThenBy(x => x.character.Id)
+                .Select(x => new OrderedItem(x.character.Id))
                 .ToList()
                 .GetRange(0, _battlePropertyFactory.Create().MaxOrderCount);
 
