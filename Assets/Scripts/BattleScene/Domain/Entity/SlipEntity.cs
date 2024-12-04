@@ -16,8 +16,10 @@ namespace BattleScene.Domain.Entity
         }
 
         public override SlipCode Id { get; }
-        public int Turn { get; private set; }
-        private int DefaultTurn { get; }
+        // 本来はprivate set;
+        public int Turn { get; set; }
+        // 本来はprivate
+        public int DefaultTurn { get; set; }
 
         private bool _effects;
 
