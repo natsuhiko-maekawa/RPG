@@ -59,7 +59,7 @@ namespace BattleScene.Domain.Entity
         }
     }
 
-    public struct OrderedItem
+    public struct OrderedItem // 16 byte
     {
         public OrderedItemType OrderedItemType { get; }
         public CharacterId? CharacterId { get; }
