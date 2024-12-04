@@ -35,7 +35,7 @@ namespace BattleScene.InterfaceAdapter.Presenter
         public async void StartAnimationAsync()
         {
             var orderViewDtoList = _orderedItemCollection.Get()
-                .OrderBy(x => x.OrderNumber)
+                .OrderBy(x => x.Order)
                 .Select(CreateOrderViewDto)
                 .ToList();
 
@@ -89,7 +89,7 @@ namespace BattleScene.InterfaceAdapter.Presenter
 
         private OrderViewDto CreateSlipOrderViewDto(OrderedItemEntity orderedItem)
         {
-            orderedItem.TryGetSlipDamageCode(out var slipCode);
+            orderedItem.TryGetSlipCode(out var slipCode);
             var ailmentNumber = ConvertToIntFrom(slipCode);
             var dto = new OrderViewDto(ItemType.Ailment, AilmentNumber: ailmentNumber);
             return dto;

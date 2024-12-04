@@ -12,7 +12,6 @@ namespace BattleScene.UseCases.Service.Order
     public class OrderService
     {
         private readonly IFactory<BattlePropertyValueObject> _battlePropertyFactory;
-        private readonly CharacterPropertyFactoryService _characterPropertyFactory;
         private readonly ICollection<AilmentEntity, (CharacterId, AilmentCode)> _ailmentCollection;
         private readonly ICollection<CharacterEntity, CharacterId> _characterCollection;
         private readonly ICollection<OrderedItemEntity, OrderId> _orderedItemCollection;
@@ -21,7 +20,6 @@ namespace BattleScene.UseCases.Service.Order
 
         public OrderService(
             IFactory<BattlePropertyValueObject> battlePropertyFactory,
-            CharacterPropertyFactoryService characterPropertyFactory,
             ICollection<AilmentEntity, (CharacterId, AilmentCode)> ailmentCollection,
             ICollection<CharacterEntity, CharacterId> characterCollection,
             ICollection<OrderedItemEntity, OrderId> orderedItemCollection,
@@ -29,7 +27,6 @@ namespace BattleScene.UseCases.Service.Order
             ISpeedService speed)
         {
             _battlePropertyFactory = battlePropertyFactory;
-            _characterPropertyFactory = characterPropertyFactory;
             _ailmentCollection = ailmentCollection;
             _characterCollection = characterCollection;
             _orderedItemCollection = orderedItemCollection;
@@ -45,11 +42,11 @@ namespace BattleScene.UseCases.Service.Order
                 .Select((x, i) => x
                     .Select(y => (characterId: y,
                         speed: _characterCollection.Get(y).ActionTime +
-                               _battlePropertyFactory.Create().MaxAgility / _speed.Get(y) * i)))
+                               _battlePropertyFactory.Create().MaxAgility / _speed.GetSpeed(y) * i)))
                 .SelectMany(x => x)
                 .OrderBy(x => x.speed)
-                .ThenByDescending(x => _characterPropertyFactory
-                    .Create(x.characterId).Agility)
+                .ThenByDescending(x => _speed.GetAgility(x.characterId))
+                .ThenBy(x => _characterCollection.Get(x.characterId).CharacterTypeCode)
                 .ThenBy(x => _characterCollection.Get(x.characterId).Id)
                 .Select(x => new OrderedItem(x.characterId))
                 .ToList()
@@ -67,7 +64,7 @@ namespace BattleScene.UseCases.Service.Order
             var orderedItemEntityList = orderedItemList
                 .Select((x, i) => new OrderedItemEntity(
                     orderId: new OrderId(),
-                    orderNumber: i,
+                    order: i,
                     orderedItem: x))
                 .ToList();
 

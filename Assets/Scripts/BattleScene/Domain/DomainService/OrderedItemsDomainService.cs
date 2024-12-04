@@ -18,7 +18,7 @@ namespace BattleScene.Domain.DomainService
         public OrderedItemEntity First()
         {
             return _orderedItemCollection.Get()
-                .OrderBy(x => x.OrderNumber)
+                .OrderBy(x => x.Order)
                 .First();
         }
     }

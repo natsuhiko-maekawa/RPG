@@ -20,12 +20,18 @@ namespace BattleScene.UseCases.Service.Order
             _characterPropertyFactory = characterPropertyFactory;
         }
 
-        public int Get(CharacterId characterId)
+        public int GetSpeed(CharacterId characterId)
         {
             var agility = (float)_characterPropertyFactory.Create(characterId).Agility;
             var speedRate = _buffCollection.Get((characterId, BuffCode.Speed)).Rate;
             var speed = (int)Math.Ceiling(agility * speedRate);
             return speed;
+        }
+
+        public int GetAgility(CharacterId characterId)
+        {
+            var agility = _characterPropertyFactory.Create(characterId).Agility;
+            return agility;
         }
     }
 }

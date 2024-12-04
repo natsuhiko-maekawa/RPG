@@ -37,7 +37,7 @@ namespace BattleScene.UseCases.UseCase
             var orderedItem = _orderedItems.First();
             orderedItem.TryGetCharacterId(out var actorId);
             orderedItem.TryGetAilmentCode(out var ailmentCode);
-            orderedItem.TryGetSlipDamageCode(out var slipDamageCode);
+            orderedItem.TryGetSlipCode(out var slipDamageCode);
             return (actorId, ailmentCode, slipDamageCode);
         }
     }

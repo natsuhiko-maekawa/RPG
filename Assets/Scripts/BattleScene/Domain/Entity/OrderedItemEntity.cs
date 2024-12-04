@@ -8,11 +8,11 @@ namespace BattleScene.Domain.Entity
     {
         public OrderedItemEntity(
             OrderId orderId,
-            int orderNumber,
+            int order,
             OrderedItem orderedItem)
         {
             Id = orderId;
-            OrderNumber = orderNumber;
+            Order = order;
             CharacterId = orderedItem.CharacterId;
             AilmentCode = orderedItem.AilmentCode;
             SlipCode = orderedItem.SlipCode;
@@ -20,7 +20,7 @@ namespace BattleScene.Domain.Entity
         }
 
         public override OrderId Id { get; }
-        public int OrderNumber { get; }
+        public int Order { get; }
         private CharacterId? CharacterId { get; }
         private AilmentCode AilmentCode { get; }
         private SlipCode SlipCode { get; }
@@ -38,7 +38,7 @@ namespace BattleScene.Domain.Entity
             return AilmentCode != AilmentCode.NoAilment;
         }
 
-        public bool TryGetSlipDamageCode(out SlipCode slipCode)
+        public bool TryGetSlipCode(out SlipCode slipCode)
         {
             slipCode = SlipCode;
             return SlipCode != SlipCode.NoSlip;
@@ -46,12 +46,12 @@ namespace BattleScene.Domain.Entity
 
         public override string ToString()
         {
-            var str = $@"Id: {Id},
-OrderNumber: {OrderNumber},
-CharacterId: {CharacterId},
-AilmentCode: {AilmentCode},
-SlipDamageCode: {SlipCode},
-OrderedItemType: {OrderedItemType}";
+            var str = $@"OrderedItemEntity
+  OrderNumber     : {Order},
+  CharacterId     : {CharacterId?.ToString() ?? "NoCharacter"},
+  AilmentCode     : {AilmentCode},
+  SlipDamageCode  : {SlipCode},
+  OrderedItemType : {OrderedItemType}";
             return str;
         }
     }
