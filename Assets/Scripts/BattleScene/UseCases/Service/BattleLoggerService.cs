@@ -11,15 +11,15 @@ namespace BattleScene.UseCases.Service
 {
     public class BattleLoggerService
     {
-        private readonly ICollection<BattleLogEntity, BattleLogId> _battleLogCollection;
-        private readonly ICollection<TurnEntity, TurnId> _turnCollection;
+        private readonly IRepository<BattleLogEntity, BattleLogId> _battleLogRepository;
+        private readonly IRepository<TurnEntity, TurnId> _turnRepository;
 
         public BattleLoggerService(
-            ICollection<BattleLogEntity, BattleLogId> battleLogCollection,
-            ICollection<TurnEntity, TurnId> turnCollection)
+            IRepository<BattleLogEntity, BattleLogId> battleLogRepository,
+            IRepository<TurnEntity, TurnId> turnRepository)
         {
-            _battleLogCollection = battleLogCollection;
-            _turnCollection = turnCollection;
+            _battleLogRepository = battleLogRepository;
+            _turnRepository = turnRepository;
         }
 
         public void Log((CharacterId? actorId, AilmentCode ailmentCode, SlipCode slipCode) tuple)
@@ -33,7 +33,7 @@ namespace BattleScene.UseCases.Service
                 actorId: actorId, 
                 ailmentCode: ailmentCode, 
                 slipCode: slipCode);
-            _battleLogCollection.Add(battleLog);
+            _battleLogRepository.Add(battleLog);
         }
 
         public void Log(SkillCode skillCode)
@@ -58,9 +58,9 @@ namespace BattleScene.UseCases.Service
 
         private (BattleLogId battleLogId, int nextSequence, int turn) GetBattleLogCommonArguments()
         {
-            var nextSequence = _battleLogCollection.Get()
+            var nextSequence = _battleLogRepository.Get()
                 .Max()?.Sequence + 1 ?? 0;
-            var turn = _turnCollection.TryGet(out var turnList)
+            var turn = _turnRepository.TryGet(out var turnList)
                 ? turnList
                     .Single().Turn
                 : 0;
@@ -70,10 +70,10 @@ namespace BattleScene.UseCases.Service
 
         private BattleLogEntity GetLastEntity()
         {
-            var sequence = _battleLogCollection.Get()
+            var sequence = _battleLogRepository.Get()
                 .Max().Sequence;
             var battleLogId = FindOrCreateIdBySequence(sequence);
-            var battleLog = _battleLogCollection.Get(battleLogId);
+            var battleLog = _battleLogRepository.Get(battleLogId);
             return battleLog;
         }
 
@@ -81,7 +81,7 @@ namespace BattleScene.UseCases.Service
         private BattleLogId FindOrCreateIdBySequence(int sequence)
         {
             BattleLogId battleLogId;
-            var battleCollection = _battleLogCollection.Get();
+            var battleCollection = _battleLogRepository.Get();
             for (var i = 0; i < battleCollection.Count; ++i)
             {
                 if (sequence == battleCollection[i].Sequence)

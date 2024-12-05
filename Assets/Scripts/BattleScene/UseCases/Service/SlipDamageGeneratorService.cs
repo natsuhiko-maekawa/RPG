@@ -15,25 +15,25 @@ namespace BattleScene.UseCases.Service
         private readonly PlayerDomainService _player;
         private readonly DamageEvaluatorService _damageEvaluator;
         private readonly IFactory<BattlePropertyValueObject> _battlePropertyFactory;
-        private readonly ICollection<BattleLogEntity, BattleLogId> _battleLogCollection;
+        private readonly IRepository<BattleLogEntity, BattleLogId> _battleLogRepository;
 
         public SlipDamageGeneratorService(
             PlayerDomainService player,
             DamageEvaluatorService damageEvaluator,
             IFactory<BattlePropertyValueObject> battlePropertyFactory,
-            ICollection<BattleLogEntity, BattleLogId> battleLogCollection)
+            IRepository<BattleLogEntity, BattleLogId> battleLogRepository)
         {
             _player = player;
             _damageEvaluator = damageEvaluator;
             _battlePropertyFactory = battlePropertyFactory;
-            _battleLogCollection = battleLogCollection;
+            _battleLogRepository = battleLogRepository;
         }
 
         public BattleEventValueObject Generate(SlipCode slipCode)
         {
             // 現在のスリップコードから直近に罹ったスリップのログを取得する
             // TODO: 稀にNullReferenceExceptionが発生する
-            var battleLog = _battleLogCollection.Get()
+            var battleLog = _battleLogRepository.Get()
                 .Where(x => x.BattleEventCode is BattleEventCode.Skill or BattleEventCode.FatalitySkill)
                 .Where(x => x.SlipCode == slipCode)
                 .Where(x => !x.IsFailure)

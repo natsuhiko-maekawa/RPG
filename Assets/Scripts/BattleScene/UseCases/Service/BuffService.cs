@@ -11,12 +11,12 @@ namespace BattleScene.UseCases.Service
 {
     public class BuffService : ISkillElementService<BuffValueObject>
     {
-        private readonly ICollection<BuffEntity, (CharacterId, BuffCode)> _buffCollection;
+        private readonly IRepository<BuffEntity, (CharacterId, BuffCode)> _buffRepository;
 
         public BuffService(
-            ICollection<BuffEntity, (CharacterId, BuffCode)> buffCollection)
+            IRepository<BuffEntity, (CharacterId, BuffCode)> buffRepository)
         {
-            _buffCollection = buffCollection;
+            _buffRepository = buffRepository;
         }
 
         public IReadOnlyList<BattleEventValueObject> GenerateBattleEvent(
@@ -45,7 +45,7 @@ namespace BattleScene.UseCases.Service
         {
             foreach (var characterId in buffEvent.TargetIdList)
             {
-                var buff = _buffCollection.Get((characterId, buffEvent.BuffCode));
+                var buff = _buffRepository.Get((characterId, buffEvent.BuffCode));
                 buff.Set(
                     turn: buffEvent.Turn,
                     rate: buffEvent.Rate,

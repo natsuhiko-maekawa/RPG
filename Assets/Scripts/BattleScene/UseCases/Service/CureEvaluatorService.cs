@@ -11,16 +11,16 @@ namespace BattleScene.UseCases.Service
     public class CureEvaluatorService
     {
         private readonly CharacterPropertyFactoryService _characterPropertyFactory;
-        private readonly ICollection<CharacterEntity, CharacterId> _characterCollection;
+        private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
         private readonly IMyRandomService _myRandom;
 
         public CureEvaluatorService(
             CharacterPropertyFactoryService characterPropertyFactory,
-            ICollection<CharacterEntity, CharacterId> characterCollection,
+            IRepository<CharacterEntity, CharacterId> characterRepository,
             IMyRandomService myRandom)
         {
             _characterPropertyFactory = characterPropertyFactory;
-            _characterCollection = characterCollection;
+            _characterRepository = characterRepository;
             _myRandom = myRandom;
         }
 
@@ -37,7 +37,7 @@ namespace BattleScene.UseCases.Service
         {
             var wisdom = _characterPropertyFactory.Create(actorId).Wisdom;
             var restore = (int)(wisdom * 8 * rate) + _myRandom.Range(0, 2);
-            var currentHitPoint = _characterCollection.Get(actorId).CurrentHitPoint;
+            var currentHitPoint = _characterRepository.Get(actorId).CurrentHitPoint;
             var maxHitPoint = _characterPropertyFactory.Create(actorId).HitPoint;
             var actualRestore = Math.Min(restore, maxHitPoint - currentHitPoint);
             return actualRestore;

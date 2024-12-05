@@ -4,7 +4,7 @@ using BattleScene.Domain.Entity;
 
 namespace BattleScene.Domain.DataAccess
 {
-    public interface ICollection<TEntity, TId>
+    public interface IRepository<TEntity, TId>
         where TEntity : BaseEntity<TId>
     {
         public bool TryGet(TId? id, [NotNullWhen(true)] out TEntity? entity);

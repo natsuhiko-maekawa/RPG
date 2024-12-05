@@ -13,18 +13,18 @@ namespace BattleScene.InterfaceAdapter.ReactivePresenter
 {
     public class AilmentViewReactivePresenter : IReactive<AilmentEntity>
     {
-        private readonly ICollection<CharacterEntity, CharacterId> _characterCollection;
+        private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
         private readonly ToIndexService _toIndex;
         private readonly EnemiesView _enemiesView;
         private readonly PlayerStatusView _playerAilmentsView;
 
         public AilmentViewReactivePresenter(
-            ICollection<CharacterEntity, CharacterId> characterCollection,
+            IRepository<CharacterEntity, CharacterId> characterRepository,
             ToIndexService toIndex,
             EnemiesView enemiesView,
             PlayerStatusView playerAilmentsView)
         {
-            _characterCollection = characterCollection;
+            _characterRepository = characterRepository;
             _toIndex = toIndex;
             _enemiesView = enemiesView;
             _playerAilmentsView = playerAilmentsView;
@@ -32,7 +32,7 @@ namespace BattleScene.InterfaceAdapter.ReactivePresenter
 
         public void Observe(AilmentEntity ailment)
         {
-            var character = _characterCollection.Get(ailment.CharacterId);
+            var character = _characterRepository.Get(ailment.CharacterId);
             Action<bool> startAilmentViewAction = character.IsPlayer
                 ? x => StartPlayerAilmentView(ailment.AilmentCode, x)
                 : x => StartEnemyAilmentView(ailment.CharacterId, ailment.AilmentCode, x);
@@ -48,7 +48,7 @@ namespace BattleScene.InterfaceAdapter.ReactivePresenter
 
         private void StartEnemyAilmentView(CharacterId characterId, AilmentCode ailmentCode, bool effects)
         {
-            var position = _characterCollection.Get(characterId).Position;
+            var position = _characterRepository.Get(characterId).Position;
             var ailmentId = _toIndex.FromAilment(ailmentCode);
             var dto = new AilmentViewModel(ailmentId, effects);
             _enemiesView[position].StartAilmentAnimationAsync(dto);

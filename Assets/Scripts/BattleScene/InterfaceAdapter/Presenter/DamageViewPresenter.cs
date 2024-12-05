@@ -12,18 +12,18 @@ namespace BattleScene.InterfaceAdapter.Presenter
     public class DamageViewPresenter
     {
         private readonly BattleLogDomainService _battleLog;
-        private readonly ICollection<CharacterEntity, CharacterId> _characterCollection;
+        private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
         private readonly EnemiesView _enemiesView;
         private readonly PlayerView _playerView;
 
         public DamageViewPresenter(
             BattleLogDomainService battleLog,
-            ICollection<CharacterEntity, CharacterId> characterCollection,
+            IRepository<CharacterEntity, CharacterId> characterRepository,
             EnemiesView enemiesView,
             PlayerView playerView)
         {
             _battleLog = battleLog;
-            _characterCollection = characterCollection;
+            _characterRepository = characterRepository;
             _enemiesView = enemiesView;
             _playerView = playerView;
         }
@@ -79,7 +79,7 @@ namespace BattleScene.InterfaceAdapter.Presenter
 
             var enemyDigitDict = characterDigitList
                 .Where(x => !IsPlayer(x.CharacterId))
-                .ToDictionary(k => _characterCollection.Get(k.CharacterId).Position, v => v.Model.ToList());
+                .ToDictionary(k => _characterRepository.Get(k.CharacterId).Position, v => v.Model.ToList());
             foreach (var (position, digitList) in enemyDigitDict)
             {
                 var enemyModel = new DigitListViewModel(digitList);
@@ -87,7 +87,7 @@ namespace BattleScene.InterfaceAdapter.Presenter
             }
         }
 
-        private bool IsPlayer(CharacterId characterId) => _characterCollection.Get(characterId).IsPlayer;
+        private bool IsPlayer(CharacterId characterId) => _characterRepository.Get(characterId).IsPlayer;
 
         private DigitViewModel GetDigit(AttackValueObject attack)
         {

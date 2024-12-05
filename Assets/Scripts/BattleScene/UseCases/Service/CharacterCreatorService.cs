@@ -13,32 +13,32 @@ namespace BattleScene.UseCases.Service
     public class CharacterCreatorService : ICharacterCreatorService
     {
         private readonly IFactory<AilmentPropertyValueObject, AilmentCode> _ailmentPropertyFactory;
-        private readonly ICollection<AilmentEntity, (CharacterId, AilmentCode)> _ailmentCollection;
+        private readonly IRepository<AilmentEntity, (CharacterId, AilmentCode)> _ailmentRepository;
         private readonly IFactory<BattlePropertyValueObject> _battlePropertyFactory;
         private readonly IFactory<BodyPartPropertyValueObject, BodyPartCode> _bodyPartPropertyFactory;
-        private readonly ICollection<BodyPartEntity, (CharacterId, BodyPartCode)> _bodyPartCollection;
-        private readonly ICollection<BuffEntity, (CharacterId, BuffCode)> _buffCollection;
-        private readonly ICollection<EnhanceEntity, (CharacterId, EnhanceCode)> _enhanceCollection;
-        private readonly ICollection<SlipEntity, SlipCode> _slipCollection;
+        private readonly IRepository<BodyPartEntity, (CharacterId, BodyPartCode)> _bodyPartRepository;
+        private readonly IRepository<BuffEntity, (CharacterId, BuffCode)> _buffRepository;
+        private readonly IRepository<EnhanceEntity, (CharacterId, EnhanceCode)> _enhanceRepository;
+        private readonly IRepository<SlipEntity, SlipCode> _slipRepository;
 
         public CharacterCreatorService(
             IFactory<AilmentPropertyValueObject, AilmentCode> ailmentPropertyFactory,
-            ICollection<AilmentEntity, (CharacterId, AilmentCode)> ailmentCollection,
+            IRepository<AilmentEntity, (CharacterId, AilmentCode)> ailmentRepository,
             IFactory<BattlePropertyValueObject> battlePropertyFactory,
             IFactory<BodyPartPropertyValueObject, BodyPartCode> bodyPartPropertyFactory,
-            ICollection<BodyPartEntity, (CharacterId, BodyPartCode)> bodyPartCollection,
-            ICollection<BuffEntity, (CharacterId, BuffCode)> buffCollection,
-            ICollection<EnhanceEntity, (CharacterId, EnhanceCode)> enhanceCollection,
-            ICollection<SlipEntity, SlipCode> slipCollection)
+            IRepository<BodyPartEntity, (CharacterId, BodyPartCode)> bodyPartRepository,
+            IRepository<BuffEntity, (CharacterId, BuffCode)> buffRepository,
+            IRepository<EnhanceEntity, (CharacterId, EnhanceCode)> enhanceRepository,
+            IRepository<SlipEntity, SlipCode> slipRepository)
         {
             _ailmentPropertyFactory = ailmentPropertyFactory;
-            _ailmentCollection = ailmentCollection;
+            _ailmentRepository = ailmentRepository;
             _battlePropertyFactory = battlePropertyFactory;
             _bodyPartPropertyFactory = bodyPartPropertyFactory;
-            _bodyPartCollection = bodyPartCollection;
-            _buffCollection = buffCollection;
-            _enhanceCollection = enhanceCollection;
-            _slipCollection = slipCollection;
+            _bodyPartRepository = bodyPartRepository;
+            _buffRepository = buffRepository;
+            _enhanceRepository = enhanceRepository;
+            _slipRepository = slipRepository;
         }
 
         public void Create(CharacterId characterId, bool isPlayer = false)
@@ -70,7 +70,7 @@ namespace BattleScene.UseCases.Service
                     ailmentCode: ailmentCode,
                     isSelfRecovery: ailmentProperty.IsSelfRecovery,
                     defaultTurn: ailmentProperty.DefaultTurn);
-                _ailmentCollection.Add(ailment);
+                _ailmentRepository.Add(ailment);
             }
         }
 
@@ -86,7 +86,7 @@ namespace BattleScene.UseCases.Service
                     characterId: characterId,
                     bodyPartCode: bodyPartCode,
                     count: count);
-                _bodyPartCollection.Add(bodyPart);
+                _bodyPartRepository.Add(bodyPart);
             }
         }
 
@@ -100,7 +100,7 @@ namespace BattleScene.UseCases.Service
                 var buff = new BuffEntity(
                     characterId: characterId,
                     buffCode: buffCode);
-                _buffCollection.Add(buff);
+                _buffRepository.Add(buff);
             }
         }
 
@@ -114,7 +114,7 @@ namespace BattleScene.UseCases.Service
                 var enhance = new EnhanceEntity(
                     characterId: characterId,
                     enhanceCode: enhanceCode);
-                _enhanceCollection.Add(enhance);
+                _enhanceRepository.Add(enhance);
             }
         }
 
@@ -129,7 +129,7 @@ namespace BattleScene.UseCases.Service
                 var slip = new SlipEntity(
                     slipCode: slipCode,
                     defaultTurn: defaultTurn);
-                _slipCollection.Add(slip);
+                _slipRepository.Add(slip);
             }
         }
     }

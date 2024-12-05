@@ -7,7 +7,7 @@ using BattleScene.Domain.Entity;
 
 namespace Tests.BattleScene.DataAccess.Repository
 {
-    public class MockCollection<TEntity, TId> : ICollection<TEntity, TId>, ISerializable
+    public class MockRepository<TEntity, TId> : IRepository<TEntity, TId>, ISerializable
         where TEntity : BaseEntity<TId>
     {
         private readonly Dictionary<TId, TEntity> _entityDictionary = new();

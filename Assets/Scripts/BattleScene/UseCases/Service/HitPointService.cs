@@ -10,19 +10,19 @@ namespace BattleScene.UseCases.Service
 {
     public class HitPointService : IHitPointService
     {
-        private readonly ICollection<CharacterEntity, CharacterId> _characterCollection;
+        private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
 
         public HitPointService(
-            ICollection<CharacterEntity, CharacterId> characterCollection)
+            IRepository<CharacterEntity, CharacterId> characterRepository)
         {
-            _characterCollection = characterCollection;
+            _characterRepository = characterRepository;
         }
 
         public void Damaged(BattleEventValueObject damageEvent)
         {
             foreach (var (damagedCharacterId, damageAmount) in damageEvent.DamageDictionary)
             {
-                var character = _characterCollection.Get(damagedCharacterId);
+                var character = _characterRepository.Get(damagedCharacterId);
                 character.CurrentHitPoint -= damageAmount;
             }
         }
@@ -36,7 +36,7 @@ namespace BattleScene.UseCases.Service
         {
             foreach (var curing in cureEventList.SelectMany(x => x.CuringList))
             {
-                var character = _characterCollection.Get(curing.TargetId);
+                var character = _characterRepository.Get(curing.TargetId);
                 character.CurrentHitPoint += curing.Amount;
             }
         }

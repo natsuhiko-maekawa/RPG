@@ -10,18 +10,18 @@ namespace BattleScene.UseCases.Service.Order
 {
     public class ActionTimeService
     {
-        private readonly ICollection<CharacterEntity, CharacterId> _characterCollection;
+        private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
         private readonly IFactory<BattlePropertyValueObject> _battlePropertyFactory;
         private readonly OrderedItemsDomainService _orderedItems;
         private readonly ISpeedService _speed;
 
         public ActionTimeService(
-            ICollection<CharacterEntity, CharacterId> characterCollection,
+            IRepository<CharacterEntity, CharacterId> characterRepository,
             IFactory<BattlePropertyValueObject> battlePropertyFactory,
             OrderedItemsDomainService orderedItems,
             ISpeedService speed)
         {
-            _characterCollection = characterCollection;
+            _characterRepository = characterRepository;
             _battlePropertyFactory = battlePropertyFactory;
             _orderedItems = orderedItems;
             _speed = speed;
@@ -30,9 +30,9 @@ namespace BattleScene.UseCases.Service.Order
         public void Update()
         {
             if (!_orderedItems.First().TryGetCharacterId(out var actorId)) return;
-            var actionTime = _characterCollection.Get()
+            var actionTime = _characterRepository.Get()
                 .Min(x => x.ActionTime);
-            foreach (var character in _characterCollection.Get())
+            foreach (var character in _characterRepository.Get())
             {
                 character.ActionTime -= actionTime;
 

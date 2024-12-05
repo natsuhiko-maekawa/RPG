@@ -10,17 +10,17 @@ namespace BattleScene.UseCases.Service
 {
     public class AttackCounterService
     {
-        private readonly ICollection<CharacterEntity, CharacterId> _characterCollection;
-        private readonly ICollection<BattleLogEntity, BattleLogId> _battleLogCollection;
+        private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
+        private readonly IRepository<BattleLogEntity, BattleLogId> _battleLogRepository;
         private readonly IFactory<BattlePropertyValueObject> _battlePropertyFactory;
 
         public AttackCounterService(
-            ICollection<CharacterEntity, CharacterId> characterCollection,
-            ICollection<BattleLogEntity, BattleLogId> battleLogCollection,
+            IRepository<CharacterEntity, CharacterId> characterRepository,
+            IRepository<BattleLogEntity, BattleLogId> battleLogRepository,
             IFactory<BattlePropertyValueObject> battlePropertyFactory)
         {
-            _characterCollection = characterCollection;
-            _battleLogCollection = battleLogCollection;
+            _characterRepository = characterRepository;
+            _battleLogRepository = battleLogRepository;
             _battlePropertyFactory = battlePropertyFactory;
         }
 
@@ -37,8 +37,8 @@ namespace BattleScene.UseCases.Service
 
         private int Count()
         {
-            var battleLogList = _battleLogCollection.Get();
-            var player = _characterCollection.Get().Single(x => x.IsPlayer);
+            var battleLogList = _battleLogRepository.Get();
+            var player = _characterRepository.Get().Single(x => x.IsPlayer);
             var playerId = player.Id;
             var count = battleLogList
                 .OrderByDescending(x => x)

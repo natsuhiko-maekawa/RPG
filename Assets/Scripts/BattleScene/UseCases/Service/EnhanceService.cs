@@ -11,12 +11,12 @@ namespace BattleScene.UseCases.Service
 {
     public class EnhanceService : ISkillElementService<EnhanceValueObject>
     {
-        private readonly ICollection<EnhanceEntity, (CharacterId, EnhanceCode)> _enhanceCollection;
+        private readonly IRepository<EnhanceEntity, (CharacterId, EnhanceCode)> _enhanceRepository;
 
         public EnhanceService(
-            ICollection<EnhanceEntity, (CharacterId, EnhanceCode)> enhanceCollection)
+            IRepository<EnhanceEntity, (CharacterId, EnhanceCode)> enhanceRepository)
         {
-            _enhanceCollection = enhanceCollection;
+            _enhanceRepository = enhanceRepository;
         }
 
         public IReadOnlyList<BattleEventValueObject> GenerateBattleEvent(
@@ -46,7 +46,7 @@ namespace BattleScene.UseCases.Service
         {
             foreach (var characterId in enhanceEvent.ActualTargetIdList)
             {
-                var enhance = _enhanceCollection.Get((characterId, enhanceEvent.EnhanceCode));
+                var enhance = _enhanceRepository.Get((characterId, enhanceEvent.EnhanceCode));
                 enhance.Set(
                     turn: enhanceEvent.Turn,
                     lifetimeCode: enhanceEvent.LifetimeCode);

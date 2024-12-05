@@ -12,14 +12,14 @@ namespace BattleScene.Domain.DomainService
     public class AilmentDomainService
     {
         private readonly IFactory<AilmentPropertyValueObject, AilmentCode> _ailmentPropertyFactory;
-        private readonly ICollection<AilmentEntity, (CharacterId, AilmentCode)> _ailmentCollection;
+        private readonly IRepository<AilmentEntity, (CharacterId, AilmentCode)> _ailmentRepository;
 
         public AilmentDomainService(
             IFactory<AilmentPropertyValueObject, AilmentCode> ailmentPropertyFactory,
-            ICollection<AilmentEntity, (CharacterId, AilmentCode)> ailmentCollection)
+            IRepository<AilmentEntity, (CharacterId, AilmentCode)> ailmentRepository)
         {
             _ailmentPropertyFactory = ailmentPropertyFactory;
-            _ailmentCollection = ailmentCollection;
+            _ailmentRepository = ailmentRepository;
         }
 
         /// <summary>
@@ -28,7 +28,7 @@ namespace BattleScene.Domain.DomainService
         /// <returns>状態異常エンティティのリスト</returns>
         public IReadOnlyList<AilmentEntity> GetOrdered(CharacterId characterId)
         {
-            return _ailmentCollection.Get()
+            return _ailmentRepository.Get()
                 .Where(x => Equals(x.CharacterId, characterId))
                 .Where(x => x.IsSelfRecovery)
                 .OrderBy(x => x.Turn)
@@ -41,7 +41,7 @@ namespace BattleScene.Domain.DomainService
         /// </summary>
         public void AdvanceTurn()
         {
-            foreach (var ailment in _ailmentCollection.Get()) ailment.AdvanceTurn();
+            foreach (var ailment in _ailmentRepository.Get()) ailment.AdvanceTurn();
         }
 
         /// <summary>
@@ -65,7 +65,7 @@ namespace BattleScene.Domain.DomainService
                 .Where(ailmentCode => ailmentCode != AilmentCode.NoAilment)
                 .ToArray();
             var ailments = ailmentCodeArray
-                .Select(ailmentCode => _ailmentCollection.Get((characterId, ailmentCode)))
+                .Select(ailmentCode => _ailmentRepository.Get((characterId, ailmentCode)))
                 .ToArray();
             var ailmentProperties = ailmentCodeArray
                 .Select(ailmentCode => _ailmentPropertyFactory.Create(ailmentCode))

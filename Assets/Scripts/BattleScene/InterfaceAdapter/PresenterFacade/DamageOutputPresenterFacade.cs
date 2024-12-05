@@ -11,7 +11,7 @@ namespace BattleScene.InterfaceAdapter.PresenterFacade
 {
     public class DamageOutputPresenterFacade
     {
-        private readonly ICollection<CharacterEntity, CharacterId> _characterCollection;
+        private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
         private readonly AttackCountViewPresenter _attackCountView;
         private readonly DamageViewPresenter _damageView;
         private readonly MessageViewPresenter _messageView;
@@ -19,14 +19,14 @@ namespace BattleScene.InterfaceAdapter.PresenterFacade
         private readonly VibrationViewPresenter _vibrationView;
 
         public DamageOutputPresenterFacade(
-            ICollection<CharacterEntity, CharacterId> characterCollection,
+            IRepository<CharacterEntity, CharacterId> characterRepository,
             AttackCountViewPresenter attackCountView,
             DamageViewPresenter damageView,
             MessageViewPresenter messageView,
             PlayerImageViewPresenter playerImageView,
             VibrationViewPresenter vibrationView)
         {
-            _characterCollection = characterCollection;
+            _characterRepository = characterRepository;
             _attackCountView = attackCountView;
             _damageView = damageView;
             _messageView = messageView;
@@ -36,16 +36,16 @@ namespace BattleScene.InterfaceAdapter.PresenterFacade
 
         public void Output(BattleEventValueObject damage)
         {
-            var isActorPlayer = _characterCollection.Get(damage.ActorId)!.IsPlayer;
+            var isActorPlayer = _characterRepository.Get(damage.ActorId)!.IsPlayer;
             if (isActorPlayer)
             {
                 _attackCountView.Start();
             }
 
-            if (damage.ActualTargetIdList.Any(x => _characterCollection.Get(x).IsPlayer))
+            if (damage.ActualTargetIdList.Any(x => _characterRepository.Get(x).IsPlayer))
             {
                 var (playerImageCode, animationMode) = damage.AttackList
-                    .Where(x => _characterCollection.Get(x.TargetId).IsPlayer)
+                    .Where(x => _characterRepository.Get(x.TargetId).IsPlayer)
                     .All(x => !x.IsHit)
                     ? (PlayerImageCode.Avoidance, Slide)
                     : (PlayerImageCode.Damaged, Vibe);

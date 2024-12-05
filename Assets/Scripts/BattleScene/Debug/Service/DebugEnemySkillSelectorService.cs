@@ -14,19 +14,19 @@ namespace BattleScene.Debug.Service
     public class DebugEnemySkillSelectorService : MonoBehaviour, IEnemySkillSelectorService
     {
         [SerializeField] private PrimeSkillCode primeSkillCode;
-        private ICollection<CharacterEntity, CharacterId> _characterCollection;
+        private IRepository<CharacterEntity, CharacterId> _characterRepository;
         private IFactory<CharacterPropertyValueObject, CharacterTypeCode> _characterPropertyFactory;
         private IFactory<SkillValueObject, SkillCode> _skillFactory;
         private IMyRandomService _myRandom;
 
         [Inject]
         public void Construct(
-            ICollection<CharacterEntity, CharacterId> characterCollection,
+            IRepository<CharacterEntity, CharacterId> characterRepository,
             IFactory<CharacterPropertyValueObject, CharacterTypeCode> characterPropertyFactory,
             IFactory<SkillValueObject, SkillCode> skillFactory,
             IMyRandomService myRandom)
         {
-            _characterCollection = characterCollection;
+            _characterRepository = characterRepository;
             _characterPropertyFactory = characterPropertyFactory;
             _skillFactory = skillFactory;
             _myRandom = myRandom;
@@ -34,7 +34,7 @@ namespace BattleScene.Debug.Service
 
         public SkillValueObject Select(CharacterId actorId)
         {
-            var characterTypeCode = _characterCollection.Get(actorId).CharacterTypeCode;
+            var characterTypeCode = _characterRepository.Get(actorId).CharacterTypeCode;
             var skillCodeList = _characterPropertyFactory.Create(characterTypeCode).SkillCodeList;
 
             var skillList = skillCodeList

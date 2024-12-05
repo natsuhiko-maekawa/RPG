@@ -12,14 +12,14 @@ namespace BattleScene.UseCases.Service
     public class SlipService : ISkillElementService<SlipValueObject>
     {
         private readonly IActualTargetIdPickerService _actualTargetIdPicker;
-        private readonly ICollection<SlipEntity, SlipCode> _slipDamageCollection;
+        private readonly IRepository<SlipEntity, SlipCode> _slipRepository;
 
         public SlipService(
             IActualTargetIdPickerService actualTargetIdPicker,
-            ICollection<SlipEntity, SlipCode> slipDamageCollection)
+            IRepository<SlipEntity, SlipCode> slipRepository)
         {
             _actualTargetIdPicker = actualTargetIdPicker;
-            _slipDamageCollection = slipDamageCollection;
+            _slipRepository = slipRepository;
         }
 
         public IReadOnlyList<BattleEventValueObject> GenerateBattleEvent(
@@ -56,7 +56,7 @@ namespace BattleScene.UseCases.Service
             {
                 if (slip.ActualTargetIdList.Count != 0)
                 {
-                    _slipDamageCollection.Get(slip.SlipCode).Effects = true;
+                    _slipRepository.Get(slip.SlipCode).Effects = true;
                 }
             }
         }

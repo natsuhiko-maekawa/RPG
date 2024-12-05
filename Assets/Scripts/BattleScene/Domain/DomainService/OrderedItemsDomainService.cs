@@ -7,17 +7,17 @@ namespace BattleScene.Domain.DomainService
 {
     public class OrderedItemsDomainService
     {
-        private readonly ICollection<OrderedItemEntity, OrderedItemId> _orderedItemCollection;
+        private readonly IRepository<OrderedItemEntity, OrderedItemId> _orderedItemRepository;
 
         public OrderedItemsDomainService(
-            ICollection<OrderedItemEntity, OrderedItemId> orderedItemCollection)
+            IRepository<OrderedItemEntity, OrderedItemId> orderedItemRepository)
         {
-            _orderedItemCollection = orderedItemCollection;
+            _orderedItemRepository = orderedItemRepository;
         }
 
         public OrderedItemEntity First()
         {
-            return _orderedItemCollection.Get()
+            return _orderedItemRepository.Get()
                 .OrderBy(x => x.Order)
                 .First();
         }

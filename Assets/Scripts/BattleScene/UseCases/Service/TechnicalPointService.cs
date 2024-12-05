@@ -10,17 +10,17 @@ namespace BattleScene.UseCases.Service
 {
     public class TechnicalPointService : ITechnicalPointService
     {
-        private readonly ICollection<CharacterEntity, CharacterId> _characterCollection;
+        private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
 
         public TechnicalPointService(
-            ICollection<CharacterEntity, CharacterId> characterCollection)
+            IRepository<CharacterEntity, CharacterId> characterRepository)
         {
-            _characterCollection = characterCollection;
+            _characterRepository = characterRepository;
         }
 
         public int Get()
         {
-            var player = _characterCollection.Get()
+            var player = _characterRepository.Get()
                 .Single(x => x.IsPlayer);
             var technicalPoint = player.CurrentTechnicalPoint;
             return technicalPoint;
@@ -28,7 +28,7 @@ namespace BattleScene.UseCases.Service
 
         public void Reduce(SkillValueObject skill)
         {
-            var player = _characterCollection.Get()
+            var player = _characterRepository.Get()
                 .Single(x => x.IsPlayer);
             var technicalPoint = skill.Common.TechnicalPoint;
             player.CurrentTechnicalPoint -= technicalPoint;
@@ -38,7 +38,7 @@ namespace BattleScene.UseCases.Service
         {
             foreach (var restore in restoreList)
             {
-                var player = _characterCollection.Get()
+                var player = _characterRepository.Get()
                     .Single(x => x.IsPlayer);
                 var technicalPoint = restore.TechnicalPoint;
                 player.CurrentTechnicalPoint += technicalPoint;

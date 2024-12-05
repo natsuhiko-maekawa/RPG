@@ -14,7 +14,7 @@ namespace BattleScene.InterfaceAdapter.Service
     public class ActorService
     {
         private readonly AilmentDomainService _ailment;
-        private readonly ICollection<CharacterEntity, CharacterId> _characterCollection;
+        private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
         private readonly IMyRandomService _myRandom;
         private readonly IFactory<SkillValueObject, SkillCode> _skillFactory;
         private readonly ToSkillCodeService _toSkillCode;
@@ -22,13 +22,13 @@ namespace BattleScene.InterfaceAdapter.Service
         public ActorService(
             AilmentDomainService ailment,
             ToSkillCodeService toSkillCode,
-            ICollection<CharacterEntity, CharacterId> characterCollection,
+            IRepository<CharacterEntity, CharacterId> characterRepository,
             IMyRandomService myRandom,
             IFactory<SkillValueObject, SkillCode> skillFactory)
         {
             _ailment = ailment;
             _toSkillCode = toSkillCode;
-            _characterCollection = characterCollection;
+            _characterRepository = characterRepository;
             _myRandom = myRandom;
             _skillFactory = skillFactory;
         }
@@ -38,7 +38,7 @@ namespace BattleScene.InterfaceAdapter.Service
 
         public bool IsPlayer(CharacterId? actorId)
         {
-            var isPlayer = actorId is not null && _characterCollection.Get(actorId).IsPlayer;
+            var isPlayer = actorId is not null && _characterRepository.Get(actorId).IsPlayer;
             return isPlayer;
         }
 

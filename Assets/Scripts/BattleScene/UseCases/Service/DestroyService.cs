@@ -12,14 +12,14 @@ namespace BattleScene.UseCases.Service
     public class DestroyService : ISkillElementService<DestroyValueObject>
     {
         private readonly IActualTargetIdPickerService _actualTargetIdPicker;
-        private readonly ICollection<BodyPartEntity, (CharacterId, BodyPartCode)> _bodyPartCollection;
+        private readonly IRepository<BodyPartEntity, (CharacterId, BodyPartCode)> _bodyPartRepository;
 
         public DestroyService(
             IActualTargetIdPickerService actualTargetIdPicker,
-            ICollection<BodyPartEntity, (CharacterId, BodyPartCode)> bodyPartCollection)
+            IRepository<BodyPartEntity, (CharacterId, BodyPartCode)> bodyPartRepository)
         {
             _actualTargetIdPicker = actualTargetIdPicker;
-            _bodyPartCollection = bodyPartCollection;
+            _bodyPartRepository = bodyPartRepository;
         }
 
         public IReadOnlyList<BattleEventValueObject> GenerateBattleEvent(
@@ -53,7 +53,7 @@ namespace BattleScene.UseCases.Service
         {
             foreach (var characterId in destroyEvent.ActualTargetIdList)
             {
-                var bodyPart = _bodyPartCollection.Get((characterId, destroyEvent.BodyPartCode));
+                var bodyPart = _bodyPartRepository.Get((characterId, destroyEvent.BodyPartCode));
                 bodyPart.Destroyed();
             }
         }

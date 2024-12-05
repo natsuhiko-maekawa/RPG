@@ -11,17 +11,17 @@ namespace BattleScene.InterfaceAdapter.Presenter
 {
     public class TargetViewPresenter
     {
-        private readonly ICollection<CharacterEntity, CharacterId> _characterCollection;
+        private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
         private readonly ITargetService _target;
         private readonly TargetView _targetView;
 
         public TargetViewPresenter(
             ITargetService target,
-            ICollection<CharacterEntity, CharacterId> characterCollection,
+            IRepository<CharacterEntity, CharacterId> characterRepository,
             TargetView targetView)
         {
             _target = target;
-            _characterCollection = characterCollection;
+            _characterRepository = characterRepository;
             _targetView = targetView;
         }
 
@@ -30,7 +30,7 @@ namespace BattleScene.InterfaceAdapter.Presenter
             var range = skill.Common.Range;
             var targetIdList = _target.Get(actorId, range);
 
-            var characterList = _characterCollection.Get(targetIdList);
+            var characterList = _characterRepository.Get(targetIdList);
             var characterStructList = characterList
                 // C#11以前で静的メソッドグループをデリゲート化するとアロケーションが発生するため、
                 // メソッドグループは使用しない。

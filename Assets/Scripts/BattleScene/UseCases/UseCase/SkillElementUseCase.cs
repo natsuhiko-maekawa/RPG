@@ -14,16 +14,16 @@ namespace BattleScene.UseCases.UseCase
     {
         private readonly ISkillElementService<TSkillElement> _skillElement;
         private readonly BattleLoggerService _battleLogger;
-        private readonly ICollection<BattleLogEntity, BattleLogId> _battleLogCollection;
+        private readonly IRepository<BattleLogEntity, BattleLogId> _battleLogRepository;
 
         public SkillElementUseCase(
             ISkillElementService<TSkillElement> skillElement,
             BattleLoggerService battleLogger,
-            ICollection<BattleLogEntity, BattleLogId> battleLogCollection)
+            IRepository<BattleLogEntity, BattleLogId> battleLogRepository)
         {
             _skillElement = skillElement;
             _battleLogger = battleLogger;
-            _battleLogCollection = battleLogCollection;
+            _battleLogRepository = battleLogRepository;
         }
 
         public IReadOnlyList<BattleEventValueObject> GetBattleEventList(
@@ -48,8 +48,8 @@ namespace BattleScene.UseCases.UseCase
 
         public bool IsExecutedDamage()
         {
-            var value = _battleLogCollection.Get()
-                .Where(x => x.Turn == _battleLogCollection.Get().Max().Turn)
+            var value = _battleLogRepository.Get()
+                .Where(x => x.Turn == _battleLogRepository.Get().Max().Turn)
                 .Any(x => x.AttackList.Count != 0);
             return value;
         }

@@ -10,17 +10,17 @@ namespace BattleScene.UseCases.UseCase
     public class SkillUseCase
     {
         private readonly BattleLoggerService _battleLogger;
-        private readonly ICollection<CharacterEntity, CharacterId> _characterCollection;
+        private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
         private readonly ITechnicalPointService _technicalPoint;
 
         public SkillUseCase(
             BattleLoggerService battleLogger,
             ITechnicalPointService technicalPoint, 
-            ICollection<CharacterEntity, CharacterId> characterCollection)
+            IRepository<CharacterEntity, CharacterId> characterRepository)
         {
             _battleLogger = battleLogger;
             _technicalPoint = technicalPoint;
-            _characterCollection = characterCollection;
+            _characterRepository = characterRepository;
         }
 
         public void ExecuteSkill(CharacterId actorId, SkillValueObject skill)
@@ -28,7 +28,7 @@ namespace BattleScene.UseCases.UseCase
             var skillCode = skill.Common.SkillCode;
             _battleLogger.Log(skillCode);
 
-            if (_characterCollection.Get(actorId).IsPlayer)
+            if (_characterRepository.Get(actorId).IsPlayer)
             {
                 _technicalPoint.Reduce(skill);
             }

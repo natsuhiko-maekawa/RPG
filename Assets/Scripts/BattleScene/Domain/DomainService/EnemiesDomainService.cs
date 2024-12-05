@@ -9,23 +9,23 @@ namespace BattleScene.Domain.DomainService
 {
     public class EnemiesDomainService
     {
-        private readonly ICollection<CharacterEntity, CharacterId> _characterCollection;
+        private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
 
-        public EnemiesDomainService(ICollection<CharacterEntity, CharacterId> characterCollection)
+        public EnemiesDomainService(IRepository<CharacterEntity, CharacterId> characterRepository)
         {
-            _characterCollection = characterCollection;
+            _characterRepository = characterRepository;
         }
 
         public IReadOnlyList<CharacterEntity> Get()
         {
-            return _characterCollection.Get()
+            return _characterRepository.Get()
                 .Where(x => x.CharacterTypeCode != CharacterTypeCode.Player)
                 .ToList();
         }
         
         public IReadOnlyList<CharacterId> GetId()
         {
-            return _characterCollection.Get()
+            return _characterRepository.Get()
                 .Where(x => x.CharacterTypeCode != CharacterTypeCode.Player)
                 .Select(x => x.Id)
                 .ToList();
@@ -33,7 +33,7 @@ namespace BattleScene.Domain.DomainService
 
         public IReadOnlyList<CharacterEntity> GetSurvive()
         {
-            var surviveEnemyList = _characterCollection.Get()
+            var surviveEnemyList = _characterRepository.Get()
                 .Where(x => x.CharacterTypeCode != CharacterTypeCode.Player)
                 .Where(x => x.IsSurvive)
                 .ToList();
@@ -42,7 +42,7 @@ namespace BattleScene.Domain.DomainService
 
         public IReadOnlyList<CharacterId> GetIdSurvive()
         {
-            return _characterCollection.Get()
+            return _characterRepository.Get()
                 .Where(x => x.CharacterTypeCode != CharacterTypeCode.Player)
                 .Where(x => x.IsSurvive)
                 .Select(x => x.Id)
@@ -51,7 +51,7 @@ namespace BattleScene.Domain.DomainService
 
         public CharacterId GetIdByPosition(int position)
         {
-            return _characterCollection.Get()
+            return _characterRepository.Get()
                 .Where(x => x.CharacterTypeCode != CharacterTypeCode.Player)
                 .Single(x => x.Position == position)
                 .Id;

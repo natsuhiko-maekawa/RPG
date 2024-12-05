@@ -9,21 +9,21 @@ namespace BattleScene.UseCases.Service.Order
 {
     public class SpeedService : ISpeedService
     {
-        private readonly ICollection<BuffEntity, (CharacterId, BuffCode)> _buffCollection;
+        private readonly IRepository<BuffEntity, (CharacterId, BuffCode)> _buffRepository;
         private readonly CharacterPropertyFactoryService _characterPropertyFactory;
 
         public SpeedService(
-            ICollection<BuffEntity, (CharacterId, BuffCode)> buffCollection,
+            IRepository<BuffEntity, (CharacterId, BuffCode)> buffRepository,
             CharacterPropertyFactoryService characterPropertyFactory)
         {
-            _buffCollection = buffCollection;
+            _buffRepository = buffRepository;
             _characterPropertyFactory = characterPropertyFactory;
         }
 
         public int GetSpeed(CharacterId characterId)
         {
             var agility = (float)_characterPropertyFactory.Create(characterId).Agility;
-            var speedRate = _buffCollection.Get((characterId, BuffCode.Speed)).Rate;
+            var speedRate = _buffRepository.Get((characterId, BuffCode.Speed)).Rate;
             var speed = (int)Math.Ceiling(agility * speedRate);
             return speed;
         }

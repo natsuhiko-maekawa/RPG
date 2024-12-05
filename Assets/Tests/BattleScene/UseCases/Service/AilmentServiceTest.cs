@@ -20,7 +20,7 @@ namespace Tests.BattleScene.UseCases.Service
     {
         private IActualTargetIdPickerService _mockActualTargetIdPickerService;
         private IFactory<AilmentPropertyValueObject, AilmentCode> _stubAilmentPropertyFactory;
-        private readonly MockCollection<AilmentEntity, (CharacterId, AilmentCode)> _mockAilmentCollection = new();
+        private readonly MockRepository<AilmentEntity, (CharacterId, AilmentCode)> _mockAilmentRepository = new();
 
         [SetUp]
         public void SetUp()
@@ -42,7 +42,7 @@ namespace Tests.BattleScene.UseCases.Service
             // ReSharper disable once UnusedVariable
             var ailmentService = new AilmentService(
                 actualTargetIdPicker: _mockActualTargetIdPickerService,
-                ailmentCollection: _mockAilmentCollection);
+                ailmentRepository: _mockAilmentRepository);
         }
     }
 }

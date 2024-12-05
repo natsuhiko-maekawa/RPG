@@ -15,21 +15,21 @@ namespace BattleScene.InterfaceAdapter.PresenterFacade
     public class SkillPresenterFacade
     {
         private readonly IResource<SkillViewDto, SkillCode> _skillViewResource;
-        private readonly ICollection<BattleLogEntity, BattleLogId> _battleLogCollection;
-        private readonly ICollection<CharacterEntity, CharacterId> _characterCollection;
+        private readonly IRepository<BattleLogEntity, BattleLogId> _battleLogRepository;
+        private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
         private readonly MessageViewPresenter _messageView;
         private readonly PlayerImageViewPresenter _playerImageView;
 
         public SkillPresenterFacade(
             IResource<SkillViewDto, SkillCode> skillViewResource,
-            ICollection<BattleLogEntity, BattleLogId> battleLogCollection,
-            ICollection<CharacterEntity, CharacterId> characterCollection,
+            IRepository<BattleLogEntity, BattleLogId> battleLogRepository,
+            IRepository<CharacterEntity, CharacterId> characterRepository,
             MessageViewPresenter messageView,
             PlayerImageViewPresenter playerImageView)
         {
             _skillViewResource = skillViewResource;
-            _battleLogCollection = battleLogCollection;
-            _characterCollection = characterCollection;
+            _battleLogRepository = battleLogRepository;
+            _characterRepository = characterRepository;
             _messageView = messageView;
             _playerImageView = playerImageView;
         }
@@ -42,15 +42,15 @@ namespace BattleScene.InterfaceAdapter.PresenterFacade
             var messageCode = context.Skill.Common.AttackMessageCode;
             _messageView.StartAnimation(messageCode, context);
 
-            var isActorPlayer = _characterCollection.Get(context.ActorId).IsPlayer;
+            var isActorPlayer = _characterRepository.Get(context.ActorId).IsPlayer;
             var playerSkillCode = isActorPlayer
                 ? context.Skill.Common.SkillCode
-                : _battleLogCollection.Get()
+                : _battleLogRepository.Get()
                     // 敵に先手を撃たれ混乱した状態で敵の攻撃を受ける場合、
                     // プレイヤーはまだスキルを一度も発動していないので、
                     // LastOrDefaultメソッドで戦闘履歴を取得する必要がある
                     .LastOrDefault(x => x.ActorId != null
-                               && _characterCollection.Get(x.ActorId).IsPlayer
+                               && _characterRepository.Get(x.ActorId).IsPlayer
                                && !SkillCodeList.AilmentSkillCodeList.Contains(x.SkillCode))
                     ?.SkillCode ?? SkillCode.Attack;
             var playerImageCode = _skillViewResource.Get(playerSkillCode).PlayerImageCode;

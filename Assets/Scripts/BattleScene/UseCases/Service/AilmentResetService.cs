@@ -11,25 +11,25 @@ namespace BattleScene.UseCases.Service
     public class AilmentResetService : IAilmentResetService
     {
         private readonly PlayerDomainService _player;
-        private readonly ICollection<AilmentEntity, (CharacterId, AilmentCode)> _ailmentCollection;
+        private readonly IRepository<AilmentEntity, (CharacterId, AilmentCode)> _ailmentRepository;
 
         public AilmentResetService(
             PlayerDomainService player,
-            ICollection<AilmentEntity, (CharacterId, AilmentCode)> ailmentCollection)
+            IRepository<AilmentEntity, (CharacterId, AilmentCode)> ailmentRepository)
         {
             _player = player;
-            _ailmentCollection = ailmentCollection;
+            _ailmentRepository = ailmentRepository;
         }
 
         public void Reset(AilmentCode ailmentCode)
         {
             var playerId = _player.GetId();
-            _ailmentCollection.Get((playerId, ailmentCode)).Effects = false;
+            _ailmentRepository.Get((playerId, ailmentCode)).Effects = false;
         }
 
         public void Reset(CharacterId targetId, AilmentCode ailmentCode)
         {
-            _ailmentCollection.Get((targetId, ailmentCode)).Effects = false;
+            _ailmentRepository.Get((targetId, ailmentCode)).Effects = false;
         }
 
         public void Reset(ILookup<CharacterId, AilmentCode> ailmentLookup)

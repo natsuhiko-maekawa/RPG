@@ -17,24 +17,24 @@ namespace BattleScene.InterfaceAdapter.Presenter
     {
         private readonly IResource<EnemyViewDto, CharacterTypeCode> _enemyViewInfoResource;
         private readonly OrderView _orderView;
-        private readonly ICollection<CharacterEntity, CharacterId> _characterCollection;
-        private readonly ICollection<OrderedItemEntity, OrderedItemId> _orderedItemCollection;
+        private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
+        private readonly IRepository<OrderedItemEntity, OrderedItemId> _orderedItemRepository;
 
         public OrderViewPresenter(
             IResource<EnemyViewDto, CharacterTypeCode> enemyViewInfoResource,
             OrderView orderView,
-            ICollection<CharacterEntity, CharacterId> characterCollection,
-            ICollection<OrderedItemEntity, OrderedItemId> orderedItemCollection)
+            IRepository<CharacterEntity, CharacterId> characterRepository,
+            IRepository<OrderedItemEntity, OrderedItemId> orderedItemRepository)
         {
             _enemyViewInfoResource = enemyViewInfoResource;
             _orderView = orderView;
-            _characterCollection = characterCollection;
-            _orderedItemCollection = orderedItemCollection;
+            _characterRepository = characterRepository;
+            _orderedItemRepository = orderedItemRepository;
         }
 
         public async void StartAnimationAsync()
         {
-            var orderViewDtoList = _orderedItemCollection.Get()
+            var orderViewDtoList = _orderedItemRepository.Get()
                 .OrderBy(x => x.Order)
                 .Select(CreateOrderViewDto)
                 .ToList();
@@ -59,7 +59,7 @@ namespace BattleScene.InterfaceAdapter.Presenter
         {
             if (!orderedItem.TryGetCharacterId(out var characterId))
                 throw new InvalidOperationException();
-            var dto = _characterCollection.Get(characterId).IsPlayer
+            var dto = _characterRepository.Get(characterId).IsPlayer
                 ? CreatePlayerOrderViewDto()
                 : CreateEnemyOrderViewDto(characterId);
             return dto;
@@ -74,7 +74,7 @@ namespace BattleScene.InterfaceAdapter.Presenter
 
         private OrderViewDto CreateEnemyOrderViewDto(CharacterId characterId)
         {
-            var characterTypeId = _characterCollection.Get(characterId).CharacterTypeCode;
+            var characterTypeId = _characterRepository.Get(characterId).CharacterTypeCode;
             var enemyImagePath = _enemyViewInfoResource.Get(characterTypeId).ImagePath;
             return new OrderViewDto(ItemType.Enemy, EnemyImagePath: enemyImagePath);
         }

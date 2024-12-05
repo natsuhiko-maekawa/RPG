@@ -16,7 +16,7 @@ namespace BattleScene.UseCases.UseCase
         private readonly BattleLoggerService _battleLogger;
         private readonly PlayerDomainService _player;
         private readonly SlipDamageGeneratorService _slipDamageGenerator;
-        private readonly ICollection<SlipEntity, SlipCode> _slipCollection;
+        private readonly IRepository<SlipEntity, SlipCode> _slipRepository;
         private readonly IFactory<SkillValueObject, SkillCode> _skillFactory;
         private readonly IHitPointService _hitPoint;
 
@@ -24,14 +24,14 @@ namespace BattleScene.UseCases.UseCase
             BattleLoggerService battleLogger,
             PlayerDomainService player,
             SlipDamageGeneratorService slipDamageGenerator,
-            ICollection<SlipEntity, SlipCode> slipCollection,
+            IRepository<SlipEntity, SlipCode> slipRepository,
             IFactory<SkillValueObject, SkillCode> skillFactory,
             IHitPointService hitPoint)
         {
             _battleLogger = battleLogger;
             _player = player;
             _slipDamageGenerator = slipDamageGenerator;
-            _slipCollection = slipCollection;
+            _slipRepository = slipRepository;
             _skillFactory = skillFactory;
             _hitPoint = hitPoint;
         }
@@ -40,7 +40,7 @@ namespace BattleScene.UseCases.UseCase
         {
             var slipDamage = _slipDamageGenerator.Generate(slipCode);
             _hitPoint.Damaged(slipDamage);
-            _slipCollection.Get(slipDamage.SlipCode).AdvanceTurn();
+            _slipRepository.Get(slipDamage.SlipCode).AdvanceTurn();
             _battleLogger.Log(slipDamage);
         }
 

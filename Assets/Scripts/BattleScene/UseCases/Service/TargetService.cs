@@ -12,22 +12,22 @@ namespace BattleScene.UseCases.Service
 {
     public class TargetService : ITargetService
     {
-        private readonly ICollection<BattleLogEntity, BattleLogId> _battleLogCollection;
+        private readonly IRepository<BattleLogEntity, BattleLogId> _battleLogRepository;
         private readonly EnemiesDomainService _enemies;
-        private readonly ICollection<CharacterEntity, CharacterId> _characterCollection;
+        private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
         private readonly PlayerDomainService _player;
         private readonly IMyRandomService _myRandom;
 
         public TargetService(
             EnemiesDomainService enemies,
-            ICollection<BattleLogEntity, BattleLogId> battleLogCollection,
-            ICollection<CharacterEntity, CharacterId> characterCollection,
+            IRepository<BattleLogEntity, BattleLogId> battleLogRepository,
+            IRepository<CharacterEntity, CharacterId> characterRepository,
             PlayerDomainService player,
             IMyRandomService myRandom)
         {
             _enemies = enemies;
-            _battleLogCollection = battleLogCollection;
-            _characterCollection = characterCollection;
+            _battleLogRepository = battleLogRepository;
+            _characterRepository = characterRepository;
             _player = player;
             _myRandom = myRandom;
         }
@@ -37,19 +37,19 @@ namespace BattleScene.UseCases.Service
             var targetList = range switch
             {
                 Range.Oneself =>
-                    _characterCollection.Get(actorId).IsSurvive
+                    _characterRepository.Get(actorId).IsSurvive
                         ? new[] { actorId }
                         : Array.Empty<CharacterId>(),
                 Range.Solo when isAutoTarget =>
-                    _characterCollection.Get(actorId).IsPlayer
+                    _characterRepository.Get(actorId).IsPlayer
                         ? new[] { GetEnemySoloRandom() }
                         : new[] { _player.GetId() },
                 Range.Solo when !isAutoTarget =>
-                    _characterCollection.Get(actorId).IsPlayer
+                    _characterRepository.Get(actorId).IsPlayer
                         ? new[] { GetEnemySolo() }
                         : new[] { _player.GetId() },
                 Range.Line or Range.Random =>
-                    _characterCollection.Get(actorId).IsPlayer
+                    _characterRepository.Get(actorId).IsPlayer
                         ? _enemies.GetIdSurvive()
                         : new[] { _player.GetId() },
                 _ => throw new NotImplementedException()
@@ -60,17 +60,17 @@ namespace BattleScene.UseCases.Service
 
         private CharacterId GetEnemySolo()
         {
-            var targetId = _battleLogCollection.Get()
-                .Where(x => _characterCollection.Get(x.ActorId)?.IsPlayer ?? false)
+            var targetId = _battleLogRepository.Get()
+                .Where(x => _characterRepository.Get(x.ActorId)?.IsPlayer ?? false)
                 .Where(x => x.TargetIdList.Count == 1)
-                .Where(x => !x.TargetIdList.Any(y => _characterCollection.Get(y).IsPlayer))
+                .Where(x => !x.TargetIdList.Any(y => _characterRepository.Get(y).IsPlayer))
                 .Max()?.TargetIdList
                 .Single();
-            targetId = targetId == null || !_characterCollection.Get(targetId).IsSurvive
+            targetId = targetId == null || !_characterRepository.Get(targetId).IsSurvive
                 ? _enemies.Get()
                     .Select(x => x.Id)
-                    .OrderBy(x => _characterCollection.Get(x).Position)
-                    .First(x => _characterCollection.Get(x).IsSurvive)
+                    .OrderBy(x => _characterRepository.Get(x).Position)
+                    .First(x => _characterRepository.Get(x).IsSurvive)
                 : targetId;
             return targetId;
         }

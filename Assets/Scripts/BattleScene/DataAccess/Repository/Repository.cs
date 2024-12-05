@@ -5,9 +5,9 @@ using System.Linq;
 using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.Entity;
 
-namespace BattleScene.DataAccess.Collection
+namespace BattleScene.DataAccess.Repository
 {
-    public partial class Collection<TEntity, TId> : ICollection<TEntity, TId>, ISerializable
+    public partial class Repository<TEntity, TId> : IRepository<TEntity, TId>, ISerializable
         where TEntity : BaseEntity<TId>
     {
         private readonly Dictionary<TId, TEntity> _entityDictionary = new();

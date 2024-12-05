@@ -9,18 +9,18 @@ namespace BattleScene.UseCases.Service
 {
     public class EnemySkillSelectorService : IEnemySkillSelectorService
     {
-        private readonly ICollection<CharacterEntity, CharacterId> _characterCollection;
+        private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
         private readonly IFactory<CharacterPropertyValueObject, CharacterTypeCode> _characterPropertyFactory;
         private readonly IMyRandomService _myRandom;
         private readonly IFactory<SkillValueObject, SkillCode> _skillFactory;
 
         public EnemySkillSelectorService(
-            ICollection<CharacterEntity, CharacterId> characterCollection,
+            IRepository<CharacterEntity, CharacterId> characterRepository,
             IFactory<CharacterPropertyValueObject, CharacterTypeCode> characterPropertyFactory,
             IMyRandomService myRandom,
             IFactory<SkillValueObject, SkillCode> skillFactory)
         {
-            _characterCollection = characterCollection;
+            _characterRepository = characterRepository;
             _characterPropertyFactory = characterPropertyFactory;
             _myRandom = myRandom;
             _skillFactory = skillFactory;
@@ -29,7 +29,7 @@ namespace BattleScene.UseCases.Service
         public SkillValueObject Select(CharacterId actorId)
         {
             // TODO: 敵がスキルを選択する際、ランダムに選択する仮のアルゴリズムを実装している
-            var characterTypeCode = _characterCollection.Get(actorId).CharacterTypeCode;
+            var characterTypeCode = _characterRepository.Get(actorId).CharacterTypeCode;
             var skillCodeList = _characterPropertyFactory.Create(characterTypeCode).SkillCodeList;
             var skillCode = _myRandom.Choice(skillCodeList);
             var skill = _skillFactory.Create(skillCode);

@@ -9,19 +9,19 @@ namespace BattleScene.UseCases.Service
     public class CharacterPropertyFactoryService
     {
         private readonly IFactory<CharacterPropertyValueObject, CharacterTypeCode> _characterPropertyFactory;
-        private readonly ICollection<CharacterEntity, CharacterId> _characterCollection;
+        private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
 
         public CharacterPropertyFactoryService(
             IFactory<CharacterPropertyValueObject, CharacterTypeCode> characterPropertyFactory,
-            ICollection<CharacterEntity, CharacterId> characterCollection)
+            IRepository<CharacterEntity, CharacterId> characterRepository)
         {
             _characterPropertyFactory = characterPropertyFactory;
-            _characterCollection = characterCollection;
+            _characterRepository = characterRepository;
         }
 
         public CharacterPropertyValueObject Create(CharacterId characterId)
         {
-            var characterTypeCode = _characterCollection.Get(characterId).CharacterTypeCode;
+            var characterTypeCode = _characterRepository.Get(characterId).CharacterTypeCode;
             var characterProperty = _characterPropertyFactory.Create(characterTypeCode);
             return characterProperty;
         }

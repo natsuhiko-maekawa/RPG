@@ -14,23 +14,23 @@ namespace BattleScene.InterfaceAdapter.ReactivePresenter
 {
     public class BuffViewReactivePresenter : IReactive<BuffEntity>
     {
-        private readonly ICollection<CharacterEntity, CharacterId> _characterCollection;
+        private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
         private readonly ToIndexService _toIndex;
         private readonly PlayerStatusView _playerStatusView;
 
         public BuffViewReactivePresenter(
             ToIndexService toIndex,
             PlayerStatusView playerStatusView,
-            ICollection<CharacterEntity, CharacterId> characterCollection)
+            IRepository<CharacterEntity, CharacterId> characterRepository)
         {
             _toIndex = toIndex;
             _playerStatusView = playerStatusView;
-            _characterCollection = characterCollection;
+            _characterRepository = characterRepository;
         }
 
         public void Observe(BuffEntity buff)
         {
-            if (_characterCollection.Get(buff.CharacterId).IsPlayer)
+            if (_characterRepository.Get(buff.CharacterId).IsPlayer)
                 buff.ReactiveRate.Subscribe(x => StartPlayerBuffView(buff.BuffCode, x));
         }
 

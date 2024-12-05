@@ -9,24 +9,24 @@ namespace BattleScene.Domain.DomainService
 {
     public class BodyPartDomainService
     {
-        private readonly ICollection<BodyPartEntity, (CharacterId, BodyPartCode)> _bodyPartCollection;
+        private readonly IRepository<BodyPartEntity, (CharacterId, BodyPartCode)> _bodyPartRepository;
 
         public BodyPartDomainService(
-            ICollection<BodyPartEntity, (CharacterId, BodyPartCode)> bodyPartCollection)
+            IRepository<BodyPartEntity, (CharacterId, BodyPartCode)> bodyPartRepository)
         {
-            _bodyPartCollection = bodyPartCollection;
+            _bodyPartRepository = bodyPartRepository;
         }
 
         public int Count(CharacterId characterId, BodyPartCode bodyPartCode)
         {
-            var bodyPartEntity = _bodyPartCollection.Get()
+            var bodyPartEntity = _bodyPartRepository.Get()
                 .FirstOrDefault(x => Equals(x.CharacterId, characterId) && x.BodyPartCode == bodyPartCode);
             return bodyPartEntity?.DestroyedCount ?? 0;
         }
 
         public bool IsAvailable(CharacterId characterId, BodyPartCode bodyPartCode)
         {
-            var bodyPartEntity = _bodyPartCollection.Get()
+            var bodyPartEntity = _bodyPartRepository.Get()
                 .FirstOrDefault(x => Equals(x.CharacterId, characterId) && x.BodyPartCode == bodyPartCode);
             return bodyPartEntity?.IsAvailable ?? true;
         }

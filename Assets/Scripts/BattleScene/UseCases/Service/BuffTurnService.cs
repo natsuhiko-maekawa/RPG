@@ -10,48 +10,48 @@ namespace BattleScene.UseCases.Service
     public class BuffTurnService
     {
         private readonly OrderedItemsDomainService _orderedItems;
-        private readonly ICollection<BuffEntity, (CharacterId, BuffCode)> _buffCollection;
-        private readonly ICollection<CharacterEntity, CharacterId> _characterCollection;
-        private readonly ICollection<EnhanceEntity, (CharacterId, EnhanceCode)> _enhanceCollection;
+        private readonly IRepository<BuffEntity, (CharacterId, BuffCode)> _buffRepository;
+        private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
+        private readonly IRepository<EnhanceEntity, (CharacterId, EnhanceCode)> _enhanceRepository;
 
         public BuffTurnService(
             OrderedItemsDomainService orderedItems,
-            ICollection<BuffEntity, (CharacterId, BuffCode)> buffCollection,
-            ICollection<CharacterEntity, CharacterId> characterCollection,
-            ICollection<EnhanceEntity, (CharacterId, EnhanceCode)> enhanceCollection)
+            IRepository<BuffEntity, (CharacterId, BuffCode)> buffRepository,
+            IRepository<CharacterEntity, CharacterId> characterRepository,
+            IRepository<EnhanceEntity, (CharacterId, EnhanceCode)> enhanceRepository)
         {
             _orderedItems = orderedItems;
-            _buffCollection = buffCollection;
-            _characterCollection = characterCollection;
-            _enhanceCollection = enhanceCollection;
+            _buffRepository = buffRepository;
+            _characterRepository = characterRepository;
+            _enhanceRepository = enhanceRepository;
         }
 
         public void Advance()
         {
-            foreach (var buff in _buffCollection.Get()
+            foreach (var buff in _buffRepository.Get()
                          .Where(x => x.LifetimeCode == LifetimeCode.ToEndTurn || IsNextAction(x.LifetimeCode)))
             {
                 buff.AdvanceTurn();
             }
 
-            foreach (var enhance in _enhanceCollection.Get()
+            foreach (var enhance in _enhanceRepository.Get()
                          .Where(x => x.LifetimeCode == LifetimeCode.ToEndTurn || IsNextAction(x.LifetimeCode)))
             {
                 enhance.AdvanceTurn();
             }
 
-            var removeIdList = _enhanceCollection.Get()
+            var removeIdList = _enhanceRepository.Get()
                 .Where(x => !x.Effects)
                 .Select(x => x.Id)
                 .ToList();
-            _enhanceCollection.Remove(removeIdList);
+            _enhanceRepository.Remove(removeIdList);
         }
 
         private bool IsNextAction(LifetimeCode lifetimeCode)
         {
             if (lifetimeCode != LifetimeCode.ToNextAction) return false;
             if (!_orderedItems.First().TryGetCharacterId(out var characterId)) return false;
-            if (!_characterCollection.Get(characterId).IsPlayer) return false;
+            if (!_characterRepository.Get(characterId).IsPlayer) return false;
             return true;
         }
     }

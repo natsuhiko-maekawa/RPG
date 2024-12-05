@@ -11,18 +11,18 @@ namespace BattleScene.InterfaceAdapter.State.SkillElement
     public class SkillElementStartState<TSkillElement> : BaseState<TSkillElement>
     {
         private readonly SkillElementUseCase<TSkillElement> _useCase;
-        private readonly ICollection<CharacterEntity, CharacterId> _characterCollection;
+        private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
         private readonly SkillElementOutputState<TSkillElement> _skillElementOutputState;
         private readonly SkillElementStopState<TSkillElement> _skillElementStopState;
 
         public SkillElementStartState(
             SkillElementUseCase<TSkillElement> useCase,
-            ICollection<CharacterEntity, CharacterId> characterCollection,
+            IRepository<CharacterEntity, CharacterId> characterRepository,
             SkillElementOutputState<TSkillElement> skillElementOutputState,
             SkillElementStopState<TSkillElement> skillElementStopState)
         {
             _useCase = useCase;
-            _characterCollection = characterCollection;
+            _characterRepository = characterRepository;
             _skillElementOutputState = skillElementOutputState;
             _skillElementStopState = skillElementStopState;
         }
@@ -45,7 +45,7 @@ namespace BattleScene.InterfaceAdapter.State.SkillElement
 
             BaseState<TSkillElement> nextState =
                 Context.BattleEventQueue.Count == 0
-                && Context.TargetIdList.All(x => _characterCollection.Get(x).IsPlayer)
+                && Context.TargetIdList.All(x => _characterRepository.Get(x).IsPlayer)
                 && _useCase.IsExecutedDamage()
                     ? _skillElementStopState
                     : _skillElementOutputState;

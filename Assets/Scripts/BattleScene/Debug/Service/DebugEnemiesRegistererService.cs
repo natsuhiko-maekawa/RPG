@@ -16,15 +16,15 @@ namespace BattleScene.Debug.Service
     {
         [SerializeField] private CharacterTypeCode[] characterTypeCodeArray = Array.Empty<CharacterTypeCode>();
         private IFactory<CharacterPropertyValueObject, CharacterTypeCode> _propertyFactory;
-        private ICollection<CharacterEntity, CharacterId> _characterCollection;
+        private IRepository<CharacterEntity, CharacterId> _characterRepository;
 
         [Inject]
         public void Construct(
             IFactory<CharacterPropertyValueObject, CharacterTypeCode> propertyFactory,
-            ICollection<CharacterEntity, CharacterId> characterCollection)
+            IRepository<CharacterEntity, CharacterId> characterRepository)
         {
             _propertyFactory = propertyFactory;
-            _characterCollection = characterCollection;
+            _characterRepository = characterRepository;
         }
 
         public void Register(IReadOnlyList<CharacterTypeCode> characterTypeIdList)
@@ -32,7 +32,7 @@ namespace BattleScene.Debug.Service
             var characterList = characterTypeCodeArray
                 .Select(GetCharacter)
                 .ToList();
-            _characterCollection.Add(characterList);
+            _characterRepository.Add(characterList);
         }
 
         private CharacterEntity GetCharacter(CharacterTypeCode characterTypeCode, int position)

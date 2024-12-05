@@ -12,25 +12,25 @@ namespace BattleScene.UseCases.Service.Order
     public class OrderService
     {
         private readonly IFactory<BattlePropertyValueObject> _battlePropertyFactory;
-        private readonly ICollection<AilmentEntity, (CharacterId, AilmentCode)> _ailmentCollection;
-        private readonly ICollection<CharacterEntity, CharacterId> _characterCollection;
-        private readonly ICollection<OrderedItemEntity, OrderedItemId> _orderedItemCollection;
-        private readonly ICollection<SlipEntity, SlipCode> _slipDamageCollection;
+        private readonly IRepository<AilmentEntity, (CharacterId, AilmentCode)> _ailmentRepository;
+        private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
+        private readonly IRepository<OrderedItemEntity, OrderedItemId> _orderedItemRepository;
+        private readonly IRepository<SlipEntity, SlipCode> _slipRepository;
         private readonly ISpeedService _speed;
 
         public OrderService(
             IFactory<BattlePropertyValueObject> battlePropertyFactory,
-            ICollection<AilmentEntity, (CharacterId, AilmentCode)> ailmentCollection,
-            ICollection<CharacterEntity, CharacterId> characterCollection,
-            ICollection<OrderedItemEntity, OrderedItemId> orderedItemCollection,
-            ICollection<SlipEntity, SlipCode> slipDamageCollection,
+            IRepository<AilmentEntity, (CharacterId, AilmentCode)> ailmentRepository,
+            IRepository<CharacterEntity, CharacterId> characterRepository,
+            IRepository<OrderedItemEntity, OrderedItemId> orderedItemRepository,
+            IRepository<SlipEntity, SlipCode> slipRepository,
             ISpeedService speed)
         {
             _battlePropertyFactory = battlePropertyFactory;
-            _ailmentCollection = ailmentCollection;
-            _characterCollection = characterCollection;
-            _orderedItemCollection = orderedItemCollection;
-            _slipDamageCollection = slipDamageCollection;
+            _ailmentRepository = ailmentRepository;
+            _characterRepository = characterRepository;
+            _orderedItemRepository = orderedItemRepository;
+            _slipRepository = slipRepository;
             _speed = speed;
         }
 
@@ -40,13 +40,13 @@ namespace BattleScene.UseCases.Service.Order
             {
                 var orderedItemId = new OrderedItemId();
                 var orderedItem = new OrderedItemEntity(orderedItemId, i);
-                _orderedItemCollection.Add(orderedItem);
+                _orderedItemRepository.Add(orderedItem);
             }
         }
 
         public void Update()
         {
-            var characters = _characterCollection.Get();
+            var characters = _characterRepository.Get();
             var orderedItemList = Enumerable
                 .Repeat(characters, _battlePropertyFactory.Create().MaxOrderCount)
                 .Select((charactersRepeat, i) => charactersRepeat
@@ -62,17 +62,17 @@ namespace BattleScene.UseCases.Service.Order
                 .ToList()
                 .GetRange(0, _battlePropertyFactory.Create().MaxOrderCount);
 
-            var ailments = _ailmentCollection.Get()
-                .Where(x => _characterCollection.Get(x.CharacterId).IsPlayer)
+            var ailments = _ailmentRepository.Get()
+                .Where(x => _characterRepository.Get(x.CharacterId).IsPlayer)
                 .ToList();
-            var slipDamages = _slipDamageCollection.Get()
+            var slipDamages = _slipRepository.Get()
                 .Where(x => x.Effects)
                 .ToList();
             InsertAilmentEnd(ailments, ref orderedItemList);
             InsertSlipDamage(slipDamages, ref orderedItemList);
 
             // QUESTION: IEnumeratorを渡した場合とToArrayして配列を渡した場合、アロケーションが少ないのはどちらか
-            foreach (var (orderedItemEntity, orderedItem) in _orderedItemCollection.Get()
+            foreach (var (orderedItemEntity, orderedItem) in _orderedItemRepository.Get()
                          .OrderBy(x => x.Order)
                          .Zip(orderedItemList, (orderedItemEntity, orderedItem) => (orderedItemEntity, orderedItem))
                          .ToArray())

@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 
-namespace BattleScene.DataAccess.Collection
+namespace BattleScene.DataAccess.Repository
 {
-    public partial class Collection<TEntity, TId>
+    public partial class Repository<TEntity, TId>
     {
         private readonly IEnumerable<IReactive<TEntity>> _observers;
 
-        public Collection(
+        public Repository(
             IEnumerable<IReactive<TEntity>> observers)
         {
             _observers = observers;

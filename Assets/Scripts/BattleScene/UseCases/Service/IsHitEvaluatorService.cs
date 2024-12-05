@@ -12,28 +12,28 @@ namespace BattleScene.UseCases.Service
 {
     public class IsHitEvaluatorService
     {
-        private readonly ICollection<AilmentEntity, (CharacterId, AilmentCode)> _ailmentCollection;
+        private readonly IRepository<AilmentEntity, (CharacterId, AilmentCode)> _ailmentRepository;
         private readonly BodyPartDomainService _bodyPartDomainService;
         private readonly CharacterPropertyFactoryService _characterPropertyFactory;
-        private readonly ICollection<BuffEntity, (CharacterId, BuffCode)> _buffCollection;
-        private readonly ICollection<EnhanceEntity, (CharacterId, EnhanceCode)> _enhanceCollection;
+        private readonly IRepository<BuffEntity, (CharacterId, BuffCode)> _buffRepository;
+        private readonly IRepository<EnhanceEntity, (CharacterId, EnhanceCode)> _enhanceRepository;
         private readonly IMyRandomService _myRandom;
         private readonly IFactory<BattlePropertyValueObject> _battlePropertyFactory;
 
         public IsHitEvaluatorService(
-            ICollection<AilmentEntity, (CharacterId, AilmentCode)> ailmentCollection,
+            IRepository<AilmentEntity, (CharacterId, AilmentCode)> ailmentRepository,
             BodyPartDomainService bodyPartDomainService,
             CharacterPropertyFactoryService characterPropertyFactory,
-            ICollection<BuffEntity, (CharacterId, BuffCode)> buffCollection,
-            ICollection<EnhanceEntity, (CharacterId, EnhanceCode)> enhanceCollection,
+            IRepository<BuffEntity, (CharacterId, BuffCode)> buffRepository,
+            IRepository<EnhanceEntity, (CharacterId, EnhanceCode)> enhanceRepository,
             IMyRandomService myRandom,
             IFactory<BattlePropertyValueObject> battlePropertyFactory)
         {
-            _ailmentCollection = ailmentCollection;
+            _ailmentRepository = ailmentRepository;
             _bodyPartDomainService = bodyPartDomainService;
             _characterPropertyFactory = characterPropertyFactory;
-            _buffCollection = buffCollection;
-            _enhanceCollection = enhanceCollection;
+            _buffRepository = buffRepository;
+            _enhanceRepository = enhanceRepository;
             _myRandom = myRandom;
             _battlePropertyFactory = battlePropertyFactory;
         }
@@ -67,19 +67,19 @@ namespace BattleScene.UseCases.Service
             if (!_bodyPartDomainService.IsAvailable(targetId, BodyPartCode.Leg)) return true;
 
             // 空蝉状態の時、必ず回避する
-            if (_enhanceCollection.TryGet((targetId, EnhanceCode.Utsusemi), out var enhance) && enhance.Effects) 
+            if (_enhanceRepository.TryGet((targetId, EnhanceCode.Utsusemi), out var enhance) && enhance.Effects) 
                 return false;
 
             // 大きいほど命中しやすくなる
             var threshold = _battlePropertyFactory.Create().IsHitThreshold;
             var actorAgility = _characterPropertyFactory.Create(actorId).Agility;
             var targetAgility = _characterPropertyFactory.Create(targetId).Agility;
-            var isActorBlind = _ailmentCollection.Get()
+            var isActorBlind = _ailmentRepository.Get()
                 .FirstOrDefault(x => Equals(x.CharacterId, actorId) && x.AilmentCode == AilmentCode.Blind) != null;
-            var isTargetDeaf = _ailmentCollection.Get()
+            var isTargetDeaf = _ailmentRepository.Get()
                 .FirstOrDefault(x => Equals(x.CharacterId, targetId) && x.AilmentCode == AilmentCode.Deaf) != null;
             var destroyedReduce = _bodyPartDomainService.Count(targetId, BodyPartCode.Leg) * 0.5f;
-            var buff = (float)Math.Log(_buffCollection.Get()
+            var buff = (float)Math.Log(_buffRepository.Get()
                     .FirstOrDefault(x => Equals(x.CharacterId, actorId) && x.BuffCode == BuffCode.HitRate)?.Rate ?? 1,
                 2.0f);
             var add = (float)Math.Log(damage.HitRate, 2.0f);

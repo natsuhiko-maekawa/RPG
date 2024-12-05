@@ -14,25 +14,25 @@ namespace BattleScene.UseCases.Service
     {
         private const float MultiplicationIdentityElement = 1.0f;
         private readonly BodyPartDomainService _bodyPartDomainService;
-        private readonly ICollection<BuffEntity, (CharacterId, BuffCode)> _buffCollection;
+        private readonly IRepository<BuffEntity, (CharacterId, BuffCode)> _buffRepository;
         private readonly CharacterPropertyFactoryService _characterPropertyFactory;
         private readonly IFactory<BattlePropertyValueObject> _battlePropertyFactory;
-        private readonly ICollection<EnhanceEntity, (CharacterId, EnhanceCode)> _enhanceCollection;
+        private readonly IRepository<EnhanceEntity, (CharacterId, EnhanceCode)> _enhanceRepository;
         private readonly IMyRandomService _myRandom;
 
         public DamageEvaluatorService(
             BodyPartDomainService bodyPartDomainService,
-            ICollection<BuffEntity, (CharacterId, BuffCode)> buffCollection,
+            IRepository<BuffEntity, (CharacterId, BuffCode)> buffRepository,
             CharacterPropertyFactoryService characterPropertyFactoryFactory,
             IFactory<BattlePropertyValueObject> battlePropertyFactory,
-            ICollection<EnhanceEntity, (CharacterId, EnhanceCode)> enhanceCollection,
+            IRepository<EnhanceEntity, (CharacterId, EnhanceCode)> enhanceRepository,
             IMyRandomService myRandom)
         {
             _bodyPartDomainService = bodyPartDomainService;
-            _buffCollection = buffCollection;
+            _buffRepository = buffRepository;
             _characterPropertyFactory = characterPropertyFactoryFactory;
             _battlePropertyFactory = battlePropertyFactory;
-            _enhanceCollection = enhanceCollection;
+            _enhanceRepository = enhanceRepository;
             _myRandom = myRandom;
         }
 
@@ -53,12 +53,12 @@ namespace BattleScene.UseCases.Service
             var targetVitality = _characterPropertyFactory.Create(targetId).Vitality;
             var actorMatAttr = damage.MatAttrCode;
             var targetWeekPoint = _characterPropertyFactory.Create(targetId).WeakPointsCodeList;
-            var actorBuffRate = _buffCollection.Get((actorId, BuffCode.Attack)).Rate;
-            var targetBuffRate = _buffCollection.Get((targetId, BuffCode.Defence)).Rate;
+            var actorBuffRate = _buffRepository.Get((actorId, BuffCode.Attack)).Rate;
+            var targetBuffRate = _buffRepository.Get((targetId, BuffCode.Defence)).Rate;
             var destroyedRate = 1.0f - _bodyPartDomainService.Count(actorId, BodyPartCode.Arm) * 0.5f;
             // バフから防御、空蝉を切り離し、特殊効果として実装するまで保留
             var targetDefence
-                = _enhanceCollection.TryGet((targetId, EnhanceCode.Defence), out var enhance) && enhance.Effects
+                = _enhanceRepository.TryGet((targetId, EnhanceCode.Defence), out var enhance) && enhance.Effects
                     ? 0.5f
                     : MultiplicationIdentityElement;
             var rate = damage.DamageRate;
@@ -71,7 +71,7 @@ namespace BattleScene.UseCases.Service
         {
             var actorStrength = _characterPropertyFactory.Create(actorId).Strength;
             const int targetVitality = 1;
-            var actorBuffRate = _buffCollection.Get((actorId, BuffCode.Attack)).Rate;
+            var actorBuffRate = _buffRepository.Get((actorId, BuffCode.Attack)).Rate;
             const int targetBuffRate = 1;
             var destroyedRate
                 = MultiplicationIdentityElement - _bodyPartDomainService.Count(actorId, BodyPartCode.Arm) * 0.5f;

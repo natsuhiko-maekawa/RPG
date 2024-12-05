@@ -11,23 +11,23 @@ namespace BattleScene.InterfaceAdapter.Service.Replacement
     {
         internal const string TotalPrefix = "計";
         internal const string TotalSuffix = "たち";
-        private readonly ICollection<CharacterEntity, CharacterId> _characterCollection;
+        private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
         private readonly IResource<EnemyViewDto, CharacterTypeCode> _enemyViewInfoResource;
         private readonly IResource<PlayerViewDto, CharacterTypeCode> _playerViewInfoResource;
 
         public ReplacementCommonService(
-            ICollection<CharacterEntity, CharacterId> characterCollection,
+            IRepository<CharacterEntity, CharacterId> characterRepository,
             IResource<EnemyViewDto, CharacterTypeCode> enemyViewInfoResource,
             IResource<PlayerViewDto, CharacterTypeCode> playerViewInfoResource)
         {
-            _characterCollection = characterCollection;
+            _characterRepository = characterRepository;
             _enemyViewInfoResource = enemyViewInfoResource;
             _playerViewInfoResource = playerViewInfoResource;
         }
 
         public string GetCharacterName(CharacterId characterId)
         {
-            var character = _characterCollection.Get(characterId);
+            var character = _characterRepository.Get(characterId);
             var characterName = character.IsPlayer
                 ? _playerViewInfoResource.Get(CharacterTypeCode.Player).Name
                 : _enemyViewInfoResource.Get(character.CharacterTypeCode).Name;

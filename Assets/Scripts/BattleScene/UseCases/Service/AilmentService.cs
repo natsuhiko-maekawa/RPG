@@ -12,14 +12,14 @@ namespace BattleScene.UseCases.Service
     public class AilmentService : ISkillElementService<AilmentValueObject>
     {
         private readonly IActualTargetIdPickerService _actualTargetIdPicker;
-        private readonly ICollection<AilmentEntity, (CharacterId, AilmentCode)> _ailmentCollection;
+        private readonly IRepository<AilmentEntity, (CharacterId, AilmentCode)> _ailmentRepository;
 
         public AilmentService(
             IActualTargetIdPickerService actualTargetIdPicker,
-            ICollection<AilmentEntity, (CharacterId, AilmentCode)> ailmentCollection)
+            IRepository<AilmentEntity, (CharacterId, AilmentCode)> ailmentRepository)
         {
             _actualTargetIdPicker = actualTargetIdPicker;
-            _ailmentCollection = ailmentCollection;
+            _ailmentRepository = ailmentRepository;
         }
 
         public IReadOnlyList<BattleEventValueObject> GenerateBattleEvent(
@@ -55,7 +55,7 @@ namespace BattleScene.UseCases.Service
             {
                 foreach (var characterId in ailment.ActualTargetIdList)
                 {
-                    var ailment1 = _ailmentCollection.Get((characterId, ailment.AilmentCode));
+                    var ailment1 = _ailmentRepository.Get((characterId, ailment.AilmentCode));
                     ailment1.Effects = true;
                 }
             }

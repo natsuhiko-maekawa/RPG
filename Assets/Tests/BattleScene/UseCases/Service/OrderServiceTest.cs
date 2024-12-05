@@ -27,26 +27,26 @@ namespace Tests.BattleScene.UseCases.Service
     {
         private IFactory<BattlePropertyValueObject> _stubBattlePropertyFactory;
 
-        private readonly ICollection<AilmentEntity, (CharacterId, AilmentCode)> _mockAilmentCollection
-            = new MockCollection<AilmentEntity, (CharacterId, AilmentCode)>();
+        private readonly IRepository<AilmentEntity, (CharacterId, AilmentCode)> _mockAilmentRepository
+            = new MockRepository<AilmentEntity, (CharacterId, AilmentCode)>();
 
-        private readonly ICollection<BodyPartEntity, (CharacterId, BodyPartCode)> _mockBodyPartCollection
-            = new MockCollection<BodyPartEntity, (CharacterId, BodyPartCode)>();
+        private readonly IRepository<BodyPartEntity, (CharacterId, BodyPartCode)> _mockBodyPartRepository
+            = new MockRepository<BodyPartEntity, (CharacterId, BodyPartCode)>();
 
-        private readonly ICollection<BuffEntity, (CharacterId, BuffCode)> _mockBuffCollection
-            = new MockCollection<BuffEntity, (CharacterId, BuffCode)>();
+        private readonly IRepository<BuffEntity, (CharacterId, BuffCode)> _mockBuffRepository
+            = new MockRepository<BuffEntity, (CharacterId, BuffCode)>();
 
-        private readonly ICollection<CharacterEntity, CharacterId> _mockCharacterCollection
-            = new MockCollection<CharacterEntity, CharacterId>();
+        private readonly IRepository<CharacterEntity, CharacterId> _mockCharacterRepository
+            = new MockRepository<CharacterEntity, CharacterId>();
 
-        private readonly ICollection<EnhanceEntity, (CharacterId, EnhanceCode)> _mockEnhanceCollection
-            = new MockCollection<EnhanceEntity, (CharacterId, EnhanceCode)>();
+        private readonly IRepository<EnhanceEntity, (CharacterId, EnhanceCode)> _mockEnhanceRepository
+            = new MockRepository<EnhanceEntity, (CharacterId, EnhanceCode)>();
 
-        private readonly ICollection<OrderedItemEntity, OrderedItemId> _mockOrderedItemCollection
-            = new MockCollection<OrderedItemEntity, OrderedItemId>();
+        private readonly IRepository<OrderedItemEntity, OrderedItemId> _mockOrderedItemRepository
+            = new MockRepository<OrderedItemEntity, OrderedItemId>();
 
-        private readonly ICollection<SlipEntity, SlipCode> _mockSlipCollection
-            = new MockCollection<SlipEntity, SlipCode>();
+        private readonly IRepository<SlipEntity, SlipCode> _mockSlipRepository
+            = new MockRepository<SlipEntity, SlipCode>();
 
         private OrderService _orderService = null!;
         private ISpeedService _stubSpeedService = null!;
@@ -55,11 +55,11 @@ namespace Tests.BattleScene.UseCases.Service
         [SetUp]
         public void SetUp()
         {
-            _mockAilmentCollection.Remove();
-            _mockBuffCollection.Remove();
-            _mockCharacterCollection.Remove();
-            _mockOrderedItemCollection.Remove();
-            _mockSlipCollection.Remove();
+            _mockAilmentRepository.Remove();
+            _mockBuffRepository.Remove();
+            _mockCharacterRepository.Remove();
+            _mockOrderedItemRepository.Remove();
+            _mockSlipRepository.Remove();
             _stubBattlePropertyFactory = GetStubBattlePropertyFactory();
             _stubSpeedService = GetStubSpeedService();
             _stubCharacterCreatorService = GetStubCharacterCreatorService();
@@ -92,9 +92,9 @@ namespace Tests.BattleScene.UseCases.Service
                 propertyResource: stubCharacterPropertyResource);
             var stubCharacterPropertyFactoryService = new CharacterPropertyFactoryService(
                 characterPropertyFactory: stubCharacterPropertyFactory,
-                characterCollection: _mockCharacterCollection);
+                characterRepository: _mockCharacterRepository);
             var stubSpeedService = new SpeedService(
-                buffCollection: _mockBuffCollection,
+                buffRepository: _mockBuffRepository,
                 characterPropertyFactory: stubCharacterPropertyFactoryService);
             return stubSpeedService;
         }
@@ -108,14 +108,14 @@ namespace Tests.BattleScene.UseCases.Service
                 "Assets/Prefabs/BattleScene/Resource/ScriptableObjects.prefab");
             var stubBodyPartPropertyFactory = new BodyPartPropertyFactory(stubBodyPartPropertyResource);
             var stubCharacterCreatorService = new CharacterCreatorService(
-                ailmentCollection: _mockAilmentCollection,
+                ailmentRepository: _mockAilmentRepository,
                 ailmentPropertyFactory: stubAilmentPropertyFactory,
                 battlePropertyFactory: _stubBattlePropertyFactory,
                 bodyPartPropertyFactory: stubBodyPartPropertyFactory,
-                bodyPartCollection: _mockBodyPartCollection,
-                buffCollection: _mockBuffCollection,
-                enhanceCollection: _mockEnhanceCollection,
-                slipCollection: _mockSlipCollection);
+                bodyPartRepository: _mockBodyPartRepository,
+                buffRepository: _mockBuffRepository,
+                enhanceRepository: _mockEnhanceRepository,
+                slipRepository: _mockSlipRepository);
             return stubCharacterCreatorService;
         }
 
@@ -123,10 +123,10 @@ namespace Tests.BattleScene.UseCases.Service
         {
             var orderService = new OrderService(
                 battlePropertyFactory: _stubBattlePropertyFactory,
-                ailmentCollection: _mockAilmentCollection,
-                characterCollection: _mockCharacterCollection,
-                orderedItemCollection: _mockOrderedItemCollection,
-                slipDamageCollection: _mockSlipCollection,
+                ailmentRepository: _mockAilmentRepository,
+                characterRepository: _mockCharacterRepository,
+                orderedItemRepository: _mockOrderedItemRepository,
+                slipRepository: _mockSlipRepository,
                 speed: _stubSpeedService);
             return orderService;
         }
@@ -177,7 +177,7 @@ namespace Tests.BattleScene.UseCases.Service
                 characterTypeCode: CharacterTypeCode.Player,
                 currentHitPoint: 179,
                 currentTechnicalPoint: 50);
-            _mockCharacterCollection.Add(player);
+            _mockCharacterRepository.Add(player);
             _stubCharacterCreatorService.Create(playerId, isPlayer: true);
             return (playerId, "Player");
         }
@@ -190,7 +190,7 @@ namespace Tests.BattleScene.UseCases.Service
                 characterTypeCode: CharacterTypeCode.Bee,
                 currentHitPoint: 39,
                 position: 0);
-            _mockCharacterCollection.Add(bee);
+            _mockCharacterRepository.Add(bee);
             _stubCharacterCreatorService.Create(beeId);
             return (beeId, "Bee");
         }
@@ -203,7 +203,7 @@ namespace Tests.BattleScene.UseCases.Service
                 characterTypeCode: CharacterTypeCode.Bee,
                 currentHitPoint: 39,
                 position: 0);
-            _mockCharacterCollection.Add(bee);
+            _mockCharacterRepository.Add(bee);
             _stubCharacterCreatorService.Create(beeId);
             return (beeId, "Bee");
         }
@@ -216,7 +216,7 @@ namespace Tests.BattleScene.UseCases.Service
                 characterTypeCode: CharacterTypeCode.Slime,
                 currentHitPoint: 10,
                 position: 1);
-            _mockCharacterCollection.Add(slime);
+            _mockCharacterRepository.Add(slime);
             _stubCharacterCreatorService.Create(slimeId);
             return (slimeId, "Slime");
         }
@@ -229,7 +229,7 @@ namespace Tests.BattleScene.UseCases.Service
                 characterTypeCode: CharacterTypeCode.Dragon,
                 currentHitPoint: 56,
                 position: 2);
-            _mockCharacterCollection.Add(dragon);
+            _mockCharacterRepository.Add(dragon);
             _stubCharacterCreatorService.Create(dragonId);
             return (dragonId, "Dragon");
         }
@@ -242,7 +242,7 @@ namespace Tests.BattleScene.UseCases.Service
                 characterTypeCode: CharacterTypeCode.Shuten,
                 currentHitPoint: 56,
                 position: 3);
-            _mockCharacterCollection.Add(shuten);
+            _mockCharacterRepository.Add(shuten);
             _stubCharacterCreatorService.Create(shutenId);
             return (shutenId, "Shuten");
         }
@@ -257,7 +257,7 @@ namespace Tests.BattleScene.UseCases.Service
             var (slimeId, slimeName) = AddSlime();
 
             _orderService.Update();
-            var actual = _mockOrderedItemCollection.Get();
+            var actual = _mockOrderedItemRepository.Get();
 
             var items = new object[]
             {
@@ -277,7 +277,7 @@ namespace Tests.BattleScene.UseCases.Service
             var (bee2Id, bee2Name) = AddBee2();
 
             _orderService.Update();
-            var actual = _mockOrderedItemCollection.Get();
+            var actual = _mockOrderedItemRepository.Get();
 
             var items = new object[]
             {
@@ -303,7 +303,7 @@ namespace Tests.BattleScene.UseCases.Service
             var (dragonId, dragonName) = AddDragon();
 
             _orderService.Update();
-            var actual = _mockOrderedItemCollection.Get();
+            var actual = _mockOrderedItemRepository.Get();
 
             var items = new object[]
             {
@@ -325,7 +325,7 @@ namespace Tests.BattleScene.UseCases.Service
             var (shutenId, shutenName) = AddShuten();
 
             _orderService.Update();
-            var actual = _mockOrderedItemCollection.Get();
+            var actual = _mockOrderedItemRepository.Get();
 
             var items = new object[]
             {
@@ -346,12 +346,12 @@ namespace Tests.BattleScene.UseCases.Service
             var (dragonId, dragonName) = AddDragon();
             var (shutenId, shutenName) = AddShuten();
 
-            var poisoning = _mockSlipCollection.Get(SlipCode.Poisoning);
+            var poisoning = _mockSlipRepository.Get(SlipCode.Poisoning);
             poisoning.Effects = true;
             poisoning.AdvanceTurn();
 
             _orderService.Update();
-            var actual = _mockOrderedItemCollection.Get();
+            var actual = _mockOrderedItemRepository.Get();
 
             var items = new object[]
             {
@@ -364,7 +364,7 @@ namespace Tests.BattleScene.UseCases.Service
         }
 
         private static void MockOrderedItemRepositoryLogger(
-            ICollection<OrderedItemEntity, OrderedItemId> orderedItemRepository,
+            IRepository<OrderedItemEntity, OrderedItemId> orderedItemRepository,
             IReadOnlyList<(CharacterId, string)> characterIdNamePairList)
         {
             var log = orderedItemRepository.ToString();

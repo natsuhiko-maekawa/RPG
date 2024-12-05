@@ -14,18 +14,18 @@ namespace BattleScene.InterfaceAdapter.PresenterFacade
     public class AilmentOutputPresenterFacade
     {
         private readonly IResource<AilmentViewDto, AilmentCode, SlipCode> _ailmentViewResource;
-        private readonly ICollection<CharacterEntity, CharacterId> _characterCollection;
+        private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
         private readonly MessageViewPresenter _messageView;
         private readonly PlayerImageViewPresenter _playerImageView;
 
         public AilmentOutputPresenterFacade(
             IResource<AilmentViewDto, AilmentCode, SlipCode> ailmentViewResource,
-            ICollection<CharacterEntity, CharacterId> characterCollection,
+            IRepository<CharacterEntity, CharacterId> characterRepository,
             MessageViewPresenter messageView,
             PlayerImageViewPresenter playerImageView)
         {
             _ailmentViewResource = ailmentViewResource;
-            _characterCollection = characterCollection;
+            _characterRepository = characterRepository;
             _messageView = messageView;
             _playerImageView = playerImageView;
         }
@@ -39,7 +39,7 @@ namespace BattleScene.InterfaceAdapter.PresenterFacade
         {
             _messageView.StartAnimation(MessageCode.AilmentMessage);
 
-            if (ailment.ActualTargetIdList.Any(x => _characterCollection.Get(x).IsPlayer))
+            if (ailment.ActualTargetIdList.Any(x => _characterRepository.Get(x).IsPlayer))
             {
                 var playerImageCode = _ailmentViewResource.Get(ailment.AilmentCode).PlayerImageCode;
                 _playerImageView.StartAnimation(playerImageCode, Slide);

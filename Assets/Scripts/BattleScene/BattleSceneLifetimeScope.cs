@@ -1,7 +1,7 @@
 ﻿using BattleScene.DataAccess;
-using BattleScene.DataAccess.Collection;
 using BattleScene.DataAccess.Dto;
 using BattleScene.DataAccess.Factory;
+using BattleScene.DataAccess.Repository;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.DomainService;
@@ -244,22 +244,22 @@ namespace BattleScene
 
             #region RegisterCollection
 
-            builder.Register<ICollection<AilmentEntity, (CharacterId, AilmentCode)>, 
-                Collection<AilmentEntity, (CharacterId, AilmentCode)>>(Singleton);
-            builder.Register<ICollection<BattleLogEntity, BattleLogId>, Collection<BattleLogEntity, BattleLogId>>(
+            builder.Register<IRepository<AilmentEntity, (CharacterId, AilmentCode)>, 
+                Repository<AilmentEntity, (CharacterId, AilmentCode)>>(Singleton);
+            builder.Register<IRepository<BattleLogEntity, BattleLogId>, Repository<BattleLogEntity, BattleLogId>>(
                 Singleton);
-            builder.Register<ICollection<BodyPartEntity, (CharacterId, BodyPartCode)>, 
-                Collection<BodyPartEntity, (CharacterId, BodyPartCode)>>(Singleton);
-            builder.Register<ICollection<BuffEntity, (CharacterId, BuffCode)>, 
-                Collection<BuffEntity, (CharacterId, BuffCode)>>(Singleton);
-            builder.Register<ICollection<CharacterEntity, CharacterId>, Collection<CharacterEntity, CharacterId>>(
+            builder.Register<IRepository<BodyPartEntity, (CharacterId, BodyPartCode)>, 
+                Repository<BodyPartEntity, (CharacterId, BodyPartCode)>>(Singleton);
+            builder.Register<IRepository<BuffEntity, (CharacterId, BuffCode)>, 
+                Repository<BuffEntity, (CharacterId, BuffCode)>>(Singleton);
+            builder.Register<IRepository<CharacterEntity, CharacterId>, Repository<CharacterEntity, CharacterId>>(
                 Singleton);
-            builder.Register<ICollection<EnhanceEntity, (CharacterId, EnhanceCode)>, 
-                Collection<EnhanceEntity, (CharacterId, EnhanceCode)>>(Singleton);
-            builder.Register<ICollection<OrderedItemEntity, OrderedItemId>, Collection<OrderedItemEntity, OrderedItemId>>(
+            builder.Register<IRepository<EnhanceEntity, (CharacterId, EnhanceCode)>, 
+                Repository<EnhanceEntity, (CharacterId, EnhanceCode)>>(Singleton);
+            builder.Register<IRepository<OrderedItemEntity, OrderedItemId>, Repository<OrderedItemEntity, OrderedItemId>>(
                 Singleton);
-            builder.Register<ICollection<SlipEntity, SlipCode>, Collection<SlipEntity, SlipCode>>(Singleton);
-            builder.Register<ICollection<TurnEntity, TurnId>, Collection<TurnEntity, TurnId>>(Singleton);
+            builder.Register<IRepository<SlipEntity, SlipCode>, Repository<SlipEntity, SlipCode>>(Singleton);
+            builder.Register<IRepository<TurnEntity, TurnId>, Repository<TurnEntity, TurnId>>(Singleton);
 
             #endregion
 
