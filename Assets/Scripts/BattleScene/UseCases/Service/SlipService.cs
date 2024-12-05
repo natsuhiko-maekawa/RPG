@@ -56,12 +56,7 @@ namespace BattleScene.UseCases.Service
         public void Register(BattleEventValueObject slip)
         {
             if (slip.ActualTargetIdList.Count == 0) return;
-            var slipDefaultTurn = _battlePropertyFactory.Create().SlipDefaultTurn;
-            var slipEntity = new SlipEntity(
-                slipCode: slip.SlipCode,
-                effects: true,
-                turn: slipDefaultTurn);
-            _slipDamageCollection.Add(slipEntity);
+            _slipDamageCollection.Get(slip.SlipCode).Effects = true;
         }
 
         public void RegisterBattleEvent(IReadOnlyList<BattleEventValueObject> slipValueObject)

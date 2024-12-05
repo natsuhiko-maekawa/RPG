@@ -336,8 +336,6 @@ namespace Tests.BattleScene.UseCases.Service
 
             var poisoning = _mockSlipCollection.Get(SlipCode.Poisoning);
             poisoning.Effects = true;
-            poisoning.Turn = 5;
-            poisoning.DefaultTurn = 4;
             poisoning.AdvanceTurn();
 
             _orderService.Update();

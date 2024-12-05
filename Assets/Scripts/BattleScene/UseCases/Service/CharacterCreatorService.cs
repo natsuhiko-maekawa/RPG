@@ -14,19 +14,22 @@ namespace BattleScene.UseCases.Service
     {
         private readonly ICollection<AilmentEntity, (CharacterId, AilmentCode)> _ailmentCollection;
         private readonly IFactory<AilmentPropertyValueObject, AilmentCode> _ailmentPropertyFactory;
+        private readonly IFactory<BattlePropertyValueObject> _battlePropertyFactory;
         private readonly ICollection<BuffEntity, (CharacterId, BuffCode)> _buffCollection;
         private readonly ICollection<SlipEntity, SlipCode> _slipCollection;
 
         public CharacterCreatorService(
-            ICollection<BuffEntity, (CharacterId, BuffCode)> buffCollection,
-            ICollection<SlipEntity, SlipCode> slipCollection,
             ICollection<AilmentEntity, (CharacterId, AilmentCode)> ailmentCollection,
-            IFactory<AilmentPropertyValueObject, AilmentCode> ailmentPropertyFactory)
+            IFactory<AilmentPropertyValueObject, AilmentCode> ailmentPropertyFactory,
+            IFactory<BattlePropertyValueObject> battlePropertyFactory,
+            ICollection<BuffEntity, (CharacterId, BuffCode)> buffCollection,
+            ICollection<SlipEntity, SlipCode> slipCollection)
         {
-            _buffCollection = buffCollection;
-            _slipCollection = slipCollection;
             _ailmentCollection = ailmentCollection;
             _ailmentPropertyFactory = ailmentPropertyFactory;
+            _battlePropertyFactory = battlePropertyFactory;
+            _buffCollection = buffCollection;
+            _slipCollection = slipCollection;
         }
 
         public void Create(CharacterId characterId)
@@ -42,13 +45,15 @@ namespace BattleScene.UseCases.Service
                 _buffCollection.Add(buff);
             }
 
+            var defaultTurn = _battlePropertyFactory.Create().SlipDefaultTurn;
             var slipCodes = Enum.GetValues(typeof(SlipCode))
                 .Cast<SlipCode>()
                 .Where(x => x != SlipCode.NoSlip);
             foreach (var slipCode in slipCodes)
             {
                 var slip = new SlipEntity(
-                    slipCode: slipCode);
+                    slipCode: slipCode,
+                    defaultTurn: defaultTurn);
                 _slipCollection.Add(slip);
             }
 

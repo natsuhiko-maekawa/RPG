@@ -6,21 +6,15 @@ namespace BattleScene.Domain.Entity
     {
         public SlipEntity(
             SlipCode slipCode,
-            bool effects = false,
-            int turn = 0)
+            int defaultTurn)
         {
             Id = slipCode;
-            Effects = effects;
-            Turn = turn;
-            DefaultTurn = turn - 1;
+            _defaultTurn = defaultTurn;
         }
 
         public override SlipCode Id { get; }
-        // 本来はprivate set;
-        public int Turn { get; set; }
-        // 本来はprivate
-        public int DefaultTurn { get; set; }
-
+        public int Turn { get; private set; }
+        private readonly int _defaultTurn;
         private bool _effects;
 
         public bool Effects
@@ -30,6 +24,7 @@ namespace BattleScene.Domain.Entity
             {
                 _effects = value;
                 EffectsOnChange(value);
+                Turn = _defaultTurn;
             }
         }
 
@@ -37,8 +32,8 @@ namespace BattleScene.Domain.Entity
 
         public void AdvanceTurn()
         {
-            Turn--;
-            if (Turn < 0) Turn = DefaultTurn;
+            --Turn;
+            if (Turn < 0) Turn = _defaultTurn - 1;
         }
     }
 }
