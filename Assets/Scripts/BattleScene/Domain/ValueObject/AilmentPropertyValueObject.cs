@@ -5,18 +5,18 @@ namespace BattleScene.Domain.ValueObject
     public struct AilmentPropertyValueObject
     {
         public AilmentCode AilmentCode { get; }
-        public int Turn { get; }
+        public int DefaultTurn { get; }
         public bool IsSelfRecovery { get; }
         public int? Priority { get; }
 
         public AilmentPropertyValueObject(
             AilmentCode ailmentCode,
-            int turn,
+            int defaultTurn,
             bool isSelfRecovery,
             int? priority)
         {
             AilmentCode = ailmentCode;
-            Turn = turn;
+            DefaultTurn = defaultTurn;
             IsSelfRecovery = isSelfRecovery;
             Priority = priority;
         }

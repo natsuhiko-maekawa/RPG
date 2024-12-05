@@ -12,16 +12,13 @@ namespace BattleScene.UseCases.Service
     public class AilmentService : ISkillElementService<AilmentValueObject>
     {
         private readonly IActualTargetIdPickerService _actualTargetIdPicker;
-        private readonly IFactory<AilmentPropertyValueObject, AilmentCode> _ailmentPropertyFactory;
         private readonly ICollection<AilmentEntity, (CharacterId, AilmentCode)> _ailmentCollection;
 
         public AilmentService(
             IActualTargetIdPickerService actualTargetIdPicker,
-            IFactory<AilmentPropertyValueObject, AilmentCode> ailmentPropertyFactory,
             ICollection<AilmentEntity, (CharacterId, AilmentCode)> ailmentCollection)
         {
             _actualTargetIdPicker = actualTargetIdPicker;
-            _ailmentPropertyFactory = ailmentPropertyFactory;
             _ailmentCollection = ailmentCollection;
         }
 
@@ -52,18 +49,13 @@ namespace BattleScene.UseCases.Service
             }
         }
 
-        public void Register(BattleEventValueObject ailment)
+        public void Register(BattleEventValueObject ailmentEvent)
         {
-            var ailmentProperty = _ailmentPropertyFactory.Create(ailment.AilmentCode);
-            var ailmentEntityList = ailment.ActualTargetIdList
-                .Select(x => new AilmentEntity(
-                    ailmentCode: ailment.AilmentCode,
-                    characterId: x,
-                    effects: true,
-                    turn: ailmentProperty.Turn,
-                    isSelfRecovery: ailmentProperty.IsSelfRecovery))
-                .ToList();
-            _ailmentCollection.Add(ailmentEntityList);
+            foreach (var characterId in ailmentEvent.ActualTargetIdList)
+            {
+                var ailment = _ailmentCollection.Get((characterId, ailmentEvent.AilmentCode));
+                ailment.Effects = true;
+            }
         }
 
         public void RegisterBattleEvent(IReadOnlyList<BattleEventValueObject> ailmentList)

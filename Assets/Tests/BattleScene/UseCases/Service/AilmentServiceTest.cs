@@ -42,7 +42,6 @@ namespace Tests.BattleScene.UseCases.Service
             // ReSharper disable once UnusedVariable
             var ailmentService = new AilmentService(
                 actualTargetIdPicker: _mockActualTargetIdPickerService,
-                ailmentPropertyFactory: _stubAilmentPropertyFactory,
                 ailmentCollection: _mockAilmentCollection);
         }
     }

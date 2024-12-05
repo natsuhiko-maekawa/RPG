@@ -66,7 +66,8 @@ namespace BattleScene.UseCases.Service
                 var ailment = new AilmentEntity(
                     characterId: characterId,
                     ailmentCode: ailmentCode,
-                    isSelfRecovery: ailmentProperty.IsSelfRecovery);
+                    isSelfRecovery: ailmentProperty.IsSelfRecovery,
+                    defaultTurn: ailmentProperty.DefaultTurn);
                 _ailmentCollection.Add(ailment);
             }
         }

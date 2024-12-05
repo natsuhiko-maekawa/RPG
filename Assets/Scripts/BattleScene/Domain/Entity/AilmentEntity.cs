@@ -10,20 +10,19 @@ namespace BattleScene.Domain.Entity
             CharacterId characterId,
             AilmentCode ailmentCode,
             bool isSelfRecovery,
-            int turn = 0,
-            bool effects = false)
+            int defaultTurn)
         {
             CharacterId = characterId;
             AilmentCode = ailmentCode;
-            Effects = effects;
-            Turn = turn;
             IsSelfRecovery = isSelfRecovery;
+            _defaultTurn = defaultTurn;
         }
 
         public override (CharacterId, AilmentCode) Id => (CharacterId, AilmentCode);
         public CharacterId CharacterId { get; }
         public AilmentCode AilmentCode { get; }
-
+        public bool IsSelfRecovery { get; }
+        private readonly int _defaultTurn;
         private int _turn = -1;
 
         /// <summary>
@@ -35,8 +34,6 @@ namespace BattleScene.Domain.Entity
             private set => _turn = Math.Max(value, -1);
         }
 
-        public bool IsSelfRecovery { get; }
-
         private bool _effects;
 
         public bool Effects
@@ -46,6 +43,7 @@ namespace BattleScene.Domain.Entity
             {
                 _effects = value;
                 EffectsOnChange(value);
+                Turn = _defaultTurn;
             }
         }
 
