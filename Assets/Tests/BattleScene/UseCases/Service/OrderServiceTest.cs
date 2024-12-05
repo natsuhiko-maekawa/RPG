@@ -30,6 +30,9 @@ namespace Tests.BattleScene.UseCases.Service
         private readonly ICollection<AilmentEntity, (CharacterId, AilmentCode)> _mockAilmentCollection
             = new MockCollection<AilmentEntity, (CharacterId, AilmentCode)>();
 
+        private readonly ICollection<BodyPartEntity, (CharacterId, BodyPartCode)> _mockBodyPartCollection
+            = new MockCollection<BodyPartEntity, (CharacterId, BodyPartCode)>();
+
         private readonly ICollection<BuffEntity, (CharacterId, BuffCode)> _mockBuffCollection
             = new MockCollection<BuffEntity, (CharacterId, BuffCode)>();
 
@@ -101,10 +104,15 @@ namespace Tests.BattleScene.UseCases.Service
             var stubAilmentPropertyResource = AssetDatabase.LoadAssetAtPath<AilmentPropertyResource>(
                 "Assets/Prefabs/BattleScene/Resource/ScriptableObjects.prefab");
             var stubAilmentPropertyFactory = new AilmentPropertyFactory(stubAilmentPropertyResource);
+            var stubBodyPartPropertyResource = AssetDatabase.LoadAssetAtPath<BodyPartPropertyResource>(
+                "Assets/Prefabs/BattleScene/Resource/ScriptableObjects.prefab");
+            var stubBodyPartPropertyFactory = new BodyPartPropertyFactory(stubBodyPartPropertyResource);
             var stubCharacterCreatorService = new CharacterCreatorService(
                 ailmentCollection: _mockAilmentCollection,
                 ailmentPropertyFactory: stubAilmentPropertyFactory,
                 battlePropertyFactory: _stubBattlePropertyFactory,
+                bodyPartPropertyFactory: stubBodyPartPropertyFactory,
+                bodyPartCollection: _mockBodyPartCollection,
                 buffCollection: _mockBuffCollection,
                 enhanceCollection: _mockEnhanceCollection,
                 slipCollection: _mockSlipCollection);

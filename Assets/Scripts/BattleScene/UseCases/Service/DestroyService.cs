@@ -13,16 +13,13 @@ namespace BattleScene.UseCases.Service
     {
         private readonly IActualTargetIdPickerService _actualTargetIdPicker;
         private readonly ICollection<BodyPartEntity, (CharacterId, BodyPartCode)> _bodyPartCollection;
-        private readonly IFactory<BodyPartPropertyValueObject, BodyPartCode> _bodyPartPropertyFactory;
 
         public DestroyService(
             IActualTargetIdPickerService actualTargetIdPicker,
-            ICollection<BodyPartEntity, (CharacterId, BodyPartCode)> bodyPartCollection,
-            IFactory<BodyPartPropertyValueObject, BodyPartCode> bodyPartPropertyFactory)
+            ICollection<BodyPartEntity, (CharacterId, BodyPartCode)> bodyPartCollection)
         {
             _actualTargetIdPicker = actualTargetIdPicker;
             _bodyPartCollection = bodyPartCollection;
-            _bodyPartPropertyFactory = bodyPartPropertyFactory;
         }
 
         public IReadOnlyList<BattleEventValueObject> GenerateBattleEvent(
@@ -51,23 +48,13 @@ namespace BattleScene.UseCases.Service
                 return destroy;
             }
         }
-        
-        public void Register(BattleEventValueObject destroy)
-        {
-            var bodyPartEntityList = destroy.ActualTargetIdList
-                .Select(CreateBodyPartEntity)
-                .ToList();
-            _bodyPartCollection.Add(bodyPartEntityList);
-            return;
 
-            BodyPartEntity CreateBodyPartEntity(CharacterId targetId)
+        public void Register(BattleEventValueObject destroyEvent)
+        {
+            foreach (var characterId in destroyEvent.ActualTargetIdList)
             {
-                var bodyPartProperty = _bodyPartPropertyFactory.Create(destroy.BodyPartCode);
-                var bodyPartEntity = new BodyPartEntity(
-                    characterId: targetId,
-                    bodyPartCode: destroy.BodyPartCode,
-                    count: bodyPartProperty.Count);
-                return bodyPartEntity;
+                var bodyPart = _bodyPartCollection.Get((characterId, destroyEvent.BodyPartCode));
+                bodyPart.Destroyed();
             }
         }
 

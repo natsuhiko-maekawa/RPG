@@ -6,8 +6,6 @@ namespace BattleScene.Domain.Entity
 {
     public partial class BodyPartEntity : BaseEntity<(CharacterId, BodyPartCode)>
     {
-        private readonly int _count;
-
         public BodyPartEntity(
             CharacterId characterId,
             BodyPartCode bodyPartCode,
@@ -15,15 +13,13 @@ namespace BattleScene.Domain.Entity
         {
             CharacterId = characterId;
             BodyPartCode = bodyPartCode;
-            Id = (CharacterId, BodyPartCode);
             _count = count;
-            Destroyed();
         }
 
-        public override (CharacterId, BodyPartCode) Id { get; }
+        public override (CharacterId, BodyPartCode) Id => (CharacterId, BodyPartCode);
         public CharacterId CharacterId { get; }
         public BodyPartCode BodyPartCode { get; }
-
+        private readonly int _count;
         private int _destroyedCount;
 
         public int DestroyedCount
@@ -38,14 +34,16 @@ namespace BattleScene.Domain.Entity
 
         partial void DestroyedCountOnChange(int value);
 
+        public bool IsAvailable => DestroyedCount < _count;
+
         public void Destroyed()
         {
             ++DestroyedCount;
         }
 
-        public bool IsAvailable()
+        public void Recovered()
         {
-            return DestroyedCount < _count;
+            DestroyedCount = 0;
         }
     }
 }

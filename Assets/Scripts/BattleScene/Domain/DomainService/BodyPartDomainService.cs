@@ -28,7 +28,7 @@ namespace BattleScene.Domain.DomainService
         {
             var bodyPartEntity = _bodyPartCollection.Get()
                 .FirstOrDefault(x => Equals(x.CharacterId, characterId) && x.BodyPartCode == bodyPartCode);
-            return bodyPartEntity?.IsAvailable() ?? true;
+            return bodyPartEntity?.IsAvailable ?? true;
         }
 
         public bool IsAvailable(CharacterId characterId, IReadOnlyList<BodyPartCode> bodyPartCodeList)

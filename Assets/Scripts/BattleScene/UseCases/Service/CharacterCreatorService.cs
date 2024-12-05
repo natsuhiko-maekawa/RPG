@@ -12,24 +12,30 @@ namespace BattleScene.UseCases.Service
 {
     public class CharacterCreatorService : ICharacterCreatorService
     {
-        private readonly ICollection<AilmentEntity, (CharacterId, AilmentCode)> _ailmentCollection;
         private readonly IFactory<AilmentPropertyValueObject, AilmentCode> _ailmentPropertyFactory;
+        private readonly ICollection<AilmentEntity, (CharacterId, AilmentCode)> _ailmentCollection;
         private readonly IFactory<BattlePropertyValueObject> _battlePropertyFactory;
+        private readonly IFactory<BodyPartPropertyValueObject, BodyPartCode> _bodyPartPropertyFactory;
+        private readonly ICollection<BodyPartEntity, (CharacterId, BodyPartCode)> _bodyPartCollection;
         private readonly ICollection<BuffEntity, (CharacterId, BuffCode)> _buffCollection;
         private readonly ICollection<EnhanceEntity, (CharacterId, EnhanceCode)> _enhanceCollection;
         private readonly ICollection<SlipEntity, SlipCode> _slipCollection;
 
         public CharacterCreatorService(
-            ICollection<AilmentEntity, (CharacterId, AilmentCode)> ailmentCollection,
             IFactory<AilmentPropertyValueObject, AilmentCode> ailmentPropertyFactory,
+            ICollection<AilmentEntity, (CharacterId, AilmentCode)> ailmentCollection,
             IFactory<BattlePropertyValueObject> battlePropertyFactory,
+            IFactory<BodyPartPropertyValueObject, BodyPartCode> bodyPartPropertyFactory,
+            ICollection<BodyPartEntity, (CharacterId, BodyPartCode)> bodyPartCollection,
             ICollection<BuffEntity, (CharacterId, BuffCode)> buffCollection,
             ICollection<EnhanceEntity, (CharacterId, EnhanceCode)> enhanceCollection,
             ICollection<SlipEntity, SlipCode> slipCollection)
         {
-            _ailmentCollection = ailmentCollection;
             _ailmentPropertyFactory = ailmentPropertyFactory;
+            _ailmentCollection = ailmentCollection;
             _battlePropertyFactory = battlePropertyFactory;
+            _bodyPartPropertyFactory = bodyPartPropertyFactory;
+            _bodyPartCollection = bodyPartCollection;
             _buffCollection = buffCollection;
             _enhanceCollection = enhanceCollection;
             _slipCollection = slipCollection;
@@ -38,6 +44,7 @@ namespace BattleScene.UseCases.Service
         public void Create(CharacterId characterId, bool isPlayer = false)
         {
             InitializeAilmentRepository(characterId);
+            InitializeBodyPartRepository(characterId);
             InitializeBuffRepository(characterId);
             InitializeEnhanceRepository(characterId);
 
@@ -64,6 +71,22 @@ namespace BattleScene.UseCases.Service
                     isSelfRecovery: ailmentProperty.IsSelfRecovery,
                     defaultTurn: ailmentProperty.DefaultTurn);
                 _ailmentCollection.Add(ailment);
+            }
+        }
+
+        private void InitializeBodyPartRepository(CharacterId characterId)
+        {
+            var bodyPartCodes = Enum.GetValues(typeof(BodyPartCode))
+                .Cast<BodyPartCode>()
+                .Where(x => x != BodyPartCode.NoBodyPart);
+            foreach (var bodyPartCode in bodyPartCodes)
+            {
+                var count = _bodyPartPropertyFactory.Create(bodyPartCode).Count;
+                var bodyPart = new BodyPartEntity(
+                    characterId: characterId,
+                    bodyPartCode: bodyPartCode,
+                    count: count);
+                _bodyPartCollection.Add(bodyPart);
             }
         }
 
