@@ -49,18 +49,16 @@ namespace BattleScene.UseCases.Service
             }
         }
 
-        public void Register(BattleEventValueObject ailmentEvent)
-        {
-            foreach (var characterId in ailmentEvent.ActualTargetIdList)
-            {
-                var ailment = _ailmentCollection.Get((characterId, ailmentEvent.AilmentCode));
-                ailment.Effects = true;
-            }
-        }
-
         public void RegisterBattleEvent(IReadOnlyList<BattleEventValueObject> ailmentList)
         {
-            foreach (var ailment in ailmentList) Register(ailment);
+            foreach (var ailment in ailmentList)
+            {
+                foreach (var characterId in ailment.ActualTargetIdList)
+                {
+                    var ailment1 = _ailmentCollection.Get((characterId, ailment.AilmentCode));
+                    ailment1.Effects = true;
+                }
+            }
         }
     }
 }
