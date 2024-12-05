@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using BattleScene.Domain.Code;
+﻿using BattleScene.Domain.Code;
 using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.Entity;
 
@@ -17,14 +16,10 @@ namespace BattleScene.Domain.DomainService
 
         public void AdvanceTurn()
         {
-            var slip = _slipRepository.Get()
-                .Select(x =>
-                {
-                    x.AdvanceTurn();
-                    return x;
-                })
-                .ToList();
-            _slipRepository.Add(slip);
+            foreach (var slip in _slipRepository.Get())
+            {
+                slip.AdvanceTurn();
+            }
         }
     }
 }

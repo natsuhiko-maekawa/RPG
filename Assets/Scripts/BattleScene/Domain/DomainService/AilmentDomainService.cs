@@ -41,7 +41,10 @@ namespace BattleScene.Domain.DomainService
         /// </summary>
         public void AdvanceTurn()
         {
-            foreach (var ailment in _ailmentRepository.Get()) ailment.AdvanceTurn();
+            foreach (var ailment in _ailmentRepository.Get())
+            {
+                ailment.AdvanceTurn();
+            }
         }
 
         /// <summary>

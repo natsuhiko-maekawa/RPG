@@ -39,12 +39,6 @@ namespace BattleScene.UseCases.Service
             {
                 enhance.AdvanceTurn();
             }
-
-            var removeIdList = _enhanceRepository.Get()
-                .Where(x => !x.Effects)
-                .Select(x => x.Id)
-                .ToList();
-            _enhanceRepository.Remove(removeIdList);
         }
 
         private bool IsNextAction(LifetimeCode lifetimeCode)
