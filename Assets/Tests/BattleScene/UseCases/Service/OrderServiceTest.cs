@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using BattleScene.DataAccess.Dto;
 using BattleScene.DataAccess.Factory;
@@ -19,6 +18,7 @@ using Tests.BattleScene.DataAccess.Repository;
 using Tests.BattleScene.DataAccess.Resource;
 using UnityEditor;
 using UnityEngine;
+// ReSharper disable UnusedVariable
 
 namespace Tests.BattleScene.UseCases.Service
 {
