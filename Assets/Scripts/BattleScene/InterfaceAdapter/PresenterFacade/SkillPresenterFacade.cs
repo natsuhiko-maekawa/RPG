@@ -15,14 +15,14 @@ namespace BattleScene.InterfaceAdapter.PresenterFacade
     public class SkillPresenterFacade
     {
         private readonly IResource<SkillViewDto, SkillCode> _skillViewResource;
-        private readonly IRepository<BattleLogEntity, BattleLogId> _battleLogRepository;
+        private readonly IRepository<BattleEventEntity, BattleEventId> _battleLogRepository;
         private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
         private readonly MessageViewPresenter _messageView;
         private readonly PlayerImageViewPresenter _playerImageView;
 
         public SkillPresenterFacade(
             IResource<SkillViewDto, SkillCode> skillViewResource,
-            IRepository<BattleLogEntity, BattleLogId> battleLogRepository,
+            IRepository<BattleEventEntity, BattleEventId> battleLogRepository,
             IRepository<CharacterEntity, CharacterId> characterRepository,
             MessageViewPresenter messageView,
             PlayerImageViewPresenter playerImageView)

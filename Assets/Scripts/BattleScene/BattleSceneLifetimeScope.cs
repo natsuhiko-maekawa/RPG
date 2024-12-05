@@ -246,7 +246,7 @@ namespace BattleScene
 
             builder.Register<IRepository<AilmentEntity, (CharacterId, AilmentCode)>, 
                 Repository<AilmentEntity, (CharacterId, AilmentCode)>>(Singleton);
-            builder.Register<IRepository<BattleLogEntity, BattleLogId>, Repository<BattleLogEntity, BattleLogId>>(
+            builder.Register<IRepository<BattleEventEntity, BattleEventId>, Repository<BattleEventEntity, BattleEventId>>(
                 Singleton);
             builder.Register<IRepository<BodyPartEntity, (CharacterId, BodyPartCode)>, 
                 Repository<BodyPartEntity, (CharacterId, BodyPartCode)>>(Singleton);

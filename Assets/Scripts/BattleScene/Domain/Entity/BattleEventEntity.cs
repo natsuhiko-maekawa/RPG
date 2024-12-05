@@ -6,9 +6,9 @@ using BattleScene.Domain.ValueObject;
 
 namespace BattleScene.Domain.Entity
 {
-    public class BattleLogEntity : BaseEntity<BattleLogId>, IComparable<BattleLogEntity>
+    public class BattleEventEntity : BaseEntity<BattleEventId>, IComparable<BattleEventEntity>
     {
-        public override BattleLogId Id { get; }
+        public override BattleEventId Id { get; }
         public int Sequence { get; }
         public int Turn { get; }
         private BattleEventValueObject? _battleEvent;
@@ -30,28 +30,15 @@ namespace BattleScene.Domain.Entity
         public int TechnicalPoint => _battleEvent?.TechnicalPoint ?? 0;
         public SlipCode SlipCode { get; private set; }
 
-        [Obsolete]
-        public BattleLogEntity(
-            BattleLogId battleLogId,
-            int sequence,
-            int turn,
-            BattleEventValueObject battleEvent)
-        {
-            Id = battleLogId;
-            Sequence = sequence;
-            Turn = turn;
-            _battleEvent = battleEvent;
-        }
-
-        public BattleLogEntity(
-            BattleLogId battleLogId,
+        public BattleEventEntity(
+            BattleEventId battleEventId,
             int sequence,
             int turn,
             CharacterId? actorId,
             AilmentCode ailmentCode,
             SlipCode slipCode)
         {
-            Id = battleLogId;
+            Id = battleEventId;
             Sequence = sequence;
             Turn = turn;
             ActorId = actorId;
@@ -79,7 +66,7 @@ namespace BattleScene.Domain.Entity
                 : SkillCode;
         }
 
-        public int CompareTo(BattleLogEntity other)
+        public int CompareTo(BattleEventEntity other)
         {
             return Sequence - other.Sequence;
         }

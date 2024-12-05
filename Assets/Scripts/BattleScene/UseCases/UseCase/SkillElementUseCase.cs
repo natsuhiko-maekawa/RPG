@@ -14,12 +14,12 @@ namespace BattleScene.UseCases.UseCase
     {
         private readonly ISkillElementService<TSkillElement> _skillElement;
         private readonly BattleLoggerService _battleLogger;
-        private readonly IRepository<BattleLogEntity, BattleLogId> _battleLogRepository;
+        private readonly IRepository<BattleEventEntity, BattleEventId> _battleLogRepository;
 
         public SkillElementUseCase(
             ISkillElementService<TSkillElement> skillElement,
             BattleLoggerService battleLogger,
-            IRepository<BattleLogEntity, BattleLogId> battleLogRepository)
+            IRepository<BattleEventEntity, BattleEventId> battleLogRepository)
         {
             _skillElement = skillElement;
             _battleLogger = battleLogger;

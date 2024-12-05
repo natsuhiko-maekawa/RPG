@@ -11,11 +11,11 @@ namespace BattleScene.UseCases.Service
 {
     public class BattleLoggerService
     {
-        private readonly IRepository<BattleLogEntity, BattleLogId> _battleLogRepository;
+        private readonly IRepository<BattleEventEntity, BattleEventId> _battleLogRepository;
         private readonly IRepository<TurnEntity, TurnId> _turnRepository;
 
         public BattleLoggerService(
-            IRepository<BattleLogEntity, BattleLogId> battleLogRepository,
+            IRepository<BattleEventEntity, BattleEventId> battleLogRepository,
             IRepository<TurnEntity, TurnId> turnRepository)
         {
             _battleLogRepository = battleLogRepository;
@@ -26,8 +26,8 @@ namespace BattleScene.UseCases.Service
         {
             var (battleLogId, sequence, turn) = GetBattleLogCommonArguments();
             var (actorId, ailmentCode, slipCode) = tuple;
-            var battleLog = new BattleLogEntity(
-                battleLogId: battleLogId, 
+            var battleLog = new BattleEventEntity(
+                battleEventId: battleLogId, 
                 sequence: sequence, 
                 turn: turn, 
                 actorId: actorId, 
@@ -56,7 +56,7 @@ namespace BattleScene.UseCases.Service
             }
         }
 
-        private (BattleLogId battleLogId, int nextSequence, int turn) GetBattleLogCommonArguments()
+        private (BattleEventId battleLogId, int nextSequence, int turn) GetBattleLogCommonArguments()
         {
             var nextSequence = _battleLogRepository.Get()
                 .Max()?.Sequence + 1 ?? 0;
@@ -68,7 +68,7 @@ namespace BattleScene.UseCases.Service
             return (battleLogId, nextSequence, turn);
         }
 
-        private BattleLogEntity GetLastEntity()
+        private BattleEventEntity GetLastEntity()
         {
             var sequence = _battleLogRepository.Get()
                 .Max().Sequence;
@@ -78,21 +78,21 @@ namespace BattleScene.UseCases.Service
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private BattleLogId FindOrCreateIdBySequence(int sequence)
+        private BattleEventId FindOrCreateIdBySequence(int sequence)
         {
-            BattleLogId battleLogId;
+            BattleEventId battleEventId;
             var battleCollection = _battleLogRepository.Get();
             for (var i = 0; i < battleCollection.Count; ++i)
             {
                 if (sequence == battleCollection[i].Sequence)
                 {
-                    battleLogId = battleCollection[i].Id;
-                    return battleLogId;
+                    battleEventId = battleCollection[i].Id;
+                    return battleEventId;
                 }
             }
 
-            battleLogId = new BattleLogId();
-            return battleLogId;
+            battleEventId = new BattleEventId();
+            return battleEventId;
         }
     }
 }

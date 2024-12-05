@@ -15,13 +15,13 @@ namespace BattleScene.UseCases.Service
         private readonly PlayerDomainService _player;
         private readonly DamageEvaluatorService _damageEvaluator;
         private readonly IFactory<BattlePropertyValueObject> _battlePropertyFactory;
-        private readonly IRepository<BattleLogEntity, BattleLogId> _battleLogRepository;
+        private readonly IRepository<BattleEventEntity, BattleEventId> _battleLogRepository;
 
         public SlipDamageGeneratorService(
             PlayerDomainService player,
             DamageEvaluatorService damageEvaluator,
             IFactory<BattlePropertyValueObject> battlePropertyFactory,
-            IRepository<BattleLogEntity, BattleLogId> battleLogRepository)
+            IRepository<BattleEventEntity, BattleEventId> battleLogRepository)
         {
             _player = player;
             _damageEvaluator = damageEvaluator;

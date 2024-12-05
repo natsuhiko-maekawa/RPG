@@ -1,6 +1,6 @@
 ﻿namespace BattleScene.Domain.Id
 {
-    public class BattleLogId : BaseId
+    public class BattleEventId : BaseId
     {
     }
 }

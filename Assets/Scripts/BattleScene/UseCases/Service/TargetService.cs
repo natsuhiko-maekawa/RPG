@@ -12,7 +12,7 @@ namespace BattleScene.UseCases.Service
 {
     public class TargetService : ITargetService
     {
-        private readonly IRepository<BattleLogEntity, BattleLogId> _battleLogRepository;
+        private readonly IRepository<BattleEventEntity, BattleEventId> _battleLogRepository;
         private readonly EnemiesDomainService _enemies;
         private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
         private readonly PlayerDomainService _player;
@@ -20,7 +20,7 @@ namespace BattleScene.UseCases.Service
 
         public TargetService(
             EnemiesDomainService enemies,
-            IRepository<BattleLogEntity, BattleLogId> battleLogRepository,
+            IRepository<BattleEventEntity, BattleEventId> battleLogRepository,
             IRepository<CharacterEntity, CharacterId> characterRepository,
             PlayerDomainService player,
             IMyRandomService myRandom)

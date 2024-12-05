@@ -11,12 +11,12 @@ namespace BattleScene.UseCases.Service
     public class AttackCounterService
     {
         private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
-        private readonly IRepository<BattleLogEntity, BattleLogId> _battleLogRepository;
+        private readonly IRepository<BattleEventEntity, BattleEventId> _battleLogRepository;
         private readonly IFactory<BattlePropertyValueObject> _battlePropertyFactory;
 
         public AttackCounterService(
             IRepository<CharacterEntity, CharacterId> characterRepository,
-            IRepository<BattleLogEntity, BattleLogId> battleLogRepository,
+            IRepository<BattleEventEntity, BattleEventId> battleLogRepository,
             IFactory<BattlePropertyValueObject> battlePropertyFactory)
         {
             _characterRepository = characterRepository;
