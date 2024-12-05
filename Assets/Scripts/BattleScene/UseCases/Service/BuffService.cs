@@ -40,26 +40,16 @@ namespace BattleScene.UseCases.Service
                     lifetimeCode: buffParameter.LifetimeCode);
             }
         }
-        
-        public void Register(BattleEventValueObject buff)
+
+        public void Register(BattleEventValueObject buffEvent)
         {
-            var buffEntityList = buff.TargetIdList
-                .Select(CreateBuffEntity)
-                .ToList();
-            _buffCollection.Add(buffEntityList);
-
-            return;
-
-            BuffEntity CreateBuffEntity(CharacterId characterId)
+            foreach (var characterId in buffEvent.TargetIdList)
             {
-                var buffEntity = new BuffEntity(
-                    characterId: characterId,
-                    buffCode: buff.BuffCode,
-                    turn: buff.Turn,
-                    lifetimeCode: buff.LifetimeCode,
-                    rate: buff.Rate
-                );
-                return buffEntity;
+                var buff = _buffCollection.Get((characterId, buffEvent.BuffCode));
+                buff.Set(
+                    turn: buffEvent.Turn,
+                    rate: buffEvent.Rate,
+                    lifetimeCode: buffEvent.LifetimeCode);
             }
         }
 
