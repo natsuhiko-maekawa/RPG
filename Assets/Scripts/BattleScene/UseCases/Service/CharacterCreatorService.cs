@@ -16,6 +16,7 @@ namespace BattleScene.UseCases.Service
         private readonly IFactory<AilmentPropertyValueObject, AilmentCode> _ailmentPropertyFactory;
         private readonly IFactory<BattlePropertyValueObject> _battlePropertyFactory;
         private readonly ICollection<BuffEntity, (CharacterId, BuffCode)> _buffCollection;
+        private readonly ICollection<EnhanceEntity, (CharacterId, EnhanceCode)> _enhanceCollection;
         private readonly ICollection<SlipEntity, SlipCode> _slipCollection;
 
         public CharacterCreatorService(
@@ -23,40 +24,34 @@ namespace BattleScene.UseCases.Service
             IFactory<AilmentPropertyValueObject, AilmentCode> ailmentPropertyFactory,
             IFactory<BattlePropertyValueObject> battlePropertyFactory,
             ICollection<BuffEntity, (CharacterId, BuffCode)> buffCollection,
+            ICollection<EnhanceEntity, (CharacterId, EnhanceCode)> enhanceCollection,
             ICollection<SlipEntity, SlipCode> slipCollection)
         {
             _ailmentCollection = ailmentCollection;
             _ailmentPropertyFactory = ailmentPropertyFactory;
             _battlePropertyFactory = battlePropertyFactory;
             _buffCollection = buffCollection;
+            _enhanceCollection = enhanceCollection;
             _slipCollection = slipCollection;
         }
 
-        public void Create(CharacterId characterId)
+        public void Create(CharacterId characterId, bool isPlayer = false)
         {
-            var buffCodes = Enum.GetValues(typeof(BuffCode))
-                .Cast<BuffCode>()
-                .Where(x => x != BuffCode.NoBuff);
-            foreach (var buffCode in buffCodes)
-            {
-                var buff = new BuffEntity(
-                    characterId: characterId,
-                    buffCode: buffCode);
-                _buffCollection.Add(buff);
-            }
+            InitializeAilmentRepository(characterId);
+            InitializeBuffRepository(characterId);
+            InitializeEnhanceRepository(characterId);
 
-            var defaultTurn = _battlePropertyFactory.Create().SlipDefaultTurn;
-            var slipCodes = Enum.GetValues(typeof(SlipCode))
-                .Cast<SlipCode>()
-                .Where(x => x != SlipCode.NoSlip);
-            foreach (var slipCode in slipCodes)
-            {
-                var slip = new SlipEntity(
-                    slipCode: slipCode,
-                    defaultTurn: defaultTurn);
-                _slipCollection.Add(slip);
-            }
+            if (!isPlayer) return;
+            InitializeSlipRepository();
+        }
 
+        public void Create(IEnumerable<CharacterId> characterIdList)
+        {
+            foreach (var characterId in characterIdList) Create(characterId);
+        }
+
+        private void InitializeAilmentRepository(CharacterId characterId)
+        {
             var ailmentCodes = Enum.GetValues(typeof(AilmentCode))
                 .Cast<AilmentCode>()
                 .Where(x => x != AilmentCode.NoAilment);
@@ -72,9 +67,47 @@ namespace BattleScene.UseCases.Service
             }
         }
 
-        public void Create(IEnumerable<CharacterId> characterIdList)
+        private void InitializeBuffRepository(CharacterId characterId)
         {
-            foreach (var characterId in characterIdList) Create(characterId);
+            var buffCodes = Enum.GetValues(typeof(BuffCode))
+                .Cast<BuffCode>()
+                .Where(x => x != BuffCode.NoBuff);
+            foreach (var buffCode in buffCodes)
+            {
+                var buff = new BuffEntity(
+                    characterId: characterId,
+                    buffCode: buffCode);
+                _buffCollection.Add(buff);
+            }
+        }
+
+        private void InitializeEnhanceRepository(CharacterId characterId)
+        {
+            var enhanceCodes = Enum.GetValues(typeof(EnhanceCode))
+                .Cast<EnhanceCode>()
+                .Where(x => x != EnhanceCode.NoEnhance);
+            foreach (var enhanceCode in enhanceCodes)
+            {
+                var enhance = new EnhanceEntity(
+                    characterId: characterId,
+                    enhanceCode: enhanceCode);
+                _enhanceCollection.Add(enhance);
+            }
+        }
+
+        private void InitializeSlipRepository()
+        {
+            var defaultTurn = _battlePropertyFactory.Create().SlipDefaultTurn;
+            var slipCodes = Enum.GetValues(typeof(SlipCode))
+                .Cast<SlipCode>()
+                .Where(x => x != SlipCode.NoSlip);
+            foreach (var slipCode in slipCodes)
+            {
+                var slip = new SlipEntity(
+                    slipCode: slipCode,
+                    defaultTurn: defaultTurn);
+                _slipCollection.Add(slip);
+            }
         }
     }
 }

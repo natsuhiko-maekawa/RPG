@@ -5,7 +5,8 @@ namespace BattleScene.UseCases.IService
 {
     public interface ICharacterCreatorService
     {
-        public void Create(CharacterId characterId);
+        // TODO: フラグ引数を使用している
+        public void Create(CharacterId characterId, bool isPlayer = false);
         public void Create(IEnumerable<CharacterId> characterIdList);
     }
 }

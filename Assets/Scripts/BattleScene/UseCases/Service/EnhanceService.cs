@@ -42,16 +42,15 @@ namespace BattleScene.UseCases.Service
             foreach (var enhance in enhanceList) Register(enhance);
         }
 
-        private void Register(BattleEventValueObject enhance)
+        private void Register(BattleEventValueObject enhanceEvent)
         {
-            var enhanceList = enhance.ActualTargetIdList
-                .Select(x => new EnhanceEntity(
-                    characterId: x,
-                    enhanceCode: enhance.EnhanceCode,
-                    turn: enhance.Turn,
-                    lifetimeCode: enhance.LifetimeCode))
-                .ToList();
-            _enhanceCollection.Add(enhanceList);
+            foreach (var characterId in enhanceEvent.ActualTargetIdList)
+            {
+                var enhance = _enhanceCollection.Get((characterId, enhanceEvent.EnhanceCode));
+                enhance.Set(
+                    turn: enhanceEvent.Turn,
+                    lifetimeCode: enhanceEvent.LifetimeCode);
+            }
         }
     }
 }

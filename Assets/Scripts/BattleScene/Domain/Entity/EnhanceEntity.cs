@@ -7,28 +7,32 @@ namespace BattleScene.Domain.Entity
     {
         public EnhanceEntity(
             CharacterId characterId,
-            EnhanceCode enhanceCode,
-            int turn,
-            LifetimeCode lifetimeCode)
+            EnhanceCode enhanceCode)
         {
             CharacterId = characterId;
             EnhanceCode = enhanceCode;
-            Turn = turn;
-            LifetimeCode = lifetimeCode;
-            Effects = true;
         }
 
         public override (CharacterId, EnhanceCode) Id => (CharacterId, EnhanceCode);
         public CharacterId CharacterId { get; }
         public EnhanceCode EnhanceCode { get; }
-        public int Turn { get; private set; }
-        public LifetimeCode LifetimeCode { get; }
-        public bool Effects { get; set; }
+        public LifetimeCode LifetimeCode { get; private set; }
+        public bool Effects { get; private set; }
+        private int _turn;
+
+        public void Set(
+            int turn,
+            LifetimeCode lifetimeCode)
+        {
+            _turn = turn;
+            LifetimeCode = lifetimeCode;
+            Effects = true;
+        }
 
         public void AdvanceTurn()
         {
-            Turn--;
-            if (Turn < 0 && Effects) Effects = false;
+            --_turn;
+            if (_turn < 0 && Effects) Effects = false;
         }
     }
 }

@@ -36,6 +36,9 @@ namespace Tests.BattleScene.UseCases.Service
         private readonly ICollection<CharacterEntity, CharacterId> _mockCharacterCollection
             = new MockCollection<CharacterEntity, CharacterId>();
 
+        private readonly ICollection<EnhanceEntity, (CharacterId, EnhanceCode)> _mockEnhanceCollection
+            = new MockCollection<EnhanceEntity, (CharacterId, EnhanceCode)>();
+
         private readonly ICollection<OrderedItemEntity, OrderedItemId> _mockOrderedItemCollection
             = new MockCollection<OrderedItemEntity, OrderedItemId>();
 
@@ -103,6 +106,7 @@ namespace Tests.BattleScene.UseCases.Service
                 ailmentPropertyFactory: stubAilmentPropertyFactory,
                 battlePropertyFactory: _stubBattlePropertyFactory,
                 buffCollection: _mockBuffCollection,
+                enhanceCollection: _mockEnhanceCollection,
                 slipCollection: _mockSlipCollection);
             return stubCharacterCreatorService;
         }
@@ -166,7 +170,7 @@ namespace Tests.BattleScene.UseCases.Service
                 currentHitPoint: 179,
                 currentTechnicalPoint: 50);
             _mockCharacterCollection.Add(player);
-            _stubCharacterCreatorService.Create(playerId);
+            _stubCharacterCreatorService.Create(playerId, isPlayer: true);
             return (playerId, "Player");
         }
 
