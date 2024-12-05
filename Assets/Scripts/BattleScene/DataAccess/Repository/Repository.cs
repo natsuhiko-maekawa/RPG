@@ -52,10 +52,6 @@ namespace BattleScene.DataAccess.Repository
         public void Add(TEntity entity)
         {
             Observe(entity);
-
-            // TODO: TryAddをAddに修正すること
-            if (_entityDictionary.TryAdd(entity.Id, entity)) return;
-            _entityDictionary.Remove(entity.Id);
             _entityDictionary.Add(entity.Id, entity);
         }
 
