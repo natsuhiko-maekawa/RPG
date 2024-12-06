@@ -80,13 +80,13 @@ namespace BattleScene.InterfaceAdapter
         {
             return damageList
                 .Select(x => new DamageValueObject(
-                    AttackNumber: x.AttackNumber,
-                    DamageRate: x.DamageRate,
-                    HitRate: x.HitRate,
-                    MatAttrCode: x.MatAttrCode,
-                    DamageExpressionCode: x.DamageExpressionCode,
-                    HitEvaluationCode: x.HitEvaluationCode,
-                    AttacksWeakPointEvaluationCode: x.AttacksWeakPointEvaluationCode))
+                    attackNumber: x.AttackNumber,
+                    damageRate: x.DamageRate,
+                    hitRate: x.HitRate,
+                    matAttrCode: x.MatAttrCode,
+                    damageExpressionCode: x.DamageExpressionCode,
+                    hitEvaluationCode: x.HitEvaluationCode,
+                    attacksWeakPointEvaluationCode: x.AttacksWeakPointEvaluationCode))
                 .ToList();
         }
 

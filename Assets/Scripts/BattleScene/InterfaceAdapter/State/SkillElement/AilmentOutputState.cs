@@ -25,8 +25,8 @@ namespace BattleScene.InterfaceAdapter.State.SkillElement
             }
             else
             {
-                var ailment = Context.BattleEventQueue.Dequeue();
-                _facade.OutputThenAilmentSuccess(ailment);
+                var ailmentEvent = Context.BattleEventQueue.Dequeue();
+                _facade.OutputThenAilmentSuccess(ailmentEvent);
             }
         }
 

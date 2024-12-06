@@ -60,5 +60,19 @@ namespace BattleScene.UseCases.Service
                 }
             }
         }
+
+        public void UpdateBattleEvent(
+            IReadOnlyList<BattleEventEntity> buffEventList,
+            SkillCommonValueObject skillCommon,
+            IReadOnlyList<SlipValueObject> skillElementList,
+            IReadOnlyList<CharacterId> targetIdList)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void ExecuteBattleEvent(IReadOnlyList<BattleEventEntity> battleEventList)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

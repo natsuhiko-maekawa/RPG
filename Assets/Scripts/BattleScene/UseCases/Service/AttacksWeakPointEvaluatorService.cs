@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Linq;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
+using Utility;
 
 namespace BattleScene.UseCases.Service
 {
@@ -27,9 +27,10 @@ namespace BattleScene.UseCases.Service
 
         private bool BasicEvaluate(CharacterId targetId, DamageValueObject damage)
         {
-            return _characterPropertyFactory.Create(targetId).WeakPointsCodeList
-                .Intersect(damage.MatAttrCode)
-                .Any();
+            var matchedWeakPointCode = _characterPropertyFactory.Create(targetId).WeakPointsCode & damage.MatAttrCode;
+            var matchedWeakPointCount = BitUtility.BitCount((uint)matchedWeakPointCode);
+            var value = matchedWeakPointCount > 0;
+            return value;
         }
     }
 }

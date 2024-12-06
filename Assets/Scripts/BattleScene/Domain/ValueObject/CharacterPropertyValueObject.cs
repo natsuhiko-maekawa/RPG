@@ -14,7 +14,7 @@ namespace BattleScene.Domain.ValueObject
             int wisdom,
             int agility,
             int luck,
-            List<MatAttrCode> weakPointCodeList,
+            MatAttrCode weakPointCode,
             List<SkillCode> skillCodeList)
         {
             CharacterTypeCode = characterTypeCode;
@@ -25,7 +25,7 @@ namespace BattleScene.Domain.ValueObject
             Wisdom = wisdom;
             Agility = agility;
             Luck = luck;
-            WeakPointsCodeList = weakPointCodeList;
+            WeakPointsCode = weakPointCode;
             SkillCodeList = skillCodeList;
         }
 
@@ -37,7 +37,7 @@ namespace BattleScene.Domain.ValueObject
         public int Wisdom { get; }
         public int Agility { get; }
         public int Luck { get; }
-        public IReadOnlyList<MatAttrCode> WeakPointsCodeList { get; }
+        public MatAttrCode WeakPointsCode { get; }
         public IReadOnlyList<SkillCode> SkillCodeList { get; }
 
         public int SumParameter => (int)(HitPoint / 10.0f * (Strength + Vitality + Intelligence + Agility + Luck)) / 10;

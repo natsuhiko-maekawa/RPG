@@ -27,8 +27,8 @@ namespace BattleScene.InterfaceAdapter.State.SkillElement
             }
             else
             {
-                var primeSkill = Context.BattleEventQueue.Dequeue();
-                _facade.OutputThenSlipSuccess(primeSkill);
+                var slipEvent = Context.BattleEventQueue.Dequeue();
+                _facade.OutputThenSlipSuccess(slipEvent);
             }
         }
 

@@ -2,7 +2,7 @@
 {
     public enum BattleEventCode
     {
-        NoAction,
+        NoEvent,
         Attack,
         Skill,
         Defence,

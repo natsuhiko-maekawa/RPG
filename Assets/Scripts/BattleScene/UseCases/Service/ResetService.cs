@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
 using BattleScene.UseCases.IService;
@@ -46,6 +47,20 @@ namespace BattleScene.UseCases.Service
                 .ToLookup(x => x.characterId, y => y.ailmentCode);
 
             _ailmentReset.Reset(ailmentLookup);
+        }
+
+        public void UpdateBattleEvent(
+            IReadOnlyList<BattleEventEntity> buffEventList,
+            SkillCommonValueObject skillCommon,
+            IReadOnlyList<RecoveryValueObject> skillElementList,
+            IReadOnlyList<CharacterId> targetIdList)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ExecuteBattleEvent(IReadOnlyList<BattleEventEntity> battleEventList)
+        {
+            throw new NotImplementedException();
         }
     }
 }

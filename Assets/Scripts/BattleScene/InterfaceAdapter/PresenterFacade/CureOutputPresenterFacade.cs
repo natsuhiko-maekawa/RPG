@@ -1,6 +1,7 @@
 using BattleScene.DataAccess;
 using BattleScene.DataAccess.Dto;
 using BattleScene.Domain.Code;
+using BattleScene.Domain.Entity;
 using BattleScene.Domain.ValueObject;
 using BattleScene.InterfaceAdapter.Presenter;
 using static BattleScene.InterfaceAdapter.Presenter.PlayerImageViewPresenter.AnimationMode;
@@ -26,14 +27,14 @@ namespace BattleScene.InterfaceAdapter.PresenterFacade
             _cureView = cureView;
         }
 
-        public void Output(BattleEventValueObject cure)
+        public void Output(BattleEventEntity cureEvent)
         {
             _messageView.StartAnimation(MessageCode.CureMessage);
 
-            var playerImageCode = _skillViewResource.Get(cure.SkillCode).PlayerImageCode;
+            var playerImageCode = _skillViewResource.Get(cureEvent.SkillCode).PlayerImageCode;
             _playerImageView.StartAnimation(playerImageCode, Slide);
 
-            _cureView.StartAnimation(cure);
+            _cureView.StartAnimation(cureEvent);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DataAccess;
@@ -6,6 +7,7 @@ using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
 using BattleScene.UseCases.IService;
+using Utility;
 
 namespace BattleScene.UseCases.Service
 {
@@ -19,43 +21,63 @@ namespace BattleScene.UseCases.Service
             _buffRepository = buffRepository;
         }
 
-        public IReadOnlyList<BattleEventValueObject> GenerateBattleEvent(
+        [Obsolete]
+        public IReadOnlyList<BattleEventEntity> GenerateBattleEvent(
             CharacterId actorId,
             SkillCommonValueObject skillCommon,
             IReadOnlyList<BuffValueObject> buffParameterList,
             IReadOnlyList<CharacterId> targetIdList)
         {
-            var buffList = buffParameterList.Select(GetBuff).ToList();
-            return buffList;
+            throw new NotImplementedException();
+            // var buffList = buffParameterList.Select(GetBuff).ToList();
+            // return buffList;
+            //
+            // BattleEventValueObject GetBuff(BuffValueObject buffParameter)
+            // {
+            //     return BattleEventValueObject.CreateBuff(
+            //         actorId: actorId,
+            //         targetIdList: targetIdList,
+            //         skillCode: skillCommon.SkillCode,
+            //         buffCode: buffParameter.BuffCode,
+            //         rate: buffParameter.Rate,
+            //         turn: buffParameter.Turn,
+            //         lifetimeCode: buffParameter.LifetimeCode);
+            // }
+        }
 
-            BattleEventValueObject GetBuff(BuffValueObject buffParameter)
+        public void UpdateBattleEvent(
+            IReadOnlyList<BattleEventEntity> buffEventList,
+            SkillCommonValueObject skillCommon,
+            IReadOnlyList<BuffValueObject> buffList,
+            IReadOnlyList<CharacterId> targetIdList)
+        {
+            MyDebug.Assert(buffEventList.Count == buffList.Count);
+            foreach (var (battleEvent, buff) in buffEventList
+                         .Zip(buffList, (battleEvent, buff) => (battleEvent, buff)))
             {
-                return BattleEventValueObject.CreateBuff(
-                    actorId: actorId,
+                battleEvent.UpdateBuff(
+                    buffCode: buff.BuffCode,
+                    turn: buff.Turn,
+                    rate: buff.Rate,
+                    lifetimeCode: buff.LifetimeCode,
                     targetIdList: targetIdList,
-                    skillCode: skillCommon.SkillCode,
-                    buffCode: buffParameter.BuffCode,
-                    rate: buffParameter.Rate,
-                    turn: buffParameter.Turn,
-                    lifetimeCode: buffParameter.LifetimeCode);
+                    actualTargetIdList: targetIdList);
             }
         }
 
-        public void Register(BattleEventValueObject buffEvent)
+        public void ExecuteBattleEvent(IReadOnlyList<BattleEventEntity> buffEventList)
         {
-            foreach (var characterId in buffEvent.TargetIdList)
+            foreach (var buff in buffEventList)
             {
-                var buff = _buffRepository.Get((characterId, buffEvent.BuffCode));
-                buff.Set(
-                    turn: buffEvent.Turn,
-                    rate: buffEvent.Rate,
-                    lifetimeCode: buffEvent.LifetimeCode);
+                foreach (var characterId in buff.TargetIdList)
+                {
+                    var buff1 = _buffRepository.Get((characterId, buff.BuffCode));
+                    buff1.Set(
+                        turn: buff.BuffTurn,
+                        rate: buff.Rate,
+                        lifetimeCode: buff.LifetimeCode);
+                }
             }
-        }
-
-        public void RegisterBattleEvent(IReadOnlyList<BattleEventValueObject> buffList)
-        {
-            foreach (var buff in buffList) Register(buff);
         }
     }
 }

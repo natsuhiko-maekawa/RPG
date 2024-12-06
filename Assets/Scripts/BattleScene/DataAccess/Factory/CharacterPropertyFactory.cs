@@ -27,7 +27,7 @@ namespace BattleScene.DataAccess.Factory
                 wisdom: property.Wisdom,
                 agility: property.Agility,
                 luck: property.Luck,
-                weakPointCodeList: property.WeakPointCodeList,
+                weakPointCode: property.WeakPointCode,
                 skillCodeList: property.SkillCodeList);
         }
     }

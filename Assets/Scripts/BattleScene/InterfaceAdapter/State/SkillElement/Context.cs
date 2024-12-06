@@ -2,6 +2,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text.RegularExpressions;
+using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
 using JetBrains.Annotations;
@@ -17,7 +18,7 @@ namespace BattleScene.InterfaceAdapter.State.SkillElement
         public SkillCommonValueObject SkillCommon { get; }
         public IReadOnlyList<CharacterId> TargetIdList { get; }
         public IReadOnlyList<TSkillElement> SkillElementList { get; }
-        public Queue<BattleEventValueObject> BattleEventQueue { get; set; } = new();
+        public Queue<BattleEventEntity> BattleEventQueue { get; set; } = new();
 
         public Context(
             BaseState<TSkillElement> skillElementState,

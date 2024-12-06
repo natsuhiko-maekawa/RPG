@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using BattleScene.Domain.Code;
+﻿using BattleScene.Domain.Code;
 
 namespace BattleScene.InterfaceAdapter.PrimeSkill.BaseClass
 {
@@ -8,7 +6,7 @@ namespace BattleScene.InterfaceAdapter.PrimeSkill.BaseClass
     {
         public virtual int AttackNumber { get; } = 1;
         public virtual float DamageRate { get; } = 1.0f;
-        public virtual IReadOnlyList<MatAttrCode> MatAttrCode { get; } = Array.Empty<MatAttrCode>();
+        public virtual MatAttrCode MatAttrCode { get; } = MatAttrCode.NoAttr;
         public virtual DamageExpressionCode DamageExpressionCode { get; } = DamageExpressionCode.Basic;
         public virtual float HitRate { get; } = 1.0f;
         public virtual HitEvaluationCode HitEvaluationCode { get; } = HitEvaluationCode.Basic;

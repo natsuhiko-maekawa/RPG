@@ -1,5 +1,6 @@
 using System;
 using BattleScene.Domain.Code;
+using BattleScene.Domain.Entity;
 using BattleScene.Domain.ValueObject;
 using BattleScene.InterfaceAdapter.Presenter;
 
@@ -15,9 +16,9 @@ namespace BattleScene.InterfaceAdapter.PresenterFacade
             _messageView = messageView;
         }
 
-        public void Output(BattleEventValueObject buff)
+        public void Output(BattleEventEntity buffEvent)
         {
-            var isBuff = Math.Sign(Math.Log(buff.Rate)) > 0;
+            var isBuff = Math.Sign(Math.Log(buffEvent.Rate)) > 0;
             var messageCode = isBuff
                 ? MessageCode.BuffMessage
                 : MessageCode.DebuffMessage;

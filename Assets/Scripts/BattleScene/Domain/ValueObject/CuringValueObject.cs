@@ -2,7 +2,17 @@
 
 namespace BattleScene.Domain.ValueObject
 {
-    public record CuringValueObject(
-        int Amount,
-        CharacterId TargetId);
+    public struct CuringValueObject // 16 byte
+    {
+        public int Amount { get; }
+        public CharacterId TargetId { get; }
+
+        public CuringValueObject(
+            int amount, 
+            CharacterId targetId)
+        {
+            Amount = amount;
+            TargetId = targetId;
+        }
+    }
 }

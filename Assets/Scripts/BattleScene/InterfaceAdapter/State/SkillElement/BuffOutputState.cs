@@ -21,8 +21,8 @@ namespace BattleScene.InterfaceAdapter.State.SkillElement
         {
             if (Context.BattleEventQueue.Count == 0)
                 throw new InvalidOperationException(ExceptionMessage.ContextBattleEventQueueIsEmpty);
-            var buff = Context.BattleEventQueue.Dequeue();
-            _facade.Output(buff);
+            var buffEvent = Context.BattleEventQueue.Dequeue();
+            _facade.Output(buffEvent);
         }
 
         public override void Select()

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.Entity;
@@ -26,24 +27,54 @@ namespace BattleScene.UseCases.UseCase
             _battleLogRepository = battleLogRepository;
         }
 
-        public IReadOnlyList<BattleEventValueObject> GetBattleEventList(
+        [Obsolete]
+        public IReadOnlyList<BattleEventEntity> GetBattleEventList(
             CharacterId actorId,
             SkillCommonValueObject skillCommon,
             IReadOnlyList<TSkillElement> skillElementList,
             IReadOnlyList<CharacterId> targetIdList)
         {
-            var battleEventList = _skillElement.GenerateBattleEvent(
-                actorId: actorId,
-                skillCommon: skillCommon,
-                primeSkillParameterList: skillElementList,
-                targetIdList: targetIdList);
-            return battleEventList;
+            throw new NotImplementedException();
+            // var battleEventList = _skillElement.GenerateBattleEvent(
+            //     actorId: actorId,
+            //     skillCommon: skillCommon,
+            //     primeSkillParameterList: skillElementList,
+            //     targetIdList: targetIdList);
+            // return battleEventList;
         }
 
-        public void RegisterBattleEvent(IReadOnlyList<BattleEventValueObject> battleEventList)
+        public IReadOnlyList<BattleEventEntity> ExecuteBattleEvent(
+            SkillCommonValueObject skillCommon,
+            IReadOnlyList<TSkillElement> skillElementList,
+            IReadOnlyList<CharacterId> targetIdList)
         {
-            _skillElement.RegisterBattleEvent(battleEventList);
-            _battleLogger.Log(battleEventList);
+            var skillEvent = _battleLogger.GetLast();
+
+            var battleEventList = new BattleEventEntity[skillElementList.Count];
+            battleEventList[0] = skillEvent;
+            if (skillElementList.Count > 0)
+            {
+                for (var i = 1; i < skillElementList.Count; ++i)
+                {
+                    var battleEvent = new BattleEventEntity(
+                        battleEventId: new BattleEventId(),
+                        sequence: skillEvent.Sequence + i,
+                        turn: skillEvent.Turn,
+                        actorId: skillEvent.ActorId);
+                    _battleLogger.Log(battleEvent);
+                    battleEventList[i] = battleEvent;
+                }
+            }
+
+            _skillElement.UpdateBattleEvent(
+                buffEventList: battleEventList, 
+                skillCommon: skillCommon,
+                skillElementList: skillElementList,
+                targetIdList: targetIdList);
+
+            _skillElement.ExecuteBattleEvent(battleEventList);
+
+            return battleEventList;
         }
 
         public bool IsExecutedDamage()

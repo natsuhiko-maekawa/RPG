@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DataAccess;
+using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
 using BattleScene.UseCases.IService;
@@ -22,35 +23,51 @@ namespace BattleScene.UseCases.Service
             _technicalPoint = technicalPoint;
         }
 
-        public IReadOnlyList<BattleEventValueObject> GenerateBattleEvent(
+        [Obsolete]
+        public IReadOnlyList<BattleEventEntity> GenerateBattleEvent(
             CharacterId actorId,
             SkillCommonValueObject skillCommon,
             IReadOnlyList<RestoreValueObject> restoreParameterList,
             IReadOnlyList<CharacterId> targetIdList)
         {
-            if (restoreParameterList.Count != 1)
-                throw new InvalidOperationException(ExceptionMessage.RestoreParameterIsNoSingle);
-            var currentTechnicalPoint = _technicalPoint.Get();
-            var maxTechnicalPoint = _playerPropertyFactory.Create(CharacterTypeCode.Player).TechnicalPoint;
-            var restoreList = restoreParameterList.Select(GetRestore).ToList();
-            return restoreList;
-
-            BattleEventValueObject GetRestore(RestoreValueObject restoreParameter)
-            {
-                var technicalPoint = Math.Min(restoreParameter.TechnicalPoint,
-                    maxTechnicalPoint - currentTechnicalPoint);
-                var restore = BattleEventValueObject.CreateRestore(
-                    actorId: actorId,
-                    skillCode: skillCommon.SkillCode,
-                    targetIdList: targetIdList,
-                    technicalPoint: technicalPoint);
-                return restore;
-            }
+            throw new NotImplementedException();
+            // if (restoreParameterList.Count != 1)
+            //     throw new InvalidOperationException(ExceptionMessage.RestoreParameterIsNoSingle);
+            // var currentTechnicalPoint = _technicalPoint.Get();
+            // var maxTechnicalPoint = _playerPropertyFactory.Create(CharacterTypeCode.Player).TechnicalPoint;
+            // var restoreList = restoreParameterList.Select(GetRestore).ToList();
+            // return restoreList;
+            //
+            // BattleEventValueObject GetRestore(RestoreValueObject restoreParameter)
+            // {
+            //     var technicalPoint = Math.Min(restoreParameter.TechnicalPoint,
+            //         maxTechnicalPoint - currentTechnicalPoint);
+            //     var restore = BattleEventValueObject.CreateRestore(
+            //         actorId: actorId,
+            //         skillCode: skillCommon.SkillCode,
+            //         targetIdList: targetIdList,
+            //         technicalPoint: technicalPoint);
+            //     return restore;
+            // }
         }
 
         public void RegisterBattleEvent(IReadOnlyList<BattleEventValueObject> restoreList)
         {
             _technicalPoint.Restore(restoreList);
+        }
+
+        public void UpdateBattleEvent(
+            IReadOnlyList<BattleEventEntity> buffEventList,
+            SkillCommonValueObject skillCommon,
+            IReadOnlyList<RestoreValueObject> skillElementList,
+            IReadOnlyList<CharacterId> targetIdList)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ExecuteBattleEvent(IReadOnlyList<BattleEventEntity> battleEventList)
+        {
+            throw new NotImplementedException();
         }
     }
 }

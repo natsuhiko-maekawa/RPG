@@ -1,4 +1,5 @@
-﻿using BattleScene.Domain.ValueObject;
+﻿using System.Linq;
+using BattleScene.Domain.ValueObject;
 using BattleScene.InterfaceAdapter.PresenterFacade;
 
 namespace BattleScene.InterfaceAdapter.State.SkillElement
@@ -26,7 +27,8 @@ namespace BattleScene.InterfaceAdapter.State.SkillElement
 
         public override void Select()
         {
-            BaseState<DamageValueObject> nextState = Context.BattleEventQueue.Peek().IsAvoid
+            BaseState<DamageValueObject> nextState = Context.BattleEventQueue.Peek().AttackList
+                .All(x => !x.IsHit)
                 ? _skillElementBreakState
                 : _skillElementStopState;
             Context.TransitionTo(nextState);

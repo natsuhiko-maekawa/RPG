@@ -7,6 +7,7 @@ using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
 using BattleScene.UseCases.IService;
+using Utility;
 
 namespace BattleScene.UseCases.Service
 {
@@ -52,7 +53,7 @@ namespace BattleScene.UseCases.Service
             var actorStrength = _characterPropertyFactory.Create(actorId).Strength;
             var targetVitality = _characterPropertyFactory.Create(targetId).Vitality;
             var actorMatAttr = damage.MatAttrCode;
-            var targetWeekPoint = _characterPropertyFactory.Create(targetId).WeakPointsCodeList;
+            var targetWeekPoint = _characterPropertyFactory.Create(targetId).WeakPointsCode;
             var actorBuffRate = _buffRepository.Get((actorId, BuffCode.Attack)).Rate;
             var targetBuffRate = _buffRepository.Get((targetId, BuffCode.Defence)).Rate;
             var destroyedRate = 1.0f - _bodyPartDomainService.Count(actorId, BodyPartCode.Arm) * 0.5f;
@@ -62,7 +63,8 @@ namespace BattleScene.UseCases.Service
                     ? 0.5f
                     : MultiplicationIdentityElement;
             var rate = damage.DamageRate;
-            var weekPointRate = (int)Math.Pow(2, actorMatAttr.Intersect(targetWeekPoint).Count());
+            var matchedWeekPointCount = BitUtility.BitCount((uint)(actorMatAttr & targetWeekPoint));
+            var weekPointRate = (int)Math.Pow(2, matchedWeekPointCount);
             return (int)(actorStrength * actorStrength / (float)targetVitality * weekPointRate * actorBuffRate
                 / targetBuffRate * destroyedRate * targetDefence * rate * 1.5f) + _myRandom.Range(1, 3);
         }

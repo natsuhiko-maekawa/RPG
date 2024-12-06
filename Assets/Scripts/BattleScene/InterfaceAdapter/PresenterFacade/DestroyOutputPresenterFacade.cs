@@ -1,4 +1,5 @@
 ﻿using BattleScene.Domain.Code;
+using BattleScene.Domain.Entity;
 using BattleScene.Domain.ValueObject;
 using BattleScene.InterfaceAdapter.Presenter;
 using static BattleScene.InterfaceAdapter.Presenter.PlayerImageViewPresenter.AnimationMode;
@@ -23,7 +24,7 @@ namespace BattleScene.InterfaceAdapter.PresenterFacade
             _messageView.StartAnimation(MessageCode.NoMessage);
         }
 
-        public void OutputThenDestroySuccess(BattleEventValueObject battleEvent)
+        public void OutputThenDestroySuccess(BattleEventEntity destroyEvent)
         {
             // TODO: メッセージを設定する
             _messageView.StartAnimation(MessageCode.NoMessage);

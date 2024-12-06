@@ -1,6 +1,7 @@
 using BattleScene.DataAccess;
 using BattleScene.DataAccess.Dto;
 using BattleScene.Domain.Code;
+using BattleScene.Domain.Entity;
 using BattleScene.Domain.ValueObject;
 using BattleScene.InterfaceAdapter.Presenter;
 
@@ -19,9 +20,9 @@ namespace BattleScene.InterfaceAdapter.PresenterFacade
             _enhanceViewResource = enhanceViewResource;
         }
 
-        public void Output(BattleEventValueObject enhance)
+        public void Output(BattleEventEntity enhanceEvent)
         {
-            var messageCode = _enhanceViewResource.Get(enhance.EnhanceCode).MessageCode;
+            var messageCode = _enhanceViewResource.Get(enhanceEvent.EnhanceCode).MessageCode;
             _messageView.StartAnimation(messageCode);
         }
     }

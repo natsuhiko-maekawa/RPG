@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DataAccess;
@@ -6,6 +7,7 @@ using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
 using BattleScene.UseCases.IService;
+using Utility;
 
 namespace BattleScene.UseCases.Service
 {
@@ -22,45 +24,62 @@ namespace BattleScene.UseCases.Service
             _bodyPartRepository = bodyPartRepository;
         }
 
+        [Obsolete]
         public IReadOnlyList<BattleEventValueObject> GenerateBattleEvent(
             CharacterId actorId,
             SkillCommonValueObject skillCommon,
             IReadOnlyList<DestroyValueObject> destroyedParameterList,
             IReadOnlyList<CharacterId> targetIdList)
         {
-            var destroyList = destroyedParameterList.Select(GetDestroy).ToList();
-            return destroyList;
+            throw new NotImplementedException();
+            // var destroyList = destroyedParameterList.Select(GetDestroy).ToList();
+            // return destroyList;
+            //
+            // BattleEventValueObject GetDestroy(DestroyValueObject destroyedParameter)
+            // {
+            //     var actualTargetIdList = _actualTargetIdPicker.Pick(
+            //         actorId: actorId,
+            //         targetIdList: targetIdList,
+            //         luckRate: destroyedParameter.LuckRate);
+            //
+            //     var destroy = BattleEventValueObject.CreateDestroy(
+            //         actorId: actorId,
+            //         targetIdList: targetIdList,
+            //         actualTargetIdList: actualTargetIdList,
+            //         skillCode: skillCommon.SkillCode,
+            //         bodyPartCode: destroyedParameter.BodyPartCode,
+            //         destroyCount: destroyedParameter.Count);
+            //     return destroy;
+            // }
+        }
 
-            BattleEventValueObject GetDestroy(DestroyValueObject destroyedParameter)
+        public void UpdateBattleEvent(
+            IReadOnlyList<BattleEventEntity> destroyEventList,
+            SkillCommonValueObject skillCommon,
+            IReadOnlyList<DestroyValueObject> destroyList,
+            IReadOnlyList<CharacterId> targetIdList)
+        {
+            MyDebug.Assert(destroyEventList.Count == destroyList.Count);
+            foreach (var (battleEvent, destroy) in destroyEventList
+                         .Zip(destroyList, (battleEvent, destroy) => (battleEvent, destroy)))
             {
-                var actualTargetIdList = _actualTargetIdPicker.Pick(
-                    actorId: actorId,
-                    targetIdList: targetIdList,
-                    luckRate: destroyedParameter.LuckRate);
-
-                var destroy = BattleEventValueObject.CreateDestroy(
-                    actorId: actorId,
-                    targetIdList: targetIdList,
-                    actualTargetIdList: actualTargetIdList,
-                    skillCode: skillCommon.SkillCode,
-                    bodyPartCode: destroyedParameter.BodyPartCode,
-                    destroyCount: destroyedParameter.Count);
-                return destroy;
+                battleEvent.UpdateDestroy(
+                    destroyedPart: destroy.BodyPartCode,
+                    destroyCount: destroy.Count,
+                    targetIdList: targetIdList);
             }
         }
 
-        public void Register(BattleEventValueObject destroyEvent)
+        public void ExecuteBattleEvent(IReadOnlyList<BattleEventEntity> destroyEventList)
         {
-            foreach (var characterId in destroyEvent.ActualTargetIdList)
+            foreach (var destroyEvent in destroyEventList)
             {
-                var bodyPart = _bodyPartRepository.Get((characterId, destroyEvent.BodyPartCode));
-                bodyPart.Destroyed();
+                foreach (var characterId in destroyEvent.ActualTargetIdList)
+                {
+                    var bodyPart = _bodyPartRepository.Get((characterId, destroyEvent.DestroyedPart));
+                    bodyPart.Destroyed();
+                }
             }
-        }
-
-        public void RegisterBattleEvent(IReadOnlyList<BattleEventValueObject> destroyList)
-        {
-            foreach (var destroy in destroyList) Register(destroy);
         }
     }
 }

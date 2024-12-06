@@ -8,18 +8,25 @@ namespace BattleScene.UseCases.Service
     public class TurnService
     {
         private readonly IRepository<TurnEntity, TurnId> _turnRepository;
+        private readonly TurnId _turnId;
 
         public TurnService(
             IRepository<TurnEntity, TurnId> turnRepository)
         {
             _turnRepository = turnRepository;
+            _turnId = new TurnId();
         }
 
         public void Initialize()
         {
-            var turnId = new TurnId();
-            var turn = new TurnEntity(turnId);
+            var turn = new TurnEntity(_turnId);
             _turnRepository.Add(turn);
+        }
+
+        public int GetCurrent()
+        {
+            var turn = _turnRepository.Get(_turnId).Turn;
+            return turn;
         }
 
         public void Increment()

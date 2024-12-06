@@ -1,10 +1,13 @@
-﻿namespace BattleScene.Domain.Code
+﻿using System;
+
+namespace BattleScene.Domain.Code
 {
-    public enum MatAttrCode
+    [Flags]
+    public enum MatAttrCode : byte
     {
-        NoAttr,
-        Fire,
-        Ice,
-        Lightning
+        NoAttr = 0,
+        Fire = 1,
+        Ice = 2,
+        Lightning = 4
     }
 }

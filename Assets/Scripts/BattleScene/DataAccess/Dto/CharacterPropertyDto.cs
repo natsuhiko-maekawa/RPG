@@ -18,7 +18,7 @@ namespace BattleScene.DataAccess.Dto
         [SerializeField] private int agility;
         [SerializeField] private int luck;
         [SerializeField] private string[] skillCodeArray;
-        [SerializeField] private string[] weakPointCodeArray;
+        [SerializeField] private MatAttrCode weakPointCode;
         public CharacterTypeCode Key { get; private set; }
         public int HitPoint { get; private set; }
         public int Strength { get; private set; }
@@ -28,7 +28,7 @@ namespace BattleScene.DataAccess.Dto
         public int Agility { get; private set; }
         public int Luck { get; private set; }
         public List<SkillCode> SkillCodeList { get; private set; }
-        public List<MatAttrCode> WeakPointCodeList { get; private set; }
+        public MatAttrCode WeakPointCode { get; private set; }
 
         public void OnBeforeSerialize()
         {
@@ -45,7 +45,7 @@ namespace BattleScene.DataAccess.Dto
             Agility = agility;
             Luck = luck;
             SkillCodeList = skillCodeArray.Select(Enum.Parse<SkillCode>).ToList();
-            WeakPointCodeList = weakPointCodeArray.Select(Enum.Parse<MatAttrCode>).ToList();
+            WeakPointCode = weakPointCode;
         }
     }
 }

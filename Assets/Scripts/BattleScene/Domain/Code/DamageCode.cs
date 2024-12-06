@@ -1,19 +1,19 @@
 ﻿namespace BattleScene.Domain.Code
 {
-    public enum DamageExpressionCode
+    public enum DamageExpressionCode : byte
     {
         Basic,
         Constant,
         Slip
     }
 
-    public enum HitEvaluationCode
+    public enum HitEvaluationCode : byte
     {
         Basic,
         AlwaysHit
     }
 
-    public enum AttacksWeakPointEvaluationCode
+    public enum AttacksWeakPointEvaluationCode : byte
     {
         Basic
     }

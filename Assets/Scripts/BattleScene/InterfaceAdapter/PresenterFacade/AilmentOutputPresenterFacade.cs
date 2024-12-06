@@ -35,13 +35,13 @@ namespace BattleScene.InterfaceAdapter.PresenterFacade
             _messageView.StartAnimation(MessageCode.FailAilmentMessage);
         }
 
-        public void OutputThenAilmentSuccess(BattleEventValueObject ailment)
+        public void OutputThenAilmentSuccess(BattleEventEntity ailmentEvent)
         {
             _messageView.StartAnimation(MessageCode.AilmentMessage);
 
-            if (ailment.ActualTargetIdList.Any(x => _characterRepository.Get(x).IsPlayer))
+            if (ailmentEvent.ActualTargetIdList.Any(x => _characterRepository.Get(x).IsPlayer))
             {
-                var playerImageCode = _ailmentViewResource.Get(ailment.AilmentCode).PlayerImageCode;
+                var playerImageCode = _ailmentViewResource.Get(ailmentEvent.AilmentCode).PlayerImageCode;
                 _playerImageView.StartAnimation(playerImageCode, Slide);
             }
         }

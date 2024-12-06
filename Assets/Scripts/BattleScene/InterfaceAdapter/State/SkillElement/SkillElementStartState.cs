@@ -33,15 +33,19 @@ namespace BattleScene.InterfaceAdapter.State.SkillElement
         /// </summary>
         public override void Start()
         {
-            var battleEventList = _useCase.GetBattleEventList(
-                actorId: Context.ActorId,
+            // var battleEventList = _useCase.GetBattleEventList(
+            //     actorId: Context.ActorId,
+            //     skillCommon: Context.SkillCommon,
+            //     skillElementList: Context.SkillElementList,
+            //     targetIdList: Context.TargetIdList);
+
+            var battleEventList = _useCase.ExecuteBattleEvent(
                 skillCommon: Context.SkillCommon,
                 skillElementList: Context.SkillElementList,
                 targetIdList: Context.TargetIdList);
-            _useCase.RegisterBattleEvent(battleEventList);
             var successBattleEventList = battleEventList
                 .Where(x => !x.IsFailure);
-            Context.BattleEventQueue = new Queue<BattleEventValueObject>(successBattleEventList);
+            Context.BattleEventQueue = new Queue<BattleEventEntity>(successBattleEventList);
 
             BaseState<TSkillElement> nextState =
                 Context.BattleEventQueue.Count == 0

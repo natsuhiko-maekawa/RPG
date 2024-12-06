@@ -1,6 +1,7 @@
 ﻿using BattleScene.DataAccess;
 using BattleScene.DataAccess.Dto;
 using BattleScene.Domain.Code;
+using BattleScene.Domain.Entity;
 using BattleScene.Domain.ValueObject;
 using BattleScene.InterfaceAdapter.Presenter;
 using static BattleScene.InterfaceAdapter.Presenter.PlayerImageViewPresenter.AnimationMode;
@@ -28,11 +29,11 @@ namespace BattleScene.InterfaceAdapter.PresenterFacade
             _messageView.StartAnimation(MessageCode.FailAilmentMessage);
         }
 
-        public void OutputThenSlipSuccess(BattleEventValueObject battleEvent)
+        public void OutputThenSlipSuccess(BattleEventEntity slipEvent)
         {
             _messageView.StartAnimation(MessageCode.SlipMessage);
 
-            var playerImageCode = _ailmentViewResource.Get(battleEvent.SlipCode).PlayerImageCode;
+            var playerImageCode = _ailmentViewResource.Get(slipEvent.SlipCode).PlayerImageCode;
             _playerImageView.StartAnimation(playerImageCode, Slide);
         }
     }

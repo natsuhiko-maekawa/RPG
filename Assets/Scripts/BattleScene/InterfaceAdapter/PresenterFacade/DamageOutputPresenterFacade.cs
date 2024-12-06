@@ -34,17 +34,17 @@ namespace BattleScene.InterfaceAdapter.PresenterFacade
             _vibrationView = vibrationView;
         }
 
-        public void Output(BattleEventValueObject damage)
+        public void Output(BattleEventEntity damageEvent)
         {
-            var isActorPlayer = _characterRepository.Get(damage.ActorId)!.IsPlayer;
+            var isActorPlayer = _characterRepository.Get(damageEvent.ActorId)!.IsPlayer;
             if (isActorPlayer)
             {
                 _attackCountView.Start();
             }
 
-            if (damage.ActualTargetIdList.Any(x => _characterRepository.Get(x).IsPlayer))
+            if (damageEvent.ActualTargetIdList.Any(x => _characterRepository.Get(x).IsPlayer))
             {
-                var (playerImageCode, animationMode) = damage.AttackList
+                var (playerImageCode, animationMode) = damageEvent.AttackList
                     .Where(x => _characterRepository.Get(x.TargetId).IsPlayer)
                     .All(x => !x.IsHit)
                     ? (PlayerImageCode.Avoidance, Slide)
@@ -52,25 +52,27 @@ namespace BattleScene.InterfaceAdapter.PresenterFacade
                 _playerImageView.StartAnimation(playerImageCode, animationMode);
             }
 
-            var messageCode = GetMessageCode(damage);
+            var messageCode = GetMessageCode(damageEvent);
             _messageView.StartAnimation(messageCode);
             _damageView.StartAnimation();
             _vibrationView.StartAnimation();
         }
 
-        private MessageCode GetMessageCode(BattleEventValueObject damage)
+        private MessageCode GetMessageCode(BattleEventEntity damageEvent)
         {
-            if (damage.IsAvoid) return MessageCode.AvoidMessage;
-            if (DamagesOneself(damage)) return MessageCode.DamageOneselfMessage;
-            return damage.AttacksWeakPoint
+            if (damageEvent.AttackList
+                .All(x => !x.IsHit)) return MessageCode.AvoidMessage;
+            if (DamagesOneself(damageEvent)) return MessageCode.DamageOneselfMessage;
+            return damageEvent.AttackList
+                .Any(x => x.AttacksWeakPoint)
                 ? MessageCode.WeakPointMessage
                 : MessageCode.DamageMessage;
         }
 
-        private bool DamagesOneself(BattleEventValueObject damage)
+        private bool DamagesOneself(BattleEventEntity damageEvent)
         {
-            var value = damage.AttackList
-                .Any(x => Equals(x.TargetId, damage.ActorId));
+            var value = damageEvent.AttackList
+                .Any(x => x.TargetId == damageEvent.ActorId);
             return value;
         }
     }

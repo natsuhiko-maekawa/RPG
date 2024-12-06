@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DataAccess;
@@ -6,6 +7,7 @@ using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
 using BattleScene.UseCases.IService;
+using Utility;
 
 namespace BattleScene.UseCases.Service
 {
@@ -22,7 +24,8 @@ namespace BattleScene.UseCases.Service
             _ailmentRepository = ailmentRepository;
         }
 
-        public IReadOnlyList<BattleEventValueObject> GenerateBattleEvent(
+        [Obsolete]
+        public IReadOnlyList<BattleEventEntity> GenerateBattleEvent(
             CharacterId actorId,
             SkillCommonValueObject skillCommon,
             IReadOnlyList<AilmentValueObject> primeSkillParameterList,
@@ -31,25 +34,49 @@ namespace BattleScene.UseCases.Service
             var ailmentList = primeSkillParameterList.Select(GetAilment).ToList();
             return ailmentList;
 
-            BattleEventValueObject GetAilment(AilmentValueObject ailmentParameter)
+            [Obsolete]
+            BattleEventEntity GetAilment(AilmentValueObject ailmentParameter)
             {
-                var actualTargetIdList = _actualTargetIdPicker.Pick(
-                    actorId: actorId,
-                    targetIdList: targetIdList,
-                    luckRate: ailmentParameter.LuckRate);
-
-                var ailment = BattleEventValueObject.CreateAilment(
-                    actorId: actorId,
-                    skillCode: skillCommon.SkillCode,
-                    ailmentCode: ailmentParameter.AilmentCode,
-                    targetIdList: targetIdList,
-                    actualTargetIdList: actualTargetIdList);
-
-                return ailment;
+                throw new NotImplementedException();
+                // var actualTargetIdList = _actualTargetIdPicker.Pick(
+                //     actorId: actorId,
+                //     targetIdList: targetIdList,
+                //     luckRate: ailmentParameter.LuckRate);
+                //
+                // var ailment = BattleEventValueObject.CreateAilment(
+                //     actorId: actorId,
+                //     skillCode: skillCommon.SkillCode,
+                //     ailmentCode: ailmentParameter.AilmentCode,
+                //     targetIdList: targetIdList,
+                //     actualTargetIdList: actualTargetIdList);
+                //
+                // return ailment;
             }
         }
 
-        public void RegisterBattleEvent(IReadOnlyList<BattleEventValueObject> ailmentList)
+        public void UpdateBattleEvent(
+            IReadOnlyList<BattleEventEntity> buffEventList,
+            SkillCommonValueObject skillCommon,
+            IReadOnlyList<AilmentValueObject> ailmentList,
+            IReadOnlyList<CharacterId> targetIdList)
+        {
+            MyDebug.Assert(buffEventList.Count == ailmentList.Count);
+            foreach (var (battleEvent, ailment) in buffEventList
+                         .Zip(ailmentList, (battleEvent, ailment) => (battleEvent, ailment)))
+            {
+                var actualTargetIdList = _actualTargetIdPicker.Pick(
+                    actorId: battleEvent.ActorId!,
+                    targetIdList: targetIdList,
+                    luckRate: ailment.LuckRate);
+
+                battleEvent.UpdateAilment(
+                    ailmentCode: ailment.AilmentCode,
+                    targetIdList: targetIdList,
+                    actualTargetIdList: actualTargetIdList);
+            }
+        }
+
+        public void ExecuteBattleEvent(IReadOnlyList<BattleEventEntity> ailmentList)
         {
             foreach (var ailment in ailmentList)
             {

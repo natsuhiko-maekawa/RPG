@@ -7,18 +7,18 @@ namespace BattleScene.InterfaceAdapter.State.Turn
 {
     public class SlipDamageState : BaseState
     {
-        private readonly SlipUseCase _slip;
+        private readonly SlipUseCase _useCase;
         private readonly SlipDamagePresenterFacade _facade;
         private readonly TurnStopState _turnStopState;
         private ActionQueue _actionQueue = null!;
         private readonly Action<Unit> _transitionStateAction;
 
         public SlipDamageState(
-            SlipUseCase slip,
+            SlipUseCase useCase,
             SlipDamagePresenterFacade facade,
             TurnStopState turnStopState)
         {
-            _slip = slip;
+            _useCase = useCase;
             _facade = facade;
             _turnStopState = turnStopState;
             _transitionStateAction = _ => TransitionState();
@@ -26,9 +26,9 @@ namespace BattleScene.InterfaceAdapter.State.Turn
 
         public override void Start()
         {
-            Context.Skill = _slip.GetSkillCode(Context.SlipCode);
-            Context.TargetIdList = _slip.GetTargetList();
-            _slip.Commit(Context.SlipCode);
+            Context.Skill = _useCase.GetSkillCode(Context.SlipCode);
+            Context.TargetIdList = _useCase.GetTargetList();
+            _useCase.RegisterBattleEvent(Context.SlipCode);
 
             var outputQueue = _facade.GetOutputQueue(Context.Skill);
             _actionQueue = new ActionQueue(outputQueue);

@@ -5,7 +5,6 @@ using BattleScene.Domain.Code;
 using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
-using BattleScene.Domain.ValueObject;
 
 namespace BattleScene.UseCases.Service
 {
@@ -39,21 +38,17 @@ namespace BattleScene.UseCases.Service
         public void Log(SkillCode skillCode)
         {
             var battleLog = GetLastEntity();
-            battleLog.Update(skillCode);
+            battleLog.UpdateSkill(skillCode);
         }
 
-        public void Log(BattleEventValueObject battleEvent)
+        public void Log(BattleEventEntity battleEvent)
         {
-            var battleLog = GetLastEntity();
-            battleLog.Update(battleEvent);
+            _battleLogRepository.Add(battleEvent);
         }
 
-        public void Log(IReadOnlyList<BattleEventValueObject> battleEventList)
+        public BattleEventEntity GetLast()
         {
-            for (var i = 0; i < battleEventList.Count; ++i)
-            {
-                Log(battleEventList[i]);
-            }
+            return _battleLogRepository.Get().Max();
         }
 
         private (BattleEventId battleLogId, int nextSequence, int turn) GetBattleLogCommonArguments()

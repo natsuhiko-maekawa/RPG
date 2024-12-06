@@ -8,7 +8,7 @@ namespace BattleScene.Domain.ValueObject
 {
     public class BattleEventValueObject
     {
-        public BattleEventCode BattleEventCode { get; private init; } = BattleEventCode.NoAction;
+        public BattleEventCode BattleEventCode { get; private init; } = BattleEventCode.NoEvent;
         public AilmentCode AilmentCode { get; private init; } = AilmentCode.NoAilment;
         public BodyPartCode BodyPartCode { get; private init; } = BodyPartCode.NoBodyPart;
         public BuffCode BuffCode { get; private init; } = BuffCode.NoBuff;
@@ -19,14 +19,14 @@ namespace BattleScene.Domain.ValueObject
         public IReadOnlyList<SlipCode> ResetSlipCodeList { get; private set; } = Array.Empty<SlipCode>();
         public IReadOnlyList<BodyPartCode> ResetBodyPartCodeList { get; private set; } = Array.Empty<BodyPartCode>();
         public CharacterId? ActorId { get; private set; }
-        public IReadOnlyList<CharacterId> TargetIdList { get; private set; } = Array.Empty<CharacterId>();
-        public IReadOnlyList<CharacterId> ActualTargetIdList { get; private init; } = Array.Empty<CharacterId>();
+        public IReadOnlyList<CharacterId> TargetIdList { get; set; } = Array.Empty<CharacterId>();
+        public IReadOnlyList<CharacterId> ActualTargetIdList { get; set; } = Array.Empty<CharacterId>();
         public bool IsFailure => ActualTargetIdList.Count == 0;
         public float Rate { get; private init; }
         public int Turn { get; private init; }
         public LifetimeCode LifetimeCode { get; private init; } = LifetimeCode.NoLifetime;
         public int DestroyCount { get; private init; }
-        public IReadOnlyList<AttackValueObject> AttackList { get; private init; } = Array.Empty<AttackValueObject>();
+        public IReadOnlyList<AttackValueObject> AttackList { get; set; } = Array.Empty<AttackValueObject>();
         public IReadOnlyList<CuringValueObject> CuringList { get; private set; } = Array.Empty<CuringValueObject>();
 
         public IReadOnlyDictionary<CharacterId, int> DamageDictionary =>

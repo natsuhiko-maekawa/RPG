@@ -2,14 +2,14 @@
 
 namespace BattleScene.Domain.ValueObject
 {
-    public class AttackValueObject
+    public struct AttackValueObject // 16 byte
     {
         public AttackValueObject(
             int amount,
             CharacterId targetId,
             bool isHit,
             bool attacksWeakPoint,
-            int index)
+            sbyte index)
         {
             Amount = amount;
             TargetId = targetId;
@@ -22,6 +22,6 @@ namespace BattleScene.Domain.ValueObject
         public CharacterId TargetId { get; }
         public bool IsHit { get; }
         public bool AttacksWeakPoint { get; }
-        public int Index { get; }
+        public sbyte Index { get; }
     }
 }

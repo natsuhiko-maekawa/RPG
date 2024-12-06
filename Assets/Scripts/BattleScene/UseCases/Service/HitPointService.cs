@@ -18,21 +18,27 @@ namespace BattleScene.UseCases.Service
             _characterRepository = characterRepository;
         }
 
-        public void Damaged(BattleEventValueObject damageEvent)
+        public void Damaged(BattleEventEntity damageEvent)
         {
-            foreach (var (damagedCharacterId, damageAmount) in damageEvent.DamageDictionary)
+            foreach (var (damagedCharacterId, damageAmount) in damageEvent.AttackList
+                         .Where(x => x.IsHit)
+                         .GroupBy(x => x.TargetId)
+                         .Select(x => x
+                             .Select(y => (targetId: y.TargetId, amount: y.Amount))
+                             .Aggregate((y, z) => (y.targetId, y.amount + z.amount)))
+                         .ToDictionary(x => x.targetId, x => x.amount))
             {
                 var character = _characterRepository.Get(damagedCharacterId);
                 character.CurrentHitPoint -= damageAmount;
             }
         }
 
-        public void Damaged(IReadOnlyList<BattleEventValueObject> damageEventList)
+        public void Damaged(IReadOnlyList<BattleEventEntity> damageEventList)
         {
             foreach (var damageEvent in damageEventList) Damaged(damageEvent);
         }
 
-        public void Cure(IReadOnlyList<BattleEventValueObject> cureEventList)
+        public void Cure(IReadOnlyList<BattleEventEntity> cureEventList)
         {
             foreach (var curing in cureEventList.SelectMany(x => x.CuringList))
             {

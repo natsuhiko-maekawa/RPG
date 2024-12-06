@@ -24,9 +24,9 @@ namespace BattleScene.InterfaceAdapter.Presenter
             _playerView = playerView;
         }
 
-        public void StartAnimation(BattleEventValueObject cure)
+        public void StartAnimation(BattleEventEntity cureEvent)
         {
-            var curingList = cure.CuringList;
+            var curingList = cureEvent.CuringList;
             var characterDigitList = curingList
                 .GroupBy(x => x.TargetId)
                 .Select(x => new { CharacterId = x.Key, Model = x.Select(GetDigit) })
