@@ -6,6 +6,7 @@ using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
+using Utility;
 
 namespace BattleScene.UseCases.Service
 {
@@ -40,6 +41,11 @@ namespace BattleScene.UseCases.Service
                 .Where(x => x.SlipCode == slipCode)
                 .Where(x => !x.IsFailure)
                 .Max();
+            if (slipEvent is null)
+            {
+                MyDebug.Log($"SlipCode: {slipCode}");
+            }
+
             var actorId = slipEvent.ActorId;
             var targetIdList = slipEvent.TargetIdList;
             var targetId = targetIdList.Single();

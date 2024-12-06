@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DataAccess;
@@ -24,34 +23,32 @@ namespace BattleScene.UseCases.Service
             _bodyPartRepository = bodyPartRepository;
         }
 
-        [Obsolete]
-        public IReadOnlyList<BattleEventValueObject> GenerateBattleEvent(
-            CharacterId actorId,
-            SkillCommonValueObject skillCommon,
-            IReadOnlyList<DestroyValueObject> destroyedParameterList,
-            IReadOnlyList<CharacterId> targetIdList)
-        {
-            throw new NotImplementedException();
-            // var destroyList = destroyedParameterList.Select(GetDestroy).ToList();
-            // return destroyList;
-            //
-            // BattleEventValueObject GetDestroy(DestroyValueObject destroyedParameter)
-            // {
-            //     var actualTargetIdList = _actualTargetIdPicker.Pick(
-            //         actorId: actorId,
-            //         targetIdList: targetIdList,
-            //         luckRate: destroyedParameter.LuckRate);
-            //
-            //     var destroy = BattleEventValueObject.CreateDestroy(
-            //         actorId: actorId,
-            //         targetIdList: targetIdList,
-            //         actualTargetIdList: actualTargetIdList,
-            //         skillCode: skillCommon.SkillCode,
-            //         bodyPartCode: destroyedParameter.BodyPartCode,
-            //         destroyCount: destroyedParameter.Count);
-            //     return destroy;
-            // }
-        }
+        // public IReadOnlyList<BattleEventValueObject> GenerateBattleEvent(
+        //     CharacterId actorId,
+        //     SkillCommonValueObject skillCommon,
+        //     IReadOnlyList<DestroyValueObject> destroyedParameterList,
+        //     IReadOnlyList<CharacterId> targetIdList)
+        // {
+        //     var destroyList = destroyedParameterList.Select(GetDestroy).ToList();
+        //     return destroyList;
+        //
+        //     BattleEventValueObject GetDestroy(DestroyValueObject destroyedParameter)
+        //     {
+        //         var actualTargetIdList = _actualTargetIdPicker.Pick(
+        //             actorId: actorId,
+        //             targetIdList: targetIdList,
+        //             luckRate: destroyedParameter.LuckRate);
+        //
+        //         var destroy = BattleEventValueObject.CreateDestroy(
+        //             actorId: actorId,
+        //             targetIdList: targetIdList,
+        //             actualTargetIdList: actualTargetIdList,
+        //             skillCode: skillCommon.SkillCode,
+        //             bodyPartCode: destroyedParameter.BodyPartCode,
+        //             destroyCount: destroyedParameter.Count);
+        //         return destroy;
+        //     }
+        // }
 
         public void UpdateBattleEvent(
             IReadOnlyList<BattleEventEntity> destroyEventList,

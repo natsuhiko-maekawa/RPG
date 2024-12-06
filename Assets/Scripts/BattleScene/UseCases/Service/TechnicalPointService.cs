@@ -34,13 +34,13 @@ namespace BattleScene.UseCases.Service
             player.CurrentTechnicalPoint -= technicalPoint;
         }
 
-        public void Restore(IReadOnlyList<BattleEventValueObject> restoreList)
+        public void Restore(IReadOnlyList<BattleEventEntity> restoreEventList)
         {
-            foreach (var restore in restoreList)
+            foreach (var restoreEvent in restoreEventList)
             {
                 var player = _characterRepository.Get()
                     .Single(x => x.IsPlayer);
-                var technicalPoint = restore.TechnicalPoint;
+                var technicalPoint = restoreEvent.TechnicalPoint;
                 player.CurrentTechnicalPoint += technicalPoint;
             }
         }

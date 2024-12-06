@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.Entity;
@@ -36,48 +35,45 @@ namespace BattleScene.UseCases.Service
             _hitPoint = hitPoint;
         }
 
-        [Obsolete]
-        public IReadOnlyList<BattleEventValueObject> GenerateBattleEvent(
-            CharacterId actorId,
-            SkillCommonValueObject skillCommon,
-            IReadOnlyList<DamageValueObject> damageList,
-            IReadOnlyList<CharacterId> targetIdList)
-        {
-            return damageList.Select(x => Generate(actorId, skillCommon, x, targetIdList)).ToList();
-        }
-
-        [Obsolete]
-        private BattleEventValueObject Generate(
-            CharacterId actorId,
-            SkillCommonValueObject skillCommon,
-            DamageValueObject damage,
-            IReadOnlyList<CharacterId> targetIdList)
-        {
-            throw new NotImplementedException();
-            // var attackList = new List<AttackValueObject>();
-            // for (var i = 0; i < damage.AttackNumber; ++i)
-            // {
-            //     var attackedTargetIdList = GetAttackedTargetIdList(targetIdList, skillCommon.Range);
-            //     foreach (var attackedTargetId in attackedTargetIdList)
-            //     {
-            //         var attack = new AttackValueObject(
-            //             amount: _damageEvaluator.Evaluate(actorId, attackedTargetId, damage),
-            //             isHit: _isHitEvaluator.Evaluate(actorId, attackedTargetId, damage),
-            //             attacksWeakPoint: _attacksWeakPointEvaluator
-            //                 .Evaluate(actorId, attackedTargetId, damage),
-            //             targetId: attackedTargetId,
-            //             index: i);
-            //         attackList.Add(attack);
-            //     }
-            // }
-            //
-            // attackList.Sort((x, y) => x.Index - y.Index);
-            //
-            // return BattleEventValueObject.CreateDamage(
-            //     actorId: actorId,
-            //     skillCode: skillCommon.SkillCode,
-            //     attackList: attackList.ToList());
-        }
+        // public IReadOnlyList<BattleEventValueObject> GenerateBattleEvent(
+        //     CharacterId actorId,
+        //     SkillCommonValueObject skillCommon,
+        //     IReadOnlyList<DamageValueObject> damageList,
+        //     IReadOnlyList<CharacterId> targetIdList)
+        // {
+        //     return damageList.Select(x => Generate(actorId, skillCommon, x, targetIdList)).ToList();
+        // }
+        //
+        // private BattleEventValueObject Generate(
+        //     CharacterId actorId,
+        //     SkillCommonValueObject skillCommon,
+        //     DamageValueObject damage,
+        //     IReadOnlyList<CharacterId> targetIdList)
+        // {
+        //     var attackList = new List<AttackValueObject>();
+        //     for (var i = 0; i < damage.AttackNumber; ++i)
+        //     {
+        //         var attackedTargetIdList = GetAttackedTargetIdList(targetIdList, skillCommon.Range);
+        //         foreach (var attackedTargetId in attackedTargetIdList)
+        //         {
+        //             var attack = new AttackValueObject(
+        //                 amount: _damageEvaluator.Evaluate(actorId, attackedTargetId, damage),
+        //                 isHit: _isHitEvaluator.Evaluate(actorId, attackedTargetId, damage),
+        //                 attacksWeakPoint: _attacksWeakPointEvaluator
+        //                     .Evaluate(actorId, attackedTargetId, damage),
+        //                 targetId: attackedTargetId,
+        //                 index: i);
+        //             attackList.Add(attack);
+        //         }
+        //     }
+        //
+        //     attackList.Sort((x, y) => x.Index - y.Index);
+        //
+        //     return BattleEventValueObject.CreateDamage(
+        //         actorId: actorId,
+        //         skillCode: skillCommon.SkillCode,
+        //         attackList: attackList.ToList());
+        // }
 
         public void UpdateBattleEvent(
             IReadOnlyList<BattleEventEntity> damageEventList,

@@ -14,7 +14,7 @@ namespace BattleScene.UseCases.IService
         //     IReadOnlyList<CharacterId> targetIdList);
 
         public void UpdateBattleEvent(
-            IReadOnlyList<BattleEventEntity> buffEventList,
+            IReadOnlyList<BattleEventEntity> battleEventList,
             SkillCommonValueObject skillCommon,
             IReadOnlyList<TSkillElement> skillElementList,
             IReadOnlyList<CharacterId> targetIdList);

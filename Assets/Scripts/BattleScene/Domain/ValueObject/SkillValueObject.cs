@@ -41,6 +41,8 @@ namespace BattleScene.Domain.ValueObject
                 DependencyList: dependencyList,
                 Range: range,
                 IsAutoTarget: isAutoTarget,
+                // TODO: Fatalityスキルの場合、trueを設定するよう修正する
+                IsFatality: false,
                 AttackMessageCode: attackMessageCode);
             AilmentParameterList = ailmentList ?? Array.Empty<AilmentValueObject>();
             BuffParameterList = buffList ?? Array.Empty<BuffValueObject>();

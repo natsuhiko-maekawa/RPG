@@ -17,7 +17,7 @@ namespace BattleScene.Domain.Entity
         public SkillCode SkillCode { get; private set; } = SkillCode.NoSkill;
         public IReadOnlyList<CharacterId> TargetIdList { get; private set; } = Array.Empty<CharacterId>();
         public IReadOnlyList<CharacterId> ActualTargetIdList { get; private set; } = Array.Empty<CharacterId>();
-        public bool IsFailure { get; private set; }
+        public bool IsFailure => ActualTargetIdList.Count == 0;
         public AilmentCode AilmentCode { get; private set; }
         public BodyPartCode DestroyedPart { get; private set; } = BodyPartCode.NoBodyPart;
         public int DestroyCount { get; private set; }
@@ -25,10 +25,13 @@ namespace BattleScene.Domain.Entity
         public IReadOnlyList<AttackValueObject> AttackList { get; private set; } = Array.Empty<AttackValueObject>();
         public IReadOnlyList<CuringValueObject> CuringList { get; private set; } = Array.Empty<CuringValueObject>();
         public EnhanceCode EnhanceCode { get; private set; }
+        public IReadOnlyList<AilmentCode> ResetAilmentCodeList { get; private set; } = Array.Empty<AilmentCode>();
+        public IReadOnlyList<BodyPartCode> ResetBodyPartCodeList { get; private set; } = Array.Empty<BodyPartCode>();
+        public IReadOnlyList<SlipCode> ResetSlipCodeList { get; private set; } = Array.Empty<SlipCode>();
         public int TechnicalPoint { get; private set; }
         public SlipCode SlipCode { get; private set; }
         public float Rate { get; private set; } = 1.0f;
-        public int BuffTurn { get; private set; }
+        public int EffectTurn { get; private set; }
         public LifetimeCode LifetimeCode { get; private set; } = LifetimeCode.NoLifetime;
 
         public BattleEventEntity(
@@ -50,6 +53,7 @@ namespace BattleScene.Domain.Entity
         public void UpdateSkill(SkillCode skillCode)
         {
             SkillCode = skillCode;
+            BattleEventCode = BattleEventCode.Skill;
         }
 
         public void UpdateAilment(
@@ -64,18 +68,17 @@ namespace BattleScene.Domain.Entity
 
         public void UpdateBuff(
             BuffCode buffCode,
-            int turn,
+            int effectTurn,
             float rate,
             LifetimeCode lifetimeCode,
-            IReadOnlyList<CharacterId> targetIdList,
-            IReadOnlyList<CharacterId> actualTargetIdList)
+            IReadOnlyList<CharacterId> targetIdList)
         {
             BuffCode = buffCode;
-            BuffTurn = turn;
+            EffectTurn = effectTurn;
             Rate = rate;
             LifetimeCode = lifetimeCode;
             TargetIdList = targetIdList;
-            ActualTargetIdList = actualTargetIdList;
+            ActualTargetIdList = targetIdList;
         }
 
         public void UpdateCure(
@@ -107,6 +110,51 @@ namespace BattleScene.Domain.Entity
             ActualTargetIdList = targetIdList;
         }
 
+        public void UpdateEnhance(
+            EnhanceCode enhanceCode,
+            int effectTurn,
+            LifetimeCode lifetimeCode,
+            IReadOnlyList<CharacterId> targetIdList)
+        {
+            EnhanceCode = enhanceCode;
+            EffectTurn = effectTurn;
+            LifetimeCode = lifetimeCode;
+            TargetIdList = targetIdList;
+            ActualTargetIdList = targetIdList;
+        }
+
+        public void UpdateReset(
+            IReadOnlyList<AilmentCode> resetAilmentCodeList, 
+            IReadOnlyList<BodyPartCode> resetBodyPartCodeList, 
+            IReadOnlyList<SlipCode> resetSlipCodeList,
+            IReadOnlyList<CharacterId> targetIdList)
+        {
+            ResetAilmentCodeList = resetAilmentCodeList;
+            ResetBodyPartCodeList = resetBodyPartCodeList;
+            ResetSlipCodeList = resetSlipCodeList;
+            TargetIdList = targetIdList;
+            ActualTargetIdList = targetIdList;
+        }
+
+        public void UpdateRestore(
+            int technicalPoint,
+            IReadOnlyList<CharacterId> targetIdList)
+        {
+            TechnicalPoint = technicalPoint;
+            TargetIdList = targetIdList;
+            ActualTargetIdList = targetIdList;
+        }
+
+        public void UpdateSlip(
+            SlipCode slipCode,
+            IReadOnlyList<CharacterId> targetIdList,
+            IReadOnlyList<CharacterId> actualTargetIdList)
+        {
+            SlipCode = slipCode;
+            TargetIdList = targetIdList;
+            ActualTargetIdList = actualTargetIdList;
+        }
+
         public void UpdateSlipDamage(
             IReadOnlyList<AttackValueObject> attackList,
             IReadOnlyList<CharacterId> targetIdList)
@@ -117,9 +165,26 @@ namespace BattleScene.Domain.Entity
             ActualTargetIdList = targetIdList;
         }
 
+        public override string ToString()
+        {
+            var value = $@"BattleEventEntity
+  Sequence: {Sequence}
+  Turn: {Turn}
+  Type: {GetEntityType()}";
+            return value;
+        }
+
         public int CompareTo(BattleEventEntity other)
         {
             return Sequence - other.Sequence;
+        }
+
+        private string GetEntityType()
+        {
+            if (ActorId is not null) return $"Character ({ActorId})";
+            if (AilmentCode != AilmentCode.NoAilment) return AilmentCode.ToString();
+            if (SlipCode != SlipCode.NoSlip) return SlipCode.ToString();
+            return string.Empty;
         }
     }
 }

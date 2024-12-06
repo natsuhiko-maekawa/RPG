@@ -25,8 +25,8 @@ namespace BattleScene.UseCases.UseCase
 
         public void ExecuteSkill(CharacterId actorId, SkillValueObject skill)
         {
-            var skillCode = skill.Common.SkillCode;
-            _battleLogger.Log(skillCode);
+            var skillEvent = _battleLogger.GetLast();
+            skillEvent.UpdateSkill(skill.Common.SkillCode);
 
             if (_characterRepository.Get(actorId).IsPlayer)
             {

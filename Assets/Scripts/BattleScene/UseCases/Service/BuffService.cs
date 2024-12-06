@@ -57,11 +57,10 @@ namespace BattleScene.UseCases.Service
             {
                 battleEvent.UpdateBuff(
                     buffCode: buff.BuffCode,
-                    turn: buff.Turn,
+                    effectTurn: buff.Turn,
                     rate: buff.Rate,
                     lifetimeCode: buff.LifetimeCode,
-                    targetIdList: targetIdList,
-                    actualTargetIdList: targetIdList);
+                    targetIdList: targetIdList);
             }
         }
 
@@ -73,7 +72,7 @@ namespace BattleScene.UseCases.Service
                 {
                     var buff1 = _buffRepository.Get((characterId, buff.BuffCode));
                     buff1.Set(
-                        turn: buff.BuffTurn,
+                        turn: buff.EffectTurn,
                         rate: buff.Rate,
                         lifetimeCode: buff.LifetimeCode);
                 }

@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using BattleScene.Domain.Entity;
-using BattleScene.Domain.ValueObject;
 
 namespace BattleScene.UseCases.IService
 {

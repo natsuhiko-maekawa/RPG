@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using BattleScene.Domain.Entity;
@@ -22,31 +21,29 @@ namespace BattleScene.UseCases.Service
             _hitPoint = hitPoint;
         }
 
-        [Obsolete]
-        public IReadOnlyList<BattleEventValueObject> GenerateBattleEvent(
-            CharacterId actorId,
-            SkillCommonValueObject skillCommon,
-            IReadOnlyList<CureValueObject> cureParameterList,
-            IReadOnlyList<CharacterId> targetIdList)
-        {
-            throw new NotImplementedException();
-            // if (cureParameterList.Count != 1)
-            //     throw new InvalidOperationException(ExceptionMessage.ResetParameterIsNoSingle);
-            // var cureParameter = cureParameterList.Single();
-            // var cureAmount = _cureEvaluator.Evaluate(actorId, cureParameter);
-            // var curingList = targetIdList
-            //     .Select(targetId => new CuringValueObject(
-            //         Amount: cureAmount,
-            //         TargetId: targetId))
-            //     .ToList();
-            //
-            // var cure = BattleEventValueObject.CreateCure(
-            //     skillCode: skillCommon.SkillCode,
-            //     actorId: actorId,
-            //     curingList: curingList);
-            // var cureArray = new[] { cure };
-            // return cureArray;
-        }
+        // public IReadOnlyList<BattleEventValueObject> GenerateBattleEvent(
+        //     CharacterId actorId,
+        //     SkillCommonValueObject skillCommon,
+        //     IReadOnlyList<CureValueObject> cureParameterList,
+        //     IReadOnlyList<CharacterId> targetIdList)
+        // {
+        //     if (cureParameterList.Count != 1)
+        //         throw new InvalidOperationException(ExceptionMessage.ResetParameterIsNoSingle);
+        //     var cureParameter = cureParameterList.Single();
+        //     var cureAmount = _cureEvaluator.Evaluate(actorId, cureParameter);
+        //     var curingList = targetIdList
+        //         .Select(targetId => new CuringValueObject(
+        //             Amount: cureAmount,
+        //             TargetId: targetId))
+        //         .ToList();
+        //
+        //     var cure = BattleEventValueObject.CreateCure(
+        //         skillCode: skillCommon.SkillCode,
+        //         actorId: actorId,
+        //         curingList: curingList);
+        //     var cureArray = new[] { cure };
+        //     return cureArray;
+        // }
 
         public void UpdateBattleEvent(
             IReadOnlyList<BattleEventEntity> cureEventList,

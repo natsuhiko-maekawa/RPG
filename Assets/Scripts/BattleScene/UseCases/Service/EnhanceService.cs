@@ -6,6 +6,7 @@ using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
 using BattleScene.UseCases.IService;
+using Utility;
 
 namespace BattleScene.UseCases.Service
 {
@@ -19,52 +20,54 @@ namespace BattleScene.UseCases.Service
             _enhanceRepository = enhanceRepository;
         }
 
-        public IReadOnlyList<BattleEventValueObject> GenerateBattleEvent(
-            CharacterId actorId,
+        // public IReadOnlyList<BattleEventValueObject> GenerateBattleEvent(
+        //     CharacterId actorId,
+        //     SkillCommonValueObject skillCommon,
+        //     IReadOnlyList<EnhanceValueObject> enhanceParameterList,
+        //     IReadOnlyList<CharacterId> targetIdList)
+        // {
+        //     var enhanceList = enhanceParameterList
+        //         .Select(x => BattleEventValueObject.CreateEnhance(
+        //             enhanceCode: x.EnhanceCode,
+        //             skillCode: skillCommon.SkillCode,
+        //             actorId: actorId,
+        //             targetIdList: targetIdList,
+        //             turn: x.Turn,
+        //             lifetimeCode: x.LifetimeCode))
+        //         .ToList();
+        //     return enhanceList;
+        // }
+
+        public void UpdateBattleEvent(
+            IReadOnlyList<BattleEventEntity> enhanceEventList,
             SkillCommonValueObject skillCommon,
-            IReadOnlyList<EnhanceValueObject> enhanceParameterList,
+            IReadOnlyList<EnhanceValueObject> enhanceList,
             IReadOnlyList<CharacterId> targetIdList)
         {
-            var enhanceList = enhanceParameterList
-                .Select(x => BattleEventValueObject.CreateEnhance(
-                    enhanceCode: x.EnhanceCode,
-                    skillCode: skillCommon.SkillCode,
-                    actorId: actorId,
-                    targetIdList: targetIdList,
-                    turn: x.Turn,
-                    lifetimeCode: x.LifetimeCode))
-                .ToList();
-            return enhanceList;
-        }
-
-        public void RegisterBattleEvent(IReadOnlyList<BattleEventValueObject> enhanceList)
-        {
-            foreach (var enhance in enhanceList) Register(enhance);
-        }
-
-        private void Register(BattleEventValueObject enhanceEvent)
-        {
-            foreach (var characterId in enhanceEvent.ActualTargetIdList)
+            MyDebug.Assert(enhanceEventList.Count == enhanceList.Count);
+            foreach (var (battleEvent, enhance) in enhanceEventList
+                         .Zip(enhanceList, (battleEvent, enhance) => (battleEvent, enhance)))
             {
-                var enhance = _enhanceRepository.Get((characterId, enhanceEvent.EnhanceCode));
-                enhance.Set(
-                    turn: enhanceEvent.Turn,
-                    lifetimeCode: enhanceEvent.LifetimeCode);
+                battleEvent.UpdateEnhance(
+                    enhanceCode: enhance.EnhanceCode,
+                    effectTurn: enhance.Turn,
+                    lifetimeCode: enhance.LifetimeCode,
+                    targetIdList: targetIdList);
             }
         }
 
-        public void UpdateBattleEvent(
-            IReadOnlyList<BattleEventEntity> buffEventList,
-            SkillCommonValueObject skillCommon,
-            IReadOnlyList<EnhanceValueObject> skillElementList,
-            IReadOnlyList<CharacterId> targetIdList)
+        public void ExecuteBattleEvent(IReadOnlyList<BattleEventEntity> enhanceEventList)
         {
-            throw new System.NotImplementedException();
-        }
-
-        public void ExecuteBattleEvent(IReadOnlyList<BattleEventEntity> battleEventList)
-        {
-            throw new System.NotImplementedException();
+            foreach (var enhanceEvent in enhanceEventList)
+            {
+                foreach (var characterId in enhanceEvent.ActualTargetIdList)
+                {
+                    var enhance = _enhanceRepository.Get((characterId, enhanceEvent.EnhanceCode));
+                    enhance.Set(
+                        turn: enhanceEvent.Turn,
+                        lifetimeCode: enhanceEvent.LifetimeCode);
+                }
+            }
         }
     }
 }

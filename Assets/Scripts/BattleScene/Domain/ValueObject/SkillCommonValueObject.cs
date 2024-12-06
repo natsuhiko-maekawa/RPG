@@ -9,5 +9,6 @@ namespace BattleScene.Domain.ValueObject
         IReadOnlyList<BodyPartCode> DependencyList,
         Range Range,
         bool IsAutoTarget,
+        bool IsFatality,
         MessageCode AttackMessageCode);
 }

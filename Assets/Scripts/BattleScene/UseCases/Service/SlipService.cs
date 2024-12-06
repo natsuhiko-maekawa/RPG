@@ -6,6 +6,7 @@ using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
 using BattleScene.UseCases.IService;
+using Utility;
 
 namespace BattleScene.UseCases.Service
 {
@@ -22,57 +23,65 @@ namespace BattleScene.UseCases.Service
             _slipRepository = slipRepository;
         }
 
-        public IReadOnlyList<BattleEventValueObject> GenerateBattleEvent(
-            CharacterId actorId,
-            SkillCommonValueObject skillCommon,
-            IReadOnlyList<SlipValueObject> slipParameterList,
-            IReadOnlyList<CharacterId> targetIdList)
-        {
-            var slipList = slipParameterList
-                .Select(GetSlip)
-                .ToList();
-            return slipList;
-
-            BattleEventValueObject GetSlip(SlipValueObject slipParameter)
-            {
-                var actualTargetIdList = _actualTargetIdPicker.Pick(
-                    actorId: actorId,
-                    targetIdList: targetIdList,
-                    luckRate: slipParameter.LuckRate);
-
-                var slip = BattleEventValueObject.CreateSlip(
-                    actorId: actorId,
-                    skillCode: skillCommon.SkillCode,
-                    slipCode: slipParameter.SlipCode,
-                    targetIdList: targetIdList,
-                    actualTargetIdList: actualTargetIdList);
-                return slip;
-            }
-        }
-
-        public void RegisterBattleEvent(IReadOnlyList<BattleEventValueObject> slipValueObject)
-        {
-            foreach (var slip in slipValueObject)
-            {
-                if (slip.ActualTargetIdList.Count != 0)
-                {
-                    _slipRepository.Get(slip.SlipCode).Effects = true;
-                }
-            }
-        }
+        // public IReadOnlyList<BattleEventValueObject> GenerateBattleEvent(
+        //     CharacterId actorId,
+        //     SkillCommonValueObject skillCommon,
+        //     IReadOnlyList<SlipValueObject> slipParameterList,
+        //     IReadOnlyList<CharacterId> targetIdList)
+        // {
+        //     var slipList = slipParameterList
+        //         .Select(GetSlip)
+        //         .ToList();
+        //     return slipList;
+        //
+        //     BattleEventValueObject GetSlip(SlipValueObject slipParameter)
+        //     {
+        //         var actualTargetIdList = _actualTargetIdPicker.Pick(
+        //             actorId: actorId,
+        //             targetIdList: targetIdList,
+        //             luckRate: slipParameter.LuckRate);
+        //
+        //         var slip = BattleEventValueObject.CreateSlip(
+        //             actorId: actorId,
+        //             skillCode: skillCommon.SkillCode,
+        //             slipCode: slipParameter.SlipCode,
+        //             targetIdList: targetIdList,
+        //             actualTargetIdList: actualTargetIdList);
+        //         return slip;
+        //     }
+        // }
 
         public void UpdateBattleEvent(
-            IReadOnlyList<BattleEventEntity> buffEventList,
+            IReadOnlyList<BattleEventEntity> slipEventList,
             SkillCommonValueObject skillCommon,
-            IReadOnlyList<SlipValueObject> skillElementList,
+            IReadOnlyList<SlipValueObject> slipList,
             IReadOnlyList<CharacterId> targetIdList)
         {
-            throw new System.NotImplementedException();
+            MyDebug.Assert(slipEventList.Count == slipList.Count);
+            foreach (var (battleEvent, slip) in slipEventList
+                         .Zip(slipList, (battleEvent, slip) => (battleEvent, slip)))
+            {
+                var actualTargetIdList = _actualTargetIdPicker.Pick(
+                    actorId: battleEvent.ActorId!,
+                    targetIdList: targetIdList,
+                    luckRate: slip.LuckRate);
+
+                battleEvent.UpdateSlip(
+                    slipCode: slip.SlipCode,
+                    targetIdList: targetIdList,
+                    actualTargetIdList: actualTargetIdList);
+            }
         }
 
-        public void ExecuteBattleEvent(IReadOnlyList<BattleEventEntity> battleEventList)
+        public void ExecuteBattleEvent(IReadOnlyList<BattleEventEntity> slipEventList)
         {
-            throw new System.NotImplementedException();
+            foreach (var slipEvent in slipEventList)
+            {
+                if (slipEvent.ActualTargetIdList.Count != 0)
+                {
+                    _slipRepository.Get(slipEvent.SlipCode).Effects = true;
+                }
+            }
         }
     }
 }

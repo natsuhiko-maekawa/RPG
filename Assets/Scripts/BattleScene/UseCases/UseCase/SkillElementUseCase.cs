@@ -48,26 +48,28 @@ namespace BattleScene.UseCases.UseCase
             IReadOnlyList<TSkillElement> skillElementList,
             IReadOnlyList<CharacterId> targetIdList)
         {
-            var skillEvent = _battleLogger.GetLast();
-
             var battleEventList = new BattleEventEntity[skillElementList.Count];
-            battleEventList[0] = skillEvent;
-            if (skillElementList.Count > 0)
+            var skillEvent = _battleLogger.GetLast();
+            var i = 0;
+            if (_battleLogger.IsSingleAsTurn(skillEvent))
             {
-                for (var i = 1; i < skillElementList.Count; ++i)
-                {
-                    var battleEvent = new BattleEventEntity(
-                        battleEventId: new BattleEventId(),
-                        sequence: skillEvent.Sequence + i,
-                        turn: skillEvent.Turn,
-                        actorId: skillEvent.ActorId);
-                    _battleLogger.Log(battleEvent);
-                    battleEventList[i] = battleEvent;
-                }
+                battleEventList[0] = skillEvent;
+                i = 1;
+            }
+
+            for (; i < skillElementList.Count; ++i)
+            {
+                var battleEvent = new BattleEventEntity(
+                    battleEventId: new BattleEventId(),
+                    sequence: skillEvent.Sequence + i,
+                    turn: skillEvent.Turn,
+                    actorId: skillEvent.ActorId);
+                _battleLogger.Log(battleEvent);
+                battleEventList[i] = battleEvent;
             }
 
             _skillElement.UpdateBattleEvent(
-                buffEventList: battleEventList, 
+                battleEventList: battleEventList, 
                 skillCommon: skillCommon,
                 skillElementList: skillElementList,
                 targetIdList: targetIdList);

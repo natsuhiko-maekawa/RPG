@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Runtime.CompilerServices;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DataAccess;
@@ -35,12 +34,6 @@ namespace BattleScene.UseCases.Service
             _battleLogRepository.Add(battleLog);
         }
 
-        public void Log(SkillCode skillCode)
-        {
-            var battleLog = GetLastEntity();
-            battleLog.UpdateSkill(skillCode);
-        }
-
         public void Log(BattleEventEntity battleEvent)
         {
             _battleLogRepository.Add(battleEvent);
@@ -49,6 +42,12 @@ namespace BattleScene.UseCases.Service
         public BattleEventEntity GetLast()
         {
             return _battleLogRepository.Get().Max();
+        }
+
+        public bool IsSingleAsTurn(BattleEventEntity battleEvent)
+        {
+            return _battleLogRepository.Get()
+                .Count(x => x.Sequence == battleEvent.Sequence) == 1;
         }
 
         private (BattleEventId battleLogId, int nextSequence, int turn) GetBattleLogCommonArguments()
