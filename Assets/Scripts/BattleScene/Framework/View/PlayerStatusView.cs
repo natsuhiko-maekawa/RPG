@@ -33,7 +33,7 @@ namespace BattleScene.Framework.View
 
         public void StartPlayerBuffView(BuffViewModel buff)
         {
-            _playerBuffStatusArray[buff.BuffId].Set(buff.State);
+            _playerBuffStatusArray[buff.BuffId].Set(buff.BuffState);
         }
     }
 }
