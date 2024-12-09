@@ -56,7 +56,6 @@ namespace BattleScene.UseCases.Service
             var actorBuffRate = _buffRepository.Get((actorId, BuffCode.Attack)).Rate;
             var targetBuffRate = _buffRepository.Get((targetId, BuffCode.Defence)).Rate;
             var destroyedRate = 1.0f - _bodyPartDomainService.Count(actorId, BodyPartCode.Arm) * 0.5f;
-            // バフから防御、空蝉を切り離し、特殊効果として実装するまで保留
             var targetDefence
                 = _enhanceRepository.TryGet((targetId, EnhanceCode.Defence), out var enhance) && enhance.Effects
                     ? 0.5f
