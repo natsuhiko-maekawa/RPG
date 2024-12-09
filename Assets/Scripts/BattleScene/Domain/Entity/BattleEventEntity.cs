@@ -13,26 +13,29 @@ namespace BattleScene.Domain.Entity
         public int Sequence { get; }
         public int Turn { get; }
         public BattleEventCode BattleEventCode { get; private set; } = BattleEventCode.NoEvent;
+        // TODO: ActorInTurn (OrderedItem)に置換する
         public CharacterId? ActorId { get; }
-        public SkillCode SkillCode { get; private set; } = SkillCode.NoSkill;
-        public IReadOnlyList<CharacterId> TargetIdList { get; private set; } = Array.Empty<CharacterId>();
-        public IReadOnlyList<CharacterId> ActualTargetIdList { get; private set; } = Array.Empty<CharacterId>();
-        public bool IsFailure => ActualTargetIdList.Count == 0;
         public AilmentCode AilmentCode { get; private set; }
-        public BodyPartCode DestroyedPart { get; private set; } = BodyPartCode.NoBodyPart;
-        public int DestroyCount { get; private set; }
-        public BuffCode BuffCode { get; private set; } = BuffCode.NoBuff;
-        public IReadOnlyList<AttackValueObject> AttackList { get; private set; } = Array.Empty<AttackValueObject>();
-        public IReadOnlyList<CuringValueObject> CuringList { get; private set; } = Array.Empty<CuringValueObject>();
-        public EnhanceCode EnhanceCode { get; private set; }
-        public IReadOnlyList<AilmentCode> ResetAilmentCodeList { get; private set; } = Array.Empty<AilmentCode>();
-        public IReadOnlyList<BodyPartCode> ResetBodyPartCodeList { get; private set; } = Array.Empty<BodyPartCode>();
-        public IReadOnlyList<SlipCode> ResetSlipCodeList { get; private set; } = Array.Empty<SlipCode>();
-        public int TechnicalPoint { get; private set; }
         public SlipCode SlipCode { get; private set; }
-        public float Rate { get; private set; } = 1.0f;
-        public int EffectTurn { get; private set; }
-        public LifetimeCode LifetimeCode { get; private set; } = LifetimeCode.NoLifetime;
+
+        public SkillCode SkillCode { get; private set; } = SkillCode.NoSkill;
+
+        [Obsolete] public IReadOnlyList<CharacterId> TargetIdList { get; private set; } = Array.Empty<CharacterId>();
+        [Obsolete] public IReadOnlyList<CharacterId> ActualTargetIdList { get; private set; } = Array.Empty<CharacterId>();
+        [Obsolete] public bool IsFailure => ActualTargetIdList.Count == 0;
+        [Obsolete] public BodyPartCode DestroyedPart { get; private set; } = BodyPartCode.NoBodyPart;
+        [Obsolete] public int DestroyCount { get; private set; }
+        [Obsolete] public BuffCode BuffCode { get; private set; } = BuffCode.NoBuff;
+        [Obsolete] public IReadOnlyList<AttackValueObject> AttackList { get; private set; } = Array.Empty<AttackValueObject>();
+        [Obsolete] public IReadOnlyList<CuringValueObject> CuringList { get; private set; } = Array.Empty<CuringValueObject>();
+        [Obsolete] public EnhanceCode EnhanceCode { get; private set; }
+        [Obsolete] public IReadOnlyList<AilmentCode> ResetAilmentCodeList { get; private set; } = Array.Empty<AilmentCode>();
+        [Obsolete] public IReadOnlyList<BodyPartCode> ResetBodyPartCodeList { get; private set; } = Array.Empty<BodyPartCode>();
+        [Obsolete] public IReadOnlyList<SlipCode> ResetSlipCodeList { get; private set; } = Array.Empty<SlipCode>();
+        [Obsolete] public int TechnicalPoint { get; private set; }
+        [Obsolete] public float Rate { get; private set; } = 1.0f;
+        [Obsolete] public int EffectTurn { get; private set; }
+        [Obsolete] public LifetimeCode LifetimeCode { get; private set; } = LifetimeCode.NoLifetime;
 
         public BattleEventEntity(
             BattleEventId battleEventId,
