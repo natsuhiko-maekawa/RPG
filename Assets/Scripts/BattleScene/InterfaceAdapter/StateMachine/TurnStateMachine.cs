@@ -8,9 +8,8 @@ namespace BattleScene.InterfaceAdapter.StateMachine
     public class TurnStateMachine
     {
         private Context _context = null!;
-        // NOTE: _mementoStackのキャパシティは保持する画面数(4)にする。
-        // 現在は不具合があるため、5にしている。
-        private readonly Stack<Memento> _mementoStack = new(10);
+        // NOTE: 現段階で保持する画面の最大数は4つだが、変更があった場合はキャパシティを修正すること。
+        private readonly Stack<Memento> _mementoStack = new(4);
         private readonly TurnStartState _turnStartState;
 
         public TurnStateMachine(
