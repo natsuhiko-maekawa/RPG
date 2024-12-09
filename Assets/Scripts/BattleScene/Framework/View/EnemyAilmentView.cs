@@ -21,7 +21,7 @@ namespace BattleScene.Framework.View
         {
             _enemyAilmentGrid = GetComponent<EnemyAilmentGrid>();
             _enemyAilmentGrid.SetItem(iconPoolSize);
-            // TODO: 各ViewでiconArrayを作成しているため修正したい
+            // TODO: 各ViewでiconArrayを作成しているため、修正すること。
             _iconArray = MySprite.CreateByGrid(icons, 4, 4);
         }
 

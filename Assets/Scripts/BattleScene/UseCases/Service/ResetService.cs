@@ -56,7 +56,7 @@ namespace BattleScene.UseCases.Service
                     collectionSelector: static x => x.resetEvent.ResetBodyPartCodeList,
                     resultSelector: static (x, resetBodyPartCode) => (x.targetId, resetBodyPartCode))
                 .ToLookup(static x => x.targetId, y => y.resetBodyPartCode);
-            // TODO: 部位破壊を回復する処理を書く
+            // TODO: 部位破壊を回復する処理を書くこと。
             var slipPartLookup = resetEventList
                 .SelectMany(
                     collectionSelector: static resetEvent => resetEvent.TargetIdList,
@@ -65,7 +65,7 @@ namespace BattleScene.UseCases.Service
                     collectionSelector: static x => x.resetEvent.ResetSlipCodeList,
                     resultSelector: static (x, resetSlipCode) => (x.targetId, resetSlipCode))
                 .ToLookup(static x => x.targetId, y => y.resetSlipCode);
-            // TODO: スリップを回復する処理を書く
+            // TODO: スリップを回復する処理を書くこと。
         }
     }
 }

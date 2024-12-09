@@ -28,7 +28,7 @@ namespace BattleScene.UseCases.Service
 
         public SkillValueObject Select(CharacterId actorId)
         {
-            // TODO: 敵がスキルを選択する際、ランダムに選択する仮のアルゴリズムを実装している
+            // TODO: 敵がスキルを選択する際、ランダムに選択する仮のアルゴリズムを実装している。
             var characterTypeCode = _characterRepository.Get(actorId).CharacterTypeCode;
             var skillCodeList = _characterPropertyFactory.Create(characterTypeCode).SkillCodeList;
             var skillCode = _myRandom.Choice(skillCodeList);

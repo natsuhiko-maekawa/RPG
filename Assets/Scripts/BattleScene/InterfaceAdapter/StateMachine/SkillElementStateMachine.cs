@@ -46,7 +46,7 @@ namespace BattleScene.InterfaceAdapter.StateMachine
             return false;
         }
 
-        // QUESTION: イテレータの使い方として正しいかどうかわからない
+        // QUESTION: イテレータの使い方として正しいかどうかわからない。
         // ReSharper disable once CognitiveComplexity
         private IEnumerable<IContext> GetContext(Context context)
         {

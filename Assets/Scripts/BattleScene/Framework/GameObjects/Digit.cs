@@ -26,8 +26,6 @@ namespace BattleScene.Framework.GameObjects
             enabled = false;
         }
 
-        // QUESTION: このディレクティブはいらないかもしれないが、わからない。
-#if UNITY_EDITOR
         private void Reset()
         {
             avoidMessage = "AVOID!";
@@ -43,7 +41,6 @@ namespace BattleScene.Framework.GameObjects
                 MyDebug.LogAssertion(ExceptionMessage.AvoidMessageIsEmpty);
             }
         }
-#endif
 
         public void SetAvoid()
         {

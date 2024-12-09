@@ -25,7 +25,7 @@ namespace BattleScene.InterfaceAdapter.PresenterFacade
 
         public void OutputThenDestroySuccess(BattleEventEntity destroyEvent)
         {
-            // TODO: メッセージを設定する
+            // TODO: メッセージを設定すること。
             _messageView.StartAnimation(MessageCode.NoMessage);
             _playerImageView.StartAnimation(PlayerImageCode.NoImage, Slide);
         }

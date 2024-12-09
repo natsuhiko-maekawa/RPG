@@ -13,7 +13,7 @@ namespace BattleScene.Domain.Entity
         public int Sequence { get; }
         public int Turn { get; }
         public BattleEventCode BattleEventCode { get; private set; } = BattleEventCode.NoEvent;
-        // TODO: ActorInTurn (OrderedItem)に置換する
+        // TODO: 以下のプロパティをActorInTurn (OrderedItem)に置換すること。
         public CharacterId? ActorId { get; }
         public AilmentCode AilmentCode { get; private set; }
         public SlipCode SlipCode { get; private set; }

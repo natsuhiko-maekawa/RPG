@@ -40,7 +40,6 @@ namespace BattleScene.Framework.View
             _arrowRight = GetComponentInChildren<ArrowRight>();
             _arrowUp = GetComponentInChildren<ArrowUp>();
             _arrowDown = GetComponentInChildren<ArrowDown>();
-            // TODO: もっといいGetComponentの方法があるかも
             var root = transform.root;
             _messageView = root.GetComponentInChildren<MessageView>();
             _playerView = root.GetComponentInChildren<PlayerView>();

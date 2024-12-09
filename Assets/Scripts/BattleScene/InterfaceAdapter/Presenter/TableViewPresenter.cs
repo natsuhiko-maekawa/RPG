@@ -42,7 +42,7 @@ namespace BattleScene.InterfaceAdapter.Presenter
                     return new Row(
                         rowName: rowName,
                         rowDescription: rowDescription,
-                        // TODO: 仮で刀のイラストを設定している
+                        // TODO: 仮で刀のイラストを設定している。
                         playerImagePath: _playerImagePathResource.Get(PlayerImageCode.Katana).Path,
                         enabled: enabled,
                         technicalPoint: 0);

@@ -62,7 +62,7 @@ namespace BattleScene.InterfaceAdapter.Presenter
             var skillProperty = _skillPropertyFactory.Get(x);
             var description = _messageResource.Get(skillProperty.Description).Message;
             var playerImagePath = _playerPropertyResource.Get(skillProperty.PlayerImageCode).Path;
-            // TODO: スキル使用可否の判断で部位破壊についても考慮する
+            // TODO: スキル使用可否の判断で部位破壊についても考慮すること。
             var enabled = skill.Common.TechnicalPoint <= _technicalPoint.Get();
             var dto = new Row(
                 rowName: skillProperty.SkillName,

@@ -31,7 +31,7 @@ namespace BattleScene.UseCases.Service
         public void Register(SlipCode slipCode)
         {
             // 現在のスリップコードから直近に罹ったスリップのログを取得する
-            // TODO: 稀にNullReferenceExceptionが発生する
+            // TODO: 稀にNullReferenceExceptionが発生する。
             var slipEvent = _battleLogRepository.Get()
                 .Where(x => x.BattleEventCode is BattleEventCode.Skill or BattleEventCode.FatalitySkill)
                 .Where(x => x.SlipCode == slipCode)

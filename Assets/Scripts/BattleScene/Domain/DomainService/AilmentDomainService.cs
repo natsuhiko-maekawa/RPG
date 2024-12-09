@@ -54,7 +54,7 @@ namespace BattleScene.Domain.DomainService
         /// <returns>状態異常のコードのリスト</returns>
         public IReadOnlyList<AilmentCode> GetCantActionAilmentCodeList(CharacterId characterId)
         {
-            // QUESTION: どちらのLINQのほうが良いかわからない
+            // QUESTION: どちらのLINQのほうが良いかわからない。
             // var ailmentCodeList = _ailmentCollection.Get()
             //     .Where(x => x.CharacterId == characterId)
             //     .Where(x => x.Effects)

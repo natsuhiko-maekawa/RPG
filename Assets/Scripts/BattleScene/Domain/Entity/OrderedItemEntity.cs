@@ -59,7 +59,7 @@ namespace BattleScene.Domain.Entity
         }
     }
 
-    // TODO: ActorInTurnに改名する
+    // TODO: ActorInTurnに改名すること。
     public struct OrderedItem // 16 byte
     {
         public OrderedItemType OrderedItemType { get; }
@@ -92,7 +92,7 @@ namespace BattleScene.Domain.Entity
         }
     }
 
-    // TODO: ActorTypeに改名する
+    // TODO: ActorTypeに改名すること。
     public enum OrderedItemType : byte
     {
         Character,
