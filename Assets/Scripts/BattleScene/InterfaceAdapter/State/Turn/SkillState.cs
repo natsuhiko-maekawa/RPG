@@ -26,9 +26,9 @@ namespace BattleScene.InterfaceAdapter.State.Turn
 
         public override void Start()
         {
-            if (Context.ActorId == null) throw new InvalidOperationException(ExceptionMessage.ContextActorIdIsNull);
-            if (Context.Skill == null) throw new InvalidOperationException(ExceptionMessage.ContextSkillIsNull);
-            _useCase.ExecuteSkill(Context.ActorId, Context.Skill);
+            var actorId = Context.ActorId ?? throw new InvalidOperationException(ExceptionMessage.ContextActorIdIsNull);
+            var skill = Context.Skill ?? throw new InvalidOperationException(ExceptionMessage.ContextSkillIsNull);
+            _useCase.ExecuteSkill(actorId, skill);
             _facade.Output(Context);
         }
 
