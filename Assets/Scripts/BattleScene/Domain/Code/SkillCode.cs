@@ -2,7 +2,7 @@
 
 namespace BattleScene.Domain.Code
 {
-    public enum SkillCode
+    public enum SkillCode : byte
     {
         NoSkill,
         Afterimage,

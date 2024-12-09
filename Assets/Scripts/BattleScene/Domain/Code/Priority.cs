@@ -1,6 +1,6 @@
 ﻿namespace BattleScene.Domain.Code
 {
-    public enum Priority
+    public enum Priority : byte
     {
         Paralysis,
         EnemyParalysis,

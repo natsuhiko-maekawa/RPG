@@ -1,6 +1,6 @@
 ﻿namespace BattleScene.Domain.Code
 {
-    public enum BuffCode
+    public enum BuffCode : byte
     {
         NoBuff,
         Attack,

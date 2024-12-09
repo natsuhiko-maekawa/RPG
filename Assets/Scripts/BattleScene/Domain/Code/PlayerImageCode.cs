@@ -1,6 +1,6 @@
 ﻿namespace BattleScene.Domain.Code
 {
-    public enum PlayerImageCode
+    public enum PlayerImageCode : byte
     {
         NoImage,
         Attack, // TODO: 立ち絵を描く

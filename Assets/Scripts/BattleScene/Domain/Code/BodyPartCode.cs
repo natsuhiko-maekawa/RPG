@@ -1,6 +1,6 @@
 ﻿namespace BattleScene.Domain.Code
 {
-    public enum BodyPartCode
+    public enum BodyPartCode : byte
     {
         NoBodyPart,
         Arm,

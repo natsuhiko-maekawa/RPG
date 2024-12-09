@@ -1,6 +1,6 @@
 ﻿namespace BattleScene.Domain.Code
 {
-    public enum MessageCode
+    public enum MessageCode : ushort
     {
         NoMessage, //  (メッセージ未設定)
         AfterimageMessage, // 敵行動 (残像)

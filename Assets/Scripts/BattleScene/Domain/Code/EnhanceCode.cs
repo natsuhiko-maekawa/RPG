@@ -1,6 +1,6 @@
 namespace BattleScene.Domain.Code
 {
-    public enum EnhanceCode
+    public enum EnhanceCode : byte
     {
         NoEnhance,
         Defence,
