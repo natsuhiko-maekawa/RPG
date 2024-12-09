@@ -7,12 +7,6 @@ namespace BattleScene.UseCases.IService
 {
     public interface ISkillElementService<in TSkillElement>
     {
-        // public IReadOnlyList<BattleEventEntity> GenerateBattleEvent(
-        //     CharacterId actorId,
-        //     SkillCommonValueObject skillCommon,
-        //     IReadOnlyList<TSkillElement> primeSkillParameterList,
-        //     IReadOnlyList<CharacterId> targetIdList);
-
         public void UpdateBattleEvent(
             IReadOnlyList<BattleEventEntity> battleEventList,
             SkillCommonValueObject skillCommon,

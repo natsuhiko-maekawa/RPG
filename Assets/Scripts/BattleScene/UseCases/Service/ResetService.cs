@@ -18,26 +18,6 @@ namespace BattleScene.UseCases.Service
             _ailmentReset = ailmentReset;
         }
 
-        // public IReadOnlyList<BattleEventValueObject> GenerateBattleEvent(
-        //     CharacterId actorId,
-        //     SkillCommonValueObject skillCommon,
-        //     IReadOnlyList<RecoveryValueObject> resetParameterList,
-        //     IReadOnlyList<CharacterId> targetIdList)
-        // {
-        //     if (resetParameterList.Count != 1)
-        //         throw new InvalidOperationException(ExceptionMessage.ResetParameterIsNoSingle);
-        //     var resetParameter = resetParameterList.Single();
-        //     var reset = BattleEventValueObject.CreateReset(
-        //         actorId: actorId,
-        //         skillCode: skillCommon.SkillCode,
-        //         targetIdList: targetIdList,
-        //         ailmentCodeList: resetParameter.AilmentCodeList,
-        //         slipCodeList: resetParameter.SlipCodeList,
-        //         bodyPartCodeList: resetParameter.BodyPartCodeList);
-        //     var resetArray = new[] { reset };
-        //     return resetArray;
-        // }
-
         public void UpdateBattleEvent(
             IReadOnlyList<BattleEventEntity> resetEventList,
             SkillCommonValueObject skillCommon,
@@ -59,11 +39,6 @@ namespace BattleScene.UseCases.Service
 
         public void ExecuteBattleEvent(IReadOnlyList<BattleEventEntity> resetEventList)
         {
-            // var ailmentLookup = resetEventList
-            //     .SelectMany(resetEvent => resetEvent.TargetIdList
-            //         .SelectMany(characterId => resetEvent.ResetAilmentCodeList
-            //             .Select(ailmentCode => (characterId, ailmentCode))))
-            //     .ToLookup(x => x.characterId, y => y.ailmentCode);
             var ailmentLookup = resetEventList
                 .SelectMany(
                     collectionSelector: static resetEvent => resetEvent.TargetIdList,

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DataAccess;
@@ -19,30 +18,6 @@ namespace BattleScene.UseCases.Service
             IRepository<BuffEntity, (CharacterId, BuffCode)> buffRepository)
         {
             _buffRepository = buffRepository;
-        }
-
-        [Obsolete]
-        public IReadOnlyList<BattleEventEntity> GenerateBattleEvent(
-            CharacterId actorId,
-            SkillCommonValueObject skillCommon,
-            IReadOnlyList<BuffValueObject> buffParameterList,
-            IReadOnlyList<CharacterId> targetIdList)
-        {
-            throw new NotImplementedException();
-            // var buffList = buffParameterList.Select(GetBuff).ToList();
-            // return buffList;
-            //
-            // BattleEventValueObject GetBuff(BuffValueObject buffParameter)
-            // {
-            //     return BattleEventValueObject.CreateBuff(
-            //         actorId: actorId,
-            //         targetIdList: targetIdList,
-            //         skillCode: skillCommon.SkillCode,
-            //         buffCode: buffParameter.BuffCode,
-            //         rate: buffParameter.Rate,
-            //         turn: buffParameter.Turn,
-            //         lifetimeCode: buffParameter.LifetimeCode);
-            // }
         }
 
         public void UpdateBattleEvent(

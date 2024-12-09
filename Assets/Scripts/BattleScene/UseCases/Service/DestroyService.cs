@@ -12,43 +12,13 @@ namespace BattleScene.UseCases.Service
 {
     public class DestroyService : ISkillElementService<DestroyValueObject>
     {
-        private readonly IActualTargetIdPickerService _actualTargetIdPicker;
         private readonly IRepository<BodyPartEntity, (CharacterId, BodyPartCode)> _bodyPartRepository;
 
         public DestroyService(
-            IActualTargetIdPickerService actualTargetIdPicker,
             IRepository<BodyPartEntity, (CharacterId, BodyPartCode)> bodyPartRepository)
         {
-            _actualTargetIdPicker = actualTargetIdPicker;
             _bodyPartRepository = bodyPartRepository;
         }
-
-        // public IReadOnlyList<BattleEventValueObject> GenerateBattleEvent(
-        //     CharacterId actorId,
-        //     SkillCommonValueObject skillCommon,
-        //     IReadOnlyList<DestroyValueObject> destroyedParameterList,
-        //     IReadOnlyList<CharacterId> targetIdList)
-        // {
-        //     var destroyList = destroyedParameterList.Select(GetDestroy).ToList();
-        //     return destroyList;
-        //
-        //     BattleEventValueObject GetDestroy(DestroyValueObject destroyedParameter)
-        //     {
-        //         var actualTargetIdList = _actualTargetIdPicker.Pick(
-        //             actorId: actorId,
-        //             targetIdList: targetIdList,
-        //             luckRate: destroyedParameter.LuckRate);
-        //
-        //         var destroy = BattleEventValueObject.CreateDestroy(
-        //             actorId: actorId,
-        //             targetIdList: targetIdList,
-        //             actualTargetIdList: actualTargetIdList,
-        //             skillCode: skillCommon.SkillCode,
-        //             bodyPartCode: destroyedParameter.BodyPartCode,
-        //             destroyCount: destroyedParameter.Count);
-        //         return destroy;
-        //     }
-        // }
 
         public void UpdateBattleEvent(
             IReadOnlyList<BattleEventEntity> destroyEventList,

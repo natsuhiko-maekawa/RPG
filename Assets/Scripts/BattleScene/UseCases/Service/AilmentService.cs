@@ -23,33 +23,6 @@ namespace BattleScene.UseCases.Service
             _ailmentRepository = ailmentRepository;
         }
 
-        // public IReadOnlyList<BattleEventEntity> GenerateBattleEvent(
-        //     CharacterId actorId,
-        //     SkillCommonValueObject skillCommon,
-        //     IReadOnlyList<AilmentValueObject> primeSkillParameterList,
-        //     IReadOnlyList<CharacterId> targetIdList)
-        // {
-        //     var ailmentList = primeSkillParameterList.Select(GetAilment).ToList();
-        //     return ailmentList;
-        //
-        //     BattleEventEntity GetAilment(AilmentValueObject ailmentParameter)
-        //     {
-        //         var actualTargetIdList = _actualTargetIdPicker.Pick(
-        //             actorId: actorId,
-        //             targetIdList: targetIdList,
-        //             luckRate: ailmentParameter.LuckRate);
-        //
-        //         var ailment = BattleEventValueObject.CreateAilment(
-        //             actorId: actorId,
-        //             skillCode: skillCommon.SkillCode,
-        //             ailmentCode: ailmentParameter.AilmentCode,
-        //             targetIdList: targetIdList,
-        //             actualTargetIdList: actualTargetIdList);
-        //
-        //         return ailment;
-        //     }
-        // }
-
         public void UpdateBattleEvent(
             IReadOnlyList<BattleEventEntity> ailmentEventList,
             SkillCommonValueObject skillCommon,

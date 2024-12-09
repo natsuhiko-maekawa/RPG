@@ -24,32 +24,6 @@ namespace BattleScene.UseCases.Service
             _technicalPoint = technicalPoint;
         }
 
-        // public IReadOnlyList<BattleEventEntity> GenerateBattleEvent(
-        //     CharacterId actorId,
-        //     SkillCommonValueObject skillCommon,
-        //     IReadOnlyList<RestoreValueObject> restoreParameterList,
-        //     IReadOnlyList<CharacterId> targetIdList)
-        // {
-        //     if (restoreParameterList.Count != 1)
-        //         throw new InvalidOperationException(ExceptionMessage.RestoreParameterIsNoSingle);
-        //     var currentTechnicalPoint = _technicalPoint.Get();
-        //     var maxTechnicalPoint = _playerPropertyFactory.Create(CharacterTypeCode.Player).TechnicalPoint;
-        //     var restoreList = restoreParameterList.Select(GetRestore).ToList();
-        //     return restoreList;
-        //     
-        //     BattleEventValueObject GetRestore(RestoreValueObject restoreParameter)
-        //     {
-        //         var technicalPoint = Math.Min(restoreParameter.TechnicalPoint,
-        //             maxTechnicalPoint - currentTechnicalPoint);
-        //         var restore = BattleEventValueObject.CreateRestore(
-        //             actorId: actorId,
-        //             skillCode: skillCommon.SkillCode,
-        //             targetIdList: targetIdList,
-        //             technicalPoint: technicalPoint);
-        //         return restore;
-        //     }
-        // }
-
         public void UpdateBattleEvent(
             IReadOnlyList<BattleEventEntity> restoreEventList,
             SkillCommonValueObject skillCommon,

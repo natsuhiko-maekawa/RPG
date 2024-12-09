@@ -35,46 +35,6 @@ namespace BattleScene.UseCases.Service
             _hitPoint = hitPoint;
         }
 
-        // public IReadOnlyList<BattleEventValueObject> GenerateBattleEvent(
-        //     CharacterId actorId,
-        //     SkillCommonValueObject skillCommon,
-        //     IReadOnlyList<DamageValueObject> damageList,
-        //     IReadOnlyList<CharacterId> targetIdList)
-        // {
-        //     return damageList.Select(x => Generate(actorId, skillCommon, x, targetIdList)).ToList();
-        // }
-        //
-        // private BattleEventValueObject Generate(
-        //     CharacterId actorId,
-        //     SkillCommonValueObject skillCommon,
-        //     DamageValueObject damage,
-        //     IReadOnlyList<CharacterId> targetIdList)
-        // {
-        //     var attackList = new List<AttackValueObject>();
-        //     for (var i = 0; i < damage.AttackNumber; ++i)
-        //     {
-        //         var attackedTargetIdList = GetAttackedTargetIdList(targetIdList, skillCommon.Range);
-        //         foreach (var attackedTargetId in attackedTargetIdList)
-        //         {
-        //             var attack = new AttackValueObject(
-        //                 amount: _damageEvaluator.Evaluate(actorId, attackedTargetId, damage),
-        //                 isHit: _isHitEvaluator.Evaluate(actorId, attackedTargetId, damage),
-        //                 attacksWeakPoint: _attacksWeakPointEvaluator
-        //                     .Evaluate(actorId, attackedTargetId, damage),
-        //                 targetId: attackedTargetId,
-        //                 index: i);
-        //             attackList.Add(attack);
-        //         }
-        //     }
-        //
-        //     attackList.Sort((x, y) => x.Index - y.Index);
-        //
-        //     return BattleEventValueObject.CreateDamage(
-        //         actorId: actorId,
-        //         skillCode: skillCommon.SkillCode,
-        //         attackList: attackList.ToList());
-        // }
-
         public void UpdateBattleEvent(
             IReadOnlyList<BattleEventEntity> damageEventList,
             SkillCommonValueObject skillCommon,
@@ -121,9 +81,6 @@ namespace BattleScene.UseCases.Service
                     .Where(x => x.IsSurvive)
                     .Select(x => x.Id))
                 .ToArray();
-            // var surviveTargetIdList = targetIdList
-            //     .Where(x => _characterRepository.Get(x).IsSurvive)
-            //     .ToList();
             if (range != Range.Random) return surviveTargetIdArray;
             var attackedTargetId = _myRandom.Choice(surviveTargetIdArray);
             return new[] { attackedTargetId };

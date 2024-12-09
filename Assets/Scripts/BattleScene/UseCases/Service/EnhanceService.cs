@@ -20,24 +20,6 @@ namespace BattleScene.UseCases.Service
             _enhanceRepository = enhanceRepository;
         }
 
-        // public IReadOnlyList<BattleEventValueObject> GenerateBattleEvent(
-        //     CharacterId actorId,
-        //     SkillCommonValueObject skillCommon,
-        //     IReadOnlyList<EnhanceValueObject> enhanceParameterList,
-        //     IReadOnlyList<CharacterId> targetIdList)
-        // {
-        //     var enhanceList = enhanceParameterList
-        //         .Select(x => BattleEventValueObject.CreateEnhance(
-        //             enhanceCode: x.EnhanceCode,
-        //             skillCode: skillCommon.SkillCode,
-        //             actorId: actorId,
-        //             targetIdList: targetIdList,
-        //             turn: x.Turn,
-        //             lifetimeCode: x.LifetimeCode))
-        //         .ToList();
-        //     return enhanceList;
-        // }
-
         public void UpdateBattleEvent(
             IReadOnlyList<BattleEventEntity> enhanceEventList,
             SkillCommonValueObject skillCommon,

@@ -32,12 +32,6 @@ namespace BattleScene.InterfaceAdapter.State.SkillElement
         /// </summary>
         public override void Start()
         {
-            // var battleEventList = _useCase.GetBattleEventList(
-            //     actorId: Context.ActorId,
-            //     skillCommon: Context.SkillCommon,
-            //     skillElementList: Context.SkillElementList,
-            //     targetIdList: Context.TargetIdList);
-
             var battleEventList = _useCase.ExecuteBattleEvent(
                 skillCommon: Context.SkillCommon,
                 skillElementList: Context.SkillElementList,

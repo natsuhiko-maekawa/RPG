@@ -62,15 +62,6 @@ namespace BattleScene.UseCases.Service
             return (battleLogId, nextSequence, turn);
         }
 
-        private BattleEventEntity GetLastEntity()
-        {
-            var sequence = _battleLogRepository.Get()
-                .Max().Sequence;
-            var battleLogId = FindOrCreateIdBySequence(sequence);
-            var battleLog = _battleLogRepository.Get(battleLogId);
-            return battleLog;
-        }
-
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private BattleEventId FindOrCreateIdBySequence(int sequence)
         {

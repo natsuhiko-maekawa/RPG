@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.Entity;
@@ -25,22 +24,6 @@ namespace BattleScene.UseCases.UseCase
             _skillElement = skillElement;
             _battleLogger = battleLogger;
             _battleLogRepository = battleLogRepository;
-        }
-
-        [Obsolete]
-        public IReadOnlyList<BattleEventEntity> GetBattleEventList(
-            CharacterId actorId,
-            SkillCommonValueObject skillCommon,
-            IReadOnlyList<TSkillElement> skillElementList,
-            IReadOnlyList<CharacterId> targetIdList)
-        {
-            throw new NotImplementedException();
-            // var battleEventList = _skillElement.GenerateBattleEvent(
-            //     actorId: actorId,
-            //     skillCommon: skillCommon,
-            //     primeSkillParameterList: skillElementList,
-            //     targetIdList: targetIdList);
-            // return battleEventList;
         }
 
         public IReadOnlyList<BattleEventEntity> ExecuteBattleEvent(
