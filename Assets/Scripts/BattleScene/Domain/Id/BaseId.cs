@@ -30,6 +30,12 @@ namespace BattleScene.Domain.Id
 
         public static bool operator ==(BaseId? a, BaseId? b)
         {
+            // 少なくとも片方がnullのとき、排他的論理和を使用して両方がnullの場合にtrueを返している。
+            // これは、aがnullのときEqualsメソッドが使用できないためである。
+            // ただし、Object.Equalsメソッドを使えばnull同士の比較もできるため、以下のように書き換えることも可能。
+            // if (a is null || b is null) return false;
+            // return Equals(a, b);
+            // QUESTION: どちらのコードの方が望ましいか。
             if (a is null || b is null) return !(a is null ^ b is null);
             return a.Equals(b);
         }
