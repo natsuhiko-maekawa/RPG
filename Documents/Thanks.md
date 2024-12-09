@@ -2,42 +2,30 @@
 
 ## 使用したツール
 
-| ツール               | 概要                               |
-|-------------------|----------------------------------|
-| Rider             | C#及びRoslynでのコーディングに使用            |
-| PyCharm           | データの変換及び画像の加工を行うスクリプトのコーディングに使用  |
-| git               | バージョン管理に使用                       |
-| sourceTree        | 主にgitのリベースを行う目的で使用               |
-| PlantUML          | UMLの作画に使用                        |
-| Excel             | PlanTextでは管理しづらいデータの管理に使用        |
-| DeepL翻訳           | 英語のwebページや例外メッセージを読む際の補助ツールとして使用 |
-| CLIP STUDIO PAINT | イラストの作画及び画像の加工に使用                |
-| Cubase 12 PRO     | BGMの作曲及び効果音の加工に使用                |
+| ツール               | 概要                        |
+|-------------------|---------------------------|
+| Rider             | C#及びRoslynでのコーディングに使用     |
+| PyCharm           | データの変換等を行うスクリプトのコーディングに使用 |
+| git               | バージョン管理に使用                |
+| SourceTree        | 主にgitのリベースを行う目的で使用        |
+| PlantUML          | UMLの作画に使用                 |
+| Excel             | PlanTextでは管理しづらいデータの管理に使用 |
+| DeepL翻訳           | 英語のwebページ等を読む際の補助ツールとして使用 |
+| CLIP STUDIO PAINT | イラストの作画及び画像の加工に使用         |
+| Cubase 12 PRO     | BGMの作曲及び効果音の加工に使用         |
 
-## 参考にしたサイト
+## 使用したアセット
 
-| サイト                                           | 概要 |
-|-----------------------------------------------|----|
-| [ねこじゃらシティ](https://nekojara.city/)            |    |
-| [LIGHT11](https://light11.hatenadiary.com/)   |    |
-| [はなちるのマイノート](https://www.hanachiru-blog.com/) |    |
-| [テラシュールブログ](https://tsubakit1.hateblo.jp/) 　  |    |
-| [コガネブログ](https://baba-s.hatenablog.com/)      |    |
+| アセット名                                                        | 概要                                  |
+|--------------------------------------------------------------|-------------------------------------|
+| [NuGetForUnity](https://github.com/GlitchEnzo/NuGetForUnity) | UnityでNuGetを利用するために使用               |
+| [R3](https://github.com/Cysharp/R3)                          | UnityでReactive Extensionsを利用するために使用 |
+| [VContainer](https://github.com/hadashiA/VContainer)         | 軽量なDIコンテナ                           |
+| [ZString](https://github.com/Cysharp/ZString)                | Unityでゼロアロケーションの文字列生成を利用するために使用     |
 
-## 参考にした書籍
+## 使用したNuGet
 
-| 書籍                                                                                              | 読了   | 概要                                                                           |
-|-------------------------------------------------------------------------------------------------|------|------------------------------------------------------------------------------|
-| [Pythonでつくるゲーム開発入門講座](https://www.books.or.jp/book-details/9784800712394)                       | 2022 | Unityでゲームを作るにあたっては何の参考にもなっていないが、<br/>自分がゲームプログラミングを始めるきっかけとなった書籍。            |
-| [リーダブルコード](https://www.books.or.jp/book-details/9784873115658)                                  | 2022 | Pythonでコーディングしていた頃に「きれいな」コードを書きたくなり<br/>手に取った書籍。今でも命名の方法に関して影響を受けている。        |
-| Unity Test Framework 完全攻略ガイド 第2版                                                                | 2022 | 同人誌。Unityのユニットテストの方法のすべてをこの書籍で学んだ。                                           |
-| [スッキリわかるJava入門 第3版 実践編](https://www.books.or.jp/book-details/2950112411000000000w)              | 2023 | JavaとC#には類似する箇所がある。この書籍はJavaの入門書ではあるが、<br/>内容はオブジェクト指向プログラミングの解説書に近く、参考になった。 |
-| [良いコード／悪いコードで学ぶ設計入門](https://www.books.or.jp/book-details/9784297127831)                        | 2023 | この本が設計の入門書であるかといえば首をかしげるとこもあるが、<br/>読みやすいコードを書くための指針を示してくれた。                 |
-| [ちょうぜつソフトウェア設計入門](https://www.books.or.jp/book-details/9784297132347)　                          | 2023 | 初心者向けの書籍と上級者向けの書籍の間を埋めてくれる。カプセル化、<br/>多態性、継承、SOLID原則など必要最低限の知識を知ることができた。     |
-| [Good Code, Bad Code](https://www.books.or.jp/book-details/9784798068169)                       | 2024 | 「良いコード／悪いコードで学ぶ設計入門」を読んでいれば、この書籍は<br/>読まなくてもよかった。                            |
-| [プログラマが知るべき97のこと](https://www.books.or.jp/book-details/9784873114798)                         　 | 2024 |                                                                              |
-| [プリンシプルオブプログラミング](https://www.books.or.jp/book-details/9784798046143)                           | 2024 |                                                                              |
-| [ソフトウェア開発現場の「失敗」集めてみた](https://www.books.or.jp/book-details/9784798185187)                      | 2024 |                                                                              |
-| [Clean Architecture](https://www.books.or.jp/book-details/9784048930659)                        | 2024 |                                                                              |
-| [読みやすいコードのガイドライン](https://www.books.or.jp/book-details/9784297130367)                           | 2024 |                                                                              |
-
+| NuGet名           | 概要                                  |
+|------------------|-------------------------------------|
+| R3               | UnityでReactive Extensionsを利用するために使用 |
+| System.Text.Json | UnityでJSONをシリアライズするために使用            |
