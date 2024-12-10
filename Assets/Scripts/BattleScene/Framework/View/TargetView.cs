@@ -42,7 +42,7 @@ namespace BattleScene.Framework.View
             _model = model;
             var frameViewDto = new FrameViewDto(Color.red);
 
-            if (IsEnemySolo(model.OptionTargetList))
+            if (IsEnemySolo(model))
             {
                 if (_index == -1) SetIndex(model);
 
@@ -50,8 +50,10 @@ namespace BattleScene.Framework.View
                 return;
             }
 
-            foreach (var character in model.OptionTargetList)
+            foreach (var index in model.SelectedTargetIndexList)
             {
+                var character = model.OptionTargetList[index];
+
                 if (character.IsPlayer)
                 {
                     _playerView.StartFrameView(frameViewDto);
@@ -75,9 +77,9 @@ namespace BattleScene.Framework.View
             enabled = false;
         }
 
-        private bool IsEnemySolo(IReadOnlyList<Character> characterDtoList)
+        private bool IsEnemySolo(TargetViewModel model)
         {
-            return characterDtoList.Count == 1 && !characterDtoList.Single().IsPlayer;
+            return model.SelectedTargetIndexList.Count == 1 && model.OptionTargetList.All(x => !x.IsPlayer);
         }
 
         private void SetIndex(TargetViewModel model)
@@ -85,17 +87,15 @@ namespace BattleScene.Framework.View
             _enemyPositionList = _enemiesView
                 .Where(x => x.enabled)
                 .Select((_, i) => i)
-                .ToList();
-            var position = model.OptionTargetList.First().Position;
-            _index = _enemyPositionList.First(x => x == position);
-            Debug.Assert(_index != -1);
+                .ToArray();
+            _index = model.SelectedTargetIndexList.Count == 1 ? model.SelectedTargetIndexList.Single() : -1;
         }
 
         private void MoveFrame(Vector2 vector2)
         {
             if (vector2.x == 0) return;
 
-            _enemiesView[_index].StopFrameAnimation();
+            _enemiesView[_enemyPositionList[_index]].StopFrameAnimation();
             _index = vector2.x > 0
                 ? Math.Min(_index + 1, _enemyPositionList.Count - 1)
                 : Math.Max(_index - 1, 0);
@@ -105,8 +105,7 @@ namespace BattleScene.Framework.View
 
         private IReadOnlyList<Character> GetTargetDtoList()
         {
-            // if (_dto == null) return Array.Empty<CharacterStruct>();
-            return IsEnemySolo(_model.OptionTargetList)
+            return IsEnemySolo(_model)
                 ? new[] { Character.CreateEnemy(_enemyPositionList[_index]) }
                 : _model.OptionTargetList;
         }
