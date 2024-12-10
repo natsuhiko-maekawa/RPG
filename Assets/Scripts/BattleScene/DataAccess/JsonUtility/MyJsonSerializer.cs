@@ -1,6 +1,7 @@
 using System.IO;
 using System.Text.Json;
 using System.Threading.Tasks;
+// ReSharper disable UnusedMember.Local
 
 namespace BattleScene.DataAccess.JsonUtility
 {
