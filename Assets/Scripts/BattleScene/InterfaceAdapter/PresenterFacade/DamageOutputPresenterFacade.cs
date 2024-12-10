@@ -1,8 +1,6 @@
 ﻿using System.Linq;
 using BattleScene.Domain.Code;
-using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.Entity;
-using BattleScene.Domain.Id;
 using BattleScene.InterfaceAdapter.Presenter;
 using static BattleScene.InterfaceAdapter.Presenter.PlayerImageViewPresenter.AnimationMode;
 
@@ -10,7 +8,6 @@ namespace BattleScene.InterfaceAdapter.PresenterFacade
 {
     public class DamageOutputPresenterFacade
     {
-        private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
         private readonly AttackCountViewPresenter _attackCountView;
         private readonly DamageViewPresenter _damageView;
         private readonly MessageViewPresenter _messageView;
@@ -18,14 +15,12 @@ namespace BattleScene.InterfaceAdapter.PresenterFacade
         private readonly VibrationViewPresenter _vibrationView;
 
         public DamageOutputPresenterFacade(
-            IRepository<CharacterEntity, CharacterId> characterRepository,
             AttackCountViewPresenter attackCountView,
             DamageViewPresenter damageView,
             MessageViewPresenter messageView,
             PlayerImageViewPresenter playerImageView,
             VibrationViewPresenter vibrationView)
         {
-            _characterRepository = characterRepository;
             _attackCountView = attackCountView;
             _damageView = damageView;
             _messageView = messageView;
@@ -35,16 +30,16 @@ namespace BattleScene.InterfaceAdapter.PresenterFacade
 
         public void Output(BattleEventEntity damageEvent)
         {
-            var isActorPlayer = _characterRepository.Get(damageEvent.ActorId)!.IsPlayer;
+            var isActorPlayer = damageEvent.Actor is { IsPlayer: true };
             if (isActorPlayer)
             {
                 _attackCountView.Start();
             }
 
-            if (damageEvent.ActualTargetIdList.Any(x => _characterRepository.Get(x).IsPlayer))
+            if (damageEvent.TargetList.Any(x => x.IsPlayer))
             {
                 var (playerImageCode, animationMode) = damageEvent.AttackList
-                    .Where(x => _characterRepository.Get(x.TargetId).IsPlayer)
+                    .Where(x => x.Target.IsPlayer)
                     .All(x => !x.IsHit)
                     ? (PlayerImageCode.Avoidance, Slide)
                     : (PlayerImageCode.Damaged, Vibe);
@@ -71,7 +66,8 @@ namespace BattleScene.InterfaceAdapter.PresenterFacade
         private bool DamagesOneself(BattleEventEntity damageEvent)
         {
             var value = damageEvent.AttackList
-                .Any(x => x.TargetId == damageEvent.ActorId);
+                .Select(x => x.Target.Id)
+                .Contains(damageEvent.Actor!.Id);
             return value;
         }
     }

@@ -40,21 +40,11 @@ namespace BattleScene.Domain.DomainService
             return surviveEnemyList;
         }
 
-        // public IReadOnlyList<CharacterId> GetIdSurvive()
-        // {
-        //     return _characterRepository.Get()
-        //         .Where(x => x.CharacterTypeCode != CharacterTypeCode.Player)
-        //         .Where(x => x.IsSurvive)
-        //         .Select(x => x.Id)
-        //         .ToList();
-        // }
-
-        public CharacterId GetIdByPosition(int position)
+        public CharacterEntity GetByPosition(int position)
         {
             return _characterRepository.Get()
                 .Where(x => x.CharacterTypeCode != CharacterTypeCode.Player)
-                .Single(x => x.Position == position)
-                .Id;
+                .Single(x => x.Position == position);
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using BattleScene.Domain.Id;
+using BattleScene.Domain.Entity;
 
 namespace BattleScene.InterfaceAdapter.State.Turn
 {
@@ -12,20 +12,9 @@ namespace BattleScene.InterfaceAdapter.State.Turn
             Context = context;
         }
 
-        public virtual void Start()
-        {
-        }
-
-        public virtual void Select()
-        {
-        }
-
-        public virtual void Select(int id)
-        {
-        }
-
-        public virtual void Select(IReadOnlyList<CharacterId> targetIdList)
-        {
-        }
+        public virtual void Start() { }
+        public virtual void Select() { }
+        public virtual void Select(int id) { }
+        public virtual void Select(IReadOnlyList<CharacterEntity> targetList) { }
     }
 }

@@ -14,8 +14,8 @@ namespace BattleScene.InterfaceAdapter.State.Turn
 
         public override void Start()
         {
-            if (Context.ActorId is null) throw new InvalidOperationException();
-            Context.TargetIdList = new[] { Context.ActorId };
+            var actor = Context.Actor ?? throw new InvalidOperationException();
+            Context.TargetList = new[] { actor };
             Context.TransitionTo(_skillState);
         }
     }

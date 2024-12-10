@@ -1,7 +1,5 @@
 using System.Linq;
-using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.Entity;
-using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
 using BattleScene.Framework.View;
 using BattleScene.Framework.ViewModel;
@@ -10,16 +8,13 @@ namespace BattleScene.InterfaceAdapter.Presenter
 {
     public class CureViewPresenter
     {
-        private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
         private readonly EnemiesView _enemiesView;
         private readonly PlayerView _playerView;
 
         public CureViewPresenter(
-            IRepository<CharacterEntity, CharacterId> characterRepository,
             EnemiesView enemiesView,
             PlayerView playerView)
         {
-            _characterRepository = characterRepository;
             _enemiesView = enemiesView;
             _playerView = playerView;
         }
@@ -27,21 +22,21 @@ namespace BattleScene.InterfaceAdapter.Presenter
         public void StartAnimation(BattleEventEntity cureEvent)
         {
             var curingList = cureEvent.CuringList;
-            var characterDigitList = curingList
-                .GroupBy(x => x.TargetId)
-                .Select(x => new { CharacterId = x.Key, Model = x.Select(GetDigit) })
-                .ToList();
+            var characterDigitArray = curingList
+                .GroupBy(x => x.Target)
+                .Select(x =>  (character: x.Key, model: x.Select(y => GetDigit(y))) )
+                .ToArray();
 
-            var playerDigitList = characterDigitList
-                .Where(x => IsPlayer(x.CharacterId))
-                .SelectMany(x => x.Model)
-                .ToList();
-            var playerModel = new DigitListViewModel(playerDigitList);
+            var playerDigitArray = characterDigitArray
+                .Where(x => x.character.IsPlayer)
+                .SelectMany(x => x.model)
+                .ToArray();
+            var playerModel = new DigitListViewModel(playerDigitArray);
             _playerView.StartPlayerDigitView(playerModel);
 
-            var enemyDigitDict = characterDigitList
-                .Where(x => !IsPlayer(x.CharacterId))
-                .ToDictionary(k => _characterRepository.Get(k.CharacterId).Position, v => v.Model.ToList());
+            var enemyDigitDict = characterDigitArray
+                .Where(x => !x.character.IsPlayer)
+                .ToDictionary(k => k.character.Position, v => v.model.ToArray());
             foreach (var (position, digitList) in enemyDigitDict)
             {
                 var enemyModel = new DigitListViewModel(digitList);
@@ -49,9 +44,7 @@ namespace BattleScene.InterfaceAdapter.Presenter
             }
         }
 
-        private bool IsPlayer(CharacterId characterId) => _characterRepository.Get(characterId).IsPlayer;
-
-        private DigitViewModel GetDigit(CuringValueObject curing)
+        private static DigitViewModel GetDigit(CuringValueObject curing)
         {
             var digit = new DigitViewModel(
                 DigitType: DigitType.Cure,

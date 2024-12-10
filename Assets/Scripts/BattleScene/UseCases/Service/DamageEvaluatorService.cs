@@ -36,28 +36,28 @@ namespace BattleScene.UseCases.Service
             _myRandom = myRandom;
         }
 
-        public int Evaluate(CharacterId actorId, CharacterId targetId, DamageValueObject damage)
+        public int Evaluate(CharacterEntity actor, CharacterEntity target, DamageValueObject damage)
         {
             return damage.DamageExpressionCode switch
             {
-                DamageExpressionCode.Basic => BasicEvaluate(actorId, targetId, damage),
-                DamageExpressionCode.Constant => ConstantEvaluate(actorId, damage),
-                DamageExpressionCode.Slip => SlipEvaluate(actorId, targetId),
+                DamageExpressionCode.Basic => BasicEvaluate(actor, target, damage),
+                DamageExpressionCode.Constant => ConstantEvaluate(actor, damage),
+                DamageExpressionCode.Slip => SlipEvaluate(actor, target),
                 _ => throw new ArgumentOutOfRangeException()
             };
         }
 
-        private int BasicEvaluate(CharacterId actorId, CharacterId targetId, DamageValueObject damage)
+        private int BasicEvaluate(CharacterEntity actor, CharacterEntity target, DamageValueObject damage)
         {
-            var actorStrength = _characterPropertyFactory.Create(actorId).Strength;
-            var targetVitality = _characterPropertyFactory.Create(targetId).Vitality;
+            var actorStrength = _characterPropertyFactory.Create(actor.Id).Strength;
+            var targetVitality = _characterPropertyFactory.Create(target.Id).Vitality;
             var actorMatAttr = damage.MatAttrCode;
-            var targetWeekPoint = _characterPropertyFactory.Create(targetId).WeakPointsCode;
-            var actorBuffRate = _buffRepository.Get((actorId, BuffCode.Attack)).Rate;
-            var targetBuffRate = _buffRepository.Get((targetId, BuffCode.Defence)).Rate;
-            var destroyedRate = 1.0f - _bodyPartDomainService.Count(actorId, BodyPartCode.Arm) * 0.5f;
+            var targetWeekPoint = _characterPropertyFactory.Create(target.Id).WeakPointsCode;
+            var actorBuffRate = _buffRepository.Get((actor.Id, BuffCode.Attack)).Rate;
+            var targetBuffRate = _buffRepository.Get((target.Id, BuffCode.Defence)).Rate;
+            var destroyedRate = 1.0f - _bodyPartDomainService.Count(actor.Id, BodyPartCode.Arm) * 0.5f;
             var targetDefence
-                = _enhanceRepository.TryGet((targetId, EnhanceCode.Defence), out var enhance) && enhance.Effects
+                = _enhanceRepository.TryGet((target.Id, EnhanceCode.Defence), out var enhance) && enhance.Effects
                     ? 0.5f
                     : MultiplicationIdentityElement;
             var rate = damage.DamageRate;
@@ -67,23 +67,23 @@ namespace BattleScene.UseCases.Service
                 / targetBuffRate * destroyedRate * targetDefence * rate * 1.5f) + _myRandom.Range(1, 3);
         }
 
-        private int ConstantEvaluate(CharacterId actorId, DamageValueObject damage)
+        private int ConstantEvaluate(CharacterEntity actor, DamageValueObject damage)
         {
-            var actorStrength = _characterPropertyFactory.Create(actorId).Strength;
+            var actorStrength = _characterPropertyFactory.Create(actor.Id).Strength;
             const int targetVitality = 1;
-            var actorBuffRate = _buffRepository.Get((actorId, BuffCode.Attack)).Rate;
+            var actorBuffRate = _buffRepository.Get((actor.Id, BuffCode.Attack)).Rate;
             const int targetBuffRate = 1;
             var destroyedRate
-                = MultiplicationIdentityElement - _bodyPartDomainService.Count(actorId, BodyPartCode.Arm) * 0.5f;
+                = MultiplicationIdentityElement - _bodyPartDomainService.Count(actor.Id, BodyPartCode.Arm) * 0.5f;
             var rate = damage.DamageRate;
             return (int)(actorStrength * actorStrength / (float)targetVitality * actorBuffRate / targetBuffRate
                          * destroyedRate * rate * 1.5f) + _myRandom.Range(1, 3);
         }
 
-        private int SlipEvaluate(CharacterId actorId, CharacterId targetId)
+        private int SlipEvaluate(CharacterEntity actor, CharacterEntity target)
         {
-            var enemyIntelligence = _characterPropertyFactory.Create(actorId).Intelligence;
-            var playerIntelligence = _characterPropertyFactory.Create(targetId).Intelligence;
+            var enemyIntelligence = _characterPropertyFactory.Create(actor.Id).Intelligence;
+            var playerIntelligence = _characterPropertyFactory.Create(target.Id).Intelligence;
             var damageRate = _battlePropertyFactory.Create().SlipDefaultDamageRate;
             var damage = (int)(enemyIntelligence * enemyIntelligence / (float)playerIntelligence * damageRate)
                          + _myRandom.Range(0, 2);

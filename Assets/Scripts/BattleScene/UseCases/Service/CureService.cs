@@ -1,7 +1,7 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using BattleScene.Domain.Entity;
-using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
 using BattleScene.UseCases.IService;
 using Utility;
@@ -25,24 +25,23 @@ namespace BattleScene.UseCases.Service
             IReadOnlyList<BattleEventEntity> cureEventList,
             SkillCommonValueObject skillCommon,
             IReadOnlyList<CureValueObject> cureList,
-            IReadOnlyList<CharacterId> targetIdList)
+            IReadOnlyList<CharacterEntity> targetList)
         {
             MyDebug.Assert(cureList.Count == 1);
             MyDebug.Assert(cureEventList.Count == 1);
             var cureEvent = cureEventList.Single();
-            var actorId = cureEvent.ActorId;
-            MyDebug.Assert(actorId is not null);
+            var actor = cureEvent.Actor ?? throw new InvalidOperationException();
             var cure = cureList.Single();
-            var cureAmount = _cureEvaluator.Evaluate(actorId!, cure);
-            var curingList = targetIdList
+            var cureAmount = _cureEvaluator.Evaluate(actor, cure);
+            var curingList = targetList
                 .Select(targetId => new CuringValueObject(
                     amount: cureAmount,
-                    targetId: targetId))
+                    target: targetId))
                 .ToArray();
 
             cureEvent.UpdateCure(
                     curingList: curingList,
-                    targetIdList: targetIdList);
+                    targetList: targetList);
         }
 
         public void ExecuteBattleEvent(IReadOnlyList<BattleEventEntity> cureEventList)

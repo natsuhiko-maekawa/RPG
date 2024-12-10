@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.Entity;
-using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
 using BattleScene.InterfaceAdapter.StateMachine;
 using Utility;
@@ -13,12 +12,10 @@ namespace BattleScene.InterfaceAdapter.State.Turn
     {
         private BaseState _state = null!;
 
-        [Obsolete] public CharacterId? ActorId { get; set; }
         public CharacterEntity? Actor { get; set; }
         public AilmentCode AilmentCode { get; set; }
         public SlipCode SlipCode { get; set; }
         public SkillValueObject? Skill { get; set; }
-        [Obsolete] public IReadOnlyList<CharacterId> TargetIdList { get; set; } = Array.Empty<CharacterId>();
         public IReadOnlyList<CharacterEntity> TargetList { get; set; } = Array.Empty<CharacterEntity>();
 
         public Context(BaseState state)
@@ -40,7 +37,7 @@ namespace BattleScene.InterfaceAdapter.State.Turn
 
         public void Select(int id) => _state.Select(id);
 
-        public void Select(IReadOnlyList<CharacterId> targetIdList) => _state.Select(targetIdList);
+        public void Select(IReadOnlyList<CharacterEntity> targetList) => _state.Select(targetList);
 
         public Memento Save()
         {

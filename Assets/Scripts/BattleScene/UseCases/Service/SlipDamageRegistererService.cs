@@ -42,10 +42,9 @@ namespace BattleScene.UseCases.Service
                 MyDebug.Log($"SlipCode: {slipCode}");
             }
 
-            var actorId = slipEvent.ActorId;
-            var targetIdList = slipEvent.TargetIdList;
-            var targetId = targetIdList.Single();
-            if (actorId is null) throw new InvalidOperationException();
+            var actor = slipEvent.Actor ?? throw new InvalidOperationException();
+            var targetList = slipEvent.TargetList;
+            var target = targetList.Single();
 
             var slipDamageEvent = _battleLogger.GetLast();
 
@@ -55,15 +54,15 @@ namespace BattleScene.UseCases.Service
                 damageExpressionCode: DamageExpressionCode.Slip);
 
             var attack = new AttackValueObject(
-                amount: _damageEvaluator.Evaluate(actorId, targetId, damageParameter),
-                targetId: targetId,
+                amount: _damageEvaluator.Evaluate(actor, target, damageParameter),
+                target: target,
                 isHit: true,
                 attacksWeakPoint: false,
                 index: 0);
 
             slipDamageEvent.UpdateSlipDamage(
                 attackList: new[] { attack },
-                targetIdList: targetIdList);
+                targetList: targetList);
         }
     }
 }

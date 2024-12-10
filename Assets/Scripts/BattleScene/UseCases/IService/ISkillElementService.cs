@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using BattleScene.Domain.Entity;
-using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
 
 namespace BattleScene.UseCases.IService
@@ -11,7 +10,7 @@ namespace BattleScene.UseCases.IService
             IReadOnlyList<BattleEventEntity> battleEventList,
             SkillCommonValueObject skillCommon,
             IReadOnlyList<TSkillElement> skillElementList,
-            IReadOnlyList<CharacterId> targetIdList);
+            IReadOnlyList<CharacterEntity> targetList);
 
         public void ExecuteBattleEvent(IReadOnlyList<BattleEventEntity> battleEventList);
     }

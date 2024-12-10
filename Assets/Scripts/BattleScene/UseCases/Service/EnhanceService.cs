@@ -24,7 +24,7 @@ namespace BattleScene.UseCases.Service
             IReadOnlyList<BattleEventEntity> enhanceEventList,
             SkillCommonValueObject skillCommon,
             IReadOnlyList<EnhanceValueObject> enhanceList,
-            IReadOnlyList<CharacterId> targetIdList)
+            IReadOnlyList<CharacterEntity> targetList)
         {
             MyDebug.Assert(enhanceEventList.Count == enhanceList.Count);
             foreach (var (battleEvent, enhance) in enhanceEventList
@@ -34,7 +34,7 @@ namespace BattleScene.UseCases.Service
                     enhanceCode: enhance.EnhanceCode,
                     effectTurn: enhance.Turn,
                     lifetimeCode: enhance.LifetimeCode,
-                    targetIdList: targetIdList);
+                    targetList: targetList);
             }
         }
 
@@ -42,9 +42,9 @@ namespace BattleScene.UseCases.Service
         {
             foreach (var enhanceEvent in enhanceEventList)
             {
-                foreach (var characterId in enhanceEvent.ActualTargetIdList)
+                foreach (var target in enhanceEvent.ActualTargetList)
                 {
-                    var enhance = _enhanceRepository.Get((characterId, enhanceEvent.EnhanceCode));
+                    var enhance = _enhanceRepository.Get((target.Id, enhanceEvent.EnhanceCode));
                     enhance.Set(
                         turn: enhanceEvent.Turn,
                         lifetimeCode: enhanceEvent.LifetimeCode);

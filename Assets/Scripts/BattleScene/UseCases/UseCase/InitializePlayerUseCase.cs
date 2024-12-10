@@ -19,7 +19,7 @@ namespace BattleScene.UseCases.UseCase
         public void Initialize()
         {
             _player.Add();
-            var playerId = _player.GetId();
+            var playerId = _player.Get().Id;
             _characterCreator.Create(playerId, isPlayer: true);
         }
     }

@@ -4,7 +4,6 @@ using BattleScene.Domain.Code;
 using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Entity;
-using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
 using BattleScene.UseCases.IService;
 using BattleScene.UseCases.Service;
@@ -60,9 +59,9 @@ namespace BattleScene.UseCases.UseCase
             return skill;
         }
 
-        public IReadOnlyList<CharacterId> GetTargetList()
+        public IReadOnlyList<CharacterEntity> GetTargetList()
         {
-            var targetArray = new[] { _player.GetId() };
+            var targetArray = new[] { _player.Get() };
             return targetArray;
         }
     }

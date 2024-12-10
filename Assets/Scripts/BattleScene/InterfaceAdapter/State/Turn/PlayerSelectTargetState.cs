@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using BattleScene.Domain.Id;
+using BattleScene.Domain.Entity;
 using BattleScene.InterfaceAdapter.PresenterFacade;
 
 namespace BattleScene.InterfaceAdapter.State.Turn
@@ -24,10 +24,10 @@ namespace BattleScene.InterfaceAdapter.State.Turn
             _facade.Output(Context.Actor!, Context.Skill);
         }
 
-        public override void Select(IReadOnlyList<CharacterId> targetIdList)
+        public override void Select(IReadOnlyList<CharacterEntity> targetList)
         {
             _facade.Stop();
-            Context.TargetIdList = targetIdList;
+            Context.TargetList = targetList;
             Context.TransitionTo(_skillState);
         }
 

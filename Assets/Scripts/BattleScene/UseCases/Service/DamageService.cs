@@ -1,8 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.Entity;
-using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
 using BattleScene.UseCases.IService;
 using Utility;
@@ -15,7 +14,6 @@ namespace BattleScene.UseCases.Service
         private readonly DamageEvaluatorService _damageEvaluator;
         private readonly IsHitEvaluatorService _isHitEvaluator;
         private readonly AttacksWeakPointEvaluatorService _attacksWeakPointEvaluator;
-        private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
         private readonly IMyRandomService _myRandom;
         private readonly IHitPointService _hitPoint;
 
@@ -23,14 +21,12 @@ namespace BattleScene.UseCases.Service
             DamageEvaluatorService damageEvaluator,
             IsHitEvaluatorService isHitEvaluator,
             AttacksWeakPointEvaluatorService attacksWeakPointEvaluator,
-            IRepository<CharacterEntity, CharacterId> characterRepository,
             IMyRandomService myRandom,
             IHitPointService hitPoint)
         {
             _damageEvaluator = damageEvaluator;
             _isHitEvaluator = isHitEvaluator;
             _attacksWeakPointEvaluator = attacksWeakPointEvaluator;
-            _characterRepository = characterRepository;
             _myRandom = myRandom;
             _hitPoint = hitPoint;
         }
@@ -39,24 +35,25 @@ namespace BattleScene.UseCases.Service
             IReadOnlyList<BattleEventEntity> damageEventList,
             SkillCommonValueObject skillCommon,
             IReadOnlyList<DamageValueObject> damageList,
-            IReadOnlyList<CharacterId> targetIdList)
+            IReadOnlyList<CharacterEntity> targetList)
         {
             MyDebug.Assert(damageEventList.Count == damageList.Count);
             foreach (var (battleEvent, damage) in damageEventList
                          .Zip(damageList, (battleEvent, damage) => (battleEvent, damage)))
             {
                 var attackList = new List<AttackValueObject>();
-                var actorId = damageEventList.Select(x => x.ActorId).First();
+                var actor = damageEventList.Select(x => x.Actor).First();
+                actor = actor ?? throw new InvalidOperationException();
                 for (sbyte i = 0; i < damage.AttackNumber; ++i)
                 {
-                    var attackedTargetIdList = GetAttackedTargetIdList(targetIdList, skillCommon.Range);
-                    foreach (var attackedTargetId in attackedTargetIdList)
+                    var attackedTargetList = GetAttackedTargetList(targetList, skillCommon.Range);
+                    foreach (var attackedTarget in attackedTargetList)
                     {
                         var attack = new AttackValueObject(
-                            amount: _damageEvaluator.Evaluate(actorId!, attackedTargetId, damage),
-                            isHit: _isHitEvaluator.Evaluate(actorId!, attackedTargetId, damage),
-                            attacksWeakPoint: _attacksWeakPointEvaluator.Evaluate(actorId!, attackedTargetId, damage),
-                            targetId: attackedTargetId,
+                            amount: _damageEvaluator.Evaluate(actor, attackedTarget, damage),
+                            isHit: _isHitEvaluator.Evaluate(actor, attackedTarget, damage),
+                            attacksWeakPoint: _attacksWeakPointEvaluator.Evaluate(actor, attackedTarget, damage),
+                            target: attackedTarget,
                             index: i);
                         attackList.Add(attack);
                     }
@@ -65,7 +62,7 @@ namespace BattleScene.UseCases.Service
                 attackList.Sort((x, y) => x.Index - y.Index);
                 battleEvent.UpdateDamage(
                     attackList: attackList,
-                    targetIdList: targetIdList);
+                    targetList: targetList);
             }
         }
 
@@ -74,15 +71,13 @@ namespace BattleScene.UseCases.Service
             _hitPoint.Damaged(damageEventList);
         }
 
-        private IReadOnlyList<CharacterId> GetAttackedTargetIdList(IReadOnlyList<CharacterId> targetIdList, Range range)
+        private IReadOnlyList<CharacterEntity> GetAttackedTargetList(IReadOnlyList<CharacterEntity> targetList, Range range)
         {
-            var surviveTargetIdArray = targetIdList
-                .Intersect(_characterRepository.Get()
-                    .Where(x => x.IsSurvive)
-                    .Select(x => x.Id))
+            var surviveTargetArray = targetList
+                .Where(x => x.IsSurvive)
                 .ToArray();
-            if (range != Range.Random) return surviveTargetIdArray;
-            var attackedTargetId = _myRandom.Choice(surviveTargetIdArray);
+            if (range != Range.Random) return surviveTargetArray;
+            var attackedTargetId = _myRandom.Choice(surviveTargetArray);
             return new[] { attackedTargetId };
         }
     }

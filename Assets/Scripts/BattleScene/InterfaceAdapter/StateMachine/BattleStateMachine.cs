@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using BattleScene.Domain.DomainService;
-using BattleScene.Domain.Id;
+using BattleScene.Domain.Entity;
 using BattleScene.Framework.InputActions;
 using BattleScene.Framework.ViewModel;
 using BattleScene.InterfaceAdapter.State.Battle;
@@ -36,16 +36,16 @@ namespace BattleScene.InterfaceAdapter.StateMachine
         public void OnSelect() => _context.Select();
         public void OnSelect(int id) => _context.Select(id);
         public void OnSelect(IReadOnlyList<Character> targetDtoList) 
-            => _context.Select(ToCharacterIdList(targetDtoList));
+            => _context.Select(ToCharacterList(targetDtoList));
         public void OnCancel() => _context.Cancel();
 
-        private IReadOnlyList<CharacterId> ToCharacterIdList(IReadOnlyList<Character> characterDtoList)
+        private IReadOnlyList<CharacterEntity> ToCharacterList(IReadOnlyList<Character> characterModelList)
         {
-            return characterDtoList
+            return characterModelList
                 .Select(x => x.IsPlayer
-                    ? _player.GetId()
-                    : _enemies.GetIdByPosition(x.Position))
-                .ToList();
+                    ? _player.Get()
+                    : _enemies.GetByPosition(x.Position))
+                .ToArray();
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using BattleScene.Domain.Id;
+using BattleScene.Domain.Entity;
 using BattleScene.InterfaceAdapter.StateMachine;
 
 namespace BattleScene.InterfaceAdapter.State.Battle
@@ -30,9 +30,9 @@ namespace BattleScene.InterfaceAdapter.State.Battle
             _turnStateMachine.OnSelect(id);
         }
 
-        public override void Select(IReadOnlyList<CharacterId> targetIdList)
+        public override void Select(IReadOnlyList<CharacterEntity> targetList)
         {
-            _turnStateMachine.OnSelect(targetIdList);
+            _turnStateMachine.OnSelect(targetList);
         }
 
         public override void Cancel()

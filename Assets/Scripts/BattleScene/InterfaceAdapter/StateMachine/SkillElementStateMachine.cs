@@ -122,16 +122,16 @@ namespace BattleScene.InterfaceAdapter.StateMachine
             IContext CreateContext<TSkillElement>(
                 IReadOnlyList<TSkillElement> skillElementList)
             {
-                if (context.ActorId is null) throw new InvalidOperationException(ExceptionMessage.ContextActorIdIsNull);
+                if (context.Actor is null) throw new InvalidOperationException(ExceptionMessage.ContextActorIdIsNull);
 
                 var skillElementStartState =
                     _container.Resolve<SkillElementStartState<TSkillElement>>();
                 var skillContext = new Context<TSkillElement>(
                     skillElementState: skillElementStartState,
-                    actorId: context.ActorId,
+                    actor: context.Actor,
                     skillCommon: skill.Common,
                     skillElementList: skillElementList,
-                    targetIdList: context.TargetIdList);
+                    targetList: context.TargetList);
                 return skillContext;
             }
         }

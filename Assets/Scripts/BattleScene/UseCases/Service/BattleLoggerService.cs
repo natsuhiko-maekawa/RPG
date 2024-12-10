@@ -10,16 +10,13 @@ namespace BattleScene.UseCases.Service
     public class BattleLoggerService
     {
         private readonly IRepository<BattleEventEntity, BattleEventId> _battleLogRepository;
-        private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
         private readonly IRepository<TurnEntity, TurnId> _turnRepository;
 
         public BattleLoggerService(
             IRepository<BattleEventEntity, BattleEventId> battleLogRepository,
-            IRepository<CharacterEntity, CharacterId> characterRepository,
             IRepository<TurnEntity, TurnId> turnRepository)
         {
             _battleLogRepository = battleLogRepository;
-            _characterRepository = characterRepository;
             _turnRepository = turnRepository;
         }
 

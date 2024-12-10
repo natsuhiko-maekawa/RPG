@@ -1,34 +1,23 @@
 using System.Collections.Generic;
 using System.Linq;
-using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.Entity;
-using BattleScene.Domain.Id;
 using BattleScene.UseCases.IService;
 
 namespace BattleScene.UseCases.Service
 {
     public class HitPointService : IHitPointService
     {
-        private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
-
-        public HitPointService(
-            IRepository<CharacterEntity, CharacterId> characterRepository)
-        {
-            _characterRepository = characterRepository;
-        }
-
         public void Damaged(BattleEventEntity damageEvent)
         {
-            foreach (var (damagedCharacterId, damageAmount) in damageEvent.AttackList
+            foreach (var (damagedCharacter, damageAmount) in damageEvent.AttackList
                          .Where(x => x.IsHit)
-                         .GroupBy(x => x.TargetId)
+                         .GroupBy(x => x.Target)
                          .Select(x => x
-                             .Select(y => (targetId: y.TargetId, amount: y.Amount))
-                             .Aggregate((y, z) => (y.targetId, y.amount + z.amount)))
-                         .ToDictionary(x => x.targetId, x => x.amount))
+                             .Select(y => (target: y.Target, amount: y.Amount))
+                             .Aggregate((y, z) => (y.target, y.amount + z.amount)))
+                         .ToDictionary(x => x.target, x => x.amount))
             {
-                var character = _characterRepository.Get(damagedCharacterId);
-                character.CurrentHitPoint -= damageAmount;
+                damagedCharacter.CurrentHitPoint -= damageAmount;
             }
         }
 
@@ -41,8 +30,7 @@ namespace BattleScene.UseCases.Service
         {
             foreach (var curing in cureEventList.SelectMany(x => x.CuringList))
             {
-                var character = _characterRepository.Get(curing.TargetId);
-                character.CurrentHitPoint += curing.Amount;
+                curing.Target.CurrentHitPoint += curing.Amount;
             }
         }
     }

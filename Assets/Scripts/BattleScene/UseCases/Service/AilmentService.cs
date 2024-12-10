@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DataAccess;
@@ -27,21 +28,22 @@ namespace BattleScene.UseCases.Service
             IReadOnlyList<BattleEventEntity> ailmentEventList,
             SkillCommonValueObject skillCommon,
             IReadOnlyList<AilmentValueObject> ailmentList,
-            IReadOnlyList<CharacterId> targetIdList)
+            IReadOnlyList<CharacterEntity> targetList)
         {
             MyDebug.Assert(ailmentEventList.Count == ailmentList.Count);
             foreach (var (battleEvent, ailment) in ailmentEventList
                          .Zip(ailmentList, (battleEvent, ailment) => (battleEvent, ailment)))
             {
+                var actor = battleEvent.Actor ?? throw new InvalidOperationException();
                 var actualTargetIdList = _actualTargetIdPicker.Pick(
-                    actorId: battleEvent.ActorId!,
-                    targetIdList: targetIdList,
+                    actor: actor,
+                    targetList: targetList,
                     luckRate: ailment.LuckRate);
 
                 battleEvent.UpdateAilment(
                     ailmentCode: ailment.AilmentCode,
-                    targetIdList: targetIdList,
-                    actualTargetIdList: actualTargetIdList);
+                    targetList: targetList,
+                    actualTargetList: actualTargetIdList);
             }
         }
 
@@ -49,9 +51,9 @@ namespace BattleScene.UseCases.Service
         {
             foreach (var ailment in ailmentList)
             {
-                foreach (var characterId in ailment.ActualTargetIdList)
+                foreach (var target in ailment.ActualTargetList)
                 {
-                    var ailment1 = _ailmentRepository.Get((characterId, ailment.AilmentCode));
+                    var ailment1 = _ailmentRepository.Get((target.Id, ailment.AilmentCode));
                     ailment1.Effects = true;
                 }
             }

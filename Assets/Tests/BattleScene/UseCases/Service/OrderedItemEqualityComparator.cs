@@ -11,7 +11,7 @@ namespace Tests.BattleScene.UseCases.Service
             if (x.Order != y.Order || x.ActorType != y.ActorType) return false;
             var value = x.ActorType switch
             {
-                ActorType.Actor => EqualsCharacterId(x, y),
+                ActorType.Actor => EqualsCharacter(x, y),
                 ActorType.Ailment => EqualsAilmentCode(x, y),
                 ActorType.Slip => EqualsSlipCode(x, y),
                 _ => throw new ArgumentOutOfRangeException()
@@ -52,11 +52,11 @@ namespace Tests.BattleScene.UseCases.Service
             }
         }
 
-        private static bool EqualsCharacterId(OrderedItemEntity x, OrderedItemEntity y)
+        private static bool EqualsCharacter(OrderedItemEntity x, OrderedItemEntity y)
         {
-            if (!x.TryGetActor(out var xCharacterId)) return false;
-            if (!y.TryGetActor(out var yCharacterId)) return false;
-            return xCharacterId == yCharacterId;
+            if (!x.TryGetActor(out var xCharacter)) return false;
+            if (!y.TryGetActor(out var yCharacter)) return false;
+            return xCharacter.Id == yCharacter.Id;
         }
 
         private static bool EqualsAilmentCode(OrderedItemEntity x, OrderedItemEntity y)

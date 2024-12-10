@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using BattleScene.Domain.Id;
+using BattleScene.Domain.Entity;
 using Utility;
 
 namespace BattleScene.InterfaceAdapter.State.Battle
@@ -23,7 +23,7 @@ namespace BattleScene.InterfaceAdapter.State.Battle
 
         public void Select() => _state.Select();
         public void Select(int id) => _state.Select(id);
-        public void Select(IReadOnlyList<CharacterId> targetIdList) => _state.Select(targetIdList);
+        public void Select(IReadOnlyList<CharacterEntity> targetList) => _state.Select(targetList);
         public void Cancel() => _state.Cancel();
     }
 }

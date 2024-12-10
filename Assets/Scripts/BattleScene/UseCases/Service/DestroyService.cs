@@ -24,7 +24,7 @@ namespace BattleScene.UseCases.Service
             IReadOnlyList<BattleEventEntity> destroyEventList,
             SkillCommonValueObject skillCommon,
             IReadOnlyList<DestroyValueObject> destroyList,
-            IReadOnlyList<CharacterId> targetIdList)
+            IReadOnlyList<CharacterEntity> targetList)
         {
             MyDebug.Assert(destroyEventList.Count == destroyList.Count);
             foreach (var (battleEvent, destroy) in destroyEventList
@@ -33,7 +33,7 @@ namespace BattleScene.UseCases.Service
                 battleEvent.UpdateDestroy(
                     destroyedPart: destroy.BodyPartCode,
                     destroyCount: destroy.Count,
-                    targetIdList: targetIdList);
+                    targetList: targetList);
             }
         }
 
@@ -41,9 +41,9 @@ namespace BattleScene.UseCases.Service
         {
             foreach (var destroyEvent in destroyEventList)
             {
-                foreach (var characterId in destroyEvent.ActualTargetIdList)
+                foreach (var target in destroyEvent.ActualTargetList)
                 {
-                    var bodyPart = _bodyPartRepository.Get((characterId, destroyEvent.DestroyedPart));
+                    var bodyPart = _bodyPartRepository.Get((target.Id, destroyEvent.DestroyedPart));
                     bodyPart.Destroyed();
                 }
             }

@@ -24,7 +24,7 @@ namespace BattleScene.UseCases.Service
             IReadOnlyList<BattleEventEntity> buffEventList,
             SkillCommonValueObject skillCommon,
             IReadOnlyList<BuffValueObject> buffList,
-            IReadOnlyList<CharacterId> targetIdList)
+            IReadOnlyList<CharacterEntity> targetList)
         {
             MyDebug.Assert(buffEventList.Count == buffList.Count);
             foreach (var (battleEvent, buff) in buffEventList
@@ -35,21 +35,21 @@ namespace BattleScene.UseCases.Service
                     effectTurn: buff.Turn,
                     rate: buff.Rate,
                     lifetimeCode: buff.LifetimeCode,
-                    targetIdList: targetIdList);
+                    targetList: targetList);
             }
         }
 
         public void ExecuteBattleEvent(IReadOnlyList<BattleEventEntity> buffEventList)
         {
-            foreach (var buff in buffEventList)
+            foreach (var buffEvent in buffEventList)
             {
-                foreach (var characterId in buff.TargetIdList)
+                foreach (var target in buffEvent.TargetList)
                 {
-                    var buff1 = _buffRepository.Get((characterId, buff.BuffCode));
-                    buff1.Set(
-                        turn: buff.EffectTurn,
-                        rate: buff.Rate,
-                        lifetimeCode: buff.LifetimeCode);
+                    var buff = _buffRepository.Get((target.Id, buffEvent.BuffCode));
+                    buff.Set(
+                        turn: buffEvent.EffectTurn,
+                        rate: buffEvent.Rate,
+                        lifetimeCode: buffEvent.LifetimeCode);
                 }
             }
         }

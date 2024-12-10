@@ -4,7 +4,6 @@ using System.Linq;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.Entity;
-using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
 using BattleScene.UseCases.IService;
 using Utility;
@@ -28,13 +27,12 @@ namespace BattleScene.UseCases.Service
             IReadOnlyList<BattleEventEntity> restoreEventList,
             SkillCommonValueObject skillCommon,
             IReadOnlyList<RestoreValueObject> restoreList,
-            IReadOnlyList<CharacterId> targetIdList)
+            IReadOnlyList<CharacterEntity> targetList)
         {
             MyDebug.Assert(restoreList.Count == 1);
             MyDebug.Assert(restoreEventList.Count == 1);
             var restoreEvent = restoreEventList.Single();
-            var actorId = restoreEvent.ActorId;
-            MyDebug.Assert(actorId is not null);
+            // var actor = restoreEvent.Actor ?? throw new InvalidOperationException();
             var restore = restoreList.Single();
 
             var currentTechnicalPoint = _technicalPoint.Get();
@@ -42,7 +40,7 @@ namespace BattleScene.UseCases.Service
             var technicalPoint = Math.Min(restore.TechnicalPoint, maxTechnicalPoint - currentTechnicalPoint);
             restoreEvent.UpdateRestore(
                 technicalPoint: technicalPoint,
-                targetIdList: targetIdList);
+                targetList: targetList);
         }
 
         public void ExecuteBattleEvent(IReadOnlyList<BattleEventEntity> restoreEventList)

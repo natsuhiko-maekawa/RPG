@@ -27,7 +27,7 @@ namespace BattleScene.InterfaceAdapter.State.Turn
         public override void Start()
         {
             Context.Skill = _useCase.GetSkillCode(Context.SlipCode);
-            Context.TargetIdList = _useCase.GetTargetList();
+            Context.TargetList = _useCase.GetTargetList();
             _useCase.RegisterBattleEvent(Context.SlipCode);
 
             var outputQueue = _facade.GetOutputQueue(Context.Skill);

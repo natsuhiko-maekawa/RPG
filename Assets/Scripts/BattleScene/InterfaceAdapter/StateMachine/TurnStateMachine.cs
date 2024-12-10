@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using BattleScene.Domain.Id;
+using BattleScene.Domain.Entity;
 using BattleScene.InterfaceAdapter.State.Turn;
 using Utility;
 
@@ -42,10 +42,10 @@ namespace BattleScene.InterfaceAdapter.StateMachine
             _context.Select(id);
         }
 
-        public void OnSelect(IReadOnlyList<CharacterId> targetIdList)
+        public void OnSelect(IReadOnlyList<CharacterEntity> targetList)
         {
             Backup();
-            _context.Select(targetIdList);
+            _context.Select(targetList);
         }
 
         public void OnCancel()

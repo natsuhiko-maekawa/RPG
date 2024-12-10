@@ -6,6 +6,7 @@ namespace BattleScene.Domain.DataAccess
 {
     public interface IRepository<TEntity, TId>
         where TEntity : BaseEntity<TId>
+        where TId : notnull 
     {
         public bool TryGet(TId? id, [NotNullWhen(true)] out TEntity? entity);
         [return: NotNullIfNotNull("id")] public TEntity? Get(TId? id);

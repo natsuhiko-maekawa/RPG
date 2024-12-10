@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using BattleScene.Domain.DataAccess;
-using BattleScene.Domain.Id;
+using BattleScene.Domain.Entity;
 using BattleScene.Domain.ValueObject;
 using BattleScene.UseCases.IService;
 
@@ -29,25 +29,25 @@ namespace BattleScene.UseCases.Service
         /// <see cref="BattleScene.Debug.Service.DebugRandomService"/>でメソッド名を利用してリフレクションを行っているため、
         /// NOTE: メソッド名を変更するときは上記クラスも修正すること。
         /// </summary>
-        /// <param name="targetIdList">攻撃対象のIDのリスト</param>
+        /// <param name="targetList">攻撃対象のIDのリスト</param>
         /// <param name="luckRate">成功率</param>
         /// <returns>実際の攻撃対象のIDのリスト</returns>
-        public IReadOnlyList<CharacterId> Pick(
-            CharacterId actorId,
-            IReadOnlyList<CharacterId> targetIdList,
+        public IReadOnlyList<CharacterEntity> Pick(
+            CharacterEntity actor,
+            IReadOnlyList<CharacterEntity> targetList,
             float luckRate = 1.0f)
         {
-            var actorLuck = _characterPropertyFactory.Create(actorId).Luck;
+            var actorLuck = _characterPropertyFactory.Create(actor.Id).Luck;
 
-            var actualTargetList = targetIdList
+            var actualTargetList = targetList
                 .Where(Picks)
-                .ToList();
+                .ToArray();
 
             return actualTargetList;
 
-            bool Picks(CharacterId characterId)
+            bool Picks(CharacterEntity character)
             {
-                var targetLuck = _characterPropertyFactory.Create(characterId).Luck;
+                var targetLuck = _characterPropertyFactory.Create(character.Id).Luck;
                 var threshold = _battlePropertyFactory.Create().AilmentSuccessThreshold;
                 var rate = luckRate * (1.0f + (actorLuck - targetLuck) / threshold);
                 return _myRandom.Probability(rate);

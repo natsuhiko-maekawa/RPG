@@ -23,7 +23,7 @@ namespace BattleScene.UseCases.Service
 
         public void Reset(AilmentCode ailmentCode)
         {
-            var playerId = _player.GetId();
+            var playerId = _player.Get().Id;
             _ailmentRepository.Get((playerId, ailmentCode)).Effects = false;
         }
 
@@ -36,9 +36,9 @@ namespace BattleScene.UseCases.Service
         {
             var query = ailmentLookup
                 .SelectMany(ailmentGroup => ailmentGroup
-                    .Select(ailmentCode => (TargetId: ailmentGroup.Key, AilmentCode: ailmentCode)));
-            foreach (var (targetId, ailmentCode) in query) 
-                Reset(targetId, ailmentCode);
+                    .Select(ailmentCode => (CharacterId: ailmentGroup.Key, AilmentCode: ailmentCode)));
+            foreach (var (characterId, ailmentCode) in query) 
+                Reset(characterId, ailmentCode);
         }
     }
 }

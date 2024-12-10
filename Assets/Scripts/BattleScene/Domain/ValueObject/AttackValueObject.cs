@@ -1,4 +1,4 @@
-﻿using BattleScene.Domain.Id;
+﻿using BattleScene.Domain.Entity;
 
 namespace BattleScene.Domain.ValueObject
 {
@@ -6,20 +6,20 @@ namespace BattleScene.Domain.ValueObject
     {
         public AttackValueObject(
             int amount,
-            CharacterId targetId,
+            CharacterEntity target,
             bool isHit,
             bool attacksWeakPoint,
             sbyte index)
         {
             Amount = amount;
-            TargetId = targetId;
+            Target = target;
             IsHit = isHit;
             AttacksWeakPoint = attacksWeakPoint;
             Index = index;
         }
 
         public int Amount { get; }
-        public CharacterId TargetId { get; }
+        public CharacterEntity Target { get; }
         public bool IsHit { get; }
         public bool AttacksWeakPoint { get; }
         public sbyte Index { get; }

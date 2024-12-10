@@ -14,22 +14,14 @@ namespace BattleScene.Domain.Entity
         public int Turn { get; }
         public BattleEventCode BattleEventCode { get; private set; } = BattleEventCode.NoEvent;
         // TODO: 以下のプロパティをActorInTurn (OrderedItem)に置換すること。
-        // ActorIdプロパティを参照するコードで、かなりの頻度でActorIdをキーとしてCharacterRepositoryからCharacterEntityを取得しているため、
-        // CharacterEntity型のActorEntityを保持した方がパフォーマンスが良い。
-        // QUESTION: この場合、Entityの中にEntityを含めて良いか。
-        [Obsolete] public CharacterId? ActorId { get; }
         public CharacterEntity? Actor { get; }
         public AilmentCode AilmentCode { get; private set; }
         public SlipCode SlipCode { get; private set; }
 
         public SkillCode SkillCode { get; private set; } = SkillCode.NoSkill;
-
-        [Obsolete] public IReadOnlyList<CharacterId> TargetIdList { get; private set; } = Array.Empty<CharacterId>();
         public IReadOnlyList<CharacterEntity> TargetList { get; private set; } = Array.Empty<CharacterEntity>();
-        /*[Obsolete] */public IReadOnlyList<CharacterId> ActualTargetIdList { get; private set; } = Array.Empty<CharacterId>();
-        [Obsolete] public IReadOnlyList<CharacterEntity> ActualTargetList { get; private set; } = Array.Empty<CharacterEntity>();
-        // TODO: ActualTargetList.Count == 0に書き換える。
-        /*[Obsolete] */public bool IsFailure => ActualTargetIdList.Count == 0;
+        /*[Obsolete] */public IReadOnlyList<CharacterEntity> ActualTargetList { get; private set; } = Array.Empty<CharacterEntity>();
+        /*[Obsolete] */public bool IsFailure => ActualTargetList.Count == 0;
         /*[Obsolete] */public BodyPartCode DestroyedPart { get; private set; } = BodyPartCode.NoBodyPart;
         /*[Obsolete] */public int DestroyCount { get; private set; }
         /*[Obsolete] */public BuffCode BuffCode { get; private set; } = BuffCode.NoBuff;
@@ -48,7 +40,6 @@ namespace BattleScene.Domain.Entity
             BattleEventId battleEventId,
             int sequence,
             int turn,
-            CharacterId? actorId = null,
             CharacterEntity? actor = null,
             AilmentCode ailmentCode = AilmentCode.NoAilment,
             SlipCode slipCode = SlipCode.NoSlip)
@@ -56,7 +47,6 @@ namespace BattleScene.Domain.Entity
             Id = battleEventId;
             Sequence = sequence;
             Turn = turn;
-            ActorId = actorId;
             Actor = actor;
             AilmentCode = ailmentCode;
             SlipCode = slipCode;
@@ -70,12 +60,12 @@ namespace BattleScene.Domain.Entity
 
         public void UpdateAilment(
             AilmentCode ailmentCode,
-            IReadOnlyList<CharacterId> targetIdList,
-            IReadOnlyList<CharacterId> actualTargetIdList)
+            IReadOnlyList<CharacterEntity> targetList,
+            IReadOnlyList<CharacterEntity> actualTargetList)
         {
             AilmentCode = ailmentCode;
-            TargetIdList = targetIdList;
-            ActualTargetIdList = actualTargetIdList;
+            TargetList = targetList;
+            ActualTargetList = actualTargetList;
         }
 
         public void UpdateBuff(
@@ -83,98 +73,90 @@ namespace BattleScene.Domain.Entity
             int effectTurn,
             float rate,
             LifetimeCode lifetimeCode,
-            IReadOnlyList<CharacterId> targetIdList)
+            IReadOnlyList<CharacterEntity> targetList)
         {
             BuffCode = buffCode;
             EffectTurn = effectTurn;
             Rate = rate;
             LifetimeCode = lifetimeCode;
-            TargetIdList = targetIdList;
-            ActualTargetIdList = targetIdList;
+            TargetList = targetList;
         }
 
         public void UpdateCure(
             IReadOnlyList<CuringValueObject> curingList,
-            IReadOnlyList<CharacterId> targetIdList)
+            IReadOnlyList<CharacterEntity> targetList)
         {
             CuringList = curingList;
-            TargetIdList = targetIdList;
-            ActualTargetIdList = targetIdList;
+            TargetList = targetList;
         }
 
         public void UpdateDamage(
             IReadOnlyList<AttackValueObject> attackList,
-            IReadOnlyList<CharacterId> targetIdList)
+            IReadOnlyList<CharacterEntity> targetList)
         {
             AttackList = attackList;
-            TargetIdList = targetIdList;
-            ActualTargetIdList = targetIdList;
+            TargetList = targetList;
         }
 
         public void UpdateDestroy(
             BodyPartCode destroyedPart,
             int destroyCount,
-            IReadOnlyList<CharacterId> targetIdList)
+            IReadOnlyList<CharacterEntity> targetList)
         {
             DestroyedPart = destroyedPart;
             DestroyCount = destroyCount;
-            TargetIdList = targetIdList;
-            ActualTargetIdList = targetIdList;
+            TargetList = targetList;
         }
 
         public void UpdateEnhance(
             EnhanceCode enhanceCode,
             int effectTurn,
             LifetimeCode lifetimeCode,
-            IReadOnlyList<CharacterId> targetIdList)
+            IReadOnlyList<CharacterEntity> targetList)
         {
             EnhanceCode = enhanceCode;
             EffectTurn = effectTurn;
             LifetimeCode = lifetimeCode;
-            TargetIdList = targetIdList;
-            ActualTargetIdList = targetIdList;
+            TargetList = targetList;
         }
 
         public void UpdateReset(
             IReadOnlyList<AilmentCode> resetAilmentCodeList, 
             IReadOnlyList<BodyPartCode> resetBodyPartCodeList, 
             IReadOnlyList<SlipCode> resetSlipCodeList,
-            IReadOnlyList<CharacterId> targetIdList)
+            IReadOnlyList<CharacterEntity> targetList)
         {
             ResetAilmentCodeList = resetAilmentCodeList;
             ResetBodyPartCodeList = resetBodyPartCodeList;
             ResetSlipCodeList = resetSlipCodeList;
-            TargetIdList = targetIdList;
-            ActualTargetIdList = targetIdList;
+            TargetList = targetList;
         }
 
         public void UpdateRestore(
             int technicalPoint,
-            IReadOnlyList<CharacterId> targetIdList)
+            IReadOnlyList<CharacterEntity> targetList)
         {
             TechnicalPoint = technicalPoint;
-            TargetIdList = targetIdList;
-            ActualTargetIdList = targetIdList;
+            TargetList = targetList;
         }
 
         public void UpdateSlip(
             SlipCode slipCode,
-            IReadOnlyList<CharacterId> targetIdList,
-            IReadOnlyList<CharacterId> actualTargetIdList)
+            IReadOnlyList<CharacterEntity> targetList,
+            IReadOnlyList<CharacterEntity> actualTargetList)
         {
             SlipCode = slipCode;
-            TargetIdList = targetIdList;
-            ActualTargetIdList = actualTargetIdList;
+            TargetList = targetList;
+            ActualTargetList = actualTargetList;
         }
 
         public void UpdateSlipDamage(
             IReadOnlyList<AttackValueObject> attackList,
-            IReadOnlyList<CharacterId> targetIdList)
+            IReadOnlyList<CharacterEntity> targetList)
         {
             MyDebug.Assert(SlipCode != SlipCode.NoSlip);
             AttackList = attackList;
-            TargetIdList = targetIdList;
-            ActualTargetIdList = targetIdList;
+            TargetList = targetList;
         }
 
         public override string ToString()

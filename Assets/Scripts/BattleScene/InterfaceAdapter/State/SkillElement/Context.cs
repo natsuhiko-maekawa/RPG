@@ -3,7 +3,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text.RegularExpressions;
 using BattleScene.Domain.Entity;
-using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
 using JetBrains.Annotations;
 using Utility;
@@ -14,22 +13,22 @@ namespace BattleScene.InterfaceAdapter.State.SkillElement
     {
         private BaseState<TSkillElement> _state = null!;
 
-        public CharacterId ActorId { get; }
+        public CharacterEntity Actor { get; }
         public SkillCommonValueObject SkillCommon { get; }
-        public IReadOnlyList<CharacterId> TargetIdList { get; }
+        public IReadOnlyList<CharacterEntity> TargetList { get; }
         public IReadOnlyList<TSkillElement> SkillElementList { get; }
         public Queue<BattleEventEntity> BattleEventQueue { get; set; } = new();
 
         public Context(
             BaseState<TSkillElement> skillElementState,
-            CharacterId actorId,
+            CharacterEntity actor,
             SkillCommonValueObject skillCommon,
-            IReadOnlyList<CharacterId> targetIdList,
+            IReadOnlyList<CharacterEntity> targetList,
             IReadOnlyList<TSkillElement> skillElementList)
         {
-            ActorId = actorId;
+            Actor = actor;
             SkillCommon = skillCommon;
-            TargetIdList = targetIdList;
+            TargetList = targetList;
             SkillElementList = skillElementList;
             TransitionTo(skillElementState);
         }

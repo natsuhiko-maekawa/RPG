@@ -1,8 +1,6 @@
 ﻿using System;
 using BattleScene.Domain.Code;
-using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.Entity;
-using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
 using BattleScene.UseCases.IService;
 
@@ -11,34 +9,31 @@ namespace BattleScene.UseCases.Service
     public class CureEvaluatorService
     {
         private readonly CharacterPropertyFactoryService _characterPropertyFactory;
-        private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
         private readonly IMyRandomService _myRandom;
 
         public CureEvaluatorService(
             CharacterPropertyFactoryService characterPropertyFactory,
-            IRepository<CharacterEntity, CharacterId> characterRepository,
             IMyRandomService myRandom)
         {
             _characterPropertyFactory = characterPropertyFactory;
-            _characterRepository = characterRepository;
             _myRandom = myRandom;
         }
 
-        public int Evaluate(CharacterId actorId, CureValueObject cure)
+        public int Evaluate(CharacterEntity actor, CureValueObject cure)
         {
             return cure.CureExpressionCode switch
             {
-                CureExpressionCode.Basic => BasicEvaluate(actorId, cure.Rate),
+                CureExpressionCode.Basic => BasicEvaluate(actor, cure.Rate),
                 _ => throw new ArgumentOutOfRangeException()
             };
         }
 
-        private int BasicEvaluate(CharacterId actorId, float rate)
+        private int BasicEvaluate(CharacterEntity actor, float rate)
         {
-            var wisdom = _characterPropertyFactory.Create(actorId).Wisdom;
+            var wisdom = _characterPropertyFactory.Create(actor.Id).Wisdom;
             var restore = (int)(wisdom * 8 * rate) + _myRandom.Range(0, 2);
-            var currentHitPoint = _characterRepository.Get(actorId).CurrentHitPoint;
-            var maxHitPoint = _characterPropertyFactory.Create(actorId).HitPoint;
+            var currentHitPoint = actor.CurrentHitPoint;
+            var maxHitPoint = _characterPropertyFactory.Create(actor.Id).HitPoint;
             var actualRestore = Math.Min(restore, maxHitPoint - currentHitPoint);
             return actualRestore;
         }

@@ -9,6 +9,7 @@ namespace Tests.BattleScene.DataAccess.Repository
 {
     public class MockRepository<TEntity, TId> : IRepository<TEntity, TId>, ISerializable
         where TEntity : BaseEntity<TId>
+        where TId : notnull
     {
         private readonly Dictionary<TId, TEntity> _entityDictionary = new();
 

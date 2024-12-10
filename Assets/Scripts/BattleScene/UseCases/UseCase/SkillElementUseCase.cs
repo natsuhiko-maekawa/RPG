@@ -9,8 +9,7 @@ using BattleScene.UseCases.Service;
 
 namespace BattleScene.UseCases.UseCase
 {
-    public class
-        SkillElementUseCase<TSkillElement>
+    public class SkillElementUseCase<TSkillElement>
     {
         private readonly ISkillElementService<TSkillElement> _skillElement;
         private readonly BattleLoggerService _battleLogger;
@@ -29,7 +28,7 @@ namespace BattleScene.UseCases.UseCase
         public IReadOnlyList<BattleEventEntity> ExecuteBattleEvent(
             SkillCommonValueObject skillCommon,
             IReadOnlyList<TSkillElement> skillElementList,
-            IReadOnlyList<CharacterId> targetIdList)
+            IReadOnlyList<CharacterEntity> targetList)
         {
             var battleEventList = new BattleEventEntity[skillElementList.Count];
             var skillEvent = _battleLogger.GetLast();
@@ -46,7 +45,6 @@ namespace BattleScene.UseCases.UseCase
                     battleEventId: new BattleEventId(),
                     sequence: skillEvent.Sequence + i,
                     turn: skillEvent.Turn,
-                    actorId: skillEvent.ActorId,
                     actor: skillEvent.Actor);
                 _battleLogger.Log(battleEvent);
                 battleEventList[i] = battleEvent;
@@ -56,7 +54,7 @@ namespace BattleScene.UseCases.UseCase
                 battleEventList: battleEventList, 
                 skillCommon: skillCommon,
                 skillElementList: skillElementList,
-                targetIdList: targetIdList);
+                targetList: targetList);
 
             _skillElement.ExecuteBattleEvent(battleEventList);
 

@@ -4,7 +4,6 @@ using BattleScene.Domain.Code;
 using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Entity;
-using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
 using BattleScene.UseCases.IService;
 using BattleScene.UseCases.Service;
@@ -14,7 +13,6 @@ namespace BattleScene.InterfaceAdapter.Service
     public class ActorService
     {
         private readonly AilmentDomainService _ailment;
-        private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
         private readonly IMyRandomService _myRandom;
         private readonly IFactory<SkillValueObject, SkillCode> _skillFactory;
         private readonly ToSkillCodeService _toSkillCode;
@@ -22,13 +20,11 @@ namespace BattleScene.InterfaceAdapter.Service
         public ActorService(
             AilmentDomainService ailment,
             ToSkillCodeService toSkillCode,
-            IRepository<CharacterEntity, CharacterId> characterRepository,
             IMyRandomService myRandom,
             IFactory<SkillValueObject, SkillCode> skillFactory)
         {
             _ailment = ailment;
             _toSkillCode = toSkillCode;
-            _characterRepository = characterRepository;
             _myRandom = myRandom;
             _skillFactory = skillFactory;
         }

@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.Entity;
-using BattleScene.Domain.Id;
 using BattleScene.UseCases.UseCase;
 
 namespace BattleScene.InterfaceAdapter.State.SkillElement
@@ -10,18 +8,15 @@ namespace BattleScene.InterfaceAdapter.State.SkillElement
     public class SkillElementStartState<TSkillElement> : BaseState<TSkillElement>
     {
         private readonly SkillElementUseCase<TSkillElement> _useCase;
-        private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
         private readonly SkillElementOutputState<TSkillElement> _skillElementOutputState;
         private readonly SkillElementStopState<TSkillElement> _skillElementStopState;
 
         public SkillElementStartState(
             SkillElementUseCase<TSkillElement> useCase,
-            IRepository<CharacterEntity, CharacterId> characterRepository,
             SkillElementOutputState<TSkillElement> skillElementOutputState,
             SkillElementStopState<TSkillElement> skillElementStopState)
         {
             _useCase = useCase;
-            _characterRepository = characterRepository;
             _skillElementOutputState = skillElementOutputState;
             _skillElementStopState = skillElementStopState;
         }
@@ -35,14 +30,12 @@ namespace BattleScene.InterfaceAdapter.State.SkillElement
             var battleEventList = _useCase.ExecuteBattleEvent(
                 skillCommon: Context.SkillCommon,
                 skillElementList: Context.SkillElementList,
-                targetIdList: Context.TargetIdList);
-            var successBattleEventList = battleEventList
-                .Where(x => !x.IsFailure);
-            Context.BattleEventQueue = new Queue<BattleEventEntity>(successBattleEventList);
+                targetList: Context.TargetList);
+            Context.BattleEventQueue = new Queue<BattleEventEntity>(battleEventList);
 
             BaseState<TSkillElement> nextState =
                 Context.BattleEventQueue.Count == 0
-                && Context.TargetIdList.All(x => _characterRepository.Get(x).IsPlayer)
+                && Context.TargetList.All(x => x.IsPlayer)
                 && _useCase.IsExecutedDamage()
                     ? _skillElementStopState
                     : _skillElementOutputState;

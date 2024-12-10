@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.Entity;
-using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
 using BattleScene.Framework.View;
 using BattleScene.Framework.ViewModel;
@@ -12,18 +10,15 @@ namespace BattleScene.InterfaceAdapter.Presenter
 {
     public class TargetViewPresenter
     {
-        private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
         private readonly ITargetService _target;
         private readonly TargetView _targetView;
         private readonly List<CharacterEntity> _optionTargetList = new();
 
         public TargetViewPresenter(
             ITargetService target,
-            IRepository<CharacterEntity, CharacterId> characterRepository,
             TargetView targetView)
         {
             _target = target;
-            _characterRepository = characterRepository;
             _targetView = targetView;
         }
 
@@ -42,7 +37,7 @@ namespace BattleScene.InterfaceAdapter.Presenter
                 .Join(inner: targetList,
                     outerKeySelector: optionTarget => optionTarget.x.Id,
                     innerKeySelector: target => target.Id,
-                    resultSelector: (optionTarget, target) => optionTarget.i)
+                    resultSelector: (optionTarget, _) => optionTarget.i)
                 .ToArray();
 
             var targetViewDto = new TargetViewModel(
