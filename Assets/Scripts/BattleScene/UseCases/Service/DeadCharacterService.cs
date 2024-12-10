@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Linq;
 using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.Entity;
@@ -20,22 +19,19 @@ namespace BattleScene.UseCases.Service
         public bool DeadInThisTurn()
         {
             var value = _characterRepository.Get()
-                .Any(x => !x.IsSurvive);
+                .Where(x => x.IsSurvive)
+                .Any(x => x.CurrentHitPoint == 0);
             return value;
         }
 
-        public IReadOnlyList<CharacterId> GetDeadCharacterIdInThisTurn()
+        public void ConfirmedDead()
         {
-            var value = _characterRepository.Get()
-                .Where(x => !x.IsSurvive)
-                .Select(x => x.Id)
-                .ToArray();
-            return value;
-        }
-
-        public void DeleteDeadCharacter()
-        {
-            _characterRepository.Remove(GetDeadCharacterIdInThisTurn());
+            foreach (var deadCharacter in _characterRepository.Get()
+                         .Where(x => x.IsSurvive)
+                         .Where(x => x.CurrentHitPoint == 0))
+            {
+                deadCharacter.IsSurvive = false;
+            }
         }
     }
 }

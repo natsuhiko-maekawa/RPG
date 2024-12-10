@@ -46,7 +46,8 @@ namespace BattleScene.UseCases.Service.Order
 
         public void Update()
         {
-            var characters = _characterRepository.Get();
+            var characters = _characterRepository.Get()
+                .Where(x => x.IsSurvive);
             var orderedItemList = Enumerable
                 .Repeat(characters, _battlePropertyFactory.Create().MaxOrderCount)
                 .Select((charactersRepeat, i) => charactersRepeat
