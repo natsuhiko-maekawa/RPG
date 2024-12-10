@@ -66,11 +66,15 @@ namespace BattleScene.InterfaceAdapter.State.SkillElement
         }
 #endif
 
-
         public void Select() => _state.Select();
+        public bool IsContinue => _state is not ISkillElementStopState && !IsBreak;
+        public bool IsBreak => _state is ISkillElementBreakState or ICharacterDeadState;
 
-        public bool IsContinue => _state is not ISkillElementStopState and not ISkillElementBreakState;
-
-        public bool IsBreak => _state is ISkillElementBreakState;
+        public StateCode NextStateCode => _state switch
+        {
+            ISkillElementBreakState => StateCode.AdvanceTurnState,
+            ICharacterDeadState => StateCode.CharacterDeadState,
+            _ => StateCode.Undefined
+        };
     }
 }

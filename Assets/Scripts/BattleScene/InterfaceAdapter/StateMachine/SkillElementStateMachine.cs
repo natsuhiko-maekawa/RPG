@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using BattleScene.InterfaceAdapter.State;
 using BattleScene.InterfaceAdapter.State.SkillElement;
 using BattleScene.InterfaceAdapter.State.Turn;
 using VContainer;
@@ -17,30 +18,37 @@ namespace BattleScene.InterfaceAdapter.StateMachine
             _container = container;
         }
 
-        public bool Select(Context context)
+        public bool TrySelect(Context context, out StateCode nextStateCode)
         {
+            nextStateCode = StateCode.None;
             if (_skillElementContextEnumerator == null)
             {
                 _skillElementContextEnumerator = GetContext(context).GetEnumerator();
-                var value = MoveNextOrDispose();
+                var value = TryMoveNextElseDispose(out nextStateCode);
                 return value;
             }
 
             _skillElementContextEnumerator.Current?.Select();
 
-            return MoveNextOrDispose();
+            return TryMoveNextElseDispose(out nextStateCode);
         }
 
-        private bool MoveNextOrDispose()
+        private bool TryMoveNextElseDispose(out StateCode nextStateCode)
         {
+            nextStateCode = StateCode.None;
+            // 麻痺状態のスキルのようにスキルコンポーネントを持たないスキルも存在するため、Currentはnullの可能性がある
             if (_skillElementContextEnumerator!.Current?.IsContinue ?? false) return true;
 
             if (_skillElementContextEnumerator.Current is not { IsBreak: true }
                 && _skillElementContextEnumerator.MoveNext())
             {
-                return MoveNextOrDispose();
+                return TryMoveNextElseDispose(out nextStateCode);
             }
 
+            nextStateCode = _skillElementContextEnumerator.Current?.NextStateCode ?? StateCode.Undefined;
+            nextStateCode = nextStateCode == StateCode.Undefined
+                ? StateCode.AdvanceTurnState
+                : nextStateCode;
             _skillElementContextEnumerator.Dispose();
             _skillElementContextEnumerator = null;
             return false;

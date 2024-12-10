@@ -302,6 +302,7 @@ namespace BattleScene
             builder.Register<SlipDamageState>(Singleton);
             builder.Register<ResetAilmentState>(Singleton);
             builder.Register<SkillState>(Singleton);
+            builder.Register<CharacterDeadState>(Singleton);
             builder.Register<AdvanceTurnState>(Singleton);
             builder.Register<TurnStopState>(Singleton);
             // PrimeSkillState
@@ -333,11 +334,13 @@ namespace BattleScene
             builder.Register<SkillElementStopState<RestoreValueObject>>(Singleton);
             builder.Register<SkillElementStopState<SlipValueObject>>(Singleton);
             builder.Register<SkillElementBreakState<DamageValueObject>>(Singleton);
+            builder.Register<CharacterDeadState<DamageValueObject>>(Singleton);
 
             #endregion
 
             #region RegisterUseCase
 
+            builder.Register<DamageOutputUseCase>(Singleton);
             builder.Register<EnemySelectActionUseCase>(Singleton);
             builder.Register<SkillElementUseCase<DamageValueObject>, SkillElementUseCase<DamageValueObject>>(Singleton);
             builder.Register<SkillElementUseCase<AilmentValueObject>, SkillElementUseCase<AilmentValueObject>>(Singleton);
@@ -373,6 +376,7 @@ namespace BattleScene
             builder.Register<CharacterPropertyFactoryService>(Singleton);
             builder.Register<CureEvaluatorService>(Singleton);
             builder.Register<DamageEvaluatorService>(Singleton);
+            builder.Register<IDeadCharacterService, DeadCharacterService>(Singleton);
             builder.Register<IHitPointService, HitPointService>(Singleton);
             builder.Register<IsHitEvaluatorService>(Singleton);
             builder.Register<OrderService>(Singleton);
