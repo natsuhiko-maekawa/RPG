@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using BattleScene.Domain.Id;
 
 namespace BattleScene.InterfaceAdapter.State.Turn
 {
@@ -16,8 +14,8 @@ namespace BattleScene.InterfaceAdapter.State.Turn
 
         public override void Start()
         {
-            if (Context.ActorId == null) throw new InvalidOperationException();
-            Context.TargetIdList = new List<CharacterId> { Context.ActorId };
+            if (Context.ActorId is null) throw new InvalidOperationException();
+            Context.TargetIdList = new[] { Context.ActorId };
             Context.TransitionTo(_skillState);
         }
     }
