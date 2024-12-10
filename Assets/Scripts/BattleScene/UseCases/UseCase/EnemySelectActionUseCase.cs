@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
 using BattleScene.UseCases.IService;
@@ -18,15 +19,15 @@ namespace BattleScene.UseCases.UseCase
             _target = target;
         }
 
-        public SkillValueObject SelectSkill(CharacterId actorId)
+        public SkillValueObject SelectSkill(CharacterEntity actor)
         {
-            var skill = _enemySkillSelector.Select(actorId);
+            var skill = _enemySkillSelector.Select(actor);
             return skill;
         }
 
-        public IReadOnlyList<CharacterId> SelectTarget(CharacterId actorId, SkillValueObject skill)
+        public IReadOnlyList<CharacterEntity> SelectTarget(CharacterEntity actor, SkillValueObject skill)
         {
-            var targetList = _target.Get(actorId, skill.Common.Range);
+            var targetList = _target.Get(actor, skill.Common.Range);
             return targetList;
         }
     }

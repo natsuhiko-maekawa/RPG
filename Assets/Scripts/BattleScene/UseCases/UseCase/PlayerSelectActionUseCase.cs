@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DataAccess;
-using BattleScene.Domain.Id;
+using BattleScene.Domain.Entity;
 using BattleScene.Domain.ValueObject;
 using BattleScene.UseCases.IService;
 using Range = BattleScene.Domain.Code.Range;
@@ -21,9 +21,9 @@ namespace BattleScene.UseCases.UseCase
             _skillFactory = skillFactory;
         }
 
-        public IReadOnlyList<CharacterId> GetOneself(CharacterId playerId)
+        public IReadOnlyList<CharacterEntity> GetOneself(CharacterEntity player)
         {
-            var targetIdList = _target.Get(playerId, Range.Oneself);
+            var targetIdList = _target.Get(player, Range.Oneself);
             return targetIdList;
         }
 

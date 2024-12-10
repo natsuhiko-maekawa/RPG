@@ -16,23 +16,23 @@ namespace BattleScene.Domain.Entity
 
         public override OrderedItemId Id { get; }
         public int Order { get; }
-        private CharacterId? _characterId;
+        private CharacterEntity? _actor;
         private AilmentCode _ailmentCode;
         private SlipCode _slipCode;
-        public OrderedItemType OrderedItemType { get; private set; }
+        public ActorType ActorType { get; private set; }
 
-        public void SetOrderedItem(OrderedItem orderedItem)
+        public void SetOrderedItem(ActorInTurn actorInTurn)
         {
-            _characterId = orderedItem.CharacterId;
-            _ailmentCode = orderedItem.AilmentCode;
-            _slipCode = orderedItem.SlipCode;
-            OrderedItemType = orderedItem.OrderedItemType;
+            _actor = actorInTurn.Actor;
+            _ailmentCode = actorInTurn.AilmentCode;
+            _slipCode = actorInTurn.SlipCode;
+            ActorType = actorInTurn.ActorType;
         }
 
-        public bool TryGetCharacterId([NotNullWhen(true)] out CharacterId? characterId)
+        public bool TryGetActor([NotNullWhen(true)] out CharacterEntity? actor)
         {
-            characterId = _characterId;
-            return _characterId != null;
+            actor = _actor;
+            return _actor is not null;
         }
 
         public bool TryGetAilmentCode(out AilmentCode ailmentCode)
@@ -51,51 +51,51 @@ namespace BattleScene.Domain.Entity
         {
             var str = $@"OrderedItemEntity
   OrderNumber     : {Order},
-  CharacterId     : {_characterId?.ToString() ?? "NoCharacter"},
+  CharacterId     : {_actor?.ToString() ?? "NoCharacter"},
   AilmentCode     : {_ailmentCode},
   SlipDamageCode  : {_slipCode},
-  OrderedItemType : {OrderedItemType}";
+  OrderedItemType : {ActorType}";
             return str;
         }
     }
 
     // TODO: ActorInTurnに改名すること。
-    public struct OrderedItem // 16 byte
+    public struct ActorInTurn // 16 byte
     {
-        public OrderedItemType OrderedItemType { get; }
-        public CharacterId? CharacterId { get; }
+        public ActorType ActorType { get; }
+        public CharacterEntity? Actor { get; }
         public AilmentCode AilmentCode { get; }
         public SlipCode SlipCode { get; }
 
-        public OrderedItem(CharacterId characterId)
+        public ActorInTurn(CharacterEntity actor)
         {
-            OrderedItemType = OrderedItemType.Character;
-            CharacterId = characterId;
+            ActorType = ActorType.Actor;
+            Actor = actor;
             AilmentCode = AilmentCode.NoAilment;
             SlipCode = SlipCode.NoSlip;
         }
 
-        public OrderedItem(AilmentCode ailmentCode)
+        public ActorInTurn(AilmentCode ailmentCode)
         {
-            OrderedItemType = OrderedItemType.Ailment;
-            CharacterId = null;
+            ActorType = ActorType.Ailment;
+            Actor = null;
             AilmentCode = ailmentCode;
             SlipCode = SlipCode.NoSlip;
         }
 
-        public OrderedItem(SlipCode slipCode)
+        public ActorInTurn(SlipCode slipCode)
         {
-            OrderedItemType = OrderedItemType.Slip;
-            CharacterId = null;
+            ActorType = ActorType.Slip;
+            Actor = null;
             AilmentCode = AilmentCode.NoAilment;
             SlipCode = slipCode;
         }
     }
 
     // TODO: ActorTypeに改名すること。
-    public enum OrderedItemType : byte
+    public enum ActorType : byte
     {
-        Character,
+        Actor,
         Ailment,
         Slip
     }

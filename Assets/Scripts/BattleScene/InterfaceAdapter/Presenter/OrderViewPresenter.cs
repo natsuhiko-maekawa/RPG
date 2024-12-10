@@ -17,18 +17,15 @@ namespace BattleScene.InterfaceAdapter.Presenter
     {
         private readonly IResource<EnemyViewDto, CharacterTypeCode> _enemyViewInfoResource;
         private readonly OrderView _orderView;
-        private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
         private readonly IRepository<OrderedItemEntity, OrderedItemId> _orderedItemRepository;
 
         public OrderViewPresenter(
             IResource<EnemyViewDto, CharacterTypeCode> enemyViewInfoResource,
             OrderView orderView,
-            IRepository<CharacterEntity, CharacterId> characterRepository,
             IRepository<OrderedItemEntity, OrderedItemId> orderedItemRepository)
         {
             _enemyViewInfoResource = enemyViewInfoResource;
             _orderView = orderView;
-            _characterRepository = characterRepository;
             _orderedItemRepository = orderedItemRepository;
         }
 
@@ -44,11 +41,11 @@ namespace BattleScene.InterfaceAdapter.Presenter
 
         private OrderViewDto CreateOrderViewDto(OrderedItemEntity orderedItem)
         {
-            var dto = orderedItem.OrderedItemType switch
+            var dto = orderedItem.ActorType switch
             {
-                OrderedItemType.Character => CreateCharacterOrderViewDto(orderedItem),
-                OrderedItemType.Ailment => CreateAilmentOrderViewDto(orderedItem),
-                OrderedItemType.Slip => CreateSlipOrderViewDto(orderedItem),
+                ActorType.Actor => CreateCharacterOrderViewDto(orderedItem),
+                ActorType.Ailment => CreateAilmentOrderViewDto(orderedItem),
+                ActorType.Slip => CreateSlipOrderViewDto(orderedItem),
                 _ => throw new ArgumentOutOfRangeException()
             };
 
@@ -57,11 +54,11 @@ namespace BattleScene.InterfaceAdapter.Presenter
 
         private OrderViewDto CreateCharacterOrderViewDto(OrderedItemEntity orderedItem)
         {
-            if (!orderedItem.TryGetCharacterId(out var characterId))
+            if (!orderedItem.TryGetActor(out var actor))
                 throw new InvalidOperationException();
-            var dto = _characterRepository.Get(characterId).IsPlayer
+            var dto = actor.IsPlayer
                 ? CreatePlayerOrderViewDto()
-                : CreateEnemyOrderViewDto(characterId);
+                : CreateEnemyOrderViewDto(actor);
             return dto;
         }
 
@@ -72,9 +69,9 @@ namespace BattleScene.InterfaceAdapter.Presenter
             return playerOrderViewDto;
         }
 
-        private OrderViewDto CreateEnemyOrderViewDto(CharacterId characterId)
+        private OrderViewDto CreateEnemyOrderViewDto(CharacterEntity actor)
         {
-            var characterTypeId = _characterRepository.Get(characterId).CharacterTypeCode;
+            var characterTypeId = actor.CharacterTypeCode;
             var enemyImagePath = _enemyViewInfoResource.Get(characterTypeId).ImagePath;
             return new OrderViewDto(ItemType.Enemy, EnemyImagePath: enemyImagePath);
         }

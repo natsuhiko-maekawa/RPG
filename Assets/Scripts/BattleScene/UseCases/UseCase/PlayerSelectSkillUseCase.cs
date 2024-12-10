@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DataAccess;
-using BattleScene.Domain.Id;
+using BattleScene.Domain.Entity;
 using BattleScene.Domain.ValueObject;
 using BattleScene.UseCases.IService;
 
@@ -26,9 +26,9 @@ namespace BattleScene.UseCases.UseCase
             return skill;
         }
 
-        public IReadOnlyList<CharacterId> GetTarget(CharacterId actorId, Range range)
+        public IReadOnlyList<CharacterEntity> GetTarget(CharacterEntity actor, Range range)
         {
-            var target = _target.Get(actorId, range, true);
+            var target = _target.Get(actor, range, true);
             return target;
         }
     }

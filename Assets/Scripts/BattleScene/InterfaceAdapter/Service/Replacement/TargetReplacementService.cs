@@ -24,15 +24,15 @@ namespace BattleScene.InterfaceAdapter.Service.Replacement
         public bool IsMatch(string value) => value == Replacement;
         public ReadOnlySpan<char> GetNewCharSpan()
         {
-            var targetIdList = _battleLog.GetLast().TargetIdList;
-            MyDebug.Assert(targetIdList.Count > 0);
-            if (targetIdList.Count == 0) return ReadOnlySpan<char>.Empty;
+            var targetList = _battleLog.GetLast().TargetList;
+            MyDebug.Assert(targetList.Count > 0);
+            if (targetList.Count == 0) return ReadOnlySpan<char>.Empty;
             using (var stringBuilder = ZString.CreateStringBuilder())
             {
-                var firstTargetId = targetIdList.First();
+                var firstTargetId = targetList.First();
                 var targetName = _replacementCommon.GetCharacterName(firstTargetId);
                 stringBuilder.Append(targetName);
-                if (targetIdList.Count > 1) stringBuilder.Append(ReplacementCommonService.TotalSuffix);
+                if (targetList.Count > 1) stringBuilder.Append(ReplacementCommonService.TotalSuffix);
                 var span = stringBuilder.AsSpan();
                 return span;
             }

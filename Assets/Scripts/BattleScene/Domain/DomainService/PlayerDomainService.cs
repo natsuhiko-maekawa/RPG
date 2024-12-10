@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.Entity;
@@ -39,10 +40,13 @@ namespace BattleScene.Domain.DomainService
             _characterRepository.Add(player);
         }
 
-        public CharacterId GetId()
+        [Obsolete] public CharacterId GetId()
         {
             return _characterRepository.Get()
                 .Single(x => x.CharacterTypeCode == CharacterTypeCode.Player).Id;
         }
+
+        public CharacterEntity Get() => _characterRepository.Get()
+                .Single(x => x.CharacterTypeCode == CharacterTypeCode.Player);
     }
 }

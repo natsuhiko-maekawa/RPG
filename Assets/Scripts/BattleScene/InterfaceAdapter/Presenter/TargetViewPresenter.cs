@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
@@ -14,6 +15,7 @@ namespace BattleScene.InterfaceAdapter.Presenter
         private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
         private readonly ITargetService _target;
         private readonly TargetView _targetView;
+        private readonly List<CharacterEntity> _optionTargetList = new();
 
         public TargetViewPresenter(
             ITargetService target,
@@ -25,18 +27,28 @@ namespace BattleScene.InterfaceAdapter.Presenter
             _targetView = targetView;
         }
 
-        public void StartAnimation(CharacterId actorId, SkillValueObject skill)
+        public void StartAnimation(CharacterEntity actor, SkillValueObject skill)
         {
             var range = skill.Common.Range;
-            var targetIdList = _target.Get(actorId, range);
-
-            var characterList = _characterRepository.Get(targetIdList);
-            var characterStructList = characterList
+            var targetList = _target.Get(actor, range);
+            _target.GetOption(actor, range, _optionTargetList);
+            var optionTargetList = _optionTargetList
                 // C#11以前で静的メソッドグループをデリゲート化するとアロケーションが発生するため、
                 // メソッドグループは使用しない。
-                .Select(x => CreateCharacterStruct(x))
+                .Select(x => ToCharacterModel(x))
                 .ToArray();
-            var targetViewDto = new TargetViewDto(characterStructList);
+            var selectedTargetIndexList = _optionTargetList
+                .Select((x, i) => (x, i))
+                .Join(inner: targetList,
+                    outerKeySelector: optionTarget => optionTarget.x.Id,
+                    innerKeySelector: target => target.Id,
+                    resultSelector: (optionTarget, target) => optionTarget.i)
+                .ToArray();
+
+            var targetViewDto = new TargetViewModel(
+                optionTargetList: optionTargetList,
+                selectedTargetIndexList: selectedTargetIndexList);
+            // TODO: targetViewDtoには攻撃対象となりえるすべての候補を含めること
             _targetView.StartAnimation(targetViewDto);
         }
 
@@ -45,11 +57,11 @@ namespace BattleScene.InterfaceAdapter.Presenter
             _targetView.StopAnimation();
         }
 
-        private static CharacterStruct CreateCharacterStruct(CharacterEntity character)
+        private static Character ToCharacterModel(CharacterEntity character)
         {
             var characterStruct = character.IsPlayer
-                ? CharacterStruct.CreatePlayer()
-                : CharacterStruct.CreateEnemy(character.Position);
+                ? Character.CreatePlayer()
+                : Character.CreateEnemy(character.Position);
             return characterStruct;
         }
     }

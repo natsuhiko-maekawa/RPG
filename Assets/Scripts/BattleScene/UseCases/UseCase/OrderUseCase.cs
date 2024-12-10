@@ -1,6 +1,6 @@
 ﻿using BattleScene.Domain.Code;
 using BattleScene.Domain.DomainService;
-using BattleScene.Domain.Id;
+using BattleScene.Domain.Entity;
 using BattleScene.UseCases.Service;
 using BattleScene.UseCases.Service.Order;
 
@@ -32,13 +32,13 @@ namespace BattleScene.UseCases.UseCase
             _battleLogger.Log(First());
         }
 
-        public (CharacterId?, AilmentCode, SlipCode) First()
+        public (CharacterEntity?, AilmentCode, SlipCode) First()
         {
             var orderedItem = _orderedItems.First();
-            orderedItem.TryGetCharacterId(out var actorId);
+            orderedItem.TryGetActor(out var actor);
             orderedItem.TryGetAilmentCode(out var ailmentCode);
             orderedItem.TryGetSlipCode(out var slipDamageCode);
-            return (actorId, ailmentCode, slipDamageCode);
+            return (actor, ailmentCode, slipDamageCode);
         }
     }
 }

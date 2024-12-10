@@ -14,75 +14,87 @@ namespace BattleScene.UseCases.Service
     {
         private readonly IRepository<BattleEventEntity, BattleEventId> _battleLogRepository;
         private readonly EnemiesDomainService _enemies;
-        private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
         private readonly PlayerDomainService _player;
         private readonly IMyRandomService _myRandom;
 
         public TargetService(
             EnemiesDomainService enemies,
             IRepository<BattleEventEntity, BattleEventId> battleLogRepository,
-            IRepository<CharacterEntity, CharacterId> characterRepository,
             PlayerDomainService player,
             IMyRandomService myRandom)
         {
             _enemies = enemies;
             _battleLogRepository = battleLogRepository;
-            _characterRepository = characterRepository;
             _player = player;
             _myRandom = myRandom;
         }
 
-        public IReadOnlyList<CharacterId> Get(CharacterId actorId, Range range, bool isAutoTarget=false)
+        public IReadOnlyList<CharacterEntity> Get(CharacterEntity actor, Range range, bool isAutoTarget=false)
         {
             var targetList = range switch
             {
                 Range.Oneself =>
-                    _characterRepository.Get(actorId).IsSurvive
-                        ? new[] { actorId }
-                        : Array.Empty<CharacterId>(),
+                    actor.IsSurvive
+                        ? new[] { actor }
+                        : Array.Empty<CharacterEntity>(),
                 Range.Solo when isAutoTarget =>
-                    _characterRepository.Get(actorId).IsPlayer
+                    actor.IsPlayer
                         ? new[] { GetEnemySoloRandom() }
-                        : new[] { _player.GetId() },
+                        : new[] { _player.Get() },
                 Range.Solo when !isAutoTarget =>
-                    _characterRepository.Get(actorId).IsPlayer
+                    actor.IsPlayer
                         ? new[] { GetEnemySolo() }
-                        : new[] { _player.GetId() },
+                        : new[] { _player.Get() },
                 Range.Line or Range.Random =>
-                    _characterRepository.Get(actorId).IsPlayer
-                        ? _enemies.GetIdSurvive()
-                        : new[] { _player.GetId() },
+                    actor.IsPlayer
+                        ? _enemies.GetSurvive()
+                        : new[] { _player.Get() },
                 _ => throw new NotImplementedException()
             };
 
             return targetList;
         }
 
-        private CharacterId GetEnemySolo()
+        public void GetOption(CharacterEntity actor, Range range, List<CharacterEntity> optionTargetList)
         {
-            var targetId = _battleLogRepository.Get()
-                .Where(x => _characterRepository.Get(x.ActorId)?.IsPlayer ?? false)
-                .Where(x => x.TargetIdList.Count == 1)
-                .Where(x => !x.TargetIdList.Any(y => _characterRepository.Get(y).IsPlayer))
-                .Max()?.TargetIdList
-                .Single();
-            targetId = targetId == null || !_characterRepository.Get(targetId).IsSurvive
-                ? _enemies.Get()
-                    .Select(x => x.Id)
-                    .OrderBy(x => _characterRepository.Get(x).Position)
-                    .First(x => _characterRepository.Get(x).IsSurvive)
-                : targetId;
-            return targetId;
+            optionTargetList.Clear();
+            var player = _player.Get();
+            if (range == Range.Player || !(actor.IsPlayer ^ range == Range.Oneself))
+            {
+                optionTargetList.Add(player);
+            }
+            else
+            {
+                var optionTargets = _enemies.GetSurvive();
+                optionTargetList.AddRange(optionTargets);
+            }
         }
 
-        private CharacterId GetEnemySoloRandom()
+        private CharacterEntity GetEnemySolo()
         {
-            var enemyIdList = _enemies.Get()
-                .Where(x => x.IsSurvive)
-                .Select(x => x.Id)
-                .ToList();
-            var enemyId = _myRandom.Choice(enemyIdList);
-            return enemyId;
+            var target = _battleLogRepository.Get()
+                .Where(static x => x.Actor?.IsPlayer ?? false)
+                .Where(static x => x.TargetList.Count == 1)
+                .Where(static x => x.TargetList
+                    .Select(x => x.Id)
+                    .Contains(x.Actor!.Id))
+                .Max()?.TargetList
+                .Single();
+            target = target is not { IsSurvive: true }
+                ? _enemies.Get()
+                    .OrderBy(static enemy => enemy.Position)
+                    .First(static enemy => enemy.IsSurvive)
+                : target;
+            return target;
+        }
+
+        private CharacterEntity GetEnemySoloRandom()
+        {
+            var enemyArray = _enemies.Get()
+                .Where(static enemy => enemy.IsSurvive)
+                .ToArray();
+            var enemy = _myRandom.Choice(enemyArray);
+            return enemy;
         }
     }
 }

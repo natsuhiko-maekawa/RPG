@@ -9,7 +9,7 @@ namespace BattleScene.InterfaceAdapter.Service.Replacement
 {
     public class SkillReplacementService : IReplacementService
     {
-        public string Replacement { get; }= "[skill]";
+        public string Replacement => "[skill]";
         private readonly BattleLogDomainService _battleLog;
         private readonly IResource<SkillViewDto, SkillCode> _skillViewInfoResource;
 

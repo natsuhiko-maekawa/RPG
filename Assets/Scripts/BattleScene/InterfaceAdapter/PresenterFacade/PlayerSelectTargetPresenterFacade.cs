@@ -1,4 +1,5 @@
 using BattleScene.Domain.Code;
+using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
 using BattleScene.InterfaceAdapter.Presenter;
@@ -18,10 +19,10 @@ namespace BattleScene.InterfaceAdapter.PresenterFacade
             _targetView = targetView;
         }
 
-        public void Output(CharacterId actorId, SkillValueObject skill)
+        public void Output(CharacterEntity actor, SkillValueObject skill)
         {
             _infoView.StartAnimation(MessageCode.HorizontalSelectAndCancel);
-            _targetView.StartAnimation(actorId, skill);
+            _targetView.StartAnimation(actor, skill);
         }
 
         public void Stop()

@@ -13,7 +13,7 @@ namespace BattleScene.Framework.View
     {
         private EnemiesView _enemiesView;
         private PlayerView _playerView;
-        private TargetViewDto _dto;
+        private TargetViewModel _model;
         private int _index = -1;
         private IReadOnlyList<int> _enemyPositionList;
         private BattleSceneInputAction _inputAction;
@@ -34,23 +34,23 @@ namespace BattleScene.Framework.View
             enabled = false;
         }
 
-        public void StartAnimation(TargetViewDto dto)
+        public void StartAnimation(TargetViewModel model)
         {
             enabled = true;
             _inputAction.Enable();
 
-            _dto = dto;
+            _model = model;
             var frameViewDto = new FrameViewDto(Color.red);
 
-            if (IsEnemySolo(dto.CharacterDtoList))
+            if (IsEnemySolo(model.OptionTargetList))
             {
-                if (_index == -1) SetIndex(dto);
+                if (_index == -1) SetIndex(model);
 
                 _enemiesView[_enemyPositionList[_index]].StartFrameAnimationAsync(frameViewDto);
                 return;
             }
 
-            foreach (var character in dto.CharacterDtoList)
+            foreach (var character in model.OptionTargetList)
             {
                 if (character.IsPlayer)
                 {
@@ -64,6 +64,7 @@ namespace BattleScene.Framework.View
 
         public void StopAnimation()
         {
+            _index = -1;
             _inputAction.Disable();
             _playerView.StopPlayerFrameView();
             foreach (var enemyView in _enemiesView)
@@ -74,18 +75,18 @@ namespace BattleScene.Framework.View
             enabled = false;
         }
 
-        private bool IsEnemySolo(IReadOnlyList<CharacterStruct> characterDtoList)
+        private bool IsEnemySolo(IReadOnlyList<Character> characterDtoList)
         {
             return characterDtoList.Count == 1 && !characterDtoList.Single().IsPlayer;
         }
 
-        private void SetIndex(TargetViewDto dto)
+        private void SetIndex(TargetViewModel model)
         {
             _enemyPositionList = _enemiesView
                 .Where(x => x.enabled)
                 .Select((_, i) => i)
                 .ToList();
-            var position = dto.CharacterDtoList.First().Position;
+            var position = model.OptionTargetList.First().Position;
             _index = _enemyPositionList.First(x => x == position);
             Debug.Assert(_index != -1);
         }
@@ -99,15 +100,15 @@ namespace BattleScene.Framework.View
                 ? Math.Min(_index + 1, _enemyPositionList.Count - 1)
                 : Math.Max(_index - 1, 0);
 
-            StartAnimation(_dto);
+            StartAnimation(_model);
         }
 
-        private IReadOnlyList<CharacterStruct> GetTargetDtoList()
+        private IReadOnlyList<Character> GetTargetDtoList()
         {
             // if (_dto == null) return Array.Empty<CharacterStruct>();
-            return IsEnemySolo(_dto.CharacterDtoList)
-                ? new[] { CharacterStruct.CreateEnemy(_enemyPositionList[_index]) }
-                : _dto.CharacterDtoList;
+            return IsEnemySolo(_model.OptionTargetList)
+                ? new[] { Character.CreateEnemy(_enemyPositionList[_index]) }
+                : _model.OptionTargetList;
         }
 
         public void OnSelect(InputAction.CallbackContext context)

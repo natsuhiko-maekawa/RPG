@@ -18,10 +18,10 @@ namespace BattleScene.InterfaceAdapter.State.Turn
 
         public override void Start()
         {
-            if (Context.ActorId == null)
+            if (Context.Actor is null)
                 throw new InvalidOperationException(ExceptionMessage.ContextActorIdIsNull);
-            Context.Skill = _enemySelectAction.SelectSkill(Context.ActorId);
-            Context.TargetIdList = _enemySelectAction.SelectTarget(Context.ActorId, Context.Skill);
+            Context.Skill = _enemySelectAction.SelectSkill(Context.Actor);
+            Context.TargetList = _enemySelectAction.SelectTarget(Context.Actor, Context.Skill);
             Context.TransitionTo(_skillState);
         }
     }

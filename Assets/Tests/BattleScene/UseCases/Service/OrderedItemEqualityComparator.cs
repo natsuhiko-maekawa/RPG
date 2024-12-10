@@ -8,12 +8,12 @@ namespace Tests.BattleScene.UseCases.Service
     {
         public bool Equals(OrderedItemEntity x, OrderedItemEntity y)
         {
-            if (x.Order != y.Order || x.OrderedItemType != y.OrderedItemType) return false;
-            var value = x.OrderedItemType switch
+            if (x.Order != y.Order || x.ActorType != y.ActorType) return false;
+            var value = x.ActorType switch
             {
-                OrderedItemType.Character => EqualsCharacterId(x, y),
-                OrderedItemType.Ailment => EqualsAilmentCode(x, y),
-                OrderedItemType.Slip => EqualsSlipCode(x, y),
+                ActorType.Actor => EqualsCharacterId(x, y),
+                ActorType.Ailment => EqualsAilmentCode(x, y),
+                ActorType.Slip => EqualsSlipCode(x, y),
                 _ => throw new ArgumentOutOfRangeException()
             };
 
@@ -22,11 +22,11 @@ namespace Tests.BattleScene.UseCases.Service
 
         public int GetHashCode(OrderedItemEntity obj)
         {
-            var orderedItemInt = obj.OrderedItemType switch
+            var orderedItemInt = obj.ActorType switch
             {
-                OrderedItemType.Character => GetCharacterIdHashCode(),
-                OrderedItemType.Ailment => GetAilmentCodeAsInt(),
-                OrderedItemType.Slip => GetSlipCodeAsInt(),
+                ActorType.Actor => GetCharacterIdHashCode(),
+                ActorType.Ailment => GetAilmentCodeAsInt(),
+                ActorType.Slip => GetSlipCodeAsInt(),
                 _ => 0
             };
 
@@ -35,7 +35,7 @@ namespace Tests.BattleScene.UseCases.Service
 
             int GetCharacterIdHashCode()
             {
-                obj.TryGetCharacterId(out var characterId);
+                obj.TryGetActor(out var characterId);
                 return characterId?.GetHashCode() ?? 0;
             }
 
@@ -54,8 +54,8 @@ namespace Tests.BattleScene.UseCases.Service
 
         private static bool EqualsCharacterId(OrderedItemEntity x, OrderedItemEntity y)
         {
-            if (!x.TryGetCharacterId(out var xCharacterId)) return false;
-            if (!y.TryGetCharacterId(out var yCharacterId)) return false;
+            if (!x.TryGetActor(out var xCharacterId)) return false;
+            if (!y.TryGetActor(out var yCharacterId)) return false;
             return xCharacterId == yCharacterId;
         }
 

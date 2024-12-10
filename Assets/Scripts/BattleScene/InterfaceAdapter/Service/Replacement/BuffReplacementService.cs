@@ -9,7 +9,7 @@ namespace BattleScene.InterfaceAdapter.Service.Replacement
 {
     public class BuffReplacementService : IReplacementService
     {
-        public string Replacement { get; }= "[buff]";
+        public string Replacement => "[buff]";
         private readonly BattleLogDomainService _battleLog;
         private readonly IResource<BuffViewDto, BuffCode> _buffViewInfoResource;
 

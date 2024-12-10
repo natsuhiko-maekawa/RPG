@@ -9,7 +9,7 @@ namespace BattleScene.InterfaceAdapter.Service.Replacement
 {
     public class SlipReplacementService : IReplacementService
     {
-        public string Replacement  { get; }= "[slip]";
+        public string Replacement => "[slip]";
         private readonly IResource<AilmentViewDto, AilmentCode, SlipCode> _ailmentViewResource;
         private readonly BattleLogDomainService _battleLog;
 

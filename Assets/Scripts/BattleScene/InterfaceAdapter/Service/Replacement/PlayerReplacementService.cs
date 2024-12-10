@@ -7,9 +7,9 @@ namespace BattleScene.InterfaceAdapter.Service.Replacement
 {
     public class PlayerReplacementService : IReplacementService
     {
-        public string Replacement { get; }= "[player]";
+        public string Replacement => "[player]";
         private readonly IResource<PlayerViewDto, CharacterTypeCode> _playerViewInfoResource;
-        
+
         public PlayerReplacementService(
             IResource<PlayerViewDto, CharacterTypeCode> playerViewInfoResource)
         {

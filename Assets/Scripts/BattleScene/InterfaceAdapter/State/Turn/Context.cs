@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using BattleScene.Domain.Code;
+using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
 using BattleScene.InterfaceAdapter.StateMachine;
@@ -12,11 +13,13 @@ namespace BattleScene.InterfaceAdapter.State.Turn
     {
         private BaseState _state = null!;
 
-        public CharacterId? ActorId { get; set; }
+        [Obsolete] public CharacterId? ActorId { get; set; }
+        public CharacterEntity? Actor { get; set; }
         public AilmentCode AilmentCode { get; set; }
         public SlipCode SlipCode { get; set; }
         public SkillValueObject? Skill { get; set; }
-        public IReadOnlyList<CharacterId> TargetIdList { get; set; } = Array.Empty<CharacterId>();
+        [Obsolete] public IReadOnlyList<CharacterId> TargetIdList { get; set; } = Array.Empty<CharacterId>();
+        public IReadOnlyList<CharacterEntity> TargetList { get; set; } = Array.Empty<CharacterEntity>();
 
         public Context(BaseState state)
         {

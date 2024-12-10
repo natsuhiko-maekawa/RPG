@@ -116,6 +116,7 @@ namespace BattleScene
 
             builder.Register<AilmentOutputPresenterFacade>(Singleton);
             builder.Register<BuffOutputPresenterFacade>(Singleton);
+            builder.Register<CharacterDeadPresenterFacade>(Singleton);
             builder.Register<CureOutputPresenterFacade>(Singleton);
             builder.Register<EnhanceOutputPresenterFacade>(Singleton);
             builder.Register<ResetAilmentPresenterFacade>(Singleton);
@@ -340,6 +341,7 @@ namespace BattleScene
 
             #region RegisterUseCase
 
+            builder.Register<CharacterDeadUseCase>(Singleton);
             builder.Register<DamageOutputUseCase>(Singleton);
             builder.Register<EnemySelectActionUseCase>(Singleton);
             builder.Register<SkillElementUseCase<DamageValueObject>, SkillElementUseCase<DamageValueObject>>(Singleton);

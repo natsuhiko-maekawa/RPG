@@ -29,14 +29,14 @@ namespace BattleScene.UseCases.Service.Order
 
         public void Update()
         {
-            if (!_orderedItems.First().TryGetCharacterId(out var actorId)) return;
+            if (!_orderedItems.First().TryGetActor(out var actor)) return;
             var actionTime = _characterRepository.Get()
                 .Min(x => x.ActionTime);
             foreach (var character in _characterRepository.Get())
             {
                 character.ActionTime -= actionTime;
 
-                if (character.Id != actorId) continue;
+                if (character.Id != actor.Id) continue;
                 var maxAgility = _battlePropertyFactory.Create().MaxAgility;
                 var speed = _speed.GetSpeed(character.Id);
                 character.ActionTime += maxAgility / speed;

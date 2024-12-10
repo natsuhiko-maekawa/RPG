@@ -7,7 +7,7 @@ namespace BattleScene.InterfaceAdapter.Service.Replacement
 {
     public class CureReplacementService : IReplacementService
     {
-        public string Replacement { get; }= "[cure]";
+        public string Replacement => "[cure]";
         private readonly BattleLogDomainService _battleLog;
 
         public CureReplacementService(

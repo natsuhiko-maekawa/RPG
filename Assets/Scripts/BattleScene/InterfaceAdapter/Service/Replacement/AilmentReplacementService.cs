@@ -9,7 +9,7 @@ namespace BattleScene.InterfaceAdapter.Service.Replacement
 {
     public class AilmentReplacementService : IReplacementService
     {
-        public string Replacement  { get; }= "[ailment]";
+        public string Replacement => "[ailment]";
         private readonly IResource<AilmentViewDto, AilmentCode, SlipCode> _ailmentViewResource;
         private readonly BattleLogDomainService _battleLog;
 

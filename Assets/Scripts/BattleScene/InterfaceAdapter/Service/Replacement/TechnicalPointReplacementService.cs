@@ -6,7 +6,7 @@ namespace BattleScene.InterfaceAdapter.Service.Replacement
 {
     public class TechnicalPointReplacementService : IReplacementService
     {
-        public string Replacement { get; }= "[technicalPoint]";
+        public string Replacement => "[technicalPoint]";
         private readonly BattleLogDomainService _battleLog;
 
         public TechnicalPointReplacementService(

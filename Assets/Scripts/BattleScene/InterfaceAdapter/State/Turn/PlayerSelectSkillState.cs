@@ -41,8 +41,8 @@ namespace BattleScene.InterfaceAdapter.State.Turn
             Context.Skill = _useCase.GetSkill(skillCode);
             if (Context.Skill.Common.IsAutoTarget)
             {
-                var actorId = Context.ActorId ?? throw new InvalidOperationException();
-                Context.TargetIdList = _useCase.GetTarget(actorId, Context.Skill.Common.Range);
+                var actor = Context.Actor ?? throw new InvalidOperationException();
+                Context.TargetList = _useCase.GetTarget(actor, Context.Skill.Common.Range);
                 Context.TransitionTo(_skillState);
             }
             else

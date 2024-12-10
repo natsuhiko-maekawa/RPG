@@ -35,12 +35,7 @@ namespace BattleScene.InterfaceAdapter.Service
 
         public bool IsResetAilment(AilmentCode ailmentCode) => ailmentCode != AilmentCode.NoAilment;
         public bool IsSlipDamage(SlipCode slipCode) => slipCode != SlipCode.NoSlip;
-
-        public bool IsPlayer(CharacterId? actorId)
-        {
-            var isPlayer = actorId is not null && _characterRepository.Get(actorId).IsPlayer;
-            return isPlayer;
-        }
+        public bool IsPlayer(CharacterEntity? actor) => actor is { IsPlayer: true };
 
         /// <summary>
         ///     麻痺によって行動不能になったかを表すプロパティ。<br />
@@ -53,15 +48,15 @@ namespace BattleScene.InterfaceAdapter.Service
         /// キャラクターが行動不能かを判定し、行動不能の場合、true。それ以外の場合、falseを返す。<br/>
         /// 行動不能の場合、out引数で状態異常のスキルを返す。
         /// </summary>
-        /// <param name="actorId">行動不能か判定するキャラクターのID。</param>
+        /// <param name="actor">行動不能か判定するキャラクターのID。</param>
         /// <param name="skill">行動不能だった場合、状態異常のスキルValueObject。それ以外の場合、null。</param>
         /// <returns>行動不能の場合、true。それ以外の場合、false。</returns>
-        public bool CantAction(CharacterId? actorId, [NotNullWhen(true)] out SkillValueObject? skill)
+        public bool CantAction(CharacterEntity? actor, [NotNullWhen(true)] out SkillValueObject? skill)
         {
             skill = null;
 
-            if (actorId is null) return false;
-            var ailmentCodeList = _ailment.GetCantActionAilmentCodeList(actorId);
+            if (actor is null) return false;
+            var ailmentCodeList = _ailment.GetCantActionAilmentCodeList(actor);
             if (ailmentCodeList.Count == 0) return false;
 
             var ailmentCode = ailmentCodeList.First();

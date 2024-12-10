@@ -146,22 +146,22 @@ namespace Tests.BattleScene.UseCases.Service
         {
             switch (expected)
             {
-                case CharacterId characterId:
+                case CharacterEntity character:
                 {
                     var orderedItem = new OrderedItemEntity(new OrderedItemId(), i);
-                    orderedItem.SetOrderedItem(new OrderedItem(characterId));
+                    orderedItem.SetOrderedItem(new ActorInTurn(character));
                     return orderedItem;
                 }
                 case AilmentCode ailmentCode:
                 {
                     var orderedItem = new OrderedItemEntity(new OrderedItemId(), i);
-                    orderedItem.SetOrderedItem(new OrderedItem(ailmentCode));
+                    orderedItem.SetOrderedItem(new ActorInTurn(ailmentCode));
                     return orderedItem;
                 }
                 case SlipCode slipCode:
                 {
                     var orderedItem = new OrderedItemEntity(new OrderedItemId(), i);
-                    orderedItem.SetOrderedItem(new OrderedItem(slipCode));
+                    orderedItem.SetOrderedItem(new ActorInTurn(slipCode));
                     return orderedItem;
                 }
                 default:
@@ -169,7 +169,7 @@ namespace Tests.BattleScene.UseCases.Service
             }
         }
 
-        private (CharacterId, string) AddPlayer()
+        private (CharacterEntity, string) AddPlayer()
         {
             var playerId = new CharacterId();
             var player = new CharacterEntity(
@@ -179,10 +179,10 @@ namespace Tests.BattleScene.UseCases.Service
                 currentTechnicalPoint: 50);
             _mockCharacterRepository.Add(player);
             _stubCharacterCreatorService.Create(playerId, isPlayer: true);
-            return (playerId, "Player");
+            return (player, "Player");
         }
 
-        private (CharacterId, string) AddBee()
+        private (CharacterEntity, string) AddBee()
         {
             var beeId = new CharacterId();
             var bee = new CharacterEntity(
@@ -192,10 +192,10 @@ namespace Tests.BattleScene.UseCases.Service
                 position: 0);
             _mockCharacterRepository.Add(bee);
             _stubCharacterCreatorService.Create(beeId);
-            return (beeId, "Bee");
+            return (bee, "Bee");
         }
 
-        private (CharacterId, string) AddBee2()
+        private (CharacterEntity, string) AddBee2()
         {
             var beeId = new CharacterId();
             var bee = new CharacterEntity(
@@ -205,10 +205,10 @@ namespace Tests.BattleScene.UseCases.Service
                 position: 0);
             _mockCharacterRepository.Add(bee);
             _stubCharacterCreatorService.Create(beeId);
-            return (beeId, "Bee");
+            return (bee, "Bee");
         }
 
-        private (CharacterId, string) AddSlime()
+        private (CharacterEntity, string) AddSlime()
         {
             var slimeId = new CharacterId();
             var slime = new CharacterEntity(
@@ -218,10 +218,10 @@ namespace Tests.BattleScene.UseCases.Service
                 position: 1);
             _mockCharacterRepository.Add(slime);
             _stubCharacterCreatorService.Create(slimeId);
-            return (slimeId, "Slime");
+            return (slime, "Slime");
         }
 
-        private (CharacterId, string) AddDragon()
+        private (CharacterEntity, string) AddDragon()
         {
             var dragonId = new CharacterId();
             var dragon = new CharacterEntity(
@@ -231,10 +231,10 @@ namespace Tests.BattleScene.UseCases.Service
                 position: 2);
             _mockCharacterRepository.Add(dragon);
             _stubCharacterCreatorService.Create(dragonId);
-            return (dragonId, "Dragon");
+            return (dragon, "Dragon");
         }
 
-        private (CharacterId, string) AddShuten()
+        private (CharacterEntity, string) AddShuten()
         {
             var shutenId = new CharacterId();
             var shuten = new CharacterEntity(
@@ -244,7 +244,7 @@ namespace Tests.BattleScene.UseCases.Service
                 position: 3);
             _mockCharacterRepository.Add(shuten);
             _stubCharacterCreatorService.Create(shutenId);
-            return (shutenId, "Shuten");
+            return (shuten, "Shuten");
         }
 
         #endregion
@@ -252,17 +252,16 @@ namespace Tests.BattleScene.UseCases.Service
         [Test]
         public void プレイヤーと敵2体の行動順()
         {
-            var (playerId, playerName) = AddPlayer();
-            var (beeId, beeName) = AddBee();
-            var (slimeId, slimeName) = AddSlime();
+            var (player, playerName) = AddPlayer();
+            var (bee, beeName) = AddBee();
+            var (slime, slimeName) = AddSlime();
 
             _orderService.Update();
             var actual = _mockOrderedItemRepository.Get();
 
             var items = new object[]
             {
-                playerId, beeId, slimeId, playerId, beeId, playerId, slimeId, beeId, playerId,
-                playerId, beeId, playerId, slimeId, beeId
+                player, bee, slime, player, bee, player, slime, bee, player, player, bee, player, slime, bee
             };
             var expected = GetExpectedValue(items);
 
@@ -272,24 +271,22 @@ namespace Tests.BattleScene.UseCases.Service
         [Test]
         public void プレイヤーと同種の敵2体の行動順()
         {
-            var (playerId, playerName) = AddPlayer();
-            var (beeId, beeName) = AddBee();
-            var (bee2Id, bee2Name) = AddBee2();
+            var (player, playerName) = AddPlayer();
+            var (bee, beeName) = AddBee();
+            var (bee2, bee2Name) = AddBee2();
 
             _orderService.Update();
             var actual = _mockOrderedItemRepository.Get();
 
             var items = new object[]
             {
-                playerId, beeId, bee2Id, playerId, beeId, bee2Id, playerId, beeId, bee2Id,
-                playerId, playerId, beeId, bee2Id, playerId
+                player, bee, bee2, player, bee, bee2, player, bee, bee2, player, player, bee, bee2, player
             };
             var items2 = new object[]
             {
-                playerId, bee2Id, beeId, playerId, bee2Id, beeId, playerId, bee2Id, beeId,
-                playerId, playerId, bee2Id, beeId, playerId
+                player, bee2, bee, player, bee2, bee, player, bee2, bee, player, player, bee2, bee, player
             };
-            var expected = GetExpectedValue(beeId.CompareTo(bee2Id) < 0 ? items : items2);
+            var expected = GetExpectedValue(bee.Id.CompareTo(bee2.Id) < 0 ? items : items2);
 
             Assert.That(actual, Is.EqualTo(expected).Using(new OrderedItemEqualityComparator()));
         }
@@ -297,18 +294,17 @@ namespace Tests.BattleScene.UseCases.Service
         [Test]
         public void プレイヤーと敵3体の行動順()
         {
-            var (playerId, playerName) = AddPlayer();
-            var (beeId, beeName) = AddBee();
-            var (slimeId, slimeName) = AddSlime();
-            var (dragonId, dragonName) = AddDragon();
+            var (player, playerName) = AddPlayer();
+            var (bee, beeName) = AddBee();
+            var (slime, slimeName) = AddSlime();
+            var (dragon, dragonName) = AddDragon();
 
             _orderService.Update();
             var actual = _mockOrderedItemRepository.Get();
 
             var items = new object[]
             {
-                playerId, beeId, slimeId, dragonId, playerId, beeId, playerId, slimeId, beeId,
-                playerId, dragonId, playerId, beeId, playerId
+                player, bee, slime, dragon, player, bee, player, slime, bee, player, dragon, player, bee, player
             };
             var expected = GetExpectedValue(items);
 
@@ -318,19 +314,18 @@ namespace Tests.BattleScene.UseCases.Service
         [Test]
         public void プレイヤーと敵4体の行動順()
         {
-            var (playerId, playerName) = AddPlayer();
-            var (beeId, beeName) = AddBee();
-            var (slimeId, slimeName) = AddSlime();
-            var (dragonId, dragonName) = AddDragon();
-            var (shutenId, shutenName) = AddShuten();
+            var (player, playerName) = AddPlayer();
+            var (bee, beeName) = AddBee();
+            var (slime, slimeName) = AddSlime();
+            var (dragon, dragonName) = AddDragon();
+            var (shuten, shutenName) = AddShuten();
 
             _orderService.Update();
             var actual = _mockOrderedItemRepository.Get();
 
             var items = new object[]
             {
-                playerId, beeId, slimeId, dragonId, shutenId, playerId, beeId, playerId, slimeId,
-                beeId, playerId, dragonId, shutenId, playerId
+                player, bee, slime, dragon, shuten, player, bee, player, slime, bee, player, dragon, shuten, player
             };
             var expected = GetExpectedValue(items);
 
@@ -340,11 +335,11 @@ namespace Tests.BattleScene.UseCases.Service
         [Test]
         public void プレイヤーと敵4体とスリップダメージの行動順()
         {
-            var (playerId, playerName) = AddPlayer();
-            var (beeId, beeName) = AddBee();
-            var (slimeId, slimeName) = AddSlime();
-            var (dragonId, dragonName) = AddDragon();
-            var (shutenId, shutenName) = AddShuten();
+            var (player, playerName) = AddPlayer();
+            var (bee, beeName) = AddBee();
+            var (slime, slimeName) = AddSlime();
+            var (dragon, dragonName) = AddDragon();
+            var (shuten, shutenName) = AddShuten();
 
             var poisoning = _mockSlipRepository.Get(SlipCode.Poisoning);
             poisoning.Effects = true;
@@ -355,8 +350,8 @@ namespace Tests.BattleScene.UseCases.Service
 
             var items = new object[]
             {
-                playerId, beeId, slimeId, dragonId, SlipCode.Poisoning, shutenId, playerId,
-                beeId, playerId, SlipCode.Poisoning, slimeId, beeId, playerId, dragonId
+                player, bee, slime, dragon, SlipCode.Poisoning, shuten, player, bee, player, SlipCode.Poisoning, slime,
+                bee, player, dragon
             };
             var expected = GetExpectedValue(items);
 

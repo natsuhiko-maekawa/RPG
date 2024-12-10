@@ -6,7 +6,7 @@ namespace BattleScene.InterfaceAdapter.Service.Replacement
 {
     public class ActorReplacementService : IReplacementService
     {
-        public string Replacement { get; }= "[actor]";
+        public string Replacement => "[actor]";
         private readonly BattleLogDomainService _battleLog;
         private readonly ReplacementCommonService _replacementCommon;
 
@@ -22,10 +22,10 @@ namespace BattleScene.InterfaceAdapter.Service.Replacement
         public bool IsMatch(string value) => value == Replacement;
         public ReadOnlySpan<char> GetNewCharSpan()
         {
-            var actorId = _battleLog.GetLast().ActorId;
-            MyDebug.Assert(actorId is not null);
-            if (actorId is null) return ReadOnlySpan<char>.Empty;
-            var actorName = _replacementCommon.GetCharacterName(actorId).AsSpan();
+            var actor = _battleLog.GetLast().Actor;
+            MyDebug.Assert(actor is not null);
+            if (actor is null) return ReadOnlySpan<char>.Empty;
+            var actorName = _replacementCommon.GetCharacterName(actor).AsSpan();
             return actorName;
         }
     }

@@ -1,11 +1,11 @@
 ﻿namespace BattleScene.Framework.ViewModel
 {
-    public struct CharacterStruct
+    public struct Character
     {
         public bool IsPlayer { get; }
         public int Position { get; }
 
-        private CharacterStruct(
+        private Character(
             bool isPlayer,
             int position)
         {
@@ -13,16 +13,16 @@
             Position = position;
         }
 
-        public static CharacterStruct CreatePlayer()
+        public static Character CreatePlayer()
         {
-            return new CharacterStruct(
+            return new Character(
                 isPlayer: true,
                 position: 0);
         }
 
-        public static CharacterStruct CreateEnemy(int index)
+        public static Character CreateEnemy(int index)
         {
-            return new CharacterStruct(
+            return new Character(
                 isPlayer: false,
                 position: index);
         }

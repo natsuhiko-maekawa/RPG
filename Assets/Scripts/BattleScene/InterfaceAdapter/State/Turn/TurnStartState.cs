@@ -38,7 +38,7 @@ namespace BattleScene.InterfaceAdapter.State.Turn
         public override void Start()
         {
             _order.Register();
-            (Context.ActorId, Context.AilmentCode, Context.SlipCode) = _order.First();
+            (Context.Actor, Context.AilmentCode, Context.SlipCode) = _order.First();
             _orderView.StartAnimationAsync();
             var nextState = GetNextState();
             Context.TransitionTo(nextState);
@@ -48,13 +48,13 @@ namespace BattleScene.InterfaceAdapter.State.Turn
         {
             if (_actor.IsResetAilment(Context.AilmentCode)) return _resetAilmentState;
             if (_actor.IsSlipDamage(Context.SlipCode)) return _slipDamageState;
-            if (_actor.CantAction(Context.ActorId, out var skill))
+            if (_actor.CantAction(Context.Actor, out var skill))
             {
                 Context.Skill = skill;
                 return _cantActionState;
             }
 
-            return _actor.IsPlayer(Context.ActorId)
+            return _actor.IsPlayer(Context.Actor)
                 ? _playerSelectActionState
                 : _enemySelectActionState;
         }

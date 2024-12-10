@@ -47,9 +47,9 @@ namespace BattleScene.InterfaceAdapter.State.Turn
 
             if (actionCode == BattleEventCode.Defence)
             {
-                if (Context.ActorId == null) throw new InvalidOperationException();
-                var oneself = _useCase.GetOneself(Context.ActorId);
-                Context.TargetIdList = oneself;
+                if (Context.Actor is null) throw new InvalidOperationException();
+                var oneself = _useCase.GetOneself(Context.Actor);
+                Context.TargetList = oneself;
             }
 
             Context.Skill = _useCase.GetSkill(actionCode);

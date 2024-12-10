@@ -35,11 +35,11 @@ namespace BattleScene.InterfaceAdapter.StateMachine
 
         public void OnSelect() => _context.Select();
         public void OnSelect(int id) => _context.Select(id);
-        public void OnSelect(IReadOnlyList<CharacterStruct> targetDtoList) 
+        public void OnSelect(IReadOnlyList<Character> targetDtoList) 
             => _context.Select(ToCharacterIdList(targetDtoList));
         public void OnCancel() => _context.Cancel();
 
-        private IReadOnlyList<CharacterId> ToCharacterIdList(IReadOnlyList<CharacterStruct> characterDtoList)
+        private IReadOnlyList<CharacterId> ToCharacterIdList(IReadOnlyList<Character> characterDtoList)
         {
             return characterDtoList
                 .Select(x => x.IsPlayer

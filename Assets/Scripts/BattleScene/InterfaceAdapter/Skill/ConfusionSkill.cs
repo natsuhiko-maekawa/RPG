@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using BattleScene.Domain.Code;
-using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.DomainService;
-using BattleScene.Domain.Entity;
-using BattleScene.Domain.Id;
 using BattleScene.InterfaceAdapter.PrimeSkill;
 using BattleScene.InterfaceAdapter.PrimeSkill.BaseClass;
 using BattleScene.InterfaceAdapter.Skill.BaseClass;
@@ -18,14 +15,10 @@ namespace BattleScene.InterfaceAdapter.Skill
     /// </summary>
     public class ConfusionSkill : BaseSkill
     {
-        private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
         private readonly OrderedItemsDomainService _orderedItems;
 
-        public ConfusionSkill(
-            IRepository<CharacterEntity, CharacterId> characterRepository,
-            OrderedItemsDomainService orderedItems)
+        public ConfusionSkill(OrderedItemsDomainService orderedItems)
         {
-            _characterRepository = characterRepository;
             _orderedItems = orderedItems;
         }
 
@@ -38,8 +31,8 @@ namespace BattleScene.InterfaceAdapter.Skill
 
         private MessageCode GetAttackMessageCode()
         {
-            if (!_orderedItems.First().TryGetCharacterId(out var characterId)) throw new InvalidOperationException();
-            var attackMessageCode = _characterRepository.Get(characterId).IsPlayer
+            if (!_orderedItems.First().TryGetActor(out var actor)) throw new InvalidOperationException();
+            var attackMessageCode = actor.IsPlayer
                 ? MessageCode.PlayerConfusionActMessage
                 : MessageCode.EnemyConfusionActMessage;
             return attackMessageCode;

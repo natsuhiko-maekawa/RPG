@@ -50,25 +50,25 @@ namespace BattleScene.Domain.DomainService
         /// <summary>
         ///     行動不能となる状態異常のコードを優先度が高い順にソートして返す。
         /// </summary>
-        /// <param name="characterId">キャラクターID</param>
+        /// <param name="character">キャラクターID</param>
         /// <returns>状態異常のコードのリスト</returns>
-        public IReadOnlyList<AilmentCode> GetCantActionAilmentCodeList(CharacterId characterId)
+        public IReadOnlyList<AilmentCode> GetCantActionAilmentCodeList(CharacterEntity character)
         {
             // QUESTION: どちらのLINQのほうが良いかわからない。
-            // var ailmentCodeList = _ailmentCollection.Get()
-            //     .Where(x => x.CharacterId == characterId)
+            // var ailmentCodeArray = _ailmentRepository.Get()
+            //     .Where(x => x.CharacterId == character.Id)
             //     .Where(x => x.Effects)
             //     .Where(x => _ailmentPropertyFactory.Create(x.AilmentCode).Priority.HasValue)
             //     .OrderBy(x => _ailmentPropertyFactory.Create(x.AilmentCode).Priority)
             //     .Select(x => x.AilmentCode)
-            //     .ToList();
+            //     .ToArray();
 
             var ailmentCodeArray = Enum.GetValues(typeof(AilmentCode))
                 .Cast<AilmentCode>()
                 .Where(ailmentCode => ailmentCode != AilmentCode.NoAilment)
                 .ToArray();
             var ailments = ailmentCodeArray
-                .Select(ailmentCode => _ailmentRepository.Get((characterId, ailmentCode)))
+                .Select(ailmentCode => _ailmentRepository.Get((character.Id, ailmentCode)))
                 .ToArray();
             var ailmentProperties = ailmentCodeArray
                 .Select(ailmentCode => _ailmentPropertyFactory.Create(ailmentCode))

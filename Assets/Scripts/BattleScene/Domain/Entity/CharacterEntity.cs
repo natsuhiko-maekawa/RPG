@@ -55,7 +55,12 @@ namespace BattleScene.Domain.Entity
 
         public int ActionTime { get; set; }
         public int Position { get; }
-        public bool IsSurvive => 0 < CurrentHitPoint;
+        public bool IsSurvive { get; set; } = true;
         public bool IsPlayer => CharacterTypeCode == CharacterTypeCode.Player;
+
+        public override string ToString()
+        {
+            return $"{CharacterTypeCode} (ID: {Id})";
+        }
     }
 }

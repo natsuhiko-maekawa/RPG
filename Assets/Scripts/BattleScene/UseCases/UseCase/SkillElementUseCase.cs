@@ -46,7 +46,8 @@ namespace BattleScene.UseCases.UseCase
                     battleEventId: new BattleEventId(),
                     sequence: skillEvent.Sequence + i,
                     turn: skillEvent.Turn,
-                    actorId: skillEvent.ActorId);
+                    actorId: skillEvent.ActorId,
+                    actor: skillEvent.Actor);
                 _battleLogger.Log(battleEvent);
                 battleEventList[i] = battleEvent;
             }

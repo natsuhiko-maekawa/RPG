@@ -7,7 +7,7 @@ namespace BattleScene.InterfaceAdapter.Service.Replacement
 {
     public class DamageReplacementService : IReplacementService
     {
-        public string Replacement { get; }= "[damage]";
+        public string Replacement => "[damage]";
         private readonly BattleLogDomainService _battleLog;
 
         public DamageReplacementService(

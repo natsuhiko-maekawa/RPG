@@ -59,7 +59,7 @@ namespace BattleScene.UseCases.Service.Order
                 .ThenByDescending(x => _speed.GetAgility(x.character.Id))
                 .ThenBy(x => x.character.CharacterTypeCode)
                 .ThenBy(x => x.character.Id)
-                .Select(x => new OrderedItem(x.character.Id))
+                .Select(x => new ActorInTurn(x.character))
                 .ToList()
                 .GetRange(0, _battlePropertyFactory.Create().MaxOrderCount);
 
@@ -84,12 +84,12 @@ namespace BattleScene.UseCases.Service.Order
 
         private void InsertAilmentEnd(
             IReadOnlyList<AilmentEntity> ailmentEntityList,
-            ref List<OrderedItem> order)
+            ref List<ActorInTurn> order)
         {
             foreach (var ailmentEntity in ailmentEntityList.Where(x => x.IsSelfRecovery && x.Effects))
             {
                 var index = ailmentEntity.Turn;
-                var orderedAilmentEntity = new OrderedItem(ailmentEntity.AilmentCode);
+                var orderedAilmentEntity = new ActorInTurn(ailmentEntity.AilmentCode);
                 order.Insert(index, orderedAilmentEntity);
                 order.RemoveAt(order.Count - 1);
             }
@@ -97,7 +97,7 @@ namespace BattleScene.UseCases.Service.Order
 
         private void InsertSlipDamage(
             IReadOnlyList<SlipEntity> slipEntityList,
-            ref List<OrderedItem> order)
+            ref List<ActorInTurn> order)
         {
             var slipDefaultTurn = _battlePropertyFactory.Create().SlipDefaultTurn;
 
@@ -107,10 +107,10 @@ namespace BattleScene.UseCases.Service.Order
                 {
                     var characterTypeCount = order
                         .Take(i)
-                        .Count(x => x.CharacterId != null || x.SlipCode == slip.Id);
+                        .Count(x => x.Actor != null || x.SlipCode == slip.Id);
                     if (slip.Turn != characterTypeCount % slipDefaultTurn) continue;
                     var orderedSlip
-                        = new OrderedItem(slip.Id);
+                        = new ActorInTurn(slip.Id);
                     order.Insert(i, orderedSlip);
                     order.RemoveAt(order.Count - 1);
                     ++i;

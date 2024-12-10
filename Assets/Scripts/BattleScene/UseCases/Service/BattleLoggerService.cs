@@ -10,25 +10,28 @@ namespace BattleScene.UseCases.Service
     public class BattleLoggerService
     {
         private readonly IRepository<BattleEventEntity, BattleEventId> _battleLogRepository;
+        private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
         private readonly IRepository<TurnEntity, TurnId> _turnRepository;
 
         public BattleLoggerService(
             IRepository<BattleEventEntity, BattleEventId> battleLogRepository,
+            IRepository<CharacterEntity, CharacterId> characterRepository,
             IRepository<TurnEntity, TurnId> turnRepository)
         {
             _battleLogRepository = battleLogRepository;
+            _characterRepository = characterRepository;
             _turnRepository = turnRepository;
         }
 
-        public void Log((CharacterId? actorId, AilmentCode ailmentCode, SlipCode slipCode) tuple)
+        public void Log((CharacterEntity? actor, AilmentCode ailmentCode, SlipCode slipCode) tuple)
         {
             var (battleLogId, sequence, turn) = GetBattleLogCommonArguments();
             var (actorId, ailmentCode, slipCode) = tuple;
             var battleLog = new BattleEventEntity(
-                battleEventId: battleLogId, 
-                sequence: sequence, 
-                turn: turn, 
-                actorId: actorId, 
+                battleEventId: battleLogId,
+                sequence: sequence,
+                turn: turn,
+                actor: actorId,
                 ailmentCode: ailmentCode, 
                 slipCode: slipCode);
             _battleLogRepository.Add(battleLog);
