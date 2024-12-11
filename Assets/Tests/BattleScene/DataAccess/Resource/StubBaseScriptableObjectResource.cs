@@ -18,5 +18,11 @@ namespace Tests.BattleScene.DataAccess.Resource
         {
             return _itemList.First(x => Equals(x.Key, key));
         }
+
+        public void Get(List<TItem> itemList)
+        {
+            itemList.Clear();
+            itemList.AddRange(_itemList);
+        }
     }
 }

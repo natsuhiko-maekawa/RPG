@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using BattleScene.DataAccess.ScriptableObjects;
 using UnityEngine;
@@ -27,6 +28,12 @@ namespace BattleScene.DataAccess.Resource
             }
 
             return item;
+        }
+
+        public void Get(List<TItem> itemList)
+        {
+            itemList.Clear();
+            itemList.AddRange(listScriptableObject.ItemList);
         }
     }
 }

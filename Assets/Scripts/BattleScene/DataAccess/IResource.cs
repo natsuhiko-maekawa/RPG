@@ -1,13 +1,17 @@
-﻿namespace BattleScene.DataAccess
+﻿using System.Collections.Generic;
+
+namespace BattleScene.DataAccess
 {
     public interface IResource<out TItem>
     {
         public TItem Get();
     }
 
-    public interface IResource<out TItem, in TKey>
+    public interface IResource<TItem, in TKey>
     {
         public TItem Get(TKey key);
+        // QUESTION: この実装のように、アロケーションを起こさないためにはリストは戻り値で返却せず引数で受け渡しすべきか
+        public void Get(List<TItem> itemList);
     }
 
     public interface IResource<out TItem, in TKey1, in TKey2>
