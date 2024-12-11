@@ -2,6 +2,7 @@
 {
     public enum CharacterTypeCode : byte
     {
+        None,
         Bee,
         Slime,
         Mantis,
