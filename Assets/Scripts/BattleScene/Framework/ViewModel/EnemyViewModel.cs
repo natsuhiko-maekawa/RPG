@@ -1,5 +1,5 @@
 ﻿namespace BattleScene.Framework.ViewModel
 {
-    public record EnemyViewDto(
+    public record EnemyViewModel(
         string EnemyImagePath);
 }

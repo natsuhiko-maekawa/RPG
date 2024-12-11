@@ -88,7 +88,7 @@ namespace BattleScene
             builder.Register<AttackCountViewPresenter>(Singleton);
             builder.Register<CureViewPresenter>(Singleton);
             builder.Register<DamageViewPresenter>(Singleton);
-            builder.Register<EnemyImagePresenter>(Singleton);
+            builder.Register<EnemyImageViewPresenter>(Singleton);
             builder.Register<TableViewPresenter>(Singleton);
             builder.Register<InfoViewPresenter>(Singleton);
             builder.Register<MessageViewPresenter>(Singleton);

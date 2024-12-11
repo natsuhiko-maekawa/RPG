@@ -7,20 +7,28 @@ namespace BattleScene.Framework.View
 {
     public class EnemiesView : MonoBehaviour, IEnumerable<EnemyView>
     {
-        [SerializeField] private int maxCacheSize = 4;
-        private EnemyView _enemyView;
-        private EnemyGrid _enemyViewGrid;
+        public int maxCacheSize = 4;
+        private EnemyColumn _enemyViewColumn;
 
         private void Awake()
         {
-            _enemyViewGrid = GetComponent<EnemyGrid>();
-            // _enemyViewGrid.Initialize();
-            _enemyViewGrid.SetItem(maxCacheSize);
-            foreach (var enemyView in _enemyViewGrid) enemyView.SetActive(false);
+            _enemyViewColumn = GetComponent<EnemyColumn>();
+            _enemyViewColumn.SetItem(maxCacheSize);
+            enabled = false;
         }
 
-        public EnemyView this[int i] => _enemyViewGrid[i];
-        public IEnumerator<EnemyView> GetEnumerator() => _enemyViewGrid.GetEnumerator();
+        private void OnEnable()
+        {
+            foreach (var enemyView in _enemyViewColumn) enemyView.enabled = true;
+        }
+
+        private void OnDisable()
+        {
+            foreach (var enemyView in _enemyViewColumn) enemyView.enabled = false;
+        }
+
+        public EnemyView this[int i] => _enemyViewColumn[i];
+        public IEnumerator<EnemyView> GetEnumerator() => _enemyViewColumn.GetEnumerator();
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }
 }

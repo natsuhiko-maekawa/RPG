@@ -22,14 +22,6 @@ namespace BattleScene.Domain.DomainService
                 .Where(x => x.CharacterTypeCode != CharacterTypeCode.Player)
                 .ToList();
         }
-        
-        public IReadOnlyList<CharacterId> GetId()
-        {
-            return _characterRepository.Get()
-                .Where(x => x.CharacterTypeCode != CharacterTypeCode.Player)
-                .Select(x => x.Id)
-                .ToList();
-        }
 
         public IReadOnlyList<CharacterEntity> GetSurvive()
         {

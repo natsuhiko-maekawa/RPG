@@ -6,23 +6,24 @@ namespace BattleScene.InterfaceAdapter.State.Battle
     public class InitializeEnemyState : BaseState
     {
         private readonly InitializeEnemyUseCase _useCase;
-        private readonly EnemyImagePresenter _enemyImage;
+        private readonly EnemyImageViewPresenter _enemyImageView;
         private readonly TurnState _turnState;
 
         public InitializeEnemyState(
             InitializeEnemyUseCase useCase,
-            EnemyImagePresenter enemyImage,
+            EnemyImageViewPresenter enemyImageView,
             TurnState turnState)
         {
             _useCase = useCase;
-            _enemyImage = enemyImage;
+            _enemyImageView = enemyImageView;
             _turnState = turnState;
         }
 
-        public override void Start()
+        public override async void Start()
         {
-            _useCase.Initialize();
-            _enemyImage.Show();
+            var enemyList = _useCase.Initialize();
+            await _enemyImageView.SetImage(enemyList);
+            _enemyImageView.StartAnimation();
             Context.TransitionTo(_turnState);
         }
     }

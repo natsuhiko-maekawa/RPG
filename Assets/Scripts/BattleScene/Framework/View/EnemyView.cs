@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using BattleScene.Framework.GameObjects;
 using BattleScene.Framework.ViewModel;
 using UnityEngine;
@@ -24,17 +25,16 @@ namespace BattleScene.Framework.View
             _spriteFlyweight = SpriteFlyweight.Instance;
         }
 
-        public void SetActive(bool value)
+        private void OnEnable()
         {
-            gameObject.SetActive(value);
+            _enemyImage.enabled = true;
+            _enemyAilmentView.enabled = true;
         }
 
-        public async Task SetImage(EnemyViewDto dto)
+        public async Task SetImage(string enemyImagePath)
         {
-            var enemyImagePath = dto.EnemyImagePath;
             var sprite = await _spriteFlyweight.GetAsync(enemyImagePath);
             _enemyImage.Set(sprite);
-            _enemyImage.enabled = true;
         }
 
         public void StartAilmentAnimationAsync(AilmentViewModel dto)
@@ -65,6 +65,12 @@ namespace BattleScene.Framework.View
         public void StartVibeAnimation()
         {
             _enemyImage.Vibe();
+        }
+
+        private void OnDisable()
+        {
+            _enemyImage.enabled = false;
+            _enemyAilmentView.enabled = false;
         }
     }
 }

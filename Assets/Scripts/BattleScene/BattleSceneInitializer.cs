@@ -10,7 +10,7 @@ namespace BattleScene
 {
     public class BattleSceneInitializer : MonoBehaviour
     {
-        private PlayerImageViewPresenter _playerImageView = null!;
+        private PlayerImageViewPresenter _playerImageView;
 
         [Inject]
         public void Construct(

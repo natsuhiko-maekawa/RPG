@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using System.Linq;
 using BattleScene.Domain.DomainService;
+using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.UseCases.IService;
 using static BattleScene.Domain.Code.CharacterTypeCode;
@@ -22,18 +24,22 @@ namespace BattleScene.UseCases.UseCase
             _enemies = enemies;
         }
 
-        public void Initialize()
+        public IReadOnlyList<CharacterEntity> Initialize()
         {
-            var enemyIdList = SetEnemies();
+            var enemyList = RegisterEnemiesAndGet();
+            var enemyIdList = enemyList
+                .Select(x => x.Id)
+                .ToArray();
             _characterCreator.Create(enemyIdList);
+            return enemyList;
         }
 
-        private IReadOnlyList<CharacterId> SetEnemies()
+        private IReadOnlyList<CharacterEntity> RegisterEnemiesAndGet()
         {
-            var enemyTypeIdList = new[] { Bee, Dragon, Mantis, Shuten, Slime };
-            _enemiesRegisterer.Register(enemyTypeIdList);
-            var enemyIdList = _enemies.GetId();
-            return enemyIdList;
+            var enemyTypeCodeList = new[] { Bee, Dragon, Mantis, Shuten, Slime };
+            _enemiesRegisterer.Register(enemyTypeCodeList);
+            var enemyList = _enemies.Get();
+            return enemyList;
         }
     }
 }
