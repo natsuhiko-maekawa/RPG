@@ -85,8 +85,9 @@ namespace BattleScene.Framework.View
         private void SetIndex(TargetViewModel model)
         {
             _enemyPositionList = _enemiesView
-                .Where(x => x.enabled)
-                .Select((_, i) => i)
+                .Select((enemyView, i) => (enemyView, i))
+                .Where(x => x.enemyView.enabled)
+                .Select(x => x.i)
                 .ToArray();
             _index = model.SelectedTargetIndexList.Count == 1 ? model.SelectedTargetIndexList.Single() : -1;
         }
@@ -123,6 +124,7 @@ namespace BattleScene.Framework.View
 
         public void OnMoveCursor(InputAction.CallbackContext context)
         {
+            if (!IsEnemySolo(_model)) return;
             if (context.performed)
             {
                 var vector2 = context.ReadValue<Vector2>();
