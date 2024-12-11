@@ -1,6 +1,6 @@
 # 状態異常のメッセージの表示に関する補足
 
-[このコード](../Assets/Scripts/BattleScene/InterfaceAdapter/State/PrimeSkill/PrimeSkillStartState.cs)の補足。
+[このコード](../Assets/Scripts/BattleScene/InterfaceAdapter/State/SkillElement/SkillElementStartState.cs)の補足。
 
 ## 状態異常のメッセージの表示条件
 

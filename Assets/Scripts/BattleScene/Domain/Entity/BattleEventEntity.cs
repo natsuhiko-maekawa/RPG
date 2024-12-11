@@ -13,13 +13,15 @@ namespace BattleScene.Domain.Entity
         public int Sequence { get; }
         public int Turn { get; }
         public BattleEventCode BattleEventCode { get; private set; } = BattleEventCode.NoEvent;
-        // TODO: 以下のプロパティをActorInTurn (OrderedItem)に置換すること。
+        // TODO: 以下のプロパティをActorInTurnに置換すること。
         public CharacterEntity? Actor { get; }
         public AilmentCode AilmentCode { get; private set; }
         public SlipCode SlipCode { get; private set; }
 
-        public SkillCode SkillCode { get; private set; } = SkillCode.NoSkill;
-        public IReadOnlyList<CharacterEntity> TargetList { get; private set; } = Array.Empty<CharacterEntity>();
+        // TODO: 以下のプロパティをISkillEventValueObject型のプロパティに統一すること。
+        // レビュー会までに間に合わないと判断したため、後回しにしている。
+        /*[Obsolete] */public SkillCode SkillCode { get; private set; } = SkillCode.NoSkill;
+        /*[Obsolete] */public IReadOnlyList<CharacterEntity> TargetList { get; private set; } = Array.Empty<CharacterEntity>();
         /*[Obsolete] */public IReadOnlyList<CharacterEntity> ActualTargetList { get; private set; } = Array.Empty<CharacterEntity>();
         /*[Obsolete] */public bool IsFailure => ActualTargetList.Count == 0;
         /*[Obsolete] */public BodyPartCode DestroyedPart { get; private set; } = BodyPartCode.NoBodyPart;
@@ -80,6 +82,7 @@ namespace BattleScene.Domain.Entity
             Rate = rate;
             LifetimeCode = lifetimeCode;
             TargetList = targetList;
+            ActualTargetList = targetList;
         }
 
         public void UpdateCure(
@@ -88,6 +91,7 @@ namespace BattleScene.Domain.Entity
         {
             CuringList = curingList;
             TargetList = targetList;
+            ActualTargetList = targetList;
         }
 
         public void UpdateDamage(
@@ -96,6 +100,7 @@ namespace BattleScene.Domain.Entity
         {
             AttackList = attackList;
             TargetList = targetList;
+            ActualTargetList = targetList;
         }
 
         public void UpdateDestroy(
@@ -118,6 +123,7 @@ namespace BattleScene.Domain.Entity
             EffectTurn = effectTurn;
             LifetimeCode = lifetimeCode;
             TargetList = targetList;
+            ActualTargetList = targetList;
         }
 
         public void UpdateReset(
@@ -130,6 +136,7 @@ namespace BattleScene.Domain.Entity
             ResetBodyPartCodeList = resetBodyPartCodeList;
             ResetSlipCodeList = resetSlipCodeList;
             TargetList = targetList;
+            ActualTargetList = targetList;
         }
 
         public void UpdateRestore(
@@ -138,6 +145,7 @@ namespace BattleScene.Domain.Entity
         {
             TechnicalPoint = technicalPoint;
             TargetList = targetList;
+            ActualTargetList = targetList;
         }
 
         public void UpdateSlip(
@@ -157,6 +165,7 @@ namespace BattleScene.Domain.Entity
             MyDebug.Assert(SlipCode != SlipCode.NoSlip);
             AttackList = attackList;
             TargetList = targetList;
+            ActualTargetList = targetList;
         }
 
         public override string ToString()

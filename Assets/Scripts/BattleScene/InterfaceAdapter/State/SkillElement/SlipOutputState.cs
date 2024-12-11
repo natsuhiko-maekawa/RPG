@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using BattleScene.Domain.ValueObject;
+﻿using BattleScene.Domain.ValueObject;
 using BattleScene.InterfaceAdapter.PresenterFacade;
 
 namespace BattleScene.InterfaceAdapter.State.SkillElement
@@ -19,16 +18,13 @@ namespace BattleScene.InterfaceAdapter.State.SkillElement
 
         public override void Start()
         {
-            var isFailure = Context.BattleEventQueue.All(x => x.IsFailure);
-            if (isFailure)
+            if (TryGetSuccessBattleEvent(out var successSlipEvent))
             {
-                _facade.OutputThenSlipFailure();
-                Context.BattleEventQueue.Clear();
+                _facade.OutputThenSlipSuccess(successSlipEvent);
             }
             else
             {
-                var slipEvent = Context.BattleEventQueue.Dequeue();
-                _facade.OutputThenSlipSuccess(slipEvent);
+                _facade.OutputThenSlipFailure();
             }
         }
 

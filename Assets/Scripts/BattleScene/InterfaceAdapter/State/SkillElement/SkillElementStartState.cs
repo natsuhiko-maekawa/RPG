@@ -34,7 +34,7 @@ namespace BattleScene.InterfaceAdapter.State.SkillElement
             Context.BattleEventQueue = new Queue<BattleEventEntity>(battleEventList);
 
             BaseState<TSkillElement> nextState =
-                Context.BattleEventQueue.Count == 0
+                battleEventList.All(x => x.IsFailure)
                 && Context.TargetList.All(x => x.IsPlayer)
                 && _useCase.IsExecutedDamage()
                     ? _skillElementStopState

@@ -18,15 +18,13 @@ namespace BattleScene.InterfaceAdapter.State.SkillElement
 
         public override void Start()
         {
-            var isFailure = Context.BattleEventQueue.Count == 0;
-            if (isFailure)
+            if (TryGetSuccessBattleEvent(out var successAilmentEvent))
             {
-                _facade.OutputThenAilmentFailure();
+                _facade.OutputThenAilmentSuccess(successAilmentEvent);
             }
             else
             {
-                var ailmentEvent = Context.BattleEventQueue.Dequeue();
-                _facade.OutputThenAilmentSuccess(ailmentEvent);
+                _facade.OutputThenAilmentFailure();
             }
         }
 
