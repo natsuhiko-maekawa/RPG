@@ -1,26 +1,26 @@
 using System.Collections.Generic;
 using BattleScene.Domain.Code;
-using BattleScene.Domain.Id;
+using BattleScene.Domain.Entity;
 using BattleScene.Domain.ValueObject.SkillEventValueObject.Interface;
 
 namespace BattleScene.Domain.ValueObject.SkillEventValueObject
 {
-    public class SlipEventValueObject : ISkillEventValueObject // 24 byte
+    public class SlipEventValueObject : ISkillEventValueObject, IFailable // 24 byte
     {
         public SkillEventCode SkillEventCode { get; }
         public SlipCode SlipCode { get; }
-        public IReadOnlyList<CharacterId> TargetIdList { get; }
-        public IReadOnlyList<CharacterId> ActualTargetIdList { get; }
+        public IReadOnlyList<CharacterEntity> TargetList { get; }
+        public IReadOnlyList<CharacterEntity> ActualTargetList { get; }
 
         public SlipEventValueObject(
             SlipCode slipCode,
-            IReadOnlyList<CharacterId> targetIdList,
-            IReadOnlyList<CharacterId> actualTargetIdList)
+            IReadOnlyList<CharacterEntity> targetList,
+            IReadOnlyList<CharacterEntity> actualTargetList)
         {
             SkillEventCode = SkillEventCode.Slip;
             SlipCode = slipCode;
-            TargetIdList = targetIdList;
-            ActualTargetIdList = actualTargetIdList;
+            TargetList = targetList;
+            ActualTargetList = actualTargetList;
         }
     }
 }

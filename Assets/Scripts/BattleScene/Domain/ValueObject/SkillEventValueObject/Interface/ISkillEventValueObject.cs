@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using BattleScene.Domain.Code;
-using BattleScene.Domain.Id;
+using BattleScene.Domain.Entity;
 
 namespace BattleScene.Domain.ValueObject.SkillEventValueObject.Interface
 {
@@ -12,7 +12,6 @@ namespace BattleScene.Domain.ValueObject.SkillEventValueObject.Interface
     public interface ISkillEventValueObject
     {
         public SkillEventCode SkillEventCode { get; }
-        public IReadOnlyList<CharacterId> TargetIdList { get; }
-        public IReadOnlyList<CharacterId> ActualTargetIdList { get; }
+        public IReadOnlyList<CharacterEntity> TargetList { get; }
     }
 }

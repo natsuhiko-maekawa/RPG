@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using BattleScene.Domain.Code;
-using BattleScene.Domain.Id;
+using BattleScene.Domain.Entity;
 using BattleScene.Domain.ValueObject.SkillEventValueObject.Interface;
 
 namespace BattleScene.Domain.ValueObject.SkillEventValueObject
@@ -12,12 +12,11 @@ namespace BattleScene.Domain.ValueObject.SkillEventValueObject
         public float Rate { get; }
         public byte EffectTurn { get; }
         public LifetimeCode LifetimeCode { get; }
-        public IReadOnlyList<CharacterId> TargetIdList { get; }
-        public IReadOnlyList<CharacterId> ActualTargetIdList => TargetIdList;
+        public IReadOnlyList<CharacterEntity> TargetList { get; }
 
         public BuffEventValueObject(
             BuffCode buffCode,
-            IReadOnlyList<CharacterId> targetIdList,
+            IReadOnlyList<CharacterEntity> targetList,
             byte effectTurn,
             LifetimeCode lifetimeCode,
             float rate = 1.0f)
@@ -27,7 +26,7 @@ namespace BattleScene.Domain.ValueObject.SkillEventValueObject
             Rate = rate;
             EffectTurn = effectTurn;
             LifetimeCode = lifetimeCode;
-            TargetIdList = targetIdList;
+            TargetList = targetList;
         }
     }
 }
