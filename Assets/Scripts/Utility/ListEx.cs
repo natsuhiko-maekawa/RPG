@@ -1,52 +1,48 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 
 namespace Utility
 {
     public static class ListEx
     {
-        public static List<List<T>> Combination<T>(this IReadOnlyList<T> source, int k1, int k2)
+        public static IReadOnlyList<IReadOnlyList<T>> Combination<T>(this IReadOnlyList<T> source, int k1, int k2)
         {
-            var indexCombination = new List<List<int>>();
+            var distinctSourceArray = source.Distinct().ToArray();
+            var combination = new List<IReadOnlyList<T>>(); 
             for (var k = k1; k < k2 + 1; ++k)
             {
-                var tmpIndexCombination = CreateIndexCombination(source.Count, k);
-                indexCombination.AddRange(tmpIndexCombination);
+                CreateCombination(k, distinctSourceArray.Length, distinctSourceArray, combination, 0, Span<int>.Empty);
             }
 
-            var combination = indexCombination
-                .Select(subset => subset
-                    .Select(i => source[i])
-                    .ToList())
-                .Distinct(new SequenceEqualityComparer<T>())
-                .ToList();
             return combination;
         }
 
-        private static List<List<int>> CreateIndexCombination(int n, int k, int i = 0, List<int>? subset = null, List<List<int>>? combination = null)
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private static void CreateCombination<T>(int k, int n, IReadOnlyList<T> source, List<IReadOnlyList<T>> combination,
+            int index, Span<int> indexSubset)
         {
-            subset ??= new List<int>();
-            combination ??= new List<List<int>>();
-            if (subset.Count < k && i < n)
+            if (indexSubset.Length < k && index < n)
             {
-                var newSubset1 = new List<int>(subset) { i };
-                CreateIndexCombination(n: n, k: k, i: i, subset: newSubset1, combination: combination);
-                var newSubset2 = new List<int>(subset) { i };
-                CreateIndexCombination(n: n, k: k, i: i + 1, subset: newSubset2, combination: combination);
-                CreateIndexCombination(n: n, k: k, i: i + 1, subset: subset, combination: combination);
+                Span<int> newSubset = stackalloc int[indexSubset.Length + 1];
+                indexSubset.CopyTo(newSubset);
+                newSubset[^1] = index;
+                CreateCombination(k, n, source, combination, index: index, indexSubset: newSubset);
+                CreateCombination(k, n, source, combination, index: index + 1, indexSubset: indexSubset);
             }
             else
             {
-                if (subset.Count != 0) combination.Add(subset);
+                if (indexSubset.Length != k) return;
+
+                var subset = new T[indexSubset.Length];
+                for (var i = 0; i < indexSubset.Length; ++i)
+                {
+                    subset[i] = source[indexSubset[i]];
+                }
+
+                combination.Add(subset);
             }
-
-            return combination;
-        }
-
-        class SequenceEqualityComparer<T> : EqualityComparer<List<T>>
-        {
-            public override bool Equals(List<T> x, List<T> y) => x.SequenceEqual(y);
-            public override int GetHashCode(List<T> obj) => 0;
         }
     }
 }
