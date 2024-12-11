@@ -40,15 +40,20 @@ namespace BattleScene.InterfaceAdapter.Presenter
             await Task.WhenAll(taskArray);
         }
 
+        public void StartAnimation()
+        {
+            _enemiesView.enabled = true;
+        }
+
+        public void StopAnimation(int position)
+        {
+            _enemiesView[position].enabled = false;
+        }
+
         private List<EnemyViewDto> GetEnemyViewResource()
         {
             _enemyViewInfoResource.Get(_dtoList);
             return _dtoList;
-        }
-
-        public void StartAnimation()
-        {
-            _enemiesView.enabled = true;
         }
     }
 }

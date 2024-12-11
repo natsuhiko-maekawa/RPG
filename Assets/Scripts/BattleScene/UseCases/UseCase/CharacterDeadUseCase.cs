@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using BattleScene.Domain.Entity;
 using BattleScene.UseCases.IService;
 
 namespace BattleScene.UseCases.UseCase
@@ -12,9 +14,7 @@ namespace BattleScene.UseCases.UseCase
             _deadCharacter = deadCharacter;
         }
 
-        public void ConfirmedDead()
-        {
-            _deadCharacter.ConfirmedDead();
-        }
+        public IReadOnlyList<CharacterEntity> GetDeadInThisTurn() => _deadCharacter.GetDeadInThisTurn();
+        public void ConfirmedDead() => _deadCharacter.ConfirmedDead();
     }
 }

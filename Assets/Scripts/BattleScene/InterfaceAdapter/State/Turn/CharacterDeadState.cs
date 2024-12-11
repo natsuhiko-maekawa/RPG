@@ -21,7 +21,9 @@ namespace BattleScene.InterfaceAdapter.State.Turn
 
         public override void Start()
         {
+            var deadCharacter = _useCase.GetDeadInThisTurn();
             _useCase.ConfirmedDead();
+            _facade.Output(deadCharacter);
         }
 
         public override void Select()

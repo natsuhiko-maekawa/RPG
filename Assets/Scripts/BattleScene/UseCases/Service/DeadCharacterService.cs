@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.Entity;
@@ -21,6 +22,15 @@ namespace BattleScene.UseCases.Service
             var value = _characterRepository.Get()
                 .Where(x => x.IsSurvive)
                 .Any(x => x.CurrentHitPoint == 0);
+            return value;
+        }
+
+        public IReadOnlyList<CharacterEntity> GetDeadInThisTurn()
+        {
+            var value = _characterRepository.Get()
+                .Where(x => x.IsSurvive)
+                .Where(x => x.CurrentHitPoint == 0)
+                .ToArray();
             return value;
         }
 
