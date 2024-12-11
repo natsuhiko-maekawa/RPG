@@ -17,7 +17,7 @@ namespace BattleScene.UseCases.Service
             _characterRepository = characterRepository;
         }
 
-        public bool DeadInThisTurn()
+        public bool IsAnyCharacterDeadInThisTurn()
         {
             var value = _characterRepository.Get()
                 .Where(x => x.IsSurvive)
@@ -25,7 +25,23 @@ namespace BattleScene.UseCases.Service
             return value;
         }
 
-        public IReadOnlyList<CharacterEntity> GetDeadInThisTurn()
+        public bool IsPlayerDeadInThisTurn()
+        {
+            var value = _characterRepository.Get()
+                .Single(x => x.IsPlayer)
+                .CurrentHitPoint == 0;
+            return value;
+        }
+
+        public bool IsAllEnemyDead()
+        {
+            var value = _characterRepository.Get()
+                .Where(x => !x.IsPlayer)
+                .All(x => !x.IsSurvive);
+            return value;
+        }
+
+        public IReadOnlyList<CharacterEntity> GetDeadCharacterInThisTurn()
         {
             var value = _characterRepository.Get()
                 .Where(x => x.IsSurvive)

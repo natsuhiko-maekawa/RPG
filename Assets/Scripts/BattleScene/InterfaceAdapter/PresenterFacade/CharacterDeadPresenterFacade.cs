@@ -19,7 +19,12 @@ namespace BattleScene.InterfaceAdapter.PresenterFacade
             _messageView = messageView;
         }
 
-        public void Output(IReadOnlyList<CharacterEntity> targetList)
+        public void OutputWhenPlayerDead()
+        {
+            _messageView.StartAnimation(MessageCode.PlayerDeadMessage);
+        }
+
+        public void OutputWhenEnemyDead(IReadOnlyList<CharacterEntity> targetList)
         {
             if (targetList.All(x => !x.IsPlayer))
             {

@@ -11,6 +11,6 @@ namespace BattleScene.UseCases.UseCase
             _deadCharacter = deadCharacter;
         }
 
-        public bool AnyDeadInThisTurn() => _deadCharacter.DeadInThisTurn();
+        public bool IsAnyCharacterDeadInThisTurn() => _deadCharacter.IsAnyCharacterDeadInThisTurn();
     }
 }

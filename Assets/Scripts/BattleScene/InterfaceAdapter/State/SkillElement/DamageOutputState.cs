@@ -44,7 +44,7 @@ namespace BattleScene.InterfaceAdapter.State.SkillElement
                 .All(x => !x.IsHit)) 
                 return _skillElementBreakState;
 
-            if (_useCase.AnyDeadInThisTurn()) return _characterDeadState;
+            if (_useCase.IsAnyCharacterDeadInThisTurn()) return _characterDeadState;
 
             return _skillElementStopState;
         }

@@ -5,8 +5,10 @@ namespace BattleScene.UseCases.IService
 {
     public interface IDeadCharacterService
     {
-        public bool DeadInThisTurn();
-        public IReadOnlyList<CharacterEntity> GetDeadInThisTurn();
+        public bool IsAnyCharacterDeadInThisTurn();
+        public bool IsPlayerDeadInThisTurn();
+        public bool IsAllEnemyDead();
+        public IReadOnlyList<CharacterEntity> GetDeadCharacterInThisTurn();
         public void ConfirmedDead();
     }
 }
