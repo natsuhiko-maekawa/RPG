@@ -51,7 +51,7 @@ namespace BattleScene.InterfaceAdapter.State.Turn
 
         public bool IsContinue => _state is not TurnStopState;
         public bool IsCancelable => _state is ICancelable;
-        public StateCode NextStateCode { get; set; } = StateCode.None;
+        public StateCode NextStateCode { get; set; } = StateCode.Current;
 
         public bool TryCancel()
         {
