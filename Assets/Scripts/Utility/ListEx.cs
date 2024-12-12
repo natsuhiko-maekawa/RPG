@@ -7,10 +7,10 @@ namespace Utility
 {
     public static class ListEx
     {
-        public static IReadOnlyList<IReadOnlyList<T>> Combination<T>(this IReadOnlyList<T> source, int k1, int k2)
+        public static IEnumerable<T[]> Combination<T>(this IEnumerable<T> source, int k1, int k2)
         {
             var distinctSourceArray = source.Distinct().ToArray();
-            var combination = new List<IReadOnlyList<T>>(); 
+            var combination = new List<T[]>(); 
             for (var k = k1; k < k2 + 1; ++k)
             {
                 CreateCombination(k, distinctSourceArray.Length, distinctSourceArray, combination, 0, Span<int>.Empty);
@@ -20,7 +20,7 @@ namespace Utility
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private static void CreateCombination<T>(int k, int n, IReadOnlyList<T> source, List<IReadOnlyList<T>> combination,
+        private static void CreateCombination<T>(int k, int n, T[] source, List<T[]> combination,
             int index, Span<int> indexSubset)
         {
             if (indexSubset.Length < k && index < n)

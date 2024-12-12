@@ -1,8 +1,10 @@
 using System.Collections.Generic;
 using System.Linq;
-using BattleScene.Domain.DomainService;
+using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.Entity;
+using BattleScene.Domain.Id;
 using BattleScene.UseCases.IService;
+using Utility;
 using static BattleScene.Domain.Code.CharacterTypeCode;
 
 namespace BattleScene.UseCases.UseCase
@@ -10,35 +12,32 @@ namespace BattleScene.UseCases.UseCase
     public class InitializeEnemyUseCase
     {
         private readonly ICharacterCreatorService _characterCreator;
-        private readonly EnemiesDomainService _enemies;
-        private readonly IEnemiesRegistererService _enemiesRegisterer;
-        
+        private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
+        private readonly IEnemySelectorService _enemySelector;
+        [ForCache] private readonly List<CharacterEntity> _enemyList = new(Constant.MaxEnemyCount);
+
         public InitializeEnemyUseCase(
             ICharacterCreatorService characterCreator,
-            IEnemiesRegistererService enemiesRegisterer,
-            EnemiesDomainService enemies)
+            IRepository<CharacterEntity, CharacterId> characterRepository,
+            IEnemySelectorService enemySelector)
         {
             _characterCreator = characterCreator;
-            _enemiesRegisterer = enemiesRegisterer;
-            _enemies = enemies;
+            _characterRepository = characterRepository;
+            _enemySelector = enemySelector;
         }
 
-        public IReadOnlyList<CharacterEntity> Initialize()
+        public IReadOnlyList<CharacterEntity> CreateEnemy()
         {
-            var enemyList = RegisterEnemiesAndGet();
-            var enemyIdList = enemyList
-                .Select(x => x.Id)
-                .ToArray();
-            _characterCreator.Create(enemyIdList);
-            return enemyList;
+            // TODO: 仮の値を設定している。
+            var enemyTypeCodeArray = new[] { Bee, Dragon, Mantis, Shuten, Slime };
+            _enemySelector.SelectEnemy(enemyTypeCodeArray, _enemyList);
+            return _enemyList;
         }
 
-        private IReadOnlyList<CharacterEntity> RegisterEnemiesAndGet()
+        public void Initialize()
         {
-            var enemyTypeCodeList = new[] { Bee, Dragon, Mantis, Shuten, Slime };
-            _enemiesRegisterer.Register(enemyTypeCodeList);
-            var enemyList = _enemies.Get();
-            return enemyList;
+            _characterRepository.Add(_enemyList);
+            _characterCreator.Create(_enemyList.Select(x => x.Id).ToArray());
         }
     }
 }

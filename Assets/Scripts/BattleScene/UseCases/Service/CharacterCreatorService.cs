@@ -52,7 +52,7 @@ namespace BattleScene.UseCases.Service
             InitializeSlipRepository();
         }
 
-        public void Create(IEnumerable<CharacterId> characterIdList)
+        public void Create(CharacterId[] characterIdList)
         {
             foreach (var characterId in characterIdList) Create(characterId);
         }

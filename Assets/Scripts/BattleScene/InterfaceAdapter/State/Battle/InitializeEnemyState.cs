@@ -21,9 +21,10 @@ namespace BattleScene.InterfaceAdapter.State.Battle
 
         public override async void Start()
         {
-            var enemyList = _useCase.Initialize();
+            var enemyList = _useCase.CreateEnemy();
+            _enemyImageView.StartAnimation(enemyList.Count);
             await _enemyImageView.SetImage(enemyList);
-            _enemyImageView.StartAnimation();
+            _useCase.Initialize();
             Context.TransitionTo(_turnState);
         }
     }
