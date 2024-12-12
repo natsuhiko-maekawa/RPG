@@ -6,6 +6,7 @@ using BattleScene.DataAccess.Dto;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.Entity;
 using BattleScene.Framework.View;
+using BattleScene.UseCases;
 using Utility;
 
 namespace BattleScene.InterfaceAdapter.Presenter
@@ -14,8 +15,7 @@ namespace BattleScene.InterfaceAdapter.Presenter
     {
         private readonly IResource<EnemyViewDto, CharacterTypeCode> _enemyViewInfoResource;
         private readonly EnemiesView _enemiesView;
-        // TODO: キャパシティを設定する。
-        [ForCache] private readonly List<EnemyViewDto> _dtoList = new();
+        [ForCache] private readonly List<EnemyViewDto> _dtoList = new(Constant.MaxEnemyCount);
 
         public EnemyImageViewPresenter(
             IResource<EnemyViewDto, CharacterTypeCode> enemyViewInfoResource,

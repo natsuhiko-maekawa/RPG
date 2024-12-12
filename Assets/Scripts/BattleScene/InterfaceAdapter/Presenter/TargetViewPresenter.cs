@@ -43,7 +43,6 @@ namespace BattleScene.InterfaceAdapter.Presenter
             var targetViewDto = new TargetViewModel(
                 optionTargetList: optionTargetList,
                 selectedTargetIndexList: selectedTargetIndexList);
-            // TODO: targetViewDtoには攻撃対象となりえるすべての候補を含めること
             _targetView.StartAnimation(targetViewDto);
         }
 

@@ -59,7 +59,6 @@ namespace BattleScene.Domain.Entity
         }
     }
 
-    // TODO: ActorInTurnに改名すること。
     public struct ActorInTurn // 16 byte
     {
         public ActorType ActorType { get; }
@@ -92,7 +91,6 @@ namespace BattleScene.Domain.Entity
         }
     }
 
-    // TODO: ActorTypeに改名すること。
     public enum ActorType : byte
     {
         Actor,
