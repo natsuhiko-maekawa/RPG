@@ -50,7 +50,7 @@ OnikoroshiMessage	[actor]が[player]を酒びたりにした！
 ParalysisCantActMessage	[actor]は麻痺して動けない！
 PlayerConfusionActMessage	[player]は混乱して自分自身に刃を向けた！
 PlayerDeadMessage	[target]は死亡した...
-PlayerWinMessage	[actor]は戦闘に勝利した！
+PlayerWinMessage	[player]は戦闘に勝利した！
 PoisoningMessage	[player]は毒に侵されている！
 PunchStomachMessage	[actor]が[player]の腹部を殴打した！
 RaikiriDescription	敵一体に<雷><斬>攻撃。
@@ -89,3 +89,4 @@ HorizontalSelectAndCancel	⇆で選択 / Aで決定 / Bで戻る
 BattleContinue	戦闘を続ける
 BattleQuit	戦闘をやめる
 DefenceMessage	[target]の防御が上昇した！
+PlayerLoseMessage	[player]は戦闘に敗北した…

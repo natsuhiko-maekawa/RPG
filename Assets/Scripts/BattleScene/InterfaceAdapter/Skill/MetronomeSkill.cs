@@ -4,8 +4,8 @@ using System.Linq;
 using BattleScene.DataAccess;
 using BattleScene.DataAccess.Dto;
 using BattleScene.Domain.Code;
-using BattleScene.InterfaceAdapter.PrimeSkill.BaseClass;
 using BattleScene.InterfaceAdapter.Skill.BaseClass;
+using BattleScene.InterfaceAdapter.SkillComponents.BaseClass;
 using BattleScene.UseCases.IService;
 using Range = BattleScene.Domain.Code.Range;
 

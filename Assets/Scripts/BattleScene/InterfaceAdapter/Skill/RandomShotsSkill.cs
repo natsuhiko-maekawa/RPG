@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using BattleScene.Domain.Code;
-using BattleScene.InterfaceAdapter.PrimeSkill;
-using BattleScene.InterfaceAdapter.PrimeSkill.BaseClass;
 using BattleScene.InterfaceAdapter.Skill.BaseClass;
+using BattleScene.InterfaceAdapter.SkillComponents;
+using BattleScene.InterfaceAdapter.SkillComponents.BaseClass;
 
 namespace BattleScene.InterfaceAdapter.Skill
 {

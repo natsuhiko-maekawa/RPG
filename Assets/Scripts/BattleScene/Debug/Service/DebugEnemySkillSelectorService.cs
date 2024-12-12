@@ -55,12 +55,12 @@ namespace BattleScene.Debug.Service
             var value = primeSkillCode switch
             {
                 PrimeSkillCode.All => true,
-                PrimeSkillCode.Damage => skill.DamageParameterList.Count != 0,
-                PrimeSkillCode.Ailment => skill.AilmentParameterList.Count != 0,
-                PrimeSkillCode.Slip => skill.SlipParameterList.Count != 0,
-                PrimeSkillCode.Destroy => skill.DestroyedParameterList.Count != 0,
-                PrimeSkillCode.Buff => skill.BuffParameterList.Count != 0,
-                PrimeSkillCode.Restore => skill.RestoreParameterList.Count != 0,
+                PrimeSkillCode.Damage => skill.DamageList.Count != 0,
+                PrimeSkillCode.Ailment => skill.AilmentList.Count != 0,
+                PrimeSkillCode.Slip => skill.SlipList.Count != 0,
+                PrimeSkillCode.Destroy => skill.DestroyList.Count != 0,
+                PrimeSkillCode.Buff => skill.BuffList.Count != 0,
+                PrimeSkillCode.Restore => skill.RestoreList.Count != 0,
                 _ => throw new ArgumentOutOfRangeException()
             };
 

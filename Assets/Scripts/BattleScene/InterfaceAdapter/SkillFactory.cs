@@ -3,7 +3,7 @@ using System.Linq;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.ValueObject;
-using BattleScene.InterfaceAdapter.PrimeSkill.BaseClass;
+using BattleScene.InterfaceAdapter.SkillComponents.BaseClass;
 
 namespace BattleScene.InterfaceAdapter
 {
@@ -40,11 +40,11 @@ namespace BattleScene.InterfaceAdapter
                 buffList: buffParameterList,
                 cureList: cureList,
                 damageList: damageList,
-                destroyedPartList: destroyPartList,
+                destroyList: destroyPartList,
                 enhanceList: enhanceList,
-                resetParameterList: recoveryParameterList,
-                restoreParameterList: restoreParameterList,
-                slipParameterList: slipParameterList);
+                recoveryList: recoveryParameterList,
+                restoreList: restoreParameterList,
+                slipList: slipParameterList);
         }
 
         private IReadOnlyList<AilmentValueObject> CreateAilmentParameterList(

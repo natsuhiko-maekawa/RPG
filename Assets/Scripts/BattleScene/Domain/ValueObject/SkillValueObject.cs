@@ -8,15 +8,15 @@ namespace BattleScene.Domain.ValueObject
     public class SkillValueObject
     {
         public SkillCommonValueObject Common { get; }
-        public IReadOnlyList<AilmentValueObject> AilmentParameterList { get; }
-        public IReadOnlyList<BuffValueObject> BuffParameterList { get; }
-        public IReadOnlyList<CureValueObject> CureParameterList { get; }
-        public IReadOnlyList<DamageValueObject> DamageParameterList { get; }
-        public IReadOnlyList<DestroyValueObject> DestroyedParameterList { get; }
-        public IReadOnlyList<EnhanceValueObject> EnhanceParameterList { get; }
-        public IReadOnlyList<RecoveryValueObject> ResetParameterList { get; }
-        public IReadOnlyList<RestoreValueObject> RestoreParameterList { get; }
-        public IReadOnlyList<SlipValueObject> SlipParameterList { get; }
+        public IReadOnlyList<AilmentValueObject> AilmentList { get; }
+        public IReadOnlyList<BuffValueObject> BuffList { get; }
+        public IReadOnlyList<CureValueObject> CureList { get; }
+        public IReadOnlyList<DamageValueObject> DamageList { get; }
+        public IReadOnlyList<DestroyValueObject> DestroyList { get; }
+        public IReadOnlyList<EnhanceValueObject> EnhanceList { get; }
+        public IReadOnlyList<RecoveryValueObject> RecoveryList { get; }
+        public IReadOnlyList<RestoreValueObject> RestoreList { get; }
+        public IReadOnlyList<SlipValueObject> SlipList { get; }
 
         public SkillValueObject(
             SkillCode skillCode,
@@ -29,11 +29,11 @@ namespace BattleScene.Domain.ValueObject
             IReadOnlyList<BuffValueObject>? buffList = null,
             IReadOnlyList<CureValueObject>? cureList = null,
             IReadOnlyList<DamageValueObject>? damageList = null,
-            IReadOnlyList<DestroyValueObject>? destroyedPartList = null,
+            IReadOnlyList<DestroyValueObject>? destroyList = null,
             IReadOnlyList<EnhanceValueObject>? enhanceList = null,
-            IReadOnlyList<RecoveryValueObject>? resetParameterList = null,
-            IReadOnlyList<RestoreValueObject>? restoreParameterList = null,
-            IReadOnlyList<SlipValueObject>? slipParameterList = null)
+            IReadOnlyList<RecoveryValueObject>? recoveryList = null,
+            IReadOnlyList<RestoreValueObject>? restoreList = null,
+            IReadOnlyList<SlipValueObject>? slipList = null)
         {
             Common = new SkillCommonValueObject(
                 SkillCode: skillCode,
@@ -44,15 +44,15 @@ namespace BattleScene.Domain.ValueObject
                 // TODO: Fatalityスキルの場合、trueを設定するよう修正すること。
                 IsFatality: false,
                 AttackMessageCode: attackMessageCode);
-            AilmentParameterList = ailmentList ?? Array.Empty<AilmentValueObject>();
-            BuffParameterList = buffList ?? Array.Empty<BuffValueObject>();
-            CureParameterList = cureList ?? Array.Empty<CureValueObject>();
-            DamageParameterList = damageList ?? Array.Empty<DamageValueObject>();
-            DestroyedParameterList = destroyedPartList ?? Array.Empty<DestroyValueObject>();
-            EnhanceParameterList = enhanceList ?? Array.Empty<EnhanceValueObject>();
-            ResetParameterList = resetParameterList ?? Array.Empty<RecoveryValueObject>();
-            RestoreParameterList = restoreParameterList ?? Array.Empty<RestoreValueObject>();
-            SlipParameterList = slipParameterList ?? Array.Empty<SlipValueObject>();
+            AilmentList = ailmentList ?? Array.Empty<AilmentValueObject>();
+            BuffList = buffList ?? Array.Empty<BuffValueObject>();
+            CureList = cureList ?? Array.Empty<CureValueObject>();
+            DamageList = damageList ?? Array.Empty<DamageValueObject>();
+            DestroyList = destroyList ?? Array.Empty<DestroyValueObject>();
+            EnhanceList = enhanceList ?? Array.Empty<EnhanceValueObject>();
+            RecoveryList = recoveryList ?? Array.Empty<RecoveryValueObject>();
+            RestoreList = restoreList ?? Array.Empty<RestoreValueObject>();
+            SlipList = slipList ?? Array.Empty<SlipValueObject>();
         }
     }
 }

@@ -15,13 +15,13 @@ using BattleScene.Framework.View;
 using BattleScene.InterfaceAdapter;
 using BattleScene.InterfaceAdapter.Presenter;
 using BattleScene.InterfaceAdapter.PresenterFacade;
-using BattleScene.InterfaceAdapter.PrimeSkill;
 using BattleScene.InterfaceAdapter.ReactivePresenter;
 using BattleScene.InterfaceAdapter.Service;
 using BattleScene.InterfaceAdapter.Service.Replacement;
 using BattleScene.InterfaceAdapter.Skill;
+using BattleScene.InterfaceAdapter.SkillComponents;
 using BattleScene.InterfaceAdapter.State.Battle;
-using BattleScene.InterfaceAdapter.State.SkillElement;
+using BattleScene.InterfaceAdapter.State.Skill;
 using BattleScene.InterfaceAdapter.State.Turn;
 using BattleScene.InterfaceAdapter.StateMachine;
 using BattleScene.UseCases.IService;
@@ -286,7 +286,7 @@ namespace BattleScene
             #endregion
 
             builder.Register<TurnStateMachine>(Singleton);
-            builder.Register<SkillElementStateMachine>(Singleton);
+            builder.Register<SkillStateMachine>(Singleton);
 
             #region RegisterState
 

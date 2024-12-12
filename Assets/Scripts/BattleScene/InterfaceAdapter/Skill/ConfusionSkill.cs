@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DomainService;
-using BattleScene.InterfaceAdapter.PrimeSkill;
-using BattleScene.InterfaceAdapter.PrimeSkill.BaseClass;
 using BattleScene.InterfaceAdapter.Skill.BaseClass;
+using BattleScene.InterfaceAdapter.SkillComponents;
+using BattleScene.InterfaceAdapter.SkillComponents.BaseClass;
 using static BattleScene.Domain.Code.Range;
 using Range = BattleScene.Domain.Code.Range;
 

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using BattleScene.Domain.Code;
-using BattleScene.InterfaceAdapter.PrimeSkill.BaseClass;
+using BattleScene.InterfaceAdapter.SkillComponents.BaseClass;
 using Range = BattleScene.Domain.Code.Range;
 
 namespace BattleScene.InterfaceAdapter.Skill.BaseClass
