@@ -384,11 +384,13 @@ namespace BattleScene
             builder.Register<CureEvaluatorService>(Singleton);
             builder.Register<DamageEvaluatorService>(Singleton);
             builder.Register<IDeadCharacterService, DeadCharacterService>(Singleton);
+            builder.Register<IDestroyResetService, DestroyResetService>(Singleton);
             builder.Register<IHitPointService, HitPointService>(Singleton);
             builder.Register<IsHitEvaluatorService>(Singleton);
             builder.Register<OrderService>(Singleton);
             builder.Register<ITechnicalPointService, TechnicalPointService>(Singleton);
             builder.Register<SlipDamageRegistererService>(Singleton);
+            builder.Register<ISlipResetService, SlipResetService>(Singleton);
             builder.Register<ISpeedService, SpeedService>(Singleton);
             builder.Register<ITargetService, TargetService>(Singleton);
             builder.Register<TurnService>(Singleton);

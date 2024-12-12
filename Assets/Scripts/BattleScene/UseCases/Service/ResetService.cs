@@ -10,11 +10,17 @@ namespace BattleScene.UseCases.Service
     public class ResetService : ISkillElementService<RecoveryValueObject>
     {
         private readonly IAilmentResetService _ailmentReset;
+        private readonly IDestroyResetService _destroyReset;
+        private readonly ISlipResetService _slipReset;
 
         public ResetService(
-            IAilmentResetService ailmentReset)
+            IAilmentResetService ailmentReset,
+            IDestroyResetService destroyReset,
+            ISlipResetService slipReset)
         {
             _ailmentReset = ailmentReset;
+            _destroyReset = destroyReset;
+            _slipReset = slipReset;
         }
 
         public void UpdateBattleEvent(
@@ -26,7 +32,6 @@ namespace BattleScene.UseCases.Service
             MyDebug.Assert(resetList.Count == 1);
             MyDebug.Assert(resetEventList.Count == 1);
             var resetEvent = resetEventList.Single();
-            // var actor = resetEvent.Actor ?? throw new InvalidOperationException();
             var reset = resetList.Single();
             resetEvent.UpdateReset(
                 resetAilmentCodeList: reset.AilmentCodeList,
@@ -54,7 +59,7 @@ namespace BattleScene.UseCases.Service
                     collectionSelector: static x => x.resetEvent.ResetBodyPartCodeList,
                     resultSelector: static (x, resetBodyPartCode) => (targetId: x.target.Id, resetBodyPartCode))
                 .ToLookup(static x => x.targetId, y => y.resetBodyPartCode);
-            // TODO: 部位破壊を回復する処理を書くこと。
+            _destroyReset.Reset(destroyedPartLookup);
             var slipPartLookup = resetEventList
                 .SelectMany(
                     collectionSelector: static resetEvent => resetEvent.TargetList,
@@ -63,7 +68,7 @@ namespace BattleScene.UseCases.Service
                     collectionSelector: static x => x.resetEvent.ResetSlipCodeList,
                     resultSelector: static (x, resetSlipCode) => (targetId: x.target.Id, resetSlipCode))
                 .ToLookup(static x => x.targetId, y => y.resetSlipCode);
-            // TODO: スリップを回復する処理を書くこと。
+            _slipReset.Reset(slipPartLookup);
         }
     }
 }
