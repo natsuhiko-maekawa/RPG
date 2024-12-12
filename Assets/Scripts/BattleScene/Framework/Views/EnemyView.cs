@@ -46,9 +46,9 @@ namespace BattleScene.Framework.Views
             _digitView.StartAnimation(model);
         }
 
-        public void StartHitPointBarAnimationAsync(EnemyHpBarViewDto dto)
+        public void StartHitPointBarAnimationAsync(StatusBarViewModel model)
         {
-            _hitPointBarView.StartAnimation(dto.StatusBarViewDto);
+            _hitPointBarView.StartAnimation(model);
         }
 
         public void StartFrameAnimationAsync(FrameViewModel model)

@@ -39,18 +39,16 @@ namespace BattleScene.InterfaceAdapter.ReactivePresenters
         private void StartPlayerHitPointBarView(int currentHitPoint)
         {
             var maxHitPoint = _characterPropertyFactory.Create(CharacterTypeCode.Player).HitPoint;
-            var statusBarViewDto = new StatusBarViewDto(maxHitPoint, currentHitPoint);
-            var dto = new PlayerHpBarViewDto(statusBarViewDto);
-            _playerView.StartPlayerHpBarView(dto);
+            var model = new StatusBarViewModel(maxHitPoint, currentHitPoint);
+            _playerView.StartPlayerHpBarView(model);
         }
 
         private void StartEnemyHitPointBarView(CharacterEntity character, int currentHitPoint)
         {
             var enemyPosition = character.Position;
             var maxHitPoint = _characterPropertyFactory.Create(character.CharacterTypeCode).HitPoint;
-            var statusBarViewDto = new StatusBarViewDto(maxHitPoint, currentHitPoint);
-            var dto = new EnemyHpBarViewDto(enemyPosition, statusBarViewDto);
-            _enemiesView[enemyPosition].StartHitPointBarAnimationAsync(dto);
+            var model = new StatusBarViewModel(maxHitPoint, currentHitPoint);
+            _enemiesView[enemyPosition].StartHitPointBarAnimationAsync(model);
         }
     }
 }

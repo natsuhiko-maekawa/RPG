@@ -31,8 +31,8 @@ namespace BattleScene.InterfaceAdapter.ReactivePresenters
         private void StartTechnicalPointBarView(int currentTechnicalPoint)
         {
             var maxTechnicalPoint = _playerPropertyFactory.Create(CharacterTypeCode.Player).TechnicalPoint;
-            var dto = new TechnicalPointBarViewDto(maxTechnicalPoint, currentTechnicalPoint);
-            _playerView.StartTechnicalPointBarView(dto);
+            var model = new StatusBarViewModel(maxTechnicalPoint, currentTechnicalPoint);
+            _playerView.StartTechnicalPointBarView(model);
         }
     }
 }

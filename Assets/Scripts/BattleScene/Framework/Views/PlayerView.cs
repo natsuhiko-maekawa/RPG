@@ -87,20 +87,14 @@ namespace BattleScene.Framework.Views
             _playerFrameView.StopAnimation();
         }
 
-        public void StartPlayerHpBarView(PlayerHpBarViewDto dto)
+        public void StartPlayerHpBarView(StatusBarViewModel model)
         {
-            _playerHpBarView.StartAnimation(dto.StatusBarViewDto);
+            _playerHpBarView.StartAnimation(model);
         }
 
-        public Task StartPlayerTpBarView(PlayerTpBarViewDto dto)
+        public void StartTechnicalPointBarView(StatusBarViewModel model)
         {
-            _playerTpBarView.StartAnimation(dto.StatusBarViewDto);
-            return Task.CompletedTask;
-        }
-
-        public void StartTechnicalPointBarView(TechnicalPointBarViewDto dto)
-        {
-            _playerTpBarView.StartAnimation(dto);
+            _playerTpBarView.StartAnimation(model);
         }
 
         public void StartPlayerVibeView()

@@ -18,10 +18,10 @@ namespace BattleScene.Framework.Views
             _statusBarText = GetComponentInChildren<StatusBarText>();
         }
 
-        public void StartAnimation(StatusBarViewDto dto)
+        public void StartAnimation(StatusBarViewModel model)
         {
-            _statusBarText.Set(dto.CurrentPoint, dto.MaxPoint);
-            _statusBarMeter.Set(dto.CurrentPoint, dto.MaxPoint);
+            _statusBarText.Set(model.CurrentPoint, model.MaxPoint);
+            _statusBarMeter.Set(model.CurrentPoint, model.MaxPoint);
         }
     }
 }
