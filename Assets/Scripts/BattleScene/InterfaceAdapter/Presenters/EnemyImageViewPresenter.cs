@@ -5,7 +5,7 @@ using BattleScene.DataAccess;
 using BattleScene.DataAccess.Dto;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.Entity;
-using BattleScene.Framework.View;
+using BattleScene.Framework.Views;
 using BattleScene.UseCases;
 using Utility;
 

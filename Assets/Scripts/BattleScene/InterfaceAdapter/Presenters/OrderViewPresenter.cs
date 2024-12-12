@@ -5,8 +5,8 @@ using BattleScene.Domain.Code;
 using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
-using BattleScene.Framework.View;
-using BattleScene.Framework.ViewModel;
+using BattleScene.Framework.ViewModels;
+using BattleScene.Framework.Views;
 using EnemyViewDto = BattleScene.DataAccess.Dto.EnemyViewDto;
 using static BattleScene.Domain.Code.SlipCode;
 using static BattleScene.Domain.Code.AilmentCode;
@@ -39,7 +39,7 @@ namespace BattleScene.InterfaceAdapter.Presenters
             await _orderView.StartAnimationAsync(orderViewDtoList);
         }
 
-        private OrderViewDto CreateOrderViewDto(OrderedItemEntity orderedItem)
+        private OrderViewModel CreateOrderViewDto(OrderedItemEntity orderedItem)
         {
             var dto = orderedItem.ActorType switch
             {
@@ -52,7 +52,7 @@ namespace BattleScene.InterfaceAdapter.Presenters
             return dto;
         }
 
-        private OrderViewDto CreateCharacterOrderViewDto(OrderedItemEntity orderedItem)
+        private OrderViewModel CreateCharacterOrderViewDto(OrderedItemEntity orderedItem)
         {
             if (!orderedItem.TryGetActor(out var actor))
                 throw new InvalidOperationException();
@@ -62,33 +62,33 @@ namespace BattleScene.InterfaceAdapter.Presenters
             return dto;
         }
 
-        private OrderViewDto CreatePlayerOrderViewDto()
+        private OrderViewModel CreatePlayerOrderViewDto()
         {
-            var playerOrderViewDto = new OrderViewDto(
+            var playerOrderViewDto = new OrderViewModel(
                 ItemType: ItemType.Player);
             return playerOrderViewDto;
         }
 
-        private OrderViewDto CreateEnemyOrderViewDto(CharacterEntity actor)
+        private OrderViewModel CreateEnemyOrderViewDto(CharacterEntity actor)
         {
             var characterTypeId = actor.CharacterTypeCode;
             var enemyImagePath = _enemyViewInfoResource.Get(characterTypeId).ImagePath;
-            return new OrderViewDto(ItemType.Enemy, EnemyImagePath: enemyImagePath);
+            return new OrderViewModel(ItemType.Enemy, EnemyImagePath: enemyImagePath);
         }
 
-        private OrderViewDto CreateAilmentOrderViewDto(OrderedItemEntity orderedItem)
+        private OrderViewModel CreateAilmentOrderViewDto(OrderedItemEntity orderedItem)
         {
             orderedItem.TryGetAilmentCode(out var ailmentCode);
             var ailmentNumber = ConvertToIntFrom(ailmentCode);
-            var dto = new OrderViewDto(ItemType.Ailment, AilmentNumber: ailmentNumber);
+            var dto = new OrderViewModel(ItemType.Ailment, AilmentNumber: ailmentNumber);
             return dto;
         }
 
-        private OrderViewDto CreateSlipOrderViewDto(OrderedItemEntity orderedItem)
+        private OrderViewModel CreateSlipOrderViewDto(OrderedItemEntity orderedItem)
         {
             orderedItem.TryGetSlipCode(out var slipCode);
             var ailmentNumber = ConvertToIntFrom(slipCode);
-            var dto = new OrderViewDto(ItemType.Ailment, AilmentNumber: ailmentNumber);
+            var dto = new OrderViewModel(ItemType.Ailment, AilmentNumber: ailmentNumber);
             return dto;
         }
 

@@ -3,8 +3,8 @@ using BattleScene.Domain.Code;
 using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.ValueObject;
-using BattleScene.Framework.View;
-using BattleScene.Framework.ViewModel;
+using BattleScene.Framework.ViewModels;
+using BattleScene.Framework.Views;
 using R3;
 
 namespace BattleScene.InterfaceAdapter.ReactivePresenters

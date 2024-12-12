@@ -4,8 +4,8 @@ using BattleScene.DataAccess;
 using BattleScene.DataAccess.Dto;
 using BattleScene.Domain.Code;
 using BattleScene.Framework.Code;
-using BattleScene.Framework.View;
-using BattleScene.Framework.ViewModel;
+using BattleScene.Framework.ViewModels;
+using BattleScene.Framework.Views;
 using BattleScene.UseCases.Service;
 
 namespace BattleScene.InterfaceAdapter.Presenters
@@ -39,7 +39,7 @@ namespace BattleScene.InterfaceAdapter.Presenters
                     var rowName = x.ToString();
                     var rowDescription = GetDescription(x);
                     var enabled = GetEnabled(x);
-                    return new Row(
+                    return new RowModel(
                         rowName: rowName,
                         rowDescription: rowDescription,
                         // TODO: 仮で刀のイラストを設定している。

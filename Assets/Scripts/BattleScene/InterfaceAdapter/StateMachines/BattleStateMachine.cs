@@ -3,7 +3,7 @@ using System.Linq;
 using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Entity;
 using BattleScene.Framework.InputActions;
-using BattleScene.Framework.ViewModel;
+using BattleScene.Framework.ViewModels;
 using BattleScene.InterfaceAdapter.States.Battle;
 using VContainer;
 using Context = BattleScene.InterfaceAdapter.States.Battle.Context;
@@ -35,11 +35,11 @@ namespace BattleScene.InterfaceAdapter.StateMachines
 
         public void OnSelect() => _context.Select();
         public void OnSelect(int id) => _context.Select(id);
-        public void OnSelect(IReadOnlyList<Character> targetDtoList) 
+        public void OnSelect(IReadOnlyList<CharacterModel> targetDtoList) 
             => _context.Select(ToCharacterList(targetDtoList));
         public void OnCancel() => _context.Cancel();
 
-        private IReadOnlyList<CharacterEntity> ToCharacterList(IReadOnlyList<Character> characterModelList)
+        private IReadOnlyList<CharacterEntity> ToCharacterList(IReadOnlyList<CharacterModel> characterModelList)
         {
             return characterModelList
                 .Select(x => x.IsPlayer

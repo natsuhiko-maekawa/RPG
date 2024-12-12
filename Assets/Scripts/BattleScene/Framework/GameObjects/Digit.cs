@@ -1,5 +1,5 @@
 using System;
-using BattleScene.Framework.ViewModel;
+using BattleScene.Framework.ViewModels;
 using Cysharp.Text;
 using TMPro;
 using UnityEngine;

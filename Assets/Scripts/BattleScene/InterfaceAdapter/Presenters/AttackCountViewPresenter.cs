@@ -1,4 +1,5 @@
-﻿using BattleScene.Framework.ViewModel;
+﻿using BattleScene.Framework.ViewModels;
+using BattleScene.Framework.Views;
 using BattleScene.UseCases.Service;
 
 namespace BattleScene.InterfaceAdapter.Presenters
@@ -6,11 +7,11 @@ namespace BattleScene.InterfaceAdapter.Presenters
     public class AttackCountViewPresenter
     {
         private readonly AttackCounterService _attackCounter;
-        private readonly Framework.View.PlayerAttackCountView _playerAttackCountView;
+        private readonly PlayerAttackCountView _playerAttackCountView;
 
         public AttackCountViewPresenter(
             AttackCounterService attackCounter,
-            Framework.View.PlayerAttackCountView playerAttackCountView)
+            PlayerAttackCountView playerAttackCountView)
         {
             _attackCounter = attackCounter;
             _playerAttackCountView = playerAttackCountView;

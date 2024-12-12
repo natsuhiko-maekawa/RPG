@@ -1,8 +1,8 @@
 ﻿using BattleScene.DataAccess;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.Entity;
-using BattleScene.Framework.View;
-using BattleScene.Framework.ViewModel;
+using BattleScene.Framework.ViewModels;
+using BattleScene.Framework.Views;
 using BattleScene.InterfaceAdapter.Services;
 using R3;
 

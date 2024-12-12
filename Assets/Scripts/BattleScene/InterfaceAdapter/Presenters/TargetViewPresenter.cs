@@ -2,8 +2,8 @@
 using System.Linq;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.ValueObject;
-using BattleScene.Framework.View;
-using BattleScene.Framework.ViewModel;
+using BattleScene.Framework.ViewModels;
+using BattleScene.Framework.Views;
 using BattleScene.UseCases.IService;
 
 namespace BattleScene.InterfaceAdapter.Presenters
@@ -51,11 +51,11 @@ namespace BattleScene.InterfaceAdapter.Presenters
             _targetView.StopAnimation();
         }
 
-        private static Character ToCharacterModel(CharacterEntity character)
+        private static CharacterModel ToCharacterModel(CharacterEntity character)
         {
             var characterStruct = character.IsPlayer
-                ? Character.CreatePlayer()
-                : Character.CreateEnemy(character.Position);
+                ? CharacterModel.CreatePlayer()
+                : CharacterModel.CreateEnemy(character.Position);
             return characterStruct;
         }
     }

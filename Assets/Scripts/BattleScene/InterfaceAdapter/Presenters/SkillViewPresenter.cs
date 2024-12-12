@@ -4,8 +4,8 @@ using BattleScene.DataAccess.Dto;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DataAccess;
 using BattleScene.Domain.ValueObject;
-using BattleScene.Framework.View;
-using BattleScene.Framework.ViewModel;
+using BattleScene.Framework.ViewModels;
+using BattleScene.Framework.Views;
 using BattleScene.UseCases.IService;
 using ActionCode = BattleScene.Framework.Code.ActionCode;
 
@@ -56,7 +56,7 @@ namespace BattleScene.InterfaceAdapter.Presenters
             _tableView.StopAnimation();
         }
 
-        private Row GetRow(SkillCode x)
+        private RowModel GetRow(SkillCode x)
         {
             var skill = _skillFactory.Create(x);
             var skillProperty = _skillPropertyFactory.Get(x);
@@ -64,7 +64,7 @@ namespace BattleScene.InterfaceAdapter.Presenters
             var playerImagePath = _playerPropertyResource.Get(skillProperty.PlayerImageCode).Path;
             // TODO: スキル使用可否の判断で部位破壊についても考慮すること。
             var enabled = skill.Common.TechnicalPoint <= _technicalPoint.Get();
-            var dto = new Row(
+            var dto = new RowModel(
                 rowName: skillProperty.SkillName,
                 rowDescription: description,
                 playerImagePath: playerImagePath,

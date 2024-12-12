@@ -1,4 +1,4 @@
-﻿using BattleScene.Framework.View;
+﻿using BattleScene.Framework.Views;
 
 namespace BattleScene.Framework.GameObjects
 {
