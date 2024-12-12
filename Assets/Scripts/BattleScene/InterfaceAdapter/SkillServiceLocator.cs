@@ -1,7 +1,7 @@
 using System;
 using BattleScene.Domain.Code;
-using BattleScene.InterfaceAdapter.Skill;
-using BattleScene.InterfaceAdapter.Skill.BaseClass;
+using BattleScene.InterfaceAdapter.Skills;
+using BattleScene.InterfaceAdapter.Skills.BaseClass;
 using VContainer;
 using static BattleScene.Domain.Code.SkillCode;
 

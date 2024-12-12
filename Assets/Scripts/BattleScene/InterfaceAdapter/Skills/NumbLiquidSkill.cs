@@ -1,0 +1,25 @@
+﻿using System.Collections.Generic;
+using BattleScene.Domain.Code;
+using BattleScene.InterfaceAdapter.SkillComponents;
+using BattleScene.InterfaceAdapter.SkillComponents.BaseClass;
+using BattleScene.InterfaceAdapter.Skills.BaseClass;
+using Range = BattleScene.Domain.Code.Range;
+
+namespace BattleScene.InterfaceAdapter.Skills
+{
+    /// <summary>
+    ///     痺れる粘液
+    /// </summary>
+    public class NumbLiquidSkill : BaseSkill
+    {
+        public override SkillCode SkillCode { get; } = SkillCode.NumbLiquid;
+        public override Range Range { get; } = Range.Solo;
+        public override MessageCode AttackMessageCode { get; } = MessageCode.NumbLiquidMessage;
+
+        public override IReadOnlyList<BaseDamage> DamageList { get; }
+            = new[] { new BasicDamage() };
+
+        public override IReadOnlyList<BaseAilment> AilmentList { get; }
+            = new[] { new Paralysis() };
+    }
+}
