@@ -20,15 +20,15 @@ namespace BattleScene.InterfaceAdapter
         public SkillValueObject Create(SkillCode key)
         {
             var skill = _skillServiceLocator.Resolve(key);
-            var ailmentList = CreateAilmentParameterList(skill.AilmentList);
-            var buffParameterList = CreateBuffParameterList(skill.BuffList);
+            var ailmentList = CreateAilmentList(skill.AilmentList);
+            var buffList = CreateBuffList(skill.BuffList);
             var cureList = CreateCureList(skill.CureList);
-            var damageList = CreateDamageParameterList(skill.DamageList);
-            var destroyPartList = CreateDestroyParameterList(skill.DestroyList);
+            var damageList = CreateDamageList(skill.DamageList);
+            var destroyPartList = CreateDestroyList(skill.DestroyList);
             var enhanceList = CreateEnhanceList(skill.EnhanceList);
-            var recoveryParameterList = CreateResetParameterList(skill.RecoveryList);
-            var restoreParameterList = CreateRestoreParameterList(skill.RestoreList);
-            var slipParameterList = CreateSlipParameterList(skill.SlipList);
+            var recoveryList = CreateRecoveryList(skill.RecoveryList);
+            var restoreList = CreateRestoreList(skill.RestoreList);
+            var slipList = CreateSlipList(skill.SlipList);
             return new SkillValueObject(
                 skillCode: key,
                 range: skill.Range,
@@ -37,48 +37,41 @@ namespace BattleScene.InterfaceAdapter
                 technicalPoint: skill.TechnicalPoint,
                 dependencyList: skill.DependencyList,
                 ailmentList: ailmentList,
-                buffList: buffParameterList,
+                buffList: buffList,
                 cureList: cureList,
                 damageList: damageList,
                 destroyList: destroyPartList,
                 enhanceList: enhanceList,
-                recoveryList: recoveryParameterList,
-                restoreList: restoreParameterList,
-                slipList: slipParameterList);
+                recoveryList: recoveryList,
+                restoreList: restoreList,
+                slipList: slipList);
         }
 
-        private IReadOnlyList<AilmentValueObject> CreateAilmentParameterList(
-            IReadOnlyList<BaseAilment> ailmentList)
-        {
-            return ailmentList
+        private IReadOnlyList<AilmentValueObject> CreateAilmentList(IReadOnlyList<BaseAilment> ailmentList) =>
+            ailmentList
                 .Select(x => new AilmentValueObject(
                     AilmentCode: x.AilmentCode,
                     LuckRate: x.LuckRate))
-                .ToList();
-        }
+                .ToArray();
 
-        private IReadOnlyList<BuffValueObject> CreateBuffParameterList(IReadOnlyList<BaseBuff> buffList)
-        {
-            return buffList
+        private IReadOnlyList<BuffValueObject> CreateBuffList(IReadOnlyList<BaseBuff> buffList) =>
+            buffList
                 .Select(x => new BuffValueObject(
                     BuffCode: x.BuffCode,
                     Rate: x.Rate,
                     Turn: x.Turn,
                     LifetimeCode: x.LifetimeCode))
-                .ToList();
-        }
+                .ToArray();
 
-        private IReadOnlyList<CureValueObject> CreateCureList(IReadOnlyList<BaseCure> cureList)
-            => cureList
+        private IReadOnlyList<CureValueObject> CreateCureList(IReadOnlyList<BaseCure> cureList) =>
+            cureList
                 .Select(x => new CureValueObject(
                     CureExpressionCode: x.CureExpressionCode,
                     Rate: x.Rate))
-                .ToList();
+                .ToArray();
 
-        private IReadOnlyList<DamageValueObject> CreateDamageParameterList(
-            IReadOnlyList<BaseDamage> damageList)
-        {
-            return damageList
+        private IReadOnlyList<DamageValueObject> CreateDamageList(IReadOnlyList<BaseDamage> damageList) =>
+            damageList
                 .Select(x => new DamageValueObject(
                     attackNumber: x.AttackNumber,
                     damageRate: x.DamageRate,
@@ -87,19 +80,15 @@ namespace BattleScene.InterfaceAdapter
                     damageExpressionCode: x.DamageExpressionCode,
                     hitEvaluationCode: x.HitEvaluationCode,
                     attacksWeakPointEvaluationCode: x.AttacksWeakPointEvaluationCode))
-                .ToList();
-        }
+                .ToArray();
 
-        private IReadOnlyList<DestroyValueObject> CreateDestroyParameterList(
-            IReadOnlyList<BaseDestroy> destroyPartList)
-        {
-            return destroyPartList
+        private IReadOnlyList<DestroyValueObject> CreateDestroyList(IReadOnlyList<BaseDestroy> destroyPartList) =>
+            destroyPartList
                 .Select(x => new DestroyValueObject(
                     BodyPartCode: x.BodyPartCode,
                     LuckRate: x.LuckRate,
                     Count: x.Count))
-                .ToList();
-        }
+                .ToArray();
 
         private IReadOnlyList<EnhanceValueObject> CreateEnhanceList(IReadOnlyList<BaseEnhance> enhanceList) =>
             enhanceList
@@ -107,33 +96,28 @@ namespace BattleScene.InterfaceAdapter
                     EnhanceCode: x.EnhanceCode,
                     Turn: x.Turn,
                     LifetimeCode: x.LifetimeCode))
-                .ToList();
+                .ToArray();
 
-        private IReadOnlyList<RecoveryValueObject> CreateResetParameterList(IReadOnlyList<BaseRecovery> resetList)
-            => resetList.Select(x => new RecoveryValueObject(
+        private IReadOnlyList<RecoveryValueObject> CreateRecoveryList(IReadOnlyList<BaseRecovery> resetList) => 
+            resetList.Select(x => new RecoveryValueObject(
                     AilmentCodeList: x.AilmentCodeList,
                     SlipCodeList: x.SlipCodeList,
                     BodyPartCodeList: x.BodyPartCodeList))
-                .ToList();
+                .ToArray();
 
-        private IReadOnlyList<RestoreValueObject> CreateRestoreParameterList(
-            IReadOnlyList<BaseRestore> restoreList)
-        {
-            return restoreList
+        private IReadOnlyList<RestoreValueObject> CreateRestoreList(IReadOnlyList<BaseRestore> restoreList) =>
+            restoreList
                 .Select(x => new RestoreValueObject(
                     TechnicalPoint: x.TechnicalPoint))
-                .ToList();
-        }
+                .ToArray();
 
-        private IReadOnlyList<SlipValueObject> CreateSlipParameterList(IReadOnlyList<BaseSlip> slipList)
-        {
-            return slipList
+        private IReadOnlyList<SlipValueObject> CreateSlipList(IReadOnlyList<BaseSlip> slipList) =>
+            slipList
                 .Select(x => new SlipValueObject(
                     SlipCode: x.SlipCode,
                     DamageRate: x.DamageRate,
                     DamageExpressionCode: DamageExpressionCode.Slip,
                     LuckRate: x.LuckRate))
-                .ToList();
-        }
+                .ToArray();
     }
 }

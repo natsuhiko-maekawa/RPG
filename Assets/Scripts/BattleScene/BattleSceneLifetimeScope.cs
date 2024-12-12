@@ -412,7 +412,6 @@ namespace BattleScene
             builder.Register<AilmentDomainService>(Singleton);
             builder.Register<BattleLogDomainService>(Singleton);
             builder.Register<BattleLoggerService>(Singleton);
-            builder.Register<BodyPartDomainService>(Singleton);
             builder.Register<EnemiesDomainService>(Singleton);
             builder.Register<OrderedItemsDomainService>(Singleton);
             builder.Register<PlayerDomainService>(Singleton);

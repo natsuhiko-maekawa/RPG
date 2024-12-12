@@ -1,7 +1,6 @@
 ﻿using System;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DataAccess;
-using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
@@ -13,7 +12,7 @@ namespace BattleScene.UseCases.Service
     public class DamageEvaluatorService
     {
         private const float MultiplicationIdentityElement = 1.0f;
-        private readonly BodyPartDomainService _bodyPartDomainService;
+        private readonly IRepository<BodyPartEntity, (CharacterId, BodyPartCode)> _bodyPartRepository;
         private readonly IRepository<BuffEntity, (CharacterId, BuffCode)> _buffRepository;
         private readonly CharacterPropertyFactoryService _characterPropertyFactory;
         private readonly IFactory<BattlePropertyValueObject> _battlePropertyFactory;
@@ -21,19 +20,19 @@ namespace BattleScene.UseCases.Service
         private readonly IMyRandomService _myRandom;
 
         public DamageEvaluatorService(
-            BodyPartDomainService bodyPartDomainService,
             IRepository<BuffEntity, (CharacterId, BuffCode)> buffRepository,
             CharacterPropertyFactoryService characterPropertyFactoryFactory,
             IFactory<BattlePropertyValueObject> battlePropertyFactory,
             IRepository<EnhanceEntity, (CharacterId, EnhanceCode)> enhanceRepository,
-            IMyRandomService myRandom)
+            IMyRandomService myRandom,
+            IRepository<BodyPartEntity, (CharacterId, BodyPartCode)> bodyPartRepository)
         {
-            _bodyPartDomainService = bodyPartDomainService;
             _buffRepository = buffRepository;
             _characterPropertyFactory = characterPropertyFactoryFactory;
             _battlePropertyFactory = battlePropertyFactory;
             _enhanceRepository = enhanceRepository;
             _myRandom = myRandom;
+            _bodyPartRepository = bodyPartRepository;
         }
 
         public int Evaluate(CharacterEntity actor, CharacterEntity target, DamageValueObject damage)
@@ -55,7 +54,7 @@ namespace BattleScene.UseCases.Service
             var targetWeekPoint = _characterPropertyFactory.Create(target.Id).WeakPointsCode;
             var actorBuffRate = _buffRepository.Get((actor.Id, BuffCode.Attack)).Rate;
             var targetBuffRate = _buffRepository.Get((target.Id, BuffCode.Defence)).Rate;
-            var destroyedRate = 1.0f - _bodyPartDomainService.Count(actor.Id, BodyPartCode.Arm) * 0.5f;
+            var destroyedRate = 1.0f - _bodyPartRepository.Get((actor.Id, BodyPartCode.Arm)).DestroyedCount * 0.5f;
             var targetDefence
                 = _enhanceRepository.TryGet((target.Id, EnhanceCode.Defence), out var enhance) && enhance.Effects
                     ? 0.5f
@@ -73,8 +72,8 @@ namespace BattleScene.UseCases.Service
             const int targetVitality = 1;
             var actorBuffRate = _buffRepository.Get((actor.Id, BuffCode.Attack)).Rate;
             const int targetBuffRate = 1;
-            var destroyedRate
-                = MultiplicationIdentityElement - _bodyPartDomainService.Count(actor.Id, BodyPartCode.Arm) * 0.5f;
+            var destroyedRate = MultiplicationIdentityElement
+                                - _bodyPartRepository.Get((actor.Id, BodyPartCode.Arm)).DestroyedCount * 0.5f;
             var rate = damage.DamageRate;
             return (int)(actorStrength * actorStrength / (float)targetVitality * actorBuffRate / targetBuffRate
                          * destroyedRate * rate * 1.5f) + _myRandom.Range(1, 3);

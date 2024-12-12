@@ -1,7 +1,6 @@
 ﻿using System;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.DataAccess;
-using BattleScene.Domain.DomainService;
 using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
@@ -12,7 +11,7 @@ namespace BattleScene.UseCases.Service
     public class IsHitEvaluatorService
     {
         private readonly IRepository<AilmentEntity, (CharacterId, AilmentCode)> _ailmentRepository;
-        private readonly BodyPartDomainService _bodyPartDomainService;
+        private readonly IRepository<BodyPartEntity, (CharacterId, BodyPartCode)> _bodyPartRepository;
         private readonly CharacterPropertyFactoryService _characterPropertyFactory;
         private readonly IRepository<BuffEntity, (CharacterId, BuffCode)> _buffRepository;
         private readonly IRepository<EnhanceEntity, (CharacterId, EnhanceCode)> _enhanceRepository;
@@ -21,20 +20,20 @@ namespace BattleScene.UseCases.Service
 
         public IsHitEvaluatorService(
             IRepository<AilmentEntity, (CharacterId, AilmentCode)> ailmentRepository,
-            BodyPartDomainService bodyPartDomainService,
             CharacterPropertyFactoryService characterPropertyFactory,
             IRepository<BuffEntity, (CharacterId, BuffCode)> buffRepository,
             IRepository<EnhanceEntity, (CharacterId, EnhanceCode)> enhanceRepository,
             IMyRandomService myRandom,
-            IFactory<BattlePropertyValueObject> battlePropertyFactory)
+            IFactory<BattlePropertyValueObject> battlePropertyFactory,
+            IRepository<BodyPartEntity, (CharacterId, BodyPartCode)> bodyPartRepository)
         {
             _ailmentRepository = ailmentRepository;
-            _bodyPartDomainService = bodyPartDomainService;
             _characterPropertyFactory = characterPropertyFactory;
             _buffRepository = buffRepository;
             _enhanceRepository = enhanceRepository;
             _myRandom = myRandom;
             _battlePropertyFactory = battlePropertyFactory;
+            _bodyPartRepository = bodyPartRepository;
         }
 
         public bool Evaluate(CharacterEntity actor, CharacterEntity target, DamageValueObject damage)
@@ -60,7 +59,7 @@ namespace BattleScene.UseCases.Service
         private bool BasicEvaluate(CharacterEntity actor, CharacterEntity target, DamageValueObject damage)
         {
             // 両脚損傷時、必ず命中する
-            if (!_bodyPartDomainService.IsAvailable(target.Id, BodyPartCode.Leg)) return true;
+            if (!_bodyPartRepository.Get((target.Id, BodyPartCode.Leg)).IsAvailable) return true;
 
             // 空蝉状態の時、必ず回避する
             if (_enhanceRepository.TryGet((target.Id, EnhanceCode.Utsusemi), out var enhance) && enhance.Effects) 
@@ -72,7 +71,7 @@ namespace BattleScene.UseCases.Service
             var targetAgility = _characterPropertyFactory.Create(target.Id).Agility;
             var isActorBlind = _ailmentRepository.Get((actor.Id, AilmentCode.Blind)).Effects;
             var isTargetDeaf = _ailmentRepository.Get((actor.Id, AilmentCode.Deaf)).Effects;
-            var destroyedReduce = _bodyPartDomainService.Count(target.Id, BodyPartCode.Leg) * 0.5f;
+            var destroyedReduce = _bodyPartRepository.Get((actor.Id, BodyPartCode.Arm)).DestroyedCount * 0.5f;
             var buff = (float)Math.Log(_buffRepository.Get((actor.Id, BuffCode.HitRate)).Rate, 2.0f);
             var add = (float)Math.Log(damage.HitRate, 2.0f);
             var actorFixedAgility = actorAgility + (isActorBlind ? -threshold : 0);
