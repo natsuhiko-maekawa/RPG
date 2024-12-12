@@ -18,7 +18,7 @@ namespace BattleScene.InterfaceAdapter.StateMachine
             _container = container;
         }
 
-        public bool TrySelect(Context context, out StateCode nextStateCode)
+        public bool TryOnSelect(Context context, out StateCode nextStateCode)
         {
             nextStateCode = StateCode.None;
             if (_skillElementContextEnumerator == null)

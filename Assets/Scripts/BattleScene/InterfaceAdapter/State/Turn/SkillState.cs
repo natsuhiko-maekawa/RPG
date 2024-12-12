@@ -37,7 +37,7 @@ namespace BattleScene.InterfaceAdapter.State.Turn
 
         public override void Select()
         {
-            var value = _skillElementStateMachine.TrySelect(Context, out var nextStateCode);
+            var value = _skillElementStateMachine.TryOnSelect(Context, out var nextStateCode);
             if (!value) Context.TransitionTo(GetNextState(nextStateCode));
         }
 
