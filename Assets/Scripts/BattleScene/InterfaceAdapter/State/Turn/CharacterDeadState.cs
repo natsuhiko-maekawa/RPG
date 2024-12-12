@@ -25,7 +25,7 @@ namespace BattleScene.InterfaceAdapter.State.Turn
 
         public override void Start()
         {
-            Context.NextStateCode = StateCode.AdvanceTurnState;
+            Context.NextStateCode = StateCode.Next;
             if (_useCase.IsPlayerDeadInThisTurn())
             {
                 WhenPlayerDead();
@@ -55,7 +55,7 @@ namespace BattleScene.InterfaceAdapter.State.Turn
 
         public override void Select()
         {
-            BaseState nextState = Context.NextStateCode == StateCode.AdvanceTurnState
+            BaseState nextState = Context.NextStateCode == StateCode.Next
                 ? _advanceTurnState
                 : _turnStopState;
             Context.TransitionTo(nextState);

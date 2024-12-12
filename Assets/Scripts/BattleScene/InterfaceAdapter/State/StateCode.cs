@@ -3,7 +3,7 @@ namespace BattleScene.InterfaceAdapter.State
     public enum StateCode
     {
         None,
-        Current,
+        Next,
         AdvanceTurnState,
         CharacterDeadState,
         PlayerLoseState,
