@@ -7,19 +7,23 @@ namespace BattleScene.Framework.View
 {
     public class EnemiesView : MonoBehaviour, IEnumerable<EnemyView>
     {
-        public int maxCacheSize = 4;
         private EnemyColumn _enemyViewColumn;
 
         private void Awake()
         {
             _enemyViewColumn = GetComponent<EnemyColumn>();
-            _enemyViewColumn.SetItem(maxCacheSize);
             enabled = false;
         }
 
         private void OnEnable()
         {
             foreach (var enemyView in _enemyViewColumn) enemyView.enabled = true;
+        }
+
+        public void StartAnimation(int enemyCount)
+        {
+            _enemyViewColumn.SetItem(enemyCount);
+            enabled = true;
         }
 
         private void OnDisable()

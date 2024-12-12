@@ -1,29 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using Random = Unity.Mathematics.Random;
 
 namespace Utility
 {
     public static class MyRandom
     {
-        public static T Choice<T>(IEnumerable<T> options, [CallerMemberName] string memberName = "")
+        public static T Choice<T>(IEnumerable<T> options)
             => Choice(options, GenerateSeed());
-        
-        public static T Choice<T>(IEnumerable<T> options, long seed, [CallerMemberName] string memberName = "")
+
+        public static T Choice<T>(IEnumerable<T> options, long seed)
             => Choice(options, (uint)seed);
-        
-        public static bool Probability(float rate, [CallerMemberName] string memberName = "")
+
+        public static bool Probability(float rate)
             => Probability(rate, GenerateSeed());
-        
-        public static bool Probability(float rate, long seed, [CallerMemberName] string memberName = "")
+
+        public static bool Probability(float rate, long seed)
             => Probability(rate, (uint)seed);
-        
-        public static int Range(int min, int max, [CallerMemberName] string memberName = "")
+
+        public static int Range(int min, int max)
             => Range(min, max, GenerateSeed());
-        
-        public static int Range(int min, int max, long seed, [CallerMemberName] string memberName = "")
+
+        public static int Range(int min, int max, long seed)
             => Range(min, max, (uint)seed);
 
         private static T Choice<T>(IEnumerable<T> options, uint seed)

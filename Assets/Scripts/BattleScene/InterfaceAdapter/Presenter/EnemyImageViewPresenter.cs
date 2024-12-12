@@ -40,9 +40,9 @@ namespace BattleScene.InterfaceAdapter.Presenter
             await Task.WhenAll(taskArray);
         }
 
-        public void StartAnimation()
+        public void StartAnimation(int enemyCount)
         {
-            _enemiesView.enabled = true;
+            _enemiesView.StartAnimation(enemyCount);
         }
 
         public void StopAnimation(int position)
