@@ -122,9 +122,11 @@ namespace BattleScene
             builder.Register<ResetAilmentPresenterFacade>(Singleton);
             builder.Register<DamageOutputPresenterFacade>(Singleton);
             builder.Register<DestroyOutputPresenterFacade>(Singleton);
+            builder.Register<PlayerLosePresenterFacade>(Singleton);
             builder.Register<PlayerSelectActionPresenterFacade>(Singleton);
             builder.Register<PlayerSelectSkillPresenterFacade>(Singleton);
             builder.Register<PlayerSelectTargetPresenterFacade>(Singleton);
+            builder.Register<PlayerWinPresenterFacade>(Singleton);
             builder.Register<ResetOutputPresenterFacade>(Singleton);
             builder.Register<RestoreOutputPresenterFacade>(Singleton);
             builder.Register<SkillPresenterFacade>(Singleton);
