@@ -45,8 +45,8 @@ namespace BattleScene.InterfaceAdapter.StateMachine
                 return TryMoveNextElseDispose(out nextStateCode);
             }
 
-            nextStateCode = _skillElementContextEnumerator.Current?.NextStateCode ?? StateCode.Undefined;
-            nextStateCode = nextStateCode == StateCode.Undefined
+            nextStateCode = _skillElementContextEnumerator.Current?.NextStateCode ?? StateCode.None;
+            nextStateCode = nextStateCode == StateCode.None
                 ? StateCode.AdvanceTurnState
                 : nextStateCode;
             _skillElementContextEnumerator.Dispose();

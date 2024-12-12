@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using BattleScene.Domain.Entity;
+using BattleScene.InterfaceAdapter.State;
 using BattleScene.InterfaceAdapter.State.Turn;
 using Utility;
 
@@ -29,11 +30,12 @@ namespace BattleScene.InterfaceAdapter.StateMachine
         /// ステートマシンが終了した場合(これ以上遷移先のない状態に遷移した場合)、trueを返す。
         /// </summary>
         /// <returns>ステートマシンが終了した場合、true。それ以外の場合、false。</returns>
-        public bool OnSelect()
+        public bool TryOnSelect(out StateCode nextStateCode)
         {
             Backup();
             _context.Select();
-            return _context.HasStopState;
+            nextStateCode = _context.NextStateCode;
+            return _context.IsContinue;
         }
 
         public void OnSelect(int id)
@@ -61,7 +63,7 @@ namespace BattleScene.InterfaceAdapter.StateMachine
             // 前回BackupしたMementoはUndoされる可能性がないため、Popする。
             // StateMachineを初期化してすぐの場合mementoStackは空なので、
             // PopメソッドではなくTryPopメソッドを用いる。
-            if (!_context.HasCancelableState) _mementoStack.TryPop(out _);
+            if (!_context.IsCancelable) _mementoStack.TryPop(out _);
             _mementoStack.Push(_context.Save());
             // 現状の状態遷移だとmementoStackのsizeが4を超えることはない。
             if (_mementoStack.Count > 4) MyDebug.LogAssertion(ExceptionMessage.MementoStackSizeIsOver);

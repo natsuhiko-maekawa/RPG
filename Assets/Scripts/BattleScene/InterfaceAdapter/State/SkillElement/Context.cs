@@ -71,9 +71,10 @@ namespace BattleScene.InterfaceAdapter.State.SkillElement
 
         public StateCode NextStateCode => _state switch
         {
+            ISkillElementStopState => StateCode.AdvanceTurnState,
             ISkillElementBreakState => StateCode.AdvanceTurnState,
             ICharacterDeadState => StateCode.CharacterDeadState,
-            _ => StateCode.Undefined
+            _ => StateCode.Current
         };
     }
 }

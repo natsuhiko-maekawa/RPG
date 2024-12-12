@@ -27,6 +27,7 @@ namespace BattleScene.InterfaceAdapter.State.Turn
             _ailment.AdvanceTurn();
             _buffTurn.Advance();
             _slip.AdvanceTurn();
+            Context.NextStateCode = StateCode.Current;
             Context.TransitionTo(_turnStopState);
         }
     }

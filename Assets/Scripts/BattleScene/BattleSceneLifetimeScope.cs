@@ -293,6 +293,7 @@ namespace BattleScene
             builder.Register<InitializePlayerState>(Singleton);
             builder.Register<InitializeEnemyState>(Singleton);
             builder.Register<TurnState>(Singleton);
+            builder.Register<BattleStopState>(Singleton);
             // TurnState
             builder.Register<TurnStartState>(Singleton);
             builder.Register<PlayerSelectActionState>(Singleton);
@@ -305,6 +306,8 @@ namespace BattleScene
             builder.Register<SkillState>(Singleton);
             builder.Register<CharacterDeadState>(Singleton);
             builder.Register<AdvanceTurnState>(Singleton);
+            builder.Register<PlayerLoseState>(Singleton);
+            builder.Register<PlayerWinState>(Singleton);
             builder.Register<TurnStopState>(Singleton);
             // PrimeSkillState
             builder.Register<SkillElementStartState<AilmentValueObject>>(Singleton);
