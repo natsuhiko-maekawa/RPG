@@ -12,6 +12,13 @@ namespace BattleScene.Debug.Service
         [SerializeField] private ProbabilityDebugMode isHit;
         [SerializeField] private ProbabilityDebugMode isSuccess;
 
+        private void Reset()
+        {
+            cantActionBecauseParalysis = ProbabilityDebugMode.Random;
+            isHit = ProbabilityDebugMode.Random;
+            isSuccess = ProbabilityDebugMode.Random;
+        }
+
         public T Choice<T>(IEnumerable<T> options, string memberName = "")
         {
             return MyRandom.Choice(options);

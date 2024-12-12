@@ -28,6 +28,11 @@ namespace BattleScene.Debug.Service
             _myRandom = myRandom;
         }
 
+        private void Reset()
+        {
+            primeSkillCode = PrimeSkillCode.All;
+        }
+
         public SkillValueObject Select(CharacterEntity actor)
         {
             var characterTypeCode = actor.CharacterTypeCode;
