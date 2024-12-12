@@ -23,20 +23,6 @@ namespace BattleScene.Domain.DomainService
         }
 
         /// <summary>
-        ///     状態異常を効果時間が短い順にソートして返す。
-        /// </summary>
-        /// <returns>状態異常エンティティのリスト</returns>
-        public IReadOnlyList<AilmentEntity> GetOrdered(CharacterId characterId)
-        {
-            return _ailmentRepository.Get()
-                .Where(x => Equals(x.CharacterId, characterId))
-                .Where(x => x.IsSelfRecovery)
-                .OrderBy(x => x.Turn)
-                .ThenBy(x => x)
-                .ToList();
-        }
-
-        /// <summary>
         ///     すべての状態異常のターンを1ターン進める。
         /// </summary>
         public void AdvanceTurn()

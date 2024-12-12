@@ -40,12 +40,6 @@ namespace BattleScene.Domain.DomainService
             _characterRepository.Add(player);
         }
 
-        [Obsolete] public CharacterId GetId()
-        {
-            return _characterRepository.Get()
-                .Single(x => x.CharacterTypeCode == CharacterTypeCode.Player).Id;
-        }
-
         public CharacterEntity Get() => _characterRepository.Get()
                 .Single(x => x.CharacterTypeCode == CharacterTypeCode.Player);
     }
