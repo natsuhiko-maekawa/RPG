@@ -48,7 +48,7 @@ namespace BattleScene
             if (debugMode)
             {
                 // デバッグモード時に注入するインスタンスを登録する
-                builder.RegisterComponentInHierarchy<IEnemiesRegistererService>();
+                builder.RegisterComponentInHierarchy<IEnemySelectorService>();
                 builder.RegisterComponentInHierarchy<IEnemySkillSelectorService>();
                 builder.RegisterComponentInHierarchy<IMyRandomService>();
                 builder.Register<MyRandomService>(Singleton);
@@ -57,7 +57,7 @@ namespace BattleScene
             {
                 #region RegisterService
 
-                builder.Register<IEnemiesRegistererService, EnemiesRegistererService>(Singleton);
+                builder.Register<IEnemySelectorService, EnemySelectorService>(Singleton);
                 builder.Register<IEnemySkillSelectorService, EnemySkillSelectorService>(Singleton);
                 builder.Register<IMyRandomService, MyRandomService>(Singleton);
 
@@ -379,7 +379,6 @@ namespace BattleScene
             builder.Register<CureEvaluatorService>(Singleton);
             builder.Register<DamageEvaluatorService>(Singleton);
             builder.Register<IDeadCharacterService, DeadCharacterService>(Singleton);
-            builder.Register<IEnemySelectorService, EnemySelectorService>(Singleton);
             builder.Register<IHitPointService, HitPointService>(Singleton);
             builder.Register<IsHitEvaluatorService>(Singleton);
             builder.Register<OrderService>(Singleton);
