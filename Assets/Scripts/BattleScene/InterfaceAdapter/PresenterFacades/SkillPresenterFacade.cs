@@ -37,7 +37,7 @@ namespace BattleScene.InterfaceAdapter.PresenterFacades
             var skill = context.Skill ?? throw new InvalidOperationException(ExceptionMessage.ContextSkillIsNull);
 
             var messageCode = skill.Common.AttackMessageCode;
-            _messageView.StartAnimation(messageCode, context);
+            _messageView.StartAnimation(messageCode);
 
             var playerSkillCode = actor.IsPlayer
                 ? skill.Common.SkillCode

@@ -3,7 +3,6 @@ using BattleScene.DataAccess.Dto;
 using BattleScene.Domain.Code;
 using BattleScene.Framework.ViewModels;
 using BattleScene.Framework.Views;
-using BattleScene.InterfaceAdapter.States.Turn;
 using Utility;
 
 namespace BattleScene.InterfaceAdapter.Presenters
@@ -21,7 +20,7 @@ namespace BattleScene.InterfaceAdapter.Presenters
             _messageView = messageView;
         }
 
-        public void StartAnimation(MessageCode messageCode, Context? context = null, bool noWait = false)
+        public void StartAnimation(MessageCode messageCode, bool noWait = false)
         {
             MyDebug.Assert(messageCode != MessageCode.NoMessage);
             var message = _messageResource.Get(messageCode).Message;
