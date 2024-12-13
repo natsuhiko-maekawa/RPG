@@ -20,16 +20,16 @@ namespace BattleScene.Domain.DomainService
         {
             return _characterRepository.Get()
                 .Where(x => x.CharacterTypeCode != CharacterTypeCode.Player)
-                .ToList();
+                .ToArray();
         }
 
         public IReadOnlyList<CharacterEntity> GetSurvive()
         {
-            var surviveEnemyList = _characterRepository.Get()
+            var surviveEnemyArray = _characterRepository.Get()
                 .Where(x => x.CharacterTypeCode != CharacterTypeCode.Player)
                 .Where(x => x.IsSurvive)
-                .ToList();
-            return surviveEnemyList;
+                .ToArray();
+            return surviveEnemyArray;
         }
 
         public CharacterEntity GetByPosition(int position)
