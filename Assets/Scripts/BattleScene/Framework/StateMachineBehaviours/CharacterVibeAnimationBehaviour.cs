@@ -3,7 +3,7 @@ using Random = UnityEngine.Random;
 
 namespace BattleScene.Framework.StateMachineBehaviours
 {
-    public class VibeAnimationBehaviour : StateMachineBehaviour
+    public class CharacterVibeAnimationBehaviour : StateMachineBehaviour
     {
         public float vibesIntervalSecond;
         public float vibesRangePx;
