@@ -10,7 +10,7 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 namespace BattleScene.Framework
 {
     /// <summary>
-    /// SpriteをAddressableからロードしてインスタンスを管理するクラス
+    /// SpriteをAddressableからロードしてインスタンスを管理するクラス。
     /// </summary>
     public class SpriteFlyweight : Singleton<SpriteFlyweight>
     {
@@ -25,10 +25,10 @@ namespace BattleScene.Framework
         }
 
         /// <summary>
-        /// AddressableのパスからSpriteを取得する
+        /// AddressableのパスからSpriteを取得する。
         /// </summary>
-        /// <param name="path">Addressableのパス</param>
-        /// <returns>Spriteのインスタンス</returns>
+        /// <param name="path">Addressableのパス。</param>
+        /// <returns>Spriteのインスタンス。</returns>
         public ValueTask<Sprite> GetAsync(string path)
         {
             if (_spriteCache.TryGetValue(path, out var valueTask))
