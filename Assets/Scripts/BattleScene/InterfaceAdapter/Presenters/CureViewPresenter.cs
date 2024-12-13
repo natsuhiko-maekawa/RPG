@@ -8,14 +8,14 @@ namespace BattleScene.InterfaceAdapter.Presenters
 {
     public class CureViewPresenter
     {
-        private readonly EnemiesView _enemiesView;
+        private readonly EnemyGroupView _enemyGroupView;
         private readonly PlayerView _playerView;
 
         public CureViewPresenter(
-            EnemiesView enemiesView,
+            EnemyGroupView enemyGroupView,
             PlayerView playerView)
         {
-            _enemiesView = enemiesView;
+            _enemyGroupView = enemyGroupView;
             _playerView = playerView;
         }
 
@@ -40,7 +40,7 @@ namespace BattleScene.InterfaceAdapter.Presenters
             foreach (var (position, digitList) in enemyDigitDict)
             {
                 var enemyModel = new DigitListViewModel(digitList);
-                _enemiesView[position].StartDigitAnimation(enemyModel);
+                _enemyGroupView[position].StartDigitAnimation(enemyModel);
             }
         }
 

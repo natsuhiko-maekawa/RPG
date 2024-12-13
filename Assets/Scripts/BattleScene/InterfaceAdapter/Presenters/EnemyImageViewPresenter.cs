@@ -14,15 +14,15 @@ namespace BattleScene.InterfaceAdapter.Presenters
     public class EnemyImageViewPresenter
     {
         private readonly IResource<EnemyViewDto, CharacterTypeCode> _enemyViewInfoResource;
-        private readonly EnemiesView _enemiesView;
+        private readonly EnemyGroupView _enemyGroupView;
         [ForCache] private readonly List<EnemyViewDto> _dtoList = new(Constant.MaxEnemyCount);
 
         public EnemyImageViewPresenter(
             IResource<EnemyViewDto, CharacterTypeCode> enemyViewInfoResource,
-            EnemiesView enemiesView)
+            EnemyGroupView enemyGroupView)
         {
             _enemyViewInfoResource = enemyViewInfoResource;
-            _enemiesView = enemiesView;
+            _enemyGroupView = enemyGroupView;
         }
 
         public async Task SetImage(IReadOnlyList<CharacterEntity> characterList)
@@ -34,7 +34,7 @@ namespace BattleScene.InterfaceAdapter.Presenters
                     outerKeySelector: static characterEntity => characterEntity.CharacterTypeCode,
                     innerKeySelector: static dto => dto.Key,
                     resultSelector: static (_, inner) => inner.ImagePath)
-                .Zip(_enemiesView, static (enemyImagePath, enemyView) => (enemyImagePath, enemyView))
+                .Zip(_enemyGroupView, static (enemyImagePath, enemyView) => (enemyImagePath, enemyView))
                 .Select(static x => x.enemyView.SetImage(x.enemyImagePath))
                 .ToArray();
             await Task.WhenAll(taskArray);
@@ -42,12 +42,12 @@ namespace BattleScene.InterfaceAdapter.Presenters
 
         public void StartAnimation(int enemyCount)
         {
-            _enemiesView.StartAnimation(enemyCount);
+            _enemyGroupView.StartAnimation(enemyCount);
         }
 
         public void StopAnimation(int position)
         {
-            _enemiesView[position].enabled = false;
+            _enemyGroupView[position].enabled = false;
         }
 
         private List<EnemyViewDto> GetEnemyViewResource()

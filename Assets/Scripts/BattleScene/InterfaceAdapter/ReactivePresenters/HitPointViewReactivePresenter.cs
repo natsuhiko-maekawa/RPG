@@ -12,16 +12,16 @@ namespace BattleScene.InterfaceAdapter.ReactivePresenters
     public class HitPointViewReactivePresenter : IReactive<CharacterEntity>
     {
         private readonly IFactory<CharacterPropertyValueObject, CharacterTypeCode> _characterPropertyFactory;
-        private readonly EnemiesView _enemiesView;
+        private readonly EnemyGroupView _enemyGroupView;
         private readonly PlayerView _playerView;
 
         public HitPointViewReactivePresenter(
             IFactory<CharacterPropertyValueObject, CharacterTypeCode> characterPropertyFactory,
-            EnemiesView enemiesView,
+            EnemyGroupView enemyGroupView,
             PlayerView playerView)
         {
             _characterPropertyFactory = characterPropertyFactory;
-            _enemiesView = enemiesView;
+            _enemyGroupView = enemyGroupView;
             _playerView = playerView;
         }
 
@@ -48,7 +48,7 @@ namespace BattleScene.InterfaceAdapter.ReactivePresenters
             var enemyPosition = character.Position;
             var maxHitPoint = _characterPropertyFactory.Create(character.CharacterTypeCode).HitPoint;
             var model = new StatusBarViewModel(maxHitPoint, currentHitPoint);
-            _enemiesView[enemyPosition].StartHitPointBarAnimation(model);
+            _enemyGroupView[enemyPosition].StartHitPointBarAnimation(model);
         }
     }
 }

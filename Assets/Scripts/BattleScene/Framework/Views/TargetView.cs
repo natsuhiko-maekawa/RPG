@@ -11,7 +11,7 @@ namespace BattleScene.Framework.Views
 {
     public class TargetView : MonoBehaviour, BattleSceneInputAction.IBattleSceneActions
     {
-        private EnemiesView _enemiesView;
+        private EnemyGroupView _enemyGroupView;
         private PlayerView _playerView;
         private TargetViewModel _model;
         private int _index = -1;
@@ -27,7 +27,7 @@ namespace BattleScene.Framework.Views
 
         private void Start()
         {
-            _enemiesView = GetComponentInChildren<EnemiesView>();
+            _enemyGroupView = GetComponentInChildren<EnemyGroupView>();
             _playerView = GetComponentInChildren<PlayerView>();
             _inputAction = new BattleSceneInputAction();
             _inputAction.BattleScene.AddCallbacks(this);
@@ -46,7 +46,7 @@ namespace BattleScene.Framework.Views
             {
                 if (_index == -1) SetIndex(model);
 
-                _enemiesView[_enemyPositionList[_index]].StartFrameAnimation(frame);
+                _enemyGroupView[_enemyPositionList[_index]].StartFrameAnimation(frame);
                 return;
             }
 
@@ -60,7 +60,7 @@ namespace BattleScene.Framework.Views
                     continue;
                 }
 
-                _enemiesView[character.Position].StartFrameAnimation(frame);
+                _enemyGroupView[character.Position].StartFrameAnimation(frame);
             }
         }
 
@@ -69,7 +69,7 @@ namespace BattleScene.Framework.Views
             _index = -1;
             _inputAction.Disable();
             _playerView.StopFrameAnimation();
-            foreach (var enemyView in _enemiesView)
+            foreach (var enemyView in _enemyGroupView)
             {
                 enemyView.StopFrameAnimation();
             }
@@ -84,7 +84,7 @@ namespace BattleScene.Framework.Views
 
         private void SetIndex(TargetViewModel model)
         {
-            _enemyPositionList = _enemiesView
+            _enemyPositionList = _enemyGroupView
                 .Select((enemyView, i) => (enemyView, i))
                 .Where(x => x.enemyView.enabled)
                 .Select(x => x.i)
@@ -96,7 +96,7 @@ namespace BattleScene.Framework.Views
         {
             if (vector2.x == 0) return;
 
-            _enemiesView[_enemyPositionList[_index]].StopFrameAnimation();
+            _enemyGroupView[_enemyPositionList[_index]].StopFrameAnimation();
             _index = vector2.x > 0
                 ? Math.Min(_index + 1, _enemyPositionList.Count - 1)
                 : Math.Max(_index - 1, 0);

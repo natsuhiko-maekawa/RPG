@@ -15,18 +15,18 @@ namespace BattleScene.InterfaceAdapter.ReactivePresenters
     {
         private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
         private readonly ToIndexService _toIndex;
-        private readonly EnemiesView _enemiesView;
+        private readonly EnemyGroupView _enemyGroupView;
         private readonly PlayerStatusView _playerAilmentsView;
 
         public AilmentViewReactivePresenter(
             IRepository<CharacterEntity, CharacterId> characterRepository,
             ToIndexService toIndex,
-            EnemiesView enemiesView,
+            EnemyGroupView enemyGroupView,
             PlayerStatusView playerAilmentsView)
         {
             _characterRepository = characterRepository;
             _toIndex = toIndex;
-            _enemiesView = enemiesView;
+            _enemyGroupView = enemyGroupView;
             _playerAilmentsView = playerAilmentsView;
         }
 
@@ -51,7 +51,7 @@ namespace BattleScene.InterfaceAdapter.ReactivePresenters
             var position = _characterRepository.Get(characterId).Position;
             var ailmentId = _toIndex.FromAilment(ailmentCode);
             var dto = new AilmentViewModel(ailmentId, effects);
-            _enemiesView[position].StartAilmentAnimation(dto);
+            _enemyGroupView[position].StartAilmentAnimation(dto);
         }
     }
 }

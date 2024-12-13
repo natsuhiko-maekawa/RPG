@@ -9,16 +9,16 @@ namespace BattleScene.InterfaceAdapter.Presenters
     public class DamageViewPresenter
     {
         private readonly BattleLogDomainService _battleLog;
-        private readonly EnemiesView _enemiesView;
+        private readonly EnemyGroupView _enemyGroupView;
         private readonly PlayerView _playerView;
 
         public DamageViewPresenter(
             BattleLogDomainService battleLog,
-            EnemiesView enemiesView,
+            EnemyGroupView enemyGroupView,
             PlayerView playerView)
         {
             _battleLog = battleLog;
-            _enemiesView = enemiesView;
+            _enemyGroupView = enemyGroupView;
             _playerView = playerView;
         }
 
@@ -77,7 +77,7 @@ namespace BattleScene.InterfaceAdapter.Presenters
             foreach (var (position, digitList) in enemyDigitDict)
             {
                 var enemyModel = new DigitListViewModel(digitList);
-                _enemiesView[position].StartDigitAnimation(enemyModel);
+                _enemyGroupView[position].StartDigitAnimation(enemyModel);
             }
         }
 

@@ -1,17 +1,18 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using BattleScene.Framework.GameObjects;
 using UnityEngine;
 
 namespace BattleScene.Framework.Views
 {
-    public class EnemiesView : MonoBehaviour, IEnumerable<EnemyView>
+    public class EnemyGroupView : MonoBehaviour, IEnumerable<EnemyView>
     {
-        private EnemyGroup _enemyViewGroup;
+        private EnemyViewGroup _enemyViewGroup;
 
         private void Awake()
         {
-            _enemyViewGroup = GetComponent<EnemyGroup>();
+            _enemyViewGroup = GetComponent<EnemyViewGroup>();
             enabled = false;
         }
 
@@ -31,7 +32,7 @@ namespace BattleScene.Framework.Views
             foreach (var enemyView in _enemyViewGroup) enemyView.enabled = false;
         }
 
-        public EnemyView this[int i] => _enemyViewGroup[i];
+        public EnemyView this[Index i] => _enemyViewGroup[i];
         public IEnumerator<EnemyView> GetEnumerator() => _enemyViewGroup.GetEnumerator();
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }

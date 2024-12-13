@@ -67,7 +67,7 @@ namespace BattleScene
 
             #region RegisterView
 
-            builder.RegisterComponentInHierarchy<EnemiesView>();
+            builder.RegisterComponentInHierarchy<EnemyGroupView>();
             builder.RegisterComponentInHierarchy<InfoView>();
             // builder.RegisterComponentInHierarchy<BattleSceneInput>();
             builder.RegisterComponentInHierarchy<TableView>();

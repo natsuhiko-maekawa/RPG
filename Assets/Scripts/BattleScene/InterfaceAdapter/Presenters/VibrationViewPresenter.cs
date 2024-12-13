@@ -7,16 +7,16 @@ namespace BattleScene.InterfaceAdapter.Presenters
     public class VibrationViewPresenter
     {
         private readonly BattleLogDomainService _battleLog;
-        private readonly EnemiesView _enemiesView;
+        private readonly EnemyGroupView _enemyGroupView;
         private readonly PlayerView _playerView;
 
         public VibrationViewPresenter(
             BattleLogDomainService battleLog,
-            EnemiesView enemiesView,
+            EnemyGroupView enemyGroupView,
             PlayerView playerView)
         {
             _battleLog = battleLog;
-            _enemiesView = enemiesView;
+            _enemyGroupView = enemyGroupView;
             _playerView = playerView;
         }
 
@@ -47,7 +47,7 @@ namespace BattleScene.InterfaceAdapter.Presenters
 
         private void StartEnemyAnimation(int position)
         {
-            _enemiesView[position].StartVibeAnimation();
+            _enemyGroupView[position].StartVibeAnimation();
         }
     }
 }
