@@ -1,5 +1,5 @@
 {
-    "name": "Domain.BattleScene",
+    "name": "BattleScene.Domain",
     "rootNamespace": "",
     "references": [
         "GUID:a5ef4021daea9114cb5dcce50d96f987",
