@@ -15,7 +15,7 @@ namespace BattleScene.InterfaceAdapter.PresenterFacades
 
         public void Output()
         {
-            _messageView.StartAnimation(MessageCode.NoMessage);
+            _messageView.StartAnimation(MessageCode.RecoveryMessage);
         }
     }
 }

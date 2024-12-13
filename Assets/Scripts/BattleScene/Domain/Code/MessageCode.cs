@@ -86,6 +86,7 @@
         BattleQuit,
         DefenceMessage,
         PlayerLoseMessage,
-        DestroyMessage
+        DestroyMessage,
+        RecoveryMessage
     }
 }
