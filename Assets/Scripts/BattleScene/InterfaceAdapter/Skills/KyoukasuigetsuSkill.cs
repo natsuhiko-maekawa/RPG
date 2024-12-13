@@ -15,7 +15,7 @@ namespace BattleScene.InterfaceAdapter.Skills
         public override SkillCode SkillCode { get; } = SkillCode.Kyoukasuigetsu;
         public override IReadOnlyList<BodyPartCode> DependencyList { get; } = new[] { BodyPartCode.Arm };
         public override Range Range { get; } = Range.Line;
-        public override MessageCode AttackMessageCode { get; } = MessageCode.NoMessage;
+        public override MessageCode AttackMessageCode { get; } = MessageCode.SkillMessage;
 
         public override IReadOnlyList<BaseAilment> AilmentList { get; }
             = new[] { new AbsoluteConfusion() };

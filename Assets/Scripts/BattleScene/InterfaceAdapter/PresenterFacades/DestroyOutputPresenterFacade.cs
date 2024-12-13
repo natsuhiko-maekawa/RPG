@@ -20,7 +20,7 @@ namespace BattleScene.InterfaceAdapter.PresenterFacades
 
         public void OutputWhenDestroyFailure()
         {
-            _messageView.StartAnimation(MessageCode.NoMessage);
+            // _messageView.StartAnimation(MessageCode.NoMessage);
         }
 
         public void OutputWhenDestroySuccess(BattleEventEntity destroyEvent)

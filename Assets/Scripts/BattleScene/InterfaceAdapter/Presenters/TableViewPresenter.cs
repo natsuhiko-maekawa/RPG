@@ -67,7 +67,7 @@ namespace BattleScene.InterfaceAdapter.Presenters
                 BattleEventCode.Skill => MessageCode.SkillDescription,
                 BattleEventCode.Defence => MessageCode.DefenceDescription,
                 BattleEventCode.FatalitySkill => MessageCode.FatalitySkillDescription,
-                _ => MessageCode.NoMessage
+                _ => throw new ArgumentOutOfRangeException(nameof(battleEventCode), battleEventCode, null)
             };
 
             var message = _messageResource.Get(messageCode).Message;
