@@ -9,6 +9,7 @@ namespace BattleScene.InterfaceAdapter.States.Turn
     {
         private readonly SlipUseCase _useCase;
         private readonly SlipDamagePresenterFacade _facade;
+        private readonly CharacterDeadState _characterDeadState;
         private readonly TurnStopState _turnStopState;
         private ActionQueue _actionQueue;
         private readonly Action<Unit> _transitionStateAction;
@@ -16,10 +17,12 @@ namespace BattleScene.InterfaceAdapter.States.Turn
         public SlipDamageState(
             SlipUseCase useCase,
             SlipDamagePresenterFacade facade,
+            CharacterDeadState characterDeadState,
             TurnStopState turnStopState)
         {
             _useCase = useCase;
             _facade = facade;
+            _characterDeadState = characterDeadState;
             _turnStopState = turnStopState;
             _transitionStateAction = _ => TransitionState();
         }
@@ -43,9 +46,12 @@ namespace BattleScene.InterfaceAdapter.States.Turn
 
         private void TransitionState()
         {
-            // 複数メソッドにまたがるため、手動でDisposeせざるを得ない
+            // QUESTION: インスタンスの利用が複数メソッドにまたがる場合、手動でDisposeしてもよいか。
             _actionQueue.Dispose();
-            Context.TransitionTo(_turnStopState);
+            BaseState nextState = _useCase.IsPlayerDeadInThisTurn()
+                ? _characterDeadState
+                : _turnStopState;
+            Context.TransitionTo(nextState);
         }
     }
 }
