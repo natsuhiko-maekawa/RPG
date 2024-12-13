@@ -6,6 +6,7 @@ using BattleScene.Domain.Entity;
 using BattleScene.Domain.Id;
 using BattleScene.Domain.ValueObject;
 using BattleScene.UseCases.IService;
+using Common;
 using Utility;
 
 namespace BattleScene.UseCases.Service

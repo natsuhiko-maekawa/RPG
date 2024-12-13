@@ -6,7 +6,7 @@ using BattleScene.DataAccess.Dto;
 using BattleScene.Domain.Code;
 using BattleScene.Domain.Entity;
 using BattleScene.Framework.Views;
-using BattleScene.UseCases;
+using Common;
 using Utility;
 
 namespace BattleScene.InterfaceAdapter.Presenters

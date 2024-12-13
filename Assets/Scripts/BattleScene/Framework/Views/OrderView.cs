@@ -6,7 +6,6 @@ using BattleScene.Framework.Utilities;
 using BattleScene.Framework.ViewModels;
 using UnityEngine;
 using UnityEngine.UI;
-using static BattleScene.Framework.Constant;
 
 namespace BattleScene.Framework.Views
 {
@@ -58,7 +57,7 @@ namespace BattleScene.Framework.Views
                 }
 
                 diff += sin;
-                await Task.Delay(WaitTime);
+                await Task.Delay(30); // 0.03秒
             }
 
             _imageList.First().enabled = true;
