@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using BattleScene.Debug.Services;
 using BattleScene.Domain.Codes;
 using BattleScene.Domain.DataAccesses;
 using BattleScene.Domain.DomainServices;
@@ -35,7 +36,7 @@ namespace BattleScene.Presenters.Services
 
         /// <summary>
         ///     麻痺によって行動不能になったかを表すプロパティ。<br />
-        ///     <see cref="BattleScene.Debug.Service.DebugRandomService" />でプロパティ名を利用してリフレクションを行っているため、
+        ///     <see cref="DebugRandomService" />でプロパティ名を利用してリフレクションを行っているため、
         ///     NOTE: プロパティ名を変更するときは上記クラスも修正すること。
         /// </summary>
         private bool CantActionByParalysis => _myRandom.Probability(0.5f);

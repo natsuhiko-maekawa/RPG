@@ -4,7 +4,7 @@ using BattleScene.UseCases.IServices;
 using UnityEngine;
 using Utility;
 
-namespace BattleScene.Debug.Service
+namespace BattleScene.Debug.Services
 {
     public class DebugRandomService : MonoBehaviour, IMyRandomService
     {

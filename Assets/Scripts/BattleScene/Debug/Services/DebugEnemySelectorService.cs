@@ -13,7 +13,7 @@ using UnityEngine;
 using VContainer;
 using static BattleScene.Domain.Codes.CharacterTypeCode;
 
-namespace BattleScene.Debug.Service
+namespace BattleScene.Debug.Services
 {
     public class DebugEnemySelectorService : MonoBehaviour, IEnemySelectorService
     {
