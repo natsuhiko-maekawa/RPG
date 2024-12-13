@@ -46,7 +46,7 @@ namespace BattleScene.UseCases.Services
                 {
                     var enhance = _enhanceRepository.Get((target.Id, enhanceEvent.EnhanceCode));
                     enhance.Set(
-                        turn: enhanceEvent.Turn,
+                        turn: enhanceEvent.EffectTurn,
                         lifetimeCode: enhanceEvent.LifetimeCode);
                 }
             }

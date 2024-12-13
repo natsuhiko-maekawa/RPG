@@ -56,7 +56,7 @@ namespace BattleScene.UseCases.Services
             var targetBuffRate = _buffRepository.Get((target.Id, BuffCode.Defence)).Rate;
             var destroyedRate = 1.0f - _bodyPartRepository.Get((actor.Id, BodyPartCode.Arm)).DestroyedCount * 0.5f;
             var targetDefence
-                = _enhanceRepository.TryGet((target.Id, EnhanceCode.Defence), out var enhance) && enhance.Effects
+                = _enhanceRepository.Get((target.Id, EnhanceCode.Defence)).Effects
                     ? 0.5f
                     : MultiplicationIdentityElement;
             var rate = damage.DamageRate;
