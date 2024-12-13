@@ -75,8 +75,9 @@ namespace BattleScene.UseCases.Services
             var destroyedRate = MultiplicationIdentityElement
                                 - _bodyPartRepository.Get((actor.Id, BodyPartCode.Arm)).DestroyedCount * 0.5f;
             var rate = damage.DamageRate;
+            const float constant = 2.0f;
             return (int)(actorStrength * actorStrength / (float)targetVitality * actorBuffRate / targetBuffRate
-                         * destroyedRate * rate * 1.5f) + _myRandom.Range(1, 3);
+                         * destroyedRate * rate * 1.5f * constant) + _myRandom.Range(1, 3);
         }
 
         private int SlipEvaluate(CharacterEntity actor, CharacterEntity target)
