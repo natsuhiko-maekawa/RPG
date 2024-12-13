@@ -5,5 +5,6 @@ namespace Common
     public static class Constant
     {
         public static int MaxEnemyCount { get; } = 4;
+        public static int MaxOrderNumber { get; } = 14;
     }
 }

@@ -69,14 +69,12 @@ namespace BattleScene
 
             builder.RegisterComponentInHierarchy<EnemyGroupView>();
             builder.RegisterComponentInHierarchy<InfoView>();
-            // builder.RegisterComponentInHierarchy<BattleSceneInput>();
             builder.RegisterComponentInHierarchy<TableView>();
             builder.RegisterComponentInHierarchy<MessageView>();
             builder.RegisterComponentInHierarchy<OrderView>();
             builder.RegisterComponentInHierarchy<PlayerAttackCountView>();
             builder.RegisterComponentInHierarchy<PlayerView>();
             builder.RegisterComponentInHierarchy<PlayerStatusView>();
-            builder.RegisterComponentInHierarchy<SelectSkillView>();
             builder.RegisterComponentInHierarchy<TargetView>();
 
             #endregion
@@ -120,6 +118,7 @@ namespace BattleScene
             builder.Register<CharacterDeadPresenterFacade>(Singleton);
             builder.Register<CureOutputPresenterFacade>(Singleton);
             builder.Register<EnhanceOutputPresenterFacade>(Singleton);
+            builder.Register<InitializeEnemyPresenterFacade>(Singleton);
             builder.Register<ResetAilmentPresenterFacade>(Singleton);
             builder.Register<DamageOutputPresenterFacade>(Singleton);
             builder.Register<DestroyOutputPresenterFacade>(Singleton);

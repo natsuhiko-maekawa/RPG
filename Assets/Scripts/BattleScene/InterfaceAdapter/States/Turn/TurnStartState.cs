@@ -39,7 +39,7 @@ namespace BattleScene.InterfaceAdapter.States.Turn
         {
             _order.Register();
             (Context.Actor, Context.AilmentCode, Context.SlipCode) = _order.First();
-            _orderView.StartAnimationAsync();
+            _orderView.StartAnimation();
             var nextState = GetNextState();
             Context.TransitionTo(nextState);
         }

@@ -1,82 +1,56 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using BattleScene.Framework.GameObjects;
 using BattleScene.Framework.Utilities;
 using BattleScene.Framework.ViewModels;
+using Common;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace BattleScene.Framework.Views
 {
     public class OrderView : MonoBehaviour
     {
-        private const int MaxOrderNumber = 14;
-        private const int IconWidth = 50;
-        private const int Centering = IconWidth * MaxOrderNumber / 2 - IconWidth / 2;
-        private const int Frame = 10;
-        [SerializeField] private Image icon;
         [SerializeField] private Sprite player;
         [SerializeField] private Texture2D ailmentsIconTexture;
-        private readonly List<Image> _imageList = new();
+        private Order _order;
         private Sprite[] _ailmentsIconArray;
-        private float _defaultX;
-        private SpriteFlyweight _spriteFlyweight;
+        private readonly Dictionary<string, Sprite> _enemyImageDictionary = new();
 
         private void Awake()
         {
-            for (var i = 0; i < MaxOrderNumber; i++)
-            {
-                _imageList.Add(Instantiate(icon, transform));
-                var iconPosition = _imageList[i].transform.localPosition;
-                iconPosition.x += i * IconWidth - Centering;
-                _imageList[i].transform.localPosition = iconPosition;
-                _imageList[i].enabled = false;
-            }
-
-            _defaultX = _imageList.First().transform.localPosition.x;
             _ailmentsIconArray = MySprite.CreateByGrid(ailmentsIconTexture, 4, 4);
-            _spriteFlyweight = SpriteFlyweight.Instance;
+            _order = GetComponentInChildren<Order>();
+            _order.SetItem(Constant.MaxOrderNumber);
+            _order.enabled = true;
         }
 
-        public async Task StartAnimationAsync(IReadOnlyList<OrderViewModel> dtoList)
+        public async void Initialize(string[] enemyImagePathArray)
         {
-            float diff = 0;
-
-            for (var frame = 0; frame < Frame; ++frame)
+            var spriteFlyweight = SpriteFlyweight.Instance;
+            foreach (var enemyImagePath in enemyImagePathArray)
             {
-                _imageList.First().enabled = false;
-                var sin = Mathf.Sin(frame / (float)Frame * 90 * Mathf.Deg2Rad);
-                sin -= diff;
-                foreach (var image in _imageList)
-                {
-                    var imageTransform = image.transform;
-                    var imagePosition = imageTransform.localPosition;
-                    imagePosition.x += sin * -IconWidth;
-                    imageTransform.localPosition = imagePosition;
-                }
-
-                diff += sin;
-                await Task.Delay(30); // 0.03秒
+                var sprite = await spriteFlyweight.GetAsync(enemyImagePath);
+                _enemyImageDictionary.Add(enemyImagePath, sprite);
             }
+        }
 
-            _imageList.First().enabled = true;
-            foreach (var (dto, i) in dtoList.Select((x, i) => (x, i)))
+        public void StartAnimation(IReadOnlyList<OrderViewModel> modelList)
+        {
+            foreach (var (orderIcon, model) in _order
+                         .Zip(modelList, (x, y) => (orderedIcon: x, model: y)))
             {
-                var iconPosition = _imageList[i].transform.localPosition;
-                iconPosition.x = _defaultX;
-                iconPosition.x += i * IconWidth;
-                _imageList[i].transform.localPosition = iconPosition;
-                _imageList[i].sprite = dto.ItemType switch
+                var sprite = model.ItemType switch
                 {
                     ItemType.Player => player,
-                    ItemType.Enemy when dto.EnemyImagePath != null => await _spriteFlyweight.GetAsync(
-                        dto.EnemyImagePath),
-                    ItemType.Ailment when dto.AilmentNumber != null => _ailmentsIconArray[(int)dto.AilmentNumber],
+                    ItemType.Enemy => _enemyImageDictionary[model.EnemyImagePath],
+                    ItemType.Ailment => _ailmentsIconArray[model.AilmentNumber],
                     _ => throw new ArgumentOutOfRangeException()
                 };
 
-                _imageList[i].enabled = true;
+                orderIcon.Set(sprite);
+                orderIcon.enabled = true;
+                _order.Slide();
             }
         }
     }

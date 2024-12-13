@@ -29,14 +29,23 @@ namespace BattleScene.InterfaceAdapter.Presenters
             _orderedItemRepository = orderedItemRepository;
         }
 
-        public async void StartAnimationAsync()
+        public void Initialize(CharacterEntity[] characterArray)
+        {
+            var enemyImagePathArray = characterArray
+                .Select(x => x.CharacterTypeCode)
+                .Distinct()
+                .Select(x => _enemyViewInfoResource.Get(x).ImagePath)
+                .ToArray();
+            _orderView.Initialize(enemyImagePathArray);
+        }
+
+        public void StartAnimation()
         {
             var orderViewDtoList = _orderedItemRepository.Get()
                 .OrderBy(x => x.Order)
                 .Select(CreateOrderViewDto)
-                .ToList();
-
-            await _orderView.StartAnimationAsync(orderViewDtoList);
+                .ToArray();
+            _orderView.StartAnimation(orderViewDtoList);
         }
 
         private OrderViewModel CreateOrderViewDto(OrderedItemEntity orderedItem)
