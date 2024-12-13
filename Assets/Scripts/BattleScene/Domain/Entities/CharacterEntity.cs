@@ -47,7 +47,7 @@ namespace BattleScene.Domain.Entities
             set
             {
                 _currentTechnicalPoint = Math.Max(value, 0);
-                CurrentTechnicalPointOnChange(value);
+                CurrentTechnicalPointOnChange(_currentTechnicalPoint);
             }
         }
 
