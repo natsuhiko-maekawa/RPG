@@ -11,7 +11,6 @@ namespace BattleScene.InterfaceAdapter.Services.Replacements
         private readonly BattleLogDomainService _battleLog;
         private readonly ReplacementCommonService _replacementCommon;
 
-
         public ActorReplacementService(
             BattleLogDomainService battleLog,
             ReplacementCommonService replacementCommon)

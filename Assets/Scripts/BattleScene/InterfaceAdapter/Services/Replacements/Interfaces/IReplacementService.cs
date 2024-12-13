@@ -2,6 +2,7 @@ using System;
 
 namespace BattleScene.InterfaceAdapter.Services.Replacements.Interfaces
 {
+    // TODO: 抽象クラスの方が良かったかもしれない。
     public interface IReplacementService
     {
         public string Replacement { get; }

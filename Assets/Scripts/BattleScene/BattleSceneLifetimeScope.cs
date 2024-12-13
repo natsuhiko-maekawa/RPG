@@ -275,6 +275,7 @@ namespace BattleScene
             builder.Register<IReplacementService, BuffReplacementService>(Singleton);
             builder.Register<IReplacementService, CureReplacementService>(Singleton);
             builder.Register<IReplacementService, DamageReplacementService>(Singleton);
+            builder.Register<IReplacementService, DestroyedReplacementService>(Singleton);
             builder.Register<IReplacementService, PlayerReplacementService>(Singleton);
             builder.Register<IReplacementService, SkillReplacementService>(Singleton);
             builder.Register<IReplacementService, SlipReplacementService>(Singleton);

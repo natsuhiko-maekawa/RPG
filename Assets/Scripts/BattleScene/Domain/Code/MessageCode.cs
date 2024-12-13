@@ -85,6 +85,7 @@
         BattleContinue,
         BattleQuit,
         DefenceMessage,
-        PlayerLoseMessage
+        PlayerLoseMessage,
+        DestroyMessage
     }
 }
