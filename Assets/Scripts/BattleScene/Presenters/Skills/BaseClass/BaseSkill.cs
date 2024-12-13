@@ -11,6 +11,7 @@ namespace BattleScene.Presenters.Skills.BaseClass
         public abstract SkillCode SkillCode { get; }
         public virtual int TechnicalPoint { get; } = 0;
         public virtual IReadOnlyList<BodyPartCode> DependencyList { get; } = Array.Empty<BodyPartCode>();
+        // TODO: 攻撃スキルと回復スキルは対象が異なるため、RangeをSkillComponentに移動すること。
         public abstract Range Range { get; }
         public virtual bool IsAutoTarget { get; } = false;
         public abstract MessageCode AttackMessageCode { get; }
