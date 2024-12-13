@@ -70,36 +70,12 @@ namespace BattleScene.Framework.Views
             _playerImage.enabled = false;
         }
 
-        public void StartPlayerSlideView() => _playerImage.Slide();
-
-        public void StartPlayerDigitView(DigitListViewModel model)
-        {
-            _playerDigitView.StartAnimation(model);
-        }
-
-        public void StartFrameView(FrameViewModel model)
-        {
-            _playerFrameView.StartAnimation(model);
-        }
-
-        public void StopPlayerFrameView()
-        {
-            _playerFrameView.StopAnimation();
-        }
-
-        public void StartPlayerHpBarView(StatusBarViewModel model)
-        {
-            _playerHpBarView.StartAnimation(model);
-        }
-
-        public void StartTechnicalPointBarView(StatusBarViewModel model)
-        {
-            _playerTpBarView.StartAnimation(model);
-        }
-
-        public void StartPlayerVibeView()
-        {
-            _playerImage.Vibe();
-        }
+        public void StartSlideAnimation() => _playerImage.Slide();
+        public void StartDigitAnimation(DigitListViewModel model) => _playerDigitView.StartAnimation(model);
+        public void StartFrameAnimation(FrameViewModel model) => _playerFrameView.StartAnimation(model);
+        public void StopFrameAnimation() => _playerFrameView.StopAnimation();
+        public void StartHitPointBarAnimation(StatusBarViewModel model) => _playerHpBarView.StartAnimation(model);
+        public void StartTechnicalPointBarAnimation(StatusBarViewModel model) => _playerTpBarView.StartAnimation(model);
+        public void StartVibeAnimation() => _playerImage.Vibe();
     }
 }

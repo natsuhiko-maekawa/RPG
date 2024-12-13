@@ -42,7 +42,7 @@ namespace BattleScene.InterfaceAdapter.ReactivePresenters
             // そのため、Mathf.Approximatelyメソッドを用いて、倍率がほぼ1である場合、三項演算子でsbyte型の0を返している。
             var buffState = (BuffState)(Mathf.Approximately(rate, 1.0f) ? 0 : (sbyte)Math.Sign(Mathf.Log(rate)));
             var buff = new BuffViewModel(index, buffState);
-            _playerStatusView.StartPlayerBuffView(buff);
+            _playerStatusView.StartBuffAnimation(buff);
         }
     }
 }

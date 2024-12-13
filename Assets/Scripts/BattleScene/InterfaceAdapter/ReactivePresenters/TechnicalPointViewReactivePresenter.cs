@@ -32,7 +32,7 @@ namespace BattleScene.InterfaceAdapter.ReactivePresenters
         {
             var maxTechnicalPoint = _playerPropertyFactory.Create(CharacterTypeCode.Player).TechnicalPoint;
             var model = new StatusBarViewModel(maxTechnicalPoint, currentTechnicalPoint);
-            _playerView.StartTechnicalPointBarView(model);
+            _playerView.StartTechnicalPointBarAnimation(model);
         }
     }
 }

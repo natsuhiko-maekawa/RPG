@@ -43,7 +43,7 @@ namespace BattleScene.InterfaceAdapter.ReactivePresenters
         {
             var ailmentId = _toIndex.FromAilment(ailmentCode);
             var dto = new AilmentViewModel(ailmentId, effects);
-            _playerAilmentsView.StartPlayerAilmentsView(dto);
+            _playerAilmentsView.StartAilmentAnimation(dto);
         }
 
         private void StartEnemyAilmentView(CharacterId characterId, AilmentCode ailmentCode, bool effects)
@@ -51,7 +51,7 @@ namespace BattleScene.InterfaceAdapter.ReactivePresenters
             var position = _characterRepository.Get(characterId).Position;
             var ailmentId = _toIndex.FromAilment(ailmentCode);
             var dto = new AilmentViewModel(ailmentId, effects);
-            _enemiesView[position].StartAilmentAnimationAsync(dto);
+            _enemiesView[position].StartAilmentAnimation(dto);
         }
     }
 }

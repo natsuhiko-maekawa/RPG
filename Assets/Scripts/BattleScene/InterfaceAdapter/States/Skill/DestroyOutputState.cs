@@ -20,11 +20,11 @@ namespace BattleScene.InterfaceAdapter.States.Skill
         {
             if (TryGetSuccessBattleEvent(out var successDestroyEvent))
             {
-                _facade.OutputThenDestroySuccess(successDestroyEvent);
+                _facade.OutputWhenDestroySuccess(successDestroyEvent);
             }
             else
             {
-                _facade.OutputThenDestroyFailure();
+                _facade.OutputWhenDestroyFailure();
             }
         }
 

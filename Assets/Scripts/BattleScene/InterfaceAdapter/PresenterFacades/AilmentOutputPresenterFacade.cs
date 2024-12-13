@@ -24,12 +24,12 @@ namespace BattleScene.InterfaceAdapter.PresenterFacades
             _playerImageView = playerImageView;
         }
 
-        public void OutputThenAilmentFailure()
+        public void OutputWhenAilmentFailure()
         {
             _messageView.StartAnimation(MessageCode.FailAilmentMessage);
         }
 
-        public void OutputThenAilmentSuccess(BattleEventEntity ailmentEvent)
+        public void OutputWhenAilmentSuccess(BattleEventEntity ailmentEvent)
         {
             _messageView.StartAnimation(MessageCode.AilmentMessage);
 

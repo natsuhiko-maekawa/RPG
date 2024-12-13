@@ -39,10 +39,10 @@ namespace BattleScene.InterfaceAdapter.Presenters
             switch (animationMode)
             {
                 case AnimationMode.Slide:
-                    _playerView.StartPlayerSlideView();
+                    _playerView.StartSlideAnimation();
                     break;
                 case AnimationMode.Vibe:
-                    _playerView.StartPlayerVibeView();
+                    _playerView.StartVibeAnimation();
                     break;
             }
         }

@@ -20,18 +20,18 @@ namespace BattleScene.Framework.Views
             _playerBuffStatusArray = GetComponentsInChildren<PlayerBuffStatus>();
         }
 
-        public void StartPlayerAilmentsView(AilmentViewModel ailment)
+        public void StartAilmentAnimation(AilmentViewModel ailment)
         {
             if (ailment.Effects) _playerAilmentStatusArray[ailment.AilmentId].Activate();
             else _playerAilmentStatusArray[ailment.AilmentId].Inactivate();
         }
 
-        public void StartPlayerDestroyedPartView(BodyPartViewModel bodyPart)
+        public void StartDestroyAnimation(BodyPartViewModel bodyPart)
         {
             _playerBodyPartStatusArray[bodyPart.Index].Set(bodyPart.DestroyedCount);
         }
 
-        public void StartPlayerBuffView(BuffViewModel buff)
+        public void StartBuffAnimation(BuffViewModel buff)
         {
             _playerBuffStatusArray[buff.BuffId].Set(buff.BuffState);
         }

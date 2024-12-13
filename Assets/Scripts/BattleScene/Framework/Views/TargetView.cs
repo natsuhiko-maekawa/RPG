@@ -40,13 +40,13 @@ namespace BattleScene.Framework.Views
             _inputAction.Enable();
 
             _model = model;
-            var frameViewDto = new FrameViewModel(Color.red);
+            var frame = new FrameViewModel(Color.red);
 
             if (IsEnemySolo(model))
             {
                 if (_index == -1) SetIndex(model);
 
-                _enemiesView[_enemyPositionList[_index]].StartFrameAnimationAsync(frameViewDto);
+                _enemiesView[_enemyPositionList[_index]].StartFrameAnimation(frame);
                 return;
             }
 
@@ -56,11 +56,11 @@ namespace BattleScene.Framework.Views
 
                 if (character.IsPlayer)
                 {
-                    _playerView.StartFrameView(frameViewDto);
+                    _playerView.StartFrameAnimation(frame);
                     continue;
                 }
 
-                _enemiesView[character.Position].StartFrameAnimationAsync(frameViewDto);
+                _enemiesView[character.Position].StartFrameAnimation(frame);
             }
         }
 
@@ -68,7 +68,7 @@ namespace BattleScene.Framework.Views
         {
             _index = -1;
             _inputAction.Disable();
-            _playerView.StopPlayerFrameView();
+            _playerView.StopFrameAnimation();
             foreach (var enemyView in _enemiesView)
             {
                 enemyView.StopFrameAnimation();

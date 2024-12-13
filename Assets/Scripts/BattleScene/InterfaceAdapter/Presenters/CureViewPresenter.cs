@@ -32,7 +32,7 @@ namespace BattleScene.InterfaceAdapter.Presenters
                 .SelectMany(x => x.model)
                 .ToArray();
             var playerModel = new DigitListViewModel(playerDigitArray);
-            _playerView.StartPlayerDigitView(playerModel);
+            _playerView.StartDigitAnimation(playerModel);
 
             var enemyDigitDict = characterDigitArray
                 .Where(x => !x.character.IsPlayer)

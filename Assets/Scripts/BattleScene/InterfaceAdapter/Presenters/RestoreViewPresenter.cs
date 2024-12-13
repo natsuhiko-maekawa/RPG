@@ -26,7 +26,7 @@ namespace BattleScene.InterfaceAdapter.Presenters
                 Digit: technicalPoint);
             var digitList = new List<DigitViewModel> { digit };
             var digitViewModel = new DigitListViewModel(digitList);
-            _playerView.StartPlayerDigitView(digitViewModel);
+            _playerView.StartDigitAnimation(digitViewModel);
         }
     }
 }

@@ -36,35 +36,12 @@ namespace BattleScene.Framework.Views
             _enemyImage.Set(sprite);
         }
 
-        public void StartAilmentAnimationAsync(AilmentViewModel dto)
-        {
-            _enemyAilmentView.StartAnimation(dto);
-        }
-
-        public void StartDigitAnimation(DigitListViewModel model)
-        {
-            _digitView.StartAnimation(model);
-        }
-
-        public void StartHitPointBarAnimationAsync(StatusBarViewModel model)
-        {
-            _hitPointBarView.StartAnimation(model);
-        }
-
-        public void StartFrameAnimationAsync(FrameViewModel model)
-        {
-            _frameView.StartAnimation(model);
-        }
-
-        public void StopFrameAnimation()
-        {
-            _frameView.StopAnimation();
-        }
-
-        public void StartVibeAnimation()
-        {
-            _enemyImage.Vibe();
-        }
+        public void StartAilmentAnimation(AilmentViewModel dto) => _enemyAilmentView.StartAnimation(dto);
+        public void StartDigitAnimation(DigitListViewModel model) => _digitView.StartAnimation(model);
+        public void StartHitPointBarAnimation(StatusBarViewModel model) => _hitPointBarView.StartAnimation(model);
+        public void StartFrameAnimation(FrameViewModel model) => _frameView.StartAnimation(model);
+        public void StopFrameAnimation() => _frameView.StopAnimation();
+        public void StartVibeAnimation() => _enemyImage.Vibe();
 
         private void OnDisable()
         {

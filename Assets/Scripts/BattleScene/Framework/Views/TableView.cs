@@ -50,7 +50,7 @@ namespace BattleScene.Framework.Views
             _rowStateDictionary = new Dictionary<ActionCode, RowState>(actionCount);
         }
 
-        public void StartAnimationAsync(TableViewModel model)
+        public void StartAnimation(TableViewModel model)
         {
             enabled = true;
             _window.enabled = true;
@@ -104,7 +104,7 @@ namespace BattleScene.Framework.Views
             _playerView.enabled = true;
             _playerView.StartAnimation(new PlayerViewModel(
                 playerImagePath: model.RowList[gridState.SelectedIndex].PlayerImagePath));
-            _playerView.StartPlayerSlideView();
+            _playerView.StartSlideAnimation();
         }
 
         public void StopAnimation()
@@ -126,7 +126,7 @@ namespace BattleScene.Framework.Views
                 _rowStateDictionary[_model.ActionCode].Up();
             else
                 _rowStateDictionary[_model.ActionCode].Down();
-            StartAnimationAsync(_model);
+            StartAnimation(_model);
         }
 
         public void OnSelect(InputAction.CallbackContext context)

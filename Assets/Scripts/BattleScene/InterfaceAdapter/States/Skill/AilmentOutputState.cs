@@ -20,11 +20,11 @@ namespace BattleScene.InterfaceAdapter.States.Skill
         {
             if (TryGetSuccessBattleEvent(out var successAilmentEvent))
             {
-                _facade.OutputThenAilmentSuccess(successAilmentEvent);
+                _facade.OutputWhenAilmentSuccess(successAilmentEvent);
             }
             else
             {
-                _facade.OutputThenAilmentFailure();
+                _facade.OutputWhenAilmentFailure();
             }
         }
 

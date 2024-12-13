@@ -40,7 +40,7 @@ namespace BattleScene.InterfaceAdapter.ReactivePresenters
         {
             var maxHitPoint = _characterPropertyFactory.Create(CharacterTypeCode.Player).HitPoint;
             var model = new StatusBarViewModel(maxHitPoint, currentHitPoint);
-            _playerView.StartPlayerHpBarView(model);
+            _playerView.StartHitPointBarAnimation(model);
         }
 
         private void StartEnemyHitPointBarView(CharacterEntity character, int currentHitPoint)
@@ -48,7 +48,7 @@ namespace BattleScene.InterfaceAdapter.ReactivePresenters
             var enemyPosition = character.Position;
             var maxHitPoint = _characterPropertyFactory.Create(character.CharacterTypeCode).HitPoint;
             var model = new StatusBarViewModel(maxHitPoint, currentHitPoint);
-            _enemiesView[enemyPosition].StartHitPointBarAnimationAsync(model);
+            _enemiesView[enemyPosition].StartHitPointBarAnimation(model);
         }
     }
 }

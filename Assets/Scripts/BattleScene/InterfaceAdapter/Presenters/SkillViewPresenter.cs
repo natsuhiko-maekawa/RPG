@@ -48,7 +48,7 @@ namespace BattleScene.InterfaceAdapter.Presenters
             var dto = new TableViewModel(
                 actionCode: actionCode,
                 rowList: rowList);
-            _tableView.StartAnimationAsync(dto);
+            _tableView.StartAnimation(dto);
         }
 
         public void StopAnimation()

@@ -30,7 +30,7 @@ namespace BattleScene.InterfaceAdapter.ReactivePresenters
         {
             var slipId = _toIndex.FromSlipDamage(slipCode);
             var ailment = new AilmentViewModel(slipId, effects);
-            _playerAilmentsView.StartPlayerAilmentsView(ailment);
+            _playerAilmentsView.StartAilmentAnimation(ailment);
         }
     }
 }

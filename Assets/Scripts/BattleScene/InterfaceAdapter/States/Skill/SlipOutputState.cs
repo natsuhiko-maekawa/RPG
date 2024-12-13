@@ -20,11 +20,11 @@ namespace BattleScene.InterfaceAdapter.States.Skill
         {
             if (TryGetSuccessBattleEvent(out var successSlipEvent))
             {
-                _facade.OutputThenSlipSuccess(successSlipEvent);
+                _facade.OutputWhenSlipSuccess(successSlipEvent);
             }
             else
             {
-                _facade.OutputThenSlipFailure();
+                _facade.OutputWhenSlipFailure();
             }
         }
 

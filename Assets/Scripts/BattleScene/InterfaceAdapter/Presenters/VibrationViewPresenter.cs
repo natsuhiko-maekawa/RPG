@@ -42,7 +42,7 @@ namespace BattleScene.InterfaceAdapter.Presenters
 
         private void StartPlayerAnimation()
         {
-            _playerView.StartPlayerVibeView();
+            _playerView.StartVibeAnimation();
         }
 
         private void StartEnemyAnimation(int position)

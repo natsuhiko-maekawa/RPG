@@ -18,12 +18,12 @@ namespace BattleScene.InterfaceAdapter.PresenterFacades
             _playerImageView = playerImageView;
         }
 
-        public void OutputThenDestroyFailure()
+        public void OutputWhenDestroyFailure()
         {
             _messageView.StartAnimation(MessageCode.NoMessage);
         }
 
-        public void OutputThenDestroySuccess(BattleEventEntity destroyEvent)
+        public void OutputWhenDestroySuccess(BattleEventEntity destroyEvent)
         {
             // TODO: メッセージを設定すること。
             _messageView.StartAnimation(MessageCode.NoMessage);

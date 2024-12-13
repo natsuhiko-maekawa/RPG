@@ -30,7 +30,7 @@ namespace BattleScene.InterfaceAdapter.ReactivePresenters
         {
             var index = _toIndex.FromBodyPart(bodyPartCode);
             var model = new BodyPartViewModel(index, destroyedCount);
-            _playerStatusView.StartPlayerDestroyedPartView(model);
+            _playerStatusView.StartDestroyAnimation(model);
         }
     }
 }
