@@ -4,9 +4,10 @@ namespace BattleScene.InterfaceAdapter.States
     {
         None,
         Next,
+        TurnState,
         AdvanceTurnState,
         CharacterDeadState,
         PlayerLoseState,
-        PlayerWinState,
+        PlayerWinState
     }
 }

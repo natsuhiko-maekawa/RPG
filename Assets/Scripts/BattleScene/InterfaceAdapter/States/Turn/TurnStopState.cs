@@ -1,4 +1,5 @@
 ﻿using BattleScene.UseCases.Service;
+using Utility;
 
 namespace BattleScene.InterfaceAdapter.States.Turn
 {
@@ -14,6 +15,7 @@ namespace BattleScene.InterfaceAdapter.States.Turn
 
         public override void Start()
         {
+            MyDebug.Assert(Context.NextStateCode is not StateCode.None and not StateCode.Next);
             _turn.Increment();
         }
     }

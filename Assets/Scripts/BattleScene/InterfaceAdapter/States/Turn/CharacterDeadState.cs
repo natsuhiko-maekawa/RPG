@@ -25,7 +25,6 @@ namespace BattleScene.InterfaceAdapter.States.Turn
 
         public override void Start()
         {
-            Context.NextStateCode = StateCode.Next;
             if (_useCase.IsPlayerDeadInThisTurn())
             {
                 WhenPlayerDead();

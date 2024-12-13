@@ -28,6 +28,7 @@ namespace BattleScene.InterfaceAdapter.States.Turn
         {
             _useCase.Reset(Context.AilmentCode);
             Context.Skill = _useCase.GetAttackSkill();
+            Context.NextStateCode = StateCode.TurnState;
             _facade.Output(Context.Skill.Common.SkillCode);
         }
 

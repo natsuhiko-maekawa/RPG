@@ -48,9 +48,16 @@ namespace BattleScene.InterfaceAdapter.States.Turn
         {
             // QUESTION: インスタンスの利用が複数メソッドにまたがる場合、手動でDisposeしてもよいか。
             _actionQueue.Dispose();
-            BaseState nextState = _useCase.IsPlayerDeadInThisTurn()
-                ? _characterDeadState
-                : _turnStopState;
+            BaseState nextState;
+            if (_useCase.IsPlayerDeadInThisTurn())
+            {
+                nextState = _characterDeadState;
+            }
+            else
+            {
+                nextState = _turnStopState;
+                Context.NextStateCode = StateCode.TurnState;
+            }
             Context.TransitionTo(nextState);
         }
     }

@@ -31,7 +31,7 @@ namespace BattleScene.InterfaceAdapter.States.Battle
             var isContinue = _turnStateMachine.TryOnSelect(out var nextStateCode);
             if (isContinue) return;
 
-            if (nextStateCode == StateCode.Next)
+            if (nextStateCode == StateCode.TurnState)
             {
                 Start();
             }

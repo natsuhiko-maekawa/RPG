@@ -37,7 +37,7 @@ namespace BattleScene.InterfaceAdapter.StateMachines
         {
             nextStateCode = StateCode.None;
             // 麻痺状態のスキルのようにスキルコンポーネントを持たないスキルも存在するため、Currentはnullの可能性がある
-            if (_skillContextEnumerator!.Current?.IsContinue ?? false) return true;
+            if (_skillContextEnumerator!.Current is { IsContinue: true }) return true;
 
             if (_skillContextEnumerator.Current is not { IsBreak: true }
                 && _skillContextEnumerator.MoveNext())
@@ -45,8 +45,8 @@ namespace BattleScene.InterfaceAdapter.StateMachines
                 return TryMoveNextElseDispose(out nextStateCode);
             }
 
-            nextStateCode = _skillContextEnumerator.Current?.NextStateCode ?? StateCode.None;
-            nextStateCode = nextStateCode == StateCode.None
+            nextStateCode = _skillContextEnumerator.Current?.NextStateCode ?? StateCode.Next;
+            nextStateCode = nextStateCode == StateCode.Next
                 ? StateCode.AdvanceTurnState
                 : nextStateCode;
             _skillContextEnumerator.Dispose();
