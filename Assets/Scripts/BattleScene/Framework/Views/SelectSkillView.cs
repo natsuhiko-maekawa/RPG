@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BattleScene.Framework.ViewModels;
@@ -8,6 +9,7 @@ using UnityEngine.UI;
 
 namespace BattleScene.Framework.Views
 {
+    [Obsolete]
     public class SelectSkillView : MonoBehaviour
     {
         private const int SlotHeight = 46;
