@@ -1,8 +1,8 @@
 using System;
 using BattleScene.DataAccess;
 using BattleScene.DataAccess.Dto;
-using BattleScene.Domain.Code;
-using BattleScene.Domain.DomainService;
+using BattleScene.Domain.Codes;
+using BattleScene.Domain.DomainServices;
 using BattleScene.InterfaceAdapter.Services.Replacements.Interfaces;
 using Utility;
 

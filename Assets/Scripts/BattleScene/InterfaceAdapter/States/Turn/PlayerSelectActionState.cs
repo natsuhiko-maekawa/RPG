@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using BattleScene.Domain.Code;
+using BattleScene.Domain.Codes;
 using BattleScene.InterfaceAdapter.PresenterFacades;
 using BattleScene.UseCases.UseCase;
 

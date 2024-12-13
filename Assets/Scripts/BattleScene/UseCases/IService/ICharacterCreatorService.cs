@@ -1,4 +1,4 @@
-using BattleScene.Domain.Id;
+using BattleScene.Domain.Ids;
 
 namespace BattleScene.UseCases.IService
 {

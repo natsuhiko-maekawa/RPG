@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using BattleScene.Domain.Entity;
+using BattleScene.Domain.Entities;
 using BattleScene.InterfaceAdapter.PresenterFacades;
 
 namespace BattleScene.InterfaceAdapter.States.Turn

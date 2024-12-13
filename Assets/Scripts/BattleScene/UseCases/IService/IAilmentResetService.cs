@@ -1,6 +1,6 @@
 using System.Linq;
-using BattleScene.Domain.Code;
-using BattleScene.Domain.Id;
+using BattleScene.Domain.Codes;
+using BattleScene.Domain.Ids;
 
 namespace BattleScene.UseCases.IService
 {

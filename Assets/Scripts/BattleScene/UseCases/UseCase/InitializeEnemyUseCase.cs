@@ -1,12 +1,12 @@
 using System.Collections.Generic;
 using System.Linq;
-using BattleScene.Domain.DataAccess;
-using BattleScene.Domain.Entity;
-using BattleScene.Domain.Id;
+using BattleScene.Domain.DataAccesses;
+using BattleScene.Domain.Entities;
+using BattleScene.Domain.Ids;
 using BattleScene.UseCases.IService;
 using Common;
 using Utility;
-using static BattleScene.Domain.Code.CharacterTypeCode;
+using static BattleScene.Domain.Codes.CharacterTypeCode;
 
 namespace BattleScene.UseCases.UseCase
 {

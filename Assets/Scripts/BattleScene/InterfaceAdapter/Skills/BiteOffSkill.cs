@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using BattleScene.Domain.Code;
+using BattleScene.Domain.Codes;
 using BattleScene.InterfaceAdapter.SkillComponents;
 using BattleScene.InterfaceAdapter.SkillComponents.BaseClass;
 using BattleScene.InterfaceAdapter.Skills.BaseClass;
 using BattleScene.UseCases.IService;
-using Range = BattleScene.Domain.Code.Range;
+using Range = BattleScene.Domain.Codes.Range;
 
 namespace BattleScene.InterfaceAdapter.Skills
 {

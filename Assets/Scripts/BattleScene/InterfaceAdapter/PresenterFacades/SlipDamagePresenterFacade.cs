@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using BattleScene.DataAccess;
 using BattleScene.DataAccess.Dto;
-using BattleScene.Domain.Code;
-using BattleScene.Domain.ValueObject;
+using BattleScene.Domain.Codes;
+using BattleScene.Domain.ValueObjects;
 using BattleScene.InterfaceAdapter.Presenters;
 using static BattleScene.InterfaceAdapter.Presenters.PlayerImageViewPresenter.AnimationMode;
 

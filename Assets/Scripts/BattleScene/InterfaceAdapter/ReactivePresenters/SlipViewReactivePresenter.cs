@@ -1,6 +1,6 @@
 ﻿using BattleScene.DataAccess;
-using BattleScene.Domain.Code;
-using BattleScene.Domain.Entity;
+using BattleScene.Domain.Codes;
+using BattleScene.Domain.Entities;
 using BattleScene.Framework.ViewModels;
 using BattleScene.Framework.Views;
 using BattleScene.InterfaceAdapter.Services;

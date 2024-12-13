@@ -1,9 +1,9 @@
 using System;
-using BattleScene.Domain.Code;
+using BattleScene.Domain.Codes;
 using BattleScene.InterfaceAdapter.Skills;
 using BattleScene.InterfaceAdapter.Skills.BaseClass;
 using VContainer;
-using static BattleScene.Domain.Code.SkillCode;
+using static BattleScene.Domain.Codes.SkillCode;
 
 namespace BattleScene.InterfaceAdapter
 {

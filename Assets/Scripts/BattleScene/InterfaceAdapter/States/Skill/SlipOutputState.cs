@@ -1,4 +1,4 @@
-﻿using BattleScene.Domain.ValueObject;
+﻿using BattleScene.Domain.ValueObjects;
 using BattleScene.InterfaceAdapter.PresenterFacades;
 
 namespace BattleScene.InterfaceAdapter.States.Skill

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using BattleScene.Domain.Entity;
+using BattleScene.Domain.Entities;
 using BattleScene.InterfaceAdapter.StateMachines;
 
 namespace BattleScene.InterfaceAdapter.States.Battle

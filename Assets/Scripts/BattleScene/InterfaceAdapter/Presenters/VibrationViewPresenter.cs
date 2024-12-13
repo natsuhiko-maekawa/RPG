@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using BattleScene.Domain.DomainService;
+using BattleScene.Domain.DomainServices;
 using BattleScene.Framework.Views;
 
 namespace BattleScene.InterfaceAdapter.Presenters

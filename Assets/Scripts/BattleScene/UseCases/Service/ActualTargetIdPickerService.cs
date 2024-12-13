@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using BattleScene.Domain.DataAccess;
-using BattleScene.Domain.Entity;
-using BattleScene.Domain.ValueObject;
+using BattleScene.Domain.DataAccesses;
+using BattleScene.Domain.Entities;
+using BattleScene.Domain.ValueObjects;
 using BattleScene.UseCases.IService;
 
 namespace BattleScene.UseCases.Service

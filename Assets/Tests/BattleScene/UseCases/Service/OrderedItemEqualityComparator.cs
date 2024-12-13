@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using BattleScene.Domain.Entity;
+using BattleScene.Domain.Entities;
 
 namespace Tests.BattleScene.UseCases.Service
 {

@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using BattleScene.Domain.Code;
+using BattleScene.Domain.Codes;
 using BattleScene.InterfaceAdapter.SkillComponents;
 using BattleScene.InterfaceAdapter.SkillComponents.BaseClass;
 using BattleScene.InterfaceAdapter.Skills.BaseClass;

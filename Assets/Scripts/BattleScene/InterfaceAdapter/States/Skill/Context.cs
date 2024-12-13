@@ -2,8 +2,8 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text.RegularExpressions;
-using BattleScene.Domain.Entity;
-using BattleScene.Domain.ValueObject;
+using BattleScene.Domain.Entities;
+using BattleScene.Domain.ValueObjects;
 using JetBrains.Annotations;
 using Utility;
 

@@ -1,6 +1,6 @@
 ﻿using BattleScene.DataAccess.Dto;
 using BattleScene.DataAccess.ScriptableObjects;
-using BattleScene.Domain.Code;
+using BattleScene.Domain.Codes;
 
 namespace BattleScene.DataAccess.Resource
 {

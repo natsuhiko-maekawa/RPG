@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
-using BattleScene.Domain.Code;
-using BattleScene.Domain.DataAccess;
-using BattleScene.Domain.Entity;
-using BattleScene.Domain.Id;
-using BattleScene.Domain.ValueObject;
+using BattleScene.Domain.Codes;
+using BattleScene.Domain.DataAccesses;
+using BattleScene.Domain.Entities;
+using BattleScene.Domain.Ids;
+using BattleScene.Domain.ValueObjects;
 using BattleScene.UseCases.IService;
 using Common;
 using UnityEngine;
 using VContainer;
-using static BattleScene.Domain.Code.CharacterTypeCode;
+using static BattleScene.Domain.Codes.CharacterTypeCode;
 
 namespace BattleScene.Debug.Service
 {

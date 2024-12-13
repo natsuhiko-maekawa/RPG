@@ -1,5 +1,5 @@
 using System;
-using BattleScene.Domain.DomainService;
+using BattleScene.Domain.DomainServices;
 using BattleScene.InterfaceAdapter.Services.Replacements.Interfaces;
 using Cysharp.Text;
 

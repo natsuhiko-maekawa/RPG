@@ -1,6 +1,6 @@
 ﻿using System.Linq;
-using BattleScene.Domain.DomainService;
-using BattleScene.Domain.ValueObject;
+using BattleScene.Domain.DomainServices;
+using BattleScene.Domain.ValueObjects;
 using BattleScene.Framework.ViewModels;
 using BattleScene.Framework.Views;
 

@@ -1,5 +1,5 @@
-using BattleScene.Domain.Entity;
-using BattleScene.Domain.ValueObject;
+using BattleScene.Domain.Entities;
+using BattleScene.Domain.ValueObjects;
 using BattleScene.UseCases.IService;
 using BattleScene.UseCases.Service;
 

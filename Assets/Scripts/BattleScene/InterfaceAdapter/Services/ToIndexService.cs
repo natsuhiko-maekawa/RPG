@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using BattleScene.Domain.Code;
-using static BattleScene.Domain.Code.SlipCode;
-using static BattleScene.Domain.Code.AilmentCode;
+using BattleScene.Domain.Codes;
+using static BattleScene.Domain.Codes.SlipCode;
+using static BattleScene.Domain.Codes.AilmentCode;
 
 namespace BattleScene.InterfaceAdapter.Services
 {

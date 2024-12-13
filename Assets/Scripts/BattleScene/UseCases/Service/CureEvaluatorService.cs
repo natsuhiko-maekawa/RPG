@@ -1,7 +1,7 @@
 ﻿using System;
-using BattleScene.Domain.Code;
-using BattleScene.Domain.Entity;
-using BattleScene.Domain.ValueObject;
+using BattleScene.Domain.Codes;
+using BattleScene.Domain.Entities;
+using BattleScene.Domain.ValueObjects;
 using BattleScene.UseCases.IService;
 
 namespace BattleScene.UseCases.Service

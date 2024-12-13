@@ -1,4 +1,4 @@
-using BattleScene.Domain.Entity;
+using BattleScene.Domain.Entities;
 using BattleScene.InterfaceAdapter.Presenters;
 
 namespace BattleScene.InterfaceAdapter.PresenterFacades

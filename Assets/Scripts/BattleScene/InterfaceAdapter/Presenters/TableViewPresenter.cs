@@ -2,7 +2,7 @@
 using System.Linq;
 using BattleScene.DataAccess;
 using BattleScene.DataAccess.Dto;
-using BattleScene.Domain.Code;
+using BattleScene.Domain.Codes;
 using BattleScene.Framework.Code;
 using BattleScene.Framework.ViewModels;
 using BattleScene.Framework.Views;

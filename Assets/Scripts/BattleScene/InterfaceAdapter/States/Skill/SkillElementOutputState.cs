@@ -1,5 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using BattleScene.Domain.Entity;
+using BattleScene.Domain.Entities;
 
 namespace BattleScene.InterfaceAdapter.States.Skill
 {

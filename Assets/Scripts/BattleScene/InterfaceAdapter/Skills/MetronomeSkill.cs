@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using BattleScene.DataAccess;
 using BattleScene.DataAccess.Dto;
-using BattleScene.Domain.Code;
+using BattleScene.Domain.Codes;
 using BattleScene.InterfaceAdapter.SkillComponents.BaseClass;
 using BattleScene.InterfaceAdapter.Skills.BaseClass;
 using BattleScene.UseCases.IService;
-using Range = BattleScene.Domain.Code.Range;
+using Range = BattleScene.Domain.Codes.Range;
 
 namespace BattleScene.InterfaceAdapter.Skills
 {

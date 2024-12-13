@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using BattleScene.Domain.Entity;
+using BattleScene.Domain.Entities;
 using BattleScene.InterfaceAdapter.States;
 using BattleScene.InterfaceAdapter.States.Turn;
 using Utility;

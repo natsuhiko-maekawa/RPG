@@ -1,9 +1,9 @@
 ﻿using System.Linq;
 using BattleScene.DataAccess;
 using BattleScene.DataAccess.Dto;
-using BattleScene.Domain.Code;
-using BattleScene.Domain.DataAccess;
-using BattleScene.Domain.ValueObject;
+using BattleScene.Domain.Codes;
+using BattleScene.Domain.DataAccesses;
+using BattleScene.Domain.ValueObjects;
 using BattleScene.Framework.ViewModels;
 using BattleScene.Framework.Views;
 using BattleScene.UseCases.IService;

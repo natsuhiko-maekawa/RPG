@@ -1,9 +1,9 @@
 ﻿using System.Linq;
 using System.Runtime.CompilerServices;
-using BattleScene.Domain.Code;
-using BattleScene.Domain.DataAccess;
-using BattleScene.Domain.Entity;
-using BattleScene.Domain.Id;
+using BattleScene.Domain.Codes;
+using BattleScene.Domain.DataAccesses;
+using BattleScene.Domain.Entities;
+using BattleScene.Domain.Ids;
 
 namespace BattleScene.UseCases.Service
 {

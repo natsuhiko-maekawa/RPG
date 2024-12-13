@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using BattleScene.Domain.ValueObject;
+using BattleScene.Domain.ValueObjects;
 using BattleScene.InterfaceAdapter.PresenterFacades;
 using BattleScene.UseCases.UseCase;
 

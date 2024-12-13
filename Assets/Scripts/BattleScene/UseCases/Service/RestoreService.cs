@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using BattleScene.Domain.Code;
-using BattleScene.Domain.DataAccess;
-using BattleScene.Domain.Entity;
-using BattleScene.Domain.ValueObject;
+using BattleScene.Domain.Codes;
+using BattleScene.Domain.DataAccesses;
+using BattleScene.Domain.Entities;
+using BattleScene.Domain.ValueObjects;
 using BattleScene.UseCases.IService;
 using Utility;
 

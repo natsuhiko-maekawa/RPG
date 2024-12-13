@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Linq;
 using BattleScene.DataAccess;
-using BattleScene.Domain.Code;
-using BattleScene.Domain.DataAccess;
-using BattleScene.Domain.Entity;
-using BattleScene.Domain.Id;
+using BattleScene.DataAccess.Dto;
+using BattleScene.Domain.Codes;
+using BattleScene.Domain.DataAccesses;
+using BattleScene.Domain.Entities;
+using BattleScene.Domain.Ids;
 using BattleScene.Framework.ViewModels;
 using BattleScene.Framework.Views;
-using EnemyViewDto = BattleScene.DataAccess.Dto.EnemyViewDto;
-using static BattleScene.Domain.Code.SlipCode;
-using static BattleScene.Domain.Code.AilmentCode;
+using static BattleScene.Domain.Codes.SlipCode;
+using static BattleScene.Domain.Codes.AilmentCode;
 
 namespace BattleScene.InterfaceAdapter.Presenters
 {

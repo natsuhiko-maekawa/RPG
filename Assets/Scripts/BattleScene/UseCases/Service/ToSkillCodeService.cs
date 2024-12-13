@@ -1,5 +1,5 @@
 ﻿using System;
-using BattleScene.Domain.Code;
+using BattleScene.Domain.Codes;
 
 namespace BattleScene.UseCases.Service
 {

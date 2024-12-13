@@ -1,6 +1,6 @@
 using System.Collections.Generic;
-using BattleScene.Domain.Code;
-using BattleScene.Domain.Entity;
+using BattleScene.Domain.Codes;
+using BattleScene.Domain.Entities;
 
 namespace BattleScene.UseCases.IService
 {

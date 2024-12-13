@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using BattleScene.Domain.Code;
+using BattleScene.Domain.Codes;
 
 namespace BattleScene.InterfaceAdapter.SkillComponents.BaseClass
 {

@@ -5,11 +5,11 @@ using BattleScene.DataAccess.Dto;
 using BattleScene.DataAccess.Factory;
 using BattleScene.DataAccess.Resource;
 using BattleScene.DataAccess.ScriptableObjects;
-using BattleScene.Domain.Code;
-using BattleScene.Domain.DataAccess;
-using BattleScene.Domain.Entity;
-using BattleScene.Domain.Id;
-using BattleScene.Domain.ValueObject;
+using BattleScene.Domain.Codes;
+using BattleScene.Domain.DataAccesses;
+using BattleScene.Domain.Entities;
+using BattleScene.Domain.Ids;
+using BattleScene.Domain.ValueObjects;
 using BattleScene.UseCases.IService;
 using BattleScene.UseCases.Service;
 using BattleScene.UseCases.Service.Order;
@@ -18,6 +18,12 @@ using Tests.BattleScene.DataAccess.Repository;
 using Tests.BattleScene.DataAccess.Resource;
 using UnityEditor;
 using UnityEngine;
+using AilmentEntity = BattleScene.Domain.Entities.AilmentEntity;
+using BodyPartEntity = BattleScene.Domain.Entities.BodyPartEntity;
+using BuffEntity = BattleScene.Domain.Entities.BuffEntity;
+using CharacterEntity = BattleScene.Domain.Entities.CharacterEntity;
+using SlipEntity = BattleScene.Domain.Entities.SlipEntity;
+
 // ReSharper disable UnusedVariable
 
 namespace Tests.BattleScene.UseCases.Service

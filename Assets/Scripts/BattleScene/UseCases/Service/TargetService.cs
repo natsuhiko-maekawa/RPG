@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using BattleScene.Domain.DataAccess;
-using BattleScene.Domain.DomainService;
-using BattleScene.Domain.Entity;
-using BattleScene.Domain.Id;
+using BattleScene.Domain.DataAccesses;
+using BattleScene.Domain.DomainServices;
+using BattleScene.Domain.Entities;
+using BattleScene.Domain.Ids;
 using BattleScene.UseCases.IService;
-using Range = BattleScene.Domain.Code.Range;
+using Range = BattleScene.Domain.Codes.Range;
 
 namespace BattleScene.UseCases.Service
 {

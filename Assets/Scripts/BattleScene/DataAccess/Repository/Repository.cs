@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using BattleScene.Domain.DataAccess;
-using BattleScene.Domain.Entity;
+using BattleScene.Domain.DataAccesses;
+using BattleScene.Domain.Entities;
 
 namespace BattleScene.DataAccess.Repository
 {

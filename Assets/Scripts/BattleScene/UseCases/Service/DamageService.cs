@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using BattleScene.Domain.Entity;
-using BattleScene.Domain.ValueObject;
+using BattleScene.Domain.Entities;
+using BattleScene.Domain.ValueObjects;
 using BattleScene.UseCases.IService;
 using Utility;
-using Range = BattleScene.Domain.Code.Range;
+using Range = BattleScene.Domain.Codes.Range;
 
 namespace BattleScene.UseCases.Service
 {

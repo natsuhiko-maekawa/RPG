@@ -1,7 +1,7 @@
 ﻿using BattleScene.DataAccess;
 using BattleScene.DataAccess.Dto;
-using BattleScene.Domain.Code;
-using BattleScene.Domain.Entity;
+using BattleScene.Domain.Codes;
+using BattleScene.Domain.Entities;
 using BattleScene.InterfaceAdapter.Presenters;
 using static BattleScene.InterfaceAdapter.Presenters.PlayerImageViewPresenter.AnimationMode;
 

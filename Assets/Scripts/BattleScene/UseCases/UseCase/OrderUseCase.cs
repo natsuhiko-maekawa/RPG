@@ -1,6 +1,6 @@
-﻿using BattleScene.Domain.Code;
-using BattleScene.Domain.DomainService;
-using BattleScene.Domain.Entity;
+﻿using BattleScene.Domain.Codes;
+using BattleScene.Domain.DomainServices;
+using BattleScene.Domain.Entities;
 using BattleScene.UseCases.Service;
 using BattleScene.UseCases.Service.Order;
 

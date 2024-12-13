@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using BattleScene.Domain.Entity;
+using BattleScene.Domain.Entities;
 
-namespace BattleScene.Domain.DataAccess
+namespace BattleScene.Domain.DataAccesses
 {
     public interface IRepository<TEntity, TId>
         where TEntity : BaseEntity<TId>

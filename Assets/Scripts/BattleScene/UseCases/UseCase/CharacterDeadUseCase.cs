@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using BattleScene.Domain.Entity;
+using BattleScene.Domain.Entities;
 using BattleScene.UseCases.IService;
 
 namespace BattleScene.UseCases.UseCase

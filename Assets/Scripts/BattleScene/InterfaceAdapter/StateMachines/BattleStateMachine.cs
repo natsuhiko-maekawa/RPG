@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using BattleScene.Domain.DomainService;
-using BattleScene.Domain.Entity;
+using BattleScene.Domain.DomainServices;
+using BattleScene.Domain.Entities;
 using BattleScene.Framework.InputActions;
 using BattleScene.Framework.ViewModels;
 using BattleScene.InterfaceAdapter.States.Battle;

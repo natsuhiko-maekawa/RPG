@@ -1,6 +1,6 @@
 ﻿using BattleScene.DataAccess.Dto;
-using BattleScene.Domain.DataAccess;
-using BattleScene.Domain.ValueObject;
+using BattleScene.Domain.DataAccesses;
+using BattleScene.Domain.ValueObjects;
 
 namespace BattleScene.DataAccess.Factory
 {

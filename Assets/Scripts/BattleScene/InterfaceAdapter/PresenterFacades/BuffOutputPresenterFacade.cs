@@ -1,6 +1,6 @@
 using System;
-using BattleScene.Domain.Code;
-using BattleScene.Domain.Entity;
+using BattleScene.Domain.Codes;
+using BattleScene.Domain.Entities;
 using BattleScene.InterfaceAdapter.Presenters;
 
 namespace BattleScene.InterfaceAdapter.PresenterFacades
