@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using BattleScene.Domain.DomainServices;
-using BattleScene.Framework.ViewModels;
-using BattleScene.Framework.Views;
+using BattleScene.Views.ViewModels;
+using BattleScene.Views.Views;
 
 namespace BattleScene.InterfaceAdapter.Presenters
 {

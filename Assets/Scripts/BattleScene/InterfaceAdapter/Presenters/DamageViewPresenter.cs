@@ -1,8 +1,8 @@
 ﻿using System.Linq;
 using BattleScene.Domain.DomainServices;
 using BattleScene.Domain.ValueObjects;
-using BattleScene.Framework.ViewModels;
-using BattleScene.Framework.Views;
+using BattleScene.Views.ViewModels;
+using BattleScene.Views.Views;
 
 namespace BattleScene.InterfaceAdapter.Presenters
 {

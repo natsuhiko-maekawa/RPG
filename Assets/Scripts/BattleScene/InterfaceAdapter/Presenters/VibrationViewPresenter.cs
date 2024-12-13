@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using BattleScene.Domain.DomainServices;
-using BattleScene.Framework.Views;
+using BattleScene.Views.Views;
 
 namespace BattleScene.InterfaceAdapter.Presenters
 {

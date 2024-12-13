@@ -6,8 +6,8 @@ using BattleScene.Domain.Codes;
 using BattleScene.Domain.DataAccesses;
 using BattleScene.Domain.Entities;
 using BattleScene.Domain.Ids;
-using BattleScene.Framework.ViewModels;
-using BattleScene.Framework.Views;
+using BattleScene.Views.ViewModels;
+using BattleScene.Views.Views;
 using static BattleScene.Domain.Codes.SlipCode;
 using static BattleScene.Domain.Codes.AilmentCode;
 

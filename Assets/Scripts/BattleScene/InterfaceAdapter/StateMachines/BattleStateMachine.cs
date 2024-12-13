@@ -3,8 +3,9 @@ using System.Linq;
 using BattleScene.Domain.DomainServices;
 using BattleScene.Domain.Entities;
 using BattleScene.Framework.InputActions;
-using BattleScene.Framework.ViewModels;
 using BattleScene.InterfaceAdapter.States.Battle;
+using BattleScene.Views.InputActions;
+using BattleScene.Views.ViewModels;
 using VContainer;
 using Context = BattleScene.InterfaceAdapter.States.Battle.Context;
 

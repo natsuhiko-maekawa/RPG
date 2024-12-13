@@ -4,9 +4,9 @@ using BattleScene.Domain.Codes;
 using BattleScene.Domain.DataAccesses;
 using BattleScene.Domain.Entities;
 using BattleScene.Domain.Ids;
-using BattleScene.Framework.ViewModels;
-using BattleScene.Framework.Views;
 using BattleScene.InterfaceAdapter.Services;
+using BattleScene.Views.ViewModels;
+using BattleScene.Views.Views;
 using R3;
 
 namespace BattleScene.InterfaceAdapter.ReactivePresenters

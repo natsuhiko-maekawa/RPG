@@ -4,8 +4,8 @@ using System.Threading.Tasks;
 using BattleScene.DataAccess;
 using BattleScene.DataAccess.Dto;
 using BattleScene.Domain.Codes;
-using BattleScene.Framework.ViewModels;
-using BattleScene.Framework.Views;
+using BattleScene.Views.ViewModels;
+using BattleScene.Views.Views;
 
 namespace BattleScene.InterfaceAdapter.Presenters
 {

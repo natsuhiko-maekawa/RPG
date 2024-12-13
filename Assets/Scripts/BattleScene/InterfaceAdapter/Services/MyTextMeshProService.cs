@@ -2,8 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using BattleScene.Framework.IServices;
 using BattleScene.InterfaceAdapter.Services.Replacements.Interfaces;
+using BattleScene.Views.IServices;
 using Cysharp.Text;
 using TMPro;
 

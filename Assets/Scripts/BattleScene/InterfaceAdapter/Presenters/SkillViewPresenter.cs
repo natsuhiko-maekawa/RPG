@@ -4,10 +4,10 @@ using BattleScene.DataAccess.Dto;
 using BattleScene.Domain.Codes;
 using BattleScene.Domain.DataAccesses;
 using BattleScene.Domain.ValueObjects;
-using BattleScene.Framework.ViewModels;
-using BattleScene.Framework.Views;
 using BattleScene.UseCases.IServices;
-using ActionCode = BattleScene.Framework.Code.ActionCode;
+using BattleScene.Views.ViewModels;
+using BattleScene.Views.Views;
+using ActionCode = BattleScene.Views.Code.ActionCode;
 
 namespace BattleScene.InterfaceAdapter.Presenters
 {
