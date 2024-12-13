@@ -29,7 +29,7 @@ namespace BattleScene.UseCases.Service
             _myRandom = myRandom;
         }
 
-        public IReadOnlyList<CharacterEntity> Get(CharacterEntity actor, Range range, bool isAutoTarget=false)
+        public IReadOnlyList<CharacterEntity> Get(CharacterEntity actor, Range range, bool isAutoTarget = false)
         {
             var targetList = range switch
             {
@@ -70,14 +70,23 @@ namespace BattleScene.UseCases.Service
             }
         }
 
+        /// <summary>
+        /// 直前のスキルで選択した一体の攻撃対象を取得する。<br/>
+        /// 該当する攻撃対象がいなければ、生存している攻撃対象のうち先頭にいるものを取得する。
+        /// </summary>
+        /// <returns>直前のスキルで選択した一体の攻撃対象。</returns>
         private CharacterEntity GetEnemySolo()
         {
+            // 直前のスキルで選択した一体の攻撃対象を取得するために、
+            // 以下の3つの条件を満たす最新の攻撃対象のリストを取得する。
+            // ①行動者がプレイヤー
+            // ②攻撃対象が一体
+            // ③攻撃対象がプレイヤーでない
             var target = _battleLogRepository.Get()
-                .Where(static x => x.Actor?.IsPlayer ?? false)
+                .Where(static x => x.Actor is { IsPlayer: true })
                 .Where(static x => x.TargetList.Count == 1)
-                .Where(static x => x.TargetList
-                    .Select(x => x.Id)
-                    .Contains(x.Actor!.Id))
+                .Where(static x => !x.TargetList
+                    .Single().IsPlayer)
                 .Max()?.TargetList
                 .Single();
             target = target is not { IsSurvive: true }
