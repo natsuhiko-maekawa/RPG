@@ -10,9 +10,13 @@ stateDiagram {
 </style>
 
 [*] --> BattleStartState
-BattleStartState --> InitializeEnemyState
+BattleStartState --> InitializePlayerState
+InitializePlayerState --> InitializeEnemyState
 InitializeEnemyState --> TurnState
 TurnState --> TurnState
-TurnState --> BattleStopState
+TurnState --> PlayerWinState
+PlayerWinState --> BattleStopState
+TurnState --> PlayerLoseState
+PlayerLoseState --> BattleStopState
 BattleStopState --> [*]
 @enduml

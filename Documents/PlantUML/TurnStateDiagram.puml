@@ -21,13 +21,16 @@ EnemySelectActionState --> SkillState
 TurnStartState --> CantActionState : 行動者が\n行動不能
 CantActionState --> SkillState
 SkillState --> SkillState : 実行していない\nスキルが残っている
-SkillState --> AdvanceTurnState : すべての\nスキルを\n実行した
-SkillState --> TurnStopState : すべての敵が\n死亡した\nまたは\nプレイヤーが\n死亡した
+SkillState --> CharacterDeadState : キャラクターが\n死亡した
+CharacterDeadState --> AdvanceTurnState : 一体でも敵が生存\nかつプレイヤーが\n生存した
+CharacterDeadState --> TurnStopState : すべての敵が死亡\nまたはプレイヤーが\n死亡した
+SkillState --> AdvanceTurnState : キャラクターが\n死亡する前に\nすべてのスキルを\n実行した
 AdvanceTurnState -> TurnStopState
 TurnStartState --> ResetAilmentState : 状態異常回復\nイベント
 ResetAilmentState ---> TurnStopState
 TurnStartState --> SlipDamageState : スリップダメージ\nイベント
-SlipDamageState ---> TurnStopState
+SlipDamageState --> CharacterDeadState : プレイヤーが\n死亡した
+SlipDamageState ---> TurnStopState : プレイヤーが\n死亡していない
 TurnStopState --> [*]
 
 TurnStartState : このターンの\nイベントを決定する\nターンのイベントによって\n遷移先を変更する
@@ -37,8 +40,9 @@ PlayerSelectTargetState : プレイヤーが攻撃対象を\n選択する
 EnemySelectActionState : 敵がスキルと\n攻撃対象を選択する
 CantActionState : 行動不能スキルを\n選択する
 SkillState : スキルを実行する
+CharacterDeadState : キャラクター死亡時の処理を行い、\nTurnStateMachine終了後の状態を\nContextに設定する
 AdvanceTurnState : 状態異常のターンを進める
 ResetAilmentState : 状態異常を回復する\n攻撃スキルをセットする
 SlipDamageState : スリップダメージを与える
-TurnStopState : ターンを終了する
+TurnStopState : ターンを終了し、現在の状態を\nBattleStateMachineに返す
 @enduml
