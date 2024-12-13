@@ -6,7 +6,7 @@ using BattleScene.Domain.DataAccesses;
 using BattleScene.Domain.ValueObjects;
 using BattleScene.Framework.ViewModels;
 using BattleScene.Framework.Views;
-using BattleScene.UseCases.IService;
+using BattleScene.UseCases.IServices;
 using ActionCode = BattleScene.Framework.Code.ActionCode;
 
 namespace BattleScene.InterfaceAdapter.Presenters

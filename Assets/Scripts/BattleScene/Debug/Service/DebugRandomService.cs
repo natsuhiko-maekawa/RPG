@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using BattleScene.UseCases.IService;
+using BattleScene.UseCases.IServices;
 using UnityEngine;
 using Utility;
 

@@ -4,7 +4,7 @@ using BattleScene.Domain.Codes;
 using BattleScene.InterfaceAdapter.SkillComponents;
 using BattleScene.InterfaceAdapter.SkillComponents.BaseClass;
 using BattleScene.InterfaceAdapter.Skills.BaseClass;
-using BattleScene.UseCases.IService;
+using BattleScene.UseCases.IServices;
 using Range = BattleScene.Domain.Codes.Range;
 
 namespace BattleScene.InterfaceAdapter.Skills

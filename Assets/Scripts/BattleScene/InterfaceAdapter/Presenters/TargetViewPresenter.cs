@@ -4,7 +4,7 @@ using BattleScene.Domain.Entities;
 using BattleScene.Domain.ValueObjects;
 using BattleScene.Framework.ViewModels;
 using BattleScene.Framework.Views;
-using BattleScene.UseCases.IService;
+using BattleScene.UseCases.IServices;
 
 namespace BattleScene.InterfaceAdapter.Presenters
 {

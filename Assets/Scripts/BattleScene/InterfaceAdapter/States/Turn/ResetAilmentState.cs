@@ -1,5 +1,5 @@
 ﻿using BattleScene.InterfaceAdapter.PresenterFacades;
-using BattleScene.UseCases.UseCase;
+using BattleScene.UseCases.UseCases;
 
 namespace BattleScene.InterfaceAdapter.States.Turn
 {

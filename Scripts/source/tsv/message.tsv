@@ -90,3 +90,5 @@ BattleContinue	戦闘を続ける
 BattleQuit	戦闘をやめる
 DefenceMessage	[target]の防御が上昇した！
 PlayerLoseMessage	[player]は戦闘に敗北した…
+DestroyMessage	[target]は[destroyed]を損傷した！
+RecoveryMessage	[target]は状態異常から回復した！

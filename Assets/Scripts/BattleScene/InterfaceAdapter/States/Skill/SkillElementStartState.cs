@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using BattleScene.Domain.Entities;
-using BattleScene.UseCases.UseCase;
+using BattleScene.UseCases.UseCases;
 
 namespace BattleScene.InterfaceAdapter.States.Skill
 {

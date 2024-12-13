@@ -1,6 +1,6 @@
 ﻿using BattleScene.Framework.ViewModels;
 using BattleScene.Framework.Views;
-using BattleScene.UseCases.Service;
+using BattleScene.UseCases.Services;
 
 namespace BattleScene.InterfaceAdapter.Presenters
 {

@@ -1,6 +1,6 @@
 ﻿using BattleScene.InterfaceAdapter.Presenters;
 using BattleScene.InterfaceAdapter.Services;
-using BattleScene.UseCases.UseCase;
+using BattleScene.UseCases.UseCases;
 
 namespace BattleScene.InterfaceAdapter.States.Turn
 {

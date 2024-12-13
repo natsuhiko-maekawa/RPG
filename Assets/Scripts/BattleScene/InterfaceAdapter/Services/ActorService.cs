@@ -5,8 +5,8 @@ using BattleScene.Domain.DataAccesses;
 using BattleScene.Domain.DomainServices;
 using BattleScene.Domain.Entities;
 using BattleScene.Domain.ValueObjects;
-using BattleScene.UseCases.IService;
-using BattleScene.UseCases.Service;
+using BattleScene.UseCases.IServices;
+using BattleScene.UseCases.Services;
 
 namespace BattleScene.InterfaceAdapter.Services
 {

@@ -1,6 +1,6 @@
 ﻿using System;
 using BattleScene.InterfaceAdapter.PresenterFacades;
-using BattleScene.UseCases.UseCase;
+using BattleScene.UseCases.UseCases;
 using R3;
 
 namespace BattleScene.InterfaceAdapter.States.Turn

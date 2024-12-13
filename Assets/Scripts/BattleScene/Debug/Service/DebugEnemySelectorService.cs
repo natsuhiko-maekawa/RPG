@@ -7,7 +7,7 @@ using BattleScene.Domain.DataAccesses;
 using BattleScene.Domain.Entities;
 using BattleScene.Domain.Ids;
 using BattleScene.Domain.ValueObjects;
-using BattleScene.UseCases.IService;
+using BattleScene.UseCases.IServices;
 using Common;
 using UnityEngine;
 using VContainer;
