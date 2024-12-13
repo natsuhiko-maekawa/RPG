@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using BattleScene.DataAccess.Dto;
-using BattleScene.DataAccess.Factory;
-using BattleScene.DataAccess.Resource;
-using BattleScene.DataAccess.ScriptableObjects;
+using BattleScene.DataAccesses.Dto;
+using BattleScene.DataAccesses.Factory;
+using BattleScene.DataAccesses.Resource;
+using BattleScene.DataAccesses.ScriptableObjects;
 using BattleScene.Domain.Codes;
 using BattleScene.Domain.DataAccesses;
 using BattleScene.Domain.Entities;

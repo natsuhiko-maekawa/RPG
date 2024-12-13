@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
-using BattleScene.DataAccess;
-using BattleScene.DataAccess.Dto;
+using BattleScene.DataAccesses;
+using BattleScene.DataAccesses.Dto;
 using BattleScene.Domain.Codes;
 using BattleScene.Domain.DataAccesses;
 using BattleScene.Domain.Entities;

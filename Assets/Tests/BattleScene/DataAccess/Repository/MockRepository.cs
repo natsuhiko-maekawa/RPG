@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using BattleScene.DataAccess;
+using BattleScene.DataAccesses;
 using BattleScene.Domain.DataAccesses;
 using BattleScene.Domain.Entities;
 

@@ -1,5 +1,5 @@
 ﻿using System;
-using BattleScene.DataAccess;
+using BattleScene.DataAccesses;
 using BattleScene.Domain.Codes;
 using BattleScene.Domain.DataAccesses;
 using BattleScene.Domain.Entities;

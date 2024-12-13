@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
-using BattleScene.DataAccess;
+using BattleScene.DataAccesses;
 
 namespace Tests.BattleScene.DataAccess.Resource
 {
