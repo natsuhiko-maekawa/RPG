@@ -1,6 +1,6 @@
 ﻿namespace BattleScene.Framework.GameObjects
 {
-    public class Table : Column<Row>
+    public class Table : Group<Row>
     {
     }
 }

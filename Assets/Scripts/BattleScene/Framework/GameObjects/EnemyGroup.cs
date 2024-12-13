@@ -2,7 +2,7 @@
 
 namespace BattleScene.Framework.GameObjects
 {
-    public class EnemyColumn : Column<EnemyView>
+    public class EnemyGroup : Group<EnemyView>
     {
     }
 }

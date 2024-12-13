@@ -6,11 +6,11 @@ using UnityEngine;
 
 namespace BattleScene.Framework.GameObjects
 {
-    public class Column<TGameObject> : MonoBehaviour, IEnumerable<TGameObject> where TGameObject : MonoBehaviour
+    public class Group<TGameObject> : MonoBehaviour, IEnumerable<TGameObject> where TGameObject : MonoBehaviour
     {
         private TGameObject _gameObject;
         private readonly List<TGameObject> _gameObjectList = new();
-        public TGameObject this[int index] => _gameObjectList[index];
+        public TGameObject this[Index index] => _gameObjectList[index];
 
         public void SetItem(int itemCount)
         {

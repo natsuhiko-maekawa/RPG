@@ -7,32 +7,32 @@ namespace BattleScene.Framework.Views
 {
     public class EnemiesView : MonoBehaviour, IEnumerable<EnemyView>
     {
-        private EnemyColumn _enemyViewColumn;
+        private EnemyGroup _enemyViewGroup;
 
         private void Awake()
         {
-            _enemyViewColumn = GetComponent<EnemyColumn>();
+            _enemyViewGroup = GetComponent<EnemyGroup>();
             enabled = false;
         }
 
         private void OnEnable()
         {
-            foreach (var enemyView in _enemyViewColumn) enemyView.enabled = true;
+            foreach (var enemyView in _enemyViewGroup) enemyView.enabled = true;
         }
 
         public void StartAnimation(int enemyCount)
         {
-            _enemyViewColumn.SetItem(enemyCount);
+            _enemyViewGroup.SetItem(enemyCount);
             enabled = true;
         }
 
         private void OnDisable()
         {
-            foreach (var enemyView in _enemyViewColumn) enemyView.enabled = false;
+            foreach (var enemyView in _enemyViewGroup) enemyView.enabled = false;
         }
 
-        public EnemyView this[int i] => _enemyViewColumn[i];
-        public IEnumerator<EnemyView> GetEnumerator() => _enemyViewColumn.GetEnumerator();
+        public EnemyView this[int i] => _enemyViewGroup[i];
+        public IEnumerator<EnemyView> GetEnumerator() => _enemyViewGroup.GetEnumerator();
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }
 }
