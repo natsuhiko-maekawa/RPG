@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using BattleScene.Domain.Entities;
 
-namespace Tests.BattleScene.UseCases.Service
+namespace Tests.BattleScene.UseCases.Services
 {
     class OrderedItemEqualityComparator : IEqualityComparer<OrderedItemEntity>
     {

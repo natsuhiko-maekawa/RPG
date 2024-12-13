@@ -5,7 +5,7 @@ using BattleScene.DataAccesses;
 using BattleScene.Domain.DataAccesses;
 using BattleScene.Domain.Entities;
 
-namespace Tests.BattleScene.DataAccess.Repository
+namespace Tests.BattleScene.DataAccesses.Repository
 {
     public class MockRepository<TEntity, TId> : IRepository<TEntity, TId>, ISerializable
         where TEntity : BaseEntity<TId>

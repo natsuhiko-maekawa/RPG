@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using BattleScene.DataAccesses;
 
-namespace Tests.BattleScene.DataAccess.Resource
+namespace Tests.BattleScene.DataAccesses.Resource
 {
     public class StubBaseScriptableObjectResource<TItem, TId> : IResource<TItem, TId> where TItem : IUnique<TId>
     {

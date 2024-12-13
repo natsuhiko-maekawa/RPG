@@ -14,8 +14,8 @@ using BattleScene.UseCases.IServices;
 using BattleScene.UseCases.Services;
 using BattleScene.UseCases.Services.Order;
 using NUnit.Framework;
-using Tests.BattleScene.DataAccess.Repository;
-using Tests.BattleScene.DataAccess.Resource;
+using Tests.BattleScene.DataAccesses.Repository;
+using Tests.BattleScene.DataAccesses.Resource;
 using UnityEditor;
 using UnityEngine;
 using AilmentEntity = BattleScene.Domain.Entities.AilmentEntity;
@@ -26,7 +26,7 @@ using SlipEntity = BattleScene.Domain.Entities.SlipEntity;
 
 // ReSharper disable UnusedVariable
 
-namespace Tests.BattleScene.UseCases.Service
+namespace Tests.BattleScene.UseCases.Services
 {
     [TestFixture]
     public class OrderServiceTest
