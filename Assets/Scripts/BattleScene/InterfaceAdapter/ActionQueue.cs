@@ -4,16 +4,17 @@ using R3;
 
 namespace BattleScene.InterfaceAdapter
 {
-    public class ActionQueue : IDisposable
+    public struct ActionQueue : IDisposable
     {
         private Queue<Action>? _queue;
-        public ReactiveCommand OnLastAction { get; } = new();
+        public ReactiveCommand OnLastAction { get; }
 
         public ActionQueue(Queue<Action> queue)
         {
             if (queue.Count == 0)
                 throw new ArgumentException("Argument queue size must be bigger than 1 but it was 0.");
             _queue = queue;
+            OnLastAction = new ReactiveCommand();
         }
 
         public void Invoke()
