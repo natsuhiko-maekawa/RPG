@@ -34,8 +34,8 @@ namespace BattleScene.Presenters.Presenters
         public void StartAnimation(PlayerImageCode playerImageCode, AnimationMode animationMode)
         {
             var playerImagePath = _playerImageResource.Get(playerImageCode).Path;
-            var dto = new PlayerViewModel(playerImagePath);
-            _playerView.StartAnimation(dto);
+            var model = new PlayerViewModel(playerImagePath);
+            _playerView.StartAnimation(model);
             switch (animationMode)
             {
                 case AnimationMode.Slide:

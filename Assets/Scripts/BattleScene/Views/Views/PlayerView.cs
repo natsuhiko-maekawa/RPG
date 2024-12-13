@@ -36,12 +36,13 @@ namespace BattleScene.Views.Views
             _imagePool = new Dictionary<string, Sprite>(capacity);
             foreach (var playerImagePath in playerImagePathList)
             {
-                if (_imagePool.ContainsKey(playerImagePath)) return;
+                if (_imagePool.ContainsKey(playerImagePath)) continue;
 
                 try
                 {
                     var sprite = await _spriteFlyweight.GetAsync(playerImagePath);
                     _imagePool.Add(playerImagePath, sprite);
+                    MyDebug.Log(playerImagePath);
                 }
                 catch (ArgumentException)
                 {
@@ -59,6 +60,7 @@ namespace BattleScene.Views.Views
             }
             else
             {
+                MyDebug.Log(model.PlayerImagePath);
                 _playerImage.IsNothing();
             }
 

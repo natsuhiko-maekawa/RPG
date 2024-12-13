@@ -8,6 +8,7 @@ namespace BattleScene.DataAccesses.Dto
     public class PlayerImageDto : IUnique<PlayerImageCode>, ISerializationCallbackReceiver
     {
         [SerializeField] private string key;
+        [SerializeField] private string path;
         public PlayerImageCode Key { get; private set; }
         public string Path { get; private set; }
 
@@ -18,7 +19,7 @@ namespace BattleScene.DataAccesses.Dto
         public void OnAfterDeserialize()
         {
             Key = Enum.Parse<PlayerImageCode>(key);
-            Path = $"{key}[{key}]";
+            Path = $"{path}[{path}]";
         }
     }
 }
