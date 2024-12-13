@@ -1,13 +1,12 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using BattleScene.DataAccesses;
 using BattleScene.Domain.DataAccesses;
 using BattleScene.Domain.Entities;
 
 namespace Tests.BattleScene.DataAccesses.Repository
 {
-    public class MockRepository<TEntity, TId> : IRepository<TEntity, TId>, ISerializable
+    public class MockRepository<TEntity, TId> : IRepository<TEntity, TId>
         where TEntity : BaseEntity<TId>
         where TId : notnull
     {

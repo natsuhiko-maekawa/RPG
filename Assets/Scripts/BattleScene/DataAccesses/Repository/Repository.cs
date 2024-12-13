@@ -7,8 +7,9 @@ using BattleScene.Domain.Entities;
 
 namespace BattleScene.DataAccesses.Repository
 {
-    public partial class Repository<TEntity, TId> : IRepository<TEntity, TId>, ISerializable
+    public partial class Repository<TEntity, TId> : IRepository<TEntity, TId>
         where TEntity : BaseEntity<TId>
+        where TId : notnull
     {
         private readonly Dictionary<TId, TEntity> _entityDictionary = new();
 
