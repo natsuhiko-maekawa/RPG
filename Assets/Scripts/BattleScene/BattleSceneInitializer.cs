@@ -1,3 +1,5 @@
+#nullable disable
+
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -28,7 +30,6 @@ namespace BattleScene
         {
             var playerImageCodeArray = Enum.GetValues(typeof(PlayerImageCode))
                 .Cast<PlayerImageCode>()
-                .Where(x => x != PlayerImageCode.NoImage)
                 .ToArray();
 
             await _playerImageView.SetImage(playerImageCodeArray);
