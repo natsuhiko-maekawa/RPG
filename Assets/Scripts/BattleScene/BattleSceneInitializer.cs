@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using BattleScene.Domain.Codes;
-using BattleScene.InterfaceAdapter.Presenters;
+using BattleScene.Presenters.Presenters;
 using UnityEngine;
 using VContainer;
 
