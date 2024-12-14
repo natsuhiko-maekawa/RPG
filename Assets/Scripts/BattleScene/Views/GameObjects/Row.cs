@@ -18,6 +18,7 @@ namespace BattleScene.Views.GameObjects
         public void ShowName() => _rowName.enabled = true;
         public void HighlightName() => _rowName.Highlight();
         public void UnhighlightName() => _rowName.Unhighlight();
+        public void InactiveName() => _rowName.Inactive();
         public void SetTechnicalPoint(int technicalPoint) => _technicalPoint.Set(technicalPoint);
         public void ShowTechnicalPoint() => _technicalPoint.enabled = true;
 

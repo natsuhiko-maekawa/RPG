@@ -42,8 +42,8 @@ namespace BattleScene.Presenters.Presenters
                     return new RowModel(
                         rowName: rowName,
                         rowDescription: rowDescription,
-                        // TODO: 仮で刀のイラストを設定している。
-                        playerImagePath: _playerImagePathResource.Get(PlayerImageCode.Katana).Path,
+                        // TODO: 仮でイラストを設定している。
+                        playerImagePath: _playerImagePathResource.Get(PlayerImageCode.NoImage).Path,
                         enabled: enabled,
                         technicalPoint: 0);
                 })

@@ -74,24 +74,7 @@ namespace BattleScene.Views.Views
                     .Skip(gridState.TopItemIndex), (row, rowAndIndex) => (row, rowAndIndex.rowModel, rowAndIndex.index))
                 .ToArray();
 
-            foreach (var (row, rowModel, index) in rows)
-            {
-                row.SetName(rowModel.RowName);
-                row.ShowName();
-
-                if (index == _rowStateDictionary[_model.ActionCode].SelectedIndex)
-                {
-                    row.HighlightName();
-                }
-                else
-                {
-                    row.UnhighlightName();
-                }
-
-                if (model.ActionCode != ActionCode.Skill) continue;
-                row.SetTechnicalPoint(rowModel.TechnicalPoint);
-                row.ShowTechnicalPoint();
-            }
+            SetRow(rows);
 
             _arrowRight.Move(gridState.SelectedRow);
             _arrowUp.enabled = gridState.IsHiddenUpper;
@@ -108,6 +91,37 @@ namespace BattleScene.Views.Views
             _playerView.StartSlideAnimation();
         }
 
+        private void SetRow((Row row, RowModel rowModel, int index)[] rows)
+        {
+            foreach (var (row, rowModel, index) in rows)
+            {
+                row.SetName(rowModel.RowName);
+                SetRowState(row, rowModel, index);
+                row.ShowName();
+
+                if (_model.ActionCode != ActionCode.Skill) continue;
+                row.SetTechnicalPoint(rowModel.TechnicalPoint);
+                row.ShowTechnicalPoint();
+            }
+        }
+
+        private void SetRowState(Row row, RowModel rowModel, int index)
+        {
+            if (!rowModel.Enabled)
+            {
+                row.InactiveName();
+                return;
+            }
+            if (index == _rowStateDictionary[_model.ActionCode].SelectedIndex)
+            {
+                row.HighlightName();
+            }
+            else
+            {
+                row.UnhighlightName();
+            }
+        }
+
         public void StopAnimation()
         {
             _window.enabled = false;
@@ -119,23 +133,15 @@ namespace BattleScene.Views.Views
             enabled = false;
         }
 
-        private void MoveArrow(Vector2 vector2)
-        {
-            if (vector2.y == 0) return;
-
-            if (vector2.y > 0)
-                _rowStateDictionary[_model.ActionCode].Up();
-            else
-                _rowStateDictionary[_model.ActionCode].Down();
-            StartAnimation(_model);
-        }
-
         public void OnSelect(InputAction.CallbackContext context)
         {
             if (context.performed)
             {
-                var row = _rowStateDictionary[_model.ActionCode].SelectedIndex;
-                _selectRowAction.OnSelect(row);
+                var rowState = _rowStateDictionary[_model.ActionCode];
+                var row = rowState.SelectedRow;
+                if (!_model.RowList[row].Enabled) return;
+                var index = rowState.SelectedIndex;
+                _selectRowAction.OnSelect(index);
             }
         }
 
@@ -148,6 +154,17 @@ namespace BattleScene.Views.Views
                 var vector2 = context.ReadValue<Vector2>();
                 MoveArrow(vector2);
             }
+        }
+
+        private void MoveArrow(Vector2 vector2)
+        {
+            if (vector2.y == 0) return;
+
+            if (vector2.y > 0)
+                _rowStateDictionary[_model.ActionCode].Up();
+            else
+                _rowStateDictionary[_model.ActionCode].Down();
+            StartAnimation(_model);
         }
     }
 }

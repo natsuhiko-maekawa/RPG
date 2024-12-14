@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using Common;
+using TMPro;
 using UnityEngine;
 
 namespace BattleScene.Views.GameObjects
@@ -7,6 +8,7 @@ namespace BattleScene.Views.GameObjects
     {
         public Color defaultColor;
         public Color highlightColor;
+        public Color inactiveColor;
         private TMP_Text _rowName;
 
         private void Awake()
@@ -19,6 +21,7 @@ namespace BattleScene.Views.GameObjects
         {
             defaultColor = Color.white;
             highlightColor = Color.red;
+            inactiveColor = Color.gray;
         }
 
         private void OnEnable()
@@ -29,6 +32,7 @@ namespace BattleScene.Views.GameObjects
         public void Set(string rowName) => _rowName.text = rowName;
         public void Highlight() => _rowName.color = highlightColor;
         public void Unhighlight() => _rowName.color = defaultColor;
+        public void Inactive() => _rowName.color = inactiveColor;
 
         private void OnDisable()
         {
