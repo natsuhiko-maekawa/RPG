@@ -32,10 +32,7 @@ namespace BattleScene.Presenters.States.Turn
         {
             var actor = Context.Actor ?? throw new InvalidOperationException(ExceptionMessage.ContextActorIdIsNull);
             var skill = Context.Skill ?? throw new InvalidOperationException(ExceptionMessage.ContextSkillIsNull);
-            var battleEventCode = Context.BattleEventCode is BattleEventCode.Skill or BattleEventCode.FatalitySkill
-                ? Context.BattleEventCode
-                : throw new InvalidOperationException();
-            _useCase.ExecuteSkill(actor, skill, battleEventCode);
+            _useCase.ExecuteSkill(actor, skill, Context.BattleEventCode);
             _facade.Output(Context);
         }
 
