@@ -6,5 +6,6 @@ namespace Common
     {
         public static int MaxEnemyCount { get; } = 4;
         public static int MaxOrderNumber { get; } = 14;
+        public static int MaxAttackCount { get; } = 10;
     }
 }

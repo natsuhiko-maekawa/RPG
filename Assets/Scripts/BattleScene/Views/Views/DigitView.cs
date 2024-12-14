@@ -1,13 +1,13 @@
 ﻿using System.Linq;
 using BattleScene.Views.GameObjects;
 using BattleScene.Views.ViewModels;
+using Common;
 using UnityEngine;
 
 namespace BattleScene.Views.Views
 {
     public class DigitView : MonoBehaviour
     {
-        private const int PoolSize = 10;
         public float digitsIntervalSecond;
 
         // TODO: 以下のフィールドは子コンポーネントとして分離する。
@@ -15,7 +15,7 @@ namespace BattleScene.Views.Views
         // [SerializeField] private bool isPlayer;
 
         private Digit _digit;
-        private readonly Digit[] _digitPool = new Digit[PoolSize];
+        private readonly Digit[] _digitPool = new Digit[Constant.MaxAttackCount];
         private bool _animation;
         private float _frameRate;
         private int _frame = -1;

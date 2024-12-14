@@ -11,27 +11,25 @@ namespace BattleScene.Views.Views
     public class PlayerView : MonoBehaviour
     {
         private PlayerImage _playerImage;
-        private DigitView _playerDigitView;
-        private FrameView _playerFrameView;
-        private StatusBarView _playerHpBarView;
-        private StatusBarView _playerTpBarView;
-        private SpriteFlyweight _spriteFlyweight;
+        private DigitView _digitView;
+        private FrameView _frameView;
+        private StatusBarView _hitPointBarView;
+        private StatusBarView _technicalPointBarView;
         private Dictionary<string, Sprite> _imagePool;
 
         private void Awake()
         {
             _playerImage = GetComponentInChildren<PlayerImage>();
             _playerImage.enabled = false;
-            _playerDigitView = GetComponentInChildren<DigitView>();
-            _playerFrameView = GetComponentInChildren<FrameView>();
-            var statusBarViews = GetComponentsInChildren<StatusBarView>();
-            _playerHpBarView = statusBarViews[0];
-            _playerTpBarView = statusBarViews[1];
+            _digitView = GetComponentInChildren<DigitView>();
+            _frameView = GetComponentInChildren<FrameView>();
+            _hitPointBarView = GetComponentInChildren<HitPointBarView>();
+            _technicalPointBarView = GetComponentInChildren<TechnicalPointBarView>();
         }
 
         public async Task SetImage(IReadOnlyList<string> playerImagePathList)
         {
-            _spriteFlyweight = SpriteFlyweight.Instance;
+            var spriteFlyweight = SpriteFlyweight.Instance;
             var capacity = playerImagePathList.Count;
             _imagePool = new Dictionary<string, Sprite>(capacity);
             foreach (var playerImagePath in playerImagePathList)
@@ -40,13 +38,12 @@ namespace BattleScene.Views.Views
 
                 try
                 {
-                    var sprite = await _spriteFlyweight.GetAsync(playerImagePath);
+                    var sprite = await spriteFlyweight.GetAsync(playerImagePath);
                     _imagePool.Add(playerImagePath, sprite);
-                    MyDebug.Log(playerImagePath);
                 }
                 catch (ArgumentException)
                 {
-                    MyDebug.LogWarning($"Image {playerImagePath} is not found.");
+                    MyDebug.LogWarning("Image is not found.");
                 }
             }
         }
@@ -60,7 +57,6 @@ namespace BattleScene.Views.Views
             }
             else
             {
-                MyDebug.Log(model.PlayerImagePath);
                 _playerImage.IsNothing();
             }
 
@@ -73,11 +69,11 @@ namespace BattleScene.Views.Views
         }
 
         public void StartSlideAnimation() => _playerImage.Slide();
-        public void StartDigitAnimation(DigitListViewModel model) => _playerDigitView.StartAnimation(model);
-        public void StartFrameAnimation(FrameViewModel model) => _playerFrameView.StartAnimation(model);
-        public void StopFrameAnimation() => _playerFrameView.StopAnimation();
-        public void StartHitPointBarAnimation(StatusBarViewModel model) => _playerHpBarView.StartAnimation(model);
-        public void StartTechnicalPointBarAnimation(StatusBarViewModel model) => _playerTpBarView.StartAnimation(model);
+        public void StartDigitAnimation(DigitListViewModel model) => _digitView.StartAnimation(model);
+        public void StartFrameAnimation(FrameViewModel model) => _frameView.StartAnimation(model);
+        public void StopFrameAnimation() => _frameView.StopAnimation();
+        public void StartHitPointBarAnimation(StatusBarViewModel model) => _hitPointBarView.StartAnimation(model);
+        public void StartTechnicalPointBarAnimation(StatusBarViewModel model) => _technicalPointBarView.StartAnimation(model);
         public void StartVibeAnimation() => _playerImage.Vibe();
     }
 }
