@@ -10,22 +10,25 @@ namespace BattleScene.DataAccesses.Resource
         : MonoBehaviour, IResource<TItem, TId>
         where TScriptableObject : BaseScriptableObject<TItem, TId>
         where TItem : IUnique<TId>
+        where TId : notnull
     {
         [SerializeField] private TScriptableObject listScriptableObject;
 
         public TItem Get(TId id)
         {
-            TItem item;
-            try
+            TItem item = default;
+            var count = 0;
+
+            foreach (var tmpItem in listScriptableObject.ItemList)
             {
-                item = listScriptableObject.ItemList
-                    .Single(x => Equals(x.Key, id));
+                if (!tmpItem.Key.Equals(id)) continue;
+
+                item = tmpItem;
+                ++count;
             }
-            catch (InvalidOperationException e)
-            {
-                throw new InvalidOperationException(
-                    $"key {id.ToString()} not found in {typeof(TScriptableObject).Name}.", e);
-            }
+
+            if (item is null || count != 1) throw 
+                new InvalidOperationException($"key {id.ToString()} not found in {typeof(TScriptableObject).Name}.");
 
             return item;
         }
