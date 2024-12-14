@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using BattleScene.Domain.Codes;
 using UnityEngine;
@@ -14,7 +13,7 @@ namespace BattleScene.DataAccesses.Dto
         [SerializeField] private string[] fatalitySkillArray;
         public CharacterTypeCode Key { get; private set; }
         public int TechnicalPoint { get; private set; }
-        public List<SkillCode> FatalitySkillList { get; private set; }
+        public SkillCode[] FatalitySkillList { get; private set; }
 
         public void OnBeforeSerialize()
         {
@@ -24,7 +23,7 @@ namespace BattleScene.DataAccesses.Dto
         {
             Key = key;
             TechnicalPoint = technicalPoint;
-            FatalitySkillList = fatalitySkillArray.Select(Enum.Parse<SkillCode>).ToList();
+            FatalitySkillList = fatalitySkillArray.Select(Enum.Parse<SkillCode>).ToArray();
         }
     }
 }

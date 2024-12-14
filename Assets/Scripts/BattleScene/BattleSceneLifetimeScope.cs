@@ -389,6 +389,7 @@ namespace BattleScene
             builder.Register<IHitPointService, HitPointService>(Singleton);
             builder.Register<IsHitEvaluatorService>(Singleton);
             builder.Register<OrderService>(Singleton);
+            builder.Register<IPlayerSkillService, PlayerSkillService>(Singleton);
             builder.Register<ITechnicalPointService, TechnicalPointService>(Singleton);
             builder.Register<SlipDamageRegistererService>(Singleton);
             builder.Register<ISlipResetService, SlipResetService>(Singleton);

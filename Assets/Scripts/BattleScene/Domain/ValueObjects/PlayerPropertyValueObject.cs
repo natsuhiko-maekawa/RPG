@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using BattleScene.Domain.Codes;
+﻿using BattleScene.Domain.Codes;
 
 namespace BattleScene.Domain.ValueObjects
 {
@@ -7,13 +6,13 @@ namespace BattleScene.Domain.ValueObjects
     {
         public PlayerPropertyValueObject(
             int technicalPoint,
-            IReadOnlyList<SkillCode> fatalitySkillList)
+            SkillCode[] fatalitySkillList)
         {
             TechnicalPoint = technicalPoint;
             FatalitySkillList = fatalitySkillList;
         }
 
         public int TechnicalPoint { get; }
-        public IReadOnlyList<SkillCode> FatalitySkillList { get; }
+        public SkillCode[] FatalitySkillList { get; }
     }
 }

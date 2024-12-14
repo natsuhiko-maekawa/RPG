@@ -15,6 +15,7 @@ namespace BattleScene.Presenters.States.Turn
         public CharacterEntity? Actor { get; set; }
         public AilmentCode AilmentCode { get; set; }
         public SlipCode SlipCode { get; set; }
+        public BattleEventCode BattleEventCode { get; set; }
         public SkillValueObject? Skill { get; set; }
         public IReadOnlyList<CharacterEntity> TargetList { get; set; } = Array.Empty<CharacterEntity>();
 

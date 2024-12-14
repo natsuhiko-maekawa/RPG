@@ -9,20 +9,20 @@ namespace BattleScene.Presenters.States.Turn
 {
     public class PlayerSelectSkillState : BaseState, ICancelable
     {
-        private readonly IResource<CharacterPropertyDto, CharacterTypeCode> _propertyResource;
+        private readonly IResource<CharacterPropertyDto, CharacterTypeCode> _characterPropertyResource;
         private readonly PlayerSelectSkillUseCase _useCase;
         private readonly PlayerSelectSkillPresenterFacade _facade;
         private readonly PlayerSelectTargetState _playerSelectTargetState;
         private readonly SkillState _skillState;
 
         public PlayerSelectSkillState(
-            IResource<CharacterPropertyDto, CharacterTypeCode> propertyResource,
+            IResource<CharacterPropertyDto, CharacterTypeCode> characterPropertyResource,
             PlayerSelectSkillUseCase useCase,
             PlayerSelectSkillPresenterFacade facade,
             PlayerSelectTargetState playerSelectTargetState,
             SkillState skillState)
         {
-            _propertyResource = propertyResource;
+            _characterPropertyResource = characterPropertyResource;
             _useCase = useCase;
             _facade = facade;
             _playerSelectTargetState = playerSelectTargetState;
@@ -31,13 +31,14 @@ namespace BattleScene.Presenters.States.Turn
 
         public override void Start()
         {
-            _facade.Output();
+            var skillCodeArray = _useCase.GetSkillCodeArray(Context.BattleEventCode);
+            _facade.Output(skillCodeArray);
         }
 
         public override void Select(int id)
         {
             _facade.Stop();
-            var skillCode = _propertyResource.Get(CharacterTypeCode.Player).SkillCodeList[id];
+            var skillCode = _useCase.GetSkillCodeArray(Context.BattleEventCode)[id];
             Context.Skill = _useCase.GetSkill(skillCode);
             if (Context.Skill.Common.IsAutoTarget)
             {

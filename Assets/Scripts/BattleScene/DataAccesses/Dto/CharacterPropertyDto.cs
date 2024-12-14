@@ -27,7 +27,7 @@ namespace BattleScene.DataAccesses.Dto
         public int Wisdom { get; private set; }
         public int Agility { get; private set; }
         public int Luck { get; private set; }
-        public List<SkillCode> SkillCodeList { get; private set; }
+        public SkillCode[] SkillCodeList { get; private set; }
         public MatAttrCode WeakPointCode { get; private set; }
 
         public void OnBeforeSerialize()
@@ -44,7 +44,7 @@ namespace BattleScene.DataAccesses.Dto
             Wisdom = wisdom;
             Agility = agility;
             Luck = luck;
-            SkillCodeList = skillCodeArray.Select(Enum.Parse<SkillCode>).ToList();
+            SkillCodeList = skillCodeArray.Select(Enum.Parse<SkillCode>).ToArray();
             WeakPointCode = weakPointCode;
         }
     }

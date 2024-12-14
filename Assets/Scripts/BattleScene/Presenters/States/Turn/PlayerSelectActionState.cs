@@ -44,6 +44,7 @@ namespace BattleScene.Presenters.States.Turn
         public override void Select(int id)
         {
             var actionCode = _actionCodeDictionary[id];
+            Context.BattleEventCode = actionCode;
 
             if (actionCode == BattleEventCode.Defence)
             {
@@ -59,6 +60,7 @@ namespace BattleScene.Presenters.States.Turn
                 BattleEventCode.Attack => _playerSelectTargetState,
                 BattleEventCode.Skill => _playerSelectSkillState,
                 BattleEventCode.Defence => _skillState,
+                BattleEventCode.FatalitySkill => _playerSelectSkillState,
                 _ => throw new ArgumentOutOfRangeException()
             };
 

@@ -16,13 +16,11 @@ namespace BattleScene.Presenters.Presenters
         private readonly TableView _tableView;
         private readonly IResource<MessageDto, MessageCode> _messageResource;
         private readonly IResource<PlayerImageDto, PlayerImageCode> _playerPropertyResource;
-        private readonly IFactory<CharacterPropertyValueObject, CharacterTypeCode> _propertyFactory;
         private readonly IFactory<SkillValueObject, SkillCode> _skillFactory;
         private readonly IResource<SkillViewDto, SkillCode> _skillPropertyFactory;
         private readonly ITechnicalPointService _technicalPoint;
 
         public SkillViewPresenter(
-            IFactory<CharacterPropertyValueObject, CharacterTypeCode> propertyFactory,
             IFactory<SkillValueObject, SkillCode> skillFactory,
             IResource<SkillViewDto, SkillCode> skillPropertyFactory,
             IResource<MessageDto, MessageCode> messageResource,
@@ -30,7 +28,6 @@ namespace BattleScene.Presenters.Presenters
             TableView tableView,
             ITechnicalPointService technicalPoint)
         {
-            _propertyFactory = propertyFactory;
             _skillFactory = skillFactory;
             _skillPropertyFactory = skillPropertyFactory;
             _messageResource = messageResource;
@@ -39,10 +36,10 @@ namespace BattleScene.Presenters.Presenters
             _technicalPoint = technicalPoint;
         }
 
-        public void StartAnimation()
+        public void StartAnimation(SkillCode[] skillCodeArray)
         {
             var actionCode = ActionCode.Skill;
-            var rowArray = _propertyFactory.Create(CharacterTypeCode.Player).SkillCodeList
+            var rowArray = skillCodeArray
                 .Select(GetRow)
                 .ToArray();
             var dto = new TableViewModel(

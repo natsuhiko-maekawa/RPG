@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using BattleScene.Domain.Codes;
+﻿using BattleScene.Domain.Codes;
 
 namespace BattleScene.Domain.ValueObjects
 {
@@ -15,7 +14,7 @@ namespace BattleScene.Domain.ValueObjects
             int agility,
             int luck,
             MatAttrCode weakPointCode,
-            List<SkillCode> skillCodeList)
+            SkillCode[] skillCodeList)
         {
             CharacterTypeCode = characterTypeCode;
             HitPoint = hitPoint;
@@ -38,7 +37,7 @@ namespace BattleScene.Domain.ValueObjects
         public int Agility { get; }
         public int Luck { get; }
         public MatAttrCode WeakPointsCode { get; }
-        public IReadOnlyList<SkillCode> SkillCodeList { get; }
+        public SkillCode[] SkillCodeList { get; }
 
         public int SumParameter => (int)(HitPoint / 10.0f * (Strength + Vitality + Intelligence + Agility + Luck)) / 10;
     }

@@ -16,10 +16,10 @@ namespace BattleScene.Presenters.PresenterFacades
             _skillView = skillView;
         }
 
-        public void Output()
+        public void Output(SkillCode[] skillCodeArray)
         {
             _infoView.StartAnimation(MessageCode.VerticalSelectAndCancel);
-            _skillView.StartAnimation();
+            _skillView.StartAnimation(skillCodeArray);
         }
 
         public void Stop()
