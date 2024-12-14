@@ -3,6 +3,7 @@
     public enum ActionCode
     {
         Action,
-        Skill
+        Skill,
+        Fatality
     }
 }

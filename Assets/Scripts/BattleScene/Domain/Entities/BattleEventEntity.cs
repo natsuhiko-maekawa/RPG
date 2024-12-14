@@ -54,10 +54,10 @@ namespace BattleScene.Domain.Entities
             SlipCode = slipCode;
         }
 
-        public void UpdateSkill(SkillCode skillCode)
+        public void UpdateSkill(SkillCode skillCode, BattleEventCode battleEventCode)
         {
             SkillCode = skillCode;
-            BattleEventCode = BattleEventCode.Skill;
+            BattleEventCode = battleEventCode;
         }
 
         public void UpdateAilment(

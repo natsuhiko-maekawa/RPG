@@ -1,4 +1,5 @@
 using BattleScene.UseCases.IServices;
+using BattleScene.UseCases.Services;
 
 namespace BattleScene.UseCases.UseCases
 {
@@ -11,6 +12,7 @@ namespace BattleScene.UseCases.UseCases
             _deadCharacter = deadCharacter;
         }
 
+        public Dead GetDeadInThisTurn() => _deadCharacter.GetDeadInThisTurn();
         public bool IsAnyCharacterDeadInThisTurn() => _deadCharacter.IsAnyCharacterDeadInThisTurn();
     }
 }

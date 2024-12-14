@@ -1,4 +1,5 @@
-﻿using BattleScene.Presenters.Presenters;
+﻿using BattleScene.Domain.Codes;
+using BattleScene.Presenters.Presenters;
 using BattleScene.Presenters.Services;
 using BattleScene.UseCases.UseCases;
 
@@ -51,6 +52,7 @@ namespace BattleScene.Presenters.States.Turn
             if (_actor.CantAction(Context.Actor, out var skill))
             {
                 Context.Skill = skill;
+                Context.BattleEventCode = BattleEventCode.Skill;
                 return _cantActionState;
             }
 

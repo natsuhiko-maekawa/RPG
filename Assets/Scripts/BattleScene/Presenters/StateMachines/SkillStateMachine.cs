@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using BattleScene.Domain.Codes;
 using BattleScene.Presenters.States;
 using BattleScene.Presenters.States.Skill;
 using BattleScene.Presenters.States.Turn;
+using BattleScene.UseCases.Services;
 using VContainer;
 
 namespace BattleScene.Presenters.StateMachines
@@ -45,21 +47,29 @@ namespace BattleScene.Presenters.StateMachines
                 return TryMoveNextElseDispose(out nextStateCode);
             }
 
-            nextStateCode = _skillContextEnumerator.Current?.NextStateCode ?? StateCode.Next;
-            nextStateCode = nextStateCode == StateCode.Next
-                ? StateCode.AdvanceTurnState
-                : nextStateCode;
+            nextStateCode = _skillContextEnumerator!.Current is null or { NextStateCode: StateCode.None or StateCode.Next }
+                ? GetNextStateCode()
+                : _skillContextEnumerator.Current.NextStateCode;
             _skillContextEnumerator.Dispose();
             _skillContextEnumerator = null;
             return false;
         }
 
+        private StateCode GetNextStateCode()
+        {
+            var nextStateCode = _skillContextEnumerator!.Current is null or { Dead: Dead.None }
+                ? StateCode.AdvanceTurnState
+                : StateCode.CharacterDeadState;
+            return nextStateCode;
+        }
+
         // QUESTION: イテレータの使い方として正しいかどうかわからない。
         // ReSharper disable once CognitiveComplexity
-        private IEnumerable<IContext> GetContext(Context context)
+        private IEnumerable<IContext> GetContext(Context turnContext)
         {
-            if (context.Skill == null) throw new InvalidOperationException(ExceptionMessage.ContextSkillIsNull);
-            var skill = context.Skill;
+            if (turnContext.Skill == null) throw new InvalidOperationException(ExceptionMessage.ContextSkillIsNull);
+            IContext? prevSkillContext = null;
+            var skill = turnContext.Skill;
 
             // NOTE: 以下のif文の順序を変えないこと。
             // MoveNextで取得される順序がこの通りでなくてはならない。
@@ -78,16 +88,17 @@ namespace BattleScene.Presenters.StateMachines
             IContext CreateContext<TSkillElement>(
                 IReadOnlyList<TSkillElement> skillElementList)
             {
-                if (context.Actor is null) throw new InvalidOperationException(ExceptionMessage.ContextActorIdIsNull);
-
+                if (turnContext.Actor is null) throw new InvalidOperationException(ExceptionMessage.ContextActorIdIsNull);
                 var skillElementStartState =
                     _container.Resolve<SkillElementStartState<TSkillElement>>();
                 var skillContext = new Context<TSkillElement>(
                     skillElementState: skillElementStartState,
-                    actor: context.Actor,
+                    actor: turnContext.Actor,
                     skillCommon: skill.Common,
                     skillElementList: skillElementList,
-                    targetList: context.TargetList);
+                    targetList: turnContext.TargetList,
+                    dead: prevSkillContext?.Dead ?? Dead.None);
+                prevSkillContext = skillContext;
                 return skillContext;
             }
         }

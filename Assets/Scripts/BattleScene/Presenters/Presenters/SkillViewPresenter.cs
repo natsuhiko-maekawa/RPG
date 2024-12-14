@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using BattleScene.DataAccesses;
 using BattleScene.DataAccesses.Dto;
 using BattleScene.Domain.Codes;
@@ -36,9 +37,15 @@ namespace BattleScene.Presenters.Presenters
             _technicalPoint = technicalPoint;
         }
 
-        public void StartAnimation(SkillCode[] skillCodeArray)
+        public void StartAnimation(BattleEventCode battleEventCode, SkillCode[] skillCodeArray)
         {
-            var actionCode = ActionCode.Skill;
+            var actionCode = battleEventCode switch
+            {
+                BattleEventCode.Skill => ActionCode.Skill,
+                BattleEventCode.FatalitySkill => ActionCode.Fatality,
+                _ => throw new ArgumentOutOfRangeException(nameof(battleEventCode), battleEventCode, null)
+            };
+
             var rowArray = skillCodeArray
                 .Select(GetRow)
                 .ToArray();

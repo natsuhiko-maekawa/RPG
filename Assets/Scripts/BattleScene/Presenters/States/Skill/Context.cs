@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using BattleScene.Domain.Entities;
 using BattleScene.Domain.ValueObjects;
+using BattleScene.UseCases.Services;
 using JetBrains.Annotations;
 using Utility;
 
@@ -18,18 +19,21 @@ namespace BattleScene.Presenters.States.Skill
         public IReadOnlyList<CharacterEntity> TargetList { get; }
         public IReadOnlyList<TSkillElement> SkillElementList { get; }
         public Queue<BattleEventEntity> BattleEventQueue { get; set; } = new();
+        public Dead Dead { get; set; }
 
         public Context(
             BaseState<TSkillElement> skillElementState,
             CharacterEntity actor,
             SkillCommonValueObject skillCommon,
             IReadOnlyList<CharacterEntity> targetList,
-            IReadOnlyList<TSkillElement> skillElementList)
+            IReadOnlyList<TSkillElement> skillElementList,
+            Dead dead)
         {
             Actor = actor;
             SkillCommon = skillCommon;
             TargetList = targetList;
             SkillElementList = skillElementList;
+            Dead = dead;
             TransitionTo(skillElementState);
         }
 
@@ -71,7 +75,7 @@ namespace BattleScene.Presenters.States.Skill
 
         public StateCode NextStateCode => _state switch
         {
-            ISkillElementStopState => StateCode.AdvanceTurnState,
+            ISkillElementStopState => StateCode.Next,
             ISkillElementBreakState => StateCode.AdvanceTurnState,
             ICharacterDeadState => StateCode.CharacterDeadState,
             _ => StateCode.Next

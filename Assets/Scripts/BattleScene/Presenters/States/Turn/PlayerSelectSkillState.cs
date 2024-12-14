@@ -32,7 +32,7 @@ namespace BattleScene.Presenters.States.Turn
         public override void Start()
         {
             var skillCodeArray = _useCase.GetSkillCodeArray(Context.BattleEventCode);
-            _facade.Output(skillCodeArray);
+            _facade.Output(Context.BattleEventCode, skillCodeArray);
         }
 
         public override void Select(int id)

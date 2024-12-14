@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using BattleScene.Domain.Entities;
+using BattleScene.UseCases.Services;
 
 namespace BattleScene.UseCases.IServices
 {
@@ -7,8 +8,9 @@ namespace BattleScene.UseCases.IServices
     {
         public bool IsAnyCharacterDeadInThisTurn();
         public bool IsPlayerDeadInThisTurn();
-        public bool IsAllEnemyDead();
         public IReadOnlyList<CharacterEntity> GetDeadCharacterInThisTurn();
+        public Dead GetDeadInThisTurn();
         public void ConfirmedDead();
+        public bool IsAllEnemyDead();
     }
 }

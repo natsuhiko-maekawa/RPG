@@ -33,14 +33,6 @@ namespace BattleScene.UseCases.Services
             return value;
         }
 
-        public bool IsAllEnemyDead()
-        {
-            var value = _characterRepository.Get()
-                .Where(x => !x.IsPlayer)
-                .All(x => !x.IsSurvive);
-            return value;
-        }
-
         public IReadOnlyList<CharacterEntity> GetDeadCharacterInThisTurn()
         {
             var value = _characterRepository.Get()
@@ -48,6 +40,17 @@ namespace BattleScene.UseCases.Services
                 .Where(x => x.CurrentHitPoint == 0)
                 .ToArray();
             return value;
+        }
+
+        public Dead GetDeadInThisTurn()
+        {
+            if (IsPlayerDeadInThisTurn()) return Dead.Player;
+            if (_characterRepository.Get()
+                .Where(x => !x.IsPlayer)
+                .Where(x => x.IsSurvive)
+                .All(x => x.CurrentHitPoint == 0)) return Dead.Enemies;
+            if (IsAnyCharacterDeadInThisTurn()) return Dead.Enemy;
+            return Dead.None;
         }
 
         public void ConfirmedDead()
@@ -59,5 +62,21 @@ namespace BattleScene.UseCases.Services
                 deadCharacter.IsSurvive = false;
             }
         }
+
+        public bool IsAllEnemyDead()
+        {
+            var value = _characterRepository.Get()
+                .Where(x => !x.IsPlayer)
+                .All(x => !x.IsSurvive);
+            return value;
+        }
+    }
+
+    public enum Dead
+    {
+        None,
+        Player,
+        Enemy,
+        Enemies,
     }
 }

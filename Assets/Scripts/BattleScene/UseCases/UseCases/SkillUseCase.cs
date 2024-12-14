@@ -1,3 +1,4 @@
+using BattleScene.Domain.Codes;
 using BattleScene.Domain.Entities;
 using BattleScene.Domain.ValueObjects;
 using BattleScene.UseCases.IServices;
@@ -18,10 +19,10 @@ namespace BattleScene.UseCases.UseCases
             _technicalPoint = technicalPoint;
         }
 
-        public void ExecuteSkill(CharacterEntity actor, SkillValueObject skill)
+        public void ExecuteSkill(CharacterEntity actor, SkillValueObject skill, BattleEventCode battleEventCode)
         {
             var skillEvent = _battleLogger.GetLast();
-            skillEvent.UpdateSkill(skill.Common.SkillCode);
+            skillEvent.UpdateSkill(skill.Common.SkillCode, battleEventCode);
 
             if (actor.IsPlayer)
             {

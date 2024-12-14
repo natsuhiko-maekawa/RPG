@@ -1,4 +1,5 @@
 ﻿using System;
+using BattleScene.Domain.Codes;
 using BattleScene.UseCases.UseCases;
 
 namespace BattleScene.Presenters.States.Turn
@@ -18,10 +19,10 @@ namespace BattleScene.Presenters.States.Turn
 
         public override void Start()
         {
-            if (Context.Actor is null)
-                throw new InvalidOperationException(ExceptionMessage.ContextActorIdIsNull);
-            Context.Skill = _enemySelectAction.SelectSkill(Context.Actor);
-            Context.TargetList = _enemySelectAction.SelectTarget(Context.Actor, Context.Skill);
+            var actor = Context.Actor ?? throw new InvalidOperationException(ExceptionMessage.ContextActorIdIsNull);
+            Context.Skill = _enemySelectAction.SelectSkill(actor);
+            Context.TargetList = _enemySelectAction.SelectTarget(actor, Context.Skill);
+            Context.BattleEventCode = BattleEventCode.Skill;
             Context.TransitionTo(_skillState);
         }
     }

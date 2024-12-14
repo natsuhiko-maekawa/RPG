@@ -1,4 +1,5 @@
 ﻿using System;
+using BattleScene.Domain.Codes;
 using BattleScene.Presenters.PresenterFacades;
 using BattleScene.Presenters.StateMachines;
 using BattleScene.UseCases.UseCases;
@@ -31,7 +32,10 @@ namespace BattleScene.Presenters.States.Turn
         {
             var actor = Context.Actor ?? throw new InvalidOperationException(ExceptionMessage.ContextActorIdIsNull);
             var skill = Context.Skill ?? throw new InvalidOperationException(ExceptionMessage.ContextSkillIsNull);
-            _useCase.ExecuteSkill(actor, skill);
+            var battleEventCode = Context.BattleEventCode is BattleEventCode.Skill or BattleEventCode.FatalitySkill
+                ? Context.BattleEventCode
+                : throw new InvalidOperationException();
+            _useCase.ExecuteSkill(actor, skill, battleEventCode);
             _facade.Output(Context);
         }
 

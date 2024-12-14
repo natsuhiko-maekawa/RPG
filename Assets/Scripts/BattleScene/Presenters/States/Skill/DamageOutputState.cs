@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using BattleScene.Domain.ValueObjects;
 using BattleScene.Presenters.PresenterFacades;
+using BattleScene.UseCases.Services;
 using BattleScene.UseCases.UseCases;
 
 namespace BattleScene.Presenters.States.Skill
@@ -44,7 +45,8 @@ namespace BattleScene.Presenters.States.Skill
                 .All(x => !x.IsHit)) 
                 return _skillElementBreakState;
 
-            if (_useCase.IsAnyCharacterDeadInThisTurn()) return _characterDeadState;
+            Context.Dead = _useCase.GetDeadInThisTurn();
+            if (Context.Dead is Dead.Player or Dead.Enemies) return _characterDeadState;
 
             return _skillElementStopState;
         }
