@@ -44,8 +44,8 @@ namespace BattleScene.Presenters.States.Turn
         private void WhenEnemyDead()
         {
             var deadCharacter = _useCase.GetDeadCharacterInThisTurn();
-            _useCase.ConfirmedDead();
             _facade.OutputWhenEnemyDead(deadCharacter);
+            _useCase.ConfirmedDead();
             if (_useCase.IsAllEnemyDead())
             {
                 Context.NextStateCode = StateCode.PlayerWinState;
