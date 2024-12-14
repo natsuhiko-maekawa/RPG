@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using BattleScene.Domain.Codes;
 using BattleScene.Presenters.Presenters;
 using UnityEngine;
+using Utility;
 using VContainer;
 
 namespace BattleScene
@@ -21,9 +22,9 @@ namespace BattleScene
             _playerImageView = playerImageView;
         }
 
-        private async void Awake()
+        private void Awake()
         {
-            await SetPlayerImage();
+            var _ = SetPlayerImage();
         }
 
         private async Task SetPlayerImage()
