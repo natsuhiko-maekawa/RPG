@@ -25,24 +25,13 @@ namespace BattleScene.Presenters.Presenters
             var characterArray = _battleLog.GetLast().AttackList
                 .Where(x => x.IsHit)
                 .Select(x => x.Target)
+                .Where(x => !x.IsPlayer)
                 .Distinct()
                 .ToArray();
             foreach (var character in characterArray)
             {
-                if (character.IsPlayer)
-                {
-                    // StartPlayerAnimation();
-                }
-                else
-                {
-                    StartEnemyAnimation(character.Position);
-                }
+                StartEnemyAnimation(character.Position);
             }
-        }
-
-        private void StartPlayerAnimation()
-        {
-            _playerView.StartVibeAnimation();
         }
 
         private void StartEnemyAnimation(int position)
