@@ -1,5 +1,4 @@
-﻿using Common;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 
 namespace BattleScene.Views.GameObjects

@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using BattleScene.Domain.Codes;
 using BattleScene.Presenters.Presenters;
 using UnityEngine;
-using Utility;
 using VContainer;
 
 namespace BattleScene
