@@ -42,12 +42,12 @@ namespace BattleScene.Presenters.Presenters
         public void StartAnimation()
         {
             var actionCode = ActionCode.Skill;
-            var rowList = _propertyFactory.Create(CharacterTypeCode.Player).SkillCodeList
+            var rowArray = _propertyFactory.Create(CharacterTypeCode.Player).SkillCodeList
                 .Select(GetRow)
-                .ToList();
+                .ToArray();
             var dto = new TableViewModel(
                 actionCode: actionCode,
-                rowList: rowList);
+                rowList: rowArray);
             _tableView.StartAnimation(dto);
         }
 

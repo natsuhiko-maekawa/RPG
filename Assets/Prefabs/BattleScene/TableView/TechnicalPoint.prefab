@@ -58,6 +58,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 681fb679613e427bb5e4f62130c29c2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultColor:
+    topLeft: {r: 0.5215687, g: 0.9215686, b: 0.9803922, a: 1}
+    topRight: {r: 0.5215687, g: 0.9215686, b: 0.9803922, a: 1}
+    bottomLeft: {r: 0.5215687, g: 0.5215687, b: 0.9803922, a: 1}
+    bottomRight: {r: 0.5215687, g: 0.5215687, b: 0.9803922, a: 1}
+  highlightColor:
+    topLeft: {r: 0.9803922, g: 0.9215686, b: 0.5215687, a: 1}
+    topRight: {r: 0.9803922, g: 0.9215686, b: 0.5215687, a: 1}
+    bottomLeft: {r: 0.9803922, g: 0.5215687, b: 0.5215687, a: 1}
+    bottomRight: {r: 0.9803922, g: 0.5215687, b: 0.5215687, a: 1}
+  inactiveColor:
+    topLeft: {r: 0.9803922, g: 0.9803922, b: 0.9803922, a: 1}
+    topRight: {r: 0.9803922, g: 0.9803922, b: 0.9803922, a: 1}
+    bottomLeft: {r: 0.5215687, g: 0.5215687, b: 0.5215687, a: 1}
+    bottomRight: {r: 0.5215687, g: 0.5215687, b: 0.5215687, a: 1}
 --- !u!114 &7226486917150099243
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -14,7 +14,7 @@ namespace BattleScene.Views.Views
 {
     public class TableView : MonoBehaviour, BattleSceneInputAction.IBattleSceneActions
     {
-        [SerializeField] private int maxGridSize;
+        public int maxGridSize;
         private Window _window;
         private Table _table;
         private ArrowRight _arrowRight;
@@ -109,20 +109,25 @@ namespace BattleScene.Views.Views
         {
             if (!rowModel.Enabled)
             {
-                row.InactiveName();
+                row.Inactive();
                 return;
             }
             if (index == _rowStateDictionary[_model.ActionCode].SelectedIndex)
             {
-                row.HighlightName();
+                row.Highlight();
             }
             else
             {
-                row.UnhighlightName();
+                row.Unhighlight();
             }
         }
 
         public void StopAnimation()
+        {
+            enabled = false;
+        }
+
+        private void OnDisable()
         {
             _window.enabled = false;
             _table.enabled = false;
@@ -130,7 +135,6 @@ namespace BattleScene.Views.Views
             _arrowUp.enabled = false;
             _arrowDown.enabled = false;
             _inputAction.Disable();
-            enabled = false;
         }
 
         public void OnSelect(InputAction.CallbackContext context)
@@ -138,9 +142,9 @@ namespace BattleScene.Views.Views
             if (context.performed)
             {
                 var rowState = _rowStateDictionary[_model.ActionCode];
-                var row = rowState.SelectedRow;
-                if (!_model.RowList[row].Enabled) return;
                 var index = rowState.SelectedIndex;
+                if (!_model.RowList[index].Enabled) return;
+                enabled = false;
                 _selectRowAction.OnSelect(index);
             }
         }
