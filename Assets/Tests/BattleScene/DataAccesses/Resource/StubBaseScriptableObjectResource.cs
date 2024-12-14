@@ -4,7 +4,9 @@ using BattleScene.DataAccesses;
 
 namespace Tests.BattleScene.DataAccesses.Resource
 {
-    public class StubBaseScriptableObjectResource<TItem, TId> : IResource<TItem, TId> where TItem : IUnique<TId>
+    public class StubBaseScriptableObjectResource<TItem, TId> : IResource<TItem, TId>
+        where TItem : IUnique<TId>
+        where TId : notnull
     {
         private readonly List<TItem> _itemList;
 

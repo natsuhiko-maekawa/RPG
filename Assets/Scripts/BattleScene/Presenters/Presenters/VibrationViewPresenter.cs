@@ -8,16 +8,13 @@ namespace BattleScene.Presenters.Presenters
     {
         private readonly BattleLogDomainService _battleLog;
         private readonly EnemyGroupView _enemyGroupView;
-        private readonly PlayerView _playerView;
 
         public VibrationViewPresenter(
             BattleLogDomainService battleLog,
-            EnemyGroupView enemyGroupView,
-            PlayerView playerView)
+            EnemyGroupView enemyGroupView)
         {
             _battleLog = battleLog;
             _enemyGroupView = enemyGroupView;
-            _playerView = playerView;
         }
 
         public void StartAnimation()

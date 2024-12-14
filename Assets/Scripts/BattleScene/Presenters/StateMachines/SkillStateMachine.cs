@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using BattleScene.Domain.Codes;
 using BattleScene.Presenters.States;
 using BattleScene.Presenters.States.Skill;
 using BattleScene.Presenters.States.Turn;
