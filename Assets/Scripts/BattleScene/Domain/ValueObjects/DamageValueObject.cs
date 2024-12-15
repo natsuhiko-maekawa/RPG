@@ -4,7 +4,7 @@ namespace BattleScene.Domain.ValueObjects
 {
     public struct DamageValueObject // 16 byte
     {
-        public int AttackNumber { get; }
+        public int AttackCount { get; }
         public float DamageRate { get; }
         public float HitRate { get; }
         public MatAttrCode MatAttrCode { get; }
@@ -13,7 +13,7 @@ namespace BattleScene.Domain.ValueObjects
         public AttacksWeakPointEvaluationCode AttacksWeakPointEvaluationCode { get; }
 
         public DamageValueObject(
-            int attackNumber = 1,
+            int attackCount = 1,
             float damageRate = 1.0f,
             float hitRate = 1.0f,
             MatAttrCode matAttrCode = MatAttrCode.NoAttr,
@@ -21,7 +21,7 @@ namespace BattleScene.Domain.ValueObjects
             HitEvaluationCode hitEvaluationCode = HitEvaluationCode.Basic,
             AttacksWeakPointEvaluationCode attacksWeakPointEvaluationCode = AttacksWeakPointEvaluationCode.Basic)
         {
-            AttackNumber = attackNumber;
+            AttackCount = attackCount;
             DamageRate = damageRate;
             HitRate = hitRate;
             MatAttrCode = matAttrCode;

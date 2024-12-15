@@ -88,16 +88,16 @@ namespace BattleScene.Presenters.Presenters
         private OrderViewModel CreateAilmentOrderViewDto(OrderItemEntity orderItem)
         {
             orderItem.TryGetAilmentCode(out var ailmentCode);
-            var ailmentNumber = ConvertToIntFrom(ailmentCode);
-            var dto = new OrderViewModel(ItemType.Ailment, AilmentNumber: ailmentNumber);
+            var ailmentInt = ConvertToIntFrom(ailmentCode);
+            var dto = new OrderViewModel(ItemType.Ailment, AilmentInt: ailmentInt);
             return dto;
         }
 
         private OrderViewModel CreateSlipOrderViewDto(OrderItemEntity orderItem)
         {
             orderItem.TryGetSlipCode(out var slipCode);
-            var ailmentNumber = ConvertToIntFrom(slipCode);
-            var dto = new OrderViewModel(ItemType.Ailment, AilmentNumber: ailmentNumber);
+            var ailmentInt = ConvertToIntFrom(slipCode);
+            var dto = new OrderViewModel(ItemType.Ailment, AilmentInt: ailmentInt);
             return dto;
         }
 

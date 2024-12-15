@@ -50,7 +50,7 @@ namespace BattleScene.Domain.Entities
         public override string ToString()
         {
             var str = $@"OrderItemEntity
-  OrderNumber   : {Order},
+  Order         : {Order},
   CharacterId   : {_actor?.ToString() ?? "NoCharacter"},
   AilmentCode   : {_ailmentCode},
   SlipDamageCode: {_slipCode},

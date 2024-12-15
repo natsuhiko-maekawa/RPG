@@ -80,7 +80,7 @@ namespace BattleScene.Presenters
         {
             return damageList
                 .Select(x => new DamageValueObject(
-                    attackNumber: x.AttackNumber,
+                    attackCount: x.AttackCount,
                     damageRate: x.DamageRate,
                     hitRate: x.HitRate,
                     matAttrCode: x.MatAttrCode,

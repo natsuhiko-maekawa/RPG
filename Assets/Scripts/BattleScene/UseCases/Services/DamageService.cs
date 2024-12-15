@@ -44,7 +44,7 @@ namespace BattleScene.UseCases.Services
                 var attackList = new List<AttackValueObject>();
                 var actor = damageEventList.Select(x => x.Actor).First();
                 actor = actor ?? throw new InvalidOperationException();
-                for (sbyte i = 0; i < damage.AttackNumber; ++i)
+                for (sbyte i = 0; i < damage.AttackCount; ++i)
                 {
                     var attackedTargetList = GetAttackedTargetList(targetList, skillCommon.Range);
                     foreach (var attackedTarget in attackedTargetList)

@@ -21,7 +21,7 @@ namespace BattleScene.Views.Views
         {
             _ailmentsIconArray = MySprite.CreateByGrid(ailmentsIconTexture, 4, 4);
             _order = GetComponentInChildren<Order>();
-            _order.SetItem(Constant.MaxOrderNumber);
+            _order.SetItem(Constant.MaxOrderCount);
             _order.enabled = true;
         }
 
@@ -44,7 +44,7 @@ namespace BattleScene.Views.Views
                 {
                     ItemType.Player => player,
                     ItemType.Enemy => _enemyImageDictionary[model.EnemyImagePath],
-                    ItemType.Ailment => _ailmentsIconArray[model.AilmentNumber],
+                    ItemType.Ailment => _ailmentsIconArray[model.AilmentInt],
                     _ => throw new ArgumentOutOfRangeException()
                 };
 

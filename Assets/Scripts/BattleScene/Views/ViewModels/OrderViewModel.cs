@@ -3,7 +3,7 @@
     public record OrderViewModel(
         ItemType ItemType,
         string EnemyImagePath = "",
-        int AilmentNumber = 0);
+        int AilmentInt = 0);
 
     public enum ItemType
     {
