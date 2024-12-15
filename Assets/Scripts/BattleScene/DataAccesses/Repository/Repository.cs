@@ -16,12 +16,12 @@ namespace BattleScene.DataAccesses.Repository
         public bool TryGet(TId? id, [NotNullWhen(true)] out TEntity? entity)
         {
             entity = null;
-            return id != null && _entityDictionary.TryGetValue(id, out entity);
+            return id is not null && _entityDictionary.TryGetValue(id, out entity);
         }
 
         [return: NotNullIfNotNull("id")] public TEntity? Get(TId? id)
         {
-            if (id == null) return null;
+            if (id is null) return null;
             _entityDictionary.TryGetValue(id, out var entity);
             return entity;
         }

@@ -22,7 +22,7 @@ namespace BattleScene.Presenters.StateMachines
         public bool TryOnSelect(Context context, out StateCode nextStateCode)
         {
             nextStateCode = StateCode.None;
-            if (_skillContextEnumerator == null)
+            if (_skillContextEnumerator is null)
             {
                 _skillContextEnumerator = GetContext(context).GetEnumerator();
                 var value = TryMoveNextElseDispose(out nextStateCode);
@@ -66,7 +66,7 @@ namespace BattleScene.Presenters.StateMachines
         // ReSharper disable once CognitiveComplexity
         private IEnumerable<IContext> GetContext(Context turnContext)
         {
-            if (turnContext.Skill == null) throw new InvalidOperationException(ExceptionMessage.ContextSkillIsNull);
+            if (turnContext.Skill is null) throw new InvalidOperationException(ExceptionMessage.ContextSkillIsNull);
             IContext? prevSkillContext = null;
             var skill = turnContext.Skill;
 

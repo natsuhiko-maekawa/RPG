@@ -107,7 +107,7 @@ namespace BattleScene.UseCases.Services.Order
                 {
                     var characterTypeCount = order
                         .Take(i)
-                        .Count(x => x.Actor != null || x.SlipCode == slip.Id);
+                        .Count(x => x.Actor is not null || x.SlipCode == slip.Id);
                     if (slip.Turn != characterTypeCount % slipDefaultTurn) continue;
                     var orderSlip
                         = new ActorInTurn(slip.Id);

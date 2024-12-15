@@ -20,7 +20,7 @@ namespace BattleScene.Presenters.States.Turn
 
         public override void Start()
         {
-            if (Context.Skill == null) throw new InvalidOperationException(ExceptionMessage.ContextSkillIsNull);
+            if (Context.Skill is null) throw new InvalidOperationException(ExceptionMessage.ContextSkillIsNull);
             _facade.Output(Context.Actor!, Context.Skill);
         }
 

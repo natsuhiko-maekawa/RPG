@@ -8,7 +8,7 @@ namespace BattleScene.Domain.Ids
 
         public override bool Equals(object? obj)
         {
-            if (obj == null || GetType() != obj.GetType()) return false;
+            if (obj is null || GetType() != obj.GetType()) return false;
             var idObject = (BaseId)obj;
             return Equals(Id, idObject.Id);
         }
