@@ -1,10 +1,10 @@
 ﻿namespace BattleScene.Presenters.States.Skill
 {
-    public abstract class BaseState<TSkillElement>
+    public abstract class BaseState<TSkillComponent>
     {
-        protected Context<TSkillElement> Context { get; private set; } = null!;
+        protected Context<TSkillComponent> Context { get; private set; } = null!;
 
-        public void SetContext(Context<TSkillElement> context)
+        public void SetContext(Context<TSkillComponent> context)
         {
             Context = context;
         }

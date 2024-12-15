@@ -195,7 +195,7 @@ namespace BattleScene
 
             #endregion
 
-            #region RegisterSkillElement
+            #region RegisterSkillComponent
 
             builder.Register<AbsoluteConfusion>(Singleton);
             builder.Register<AfterImage>(Singleton);
@@ -313,35 +313,35 @@ namespace BattleScene
             builder.Register<PlayerLoseState>(Singleton);
             builder.Register<PlayerWinState>(Singleton);
             builder.Register<TurnStopState>(Singleton);
-            // PrimeSkillState
-            builder.Register<SkillElementStartState<AilmentValueObject>>(Singleton);
-            builder.Register<SkillElementStartState<DestroyValueObject>>(Singleton);
-            builder.Register<SkillElementStartState<DamageValueObject>>(Singleton);
-            builder.Register<SkillElementStartState<BuffValueObject>>(Singleton);
-            builder.Register<SkillElementStartState<CureValueObject>>(Singleton);
-            builder.Register<SkillElementStartState<EnhanceValueObject>>(Singleton);
-            builder.Register<SkillElementStartState<RecoveryValueObject>>(Singleton);
-            builder.Register<SkillElementStartState<RestoreValueObject>>(Singleton);
-            builder.Register<SkillElementStartState<SlipValueObject>>(Singleton);
-            builder.Register<SkillElementOutputState<AilmentValueObject>, AilmentOutputState>(Singleton);
-            builder.Register<SkillElementOutputState<BuffValueObject>, BuffOutputState>(Singleton);
-            builder.Register<SkillElementOutputState<CureValueObject>, CureOutputState>(Singleton);
-            builder.Register<SkillElementOutputState<EnhanceValueObject>, EnhanceOutputState>(Singleton);
-            builder.Register<SkillElementOutputState<DamageValueObject>, DamageOutputState>(Singleton);
-            builder.Register<SkillElementOutputState<DestroyValueObject>, DestroyOutputState>(Singleton);
-            builder.Register<SkillElementOutputState<RecoveryValueObject>, ResetOutputState>(Singleton);
-            builder.Register<SkillElementOutputState<RestoreValueObject>, RestoreOutputState>(Singleton);
-            builder.Register<SkillElementOutputState<SlipValueObject>, SlipOutputState>(Singleton);
-            builder.Register<SkillElementStopState<AilmentValueObject>>(Singleton);
-            builder.Register<SkillElementStopState<DestroyValueObject>>(Singleton);
-            builder.Register<SkillElementStopState<DamageValueObject>>(Singleton);
-            builder.Register<SkillElementStopState<BuffValueObject>>(Singleton);
-            builder.Register<SkillElementStopState<CureValueObject>>(Singleton);
-            builder.Register<SkillElementStopState<EnhanceValueObject>>(Singleton);
-            builder.Register<SkillElementStopState<RecoveryValueObject>>(Singleton);
-            builder.Register<SkillElementStopState<RestoreValueObject>>(Singleton);
-            builder.Register<SkillElementStopState<SlipValueObject>>(Singleton);
-            builder.Register<SkillElementBreakState<DamageValueObject>>(Singleton);
+            // SkillState
+            builder.Register<SkillStartState<AilmentValueObject>>(Singleton);
+            builder.Register<SkillStartState<DestroyValueObject>>(Singleton);
+            builder.Register<SkillStartState<DamageValueObject>>(Singleton);
+            builder.Register<SkillStartState<BuffValueObject>>(Singleton);
+            builder.Register<SkillStartState<CureValueObject>>(Singleton);
+            builder.Register<SkillStartState<EnhanceValueObject>>(Singleton);
+            builder.Register<SkillStartState<RecoveryValueObject>>(Singleton);
+            builder.Register<SkillStartState<RestoreValueObject>>(Singleton);
+            builder.Register<SkillStartState<SlipValueObject>>(Singleton);
+            builder.Register<SkillOutputState<AilmentValueObject>, AilmentOutputState>(Singleton);
+            builder.Register<SkillOutputState<BuffValueObject>, BuffOutputState>(Singleton);
+            builder.Register<SkillOutputState<CureValueObject>, CureOutputState>(Singleton);
+            builder.Register<SkillOutputState<EnhanceValueObject>, EnhanceOutputState>(Singleton);
+            builder.Register<SkillOutputState<DamageValueObject>, DamageOutputState>(Singleton);
+            builder.Register<SkillOutputState<DestroyValueObject>, DestroyOutputState>(Singleton);
+            builder.Register<SkillOutputState<RecoveryValueObject>, ResetOutputState>(Singleton);
+            builder.Register<SkillOutputState<RestoreValueObject>, RestoreOutputState>(Singleton);
+            builder.Register<SkillOutputState<SlipValueObject>, SlipOutputState>(Singleton);
+            builder.Register<SkillStopState<AilmentValueObject>>(Singleton);
+            builder.Register<SkillStopState<DestroyValueObject>>(Singleton);
+            builder.Register<SkillStopState<DamageValueObject>>(Singleton);
+            builder.Register<SkillStopState<BuffValueObject>>(Singleton);
+            builder.Register<SkillStopState<CureValueObject>>(Singleton);
+            builder.Register<SkillStopState<EnhanceValueObject>>(Singleton);
+            builder.Register<SkillStopState<RecoveryValueObject>>(Singleton);
+            builder.Register<SkillStopState<RestoreValueObject>>(Singleton);
+            builder.Register<SkillStopState<SlipValueObject>>(Singleton);
+            builder.Register<SkillBreakState<DamageValueObject>>(Singleton);
             builder.Register<CharacterDeadState<DamageValueObject>>(Singleton);
 
             #endregion
@@ -351,22 +351,22 @@ namespace BattleScene
             builder.Register<CharacterDeadUseCase>(Singleton);
             builder.Register<DamageOutputUseCase>(Singleton);
             builder.Register<EnemySelectActionUseCase>(Singleton);
-            builder.Register<SkillElementUseCase<DamageValueObject>, SkillElementUseCase<DamageValueObject>>(Singleton);
-            builder.Register<SkillElementUseCase<AilmentValueObject>, SkillElementUseCase<AilmentValueObject>>(Singleton);
-            builder.Register<SkillElementUseCase<DestroyValueObject>, SkillElementUseCase<DestroyValueObject>>(Singleton);
-            builder.Register<SkillElementUseCase<BuffValueObject>, SkillElementUseCase<BuffValueObject>>(Singleton);
-            builder.Register<SkillElementUseCase<CureValueObject>, SkillElementUseCase<CureValueObject>>(Singleton);
-            builder.Register<SkillElementUseCase<EnhanceValueObject>, SkillElementUseCase<EnhanceValueObject>>(Singleton);
-            builder.Register<SkillElementUseCase<SlipValueObject>, SkillElementUseCase<SlipValueObject>>(Singleton);
-            builder.Register<SkillElementUseCase<RecoveryValueObject>, SkillElementUseCase<RecoveryValueObject>>(Singleton);
-            builder.Register<SkillElementUseCase<RestoreValueObject>, SkillElementUseCase<RestoreValueObject>>(Singleton);
+            builder.Register<SkillUseCase<DamageValueObject>, SkillUseCase<DamageValueObject>>(Singleton);
+            builder.Register<SkillUseCase<AilmentValueObject>, SkillUseCase<AilmentValueObject>>(Singleton);
+            builder.Register<SkillUseCase<DestroyValueObject>, SkillUseCase<DestroyValueObject>>(Singleton);
+            builder.Register<SkillUseCase<BuffValueObject>, SkillUseCase<BuffValueObject>>(Singleton);
+            builder.Register<SkillUseCase<CureValueObject>, SkillUseCase<CureValueObject>>(Singleton);
+            builder.Register<SkillUseCase<EnhanceValueObject>, SkillUseCase<EnhanceValueObject>>(Singleton);
+            builder.Register<SkillUseCase<SlipValueObject>, SkillUseCase<SlipValueObject>>(Singleton);
+            builder.Register<SkillUseCase<RecoveryValueObject>, SkillUseCase<RecoveryValueObject>>(Singleton);
+            builder.Register<SkillUseCase<RestoreValueObject>, SkillUseCase<RestoreValueObject>>(Singleton);
             builder.Register<InitializeBattleUseCase>(Singleton);
             builder.Register<InitializeEnemyUseCase>(Singleton);
             builder.Register<InitializePlayerUseCase>(Singleton);
             builder.Register<OrderUseCase>(Singleton);
             builder.Register<PlayerSelectActionUseCase>(Singleton);
             builder.Register<PlayerSelectSkillUseCase>(Singleton);
-            builder.Register<SkillUseCase>(Singleton);
+            builder.Register<SkillUseCaseInTurnState>(Singleton);
             builder.Register<SlipUseCase>(Singleton);
             builder.Register<ResetAilmentUseCase>(Singleton);
 
@@ -397,15 +397,15 @@ namespace BattleScene
             builder.Register<ISpeedService, SpeedService>(Singleton);
             builder.Register<ITargetService, TargetService>(Singleton);
             builder.Register<TurnService>(Singleton);
-            builder.Register<ISkillElementService<AilmentValueObject>, AilmentService>(Singleton);
-            builder.Register<ISkillElementService<CureValueObject>, CureService>(Singleton);
-            builder.Register<ISkillElementService<DamageValueObject>, DamageService>(Singleton);
-            builder.Register<ISkillElementService<DestroyValueObject>, DestroyService>(Singleton);
-            builder.Register<ISkillElementService<BuffValueObject>, BuffService>(Singleton);
-            builder.Register<ISkillElementService<EnhanceValueObject>, EnhanceService>(Singleton);
-            builder.Register<ISkillElementService<SlipValueObject>, SlipService>(Singleton);
-            builder.Register<ISkillElementService<RecoveryValueObject>, ResetService>(Singleton);
-            builder.Register<ISkillElementService<RestoreValueObject>, RestoreService>(Singleton);
+            builder.Register<ISkillService<AilmentValueObject>, AilmentService>(Singleton);
+            builder.Register<ISkillService<CureValueObject>, CureService>(Singleton);
+            builder.Register<ISkillService<DamageValueObject>, DamageService>(Singleton);
+            builder.Register<ISkillService<DestroyValueObject>, DestroyService>(Singleton);
+            builder.Register<ISkillService<BuffValueObject>, BuffService>(Singleton);
+            builder.Register<ISkillService<EnhanceValueObject>, EnhanceService>(Singleton);
+            builder.Register<ISkillService<SlipValueObject>, SlipService>(Singleton);
+            builder.Register<ISkillService<RecoveryValueObject>, ResetService>(Singleton);
+            builder.Register<ISkillService<RestoreValueObject>, RestoreService>(Singleton);
 
             #endregion
 

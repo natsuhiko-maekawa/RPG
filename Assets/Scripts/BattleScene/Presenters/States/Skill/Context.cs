@@ -10,34 +10,34 @@ using Utility;
 
 namespace BattleScene.Presenters.States.Skill
 {
-    public class Context<TSkillElement> : IContext
+    public class Context<TSkill> : IContext
     {
-        private BaseState<TSkillElement> _state = null!;
+        private BaseState<TSkill> _state = null!;
 
         public CharacterEntity Actor { get; }
         public SkillCommonValueObject SkillCommon { get; }
         public IReadOnlyList<CharacterEntity> TargetList { get; }
-        public IReadOnlyList<TSkillElement> SkillElementList { get; }
+        public IReadOnlyList<TSkill> SkillComponentList { get; }
         public Queue<BattleEventEntity> BattleEventQueue { get; set; } = new();
         public Dead Dead { get; set; }
 
         public Context(
-            BaseState<TSkillElement> skillElementState,
+            BaseState<TSkill> skillState,
             CharacterEntity actor,
             SkillCommonValueObject skillCommon,
             IReadOnlyList<CharacterEntity> targetList,
-            IReadOnlyList<TSkillElement> skillElementList,
+            IReadOnlyList<TSkill> skillComponentList,
             Dead dead)
         {
             Actor = actor;
             SkillCommon = skillCommon;
             TargetList = targetList;
-            SkillElementList = skillElementList;
+            SkillComponentList = skillComponentList;
             Dead = dead;
-            TransitionTo(skillElementState);
+            TransitionTo(skillState);
         }
 
-        public void TransitionTo(BaseState<TSkillElement> skill)
+        public void TransitionTo(BaseState<TSkill> skill)
         {
             _state = skill;
             MyDebug.Log(GetClassName());
@@ -49,11 +49,11 @@ namespace BattleScene.Presenters.States.Skill
         private string GetClassName()
         {
             var originalClassName = _state.GetType().Name;
-            var className = TryGetMatchedText(originalClassName, "PrimeSkill(.+State).*$", out var matchedClassName)
+            var className = TryGetMatchedText(originalClassName, "Skill(.+State).*$", out var matchedClassName)
                 ? matchedClassName
                 : originalClassName;
             var originalGenericName = _state.GetType().GenericTypeArguments.FirstOrDefault()?.Name ?? "";
-            if (!TryGetMatchedText(originalGenericName, "(.+)ParameterValueObject$", out var genericName))
+            if (!TryGetMatchedText(originalGenericName, "(.+)ValueObject$", out var genericName))
                 return className;
             var genericClassName = genericName + className;
             return genericClassName;
@@ -70,13 +70,13 @@ namespace BattleScene.Presenters.States.Skill
 #endif
 
         public void Select() => _state.Select();
-        public bool IsContinue => _state is not ISkillElementStopState && !IsBreak;
-        public bool IsBreak => _state is ISkillElementBreakState or ICharacterDeadState;
+        public bool IsContinue => _state is not ISkillStopState && !IsBreak;
+        public bool IsBreak => _state is ISkillBreakState or ICharacterDeadState;
 
         public StateCode NextStateCode => _state switch
         {
-            ISkillElementStopState => StateCode.Next,
-            ISkillElementBreakState => StateCode.AdvanceTurnState,
+            ISkillStopState => StateCode.Next,
+            ISkillBreakState => StateCode.AdvanceTurnState,
             ICharacterDeadState => StateCode.CharacterDeadState,
             _ => StateCode.Next
         };

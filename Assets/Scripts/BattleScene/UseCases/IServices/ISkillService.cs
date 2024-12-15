@@ -4,12 +4,12 @@ using BattleScene.Domain.ValueObjects;
 
 namespace BattleScene.UseCases.IServices
 {
-    public interface ISkillElementService<in TSkillElement>
+    public interface ISkillService<in TSkillComponent>
     {
         public void UpdateBattleEvent(
             IReadOnlyList<BattleEventEntity> battleEventList,
             SkillCommonValueObject skillCommon,
-            IReadOnlyList<TSkillElement> skillElementList,
+            IReadOnlyList<TSkillComponent> skillComponentList,
             IReadOnlyList<CharacterEntity> targetList);
 
         public void ExecuteBattleEvent(IReadOnlyList<BattleEventEntity> battleEventList);

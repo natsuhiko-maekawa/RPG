@@ -9,7 +9,7 @@ using Range = BattleScene.Domain.Codes.Range;
 
 namespace BattleScene.UseCases.Services
 {
-    public class DamageService : ISkillElementService<DamageValueObject>
+    public class DamageService : ISkillService<DamageValueObject>
     {
         private readonly DamageEvaluatorService _damageEvaluator;
         private readonly IsHitEvaluatorService _isHitEvaluator;

@@ -3,17 +3,17 @@ using BattleScene.Presenters.PresenterFacades;
 
 namespace BattleScene.Presenters.States.Skill
 {
-    public class AilmentOutputState : SkillElementOutputState<AilmentValueObject>
+    public class AilmentOutputState : SkillOutputState<AilmentValueObject>
     {
         private readonly AilmentOutputPresenterFacade _facade;
-        private readonly SkillElementStopState<AilmentValueObject> _skillElementStopState;
+        private readonly SkillStopState<AilmentValueObject> _skillStopState;
 
         public AilmentOutputState(
             AilmentOutputPresenterFacade facade,
-            SkillElementStopState<AilmentValueObject> skillElementStopState)
+            SkillStopState<AilmentValueObject> skillStopState)
         {
             _facade = facade;
-            _skillElementStopState = skillElementStopState;
+            _skillStopState = skillStopState;
         }
 
         public override void Start()
@@ -30,7 +30,7 @@ namespace BattleScene.Presenters.States.Skill
 
         public override void Select()
         {
-            Context.TransitionTo(_skillElementStopState);
+            Context.TransitionTo(_skillStopState);
         }
     }
 }

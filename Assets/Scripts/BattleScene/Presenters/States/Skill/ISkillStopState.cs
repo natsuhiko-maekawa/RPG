@@ -1,6 +1,6 @@
 ﻿namespace BattleScene.Presenters.States.Skill
 {
-    public interface ISkillElementBreakState
+    public interface ISkillStopState
     {
     }
 }

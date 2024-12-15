@@ -4,17 +4,17 @@ using BattleScene.Presenters.PresenterFacades;
 
 namespace BattleScene.Presenters.States.Skill
 {
-    public class EnhanceOutputState: SkillElementOutputState<EnhanceValueObject>
+    public class EnhanceOutputState: SkillOutputState<EnhanceValueObject>
     {
         private readonly EnhanceOutputPresenterFacade _facade;
-        private readonly SkillElementStopState<EnhanceValueObject> _skillElementStopState;
+        private readonly SkillStopState<EnhanceValueObject> _skillStopState;
 
         public EnhanceOutputState(
             EnhanceOutputPresenterFacade facade,
-            SkillElementStopState<EnhanceValueObject> skillElementStopState)
+            SkillStopState<EnhanceValueObject> skillStopState)
         {
             _facade = facade;
-            _skillElementStopState = skillElementStopState;
+            _skillStopState = skillStopState;
         }
 
         public override void Start()
@@ -27,7 +27,7 @@ namespace BattleScene.Presenters.States.Skill
 
         public override void Select()
         {
-            Context.TransitionTo(_skillElementStopState);
+            Context.TransitionTo(_skillStopState);
         }
     }
 }

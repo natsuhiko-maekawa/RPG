@@ -11,7 +11,7 @@ using Utility;
 
 namespace BattleScene.UseCases.Services
 {
-    public class AilmentService : ISkillElementService<AilmentValueObject>
+    public class AilmentService : ISkillService<AilmentValueObject>
     {
         private readonly IActualTargetIdPickerService _actualTargetIdPicker;
         private readonly IRepository<AilmentEntity, (CharacterId, AilmentCode)> _ailmentRepository;

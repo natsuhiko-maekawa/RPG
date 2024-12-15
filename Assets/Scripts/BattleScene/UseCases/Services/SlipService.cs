@@ -9,7 +9,7 @@ using Utility;
 
 namespace BattleScene.UseCases.Services
 {
-    public class SlipService : ISkillElementService<SlipValueObject>
+    public class SlipService : ISkillService<SlipValueObject>
     {
         private readonly IActualTargetIdPickerService _actualTargetIdPicker;
         private readonly IRepository<SlipEntity, SlipCode> _slipRepository;

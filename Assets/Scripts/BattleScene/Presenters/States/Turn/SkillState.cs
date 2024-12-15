@@ -8,20 +8,20 @@ namespace BattleScene.Presenters.States.Turn
 {
     public class SkillState : BaseState
     {
-        private readonly SkillUseCase _useCase;
+        private readonly SkillUseCaseInTurnState _useCaseInTurnState;
         private readonly SkillPresenterFacade _facade;
         private readonly SkillStateMachine _skillStateMachine;
         private readonly CharacterDeadState _characterDeadState;
         private readonly AdvanceTurnState _advanceTurnState;
 
         public SkillState(
-            SkillUseCase useCase,
+            SkillUseCaseInTurnState useCaseInTurnState,
             SkillPresenterFacade facade,
             SkillStateMachine skillStateMachine,
             CharacterDeadState characterDeadState,
             AdvanceTurnState advanceTurnState)
         {
-            _useCase = useCase;
+            _useCaseInTurnState = useCaseInTurnState;
             _facade = facade;
             _skillStateMachine = skillStateMachine;
             _characterDeadState = characterDeadState;
@@ -32,7 +32,7 @@ namespace BattleScene.Presenters.States.Turn
         {
             var actor = Context.Actor ?? throw new InvalidOperationException(ExceptionMessage.ContextActorIdIsNull);
             var skill = Context.Skill ?? throw new InvalidOperationException(ExceptionMessage.ContextSkillIsNull);
-            _useCase.ExecuteSkill(actor, skill, Context.BattleEventCode);
+            _useCaseInTurnState.ExecuteSkill(actor, skill, Context.BattleEventCode);
             _facade.Output(Context);
         }
 

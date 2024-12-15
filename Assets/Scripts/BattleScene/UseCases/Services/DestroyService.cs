@@ -10,7 +10,7 @@ using Utility;
 
 namespace BattleScene.UseCases.Services
 {
-    public class DestroyService : ISkillElementService<DestroyValueObject>
+    public class DestroyService : ISkillService<DestroyValueObject>
     {
         private readonly IRepository<BodyPartEntity, (CharacterId, BodyPartCode)> _bodyPartRepository;
 

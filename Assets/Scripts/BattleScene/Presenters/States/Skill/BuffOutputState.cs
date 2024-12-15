@@ -4,16 +4,16 @@ using BattleScene.Presenters.PresenterFacades;
 
 namespace BattleScene.Presenters.States.Skill
 {
-    public class BuffOutputState : SkillElementOutputState<BuffValueObject>
+    public class BuffOutputState : SkillOutputState<BuffValueObject>
     {
         private readonly BuffOutputPresenterFacade _facade;
-        private readonly SkillElementStopState<BuffValueObject> _skillElementStopState;
+        private readonly SkillStopState<BuffValueObject> _skillStopState;
 
         public BuffOutputState(
-            SkillElementStopState<BuffValueObject> skillElementStopState,
+            SkillStopState<BuffValueObject> skillStopState,
             BuffOutputPresenterFacade facade)
         {
-            _skillElementStopState = skillElementStopState;
+            _skillStopState = skillStopState;
             _facade = facade;
         }
 
@@ -27,7 +27,7 @@ namespace BattleScene.Presenters.States.Skill
 
         public override void Select()
         {
-            Context.TransitionTo(_skillElementStopState);
+            Context.TransitionTo(_skillStopState);
         }
     }
 }

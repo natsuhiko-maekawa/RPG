@@ -3,17 +3,17 @@ using BattleScene.Presenters.PresenterFacades;
 
 namespace BattleScene.Presenters.States.Skill
 {
-    public class CureOutputState : SkillElementOutputState<CureValueObject>
+    public class CureOutputState : SkillOutputState<CureValueObject>
     {
         private readonly CureOutputPresenterFacade _facade;
-        private readonly SkillElementStopState<CureValueObject> _skillElementStopState;
+        private readonly SkillStopState<CureValueObject> _skillStopState;
 
         public CureOutputState(
             CureOutputPresenterFacade facade,
-            SkillElementStopState<CureValueObject> skillElementStopState)
+            SkillStopState<CureValueObject> skillStopState)
         {
             _facade = facade;
-            _skillElementStopState = skillElementStopState;
+            _skillStopState = skillStopState;
         }
 
         public override void Start()
@@ -23,7 +23,7 @@ namespace BattleScene.Presenters.States.Skill
 
         public override void Select()
         {
-            Context.TransitionTo(_skillElementStopState);
+            Context.TransitionTo(_skillStopState);
         }
     }
 }

@@ -7,7 +7,7 @@ using Utility;
 
 namespace BattleScene.UseCases.Services
 {
-    public class ResetService : ISkillElementService<RecoveryValueObject>
+    public class ResetService : ISkillService<RecoveryValueObject>
     {
         private readonly IAilmentResetService _ailmentReset;
         private readonly IDestroyResetService _destroyReset;

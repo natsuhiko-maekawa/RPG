@@ -10,7 +10,7 @@ using Utility;
 
 namespace BattleScene.UseCases.Services
 {
-    public class RestoreService : ISkillElementService<RestoreValueObject>
+    public class RestoreService : ISkillService<RestoreValueObject>
     {
         private readonly IFactory<PlayerPropertyValueObject, CharacterTypeCode> _playerPropertyFactory;
         private readonly ITechnicalPointService _technicalPoint;

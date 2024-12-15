@@ -3,7 +3,7 @@ using BattleScene.Domain.Entities;
 
 namespace BattleScene.Presenters.States.Skill
 {
-    public abstract class SkillElementOutputState<TSkillElement> : BaseState<TSkillElement>
+    public abstract class SkillOutputState<TSkillComponent> : BaseState<TSkillComponent>
     {
         protected bool TryGetSuccessBattleEvent([NotNullWhen(true)] out BattleEventEntity? successBattleEvent)
         {

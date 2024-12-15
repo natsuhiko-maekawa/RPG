@@ -84,17 +84,16 @@ namespace BattleScene.Presenters.StateMachines
 
             yield break;
 
-            IContext CreateContext<TSkillElement>(
-                IReadOnlyList<TSkillElement> skillElementList)
+            IContext CreateContext<TSkill>(
+                IReadOnlyList<TSkill> skillList)
             {
                 if (turnContext.Actor is null) throw new InvalidOperationException(ExceptionMessage.ContextActorIdIsNull);
-                var skillElementStartState =
-                    _container.Resolve<SkillElementStartState<TSkillElement>>();
-                var skillContext = new Context<TSkillElement>(
-                    skillElementState: skillElementStartState,
+                var skillStartState = _container.Resolve<SkillStartState<TSkill>>();
+                var skillContext = new Context<TSkill>(
+                    skillState: skillStartState,
                     actor: turnContext.Actor,
                     skillCommon: skill.Common,
-                    skillElementList: skillElementList,
+                    skillComponentList: skillList,
                     targetList: turnContext.TargetList,
                     dead: prevSkillContext?.Dead ?? Dead.None);
                 prevSkillContext = skillContext;

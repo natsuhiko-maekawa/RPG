@@ -1,6 +1,6 @@
 namespace BattleScene.Presenters.States.Skill
 {
-    public class CharacterDeadState<TPrimeSkillParameter> : BaseState<TPrimeSkillParameter>, ICharacterDeadState
+    public class CharacterDeadState<TSkill> : BaseState<TSkill>, ICharacterDeadState
     {
     }
 }

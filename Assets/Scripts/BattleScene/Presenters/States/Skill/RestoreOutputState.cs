@@ -3,17 +3,17 @@ using BattleScene.Presenters.PresenterFacades;
 
 namespace BattleScene.Presenters.States.Skill
 {
-    public class RestoreOutputState : SkillElementOutputState<RestoreValueObject>
+    public class RestoreOutputState : SkillOutputState<RestoreValueObject>
     {
         private readonly RestoreOutputPresenterFacade _facade;
-        private readonly SkillElementStopState<RestoreValueObject> _skillElementStopState;
+        private readonly SkillStopState<RestoreValueObject> _skillStopState;
 
         public RestoreOutputState(
             RestoreOutputPresenterFacade facade,
-            SkillElementStopState<RestoreValueObject> skillElementStopState)
+            SkillStopState<RestoreValueObject> skillStopState)
         {
             _facade = facade;
-            _skillElementStopState = skillElementStopState;
+            _skillStopState = skillStopState;
         }
 
         public override void Start()
@@ -23,7 +23,7 @@ namespace BattleScene.Presenters.States.Skill
 
         public override void Select()
         {
-            Context.TransitionTo(_skillElementStopState);
+            Context.TransitionTo(_skillStopState);
         }
     }
 }

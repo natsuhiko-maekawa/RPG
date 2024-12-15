@@ -10,7 +10,7 @@ using Utility;
 
 namespace BattleScene.UseCases.Services
 {
-    public class EnhanceService : ISkillElementService<EnhanceValueObject>
+    public class EnhanceService : ISkillService<EnhanceValueObject>
     {
         private readonly IRepository<EnhanceEntity, (CharacterId, EnhanceCode)> _enhanceRepository;
 

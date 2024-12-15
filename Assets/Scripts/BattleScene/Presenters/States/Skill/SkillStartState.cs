@@ -5,20 +5,20 @@ using BattleScene.UseCases.UseCases;
 
 namespace BattleScene.Presenters.States.Skill
 {
-    public class SkillElementStartState<TSkillElement> : BaseState<TSkillElement>
+    public class SkillStartState<TSkillComponent> : BaseState<TSkillComponent>
     {
-        private readonly SkillElementUseCase<TSkillElement> _useCase;
-        private readonly SkillElementOutputState<TSkillElement> _skillElementOutputState;
-        private readonly SkillElementStopState<TSkillElement> _skillElementStopState;
+        private readonly SkillUseCase<TSkillComponent> _useCase;
+        private readonly SkillOutputState<TSkillComponent> _skillOutputState;
+        private readonly SkillStopState<TSkillComponent> _skillStopState;
 
-        public SkillElementStartState(
-            SkillElementUseCase<TSkillElement> useCase,
-            SkillElementOutputState<TSkillElement> skillElementOutputState,
-            SkillElementStopState<TSkillElement> skillElementStopState)
+        public SkillStartState(
+            SkillUseCase<TSkillComponent> useCase,
+            SkillOutputState<TSkillComponent> skillOutputState,
+            SkillStopState<TSkillComponent> skillStopState)
         {
             _useCase = useCase;
-            _skillElementOutputState = skillElementOutputState;
-            _skillElementStopState = skillElementStopState;
+            _skillOutputState = skillOutputState;
+            _skillStopState = skillStopState;
         }
 
         /// <summary>
@@ -29,16 +29,16 @@ namespace BattleScene.Presenters.States.Skill
         {
             var battleEventList = _useCase.ExecuteBattleEvent(
                 skillCommon: Context.SkillCommon,
-                skillElementList: Context.SkillElementList,
+                skillComponentList: Context.SkillComponentList,
                 targetList: Context.TargetList);
             Context.BattleEventQueue = new Queue<BattleEventEntity>(battleEventList);
 
-            BaseState<TSkillElement> nextState =
+            BaseState<TSkillComponent> nextState =
                 battleEventList.All(x => x.IsFailure)
                 && Context.TargetList.All(x => x.IsPlayer)
                 && _useCase.IsExecutedDamage()
-                    ? _skillElementStopState
-                    : _skillElementOutputState;
+                    ? _skillStopState
+                    : _skillOutputState;
             Context.TransitionTo(nextState);
         }
     }

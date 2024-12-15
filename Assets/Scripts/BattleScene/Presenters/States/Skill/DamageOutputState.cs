@@ -6,26 +6,26 @@ using BattleScene.UseCases.UseCases;
 
 namespace BattleScene.Presenters.States.Skill
 {
-    public class DamageOutputState : SkillElementOutputState<DamageValueObject>
+    public class DamageOutputState : SkillOutputState<DamageValueObject>
     {
         private readonly DamageOutputUseCase _useCase;
         private readonly DamageOutputPresenterFacade _facade;
         private readonly CharacterDeadState<DamageValueObject> _characterDeadState;
-        private readonly SkillElementBreakState<DamageValueObject> _skillElementBreakState;
-        private readonly SkillElementStopState<DamageValueObject> _skillElementStopState;
+        private readonly SkillBreakState<DamageValueObject> _skillBreakState;
+        private readonly SkillStopState<DamageValueObject> _skillStopState;
 
         public DamageOutputState(
             DamageOutputUseCase useCase,
             DamageOutputPresenterFacade facade,
             CharacterDeadState<DamageValueObject> characterDeadState,
-            SkillElementBreakState<DamageValueObject> skillElementBreakState,
-            SkillElementStopState<DamageValueObject> skillElementStopState)
+            SkillBreakState<DamageValueObject> skillBreakState,
+            SkillStopState<DamageValueObject> skillStopState)
         {
             _useCase = useCase;
             _facade = facade;
             _characterDeadState = characterDeadState;
-            _skillElementBreakState = skillElementBreakState;
-            _skillElementStopState = skillElementStopState;
+            _skillBreakState = skillBreakState;
+            _skillStopState = skillStopState;
         }
 
         public override void Start()
@@ -43,12 +43,12 @@ namespace BattleScene.Presenters.States.Skill
         {
             if (Context.BattleEventQueue.Peek().AttackList
                 .All(x => !x.IsHit)) 
-                return _skillElementBreakState;
+                return _skillBreakState;
 
             Context.Dead = _useCase.GetDeadInThisTurn();
             if (Context.Dead is Dead.Player or Dead.Enemies) return _characterDeadState;
 
-            return _skillElementStopState;
+            return _skillStopState;
         }
     }
 }

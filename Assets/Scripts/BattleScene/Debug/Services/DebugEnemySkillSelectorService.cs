@@ -12,7 +12,7 @@ namespace BattleScene.Debug.Services
 {
     public class DebugEnemySkillSelectorService : MonoBehaviour, IEnemySkillSelectorService
     {
-        [SerializeField] private PrimeSkillCode primeSkillCode;
+        [SerializeField] private SkillComponentCode skillCode;
         private IFactory<CharacterPropertyValueObject, CharacterTypeCode> _characterPropertyFactory;
         private IFactory<SkillValueObject, SkillCode> _skillFactory;
         private IMyRandomService _myRandom;
@@ -30,7 +30,7 @@ namespace BattleScene.Debug.Services
 
         private void Reset()
         {
-            primeSkillCode = PrimeSkillCode.All;
+            skillCode = SkillComponentCode.All;
         }
 
         public SkillValueObject Select(CharacterEntity actor)
@@ -41,33 +41,33 @@ namespace BattleScene.Debug.Services
             var skillList = skillCodeList
                 .Select(_skillFactory.Create)
                 .ToList();
-            var specificPrimeSkillList = skillList
-                .Where(IsSpecificPrimeSkill)
+            var specificSkillList = skillList
+                .Where(IsSpecificSkillComponent)
                 .ToList();
-            var skill = specificPrimeSkillList.Count == 0
+            var skill = specificSkillList.Count == 0
                 ? _myRandom.Choice(skillList)
-                : _myRandom.Choice(specificPrimeSkillList);
+                : _myRandom.Choice(specificSkillList);
             return skill;
         }
 
-        private bool IsSpecificPrimeSkill(SkillValueObject skill)
+        private bool IsSpecificSkillComponent(SkillValueObject skill)
         {
-            var value = primeSkillCode switch
+            var value = skillCode switch
             {
-                PrimeSkillCode.All => true,
-                PrimeSkillCode.Damage => skill.DamageList.Count != 0,
-                PrimeSkillCode.Ailment => skill.AilmentList.Count != 0,
-                PrimeSkillCode.Slip => skill.SlipList.Count != 0,
-                PrimeSkillCode.Destroy => skill.DestroyList.Count != 0,
-                PrimeSkillCode.Buff => skill.BuffList.Count != 0,
-                PrimeSkillCode.Restore => skill.RestoreList.Count != 0,
+                SkillComponentCode.All => true,
+                SkillComponentCode.Damage => skill.DamageList.Count != 0,
+                SkillComponentCode.Ailment => skill.AilmentList.Count != 0,
+                SkillComponentCode.Slip => skill.SlipList.Count != 0,
+                SkillComponentCode.Destroy => skill.DestroyList.Count != 0,
+                SkillComponentCode.Buff => skill.BuffList.Count != 0,
+                SkillComponentCode.Restore => skill.RestoreList.Count != 0,
                 _ => throw new ArgumentOutOfRangeException()
             };
 
             return value;
         }
 
-        private enum PrimeSkillCode
+        private enum SkillComponentCode
         {
             All,
             Damage,

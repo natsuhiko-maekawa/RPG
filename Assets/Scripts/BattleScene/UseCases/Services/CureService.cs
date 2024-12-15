@@ -8,7 +8,7 @@ using Utility;
 
 namespace BattleScene.UseCases.Services
 {
-    public class CureService : ISkillElementService<CureValueObject>
+    public class CureService : ISkillService<CureValueObject>
     {
         private readonly CureEvaluatorService _cureEvaluator;
         private readonly IHitPointService _hitPoint;

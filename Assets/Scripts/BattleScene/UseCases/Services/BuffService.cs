@@ -10,7 +10,7 @@ using Utility;
 
 namespace BattleScene.UseCases.Services
 {
-    public class BuffService : ISkillElementService<BuffValueObject>
+    public class BuffService : ISkillService<BuffValueObject>
     {
         private readonly IRepository<BuffEntity, (CharacterId, BuffCode)> _buffRepository;
 

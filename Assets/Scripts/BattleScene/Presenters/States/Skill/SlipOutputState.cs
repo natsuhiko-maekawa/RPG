@@ -3,16 +3,16 @@ using BattleScene.Presenters.PresenterFacades;
 
 namespace BattleScene.Presenters.States.Skill
 {
-    public class SlipOutputState : SkillElementOutputState<SlipValueObject>
+    public class SlipOutputState : SkillOutputState<SlipValueObject>
     {
-        private readonly SkillElementStopState<SlipValueObject> _skillElementStopState;
+        private readonly SkillStopState<SlipValueObject> _skillStopState;
         private readonly SlipOutputPresenterFacade _facade;
 
         public SlipOutputState(
-            SkillElementStopState<SlipValueObject> skillElementStopState,
+            SkillStopState<SlipValueObject> skillStopState,
             SlipOutputPresenterFacade facade)
         {
-            _skillElementStopState = skillElementStopState;
+            _skillStopState = skillStopState;
             _facade = facade;
         }
 
@@ -31,7 +31,7 @@ namespace BattleScene.Presenters.States.Skill
         public override void Select()
         {
             BaseState<SlipValueObject> nextState = Context.BattleEventQueue.Count == 0
-                ? _skillElementStopState
+                ? _skillStopState
                 : this;
             Context.TransitionTo(nextState);
         }
