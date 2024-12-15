@@ -1,4 +1,4 @@
-﻿using System;
+﻿using UnityEngine;
 
 namespace BattleScene.Views
 {
@@ -8,7 +8,7 @@ namespace BattleScene.Views
             int maxTableSize,
             int itemCount)
         {
-            _tableSize = Math.Min(maxTableSize, itemCount);
+            _tableSize = Mathf.Min(maxTableSize, itemCount);
             _maxIndex = itemCount - _tableSize;
         }
 

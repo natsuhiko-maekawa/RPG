@@ -15,7 +15,7 @@ namespace BattleScene.Views.GameObjects
 
         public void Set(int currentPoint, int maxPoint)
         {
-            var rate = Math.Min(currentPoint / (float)maxPoint, 1.0f);
+            var rate = Mathf.Min(currentPoint / (float)maxPoint, 1.0f);
             _meter.rectTransform.localScale = new Vector3(rate, 1.0f, 1.0f);
         }
     }

@@ -98,8 +98,8 @@ namespace BattleScene.Views.Views
 
             _enemyGroupView[_enemyPositionList[_index]].StopFrameAnimation();
             _index = vector2.x > 0
-                ? Math.Min(_index + 1, _enemyPositionList.Count - 1)
-                : Math.Max(_index - 1, 0);
+                ? Mathf.Min(_index + 1, _enemyPositionList.Count - 1)
+                : Mathf.Max(_index - 1, 0);
 
             StartAnimation(_model);
         }

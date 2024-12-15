@@ -44,7 +44,7 @@ namespace BattleScene.Views.GameObjects
 
         private void RemoveItem(int itemCount)
         {
-            var max = Math.Min(itemCount, _gameObjectList.Count);
+            var max = Mathf.Min(itemCount, _gameObjectList.Count);
             for (var i = 0; i < max; ++i)
             {
                 Destroy(_gameObjectList.Last().gameObject);
