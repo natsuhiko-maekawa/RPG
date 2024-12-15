@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 using BattleScene.DataAccesses;
 using BattleScene.DataAccesses.Dto;
 using BattleScene.Domain.Codes;
@@ -29,14 +30,14 @@ namespace BattleScene.Presenters.Presenters
             _orderItemRepository = orderItemRepository;
         }
 
-        public void Initialize(CharacterEntity[] characterArray)
+        public async Task Initialize(CharacterEntity[] characterArray)
         {
             var enemyImagePathArray = characterArray
                 .Select(x => x.CharacterTypeCode)
                 .Distinct()
                 .Select(x => _enemyViewInfoResource.Get(x).ImagePath)
                 .ToArray();
-            _orderView.Initialize(enemyImagePathArray);
+            await _orderView.Initialize(enemyImagePathArray);
         }
 
         public void StartAnimation()

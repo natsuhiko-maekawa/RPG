@@ -29,7 +29,7 @@ namespace BattleScene.Presenters.States.Battle
             _enemyImageView.StartAnimation(enemyList.Length);
             await _enemyImageView.SetImage(enemyList);
             _useCase.Initialize();
-            _facade.Initialize(enemyList);
+            await _facade.Initialize(enemyList);
             Context.TransitionTo(_turnState);
         }
     }

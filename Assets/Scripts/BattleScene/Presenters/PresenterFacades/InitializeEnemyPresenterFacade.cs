@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using BattleScene.Domain.Entities;
 using BattleScene.Presenters.Presenters;
 
@@ -13,9 +14,9 @@ namespace BattleScene.Presenters.PresenterFacades
             _orderView = orderView;
         }
 
-        public void Initialize(CharacterEntity[] characterArray)
+        public async Task Initialize(CharacterEntity[] characterArray)
         {
-            _orderView.Initialize(characterArray);
+            await _orderView.Initialize(characterArray);
         }
     }
 }

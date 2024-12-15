@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using BattleScene.Views.GameObjects;
 using BattleScene.Views.Utilities;
 using BattleScene.Views.ViewModels;
@@ -25,7 +26,7 @@ namespace BattleScene.Views.Views
             _order.enabled = true;
         }
 
-        public async void Initialize(string[] enemyImagePathArray)
+        public async Task Initialize(string[] enemyImagePathArray)
         {
             var spriteFlyweight = SpriteFlyweight.Instance;
             foreach (var enemyImagePath in enemyImagePathArray)
