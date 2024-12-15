@@ -48,8 +48,8 @@ namespace Tests.BattleScene.UseCases.Services
         private readonly IRepository<EnhanceEntity, (CharacterId, EnhanceCode)> _mockEnhanceRepository
             = new MockRepository<EnhanceEntity, (CharacterId, EnhanceCode)>();
 
-        private readonly IRepository<OrderedItemEntity, OrderedItemId> _mockOrderedItemRepository
-            = new MockRepository<OrderedItemEntity, OrderedItemId>();
+        private readonly IRepository<OrderItemEntity, OrderItemId> _mockOrderItemRepository
+            = new MockRepository<OrderItemEntity, OrderItemId>();
 
         private readonly IRepository<SlipEntity, SlipCode> _mockSlipRepository
             = new MockRepository<SlipEntity, SlipCode>();
@@ -64,7 +64,7 @@ namespace Tests.BattleScene.UseCases.Services
             _mockAilmentRepository.Remove();
             _mockBuffRepository.Remove();
             _mockCharacterRepository.Remove();
-            _mockOrderedItemRepository.Remove();
+            _mockOrderItemRepository.Remove();
             _mockSlipRepository.Remove();
             _stubBattlePropertyFactory = GetStubBattlePropertyFactory();
             _stubSpeedService = GetStubSpeedService();
@@ -131,7 +131,7 @@ namespace Tests.BattleScene.UseCases.Services
                 battlePropertyFactory: _stubBattlePropertyFactory,
                 ailmentRepository: _mockAilmentRepository,
                 characterRepository: _mockCharacterRepository,
-                orderedItemRepository: _mockOrderedItemRepository,
+                orderItemRepository: _mockOrderItemRepository,
                 slipRepository: _mockSlipRepository,
                 speed: _stubSpeedService);
             return orderService;
@@ -141,34 +141,34 @@ namespace Tests.BattleScene.UseCases.Services
 
         #region ForTests
 
-        private OrderedItemEntity[] GetExpectedValue(object[] items)
+        private OrderItemEntity[] GetExpectedValue(object[] items)
         {
             return items
-                .Select(GetOrderedItem)
+                .Select(GetOrderItem)
                 .ToArray();
         }
 
-        private static OrderedItemEntity GetOrderedItem(object expected, int i)
+        private static OrderItemEntity GetOrderItem(object expected, int i)
         {
             switch (expected)
             {
                 case CharacterEntity character:
                 {
-                    var orderedItem = new OrderedItemEntity(new OrderedItemId(), i);
-                    orderedItem.SetOrderedItem(new ActorInTurn(character));
-                    return orderedItem;
+                    var orderItem = new OrderItemEntity(new OrderItemId(), i);
+                    orderItem.SetOrderItem(new ActorInTurn(character));
+                    return orderItem;
                 }
                 case AilmentCode ailmentCode:
                 {
-                    var orderedItem = new OrderedItemEntity(new OrderedItemId(), i);
-                    orderedItem.SetOrderedItem(new ActorInTurn(ailmentCode));
-                    return orderedItem;
+                    var orderItem = new OrderItemEntity(new OrderItemId(), i);
+                    orderItem.SetOrderItem(new ActorInTurn(ailmentCode));
+                    return orderItem;
                 }
                 case SlipCode slipCode:
                 {
-                    var orderedItem = new OrderedItemEntity(new OrderedItemId(), i);
-                    orderedItem.SetOrderedItem(new ActorInTurn(slipCode));
-                    return orderedItem;
+                    var orderItem = new OrderItemEntity(new OrderItemId(), i);
+                    orderItem.SetOrderItem(new ActorInTurn(slipCode));
+                    return orderItem;
                 }
                 default:
                     throw new InvalidCastException();
@@ -263,7 +263,7 @@ namespace Tests.BattleScene.UseCases.Services
             var (slime, slimeName) = AddSlime();
 
             _orderService.Update();
-            var actual = _mockOrderedItemRepository.Get();
+            var actual = _mockOrderItemRepository.Get();
 
             var items = new object[]
             {
@@ -271,7 +271,7 @@ namespace Tests.BattleScene.UseCases.Services
             };
             var expected = GetExpectedValue(items);
 
-            Assert.That(actual, Is.EqualTo(expected).Using(new OrderedItemEqualityComparator()));
+            Assert.That(actual, Is.EqualTo(expected).Using(new OrderItemEqualityComparator()));
         }
 
         [Test]
@@ -282,7 +282,7 @@ namespace Tests.BattleScene.UseCases.Services
             var (bee2, bee2Name) = AddBee2();
 
             _orderService.Update();
-            var actual = _mockOrderedItemRepository.Get();
+            var actual = _mockOrderItemRepository.Get();
 
             var items = new object[]
             {
@@ -294,7 +294,7 @@ namespace Tests.BattleScene.UseCases.Services
             };
             var expected = GetExpectedValue(bee.Id.CompareTo(bee2.Id) < 0 ? items : items2);
 
-            Assert.That(actual, Is.EqualTo(expected).Using(new OrderedItemEqualityComparator()));
+            Assert.That(actual, Is.EqualTo(expected).Using(new OrderItemEqualityComparator()));
         }
 
         [Test]
@@ -306,7 +306,7 @@ namespace Tests.BattleScene.UseCases.Services
             var (dragon, dragonName) = AddDragon();
 
             _orderService.Update();
-            var actual = _mockOrderedItemRepository.Get();
+            var actual = _mockOrderItemRepository.Get();
 
             var items = new object[]
             {
@@ -314,7 +314,7 @@ namespace Tests.BattleScene.UseCases.Services
             };
             var expected = GetExpectedValue(items);
 
-            Assert.That(actual, Is.EqualTo(expected).Using(new OrderedItemEqualityComparator()));
+            Assert.That(actual, Is.EqualTo(expected).Using(new OrderItemEqualityComparator()));
         }
 
         [Test]
@@ -327,7 +327,7 @@ namespace Tests.BattleScene.UseCases.Services
             var (shuten, shutenName) = AddShuten();
 
             _orderService.Update();
-            var actual = _mockOrderedItemRepository.Get();
+            var actual = _mockOrderItemRepository.Get();
 
             var items = new object[]
             {
@@ -335,7 +335,7 @@ namespace Tests.BattleScene.UseCases.Services
             };
             var expected = GetExpectedValue(items);
 
-            Assert.That(actual, Is.EqualTo(expected).Using(new OrderedItemEqualityComparator()));
+            Assert.That(actual, Is.EqualTo(expected).Using(new OrderItemEqualityComparator()));
         }
 
         [Test]
@@ -352,7 +352,7 @@ namespace Tests.BattleScene.UseCases.Services
             poisoning.AdvanceTurn();
 
             _orderService.Update();
-            var actual = _mockOrderedItemRepository.Get();
+            var actual = _mockOrderItemRepository.Get();
 
             var items = new object[]
             {
@@ -361,14 +361,14 @@ namespace Tests.BattleScene.UseCases.Services
             };
             var expected = GetExpectedValue(items);
 
-            Assert.That(actual, Is.EqualTo(expected).Using(new OrderedItemEqualityComparator()));
+            Assert.That(actual, Is.EqualTo(expected).Using(new OrderItemEqualityComparator()));
         }
 
-        private static void MockOrderedItemRepositoryLogger(
-            IRepository<OrderedItemEntity, OrderedItemId> orderedItemRepository,
+        private static void MockOrderItemRepositoryLogger(
+            IRepository<OrderItemEntity, OrderItemId> orderItemRepository,
             IReadOnlyList<(CharacterId, string)> characterIdNamePairList)
         {
-            var log = orderedItemRepository.ToString();
+            var log = orderItemRepository.ToString();
             foreach (var (characterId, characterName) in characterIdNamePairList)
             {
                 log = log.Replace(characterId.ToString(), characterName);

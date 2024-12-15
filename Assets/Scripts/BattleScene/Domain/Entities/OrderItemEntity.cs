@@ -4,24 +4,24 @@ using BattleScene.Domain.Ids;
 
 namespace BattleScene.Domain.Entities
 {
-    public class OrderedItemEntity : BaseEntity<OrderedItemId>
+    public class OrderItemEntity : BaseEntity<OrderItemId>
     {
-        public OrderedItemEntity(
-            OrderedItemId orderedItemId,
+        public OrderItemEntity(
+            OrderItemId orderItemId,
             int order)
         {
-            Id = orderedItemId;
+            Id = orderItemId;
             Order = order;
         }
 
-        public override OrderedItemId Id { get; }
+        public override OrderItemId Id { get; }
         public int Order { get; }
         private CharacterEntity? _actor;
         private AilmentCode _ailmentCode;
         private SlipCode _slipCode;
         public ActorType ActorType { get; private set; }
 
-        public void SetOrderedItem(ActorInTurn actorInTurn)
+        public void SetOrderItem(ActorInTurn actorInTurn)
         {
             _actor = actorInTurn.Actor;
             _ailmentCode = actorInTurn.AilmentCode;
@@ -49,12 +49,12 @@ namespace BattleScene.Domain.Entities
 
         public override string ToString()
         {
-            var str = $@"OrderedItemEntity
-  OrderNumber     : {Order},
-  CharacterId     : {_actor?.ToString() ?? "NoCharacter"},
-  AilmentCode     : {_ailmentCode},
-  SlipDamageCode  : {_slipCode},
-  OrderedItemType : {ActorType}";
+            var str = $@"OrderItemEntity
+  OrderNumber   : {Order},
+  CharacterId   : {_actor?.ToString() ?? "NoCharacter"},
+  AilmentCode   : {_ailmentCode},
+  SlipDamageCode: {_slipCode},
+  OrderItemType : {ActorType}";
             return str;
         }
     }

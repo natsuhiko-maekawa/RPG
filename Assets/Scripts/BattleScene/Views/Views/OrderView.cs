@@ -38,7 +38,7 @@ namespace BattleScene.Views.Views
         public void StartAnimation(IReadOnlyList<OrderViewModel> modelList)
         {
             foreach (var (orderIcon, model) in _order
-                         .Zip(modelList, (x, y) => (orderedIcon: x, model: y)))
+                         .Zip(modelList, (x, y) => (orderIcon: x, model: y)))
             {
                 var sprite = model.ItemType switch
                 {

@@ -11,18 +11,18 @@ namespace BattleScene.UseCases.UseCases
         private readonly ActionTimeService _actionTime;
         private readonly BattleLoggerService _battleLogger;
         private readonly OrderService _order;
-        private readonly OrderedItemsDomainService _orderedItems;
+        private readonly OrderItemsDomainService _orderItems;
 
         public OrderUseCase(
             ActionTimeService actionTime,
             BattleLoggerService battleLogger,
             OrderService order,
-            OrderedItemsDomainService orderedItems)
+            OrderItemsDomainService orderItems)
         {
             _actionTime = actionTime;
             _battleLogger = battleLogger;
             _order = order;
-            _orderedItems = orderedItems;
+            _orderItems = orderItems;
         }
 
         public void Register()
@@ -34,10 +34,10 @@ namespace BattleScene.UseCases.UseCases
 
         public (CharacterEntity?, AilmentCode, SlipCode) First()
         {
-            var orderedItem = _orderedItems.First();
-            orderedItem.TryGetActor(out var actor);
-            orderedItem.TryGetAilmentCode(out var ailmentCode);
-            orderedItem.TryGetSlipCode(out var slipDamageCode);
+            var orderItem = _orderItems.First();
+            orderItem.TryGetActor(out var actor);
+            orderItem.TryGetAilmentCode(out var ailmentCode);
+            orderItem.TryGetSlipCode(out var slipDamageCode);
             return (actor, ailmentCode, slipDamageCode);
         }
     }

@@ -259,7 +259,7 @@ namespace BattleScene
                 Singleton);
             builder.Register<IRepository<EnhanceEntity, (CharacterId, EnhanceCode)>, 
                 Repository<EnhanceEntity, (CharacterId, EnhanceCode)>>(Singleton);
-            builder.Register<IRepository<OrderedItemEntity, OrderedItemId>, Repository<OrderedItemEntity, OrderedItemId>>(
+            builder.Register<IRepository<OrderItemEntity, OrderItemId>, Repository<OrderItemEntity, OrderItemId>>(
                 Singleton);
             builder.Register<IRepository<SlipEntity, SlipCode>, Repository<SlipEntity, SlipCode>>(Singleton);
             builder.Register<IRepository<TurnEntity, TurnId>, Repository<TurnEntity, TurnId>>(Singleton);
@@ -415,7 +415,7 @@ namespace BattleScene
             builder.Register<BattleLogDomainService>(Singleton);
             builder.Register<BattleLoggerService>(Singleton);
             builder.Register<EnemiesDomainService>(Singleton);
-            builder.Register<OrderedItemsDomainService>(Singleton);
+            builder.Register<OrderItemsDomainService>(Singleton);
             builder.Register<PlayerDomainService>(Singleton);
             builder.Register<SlipDomainService>(Singleton);
 

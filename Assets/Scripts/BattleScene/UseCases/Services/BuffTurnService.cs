@@ -9,16 +9,16 @@ namespace BattleScene.UseCases.Services
 {
     public class BuffTurnService
     {
-        private readonly OrderedItemsDomainService _orderedItems;
+        private readonly OrderItemsDomainService _orderItems;
         private readonly IRepository<BuffEntity, (CharacterId, BuffCode)> _buffRepository;
         private readonly IRepository<EnhanceEntity, (CharacterId, EnhanceCode)> _enhanceRepository;
 
         public BuffTurnService(
-            OrderedItemsDomainService orderedItems,
+            OrderItemsDomainService orderItems,
             IRepository<BuffEntity, (CharacterId, BuffCode)> buffRepository,
             IRepository<EnhanceEntity, (CharacterId, EnhanceCode)> enhanceRepository)
         {
-            _orderedItems = orderedItems;
+            _orderItems = orderItems;
             _buffRepository = buffRepository;
             _enhanceRepository = enhanceRepository;
         }
@@ -41,7 +41,7 @@ namespace BattleScene.UseCases.Services
         private bool IsNextAction(LifetimeCode lifetimeCode)
         {
             if (lifetimeCode != LifetimeCode.ToNextAction) return false;
-            if (!_orderedItems.First().TryGetActor(out var character)) return false;
+            if (!_orderItems.First().TryGetActor(out var character)) return false;
             if (!character.IsPlayer) return false;
             return true;
         }

@@ -4,9 +4,9 @@ using BattleScene.Domain.Entities;
 
 namespace Tests.BattleScene.UseCases.Services
 {
-    class OrderedItemEqualityComparator : IEqualityComparer<OrderedItemEntity>
+    class OrderItemEqualityComparator : IEqualityComparer<OrderItemEntity>
     {
-        public bool Equals(OrderedItemEntity x, OrderedItemEntity y)
+        public bool Equals(OrderItemEntity x, OrderItemEntity y)
         {
             if (x.Order != y.Order || x.ActorType != y.ActorType) return false;
             var value = x.ActorType switch
@@ -20,9 +20,9 @@ namespace Tests.BattleScene.UseCases.Services
             return value;
         }
 
-        public int GetHashCode(OrderedItemEntity obj)
+        public int GetHashCode(OrderItemEntity obj)
         {
-            var orderedItemInt = obj.ActorType switch
+            var orderItemInt = obj.ActorType switch
             {
                 ActorType.Actor => GetCharacterIdHashCode(),
                 ActorType.Ailment => GetAilmentCodeAsInt(),
@@ -30,7 +30,7 @@ namespace Tests.BattleScene.UseCases.Services
                 _ => 0
             };
 
-            var hashCode = (obj.Order, orderedItemInt).GetHashCode();
+            var hashCode = (obj.Order, orderItemInt).GetHashCode();
             return hashCode;
 
             int GetCharacterIdHashCode()
@@ -52,21 +52,21 @@ namespace Tests.BattleScene.UseCases.Services
             }
         }
 
-        private static bool EqualsCharacter(OrderedItemEntity x, OrderedItemEntity y)
+        private static bool EqualsCharacter(OrderItemEntity x, OrderItemEntity y)
         {
             if (!x.TryGetActor(out var xCharacter)) return false;
             if (!y.TryGetActor(out var yCharacter)) return false;
             return xCharacter.Id == yCharacter.Id;
         }
 
-        private static bool EqualsAilmentCode(OrderedItemEntity x, OrderedItemEntity y)
+        private static bool EqualsAilmentCode(OrderItemEntity x, OrderItemEntity y)
         {
             if (!x.TryGetAilmentCode(out var xAilmentCode)) return false;
             if (!y.TryGetAilmentCode(out var yAilmentCode)) return false;
             return xAilmentCode == yAilmentCode;
         }
 
-        private static bool EqualsSlipCode(OrderedItemEntity x, OrderedItemEntity y)
+        private static bool EqualsSlipCode(OrderItemEntity x, OrderItemEntity y)
         {
             if (!x.TryGetSlipCode(out var xSlipCode)) return false;
             if (!y.TryGetSlipCode(out var ySlipCode)) return false;

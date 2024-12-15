@@ -15,11 +15,11 @@ namespace BattleScene.Presenters.Skills
     /// </summary>
     public class ConfusionSkill : BaseSkill
     {
-        private readonly OrderedItemsDomainService _orderedItems;
+        private readonly OrderItemsDomainService _orderItems;
 
-        public ConfusionSkill(OrderedItemsDomainService orderedItems)
+        public ConfusionSkill(OrderItemsDomainService orderItems)
         {
-            _orderedItems = orderedItems;
+            _orderItems = orderItems;
         }
 
         public override SkillCode SkillCode { get; } = SkillCode.Confusion;
@@ -31,7 +31,7 @@ namespace BattleScene.Presenters.Skills
 
         private MessageCode GetAttackMessageCode()
         {
-            if (!_orderedItems.First().TryGetActor(out var actor)) throw new InvalidOperationException();
+            if (!_orderItems.First().TryGetActor(out var actor)) throw new InvalidOperationException();
             var attackMessageCode = actor.IsPlayer
                 ? MessageCode.PlayerConfusionActMessage
                 : MessageCode.EnemyConfusionActMessage;

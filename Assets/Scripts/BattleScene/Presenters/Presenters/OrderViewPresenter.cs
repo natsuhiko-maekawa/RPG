@@ -17,16 +17,16 @@ namespace BattleScene.Presenters.Presenters
     {
         private readonly IResource<EnemyViewDto, CharacterTypeCode> _enemyViewInfoResource;
         private readonly OrderView _orderView;
-        private readonly IRepository<OrderedItemEntity, OrderedItemId> _orderedItemRepository;
+        private readonly IRepository<OrderItemEntity, OrderItemId> _orderItemRepository;
 
         public OrderViewPresenter(
             IResource<EnemyViewDto, CharacterTypeCode> enemyViewInfoResource,
             OrderView orderView,
-            IRepository<OrderedItemEntity, OrderedItemId> orderedItemRepository)
+            IRepository<OrderItemEntity, OrderItemId> orderItemRepository)
         {
             _enemyViewInfoResource = enemyViewInfoResource;
             _orderView = orderView;
-            _orderedItemRepository = orderedItemRepository;
+            _orderItemRepository = orderItemRepository;
         }
 
         public void Initialize(CharacterEntity[] characterArray)
@@ -41,29 +41,29 @@ namespace BattleScene.Presenters.Presenters
 
         public void StartAnimation()
         {
-            var orderViewDtoList = _orderedItemRepository.Get()
+            var orderViewDtoList = _orderItemRepository.Get()
                 .OrderBy(x => x.Order)
                 .Select(CreateOrderViewDto)
                 .ToArray();
             _orderView.StartAnimation(orderViewDtoList);
         }
 
-        private OrderViewModel CreateOrderViewDto(OrderedItemEntity orderedItem)
+        private OrderViewModel CreateOrderViewDto(OrderItemEntity orderItem)
         {
-            var dto = orderedItem.ActorType switch
+            var dto = orderItem.ActorType switch
             {
-                ActorType.Actor => CreateCharacterOrderViewDto(orderedItem),
-                ActorType.Ailment => CreateAilmentOrderViewDto(orderedItem),
-                ActorType.Slip => CreateSlipOrderViewDto(orderedItem),
+                ActorType.Actor => CreateCharacterOrderViewDto(orderItem),
+                ActorType.Ailment => CreateAilmentOrderViewDto(orderItem),
+                ActorType.Slip => CreateSlipOrderViewDto(orderItem),
                 _ => throw new ArgumentOutOfRangeException()
             };
 
             return dto;
         }
 
-        private OrderViewModel CreateCharacterOrderViewDto(OrderedItemEntity orderedItem)
+        private OrderViewModel CreateCharacterOrderViewDto(OrderItemEntity orderItem)
         {
-            if (!orderedItem.TryGetActor(out var actor))
+            if (!orderItem.TryGetActor(out var actor))
                 throw new InvalidOperationException();
             var dto = actor.IsPlayer
                 ? CreatePlayerOrderViewDto()
@@ -85,17 +85,17 @@ namespace BattleScene.Presenters.Presenters
             return new OrderViewModel(ItemType.Enemy, EnemyImagePath: enemyImagePath);
         }
 
-        private OrderViewModel CreateAilmentOrderViewDto(OrderedItemEntity orderedItem)
+        private OrderViewModel CreateAilmentOrderViewDto(OrderItemEntity orderItem)
         {
-            orderedItem.TryGetAilmentCode(out var ailmentCode);
+            orderItem.TryGetAilmentCode(out var ailmentCode);
             var ailmentNumber = ConvertToIntFrom(ailmentCode);
             var dto = new OrderViewModel(ItemType.Ailment, AilmentNumber: ailmentNumber);
             return dto;
         }
 
-        private OrderViewModel CreateSlipOrderViewDto(OrderedItemEntity orderedItem)
+        private OrderViewModel CreateSlipOrderViewDto(OrderItemEntity orderItem)
         {
-            orderedItem.TryGetSlipCode(out var slipCode);
+            orderItem.TryGetSlipCode(out var slipCode);
             var ailmentNumber = ConvertToIntFrom(slipCode);
             var dto = new OrderViewModel(ItemType.Ailment, AilmentNumber: ailmentNumber);
             return dto;

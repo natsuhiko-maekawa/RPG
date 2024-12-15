@@ -12,24 +12,24 @@ namespace BattleScene.UseCases.Services.Order
     {
         private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
         private readonly IFactory<BattlePropertyValueObject> _battlePropertyFactory;
-        private readonly OrderedItemsDomainService _orderedItems;
+        private readonly OrderItemsDomainService _orderItems;
         private readonly ISpeedService _speed;
 
         public ActionTimeService(
             IRepository<CharacterEntity, CharacterId> characterRepository,
             IFactory<BattlePropertyValueObject> battlePropertyFactory,
-            OrderedItemsDomainService orderedItems,
+            OrderItemsDomainService orderItems,
             ISpeedService speed)
         {
             _characterRepository = characterRepository;
             _battlePropertyFactory = battlePropertyFactory;
-            _orderedItems = orderedItems;
+            _orderItems = orderItems;
             _speed = speed;
         }
 
         public void Update()
         {
-            if (!_orderedItems.First().TryGetActor(out var actor)) return;
+            if (!_orderItems.First().TryGetActor(out var actor)) return;
             var actionTime = _characterRepository.Get()
                 .Min(x => x.ActionTime);
             foreach (var character in _characterRepository.Get())

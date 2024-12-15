@@ -14,7 +14,7 @@ namespace BattleScene.UseCases.Services.Order
         private readonly IFactory<BattlePropertyValueObject> _battlePropertyFactory;
         private readonly IRepository<AilmentEntity, (CharacterId, AilmentCode)> _ailmentRepository;
         private readonly IRepository<CharacterEntity, CharacterId> _characterRepository;
-        private readonly IRepository<OrderedItemEntity, OrderedItemId> _orderedItemRepository;
+        private readonly IRepository<OrderItemEntity, OrderItemId> _orderItemRepository;
         private readonly IRepository<SlipEntity, SlipCode> _slipRepository;
         private readonly ISpeedService _speed;
 
@@ -22,14 +22,14 @@ namespace BattleScene.UseCases.Services.Order
             IFactory<BattlePropertyValueObject> battlePropertyFactory,
             IRepository<AilmentEntity, (CharacterId, AilmentCode)> ailmentRepository,
             IRepository<CharacterEntity, CharacterId> characterRepository,
-            IRepository<OrderedItemEntity, OrderedItemId> orderedItemRepository,
+            IRepository<OrderItemEntity, OrderItemId> orderItemRepository,
             IRepository<SlipEntity, SlipCode> slipRepository,
             ISpeedService speed)
         {
             _battlePropertyFactory = battlePropertyFactory;
             _ailmentRepository = ailmentRepository;
             _characterRepository = characterRepository;
-            _orderedItemRepository = orderedItemRepository;
+            _orderItemRepository = orderItemRepository;
             _slipRepository = slipRepository;
             _speed = speed;
         }
@@ -38,9 +38,9 @@ namespace BattleScene.UseCases.Services.Order
         {
             for (var i = 0; i < _battlePropertyFactory.Create().MaxOrderCount; ++i)
             {
-                var orderedItemId = new OrderedItemId();
-                var orderedItem = new OrderedItemEntity(orderedItemId, i);
-                _orderedItemRepository.Add(orderedItem);
+                var orderItemId = new OrderItemId();
+                var orderItem = new OrderItemEntity(orderItemId, i);
+                _orderItemRepository.Add(orderItem);
             }
         }
 
@@ -48,7 +48,7 @@ namespace BattleScene.UseCases.Services.Order
         {
             var characters = _characterRepository.Get()
                 .Where(x => x.IsSurvive);
-            var orderedItemList = Enumerable
+            var orderItemList = Enumerable
                 .Repeat(characters, _battlePropertyFactory.Create().MaxOrderCount)
                 .Select((charactersRepeat, i) => charactersRepeat
                     .Select(character => (character,
@@ -69,16 +69,16 @@ namespace BattleScene.UseCases.Services.Order
             var slipDamages = _slipRepository.Get()
                 .Where(x => x.Effects)
                 .ToList();
-            InsertAilmentEnd(ailments, ref orderedItemList);
-            InsertSlipDamage(slipDamages, ref orderedItemList);
+            InsertAilmentEnd(ailments, ref orderItemList);
+            InsertSlipDamage(slipDamages, ref orderItemList);
 
             // QUESTION: IEnumeratorを渡した場合とToArrayして配列を渡した場合、アロケーションが少ないのはどちらか。
-            foreach (var (orderedItemEntity, orderedItem) in _orderedItemRepository.Get()
+            foreach (var (orderItemEntity, orderItem) in _orderItemRepository.Get()
                          .OrderBy(x => x.Order)
-                         .Zip(orderedItemList, (orderedItemEntity, orderedItem) => (orderedItemEntity, orderedItem))
+                         .Zip(orderItemList, (orderItemEntity, orderItem) => (orderItemEntity, orderItem))
                          .ToArray())
             {
-                orderedItemEntity.SetOrderedItem(orderedItem);
+                orderItemEntity.SetOrderItem(orderItem);
             }
         }
 
@@ -89,8 +89,8 @@ namespace BattleScene.UseCases.Services.Order
             foreach (var ailmentEntity in ailmentEntityList.Where(x => x.IsSelfRecovery && x.Effects))
             {
                 var index = ailmentEntity.Turn;
-                var orderedAilmentEntity = new ActorInTurn(ailmentEntity.AilmentCode);
-                order.Insert(index, orderedAilmentEntity);
+                var orderAilmentEntity = new ActorInTurn(ailmentEntity.AilmentCode);
+                order.Insert(index, orderAilmentEntity);
                 order.RemoveAt(order.Count - 1);
             }
         }
@@ -109,9 +109,9 @@ namespace BattleScene.UseCases.Services.Order
                         .Take(i)
                         .Count(x => x.Actor != null || x.SlipCode == slip.Id);
                     if (slip.Turn != characterTypeCount % slipDefaultTurn) continue;
-                    var orderedSlip
+                    var orderSlip
                         = new ActorInTurn(slip.Id);
-                    order.Insert(i, orderedSlip);
+                    order.Insert(i, orderSlip);
                     order.RemoveAt(order.Count - 1);
                     ++i;
                 }
