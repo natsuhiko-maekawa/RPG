@@ -31,7 +31,7 @@ namespace BattleScene.Presenters.Services
         // 置換文字列は置換してstringBuilderに追加、それ以外はそのままstringBuilderに追加する。
 
         // また、多少可読性が下がるが、アロケーション回避のため、配列以外を反復処理するforeach文およびdelegateは使用しない。
-        public void SetTextZeroAlloc(ref TMP_Text tmpText, string[] message)
+        public void SetTextZeroAlloc(TMP_Text tmpText, string[] message)
         {
             using (var stringBuilder = ZString.CreateStringBuilder())
             {

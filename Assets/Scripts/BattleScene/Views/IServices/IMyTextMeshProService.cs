@@ -4,6 +4,6 @@ namespace BattleScene.Views.IServices
 {
     public interface IMyTextMeshProService
     {
-        public void SetTextZeroAlloc(ref TMP_Text tmpText, string[] message);
+        public void SetTextZeroAlloc(TMP_Text tmpText, string[] message);
     }
 }

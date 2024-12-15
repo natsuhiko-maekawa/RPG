@@ -1,5 +1,4 @@
-﻿using System;
-using BattleScene.Views.GameObjects;
+﻿using BattleScene.Views.GameObjects;
 using BattleScene.Views.IServices;
 using BattleScene.Views.ViewModels;
 using TMPro;
@@ -46,8 +45,8 @@ namespace BattleScene.Views.Views
         /// <param name="model">ViewModel。</param>
         public void StartAnimation(MessageViewModel model)
         {
-            StopAnimation();
-            _myTextMeshPro.SetTextZeroAlloc(ref _tmpText, model.Message);
+            _myTextMeshPro.SetTextZeroAlloc(_tmpText, model.Message);
+            _tmpText.enabled = true;
             if (model.NoWait)
             {
                 maxVisibleCharacters = maxCharacters;
@@ -56,27 +55,6 @@ namespace BattleScene.Views.Views
             {
                 _animator.SetTrigger(ShowTrigger);
             }
-
-            _tmpText.enabled = true;
-        }
-
-        // QUESTION: Update()でmaxVisibleCharactersを設定すると稀に1フレームの間すべての文字が表示されることがあるため、
-        // QUESTION: LateUpdate()で処理している。
-        // QUESTION: LateUpdate()の使い方として正しいか自分では判断できない。
-        private void LateUpdate()
-        {
-            // QUESTION: ここではif文でアニメーションが動く時だけプロパティを更新しているが、
-            // QUESTION: パフォーマンスの観点から見て正しいコーディングと言えるか自分では判断できない。
-            if (_tmpText.maxVisibleCharacters == maxVisibleCharacters) return;
-            _tmpText.maxVisibleCharacters = maxVisibleCharacters;
-        }
-
-        public void StopAnimation()
-        {
-            _tmpText.enabled = false;
-            // QUESTION: SetText("")とすると空文字列の分アロケーションが発生してしまうためSetText(Array.Empty<char>())としているが、
-            // QUESTION: この認識が正しいか自分では判断できない。
-            _tmpText.SetText(Array.Empty<char>());
         }
     }
 }

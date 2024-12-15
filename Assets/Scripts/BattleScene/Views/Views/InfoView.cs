@@ -27,7 +27,7 @@ namespace BattleScene.Views.Views
         public void StartAnimation(InfoViewModel info)
         {
             if (info.Info.Length == 0) return;
-            _myTextMeshPro.SetTextZeroAlloc(ref _tmpText, info.Info);
+            _myTextMeshPro.SetTextZeroAlloc(_tmpText, info.Info);
             _tmpText.enabled = true;
         }
 
