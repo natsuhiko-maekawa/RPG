@@ -1,10 +1,9 @@
-﻿using BattleScene.Framework.InputActions;
-using BattleScene.Views.InputActions;
+﻿using BattleScene.Views.InputActions;
 using BattleScene.Views.Views;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using VContainer;
-using static BattleScene.Framework.InputActions.BattleSceneInputAction;
+using static BattleScene.Views.InputActions.BattleSceneInputAction;
 
 namespace BattleScene.Views.Inputs
 {

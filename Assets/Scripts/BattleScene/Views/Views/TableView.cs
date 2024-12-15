@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using BattleScene.Framework.InputActions;
 using BattleScene.Views.Code;
 using BattleScene.Views.GameObjects;
 using BattleScene.Views.InputActions;

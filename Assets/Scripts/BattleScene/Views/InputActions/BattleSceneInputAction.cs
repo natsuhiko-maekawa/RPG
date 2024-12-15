@@ -15,7 +15,7 @@ using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 
-namespace BattleScene.Framework.InputActions
+namespace BattleScene.Views.InputActions
 {
     public partial class @BattleSceneInputAction: IInputActionCollection2, IDisposable
     {
