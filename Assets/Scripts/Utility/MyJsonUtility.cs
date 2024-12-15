@@ -22,7 +22,7 @@ namespace Utility
             if (!File.Exists(path))
             {
                 using var _ = File.Create(path);
-                Debug.Log(Create);
+                MyDebug.Log(Create);
             }
 
             using var fileStream = File.Open(path, FileMode.Open);
@@ -53,7 +53,7 @@ namespace Utility
             }
             catch (IOException)
             {
-                Debug.LogError(FailLoad);
+                MyDebug.LogError(FailLoad);
                 throw;
             }
         }

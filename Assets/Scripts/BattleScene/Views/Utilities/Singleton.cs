@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Utility;
 
 namespace BattleScene.Views.Utilities
 {
@@ -15,7 +16,7 @@ namespace BattleScene.Views.Utilities
 
                 if (_instance == null)
                 {
-                    Debug.LogError("An instance of " + typeof(T) +
+                    MyDebug.LogError("An instance of " + typeof(T) +
                                    " is needed in the scene, but there is none.");
                 }
 
