@@ -22,40 +22,6 @@ namespace BattleScene.Presenters.Presenters
             _playerView = playerView;
         }
 
-        // public void StartDmgView(int slipDamage, ICharacter character)
-        // {
-        //     var tuple = (Character: character, DigitDto: new DigitDto(0, slipDamage, false));
-        //     var tupleList = new List<(ICharacter, DigitDto)> { tuple };
-        //     StartDigitView(tupleList, DigitColor.Orange);
-        // }
-        //
-        // public void StartCureView(IList<CureDataStore> cureList)
-        // {
-        //     if (cureList.Count == 0) return;
-        //     var tupleList = cureList
-        //         .Select(x => (Character: x.Target, DigitDto: new DigitDto(0, x.DamageAmount, false)))
-        //         .ToList();
-        //     
-        //     StartDigitView(tupleList, DigitColor.Green);
-        // }
-        //
-        // private void StartDigitView(List<(ICharacter character, DigitDto digitDto)> tupleList, DigitColor digitColor)
-        // {
-        //     var playerDigitViewDtoList = tupleList
-        //         .Where(x => x.character.IsPlayer())
-        //         .Select(x => x.digitDto)
-        //         .ToList();
-        //     _playerView.StartPlayerDigitView(new PlayerDigitViewDto(playerDigitViewDtoList, digitColor));
-        //
-        //     foreach (var enemyDigitViewDto in tupleList
-        //                  .Where(x => !x.character.IsPlayer())
-        //                  .GroupBy(x => _enemyContainer.Get(x.character).Num)
-        //                  .Select(x => new EnemyDigitViewDto(x.Key, x.Select(y => y.digitDto).ToList(), digitColor)))
-        //     {
-        //         _enemiesView.StartEnemyDigitView(enemyDigitViewDto);
-        //     }
-        // }
-
         public void StartAnimation()
         {
             var attackList = _battleLog.GetLast().AttackList;
