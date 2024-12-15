@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace Tests.Utility
 {
-    public static class ListEx
+    public static class LinqEx
     {
         /// <summary>
         /// リストの要素の組み合わせを求める拡張メソッドのテスト版。<br/>

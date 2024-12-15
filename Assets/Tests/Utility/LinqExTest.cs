@@ -5,7 +5,7 @@ using Utility;
 namespace Tests.Utility
 {
     [TestFixture]
-    public class ListExTest
+    public class LinqExTest
     {
         private readonly List<int> _singleNumber = new() { 0 };
         private readonly List<int> _threeNumbers = new() { 0, 1, 2 };

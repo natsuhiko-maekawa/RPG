@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 
 namespace Utility
 {
-    public static class ListEx
+    public static class LinqEx
     {
         public static IEnumerable<T[]> Combination<T>(this IEnumerable<T> source, int k1, int k2)
         {
