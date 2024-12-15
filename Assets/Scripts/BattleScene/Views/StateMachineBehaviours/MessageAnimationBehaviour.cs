@@ -1,4 +1,3 @@
-using System;
 using BattleScene.Views.Views;
 using TMPro;
 using UnityEngine;
