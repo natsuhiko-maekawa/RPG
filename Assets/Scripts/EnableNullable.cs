@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using System;
 using System.Linq;
 using System.Xml.Linq;
@@ -31,3 +32,4 @@ public class EnableNullable : AssetPostprocessor
         return document.ToString();
     }
 }
+#endif

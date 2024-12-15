@@ -45,7 +45,6 @@ namespace BattleScene.Presenters.States.Skill
             _state.Start();
         }
 
-#if UNITY_EDITOR
         private string GetClassName()
         {
             var originalClassName = _state.GetType().Name;
@@ -67,7 +66,6 @@ namespace BattleScene.Presenters.States.Skill
                 : null;
             return match.Success;
         }
-#endif
 
         public void Select() => _state.Select();
         public bool IsContinue => _state is not ISkillStopState && !IsBreak;
