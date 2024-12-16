@@ -1569,18 +1569,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 114257374}
     m_Modifications:
-    - target: {fileID: 4659182924148127328, guid: 6e015f3dbad3bec428a59f0190fc629f, type: 3}
-      propertyPath: battlePropertyDto.isHitThreshold
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 4659182924148127328, guid: 6e015f3dbad3bec428a59f0190fc629f, type: 3}
-      propertyPath: battlePropertyDto.attackCountLimit
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4659182924148127328, guid: 6e015f3dbad3bec428a59f0190fc629f, type: 3}
-      propertyPath: battlePropertyDto.ailmentSuccessThreshold
-      value: 40
-      objectReference: {fileID: 0}
     - target: {fileID: 6199339319669095401, guid: 6e015f3dbad3bec428a59f0190fc629f, type: 3}
       propertyPath: m_Name
       value: BattleSceneProperty

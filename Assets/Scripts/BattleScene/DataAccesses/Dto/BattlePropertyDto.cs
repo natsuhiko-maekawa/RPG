@@ -8,7 +8,7 @@ namespace BattleScene.DataAccesses.Dto
     {
         [SerializeField] private int slipDefaultTurn = 5;
         [SerializeField] private float slipDefaultDamageRate = 1.2f;
-        [SerializeField] private float isHitThreshold = 20.0f;
+        [SerializeField] private float isHitThreshold = 30.0f;
         [SerializeField] private float ailmentSuccessThreshold = 40.0f;
         [SerializeField] private int maxAgility = 256;
         [SerializeField] private int maxOrderCount = 14;

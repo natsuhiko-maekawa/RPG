@@ -47,7 +47,7 @@ MonoBehaviour:
   battlePropertyDto:
     slipDefaultTurn: 5
     slipDefaultDamageRate: 1.2
-    isHitThreshold: 20
+    isHitThreshold: 30
     ailmentSuccessThreshold: 40
     maxAgility: 256
     maxOrderCount: 14
