@@ -1,0 +1,113 @@
+﻿@startuml
+'https://plantuml.com/class-diagram
+
+!theme mars
+package Views{
+    class View
+    struct ViewModel
+    class GameObject
+    class InputAction
+    interface IActions
+    IActions <-- InputAction
+    IActions <-- View
+    ViewModel <-r View
+    GameObject <-lo View
+    IActions -[hidden] GameObject
+}
+
+package Presenters{
+    abstract class BaseState{
+        # Context {get; private set;}
+        + SetContext(Context context)
+    }
+    class ConcreteState
+    class Context{
+        - _state
+        + TransitionTo(BaseState state)
+        + Save()
+        + Restore(Memento memento)
+    }
+    class Memento{
+        - _state
+        + GetState()
+    }
+    class StateMachine{
+        - _context
+        - _mementoList
+    }
+    class PresenterFacade
+    class Presenter
+
+    PresenterFacade <-- ConcreteState
+    Presenter <-l* PresenterFacade : contains
+    BaseState <|- ConcreteState
+    BaseState <-- Context
+    BaseState <-- Memento
+    Context <-- BaseState
+    Memento <- Context
+    Memento <-- StateMachine
+    Context <-- StateMachine
+
+'レイアウトをきれいにするためのダミークラス
+    hide DummyClass
+    DummyClass ---- StateMachine
+    DummyClass - PresenterFacade
+}
+
+package Models{
+    package Domain{
+        class Entity
+        struct ValueObject
+        interface IRepository<TEntity, TId>{
+            + Get(TId id)
+            + Add(TEntity entity)
+            + Remove(TId id)
+        }
+        interface IFactory<TItem, TKey>{
+            + Create(TKey key)
+        }
+    }
+
+    package UseCases{
+        class Service
+        class UseCase
+        interface IService
+
+        IService <|- Service
+        IService <-- UseCase
+        UseCase *- Service : contains
+    }
+
+    package DataAccess{
+        class Repository<TEntity, TId>{
+            - _entityDictionary
+        }
+        class Factory<TItem, TKey>
+        interface IResource<TItem, TKey>{
+            + Get(TKey key)
+        }
+        struct Dto
+        class Resource<TItem, TKey>
+    }
+
+    Domain <-- Service
+    IRepository <|- Repository
+    Entity <--* Repository : provide <
+    IFactory <|- Factory
+    ValueObject <-- Factory : create <
+    IResource <-u- Factory
+    Dto <-u- Factory
+    IResource <|-- Resource
+    Dto <-- Resource
+}
+
+'以下を矢印で結ぶとかなりレイアウトが崩れるので、SVGに書き出してから手動で書き足す
+'StateMachine <-- IActions
+View <-- Presenter
+ViewModel <-- Presenter
+Models <- Presenter
+UseCase <- ConcreteState
+
+
+hide empty members
+@enduml

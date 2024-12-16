@@ -1,0 +1,22 @@
+@startuml
+'https://plantuml.com/ja/state-diagram
+
+<style>
+stateDiagram {
+  arrow {
+    FontSize 10
+  }
+}
+</style>
+
+[*] --> BattleStartState
+BattleStartState --> InitializePlayerState
+InitializePlayerState --> InitializeEnemyState
+InitializeEnemyState --> TurnState
+TurnState --> TurnState
+TurnState --> PlayerWinState
+PlayerWinState --> BattleStopState
+TurnState --> PlayerLoseState
+PlayerLoseState --> BattleStopState
+BattleStopState --> [*]
+@enduml
