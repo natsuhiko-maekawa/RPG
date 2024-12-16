@@ -71,16 +71,9 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
-# 以下は追加で設定
-# セーブデータのため除外
-/[Aa]ssets/Save
-/[Aa]ssets/Save.meta
-/[Aa]ssets/Settings
-/[Aa]ssets/Settings.meta
-
-# 素材・フォントのため除外
+# サードパーティ製の素材及びフォントを除外
 /[Aa]ssets/Addressables/Enemy/*
-/[Aa]ssets/Images/GUI/BackgroundDay.png
+/[Aa]ssets/Images/BattleScene/BackgroundDay.png
 /[Aa]ssets/Fonts
 
 # 以下の素材は再配布可能なので追跡
@@ -89,6 +82,7 @@ crashlytics-build.properties
 
 # TextMeshProを除外
 /[Aa]ssets/TextMesh Pro
+/[Aa]ssets/TextMesh Pro.meta
 
 # Packagesを除外
 /[Aa]ssets/Packages
@@ -97,6 +91,7 @@ crashlytics-build.properties
 # Riderのキャッシュフォルダを除外
 .idea/
 
-# Scriptsフォルダのsource, outputフォルダを除外
-Scripts/source/image
+# Scriptsフォルダの.venv, source, outputフォルダを除外
+Scripts/.venv
+Scripts/source
 Scripts/output
