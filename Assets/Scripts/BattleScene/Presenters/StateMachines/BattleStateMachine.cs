@@ -16,6 +16,9 @@ namespace BattleScene.Presenters.StateMachines
         private Context _context = null!;
         private readonly EnemiesDomainService _enemies;
         private readonly PlayerDomainService _player;
+
+        // TODO: InitializeBattleStateをコンストラクタインジェクションすべき。
+        // だが、そうすると例外が発生するため、とりあえずサービスロケーターを利用。
         private readonly IObjectResolver _container;
 
         public BattleStateMachine(

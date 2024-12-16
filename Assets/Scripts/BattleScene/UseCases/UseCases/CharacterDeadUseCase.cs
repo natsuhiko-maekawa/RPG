@@ -11,6 +11,8 @@ namespace BattleScene.UseCases.UseCases
     {
         private readonly IAilmentResetService _ailmentReset;
         private readonly IDeadCharacterService _deadCharacter;
+
+        // ReSharper disable once NotAccessedField.Local
         private readonly IDestroyResetService _destroyReset;
 
         public CharacterDeadUseCase(
@@ -40,6 +42,8 @@ namespace BattleScene.UseCases.UseCases
                 .SelectMany(_ => ailmentCodeArray, (x, y) => (x, y))
                 .ToLookup(x => x.x.Id, x => x.y);
             _ailmentReset.Reset(resetAilmentLookup);
+
+            // TODO: 部位破壊を回復する処理を書くこと。
 
             _deadCharacter.ConfirmedDead();
         }
