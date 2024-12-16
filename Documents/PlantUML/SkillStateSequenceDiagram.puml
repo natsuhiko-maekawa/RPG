@@ -5,25 +5,25 @@ autonumber
 SkillState -> StateMachine: Select()
 note left: Skillインスタンスを渡し、\nステートをスタートさせる
 StateMachine -> Context: Create
-note left: SkillComponentインスタンスを渡し、\nContextインスタンスを生成する
+note left: Skillインスタンスを渡し、\nContextインスタンスを生成する
 activate Context
 Context -> SkillStartState: TransitionTo()
-Context -> SkillStartState: SkillComponentList
-note left: SkillComponentインスタンスのリストを渡す
-SkillStartState -> SkillComponentUseCase: GetBattleEventList()
-note left: SkillComponentインスタンスのリストを渡し、\nBattleEventインスタンスのリストを要求する
-SkillComponentUseCase -> SkillComponentService: GenerateBattleEvent()
-SkillComponentService --> SkillComponentUseCase: battleEventList
-note left: SkillComponentインスタンスのリストをもとに生成した\nBattleEventインスタンスのリストを返す
-SkillComponentUseCase --> SkillStartState: battleEventList
-SkillStartState -> SkillComponentUseCase: RegisterBattleEvent()
+Context -> SkillStartState: SkillList
+note left: Skillインスタンスのリストを渡す
+SkillStartState -> SkillUseCase: GetBattleEventList()
+note left: Skillインスタンスのリストを渡し、\nBattleEventインスタンスのリストを要求する
+SkillUseCase -> SkillService: GenerateBattleEvent()
+SkillService --> SkillUseCase: battleEventList
+note left: Skillインスタンスのリストをもとに生成した\nBattleEventインスタンスのリストを返す
+SkillUseCase --> SkillStartState: battleEventList
+SkillStartState -> SkillUseCase: RegisterBattleEvent()
 note left: BattleEventインスタンスのリストを渡し、\nRepositoryの更新を要求する
-SkillComponentUseCase -> BattleLoggerService: Log()
+SkillUseCase -> BattleLoggerService: Log()
 note left: BattleEventインスタンスからBattleLogインスタンスを生成し、\nRepositoryに登録する
 BattleLoggerService -> Repository: Update()
-SkillComponentUseCase -> SkillComponentService: RegisterBattleEvent()
+SkillUseCase -> SkillService: RegisterBattleEvent()
 note left: BattleEventインスタンスをもとに各種Repositoryを更新する
-SkillComponentService -> Repository: Update()
+SkillService -> Repository: Update()
 SkillStartState --> Context: BattleEventQueue
 note left: BattleEventインスタンスのリストを\nキューに変換して返す
 @enduml

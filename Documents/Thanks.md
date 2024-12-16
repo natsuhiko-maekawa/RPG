@@ -10,7 +10,7 @@
 | SourceTree        | 主にgitのリベースを行う目的で使用        |
 | PlantUML          | UMLの作画に使用                 |
 | Excel             | PlanTextでは管理しづらいデータの管理に使用 |
-| DeepL翻訳           | 英語のwebページ等を読む際の補助ツールとして使用 |
+| DeepL             | 英語のwebページ等を読む際の補助ツールとして使用 |
 | CLIP STUDIO PAINT | イラストの作画及び画像の加工に使用         |
 | Cubase 12 PRO     | BGMの作曲及び効果音の加工に使用         |
 
