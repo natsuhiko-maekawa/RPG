@@ -1,9 +1,9 @@
 fileFormatVersion: 2
-guid: 72ed4df5a9154e248b3833ffbc8bd28a
+guid: 4310c9c77475eeb4e8c1bf493b715b21
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
-  serializedVersion: 12
+  serializedVersion: 13
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -43,12 +43,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 52
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -67,7 +67,7 @@ TextureImporter:
   swizzle: 50462976
   cookieLightType: 0
   platformSettings:
-  - serializedVersion: 3
+  - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -80,7 +80,7 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
+  - serializedVersion: 4
     buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -93,7 +93,7 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
+  - serializedVersion: 4
     buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -106,7 +106,7 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
+  - serializedVersion: 4
     buildTarget: Server
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -123,7 +123,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: EnemyAilmentsIcon_0
+      name: AilmentsIcon_0
       rect:
         serializedVersion: 2
         x: 0
@@ -131,20 +131,21 @@ TextureImporter:
         width: 13
         height: 13
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 27f6fe3fd44949b4c8f7a243aeb6a495
-      internalID: -685101183
+      spriteID: 7cb50b2f0c067364fb741dc9be05040c
+      internalID: -1015959605
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: EnemyAilmentsIcon_1
+      name: AilmentsIcon_1
       rect:
         serializedVersion: 2
         x: 13
@@ -152,20 +153,21 @@ TextureImporter:
         width: 13
         height: 13
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 44696b3a87cb45b48ad5337f947c6c4c
-      internalID: -486609939
+      spriteID: 7fb458e1d8380034fb4c82455456b6f7
+      internalID: -1394205064
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: EnemyAilmentsIcon_2
+      name: AilmentsIcon_2
       rect:
         serializedVersion: 2
         x: 26
@@ -173,20 +175,21 @@ TextureImporter:
         width: 13
         height: 13
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ea54a051fd6f79f4799877991b46159b
-      internalID: 490714955
+      spriteID: 6844854fd590ce640a0cba7861d3b55d
+      internalID: -1469310211
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: EnemyAilmentsIcon_3
+      name: AilmentsIcon_3
       rect:
         serializedVersion: 2
         x: 39
@@ -194,20 +197,21 @@ TextureImporter:
         width: 13
         height: 13
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c3a27b71daa6772448525170a2a88a49
-      internalID: -2119685953
+      spriteID: 541f823d3dc98fe4398de233caca8df1
+      internalID: -1981646391
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: EnemyAilmentsIcon_4
+      name: AilmentsIcon_4
       rect:
         serializedVersion: 2
         x: 0
@@ -215,20 +219,21 @@ TextureImporter:
         width: 13
         height: 13
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b7631620a74684141807bcd8d6f37c29
-      internalID: 2062678637
+      spriteID: 6f5b3d87ab42bae4f9e7d19a23bf8244
+      internalID: 1329353693
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: EnemyAilmentsIcon_5
+      name: AilmentsIcon_5
       rect:
         serializedVersion: 2
         x: 13
@@ -236,20 +241,21 @@ TextureImporter:
         width: 13
         height: 13
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fe6efdbcf7db4184ea5a1edaf3ece3e4
-      internalID: 1449948837
+      spriteID: adb50561a6cf9a1418587e8751588b89
+      internalID: 1292508752
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: EnemyAilmentsIcon_6
+      name: AilmentsIcon_6
       rect:
         serializedVersion: 2
         x: 26
@@ -257,20 +263,21 @@ TextureImporter:
         width: 13
         height: 13
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c5ddb10251087074db9848643765bed7
-      internalID: -2140951029
+      spriteID: ea0a6810757e39546ac74faf5eef3af8
+      internalID: 739899850
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: EnemyAilmentsIcon_7
+      name: AilmentsIcon_7
       rect:
         serializedVersion: 2
         x: 39
@@ -278,20 +285,21 @@ TextureImporter:
         width: 13
         height: 13
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b0574e792fa56534ea475949bc6ad409
-      internalID: 95700416
+      spriteID: 08b3692007f858e49921d2216b26e0c7
+      internalID: -1930348381
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: EnemyAilmentsIcon_8
+      name: AilmentsIcon_8
       rect:
         serializedVersion: 2
         x: 0
@@ -299,20 +307,21 @@ TextureImporter:
         width: 13
         height: 13
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 36946c37ced46e4499335776d09b3ac8
-      internalID: -913403661
+      spriteID: fa63af194fcd6a04eb179ddd4c4c122f
+      internalID: 82797013
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: EnemyAilmentsIcon_9
+      name: AilmentsIcon_9
       rect:
         serializedVersion: 2
         x: 13
@@ -320,20 +329,21 @@ TextureImporter:
         width: 13
         height: 13
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f3c8abe44c7e64248a7b4727ccd10141
-      internalID: 1070256779
+      spriteID: c3820c4fcef9dce4c80acce14ad48234
+      internalID: -784991400
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: EnemyAilmentsIcon_10
+      name: AilmentsIcon_10
       rect:
         serializedVersion: 2
         x: 26
@@ -341,20 +351,21 @@ TextureImporter:
         width: 13
         height: 13
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 98b375d7de7c5f84f8709aca4e7ffc06
-      internalID: 443116207
+      spriteID: e3cec40cfe860d1468d50fe62e52191c
+      internalID: -1365886731
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: EnemyAilmentsIcon_11
+      name: AilmentsIcon_11
       rect:
         serializedVersion: 2
         x: 39
@@ -362,20 +373,21 @@ TextureImporter:
         width: 13
         height: 13
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9d447af5df626f1479ed526274b75be3
-      internalID: -814234492
+      spriteID: 8e2ab668fe9e14f44aa426430741415b
+      internalID: -9290845
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: EnemyAilmentsIcon_12
+      name: AilmentsIcon_12
       rect:
         serializedVersion: 2
         x: 0
@@ -383,20 +395,21 @@ TextureImporter:
         width: 13
         height: 13
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 76a8d699e296a754fb4f9477a3bb93fe
-      internalID: 1964701676
+      spriteID: cb19c9bdaf293914694e28da994776b3
+      internalID: 693232081
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: EnemyAilmentsIcon_13
+      name: AilmentsIcon_13
       rect:
         serializedVersion: 2
         x: 13
@@ -404,20 +417,21 @@ TextureImporter:
         width: 13
         height: 13
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 520134fef4c26a4448b16c530886af83
-      internalID: 746173482
+      spriteID: 687d02aaed853d540866edf2e014b231
+      internalID: -109305570
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: EnemyAilmentsIcon_14
+      name: AilmentsIcon_14
       rect:
         serializedVersion: 2
         x: 26
@@ -425,19 +439,21 @@ TextureImporter:
         width: 13
         height: 13
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a5be78e69dad1ce4b8b8baaa0bd81121
-      internalID: 1857507140
+      spriteID: 689eafb37c46af84597d15b24a1b6d0b
+      internalID: 1996085060
       vertices: []
       indices: 
       edges: []
       weights: []
     outline: []
+    customData: 
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
@@ -447,23 +463,25 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
     nameFileIdTable:
-      EnemyAilmentsIcon_0: -685101183
-      EnemyAilmentsIcon_1: -486609939
-      EnemyAilmentsIcon_10: 443116207
-      EnemyAilmentsIcon_11: -814234492
-      EnemyAilmentsIcon_12: 1964701676
-      EnemyAilmentsIcon_13: 746173482
-      EnemyAilmentsIcon_14: 1857507140
-      EnemyAilmentsIcon_15: 85119486
-      EnemyAilmentsIcon_2: 490714955
-      EnemyAilmentsIcon_3: -2119685953
-      EnemyAilmentsIcon_4: 2062678637
-      EnemyAilmentsIcon_5: 1449948837
-      EnemyAilmentsIcon_6: -2140951029
-      EnemyAilmentsIcon_7: 95700416
-      EnemyAilmentsIcon_8: -913403661
-      EnemyAilmentsIcon_9: 1070256779
+      AilmentsIcon_0: -1015959605
+      AilmentsIcon_1: -1394205064
+      AilmentsIcon_10: -1365886731
+      AilmentsIcon_11: -9290845
+      AilmentsIcon_12: 693232081
+      AilmentsIcon_13: -109305570
+      AilmentsIcon_14: 1996085060
+      AilmentsIcon_15: -2048513311
+      AilmentsIcon_2: -1469310211
+      AilmentsIcon_3: -1981646391
+      AilmentsIcon_4: 1329353693
+      AilmentsIcon_5: 1292508752
+      AilmentsIcon_6: 739899850
+      AilmentsIcon_7: -1930348381
+      AilmentsIcon_8: 82797013
+      AilmentsIcon_9: -784991400
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
