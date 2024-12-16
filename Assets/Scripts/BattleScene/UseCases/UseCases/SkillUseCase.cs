@@ -51,7 +51,7 @@ namespace BattleScene.UseCases.UseCases
             }
 
             _skill.UpdateBattleEvent(
-                battleEventList: battleEventList, 
+                battleEventList: battleEventList,
                 skillCommon: skillCommon,
                 skillComponentList: skillComponentList,
                 targetList: targetList);

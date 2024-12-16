@@ -13,6 +13,7 @@ namespace BattleScene.DataAccesses.Dto
         public EnhanceCode Key { get; private set; }
         public string Name { get; private set; }
         public MessageCode MessageCode { get; private set; }
+
         public void OnBeforeSerialize()
         {
         }

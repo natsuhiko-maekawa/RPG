@@ -24,7 +24,7 @@ namespace BattleScene.Presenters.Presenters
             var curingList = cureEvent.CuringList;
             var characterDigitArray = curingList
                 .GroupBy(x => x.Target)
-                .Select(x =>  (character: x.Key, model: x.Select(y => GetDigit(y))) )
+                .Select(x => (character: x.Key, model: x.Select(y => GetDigit(y))))
                 .ToArray();
 
             var playerDigitArray = characterDigitArray

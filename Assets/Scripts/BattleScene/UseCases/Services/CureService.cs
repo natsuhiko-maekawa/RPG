@@ -40,8 +40,8 @@ namespace BattleScene.UseCases.Services
                 .ToArray();
 
             cureEvent.UpdateCure(
-                    curingList: curingList,
-                    targetList: targetList);
+                curingList: curingList,
+                targetList: targetList);
         }
 
         public void ExecuteBattleEvent(IReadOnlyList<BattleEventEntity> cureEventList)

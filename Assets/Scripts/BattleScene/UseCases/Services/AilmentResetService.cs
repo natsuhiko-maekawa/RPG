@@ -37,7 +37,7 @@ namespace BattleScene.UseCases.Services
             var query = ailmentLookup
                 .SelectMany(ailmentGroup => ailmentGroup
                     .Select(ailmentCode => (CharacterId: ailmentGroup.Key, AilmentCode: ailmentCode)));
-            foreach (var (characterId, ailmentCode) in query) 
+            foreach (var (characterId, ailmentCode) in query)
                 Reset(characterId, ailmentCode);
         }
     }

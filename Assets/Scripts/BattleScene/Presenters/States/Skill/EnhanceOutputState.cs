@@ -4,7 +4,7 @@ using BattleScene.Presenters.PresenterFacades;
 
 namespace BattleScene.Presenters.States.Skill
 {
-    public class EnhanceOutputState: SkillOutputState<EnhanceValueObject>
+    public class EnhanceOutputState : SkillOutputState<EnhanceValueObject>
     {
         private readonly EnhanceOutputPresenterFacade _facade;
         private readonly SkillStopState<EnhanceValueObject> _skillStopState;

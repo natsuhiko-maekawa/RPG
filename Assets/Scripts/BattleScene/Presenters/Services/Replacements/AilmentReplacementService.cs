@@ -23,6 +23,7 @@ namespace BattleScene.Presenters.Services.Replacements
         }
 
         public bool IsMatch(string value) => value == Replacement;
+
         public ReadOnlySpan<char> GetNewCharSpan()
         {
             var ailmentCode = _battleLog.GetLast().AilmentCode;

@@ -9,7 +9,7 @@ namespace BattleScene.Presenters.Services.Replacements
 {
     public class TargetReplacementService : IReplacementService
     {
-        public string Replacement { get; }= "[target]";
+        public string Replacement { get; } = "[target]";
         private readonly BattleLogDomainService _battleLog;
         private readonly ReplacementCommonService _replacementCommon;
 
@@ -23,6 +23,7 @@ namespace BattleScene.Presenters.Services.Replacements
         }
 
         public bool IsMatch(string value) => value == Replacement;
+
         public ReadOnlySpan<char> GetNewCharSpan()
         {
             var targetList = _battleLog.GetLast().TargetList;

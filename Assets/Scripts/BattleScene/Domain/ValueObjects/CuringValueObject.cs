@@ -8,7 +8,7 @@ namespace BattleScene.Domain.ValueObjects
         public CharacterEntity Target { get; }
 
         public CuringValueObject(
-            int amount, 
+            int amount,
             CharacterEntity target)
         {
             Amount = amount;

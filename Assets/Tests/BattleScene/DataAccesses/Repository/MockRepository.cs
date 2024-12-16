@@ -62,7 +62,7 @@ namespace Tests.BattleScene.DataAccesses.Repository
         {
             _entityDictionary.Clear();
         }
-        
+
         public void Remove(TId id)
         {
             _entityDictionary.Remove(id);

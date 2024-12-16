@@ -42,7 +42,7 @@ namespace BattleScene.Presenters.States.Skill
         private BaseState<DamageValueObject> GetNextState()
         {
             if (Context.BattleEventQueue.Peek().AttackList
-                .All(x => !x.IsHit)) 
+                .All(x => !x.IsHit))
                 return _skillBreakState;
 
             Context.Dead = _useCase.GetDeadInThisTurn();

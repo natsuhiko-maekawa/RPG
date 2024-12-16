@@ -9,10 +9,10 @@
         public int TechnicalPoint { get; }
 
         public RowModel(
-            string rowName, 
-            string[] rowDescription, 
-            string playerImagePath, 
-            bool enabled, 
+            string rowName,
+            string[] rowDescription,
+            string playerImagePath,
+            bool enabled,
             int technicalPoint)
         {
             RowName = rowName;

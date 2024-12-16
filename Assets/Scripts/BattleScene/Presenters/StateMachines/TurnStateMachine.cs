@@ -9,6 +9,7 @@ namespace BattleScene.Presenters.StateMachines
     public class TurnStateMachine
     {
         private Context _context = null!;
+
         // NOTE: 現段階で保持する画面の最大数は4つだが、変更があった場合はキャパシティを修正すること。
         private readonly Stack<Memento> _mementoStack = new(4);
         private readonly TurnStartState _turnStartState;

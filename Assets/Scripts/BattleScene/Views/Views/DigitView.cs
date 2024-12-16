@@ -57,7 +57,7 @@ namespace BattleScene.Views.Views
             }
 
             model.DigitList
-                .Aggregate(_digitPool, static (digitPool, digit) => 
+                .Aggregate(_digitPool, static (digitPool, digit) =>
                 {
                     SetDigit(digitPool, digit);
                     return digitPool;

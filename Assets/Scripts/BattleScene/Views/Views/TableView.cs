@@ -111,6 +111,7 @@ namespace BattleScene.Views.Views
                 row.Inactive();
                 return;
             }
+
             if (index == _rowStateDictionary[_model.ActionCode].SelectedIndex)
             {
                 row.Highlight();
@@ -148,7 +149,9 @@ namespace BattleScene.Views.Views
             }
         }
 
-        public void OnCancel(InputAction.CallbackContext context) { }
+        public void OnCancel(InputAction.CallbackContext context)
+        {
+        }
 
         public void OnMoveCursor(InputAction.CallbackContext context)
         {

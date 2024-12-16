@@ -26,7 +26,7 @@ namespace BattleScene.Presenters.PresenterFacades
         {
             _messageView.StartAnimation(MessageCode.ResetAilmentMessage);
 
-            var playerImageCode = _skillViewResource.Get(skillCode).PlayerImageCode; 
+            var playerImageCode = _skillViewResource.Get(skillCode).PlayerImageCode;
             _playerImageView.StartAnimation(playerImageCode, Slide);
         }
     }

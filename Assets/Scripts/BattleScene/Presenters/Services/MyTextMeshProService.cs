@@ -63,7 +63,7 @@ namespace BattleScene.Presenters.Services
             }
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)] 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private bool TryFindMatchedIndex(string str, out int index)
         {
             for (var i = 0; i < _replacementList.Count; ++i)
@@ -74,6 +74,7 @@ namespace BattleScene.Presenters.Services
                     return true;
                 }
             }
+
             index = -1;
             return false;
         }

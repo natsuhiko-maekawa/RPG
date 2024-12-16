@@ -6,7 +6,8 @@ using UnityEditor;
 
 public class EnableNullable : AssetPostprocessor
 {
-    private static readonly string[] DisableNullableAssemblyNameArray = {
+    private static readonly string[] DisableNullableAssemblyNameArray =
+    {
         "BattleScene.DataAccesses",
         "BattleScene.Debug",
         "BattleScene.Views"

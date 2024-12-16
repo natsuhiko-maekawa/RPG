@@ -12,7 +12,9 @@ namespace BattleScene.Domain.Entities
         public override BattleEventId Id { get; }
         public int Sequence { get; }
         public int Turn { get; }
+
         public BattleEventCode BattleEventCode { get; private set; } = BattleEventCode.NoEvent;
+
         // TODO: 以下のプロパティをActorInTurnに置換すること。
         public CharacterEntity? Actor { get; }
         public AilmentCode AilmentCode { get; private set; }
@@ -127,8 +129,8 @@ namespace BattleScene.Domain.Entities
         }
 
         public void UpdateReset(
-            IReadOnlyList<AilmentCode> resetAilmentCodeList, 
-            IReadOnlyList<BodyPartCode> resetBodyPartCodeList, 
+            IReadOnlyList<AilmentCode> resetAilmentCodeList,
+            IReadOnlyList<BodyPartCode> resetBodyPartCodeList,
             IReadOnlyList<SlipCode> resetSlipCodeList,
             IReadOnlyList<CharacterEntity> targetList)
         {

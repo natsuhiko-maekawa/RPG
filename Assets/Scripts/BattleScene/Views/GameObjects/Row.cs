@@ -15,6 +15,7 @@ namespace BattleScene.Views.GameObjects
         }
 
         public void SetName(string rowName) => _rowName.Set(rowName);
+
         public void ShowName()
         {
             enabled = true;
@@ -40,6 +41,7 @@ namespace BattleScene.Views.GameObjects
         }
 
         public void SetTechnicalPoint(int technicalPoint) => _technicalPoint.Set(technicalPoint);
+
         public void ShowTechnicalPoint()
         {
             enabled = true;

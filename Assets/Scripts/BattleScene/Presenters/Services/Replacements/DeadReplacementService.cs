@@ -22,6 +22,7 @@ namespace BattleScene.Presenters.Services.Replacements
         }
 
         public bool IsMatch(string value) => value == Replacement;
+
         public ReadOnlySpan<char> GetNewCharSpan()
         {
             var targetArray = _battleLog.GetLast().TargetList

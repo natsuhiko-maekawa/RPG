@@ -9,7 +9,7 @@ namespace BattleScene.Views.ViewModels
         public IReadOnlyList<RowModel> RowList { get; }
 
         public TableViewModel(
-            ActionCode actionCode, 
+            ActionCode actionCode,
             IReadOnlyList<RowModel> rowList)
         {
             ActionCode = actionCode;

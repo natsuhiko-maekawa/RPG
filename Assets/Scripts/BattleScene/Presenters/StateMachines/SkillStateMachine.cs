@@ -46,9 +46,10 @@ namespace BattleScene.Presenters.StateMachines
                 return TryMoveNextElseDispose(out nextStateCode);
             }
 
-            nextStateCode = _skillContextEnumerator!.Current is null or { NextStateCode: StateCode.None or StateCode.Next }
-                ? GetNextStateCode()
-                : _skillContextEnumerator.Current.NextStateCode;
+            nextStateCode =
+                _skillContextEnumerator!.Current is null or { NextStateCode: StateCode.None or StateCode.Next }
+                    ? GetNextStateCode()
+                    : _skillContextEnumerator.Current.NextStateCode;
             _skillContextEnumerator.Dispose();
             _skillContextEnumerator = null;
             return false;
@@ -87,7 +88,8 @@ namespace BattleScene.Presenters.StateMachines
             IContext CreateContext<TSkill>(
                 IReadOnlyList<TSkill> skillList)
             {
-                if (turnContext.Actor is null) throw new InvalidOperationException(ExceptionMessage.ContextActorIdIsNull);
+                if (turnContext.Actor is null)
+                    throw new InvalidOperationException(ExceptionMessage.ContextActorIdIsNull);
                 var skillStartState = _container.Resolve<SkillStartState<TSkill>>();
                 var skillContext = new Context<TSkill>(
                     skillState: skillStartState,

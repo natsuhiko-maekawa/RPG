@@ -12,10 +12,24 @@ namespace BattleScene.Presenters.States.Battle
             Context = context;
         }
 
-        public virtual void Start() { }
-        public virtual void Select() { }
-        public virtual void Select(int id) { }
-        public virtual void Select(IReadOnlyList<CharacterEntity> targetList) { }
-        public virtual void Cancel() { }
+        public virtual void Start()
+        {
+        }
+
+        public virtual void Select()
+        {
+        }
+
+        public virtual void Select(int id)
+        {
+        }
+
+        public virtual void Select(IReadOnlyList<CharacterEntity> targetList)
+        {
+        }
+
+        public virtual void Cancel()
+        {
+        }
     }
 }

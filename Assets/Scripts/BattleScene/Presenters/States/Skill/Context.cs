@@ -58,7 +58,10 @@ namespace BattleScene.Presenters.States.Skill
             return genericClassName;
         }
 
-        private bool TryGetMatchedText(string input, [RegexPattern] string pattern, [NotNullWhen(true)]out string? matchedText)
+        private bool TryGetMatchedText(
+            string input,
+            [RegexPattern] string pattern,
+            [NotNullWhen(true)] out string? matchedText)
         {
             var match = Regex.Match(input, pattern);
             matchedText = match.Success

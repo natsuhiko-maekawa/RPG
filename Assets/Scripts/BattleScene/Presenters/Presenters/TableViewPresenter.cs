@@ -16,6 +16,7 @@ namespace BattleScene.Presenters.Presenters
         private readonly IResource<MessageDto, MessageCode> _messageResource;
         private readonly IResource<PlayerImageDto, PlayerImageCode> _playerImagePathResource;
         private readonly TableView _tableView;
+
         private static readonly BattleEventCode[] BattleEventCodeList
             = { BattleEventCode.Attack, BattleEventCode.Skill, BattleEventCode.Defence, BattleEventCode.FatalitySkill };
 

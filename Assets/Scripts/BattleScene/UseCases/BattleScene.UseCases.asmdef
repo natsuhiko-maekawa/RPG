@@ -1,20 +1,20 @@
 {
-    "name": "BattleScene.UseCases",
-    "rootNamespace": "",
-    "references": [
-        "GUID:61864ae4a21bb34499f7a25a7cfad63d",
-        "GUID:d8b63aba1907145bea998dd612889d6b",
-        "GUID:b0214a6008ed146ff8f122a6a9c2f6cc",
-        "GUID:807cf33bedfc29944b7f2b6c2ef86d78",
-        "GUID:13af43e49dd1b024abe6ff1ba507fabb"
-    ],
-    "includePlatforms": [],
-    "excludePlatforms": [],
-    "allowUnsafeCode": false,
-    "overrideReferences": false,
-    "precompiledReferences": [],
-    "autoReferenced": true,
-    "defineConstraints": [],
-    "versionDefines": [],
-    "noEngineReferences": true
+  "name": "BattleScene.UseCases",
+  "rootNamespace": "",
+  "references": [
+    "GUID:61864ae4a21bb34499f7a25a7cfad63d",
+    "GUID:d8b63aba1907145bea998dd612889d6b",
+    "GUID:b0214a6008ed146ff8f122a6a9c2f6cc",
+    "GUID:807cf33bedfc29944b7f2b6c2ef86d78",
+    "GUID:13af43e49dd1b024abe6ff1ba507fabb"
+  ],
+  "includePlatforms": [],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": true,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "noEngineReferences": true
 }

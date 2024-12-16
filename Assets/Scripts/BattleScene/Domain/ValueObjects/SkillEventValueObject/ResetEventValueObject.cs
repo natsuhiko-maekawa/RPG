@@ -16,8 +16,8 @@ namespace BattleScene.Domain.ValueObjects.SkillEventValueObject
 
         public ResetEventValueObject(
             IReadOnlyList<CharacterEntity> targetList,
-            IReadOnlyList<AilmentCode>? resetAilmentCodeList, 
-            IReadOnlyList<BodyPartCode>? resetBodyPartCodeList, 
+            IReadOnlyList<AilmentCode>? resetAilmentCodeList,
+            IReadOnlyList<BodyPartCode>? resetBodyPartCodeList,
             IReadOnlyList<SlipCode>? resetSlipCodeList)
         {
             SkillEventCode = SkillEventCode.Reset;

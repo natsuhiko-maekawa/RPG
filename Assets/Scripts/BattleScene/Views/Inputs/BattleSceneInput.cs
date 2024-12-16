@@ -44,6 +44,8 @@ namespace BattleScene.Views.Inputs
             if (context.performed) _noArgumentActions.OnCancel();
         }
 
-        public void OnMoveCursor(InputAction.CallbackContext context) { }
+        public void OnMoveCursor(InputAction.CallbackContext context)
+        {
+        }
     }
 }

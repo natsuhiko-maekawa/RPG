@@ -17,7 +17,7 @@ namespace BattleScene.Views.Utilities
                 if (_instance == null)
                 {
                     MyDebug.LogError("An instance of " + typeof(T) +
-                                   " is needed in the scene, but there is none.");
+                                     " is needed in the scene, but there is none.");
                 }
 
                 return _instance;

@@ -35,8 +35,10 @@ namespace BattleScene.Presenters.StateMachines
 
         public void OnSelect() => _context.Select();
         public void OnSelect(int id) => _context.Select(id);
-        public void OnSelect(IReadOnlyList<CharacterModel> targetDtoList) 
+
+        public void OnSelect(IReadOnlyList<CharacterModel> targetDtoList)
             => _context.Select(ToCharacterList(targetDtoList));
+
         public void OnCancel() => _context.Cancel();
 
         private IReadOnlyList<CharacterEntity> ToCharacterList(IReadOnlyList<CharacterModel> characterModelList)

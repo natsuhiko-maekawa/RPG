@@ -11,6 +11,7 @@ namespace BattleScene.DataAccesses.Dto
         [SerializeField] private string name;
         public BodyPartCode Key { get; private set; }
         public string Name { get; private set; }
+
         public void OnBeforeSerialize()
         {
         }

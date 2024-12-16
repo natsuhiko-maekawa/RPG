@@ -1,28 +1,28 @@
 {
-    "name": "Tests",
-    "rootNamespace": "",
-    "references": [
-        "GUID:27619889b8ba8c24980f49ee34dbb44a",
-        "GUID:0acc523941302664db1f4e527237feb3",
-        "GUID:61864ae4a21bb34499f7a25a7cfad63d",
-        "GUID:062eb1bb433fab64db7cf7ea86052655",
-        "GUID:9e27789519e3ae14fabb968869d75264",
-        "GUID:13af43e49dd1b024abe6ff1ba507fabb",
-        "GUID:9a88817da2cdeb94388ab1c4165583ac"
-    ],
-    "includePlatforms": [
-        "Editor"
-    ],
-    "excludePlatforms": [],
-    "allowUnsafeCode": false,
-    "overrideReferences": true,
-    "precompiledReferences": [
-        "nunit.framework.dll"
-    ],
-    "autoReferenced": false,
-    "defineConstraints": [
-        "UNITY_INCLUDE_TESTS"
-    ],
-    "versionDefines": [],
-    "noEngineReferences": false
+  "name": "Tests",
+  "rootNamespace": "",
+  "references": [
+    "GUID:27619889b8ba8c24980f49ee34dbb44a",
+    "GUID:0acc523941302664db1f4e527237feb3",
+    "GUID:61864ae4a21bb34499f7a25a7cfad63d",
+    "GUID:062eb1bb433fab64db7cf7ea86052655",
+    "GUID:9e27789519e3ae14fabb968869d75264",
+    "GUID:13af43e49dd1b024abe6ff1ba507fabb",
+    "GUID:9a88817da2cdeb94388ab1c4165583ac"
+  ],
+  "includePlatforms": [
+    "Editor"
+  ],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": true,
+  "precompiledReferences": [
+    "nunit.framework.dll"
+  ],
+  "autoReferenced": false,
+  "defineConstraints": [
+    "UNITY_INCLUDE_TESTS"
+  ],
+  "versionDefines": [],
+  "noEngineReferences": false
 }

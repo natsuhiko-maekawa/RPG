@@ -29,7 +29,7 @@ namespace BattleScene.UseCases.Services
                 sequence: sequence,
                 turn: turn,
                 actor: actorId,
-                ailmentCode: ailmentCode, 
+                ailmentCode: ailmentCode,
                 slipCode: slipCode);
             _battleLogRepository.Add(battleLog);
         }

@@ -9,11 +9,13 @@ namespace BattleScene.Domain.ValueObjects
         IReadOnlyList<SlipCode>? SlipCodeList = null,
         IReadOnlyList<BodyPartCode>? BodyPartCodeList = null)
     {
-        public IReadOnlyList<AilmentCode> AilmentCodeList { get; private set; } = 
+        public IReadOnlyList<AilmentCode> AilmentCodeList { get; private set; } =
             AilmentCodeList ?? Array.Empty<AilmentCode>();
-        public IReadOnlyList<SlipCode> SlipCodeList { get; private set; } = 
+
+        public IReadOnlyList<SlipCode> SlipCodeList { get; private set; } =
             SlipCodeList ?? Array.Empty<SlipCode>();
-        public IReadOnlyList<BodyPartCode> BodyPartCodeList { get; private set; } = 
+
+        public IReadOnlyList<BodyPartCode> BodyPartCodeList { get; private set; } =
             BodyPartCodeList ?? Array.Empty<BodyPartCode>();
     }
 }

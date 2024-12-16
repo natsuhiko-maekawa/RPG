@@ -30,7 +30,7 @@ namespace BattleScene.Presenters.Presenters
             var taskArray = characterList
                 .Where(x => !x.IsPlayer)
                 .Join(
-                    inner: GetEnemyViewResource(), 
+                    inner: GetEnemyViewResource(),
                     outerKeySelector: static characterEntity => characterEntity.CharacterTypeCode,
                     innerKeySelector: static dto => dto.Key,
                     resultSelector: static (_, inner) => inner.ImagePath)

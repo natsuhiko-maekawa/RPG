@@ -71,7 +71,9 @@ namespace BattleScene.UseCases.Services
             _hitPoint.Damaged(damageEventList);
         }
 
-        private IReadOnlyList<CharacterEntity> GetAttackedTargetList(IReadOnlyList<CharacterEntity> targetList, Range range)
+        private IReadOnlyList<CharacterEntity> GetAttackedTargetList(
+            IReadOnlyList<CharacterEntity> targetList,
+            Range range)
         {
             var surviveTargetArray = targetList
                 .Where(x => x.IsSurvive)

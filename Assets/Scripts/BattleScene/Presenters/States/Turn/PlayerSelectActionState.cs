@@ -14,13 +14,14 @@ namespace BattleScene.Presenters.States.Turn
         private readonly SkillState _skillState;
         private readonly PlayerSelectActionPresenterFacade _facade;
 
-        private readonly IReadOnlyDictionary<int, BattleEventCode> _actionCodeDictionary = new Dictionary<int, BattleEventCode>()
-        {
-            { 0, BattleEventCode.Attack },
-            { 1, BattleEventCode.Skill },
-            { 2, BattleEventCode.Defence },
-            { 3, BattleEventCode.FatalitySkill }
-        };
+        private readonly IReadOnlyDictionary<int, BattleEventCode> _actionCodeDictionary =
+            new Dictionary<int, BattleEventCode>()
+            {
+                { 0, BattleEventCode.Attack },
+                { 1, BattleEventCode.Skill },
+                { 2, BattleEventCode.Defence },
+                { 3, BattleEventCode.FatalitySkill }
+            };
 
         public PlayerSelectActionState(
             PlayerSelectSkillState playerSelectSkillState,

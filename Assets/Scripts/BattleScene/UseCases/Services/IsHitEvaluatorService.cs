@@ -62,7 +62,7 @@ namespace BattleScene.UseCases.Services
             if (!_bodyPartRepository.Get((target.Id, BodyPartCode.Leg)).IsAvailable) return true;
 
             // 空蝉状態の時、必ず回避する
-            if (_enhanceRepository.TryGet((target.Id, EnhanceCode.Utsusemi), out var enhance) && enhance.Effects) 
+            if (_enhanceRepository.TryGet((target.Id, EnhanceCode.Utsusemi), out var enhance) && enhance.Effects)
                 return false;
 
             // 大きいほど命中しやすくなる

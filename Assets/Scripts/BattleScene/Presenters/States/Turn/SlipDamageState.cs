@@ -58,6 +58,7 @@ namespace BattleScene.Presenters.States.Turn
                 nextState = _turnStopState;
                 Context.NextStateCode = StateCode.TurnState;
             }
+
             Context.TransitionTo(nextState);
         }
     }

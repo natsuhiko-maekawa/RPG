@@ -7,7 +7,10 @@ namespace BattleScene.DataAccesses.JsonUtility
 {
     public class SkillEventJsonConverter : JsonConverter<ISkillEventValueObject>
     {
-        public override ISkillEventValueObject Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        public override ISkillEventValueObject Read(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options)
         {
             throw new NotImplementedException();
         }

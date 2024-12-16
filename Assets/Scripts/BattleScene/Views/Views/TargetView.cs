@@ -119,7 +119,9 @@ namespace BattleScene.Views.Views
             }
         }
 
-        public void OnCancel(InputAction.CallbackContext context) { }
+        public void OnCancel(InputAction.CallbackContext context)
+        {
+        }
 
         public void OnMoveCursor(InputAction.CallbackContext context)
         {

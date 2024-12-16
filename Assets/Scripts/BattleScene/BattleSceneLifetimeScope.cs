@@ -247,17 +247,18 @@ namespace BattleScene
 
             #region RegisterCollection
 
-            builder.Register<IRepository<AilmentEntity, (CharacterId, AilmentCode)>, 
+            builder.Register<IRepository<AilmentEntity, (CharacterId, AilmentCode)>,
                 Repository<AilmentEntity, (CharacterId, AilmentCode)>>(Singleton);
-            builder.Register<IRepository<BattleEventEntity, BattleEventId>, Repository<BattleEventEntity, BattleEventId>>(
-                Singleton);
-            builder.Register<IRepository<BodyPartEntity, (CharacterId, BodyPartCode)>, 
+            builder
+                .Register<IRepository<BattleEventEntity, BattleEventId>, Repository<BattleEventEntity, BattleEventId>>(
+                    Singleton);
+            builder.Register<IRepository<BodyPartEntity, (CharacterId, BodyPartCode)>,
                 Repository<BodyPartEntity, (CharacterId, BodyPartCode)>>(Singleton);
-            builder.Register<IRepository<BuffEntity, (CharacterId, BuffCode)>, 
+            builder.Register<IRepository<BuffEntity, (CharacterId, BuffCode)>,
                 Repository<BuffEntity, (CharacterId, BuffCode)>>(Singleton);
             builder.Register<IRepository<CharacterEntity, CharacterId>, Repository<CharacterEntity, CharacterId>>(
                 Singleton);
-            builder.Register<IRepository<EnhanceEntity, (CharacterId, EnhanceCode)>, 
+            builder.Register<IRepository<EnhanceEntity, (CharacterId, EnhanceCode)>,
                 Repository<EnhanceEntity, (CharacterId, EnhanceCode)>>(Singleton);
             builder.Register<IRepository<OrderItemEntity, OrderItemId>, Repository<OrderItemEntity, OrderItemId>>(
                 Singleton);

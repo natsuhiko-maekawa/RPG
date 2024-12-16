@@ -26,8 +26,8 @@ namespace BattleScene.DataAccesses.Resource
                 ++count;
             }
 
-            if (item is null || count != 1) throw 
-                new InvalidOperationException($"key {id.ToString()} not found in {typeof(TScriptableObject).Name}.");
+            if (item is null || count != 1) throw new InvalidOperationException(
+                $"key {id.ToString()} not found in {typeof(TScriptableObject).Name}.");
 
             return item;
         }

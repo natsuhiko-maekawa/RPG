@@ -25,8 +25,10 @@ namespace BattleScene.UseCases.UseCases
 
         public bool IsPlayerDeadInThisTurn() => _deadCharacter.IsPlayerDeadInThisTurn();
         public bool IsAllEnemyDead() => _deadCharacter.IsAllEnemyDead();
+
         public IReadOnlyList<CharacterEntity> GetDeadCharacterInThisTurn()
             => _deadCharacter.GetDeadCharacterInThisTurn();
+
         public void ConfirmedDead()
         {
             var deadCharacterArray = _deadCharacter.GetDeadCharacterInThisTurn();

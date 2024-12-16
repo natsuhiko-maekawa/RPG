@@ -73,7 +73,10 @@ namespace BattleScene.Views.Views
         public void StartFrameAnimation(FrameViewModel model) => _frameView.StartAnimation(model);
         public void StopFrameAnimation() => _frameView.StopAnimation();
         public void StartHitPointBarAnimation(StatusBarViewModel model) => _hitPointBarView.StartAnimation(model);
-        public void StartTechnicalPointBarAnimation(StatusBarViewModel model) => _technicalPointBarView.StartAnimation(model);
+
+        public void StartTechnicalPointBarAnimation(StatusBarViewModel model) =>
+            _technicalPointBarView.StartAnimation(model);
+
         public void StartVibeAnimation() => _playerImage.Vibe();
     }
 }

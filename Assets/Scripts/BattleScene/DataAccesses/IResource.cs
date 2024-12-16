@@ -10,6 +10,7 @@ namespace BattleScene.DataAccesses
     public interface IResource<TItem, in TKey>
     {
         public TItem Get(TKey key);
+
         // QUESTION: この実装のように、アロケーションを起こさないためにはリストは戻り値で返却せず引数で受け渡しすべきか
         public void Get(List<TItem> itemList);
     }
