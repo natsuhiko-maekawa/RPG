@@ -78,4 +78,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4a579ea9dd143c2a263b644193bcfda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  primeSkillCode: 0
+  skillCode: 0
