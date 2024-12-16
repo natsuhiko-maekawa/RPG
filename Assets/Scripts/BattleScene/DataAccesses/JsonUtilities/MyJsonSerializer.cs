@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 // ReSharper disable UnusedMember.Local
 
-namespace BattleScene.DataAccesses.JsonUtility
+namespace BattleScene.DataAccesses.JsonUtilities
 {
     public class MyJsonSerializer
     {

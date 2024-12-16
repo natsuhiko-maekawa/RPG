@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using BattleScene.DataAccesses.ScriptableObjects;
 using UnityEngine;
 
-namespace BattleScene.DataAccesses.Resource
+namespace BattleScene.DataAccesses.ScriptableObjectResources
 {
     public abstract class BaseScriptableObjectResource<TScriptableObject, TItem, TId>
         : MonoBehaviour, IResource<TItem, TId>

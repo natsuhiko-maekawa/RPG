@@ -1,7 +1,7 @@
 ﻿using BattleScene.DataAccesses.Dto;
 using UnityEngine;
 
-namespace BattleScene.DataAccesses.Resource
+namespace BattleScene.DataAccesses.ScriptableObjectResources
 {
     public class BattlePropertyResource : MonoBehaviour, IResource<BattlePropertyDto>
     {

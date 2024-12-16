@@ -3,7 +3,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using BattleScene.Domain.ValueObjects.SkillEventValueObject.Interface;
 
-namespace BattleScene.DataAccesses.JsonUtility
+namespace BattleScene.DataAccesses.JsonUtilities
 {
     public class SkillEventJsonConverter : JsonConverter<ISkillEventValueObject>
     {

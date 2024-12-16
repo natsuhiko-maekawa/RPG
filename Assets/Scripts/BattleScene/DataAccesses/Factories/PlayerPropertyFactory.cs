@@ -3,7 +3,7 @@ using BattleScene.Domain.Codes;
 using BattleScene.Domain.DataAccesses;
 using BattleScene.Domain.ValueObjects;
 
-namespace BattleScene.DataAccesses.Factory
+namespace BattleScene.DataAccesses.Factories
 {
     public class PlayerPropertyFactory : IFactory<PlayerPropertyValueObject, CharacterTypeCode>
     {

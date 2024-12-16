@@ -5,7 +5,7 @@ using System.Linq;
 using BattleScene.Domain.DataAccesses;
 using BattleScene.Domain.Entities;
 
-namespace BattleScene.DataAccesses.Repository
+namespace BattleScene.DataAccesses.Repositories
 {
     public partial class Repository<TEntity, TId> : IRepository<TEntity, TId>
         where TEntity : BaseEntity<TId>

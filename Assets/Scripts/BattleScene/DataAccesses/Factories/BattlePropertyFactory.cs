@@ -2,7 +2,7 @@
 using BattleScene.Domain.DataAccesses;
 using BattleScene.Domain.ValueObjects;
 
-namespace BattleScene.DataAccesses.Factory
+namespace BattleScene.DataAccesses.Factories
 {
     public class BattlePropertyFactory : IFactory<BattlePropertyValueObject>
     {
