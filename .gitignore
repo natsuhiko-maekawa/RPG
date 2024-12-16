@@ -95,3 +95,6 @@ crashlytics-build.properties
 Scripts/.venv
 Scripts/source
 Scripts/output
+
+# CLIP STUDIO PAINTのファイルを除外
+*.clip
