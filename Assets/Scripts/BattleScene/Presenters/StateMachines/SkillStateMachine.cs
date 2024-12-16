@@ -47,7 +47,7 @@ namespace BattleScene.Presenters.StateMachines
             }
 
             nextStateCode =
-                _skillContextEnumerator!.Current is null or { NextStateCode: StateCode.None or StateCode.Next }
+                _skillContextEnumerator!.Current is not { NextStateCode: not StateCode.None and not StateCode.Next }
                     ? GetNextStateCode()
                     : _skillContextEnumerator.Current.NextStateCode;
             _skillContextEnumerator.Dispose();
@@ -57,7 +57,7 @@ namespace BattleScene.Presenters.StateMachines
 
         private StateCode GetNextStateCode()
         {
-            var nextStateCode = _skillContextEnumerator!.Current is null or { Dead: Dead.None }
+            var nextStateCode = _skillContextEnumerator!.Current is not { Dead: not Dead.None }
                 ? StateCode.AdvanceTurnState
                 : StateCode.CharacterDeadState;
             return nextStateCode;
