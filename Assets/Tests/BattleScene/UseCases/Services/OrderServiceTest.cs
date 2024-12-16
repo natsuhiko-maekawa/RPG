@@ -364,6 +364,7 @@ namespace Tests.BattleScene.UseCases.Services
             Assert.That(actual, Is.EqualTo(expected).Using(new OrderItemEqualityComparator()));
         }
 
+        // ReSharper disable once UnusedMember.Local
         private static void MockOrderItemRepositoryLogger(
             IRepository<OrderItemEntity, OrderItemId> orderItemRepository,
             IReadOnlyList<(CharacterId, string)> characterIdNamePairList)
