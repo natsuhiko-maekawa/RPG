@@ -22,8 +22,7 @@ namespace BattleScene.Views.Views
 
         public void StartAilmentAnimation(AilmentViewModel ailment)
         {
-            if (ailment.Effects) _playerAilmentStatusArray[ailment.AilmentId].Activate();
-            else _playerAilmentStatusArray[ailment.AilmentId].Inactivate();
+            _playerAilmentStatusArray[ailment.AilmentId].SetActive(ailment.Effects);
         }
 
         public void StartDestroyAnimation(BodyPartViewModel bodyPart)

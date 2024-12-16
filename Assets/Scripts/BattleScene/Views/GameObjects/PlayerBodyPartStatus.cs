@@ -17,18 +17,6 @@ namespace BattleScene.Views.GameObjects
             _playerStatusIcon = GetComponentInChildren<PlayerStatusIcon>();
         }
 
-        public void Activate()
-        {
-            _playerStatusText.Activate();
-            _playerStatusIcon.Activate();
-        }
-
-        public void Inactivate()
-        {
-            _playerStatusText.Inactivate();
-            _playerStatusIcon.Inactivate();
-        }
-
         public void Set(int destroyedCount)
         {
             switch (destroyedCount)
@@ -63,6 +51,18 @@ namespace BattleScene.Views.GameObjects
             _playerStatusText.Set(multipleName);
             _playerStatusIcon.Set(cross);
             Activate();
+        }
+
+        private void Activate()
+        {
+            _playerStatusText.Activate();
+            _playerStatusIcon.enabled = true;
+        }
+
+        private void Inactivate()
+        {
+            _playerStatusText.Inactivate();
+            _playerStatusIcon.enabled = false;
         }
     }
 }

@@ -17,12 +17,12 @@ namespace BattleScene.Views.GameObjects
             _image.sprite = sprite;
         }
 
-        public void Activate()
+        private void OnEnable()
         {
             _image.enabled = true;
         }
 
-        public void Inactivate()
+        private void OnDisable()
         {
             _image.enabled = false;
         }

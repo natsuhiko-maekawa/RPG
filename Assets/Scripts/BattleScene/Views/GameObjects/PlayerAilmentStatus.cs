@@ -11,19 +11,19 @@ namespace BattleScene.Views.GameObjects
         {
             _playerStatusText = GetComponentInChildren<PlayerStatusText>();
             _playerStatusIcon = GetComponentInChildren<PlayerStatusIcon>();
-            Inactivate();
         }
 
-        public void Activate()
+        public void SetActive(bool value)
         {
-            _playerStatusText.Activate();
-            _playerStatusIcon.Activate();
-        }
-
-        public void Inactivate()
-        {
-            _playerStatusText.Inactivate();
-            _playerStatusIcon.Inactivate();
+            _playerStatusIcon.enabled = value;
+            if (value)
+            {
+                _playerStatusText.Activate();
+            }
+            else
+            {
+                _playerStatusText.Inactivate();
+            }
         }
     }
 }

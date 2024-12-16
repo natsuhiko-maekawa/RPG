@@ -24,16 +24,16 @@ namespace BattleScene.Views.GameObjects
                 case BuffState.Buff:
                     _playerStatusText.Activate();
                     _playerStatusIcon.Set(buff);
-                    _playerStatusIcon.Activate();
+                    _playerStatusIcon.enabled = true;
                     break;
                 case BuffState.NoBuff:
                     _playerStatusText.Inactivate();
-                    _playerStatusIcon.Inactivate();
+                    _playerStatusIcon.enabled = false;
                     break;
                 case BuffState.DeBuff:
                     _playerStatusText.Activate();
                     _playerStatusIcon.Set(debuff);
-                    _playerStatusIcon.Activate();
+                    _playerStatusIcon.enabled = true;
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(buffState), buffState, null);
