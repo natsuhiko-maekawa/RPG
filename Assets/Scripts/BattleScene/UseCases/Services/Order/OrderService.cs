@@ -72,11 +72,9 @@ namespace BattleScene.UseCases.Services.Order
             InsertAilmentEnd(ailments, ref orderItemList);
             InsertSlipDamage(slipDamages, ref orderItemList);
 
-            // QUESTION: IEnumeratorを渡した場合とToArrayして配列を渡した場合、アロケーションが少ないのはどちらか。
             foreach (var (orderItemEntity, orderItem) in _orderItemRepository.Get()
                          .OrderBy(x => x.Order)
-                         .Zip(orderItemList, (orderItemEntity, orderItem) => (orderItemEntity, orderItem))
-                         .ToArray())
+                         .Zip(orderItemList, (orderItemEntity, orderItem) => (orderItemEntity, orderItem)))
             {
                 orderItemEntity.SetOrderItem(orderItem);
             }

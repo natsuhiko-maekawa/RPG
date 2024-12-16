@@ -5,7 +5,6 @@ using BattleScene.Domain.DataAccesses;
 using BattleScene.Domain.Entities;
 using BattleScene.Domain.Ids;
 using BattleScene.Domain.ValueObjects;
-using Utility;
 
 namespace BattleScene.UseCases.Services
 {
@@ -31,16 +30,11 @@ namespace BattleScene.UseCases.Services
         public void Register(SlipCode slipCode)
         {
             // 現在のスリップコードから直近に罹ったスリップのログを取得する
-            // TODO: 稀にNullReferenceExceptionが発生する。
             var slipEvent = _battleLogRepository.Get()
                 .Where(x => x.BattleEventCode is BattleEventCode.Skill or BattleEventCode.FatalitySkill)
                 .Where(x => x.SlipCode == slipCode)
                 .Where(x => !x.IsFailure)
                 .Max();
-            if (slipEvent is null)
-            {
-                MyDebug.Log($"SlipCode: {slipCode}");
-            }
 
             var actor = slipEvent.Actor ?? throw new InvalidOperationException();
             var targetList = slipEvent.TargetList;

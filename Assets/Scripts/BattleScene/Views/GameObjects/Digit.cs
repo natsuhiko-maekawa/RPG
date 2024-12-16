@@ -83,8 +83,6 @@ namespace BattleScene.Views.GameObjects
             _tmpText.enabled = true;
         }
 
-        // QUESTION: 実質アニメーションの遷移が終了した際に呼び出されるため、
-        // QUESTION: OnStateMachineExitイベント関数に置き換えたいが、方法がわからない。
         public void OnAnimationExit()
         {
             enabled = false;
